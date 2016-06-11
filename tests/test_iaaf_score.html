@@ -1,0 +1,57 @@
+<html>
+	<meta>
+	<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+	<script src="../js/iaaf_score.js"></script>
+	</meta>
+	<body>
+		<select id="event_code" onchange="show_unit_name()"><option value="" selected>Choose an event</option></select><br/>
+		<h3>Compute score from performance</h3>
+		<input type="text" id='value' value='' style="width:5em"/><span class="unit_name"></span><br/>
+		<input type="button" value="caculate points" onclick="fcompute()"/><br/>
+		<p>score: <span id="fscore"></span> points</p>
+
+		<h3>Compute performance from score</h3>
+		<input type="text" id='score' value='' style="width:5em"/> points<br/>
+		<input type="button" value="calculate performance" onclick="icompute()"/><br/>
+		<p>performance: <span id="performance"></span> <span class="unit_name"></span></p><br/>
+		<script>
+			function fillbox(id,L){
+				var sj=$('#'+id), s=sj[0], i,
+					v=s.options[s.selectedIndex].value, Li;
+				sj.hide();
+				s.options.length=1;		//keep the first only
+				s.selectedIndex=0;
+				for(i=0;i<L.length;i++){
+					Li=L[i];
+					s.add(new Option(Li,Li,false,Li==v),null);
+					if(Li==v) s.selectedIndex=i+1;
+					}
+				sj.show();
+				}
+			function get_event_code(){
+				var sj=$('#event_code'), s=sj[0];
+				return s.options[s.selectedIndex].value;
+				}
+			function show_unit_name(){
+				$('.unit_name').text(iaaf_unit_name(get_event_code().split("-")[1]));
+				}
+			function fcompute(){
+				var g=get_event_code().split("-"), v=$('#value')[0].value;
+				var z=iaaf_score(g[0],g[1],v);
+				$('#fscore').text(z?z:'');
+				}
+			function icompute(){
+				var g=get_event_code().split("-"), v=$('#score')[0].value;
+				var z=iaaf_performance(g[0],g[1],v);
+				$('#performance').text(z?z:'');
+				}
+			$(document).ready(function(){
+			_iaaf_scoring_objects_create();
+			var K=[];
+			for(var k in _iaaf_scoring_objects)K[K.length]=k;
+			K.sort()
+			fillbox('event_code',K);
+			});
+		</script>
+	</body>
+</html>
