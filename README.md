@@ -1,5 +1,6 @@
 # athlib
-A library of functions, data and schema for Athletics (i.e. Track and Field)
+
+Athlib is a library of functions, data and schema for Athletics (i.e. Track and Field)
 
 We're building lots of sites for the sport of athletics.  When we find something common and testable, we aim to place it here.   This library should contain
 
@@ -24,9 +25,16 @@ Things we hope to put in here:
 
 # Installation
 
+For the Python version, it should be just
+
     pip install athlib
 
 If working on this source, you'll need to ensure the inner package (./py/athlib) is on your path, so that you can execute "import athlib"
+
+# Documentation
+...can be found at http://athlib.readthedocs.org/
+
+If you want to hack on athlib, look there too.  We'll move some things from below shortly, and try to keep this README very short.
 
 ## Age Groups
 The first Python function included has been in use in our entry system for 2 years, and has a reasonable number of tests.  It just works out age groups from a competition date and birth date.   There are three supported categories: XC, ROAD and TF.
