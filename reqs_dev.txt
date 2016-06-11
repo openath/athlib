@@ -1,0 +1,8 @@
+# Requirements to work on athlib itself
+mkdocs
+wheel 
+twine
+tox
+
+
+

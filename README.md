@@ -22,6 +22,29 @@ Things we hope to put in here:
  - sample JSON files in line with our schemas
  - schemas to validate 
 
+# Installation
+
+    pip install athlib
+
+If working on this source, you'll need to ensure the inner package (./py/athlib) is on your path, so that you can execute "import athlib"
+
+## Age Groups
+The first Python function included has been in use in our entry system for 2 years, and has a reasonable number of tests.  It just works out age groups from a competition date and birth date.   There are three supported categories: XC, ROAD and TF.
+
+    >>> from athlib.uka.agegroups import calc_age_group
+    >>> from datetime import date
+    >>> calc_age_group(date(1966,3,21), date(2015,1,3), "XC", vets=False)
+    'SEN'
+    >>> calc_age_group(date(2000,1,1), date(2015,1,3), "XC", vets=False)
+    'U15'
+    >>> 
+
+The optional vets argument says whether those over 35 should return a WMA age grade (V45 etc), or just "SEN" for senior
+
+## IAAF scores
+
+These are available in Javascript.  A python equivalent is coming soon.
+
 ## Next steps - 11th June
 Currently we have just the IAAF scores in Javascript.
 
