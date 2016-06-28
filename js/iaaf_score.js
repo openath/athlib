@@ -147,6 +147,7 @@ function iaaf_performance(gender, event_code, score) {
 		} else {
 			return Math.floor(100.0 * (coeffs.Z - (Math.pow(score / coeffs.A, 1.0 / coeffs.X)))) / 100.0;
 		}
+	}
 
 	// Return the performance-calculation function
 	iaaf_performance = fnew;
