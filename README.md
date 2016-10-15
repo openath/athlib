@@ -29,7 +29,7 @@ For the Python version, it should be just
 
     pip install athlib
 
-If working on this source, you'll need to ensure the inner package (./py/athlib) is on your path, so that you can execute "import athlib"
+If working on this source, you'll need to ensure the inner package (./athlib) is on your path, so that you can execute "import athlib"
 
 # Documentation
 ...can be found at http://athlib.readthedocs.org/
@@ -51,12 +51,10 @@ The optional vets argument says whether those over 35 should return a WMA age gr
 
 ## IAAF scores
 
-These are available in Javascript.  A python equivalent is coming soon.
+These are available in Javascript, as well as Python.
 
-## Next steps - 11th June
-Currently we have just the IAAF scores in Javascript.
+## Next steps - update the documentation, so that it's auto-generated from the code
 
- - Add some tested Python code (e.g. UKA age group calculations)
  - Publish on PyPI
  - Work out a testing approach for the Javascript
  - Work out the best way to package and ship, and have on a CDN, for the javascript portions
