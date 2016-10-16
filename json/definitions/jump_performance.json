@@ -1,0 +1,14 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Single athlete's performance in a single jump event",
+    "description": "A single athlete's performance in a single jump, which may be horizontal or vertical.",
+    "type": "object",
+    "anyOf": [
+        {
+            "$ref": "horizontal_jump_performance.json#"
+        },
+        {
+            "$ref": "vertical_jump_performance.json#"
+        }
+    ]
+}
