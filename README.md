@@ -55,6 +55,7 @@ These are available in Javascript, as well as Python.
 
 ## Next steps - update the documentation, so that it's auto-generated from the code
 
+ - Fix up JSON directory structure and schemata
  - Publish on PyPI
  - Work out a testing approach for the Javascript
  - Work out the best way to package and ship, and have on a CDN, for the javascript portions
