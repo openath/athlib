@@ -32,7 +32,7 @@
             ],
             "minimum": 0,
             "minLength": 1
-        }
+        },
         "laps": {
             "description": "Ordered list of lap times, or 'null' if missing",
             "type": "array",
@@ -43,7 +43,7 @@
                     "string"
                 ]
             },
-            "minItems": 1
+            "minItems": 1,
             "maxItems": 25
         }
     },

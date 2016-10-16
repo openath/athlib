@@ -16,7 +16,7 @@
         },
         "first_claim": {
             "description": "Athlete's first claim club",
-            "type",
+            "type": "string",
             "minLength": 1
         },
         "vest_number": {

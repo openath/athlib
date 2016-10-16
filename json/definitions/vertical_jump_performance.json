@@ -13,10 +13,10 @@
         },
         "performance": {
             "description": "Best height achieved",
-            "type": {
+            "type": [
                 "number",
                 "string"
-            },
+            ],
             "minimum": 0,
             "minLength": 1
         },
@@ -30,7 +30,7 @@
                     "cleared" : {
                         "description": "Whether the height was cleared",
                         "type": "boolean"
-                    }
+                    },
                     "height": {
                         "description": "The height attempted",
                         "type": [
@@ -43,13 +43,11 @@
                     },
                     "num_attempts": {
                         "description": "The number of attempts made at the height",
-                        "type": {
-                            "number",
-                            "multipleOf": 1.0
-                        },
+                        "type": "number",
+                        "multipleOf": 1.0,
                         "minimum": 0,
-                        "maximum", 3
-                    }
+                        "maximum": 3
+                    },
                     "required": [
                         "cleared",
                         "height",

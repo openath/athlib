@@ -5,7 +5,7 @@
     "type": "object",
     "properties": {
         "events": {
-            "description": "Array of completed events"
+            "description": "Array of completed events",
             "type": "array",
             "items": {
                 "$ref": "event.json#"

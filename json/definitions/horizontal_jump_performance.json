@@ -13,10 +13,10 @@
         },
         "performance": {
             "description": "Best distance achieved",
-            "type": {
+            "type": [
                 "number",
                 "string"
-            },
+            ],
             "minimum": 0,
             "minLength": 1
         },

@@ -5,10 +5,10 @@
     "type": "object",
     "properties": {
         "performances": {
-            "description": "Array of athletes' performances"
+            "description": "Array of athletes' performances",
             "type": "array",
             "items": {
-                "description": "Athlete and performance"
+                "description": "Athlete and performance",
                 "type": "object",
                 "properties": {
                     "athlete": {
@@ -16,8 +16,12 @@
                     },
                     "performance": {
                         "anyOf": [
-                            "$ref": "combined_performance.json#",
-                            "$ref": "performance.json#"
+                            {
+                                "$ref": "combined_performance.json#"
+                            },
+                            {
+                                "$ref": "performance.json#"
+                            }
                         ]
                     }
                 },

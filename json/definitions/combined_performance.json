@@ -13,11 +13,13 @@
     ],
     "properties": {
         "events": {
-            "description": "Ordered list of performances for individual events comprising the combined event, or 'null' if not complete"
+            "description": "Ordered list of performances for individual events comprising the combined event, or 'null' if not complete",
             "type": "array",
             "items": {
                 "anyOf": [
-                    "$ref": "performance.json#",
+                    {
+                        "$ref": "performance.json#"
+                    },
                     "null"
                 ]
             },
