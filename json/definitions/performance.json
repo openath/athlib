@@ -1,0 +1,20 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Single athlete's performance in a single event",
+    "description": "A single athlete's performance in a single event, which may comprise a single- or multiple- attempts.",
+    "type": "object",
+    "anyOf": [
+        {
+            "$ref": "field_performance.json#"
+        },
+        {
+            "$ref": "track_performance.json#"
+        }
+    ],
+    "properties": {
+        "iaaf_score": {
+            "description": "IAAF score for the performance",
+            "type": "integer"
+        }
+    }
+}

@@ -1,0 +1,33 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Single athlete's multiple performance in a single field event",
+    "description": "A single athlete's performance in a single field event, which comprises multiple attempts.",
+    "type": "object",
+    "properties": {
+        "event": {
+            "description": "Standard event type short name",
+            "enum": [
+                "DT",
+                "HT",
+                "JT",
+                "LJ",
+                "SP",
+                "TJ",
+                "WT"
+            ]
+        },
+        "performance": {
+            "description": "Array of distances/heights",
+            "type": "array",
+            "items": {
+                "type": [
+                    "number",
+                    "string"
+                ]
+            },
+            "minItems": 1,
+            "maxItems": 6
+        }
+    },
+    "required": ["event", "performance"]
+}

@@ -1,0 +1,25 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Single athlete's single performance in a single field event",
+    "description": "A single athlete's performance in a single field event, which comprises a single attempt.",
+    "type": "object",
+    "properties": {
+        "event": {
+            "description": "Standard event type short name",
+            "enum": [
+                "HJ",
+                "PV"
+            ]
+        },
+        "performance": {
+            "description": "Distance/height recorded",
+            "type": [
+                "number",
+                "string"
+            ],
+            "minimum": 0,
+            "minLength": 1
+        }
+    },
+    "required": ["event", "performance"]
+}
