@@ -1,14 +1,14 @@
 {
     "$schema": "http://json-schema.org/draft-04/schema#",
     "title": "Single athlete's performance in a single field event",
-    "description": "A single athlete's performance in a single field event, which may comprise a single- or multiple- attempts.",
+    "description": "A single athlete's performance in a single field event, which may be a jump or a throw.",
     "type": "object",
     "anyOf": [
         {
-            "$ref": "single_field_performance.json#"
+            "$ref": "jump_performance.json#"
         },
         {
-            "$ref": "multiple_field_performance.json#"
+            "$ref": "throw_performance.json#"
         }
     ]
 }

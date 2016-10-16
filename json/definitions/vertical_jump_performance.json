@@ -1,0 +1,60 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Single athlete's single performance in a vertical jump event",
+    "description": "A single athlete's performance in a vertical jump event.",
+    "type": "object",
+    "properties": {
+        "event": {
+            "description": "Standard event type short name",
+            "enum": [
+                "HJ",
+                "PV"
+            ]
+        },
+        "performance": {
+            "description": "Best height achieved",
+            "type": {
+                "number",
+                "string"
+            },
+            "minimum": 0,
+            "minLength": 1
+        },
+        "attempts": {
+            "description": "Ordered list of heights attempted and number of attempts to clear",
+            "type": "array",
+            "items": {
+                "description": "Height, number of attempts and whether successfully cleared",
+                "type": "object",
+                "properties": {
+                    "cleared" : {
+                        "description": "Whether the height was cleared",
+                        "type": "boolean"
+                    }
+                    "height": {
+                        "description": "The height attempted",
+                        "type": [
+                            "number",
+                            "string"
+                        ],
+                        "minimum": 0,
+                        "exclusiveMinimum": true,
+                        "minLength": 1
+                    },
+                    "num_attempts": {
+                        "description": "The number of attempts made at the height",
+                        "type": {
+                            "number",
+                            "multipleOf": 1.0
+                        },
+                        "minimum": 0,
+                        "maximum", 3
+                    }
+                    "required": ["cleared", "height", "num_attempts"]
+                }
+            },
+            "minItems": 1
+        }
+    },
+    "required": ["event", "performance"]
+}

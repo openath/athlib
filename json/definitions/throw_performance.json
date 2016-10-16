@@ -1,7 +1,7 @@
 {
     "$schema": "http://json-schema.org/draft-04/schema#",
-    "title": "Single athlete's multiple performance in a single field event",
-    "description": "A single athlete's performance in a single field event, which comprises multiple attempts.",
+    "title": "Single athlete's performance in a single throw event",
+    "description": "A single athlete's performance in a single throw event.",
     "type": "object",
     "properties": {
         "event": {
@@ -10,14 +10,21 @@
                 "DT",
                 "HT",
                 "JT",
-                "LJ",
                 "SP",
-                "TJ",
                 "WT"
             ]
         },
         "performance": {
-            "description": "Array of distances/heights",
+            "description": "Best distance achieved",
+            "type": {
+                "number",
+                "string"
+            },
+            "minimum": 0,
+            "minLength": 1
+        },
+        "attempts": {
+            "description": "Ordered list of attempts",
             "type": "array",
             "items": {
                 "type": [

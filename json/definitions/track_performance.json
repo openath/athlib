@@ -1,7 +1,7 @@
 {
     "$schema": "http://json-schema.org/draft-04/schema#",
     "title": "Single athlete's performance in a single track event",
-    "description": "A single athlete's performance in a single track event, which comprises a single attempt.",
+    "description": "A single athlete's performance in a single track event.",
     "type": "object",
     "properties": {
         "event": {
@@ -32,6 +32,19 @@
             ],
             "minimum": 0,
             "minLength": 1
+        }
+        "laps": {
+            "description": "Ordered list of lap times, or 'null' if missing",
+            "type": "array",
+            "items": {
+                "type": [
+                    "null",
+                    "number",
+                    "string"
+                ]
+            },
+            "minItems": 1
+            "maxItems": 25
         }
     },
     "required": ["event", "performance"]
