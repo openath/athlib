@@ -12,9 +12,16 @@
         }
     ],
     "properties": {
+        "athlete": {
+            "$ref": "athlete.json#"
+        },
         "iaaf_score": {
             "description": "IAAF score for the performance",
             "type": "integer"
+        },
+        "indoors": {
+            "description": "Whether the event was held indoors or not",
+            "type": "boolean"
         }
     }
 }

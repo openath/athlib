@@ -50,11 +50,18 @@
                         "minimum": 0,
                         "maximum", 3
                     }
-                    "required": ["cleared", "height", "num_attempts"]
+                    "required": [
+                        "cleared",
+                        "height",
+                        "num_attempts"
+                    ]
                 }
             },
             "minItems": 1
         }
     },
-    "required": ["event", "performance"]
+    "required": [
+        "event",
+        "performance"
+    ]
 }

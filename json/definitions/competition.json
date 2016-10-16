@@ -1,0 +1,19 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Results for a competition",
+    "description": "Performances of all athletes for all events in a competition.",
+    "type": "object",
+    "properties": {
+        "events": {
+            "description": "Array of completed events"
+            "type": "array",
+            "items": {
+                "$ref": "event.json#"
+            },
+            "minItems": 1
+        }
+    },
+    "required": [
+        "events"
+    ]
+}

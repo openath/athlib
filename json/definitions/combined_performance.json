@@ -1,0 +1,55 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Single athlete's performance in a combined event",
+    "description": "A single athlete's performance in a combined event.",
+    "type": "object",
+    "anyOf": [
+        {
+            "$ref": "field_performance.json#"
+        },
+        {
+            "$ref": "track_performance.json#"
+        }
+    ],
+    "properties": {
+        "events": {
+            "description": "Ordered list of performances for individual events comprising the combined event, or 'null' if not complete"
+            "type": "array",
+            "items": {
+                "anyOf": [
+                    "$ref": "performance.json#",
+                    "null"
+                ]
+            },
+            "minItems": 2,
+            "maxItems": 20
+        },
+        "type" : {
+            "description": "Standard name for the type of combined event",
+            "enum": [
+                "DEC",
+                "HEP",
+                "ICOS",
+                "OCT",
+                "PENT",
+                "QUAD",
+                "TETRA"
+            ]
+        },
+        "athlete": {
+            "$ref": "athlete.json#"
+        },
+        "iaaf_score": {
+            "description": "IAAF score for the performance",
+            "type": "integer"
+        },
+        "indoors": {
+            "description": "Whether the event was held indoors or not",
+            "type": "boolean"
+        },
+        "required": [
+            "events",
+            "type"
+        ]
+    }
+}

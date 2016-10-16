@@ -1,0 +1,35 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Results for an event",
+    "description": "Performances of all athletes for a single/combined event.",
+    "type": "object",
+    "properties": {
+        "performances": {
+            "description": "Array of athletes' performances"
+            "type": "array",
+            "items": {
+                "description": "Athlete and performance"
+                "type": "object",
+                "properties": {
+                    "athlete": {
+                        "$ref": "athlete.json#"
+                    },
+                    "performance": {
+                        "anyOf": [
+                            "$ref": "combined_performance.json#",
+                            "$ref": "performance.json#"
+                        ]
+                    }
+                },
+                "required": [
+                    "athlete",
+                    "performance"
+                ]
+            },
+            "minItems": 1
+        }
+    },
+    "required": [
+        "performances"
+    ]
+}

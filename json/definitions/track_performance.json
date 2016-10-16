@@ -47,5 +47,8 @@
             "maxItems": 25
         }
     },
-    "required": ["event", "performance"]
+    "required": [
+        "event",
+        "performance"
+    ]
 }
