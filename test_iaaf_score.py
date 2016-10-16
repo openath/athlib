@@ -1,13 +1,16 @@
 """Unit tests for iaaf_score.py."""
 
 from unittest import TestCase, main
-from athlib.iaaf_score import performance,scoring_key,score,unit_name
+from athlib.iaaf_score import performance, scoring_key, score, unit_name
+
 
 class IaafScoreTests(TestCase):
     """Test suite for the IAAF score calculation module."""
-
     def test_performance(self):
-        """Test the function to calculate the required performance for a given score."""
+        """
+        Test the function to calculate the required performance for a given
+        score.
+        """
         self.assertEquals(performance("F", "10000", 915), 2400.73)
         self.assertEquals(performance("M", "110H", 973), 14.01)
         self.assertEquals(performance("M", "110H", 974), 14)
@@ -17,7 +20,10 @@ class IaafScoreTests(TestCase):
         self.assertEquals(performance("M", "PV", 1284), 616)
 
     def test_scoring_key(self):
-        """Test the function to calculate the scoring key from the gender and event code."""
+        """
+        Test the function to calculate the scoring key from the gender and
+        event code.
+        """
         self.assertEquals(scoring_key("m", "100"), "M-100")
         self.assertEquals(scoring_key("f", "400h"), "F-400H")
         self.assertEquals(scoring_key("M", "3000SC"), "M-3000SC")
@@ -48,5 +54,5 @@ class IaafScoreTests(TestCase):
         self.assertEquals(unit_name("WT"), "metres")
 
 
-if __name__=='__main__':
+if __name__ == '__main__':
     main()
