@@ -4,7 +4,8 @@ This file contains definitions and utility functions for determining IAAF event 
 import math
 import re
 
-# Regular expressions to match jumps and throws events (everything else is a track event)
+# Regular expressions to match jumps and throws events (everything else is a
+# track event)
 _jump_codes = re.compile("^(LJ|PV|TJ|HJ)$", re.IGNORECASE)
 _throw_codes = re.compile("^(WT|JT|DT|HT|SP)$", re.IGNORECASE)
 
