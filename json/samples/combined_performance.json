@@ -1,0 +1,20 @@
+{
+    "events": [
+        performance,
+        performance,
+        performance,
+        performance,
+        performance,
+        performance,
+        performance,
+        null,
+        null,
+        null
+    ],
+    "type": "DEC",
+    "athlete": {
+        athlete
+    },
+    "iaaf_score": 0,
+    "indoors": false
+}

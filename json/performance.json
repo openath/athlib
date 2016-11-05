@@ -5,10 +5,10 @@
     "type": "object",
     "anyOf": [
         {
-            "$ref": "field_performance.json#"
+            "$ref": "definitions/field_performance.json#"
         },
         {
-            "$ref": "track_performance.json#"
+            "$ref": "definitions/track_performance.json#"
         }
     ],
     "properties": {
@@ -17,7 +17,8 @@
         },
         "iaaf_score": {
             "description": "IAAF score for the performance",
-            "type": "integer"
+            "type": "number",
+            "multipleOf": 1.0
         },
         "indoors": {
             "description": "Whether the event was held indoors or not",

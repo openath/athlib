@@ -15,6 +15,9 @@
         },
         {
             "$ref": "definitions/event.json#"
+        },
+        {
+            "$ref": "definitions/performance.json#"
         }
     ]
 }
