@@ -3,14 +3,6 @@
     "title": "Single athlete's performance in a combined event",
     "description": "A single athlete's performance in a combined event.",
     "type": "object",
-    "anyOf": [
-        {
-            "$ref": "field_performance.json#"
-        },
-        {
-            "$ref": "track_performance.json#"
-        }
-    ],
     "properties": {
         "events": {
             "description": "Ordered list of performances for individual events comprising the combined event, or 'null' if not complete",
