@@ -1,0 +1,16 @@
+{
+    "athlete": {
+        "name": "Test Athlete",
+        "club": "Test Athletics Club",
+        "first_claim": "Large Test Athletics Club",
+        "vest_number": "100X"
+    },
+    "performance": 10.11,
+    "attempts": [
+        "NT",
+        10.11,
+        8.10
+    ],
+    "iaaf_score": 0,
+    "indoors": true
+}

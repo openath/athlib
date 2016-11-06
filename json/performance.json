@@ -3,26 +3,33 @@
     "title": "Single athlete's performance in a single event",
     "description": "A single athlete's performance in a single event, which may be a field event or a track event.",
     "type": "object",
-    "anyOf": [
+    "allOf": [
         {
-            "$ref": "definitions/field_performance.json#"
+            "anyOf": [
+                {
+                    "$ref": "file:///Users/bilenahmet/Documents/athlib/json/definitions/field_performance.json#"
+                },
+                {
+                    "$ref": "file:///Users/bilenahmet/Documents/athlib/json/definitions/track_performance.json#"
+                }
+            ]
         },
         {
-            "$ref": "definitions/track_performance.json#"
+            "properties": {
+                "athlete": {
+                    "$ref": "file:///Users/bilenahmet/Documents/athlib/json/athlete.json#"
+                },
+                "iaaf_score": {
+                    "description": "IAAF score for the performance",
+                    "type": "number",
+                    "multipleOf": 1.0,
+                    "minimum": 0
+                },
+                "indoors": {
+                    "description": "Whether the event was held indoors or not",
+                    "type": "boolean"
+                }
+            }
         }
-    ],
-    "properties": {
-        "athlete": {
-            "$ref": "athlete.json#"
-        },
-        "iaaf_score": {
-            "description": "IAAF score for the performance",
-            "type": "number",
-            "multipleOf": 1.0
-        },
-        "indoors": {
-            "description": "Whether the event was held indoors or not",
-            "type": "boolean"
-        }
-    }
+    ]
 }

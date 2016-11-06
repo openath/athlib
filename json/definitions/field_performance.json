@@ -5,10 +5,10 @@
     "type": "object",
     "anyOf": [
         {
-            "$ref": "jump_performance.json#"
+            "$ref": "file:///Users/bilenahmet/Documents/athlib/json/definitions/jump_performance.json#"
         },
         {
-            "$ref": "throw_performance.json#"
+            "$ref": "file:///Users/bilenahmet/Documents/athlib/json/definitions/throw_performance.json#"
         }
     ]
 }

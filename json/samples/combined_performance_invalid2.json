@@ -1,21 +1,20 @@
 {
     "events": [
-        performance,
-        performance,
-        performance,
-        performance,
-        performance,
-        performance,
         {
-            "name": "Not a performance object"
+            "event": "100",
+            "performance": 12.50
         },
         null,
-        null,
-        null
+        {
+            "name": "Not a performance object"
+        }
     ],
     "type": "DEC",
     "athlete": {
-        athlete
+        "name": "Test Athlete",
+        "club": "Test Athletics Club",
+        "first_claim": "Large Test Athletics Club",
+        "vest_number": "100X"
     },
     "iaaf_score": 0,
     "indoors": false

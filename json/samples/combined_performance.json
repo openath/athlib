@@ -1,19 +1,105 @@
 {
     "events": [
-        performance,
-        performance,
-        performance,
-        performance,
-        performance,
-        performance,
-        performance,
+        {
+            "athlete": {
+                "name": "Test Athlete",
+                "club": "Test Athletics Club",
+                "first_claim": "Large Test Athletics Club",
+                "vest_number": "100X"
+            },
+            "event": "100",
+            "performance": 30.11,
+            "iaaf_score": 0,
+            "indoors": false
+        },
+        {
+            "athlete": {
+                "name": "Test Athlete",
+                "club": "Test Athletics Club",
+                "first_claim": "Large Test Athletics Club",
+                "vest_number": "100X"
+            },
+            "attempts": [
+                "NJ",
+                1.01,
+                2.02
+            ],
+            "event": "LJ",
+            "performance": 30.11,
+            "iaaf_score": 0,
+            "indoors": false
+        },
+        {
+            "event": "SP",
+            "performance": 3.11,
+            "iaaf_score": 0,
+            "indoors": false
+        },
+        {
+            "athlete": {
+                "name": "Test Athlete",
+                "club": "Test Athletics Club",
+                "first_claim": "Large Test Athletics Club",
+                "vest_number": "100X"
+            },
+            "attempts": [
+                {
+                    "cleared": true,
+                    "height": 0.50,
+                    "num_attempts": 3
+                },
+                {
+                    "cleared": false,
+                    "height": 0.55,
+                    "num_attempts": 0
+                },
+                {
+                    "cleared": true,
+                    "height": 0.60,
+                    "num_attempts": 1
+                },
+                {
+                    "cleared": true,
+                    "height": 0.65,
+                    "num_attempts": 2
+                },
+                {
+                    "cleared": true,
+                    "height": 0.70,
+                    "num_attempts": 2
+                },
+                {
+                    "cleared": true,
+                    "height": 0.75,
+                    "num_attempts": 3
+                },
+                {
+                    "cleared": false,
+                    "height": 0.80,
+                    "num_attempts": 3
+                }
+            ],
+            "event": "HJ",
+            "performance": 0.75,
+            "iaaf_score": 0
+        },
+        {
+            "event": "400",
+            "performance": 90.11,
+            "iaaf_score": 0
+        },
         null,
         null,
-        performance
+        null,
+        null,
+        null
     ],
     "type": "DEC",
     "athlete": {
-        athlete
+        "name": "Test Athlete",
+        "club": "Test Athletics Club",
+        "first_claim": "Large Test Athletics Club",
+        "vest_number": "100X"
     },
     "iaaf_score": 0,
     "indoors": false

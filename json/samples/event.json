@@ -1,0 +1,66 @@
+{
+    "performances": [
+        {
+            "athlete": {
+                "name": "Test Athlete"
+            },
+            "performance": {
+                "event": "DT",
+                "performance": 10.11
+            }
+        },
+        {
+            "athlete": {
+                "name": "Test Athlete 2",
+                "club": "Test Athletics Club",
+                "first_claim": "Large Test Athletics Club",
+                "vest_number": "100X"
+            },
+            "performance": {
+                "athlete": {
+                    "name": "Test Athlete 2",
+                    "club": "Test Athletics Club",
+                    "first_claim": "Large Test Athletics Club",
+                    "vest_number": "100XX"
+                },
+                "event": "DT",
+                "performance": 11.11,
+                "attempts": [
+                    "NT",
+                    11.11,
+                    7.10
+                ],
+                "iaaf_score": 0,
+                "indoors": true
+            }
+        },
+        {
+            "athlete": {
+                "name": "Test Athlete 3",
+                "club": "Test Athletics Club 2",
+                "first_claim": "Large Test Athletics Club 2",
+                "vest_number": "101Y"
+            },
+            "performance": {
+                "event": "DT",
+                "performance": 12.11,
+                "attempts": [
+                    "NT",
+                    12.11,
+                    9.10
+                ],
+                "iaaf_score": 0,
+                "indoors": true
+            }
+        },
+        {
+            "athlete": {
+                "name": "Test Athlete 4"
+            },
+            "performance": {
+                "event": "DT",
+                "performance": 21.11
+            }
+        }
+    ]
+}

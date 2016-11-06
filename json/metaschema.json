@@ -5,19 +5,19 @@
     "type": "object",
     "anyOf": [
         {
-            "$ref": "definitions/athlete.json#"
+            "$ref": "file:///Users/bilenahmet/Documents/athlib/json/athlete.json#"
         },
         {
-            "$ref": "definitions/combined_performance.json#"
+            "$ref": "file:///Users/bilenahmet/Documents/athlib/json/combined_performance.json#"
         },
         {
-            "$ref": "definitions/competition.json#"
+            "$ref": "file:///Users/bilenahmet/Documents/athlib/json/competition.json#"
         },
         {
-            "$ref": "definitions/event.json#"
+            "$ref": "file:///Users/bilenahmet/Documents/athlib/json/event.json#"
         },
         {
-            "$ref": "definitions/performance.json#"
+            "$ref": "file:///Users/bilenahmet/Documents/athlib/json/performance.json#"
         }
     ]
 }

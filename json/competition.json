@@ -8,7 +8,7 @@
             "description": "Array of completed events",
             "type": "array",
             "items": {
-                "$ref": "event.json#"
+                "$ref": "file:///Users/bilenahmet/Documents/athlib/json/event.json#"
             },
             "minItems": 1
         }

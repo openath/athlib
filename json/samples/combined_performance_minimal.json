@@ -1,12 +1,10 @@
 {
     "events": [
-        performance,
-        performance,
-        performance,
-        performance,
-        performance,
-        performance,
-        performance
+        {
+            "event": "100",
+            "performance": 12.50
+        },
+        null
     ],
     "type": "DEC"
 }
