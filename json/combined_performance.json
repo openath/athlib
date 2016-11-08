@@ -10,7 +10,7 @@
             "items": {
                 "anyOf": [
                     {
-                        "$ref": "file:///Users/bilenahmet/Documents/athlib/json/performance.json#"
+                        "$ref": "file:///json/performance.json#"
                     },
                     {
                         "type": "null"
@@ -33,7 +33,7 @@
             ]
         },
         "athlete": {
-            "$ref": "file:///Users/bilenahmet/Documents/athlib/json/athlete.json#"
+            "$ref": "file:///json/athlete.json#"
         },
         "iaaf_score": {
             "description": "IAAF score for the performance",

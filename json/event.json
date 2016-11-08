@@ -12,15 +12,15 @@
                 "type": "object",
                 "properties": {
                     "athlete": {
-                        "$ref": "file:///Users/bilenahmet/Documents/athlib/json/athlete.json#"
+                        "$ref": "file:///json/athlete.json#"
                     },
                     "performance": {
                         "anyOf": [
                             {
-                                "$ref": "file:///Users/bilenahmet/Documents/athlib/json/combined_performance.json#"
+                                "$ref": "file:///json/combined_performance.json#"
                             },
                             {
-                                "$ref": "file:///Users/bilenahmet/Documents/athlib/json/performance.json#"
+                                "$ref": "file:///json/performance.json#"
                             }
                         ]
                     }

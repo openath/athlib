@@ -2,11 +2,31 @@
 This file covers testing validity of JSON schemata, plus the fields in the
 schemta themselves.
 """
-
+import os
 import json
+from pprint import pprint
 import jsonschema
 from jsonschema.exceptions import SchemaError,ValidationError
 from unittest import TestCase, main
+
+#Monkeypatch jsonschema to resolve local, relative urls.
+from jsonschema.validators import RefResolver as OriginalResolver
+class LocalFileResolver(OriginalResolver):
+    def resolve_from_url(self, url):
+        if url.startswith("file:///"):
+            relpath = url[8:]
+            # print "making absolute url for", relpath
+            curdir = os.getcwd()
+            url = "file://%s/%s" % (curdir, relpath)
+            # print "new url is", url
+        return super(LocalFileResolver, self).resolve_from_url(url)
+
+import jsonschema.validators
+jsonschema.validators.RefResolver = LocalFileResolver
+
+
+
+
 
 
 def schema_valid(schema_file,

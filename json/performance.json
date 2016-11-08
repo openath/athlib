@@ -7,17 +7,17 @@
         {
             "anyOf": [
                 {
-                    "$ref": "file:///Users/bilenahmet/Documents/athlib/json/definitions/field_performance.json#"
+                    "$ref": "file:///json/definitions/field_performance.json#"
                 },
                 {
-                    "$ref": "file:///Users/bilenahmet/Documents/athlib/json/definitions/track_performance.json#"
+                    "$ref": "file:///json/definitions/track_performance.json#"
                 }
             ]
         },
         {
             "properties": {
                 "athlete": {
-                    "$ref": "file:///Users/bilenahmet/Documents/athlib/json/athlete.json#"
+                    "$ref": "file:///json/athlete.json#"
                 },
                 "iaaf_score": {
                     "description": "IAAF score for the performance",
