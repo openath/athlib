@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<message>
+  <meetingid>7266</meetingid>
+  <meeting>31st Olympic Games, Olympic Stadium</meeting>
+  <startdate>12.08.2016</startdate>
+  <enddate>21.08.2016</enddate>
+  <timetable>
+    <day>5</day>
+    <date>16 August 2016</date>
+    <session>Evening session</session>
+    <time>09:30</time>
+    <gender>W</gender>
+    <eventname>5000 Metres</eventname>
+    <eventcode>5000</eventcode>
+    <roundname>Heats</roundname>
+    <roundcode>h</roundcode>
+    <session>Evening session</session>
+    <time>09:45</time>
+    <gender>W</gender>
+    <eventname>Pole Vault</eventname>
+    <eventcode>PV</eventcode>
+    <roundname>Qualification</roundname>
+    <roundcode>q</roundcode>
+    <session>Evening session</session>
+    <time>09:50</time>
+    <gender>M</gender>
+    <eventname>Triple Jump</eventname>
+    <eventcode>TJ</eventcode>
+    <roundname>Final</roundname>
+    <roundcode>f</roundcode>
+    <session>Evening session</session>
+    <time>10:30</time>
+    <gender>M</gender>
+    <eventname>1500 Metres</eventname>
+    <eventcode>1500</eventcode>
+    <roundname>Heats</roundname>
+    <roundcode>h</roundcode>
+    <session>Evening session</session>
+    <time>11:05</time>
+    <gender>W</gender>
+    <eventname>100 Metres Hurdles</eventname>
+    <eventcode>100H</eventcode>
+    <roundname>Heats</roundname>
+    <roundcode>h</roundcode>
+    <session>Evening session</session>
+    <time>11:20</time>
+    <gender>W</gender>
+    <eventname>Discus Throw</eventname>
+    <eventcode>DT</eventcode>
+    <roundname>Final</roundname>
+    <roundcode>f</roundcode>
+    <session>Evening session</session>
+    <time>11:50</time>
+    <gender>M</gender>
+    <eventname>200 Metres</eventname>
+    <eventcode>200</eventcode>
+    <roundname>Heats</roundname>
+    <roundcode>h</roundcode>
+    <session>Evening session</session>
+    <time>20:30</time>
+    <gender>M</gender>
+    <eventname>High Jump</eventname>
+    <eventcode>HJ</eventcode>
+    <roundname>Final</roundname>
+    <roundcode>f</roundcode>
+    <session>Evening session</session>
+    <time>20:35</time>
+    <gender>W</gender>
+    <eventname>Javelin Throw</eventname>
+    <eventcode>JT</eventcode>
+    <roundname>Qualification Group A</roundname>
+    <roundcode>q</roundcode>
+    <session>Evening session</session>
+    <time>20:40</time>
+    <gender>M</gender>
+    <eventname>110 Metres Hurdles</eventname>
+    <eventcode>110H</eventcode>
+    <roundname>Semi-Final</roundname>
+    <roundcode>s</roundcode>
+    <session>Evening session</session>
+    <time>21:05</time>
+    <gender>W</gender>
+    <eventname>Long Jump</eventname>
+    <eventcode>LJ</eventcode>
+    <roundname>Qualification</roundname>
+    <roundcode>q</roundcode>
+    <session>Evening session</session>
+    <time>21:10</time>
+    <gender>W</gender>
+    <eventname>400 Metres Hurdles</eventname>
+    <eventcode>400H</eventcode>
+    <roundname>Semi-Final</roundname>
+    <roundcode>s</roundcode>
+    <session>Evening session</session>
+    <time>21:35</time>
+    <gender>M</gender>
+    <eventname>400 Metres Hurdles</eventname>
+    <eventcode>400H</eventcode>
+    <roundname>Semi-Final</roundname>
+    <roundcode>s</roundcode>
+    <session>Evening session</session>
+    <time>21:50</time>
+    <gender>W</gender>
+    <eventname>Javelin Throw</eventname>
+    <eventcode>JT</eventcode>
+    <roundname>Qualification Group B</roundname>
+    <roundcode>q</roundcode>
+    <session>Evening session</session>
+    <time>22:00</time>
+    <gender>W</gender>
+    <eventname>200 Metres</eventname>
+    <eventcode>200</eventcode>
+    <roundname>Semi-Final</roundname>
+    <roundcode>s</roundcode>
+    <session>Evening session</session>
+    <time>22:30</time>
+    <gender>W</gender>
+    <eventname>1500 Metres</eventname>
+    <eventcode>1500</eventcode>
+    <roundname>Final</roundname>
+    <roundcode>f</roundcode>
+    <session>Evening session</session>
+    <time>22:45</time>
+    <gender>M</gender>
+    <eventname>110 Metres Hurdles</eventname>
+    <eventcode>110H</eventcode>
+    <roundname>Final</roundname>
+    <roundcode>f</roundcode>
+  </timetable>
+</message>

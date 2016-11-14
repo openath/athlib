@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<message>
+  <meetingid>7266</meetingid>
+  <meeting>31st Olympic Games, Olympic Stadium</meeting>
+  <startdate>12.08.2016</startdate>
+  <enddate>21.08.2016</enddate>
+  <timetable>
+    <day>7</day>
+    <date>18 August 2016</date>
+    <session>Evening session</session>
+    <time>09:30</time>
+    <gender>M</gender>
+    <eventname>110 Metres Hurdles</eventname>
+    <eventcode>110H</eventcode>
+    <roundname>Decathlon</roundname>
+    <roundcode>m</roundcode>
+    <session>Evening session</session>
+    <time>09:55</time>
+    <gender>M</gender>
+    <eventname>Shot Put</eventname>
+    <eventcode>SP</eventcode>
+    <roundname>Qualification</roundname>
+    <roundcode>q</roundcode>
+    <session>Evening session</session>
+    <time>10:00</time>
+    <gender>W</gender>
+    <eventname>High Jump</eventname>
+    <eventcode>HJ</eventcode>
+    <roundname>Qualification</roundname>
+    <roundcode>q</roundcode>
+    <session>Evening session</session>
+    <time>10:25</time>
+    <gender>M</gender>
+    <eventname>Discus Throw</eventname>
+    <eventcode>DT</eventcode>
+    <roundname>Decathlon Group A</roundname>
+    <roundcode>m</roundcode>
+    <session>Evening session</session>
+    <time>11:20</time>
+    <gender>W</gender>
+    <eventname>4x100 Metres Relay</eventname>
+    <eventcode>4x1</eventcode>
+    <roundname>Heats</roundname>
+    <roundcode>h</roundcode>
+    <session>Evening session</session>
+    <time>11:40</time>
+    <gender>M</gender>
+    <eventname>Discus Throw</eventname>
+    <eventcode>DT</eventcode>
+    <roundname>Decathlon Group B</roundname>
+    <roundcode>m</roundcode>
+    <session>Evening session</session>
+    <time>11:40</time>
+    <gender>M</gender>
+    <eventname>4x100 Metres Relay</eventname>
+    <eventcode>4x1</eventcode>
+    <roundname>Heats</roundname>
+    <roundcode>h</roundcode>
+    <session>Evening session</session>
+    <time>12:00</time>
+    <gender>M</gender>
+    <eventname>400 Metres Hurdles</eventname>
+    <eventcode>400H</eventcode>
+    <roundname>Final</roundname>
+    <roundcode>f</roundcode>
+    <session>Evening session</session>
+    <time>13:25</time>
+    <gender>M</gender>
+    <eventname>Pole Vault</eventname>
+    <eventcode>PV</eventcode>
+    <roundname>Decathlon</roundname>
+    <roundcode>m</roundcode>
+    <session>Evening session</session>
+    <time>18:35</time>
+    <gender>M</gender>
+    <eventname>Javelin Throw</eventname>
+    <eventcode>JT</eventcode>
+    <roundname>Decathlon Group A</roundname>
+    <roundcode>m</roundcode>
+    <session>Evening session</session>
+    <time>19:45</time>
+    <gender>M</gender>
+    <eventname>Javelin Throw</eventname>
+    <eventcode>JT</eventcode>
+    <roundname>Decathlon Group B</roundname>
+    <roundcode>m</roundcode>
+    <session>Evening session</session>
+    <time>20:30</time>
+    <gender>M</gender>
+    <eventname>Shot Put</eventname>
+    <eventcode>SP</eventcode>
+    <roundname>Final</roundname>
+    <roundcode>f</roundcode>
+    <session>Evening session</session>
+    <time>20:45</time>
+    <gender>M</gender>
+    <eventname>1500 Metres</eventname>
+    <eventcode>1500</eventcode>
+    <roundname>Semi-Final</roundname>
+    <roundcode>s</roundcode>
+    <session>Evening session</session>
+    <time>21:10</time>
+    <gender>W</gender>
+    <eventname>Javelin Throw</eventname>
+    <eventcode>JT</eventcode>
+    <roundname>Final</roundname>
+    <roundcode>f</roundcode>
+    <session>Evening session</session>
+    <time>21:15</time>
+    <gender>W</gender>
+    <eventname>800 Metres</eventname>
+    <eventcode>800</eventcode>
+    <roundname>Semi-Final</roundname>
+    <roundcode>s</roundcode>
+    <session>Evening session</session>
+    <time>21:45</time>
+    <gender>M</gender>
+    <eventname>1500 Metres</eventname>
+    <eventcode>1500</eventcode>
+    <roundname>Decathlon</roundname>
+    <roundcode>m</roundcode>
+    <session>Evening session</session>
+    <time>22:15</time>
+    <gender>W</gender>
+    <eventname>400 Metres Hurdles</eventname>
+    <eventcode>400H</eventcode>
+    <roundname>Final</roundname>
+    <roundcode>f</roundcode>
+    <session>Evening session</session>
+    <time>22:30</time>
+    <gender>M</gender>
+    <eventname>200 Metres</eventname>
+    <eventcode>200</eventcode>
+    <roundname>Final</roundname>
+    <roundcode>f</roundcode>
+  </timetable>
+</message>

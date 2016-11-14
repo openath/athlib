@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<message>
+  <meetingid>7266</meetingid>
+  <meeting>31st Olympic Games, Olympic Stadium</meeting>
+  <startdate>12.08.2016</startdate>
+  <enddate>21.08.2016</enddate>
+  <timetable>
+    <day>9</day>
+    <date>20 August 2016</date>
+    <session>Evening session</session>
+    <time>20:30</time>
+    <gender>W</gender>
+    <eventname>High Jump</eventname>
+    <eventcode>HJ</eventcode>
+    <roundname>Final</roundname>
+    <roundcode>f</roundcode>
+    <session>Evening session</session>
+    <time>20:55</time>
+    <gender>M</gender>
+    <eventname>Javelin Throw</eventname>
+    <eventcode>JT</eventcode>
+    <roundname>Final</roundname>
+    <roundcode>f</roundcode>
+    <session>Evening session</session>
+    <time>21:00</time>
+    <gender>M</gender>
+    <eventname>1500 Metres</eventname>
+    <eventcode>1500</eventcode>
+    <roundname>Final</roundname>
+    <roundcode>f</roundcode>
+    <session>Evening session</session>
+    <time>21:15</time>
+    <gender>W</gender>
+    <eventname>800 Metres</eventname>
+    <eventcode>800</eventcode>
+    <roundname>Final</roundname>
+    <roundcode>f</roundcode>
+    <session>Evening session</session>
+    <time>21:30</time>
+    <gender>M</gender>
+    <eventname>5000 Metres</eventname>
+    <eventcode>5000</eventcode>
+    <roundname>Final</roundname>
+    <roundcode>f</roundcode>
+    <session>Evening session</session>
+    <time>22:00</time>
+    <gender>W</gender>
+    <eventname>4x400 Metres Relay</eventname>
+    <eventcode>4x4</eventcode>
+    <roundname>Final</roundname>
+    <roundcode>f</roundcode>
+    <session>Evening session</session>
+    <time>22:35</time>
+    <gender>M</gender>
+    <eventname>4x400 Metres Relay</eventname>
+    <eventcode>4x4</eventcode>
+    <roundname>Final</roundname>
+    <roundcode>f</roundcode>
+  </timetable>
+</message>

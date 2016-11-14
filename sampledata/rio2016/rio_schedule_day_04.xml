@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<message>
+  <meetingid>7266</meetingid>
+  <meeting>31st Olympic Games, Olympic Stadium</meeting>
+  <startdate>12.08.2016</startdate>
+  <enddate>21.08.2016</enddate>
+  <timetable>
+    <day>4</day>
+    <date>15 August 2016</date>
+    <session>Evening session</session>
+    <time>09:30</time>
+    <gender>M</gender>
+    <eventname>Triple Jump</eventname>
+    <eventcode>TJ</eventcode>
+    <roundname>Qualification</roundname>
+    <roundcode>q</roundcode>
+    <session>Evening session</session>
+    <time>09:35</time>
+    <gender>W</gender>
+    <eventname>200 Metres</eventname>
+    <eventcode>200</eventcode>
+    <roundname>Heats</roundname>
+    <roundcode>h</roundcode>
+    <session>Evening session</session>
+    <time>10:25</time>
+    <gender>M</gender>
+    <eventname>3000 Metres Steeplechase</eventname>
+    <eventcode>3000S</eventcode>
+    <roundname>Heats</roundname>
+    <roundcode>h</roundcode>
+    <session>Evening session</session>
+    <time>10:40</time>
+    <gender>W</gender>
+    <eventname>Hammer Throw</eventname>
+    <eventcode>HT</eventcode>
+    <roundname>Final</roundname>
+    <roundcode>f</roundcode>
+    <session>Evening session</session>
+    <time>11:15</time>
+    <gender>W</gender>
+    <eventname>3000 Metres Steeplechase</eventname>
+    <eventcode>3000S</eventcode>
+    <roundname>Final</roundname>
+    <roundcode>f</roundcode>
+    <session>Evening session</session>
+    <time>11:35</time>
+    <gender>M</gender>
+    <eventname>400 Metres Hurdles</eventname>
+    <eventcode>400H</eventcode>
+    <roundname>Heats</roundname>
+    <roundcode>h</roundcode>
+    <session>Evening session</session>
+    <time>20:30</time>
+    <gender>W</gender>
+    <eventname>Discus Throw</eventname>
+    <eventcode>DT</eventcode>
+    <roundname>Qualification Group A</roundname>
+    <roundcode>q</roundcode>
+    <session>Evening session</session>
+    <time>20:35</time>
+    <gender>M</gender>
+    <eventname>Pole Vault</eventname>
+    <eventcode>PV</eventcode>
+    <roundname>Final</roundname>
+    <roundcode>f</roundcode>
+    <session>Evening session</session>
+    <time>20:40</time>
+    <gender>M</gender>
+    <eventname>110 Metres Hurdles</eventname>
+    <eventcode>110H</eventcode>
+    <roundname>Heats</roundname>
+    <roundcode>h</roundcode>
+    <session>Evening session</session>
+    <time>21:30</time>
+    <gender>W</gender>
+    <eventname>400 Metres Hurdles</eventname>
+    <eventcode>400H</eventcode>
+    <roundname>Heats</roundname>
+    <roundcode>h</roundcode>
+    <session>Evening session</session>
+    <time>21:50</time>
+    <gender>W</gender>
+    <eventname>Discus Throw</eventname>
+    <eventcode>DT</eventcode>
+    <roundname>Qualification Group B</roundname>
+    <roundcode>q</roundcode>
+    <session>Evening session</session>
+    <time>22:25</time>
+    <gender>M</gender>
+    <eventname>800 Metres</eventname>
+    <eventcode>800</eventcode>
+    <roundname>Final</roundname>
+    <roundcode>f</roundcode>
+    <session>Evening session</session>
+    <time>22:45</time>
+    <gender>W</gender>
+    <eventname>400 Metres</eventname>
+    <eventcode>400</eventcode>
+    <roundname>Final</roundname>
+    <roundcode>f</roundcode>
+  </timetable>
+</message>

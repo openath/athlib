@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<message>
+  <meetingid>7266</meetingid>
+  <meeting>31st Olympic Games, Olympic Stadium</meeting>
+  <startdate>12.08.2016</startdate>
+  <enddate>21.08.2016</enddate>
+  <timetable>
+    <day>8</day>
+    <date>19 August 2016</date>
+    <session>Evening session</session>
+    <time>08:00</time>
+    <gender>M</gender>
+    <eventname>50 Kilometres Race Walk</eventname>
+    <eventcode>50W</eventcode>
+    <roundname>Final</roundname>
+    <roundcode>f</roundcode>
+    <session>Evening session</session>
+    <time>14:30</time>
+    <gender>W</gender>
+    <eventname>20 Kilometres Race Walk</eventname>
+    <eventcode>20W</eventcode>
+    <roundname>Final</roundname>
+    <roundcode>f</roundcode>
+    <session>Evening session</session>
+    <time>20:30</time>
+    <gender>W</gender>
+    <eventname>Pole Vault</eventname>
+    <eventcode>PV</eventcode>
+    <roundname>Final</roundname>
+    <roundcode>f</roundcode>
+    <session>Evening session</session>
+    <time>20:40</time>
+    <gender>W</gender>
+    <eventname>4x400 Metres Relay</eventname>
+    <eventcode>4x4</eventcode>
+    <roundname>Heats</roundname>
+    <roundcode>h</roundcode>
+    <session>Evening session</session>
+    <time>21:05</time>
+    <gender>M</gender>
+    <eventname>Hammer Throw</eventname>
+    <eventcode>HT</eventcode>
+    <roundname>Final</roundname>
+    <roundcode>f</roundcode>
+    <session>Evening session</session>
+    <time>21:10</time>
+    <gender>M</gender>
+    <eventname>4x400 Metres Relay</eventname>
+    <eventcode>4x4</eventcode>
+    <roundname>Heats</roundname>
+    <roundcode>h</roundcode>
+    <session>Evening session</session>
+    <time>21:40</time>
+    <gender>W</gender>
+    <eventname>5000 Metres</eventname>
+    <eventcode>5000</eventcode>
+    <roundname>Final</roundname>
+    <roundcode>f</roundcode>
+    <session>Evening session</session>
+    <time>22:15</time>
+    <gender>W</gender>
+    <eventname>4x100 Metres Relay</eventname>
+    <eventcode>4x1</eventcode>
+    <roundname>Final</roundname>
+    <roundcode>f</roundcode>
+    <session>Evening session</session>
+    <time>22:35</time>
+    <gender>M</gender>
+    <eventname>4x100 Metres Relay</eventname>
+    <eventcode>4x1</eventcode>
+    <roundname>Final</roundname>
+    <roundcode>f</roundcode>
+  </timetable>
+</message>

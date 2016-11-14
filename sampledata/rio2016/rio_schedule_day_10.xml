@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<message>
+  <meetingid>7266</meetingid>
+  <meeting>31st Olympic Games, Olympic Stadium</meeting>
+  <startdate>12.08.2016</startdate>
+  <enddate>21.08.2016</enddate>
+  <timetable>
+    <day>10</day>
+    <date>21 August 2016</date>
+    <session>Evening session</session>
+    <time>09:30</time>
+    <gender>M</gender>
+    <eventname>Marathon</eventname>
+    <eventcode>Mar</eventcode>
+    <roundname>Final</roundname>
+    <roundcode>f</roundcode>
+  </timetable>
+</message>

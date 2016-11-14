@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<message>
+  <meetingid>7266</meetingid>
+  <meeting>31st Olympic Games, Olympic Stadium</meeting>
+  <startdate>12.08.2016</startdate>
+  <enddate>21.08.2016</enddate>
+  <timetable>
+    <day>3</day>
+    <date>14 August 2016</date>
+    <session>Evening session</session>
+    <time>09:30</time>
+    <gender>W</gender>
+    <eventname>Marathon</eventname>
+    <eventcode>Mar</eventcode>
+    <roundname>Final</roundname>
+    <roundcode>f</roundcode>
+    <session>Evening session</session>
+    <time>20:30</time>
+    <gender>M</gender>
+    <eventname>High Jump</eventname>
+    <eventcode>HJ</eventcode>
+    <roundname>Qualification</roundname>
+    <roundcode>q</roundcode>
+    <session>Evening session</session>
+    <time>20:35</time>
+    <gender>W</gender>
+    <eventname>400 Metres</eventname>
+    <eventcode>400</eventcode>
+    <roundname>Semi-Final</roundname>
+    <roundcode>s</roundcode>
+    <session>Evening session</session>
+    <time>20:55</time>
+    <gender>W</gender>
+    <eventname>Triple Jump</eventname>
+    <eventcode>TJ</eventcode>
+    <roundname>Final</roundname>
+    <roundcode>f</roundcode>
+    <session>Evening session</session>
+    <time>21:00</time>
+    <gender>M</gender>
+    <eventname>100 Metres</eventname>
+    <eventcode>100</eventcode>
+    <roundname>Semi-Final</roundname>
+    <roundcode>s</roundcode>
+    <session>Evening session</session>
+    <time>21:30</time>
+    <gender>W</gender>
+    <eventname>1500 Metres</eventname>
+    <eventcode>1500</eventcode>
+    <roundname>Semi-Final</roundname>
+    <roundcode>s</roundcode>
+    <session>Evening session</session>
+    <time>22:00</time>
+    <gender>M</gender>
+    <eventname>400 Metres</eventname>
+    <eventcode>400</eventcode>
+    <roundname>Final</roundname>
+    <roundcode>f</roundcode>
+    <session>Evening session</session>
+    <time>22:25</time>
+    <gender>M</gender>
+    <eventname>100 Metres</eventname>
+    <eventcode>100</eventcode>
+    <roundname>Final</roundname>
+    <roundcode>f</roundcode>
+  </timetable>
+</message>

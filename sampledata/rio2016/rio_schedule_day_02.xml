@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<message>
+  <meetingid>7266</meetingid>
+  <meeting>31st Olympic Games, Olympic Stadium</meeting>
+  <startdate>12.08.2016</startdate>
+  <enddate>21.08.2016</enddate>
+  <timetable>
+    <day>2</day>
+    <date>13 August 2016</date>
+    <session>Evening session</session>
+    <time>09:30</time>
+    <gender>M</gender>
+    <eventname>100 Metres</eventname>
+    <eventcode>100</eventcode>
+    <roundname>Preliminary Round</roundname>
+    <roundcode>p</roundcode>
+    <session>Evening session</session>
+    <time>09:40</time>
+    <gender>W</gender>
+    <eventname>Triple Jump</eventname>
+    <eventcode>TJ</eventcode>
+    <roundname>Qualification</roundname>
+    <roundcode>q</roundcode>
+    <session>Evening session</session>
+    <time>10:05</time>
+    <gender>W</gender>
+    <eventname>3000 Metres Steeplechase</eventname>
+    <eventcode>3000S</eventcode>
+    <roundname>Heats</roundname>
+    <roundcode>h</roundcode>
+    <session>Evening session</session>
+    <time>10:50</time>
+    <gender>M</gender>
+    <eventname>Discus Throw</eventname>
+    <eventcode>DT</eventcode>
+    <roundname>Final</roundname>
+    <roundcode>f</roundcode>
+    <session>Evening session</session>
+    <time>11:00</time>
+    <gender>W</gender>
+    <eventname>400 Metres</eventname>
+    <eventcode>400</eventcode>
+    <roundname>Heats</roundname>
+    <roundcode>h</roundcode>
+    <session>Evening session</session>
+    <time>11:45</time>
+    <gender>W</gender>
+    <eventname>Long Jump</eventname>
+    <eventcode>LJ</eventcode>
+    <roundname>Heptathlon</roundname>
+    <roundcode>m</roundcode>
+    <session>Evening session</session>
+    <time>12:00</time>
+    <gender>M</gender>
+    <eventname>100 Metres</eventname>
+    <eventcode>100</eventcode>
+    <roundname>Heats</roundname>
+    <roundcode>h</roundcode>
+    <session>Evening session</session>
+    <time>20:00</time>
+    <gender>W</gender>
+    <eventname>Javelin Throw</eventname>
+    <eventcode>JT</eventcode>
+    <roundname>Heptathlon Group A</roundname>
+    <roundcode>m</roundcode>
+    <session>Evening session</session>
+    <time>20:20</time>
+    <gender>M</gender>
+    <eventname>Pole Vault</eventname>
+    <eventcode>PV</eventcode>
+    <roundname>Qualification</roundname>
+    <roundcode>q</roundcode>
+    <session>Evening session</session>
+    <time>20:30</time>
+    <gender>M</gender>
+    <eventname>400 Metres</eventname>
+    <eventcode>400</eventcode>
+    <roundname>Semi-Final</roundname>
+    <roundcode>s</roundcode>
+    <session>Evening session</session>
+    <time>20:53</time>
+    <gender>M</gender>
+    <eventname>Long Jump</eventname>
+    <eventcode>LJ</eventcode>
+    <roundname>Final</roundname>
+    <roundcode>f</roundcode>
+    <session>Evening session</session>
+    <time>21:00</time>
+    <gender>W</gender>
+    <eventname>100 Metres</eventname>
+    <eventcode>100</eventcode>
+    <roundname>Semi-Final</roundname>
+    <roundcode>s</roundcode>
+    <session>Evening session</session>
+    <time>21:18</time>
+    <gender>W</gender>
+    <eventname>Javelin Throw</eventname>
+    <eventcode>JT</eventcode>
+    <roundname>Heptathlon Group B</roundname>
+    <roundcode>m</roundcode>
+    <session>Evening session</session>
+    <time>21:27</time>
+    <gender>M</gender>
+    <eventname>10,000 Metres</eventname>
+    <eventcode>10000</eventcode>
+    <roundname>Final</roundname>
+    <roundcode>f</roundcode>
+    <session>Evening session</session>
+    <time>22:08</time>
+    <gender>M</gender>
+    <eventname>800 Metres</eventname>
+    <eventcode>800</eventcode>
+    <roundname>Semi-Final</roundname>
+    <roundcode>s</roundcode>
+    <session>Evening session</session>
+    <time>22:37</time>
+    <gender>W</gender>
+    <eventname>100 Metres</eventname>
+    <eventcode>100</eventcode>
+    <roundname>Final</roundname>
+    <roundcode>f</roundcode>
+    <session>Evening session</session>
+    <time>22:50</time>
+    <gender>W</gender>
+    <eventname>800 Metres</eventname>
+    <eventcode>800</eventcode>
+    <roundname>Heptathlon</roundname>
+    <roundcode>m</roundcode>
+  </timetable>
+</message>
