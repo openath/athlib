@@ -1,1175 +1,1176 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0"?>
 <message>
-<meetingid>7266</meetingid><athletes>
-<athlete>
-<gender>M</gender>
-<event>1500</event>
-<section></section>
-<heat></heat>
-<lane>1</lane>
-<id>118894</id>
-<firstname>Ayanleh</firstname>
-<lastname>Souleiman</lastname>
-<country>DJI</country>
-<birthdate>03.12.1992</birthdate>
-<personalBest>
-<result>3:29.58</result>
-</personalBest>
-<seasonalBest>
-<result>3:31.68</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>M</gender>
-<event>1500</event>
-<section></section>
-<heat></heat>
-<lane>2</lane>
-<id>61484</id>
-<firstname>Abdelaati</firstname>
-<lastname>Iguider</lastname>
-<country>MAR</country>
-<birthdate>25.03.1987</birthdate>
-<personalBest>
-<result>3:28.79</result>
-</personalBest>
-<seasonalBest>
-<result>3:31.40</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>M</gender>
-<event>1500</event>
-<section></section>
-<heat></heat>
-<lane>3</lane>
-<id>91371</id>
-<firstname>Asbel</firstname>
-<lastname>Kiprop</lastname>
-<country>KEN</country>
-<birthdate>30.06.1989</birthdate>
-<personalBest>
-<result>3:26.69</result>
-</personalBest>
-<seasonalBest>
-<result>3:29.33</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>M</gender>
-<event>1500</event>
-<section></section>
-<heat></heat>
-<lane>4</lane>
-<id>88309</id>
-<firstname>Matthew</firstname>
-<lastname>Centrowitz</lastname>
-<country>USA</country>
-<birthdate>18.10.1989</birthdate>
-<personalBest>
-<result>3:30.40</result>
-</personalBest>
-<seasonalBest>
-<result>3:34.09</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>M</gender>
-<event>1500</event>
-<section></section>
-<heat></heat>
-<lane>5</lane>
-<id>132743</id>
-<firstname>Ronald</firstname>
-<lastname>Musagala</lastname>
-<country>UGA</country>
-<birthdate>16.12.1992</birthdate>
-<personalBest>
-<result>3:35.02</result>
-</personalBest>
-<seasonalBest>
-<result>3:36.23</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>M</gender>
-<event>1500</event>
-<section></section>
-<heat></heat>
-<lane>6</lane>
-<id>86938</id>
-<firstname>Ryan</firstname>
-<lastname>Gregson</lastname>
-<country>AUS</country>
-<birthdate>26.04.1990</birthdate>
-<personalBest>
-<result>3:31.06</result>
-</personalBest>
-<seasonalBest>
-<result>3:32.13</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>M</gender>
-<event>1500</event>
-<section></section>
-<heat></heat>
-<lane>7</lane>
-<id>91685</id>
-<firstname>Taoufik</firstname>
-<lastname>Makhloufi</lastname>
-<country>ALG</country>
-<birthdate>29.04.1988</birthdate>
-<personalBest>
-<result>3:28.75</result>
-</personalBest>
-<seasonalBest>
-<result>3:31.35</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>M</gender>
-<event>1500</event>
-<section></section>
-<heat></heat>
-<lane>8</lane>
-<id>123584</id>
-<firstname>Charlie</firstname>
-<lastname>Grice</lastname>
-<country>GBR</country>
-<birthdate>07.11.1993</birthdate>
-<personalBest>
-<result>3:33.60</result>
-</personalBest>
-<seasonalBest>
-<result>3:33.60</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>M</gender>
-<event>1500</event>
-<section></section>
-<heat></heat>
-<lane>9</lane>
-<id>32332</id>
-<firstname>Nate</firstname>
-<lastname>Brannen</lastname>
-<country>CAN</country>
-<birthdate>08.09.1982</birthdate>
-<personalBest>
-<result>3:34.22</result>
-</personalBest>
-<seasonalBest>
-<result>3:36.84</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>M</gender>
-<event>1500</event>
-<section></section>
-<heat></heat>
-<lane>10</lane>
-<id>32700</id>
-<firstname>Nick</firstname>
-<lastname>Willis</lastname>
-<country>NZL</country>
-<birthdate>25.04.1983</birthdate>
-<personalBest>
-<result>3:29.66</result>
-</personalBest>
-<seasonalBest>
-<result>3:34.29</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>M</gender>
-<event>1500</event>
-<section></section>
-<heat></heat>
-<lane>11</lane>
-<id>95414</id>
-<firstname>Ben</firstname>
-<lastname>Blankenship</lastname>
-<country>USA</country>
-<birthdate>15.12.1989</birthdate>
-<personalBest>
-<result>3:34.26</result>
-</personalBest>
-<seasonalBest>
-<result>3:34.26</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>M</gender>
-<event>1500</event>
-<section></section>
-<heat></heat>
-<lane>12</lane>
-<id>140221</id>
-<firstname>Ronald</firstname>
-<lastname>Kwemoi</lastname>
-<country>KEN</country>
-<birthdate>19.09.1995</birthdate>
-<personalBest>
-<result>3:28.81</result>
-</personalBest>
-<seasonalBest>
-<result>3:30.49</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>M</gender>
-<event>1500</event>
-<section></section>
-<heat></heat>
-<lane>13</lane>
-<id>84298</id>
-<firstname>David</firstname>
-<lastname>Bustos</lastname>
-<country>ESP</country>
-<birthdate>25.08.1990</birthdate>
-<personalBest>
-<result>3:34.77</result>
-</personalBest>
-<seasonalBest>
-<result>3:36.14</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>M</gender>
-<event>5000</event>
-<section></section>
-<heat></heat>
-<lane>1</lane>
-<id>102053</id>
-<firstname>Dejen</firstname>
-<lastname>Gebremeskel</lastname>
-<country>ETH</country>
-<birthdate>24.11.1989</birthdate>
-<personalBest>
-<result>12:46.81</result>
-</personalBest>
-<seasonalBest>
-<result>12:59.89</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>M</gender>
-<event>5000</event>
-<section></section>
-<heat></heat>
-<lane>2</lane>
-<id>127660</id>
-<firstname>Paul</firstname>
-<lastname>Chelimo</lastname>
-<country>USA</country>
-<birthdate>27.10.1990</birthdate>
-<personalBest>
-<result>13:03.90</result>
-</personalBest>
-<seasonalBest>
-<result>13:03.90</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>M</gender>
-<event>5000</event>
-<section></section>
-<heat></heat>
-<lane>3</lane>
-<id>56062</id>
-<firstname>Elroy</firstname>
-<lastname>Gelant</lastname>
-<country>RSA</country>
-<birthdate>25.08.1986</birthdate>
-<personalBest>
-<result>13:04.88</result>
-</personalBest>
-<seasonalBest>
-<result>13:04.88</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>M</gender>
-<event>5000</event>
-<section></section>
-<heat></heat>
-<lane>4</lane>
-<id>107165</id>
-<firstname>Mohammed</firstname>
-<lastname>Ahmed</lastname>
-<country>CAN</country>
-<birthdate>05.01.1991</birthdate>
-<personalBest>
-<result>13:01.74</result>
-</personalBest>
-<seasonalBest>
-<result>13:01.74</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>M</gender>
-<event>5000</event>
-<section></section>
-<heat></heat>
-<lane>5</lane>
-<id>31850</id>
-<firstname>Mohamed</firstname>
-<lastname>Farah</lastname>
-<country>GBR</country>
-<birthdate>23.03.1983</birthdate>
-<personalBest>
-<result>12:53.11</result>
-</personalBest>
-<seasonalBest>
-<result>12:59.29</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>M</gender>
-<event>5000</event>
-<section></section>
-<heat></heat>
-<lane>6</lane>
-<id>4911</id>
-<firstname>Bernard</firstname>
-<lastname>Lagat</lastname>
-<country>USA</country>
-<birthdate>12.12.1974</birthdate>
-<personalBest>
-<result>12:53.60</result>
-</personalBest>
-<seasonalBest>
-<result>13:06.78</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>M</gender>
-<event>5000</event>
-<section></section>
-<heat></heat>
-<lane>7</lane>
-<id>125730</id>
-<firstname>Abrar</firstname>
-<lastname>Osman</lastname>
-<country>ERI</country>
-<birthdate>01.01.1994</birthdate>
-<personalBest>
-<result>13:04.12</result>
-</personalBest>
-<seasonalBest>
-<result>13:04.12</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>M</gender>
-<event>5000</event>
-<section></section>
-<heat></heat>
-<lane>8</lane>
-<id>60154</id>
-<firstname>David</firstname>
-<lastname>Torrence</lastname>
-<country>PER</country>
-<birthdate>26.11.1985</birthdate>
-<personalBest>
-<result>13:16.53</result>
-</personalBest>
-<seasonalBest>
-<result>13:19.42</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>M</gender>
-<event>5000</event>
-<section></section>
-<heat></heat>
-<lane>9</lane>
-<id>171148</id>
-<firstname>Birhanu</firstname>
-<lastname>Yemataw</lastname>
-<country>BRN</country>
-<birthdate>27.02.1996</birthdate>
-<personalBest>
-<result>13:09.26</result>
-</personalBest>
-<seasonalBest>
-<result>13:09.26</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>M</gender>
-<event>5000</event>
-<section></section>
-<heat></heat>
-<lane>10</lane>
-<id>128619</id>
-<firstname>Muktar</firstname>
-<lastname>Edris</lastname>
-<country>ETH</country>
-<birthdate>14.01.1994</birthdate>
-<personalBest>
-<result>12:54.83</result>
-</personalBest>
-<seasonalBest>
-<result>12:59.43</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>M</gender>
-<event>5000</event>
-<section></section>
-<heat></heat>
-<lane>11</lane>
-<id>119423</id>
-<firstname>Andrew</firstname>
-<lastname>Butchart</lastname>
-<country>GBR</country>
-<birthdate>14.10.1991</birthdate>
-<personalBest>
-<result>13:08.61</result>
-</personalBest>
-<seasonalBest>
-<result>13:08.61</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>M</gender>
-<event>5000</event>
-<section></section>
-<heat></heat>
-<lane>12</lane>
-<id>130984</id>
-<firstname>Albert</firstname>
-<lastname>Rop</lastname>
-<country>BRN</country>
-<birthdate>17.07.1992</birthdate>
-<personalBest>
-<result>12:51.96</result>
-</personalBest>
-<seasonalBest>
-<result>13:04.87</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>M</gender>
-<event>5000</event>
-<section></section>
-<heat></heat>
-<lane>13</lane>
-<id>148980</id>
-<firstname>Joshua</firstname>
-<lastname>Cheptegei</lastname>
-<country>UGA</country>
-<birthdate>12.09.1996</birthdate>
-<personalBest>
-<result>13:00.60</result>
-</personalBest>
-<seasonalBest>
-<result>13:00.60</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>M</gender>
-<event>5000</event>
-<section></section>
-<heat></heat>
-<lane>14</lane>
-<id>102168</id>
-<firstname>Brett</firstname>
-<lastname>Robinson</lastname>
-<country>AUS</country>
-<birthdate>08.05.1991</birthdate>
-<personalBest>
-<result>13:18.96</result>
-</personalBest>
-<seasonalBest>
-<result>13:19.29</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>M</gender>
-<event>5000</event>
-<section></section>
-<heat></heat>
-<lane>15</lane>
-<id>130426</id>
-<firstname>Hagos</firstname>
-<lastname>Gebrhiwet</lastname>
-<country>ETH</country>
-<birthdate>11.05.1994</birthdate>
-<personalBest>
-<result>12:47.53</result>
-</personalBest>
-<seasonalBest>
-<result>13:00.20</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>M</gender>
-<event>JT</event>
-<section></section>
-<heat></heat>
-<lane>1</lane>
-<id>119123</id>
-<firstname>Keshorn</firstname>
-<lastname>Walcott</lastname>
-<country>TTO</country>
-<birthdate>02.04.1993</birthdate>
-<personalBest>
-<result>90.16</result>
-</personalBest>
-<seasonalBest>
-<result>88.68</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>M</gender>
-<event>JT</event>
-<section></section>
-<heat></heat>
-<lane>2</lane>
-<id>124084</id>
-<firstname>Johannes</firstname>
-<lastname>Vetter</lastname>
-<country>GER</country>
-<birthdate>26.03.1993</birthdate>
-<personalBest>
-<result>89.57</result>
-</personalBest>
-<seasonalBest>
-<result>89.57</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>M</gender>
-<event>JT</event>
-<section></section>
-<heat></heat>
-<lane>3</lane>
-<id>93417</id>
-<firstname>Jakub</firstname>
-<lastname>Vadlejch</lastname>
-<country>CZE</country>
-<birthdate>10.10.1990</birthdate>
-<personalBest>
-<result>88.02</result>
-</personalBest>
-<seasonalBest>
-<result>88.02</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>M</gender>
-<event>JT</event>
-<section></section>
-<heat></heat>
-<lane>4</lane>
-<id>103715</id>
-<firstname>Dmytro</firstname>
-<lastname>Kosynskyy</lastname>
-<country>UKR</country>
-<birthdate>31.03.1989</birthdate>
-<personalBest>
-<result>84.08</result>
-</personalBest>
-<seasonalBest>
-<result>84.08</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>M</gender>
-<event>JT</event>
-<section></section>
-<heat></heat>
-<lane>5</lane>
-<id>52330</id>
-<firstname>Antti</firstname>
-<lastname>Ruuskanen</lastname>
-<country>FIN</country>
-<birthdate>21.02.1984</birthdate>
-<personalBest>
-<result>88.98</result>
-</personalBest>
-<seasonalBest>
-<result>88.23</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>M</gender>
-<event>JT</event>
-<section></section>
-<heat></heat>
-<lane>6</lane>
-<id>51255</id>
-<firstname>Vítězslav</firstname>
-<lastname>Veselý</lastname>
-<country>CZE</country>
-<birthdate>27.02.1983</birthdate>
-<personalBest>
-<result>88.34</result>
-</personalBest>
-<seasonalBest>
-<result>84.82</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>M</gender>
-<event>JT</event>
-<section></section>
-<heat></heat>
-<lane>7</lane>
-<id>124079</id>
-<firstname>Julian</firstname>
-<lastname>Weber</lastname>
-<country>GER</country>
-<birthdate>29.08.1994</birthdate>
-<personalBest>
-<result>88.29</result>
-</personalBest>
-<seasonalBest>
-<result>88.29</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>M</gender>
-<event>JT</event>
-<section></section>
-<heat></heat>
-<lane>8</lane>
-<id>117114</id>
-<firstname>Julius</firstname>
-<lastname>Yego</lastname>
-<country>KEN</country>
-<birthdate>04.01.1989</birthdate>
-<personalBest>
-<result>92.72</result>
-</personalBest>
-<seasonalBest>
-<result>88.24</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>M</gender>
-<event>JT</event>
-<section></section>
-<heat></heat>
-<lane>9</lane>
-<id>123349</id>
-<firstname>Thomas</firstname>
-<lastname>Röhler</lastname>
-<country>GER</country>
-<birthdate>30.09.1991</birthdate>
-<personalBest>
-<result>91.28</result>
-</personalBest>
-<seasonalBest>
-<result>91.28</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>M</gender>
-<event>JT</event>
-<section></section>
-<heat></heat>
-<lane>10</lane>
-<id>117022</id>
-<firstname>Braian</firstname>
-<lastname>Toledo</lastname>
-<country>ARG</country>
-<birthdate>08.09.1993</birthdate>
-<personalBest>
-<result>83.32</result>
-</personalBest>
-<seasonalBest>
-<result>81.96</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>M</gender>
-<event>JT</event>
-<section></section>
-<heat></heat>
-<lane>11</lane>
-<id>130443</id>
-<firstname>Ryohei</firstname>
-<lastname>Arai</lastname>
-<country>JPN</country>
-<birthdate>23.06.1991</birthdate>
-<personalBest>
-<result>86.83</result>
-</personalBest>
-<seasonalBest>
-<result>84.54</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>M</gender>
-<event>JT</event>
-<section></section>
-<heat></heat>
-<lane>12</lane>
-<id>68711</id>
-<firstname>Petr</firstname>
-<lastname>Frydrych</lastname>
-<country>CZE</country>
-<birthdate>13.01.1988</birthdate>
-<personalBest>
-<result>88.23</result>
-</personalBest>
-<seasonalBest>
-<result>84.10</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>W</gender>
-<event>800</event>
-<section></section>
-<heat></heat>
-<lane>1</lane>
-<id>1043245</id>
-<firstname>Kate</firstname>
-<lastname>Grace</lastname>
-<country>USA</country>
-<birthdate>24.10.1988</birthdate>
-<personalBest>
-<result>1:58.28</result>
-</personalBest>
-<seasonalBest>
-<result>1:58.28</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>W</gender>
-<event>800</event>
-<section></section>
-<heat></heat>
-<lane>2</lane>
-<id>1068484</id>
-<firstname>Joanna</firstname>
-<lastname>Jóźwik</lastname>
-<country>POL</country>
-<birthdate>30.01.1991</birthdate>
-<personalBest>
-<result>1:57.37</result>
-</personalBest>
-<seasonalBest>
-<result>1:57.37</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>W</gender>
-<event>800</event>
-<section></section>
-<heat></heat>
-<lane>3</lane>
-<id>1063249</id>
-<firstname>Caster</firstname>
-<lastname>Semenya</lastname>
-<country>RSA</country>
-<birthdate>07.01.1991</birthdate>
-<personalBest>
-<result>1:55.28</result>
-</personalBest>
-<seasonalBest>
-<result>1:55.28</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>W</gender>
-<event>800</event>
-<section></section>
-<heat></heat>
-<lane>4</lane>
-<id>1136672</id>
-<firstname>Margaret</firstname>
-<lastname>Wambui</lastname>
-<country>KEN</country>
-<birthdate>15.09.1995</birthdate>
-<personalBest>
-<result>1:56.89</result>
-</personalBest>
-<seasonalBest>
-<result>1:56.89</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>W</gender>
-<event>800</event>
-<section></section>
-<heat></heat>
-<lane>5</lane>
-<id>1083223</id>
-<firstname>Francine</firstname>
-<lastname>Niyonsaba</lastname>
-<country>BDI</country>
-<birthdate>05.05.1993</birthdate>
-<personalBest>
-<result>1:56.24</result>
-</personalBest>
-<seasonalBest>
-<result>1:56.24</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>W</gender>
-<event>800</event>
-<section></section>
-<heat></heat>
-<lane>6</lane>
-<id>1037132</id>
-<firstname>Melissa</firstname>
-<lastname>Bishop</lastname>
-<country>CAN</country>
-<birthdate>05.08.1988</birthdate>
-<personalBest>
-<result>1:57.02</result>
-</personalBest>
-<seasonalBest>
-<result>1:57.02</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>W</gender>
-<event>800</event>
-<section></section>
-<heat></heat>
-<lane>7</lane>
-<id>1029919</id>
-<firstname>Lynsey</firstname>
-<lastname>Sharp</lastname>
-<country>GBR</country>
-<birthdate>11.07.1990</birthdate>
-<personalBest>
-<result>1:57.69</result>
-</personalBest>
-<seasonalBest>
-<result>1:57.69</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>W</gender>
-<event>800</event>
-<section></section>
-<heat></heat>
-<lane>8</lane>
-<id>1075074</id>
-<firstname>Maryna</firstname>
-<lastname>Arzamasova</lastname>
-<country>BLR</country>
-<birthdate>17.12.1987</birthdate>
-<personalBest>
-<result>1:57.54</result>
-</personalBest>
-<seasonalBest>
-<result>1:58.36</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>W</gender>
-<event>HJ</event>
-<section></section>
-<heat></heat>
-<lane>1</lane>
-<id>1017570</id>
-<firstname>Ruth</firstname>
-<lastname>Beitia</lastname>
-<country>ESP</country>
-<birthdate>01.04.1979</birthdate>
-<personalBest>
-<result>2.02</result>
-</personalBest>
-<seasonalBest>
-<result>1.98</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>W</gender>
-<event>HJ</event>
-<section></section>
-<heat></heat>
-<lane>2</lane>
-<id>1011131</id>
-<firstname>Levern</firstname>
-<lastname>Spencer</lastname>
-<country>LCA</country>
-<birthdate>23.06.1984</birthdate>
-<personalBest>
-<result>1.98</result>
-</personalBest>
-<seasonalBest>
-<result>1.96</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>W</gender>
-<event>HJ</event>
-<section></section>
-<heat></heat>
-<lane>3</lane>
-<id>1046274</id>
-<firstname>Airinė</firstname>
-<lastname>Palšytė</lastname>
-<country>LTU</country>
-<birthdate>13.07.1992</birthdate>
-<personalBest>
-<result>1.98</result>
-</personalBest>
-<seasonalBest>
-<result>1.96</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>W</gender>
-<event>HJ</event>
-<section></section>
-<heat></heat>
-<lane>4</lane>
-<id>1071981</id>
-<firstname>Iryna</firstname>
-<lastname>Herashchenko</lastname>
-<country>UKR</country>
-<birthdate>10.03.1995</birthdate>
-<personalBest>
-<result>1.94</result>
-</personalBest>
-<seasonalBest>
-<result>1.94</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>W</gender>
-<event>HJ</event>
-<section></section>
-<heat></heat>
-<lane>5</lane>
-<id>1055970</id>
-<firstname>Sofie</firstname>
-<lastname>Skoog</lastname>
-<country>SWE</country>
-<birthdate>07.06.1990</birthdate>
-<personalBest>
-<result>1.94</result>
-</personalBest>
-<seasonalBest>
-<result>1.94</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>W</gender>
-<event>HJ</event>
-<section></section>
-<heat></heat>
-<lane>6</lane>
-<id>1031146</id>
-<firstname>Mirela</firstname>
-<lastname>Demireva</lastname>
-<country>BUL</country>
-<birthdate>28.09.1989</birthdate>
-<personalBest>
-<result>1.97</result>
-</personalBest>
-<seasonalBest>
-<result>1.97</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>W</gender>
-<event>HJ</event>
-<section></section>
-<heat></heat>
-<lane>7</lane>
-<id>1073823</id>
-<firstname>Desirée</firstname>
-<lastname>Rossit</lastname>
-<country>ITA</country>
-<birthdate>19.03.1994</birthdate>
-<personalBest>
-<result>1.97</result>
-</personalBest>
-<seasonalBest>
-<result>1.97</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>W</gender>
-<event>HJ</event>
-<section></section>
-<heat></heat>
-<lane>8</lane>
-<id>1063092</id>
-<firstname>Alyx</firstname>
-<lastname>Treasure</lastname>
-<country>CAN</country>
-<birthdate>15.05.1992</birthdate>
-<personalBest>
-<result>1.94</result>
-</personalBest>
-<seasonalBest>
-<result>1.94</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>W</gender>
-<event>HJ</event>
-<section></section>
-<heat></heat>
-<lane>9</lane>
-<id>1043678</id>
-<firstname>Alessia</firstname>
-<lastname>Trost</lastname>
-<country>ITA</country>
-<birthdate>08.03.1993</birthdate>
-<personalBest>
-<result>1.98</result>
-</personalBest>
-<seasonalBest>
-<result>1.94</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>W</gender>
-<event>HJ</event>
-<section></section>
-<heat></heat>
-<lane>10</lane>
-<id>1002546</id>
-<firstname>Blanka</firstname>
-<lastname>Vlašić</lastname>
-<country>CRO</country>
-<birthdate>08.11.1983</birthdate>
-<personalBest>
-<result>2.08</result>
-</personalBest>
-<seasonalBest>
-<result>1.97</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>W</gender>
-<event>HJ</event>
-<section></section>
-<heat></heat>
-<lane>11</lane>
-<id>1003375</id>
-<firstname>Chaunté</firstname>
-<lastname>Lowe</lastname>
-<country>USA</country>
-<birthdate>12.01.1984</birthdate>
-<personalBest>
-<result>2.05</result>
-</personalBest>
-<seasonalBest>
-<result>2.01</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>W</gender>
-<event>HJ</event>
-<section></section>
-<heat></heat>
-<lane>12</lane>
-<id>1048368</id>
-<firstname>Marie-Laurence</firstname>
-<lastname>Jungfleisch</lastname>
-<country>GER</country>
-<birthdate>07.10.1990</birthdate>
-<personalBest>
-<result>2.00</result>
-</personalBest>
-<seasonalBest>
-<result>2.00</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>W</gender>
-<event>HJ</event>
-<section></section>
-<heat></heat>
-<lane>13</lane>
-<id>1030840</id>
-<firstname>Kamila</firstname>
-<lastname>Lićwinko</lastname>
-<country>POL</country>
-<birthdate>22.03.1986</birthdate>
-<personalBest>
-<result>1.99</result>
-</personalBest>
-<seasonalBest>
-<result>1.99</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>W</gender>
-<event>HJ</event>
-<section></section>
-<heat></heat>
-<lane>14</lane>
-<id>1075009</id>
-<firstname>Morgan</firstname>
-<lastname>Lake</lastname>
-<country>GBR</country>
-<birthdate>12.05.1997</birthdate>
-<personalBest>
-<result>1.94</result>
-</personalBest>
-<seasonalBest>
-<result>1.94</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>W</gender>
-<event>HJ</event>
-<section></section>
-<heat></heat>
-<lane>15</lane>
-<id>1024976</id>
-<firstname>Inika</firstname>
-<lastname>McPherson</lastname>
-<country>USA</country>
-<birthdate>29.09.1986</birthdate>
-<personalBest>
-<result>1.96</result>
-</personalBest>
-<seasonalBest>
-<result>1.94</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>W</gender>
-<event>HJ</event>
-<section></section>
-<heat></heat>
-<lane>16</lane>
-<id>1024373</id>
-<firstname>Svetlana</firstname>
-<lastname>Radzivil</lastname>
-<country>UZB</country>
-<birthdate>17.01.1987</birthdate>
-<personalBest>
-<result>1.97</result>
-</personalBest>
-<seasonalBest>
-<result>1.95</result>
-</seasonalBest>
-</athlete>
-<athlete>
-<gender>W</gender>
-<event>HJ</event>
-<section></section>
-<heat></heat>
-<lane>17</lane>
-<id>1122343</id>
-<firstname>Vashti</firstname>
-<lastname>Cunningham</lastname>
-<country>USA</country>
-<birthdate>18.01.1998</birthdate>
-<personalBest>
-<result>1.97</result>
-</personalBest>
-<seasonalBest>
-<result>1.97</result>
-</seasonalBest>
-</athlete>
-</athletes>
+  <meetingid>7266</meetingid>
+  <athletes>
+    <athlete>
+      <gender>M</gender>
+      <event>1500</event>
+      <section/>
+      <heat/>
+      <lane>1</lane>
+      <id>118894</id>
+      <firstname>Ayanleh</firstname>
+      <lastname>Souleiman</lastname>
+      <country>DJI</country>
+      <birthdate>03.12.1992</birthdate>
+      <personalBest>
+        <result>3:29.58</result>
+      </personalBest>
+      <seasonalBest>
+        <result>3:31.68</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>M</gender>
+      <event>1500</event>
+      <section/>
+      <heat/>
+      <lane>2</lane>
+      <id>61484</id>
+      <firstname>Abdelaati</firstname>
+      <lastname>Iguider</lastname>
+      <country>MAR</country>
+      <birthdate>25.03.1987</birthdate>
+      <personalBest>
+        <result>3:28.79</result>
+      </personalBest>
+      <seasonalBest>
+        <result>3:31.40</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>M</gender>
+      <event>1500</event>
+      <section/>
+      <heat/>
+      <lane>3</lane>
+      <id>91371</id>
+      <firstname>Asbel</firstname>
+      <lastname>Kiprop</lastname>
+      <country>KEN</country>
+      <birthdate>30.06.1989</birthdate>
+      <personalBest>
+        <result>3:26.69</result>
+      </personalBest>
+      <seasonalBest>
+        <result>3:29.33</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>M</gender>
+      <event>1500</event>
+      <section/>
+      <heat/>
+      <lane>4</lane>
+      <id>88309</id>
+      <firstname>Matthew</firstname>
+      <lastname>Centrowitz</lastname>
+      <country>USA</country>
+      <birthdate>18.10.1989</birthdate>
+      <personalBest>
+        <result>3:30.40</result>
+      </personalBest>
+      <seasonalBest>
+        <result>3:34.09</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>M</gender>
+      <event>1500</event>
+      <section/>
+      <heat/>
+      <lane>5</lane>
+      <id>132743</id>
+      <firstname>Ronald</firstname>
+      <lastname>Musagala</lastname>
+      <country>UGA</country>
+      <birthdate>16.12.1992</birthdate>
+      <personalBest>
+        <result>3:35.02</result>
+      </personalBest>
+      <seasonalBest>
+        <result>3:36.23</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>M</gender>
+      <event>1500</event>
+      <section/>
+      <heat/>
+      <lane>6</lane>
+      <id>86938</id>
+      <firstname>Ryan</firstname>
+      <lastname>Gregson</lastname>
+      <country>AUS</country>
+      <birthdate>26.04.1990</birthdate>
+      <personalBest>
+        <result>3:31.06</result>
+      </personalBest>
+      <seasonalBest>
+        <result>3:32.13</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>M</gender>
+      <event>1500</event>
+      <section/>
+      <heat/>
+      <lane>7</lane>
+      <id>91685</id>
+      <firstname>Taoufik</firstname>
+      <lastname>Makhloufi</lastname>
+      <country>ALG</country>
+      <birthdate>29.04.1988</birthdate>
+      <personalBest>
+        <result>3:28.75</result>
+      </personalBest>
+      <seasonalBest>
+        <result>3:31.35</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>M</gender>
+      <event>1500</event>
+      <section/>
+      <heat/>
+      <lane>8</lane>
+      <id>123584</id>
+      <firstname>Charlie</firstname>
+      <lastname>Grice</lastname>
+      <country>GBR</country>
+      <birthdate>07.11.1993</birthdate>
+      <personalBest>
+        <result>3:33.60</result>
+      </personalBest>
+      <seasonalBest>
+        <result>3:33.60</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>M</gender>
+      <event>1500</event>
+      <section/>
+      <heat/>
+      <lane>9</lane>
+      <id>32332</id>
+      <firstname>Nate</firstname>
+      <lastname>Brannen</lastname>
+      <country>CAN</country>
+      <birthdate>08.09.1982</birthdate>
+      <personalBest>
+        <result>3:34.22</result>
+      </personalBest>
+      <seasonalBest>
+        <result>3:36.84</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>M</gender>
+      <event>1500</event>
+      <section/>
+      <heat/>
+      <lane>10</lane>
+      <id>32700</id>
+      <firstname>Nick</firstname>
+      <lastname>Willis</lastname>
+      <country>NZL</country>
+      <birthdate>25.04.1983</birthdate>
+      <personalBest>
+        <result>3:29.66</result>
+      </personalBest>
+      <seasonalBest>
+        <result>3:34.29</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>M</gender>
+      <event>1500</event>
+      <section/>
+      <heat/>
+      <lane>11</lane>
+      <id>95414</id>
+      <firstname>Ben</firstname>
+      <lastname>Blankenship</lastname>
+      <country>USA</country>
+      <birthdate>15.12.1989</birthdate>
+      <personalBest>
+        <result>3:34.26</result>
+      </personalBest>
+      <seasonalBest>
+        <result>3:34.26</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>M</gender>
+      <event>1500</event>
+      <section/>
+      <heat/>
+      <lane>12</lane>
+      <id>140221</id>
+      <firstname>Ronald</firstname>
+      <lastname>Kwemoi</lastname>
+      <country>KEN</country>
+      <birthdate>19.09.1995</birthdate>
+      <personalBest>
+        <result>3:28.81</result>
+      </personalBest>
+      <seasonalBest>
+        <result>3:30.49</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>M</gender>
+      <event>1500</event>
+      <section/>
+      <heat/>
+      <lane>13</lane>
+      <id>84298</id>
+      <firstname>David</firstname>
+      <lastname>Bustos</lastname>
+      <country>ESP</country>
+      <birthdate>25.08.1990</birthdate>
+      <personalBest>
+        <result>3:34.77</result>
+      </personalBest>
+      <seasonalBest>
+        <result>3:36.14</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>M</gender>
+      <event>5000</event>
+      <section/>
+      <heat/>
+      <lane>1</lane>
+      <id>102053</id>
+      <firstname>Dejen</firstname>
+      <lastname>Gebremeskel</lastname>
+      <country>ETH</country>
+      <birthdate>24.11.1989</birthdate>
+      <personalBest>
+        <result>12:46.81</result>
+      </personalBest>
+      <seasonalBest>
+        <result>12:59.89</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>M</gender>
+      <event>5000</event>
+      <section/>
+      <heat/>
+      <lane>2</lane>
+      <id>127660</id>
+      <firstname>Paul</firstname>
+      <lastname>Chelimo</lastname>
+      <country>USA</country>
+      <birthdate>27.10.1990</birthdate>
+      <personalBest>
+        <result>13:03.90</result>
+      </personalBest>
+      <seasonalBest>
+        <result>13:03.90</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>M</gender>
+      <event>5000</event>
+      <section/>
+      <heat/>
+      <lane>3</lane>
+      <id>56062</id>
+      <firstname>Elroy</firstname>
+      <lastname>Gelant</lastname>
+      <country>RSA</country>
+      <birthdate>25.08.1986</birthdate>
+      <personalBest>
+        <result>13:04.88</result>
+      </personalBest>
+      <seasonalBest>
+        <result>13:04.88</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>M</gender>
+      <event>5000</event>
+      <section/>
+      <heat/>
+      <lane>4</lane>
+      <id>107165</id>
+      <firstname>Mohammed</firstname>
+      <lastname>Ahmed</lastname>
+      <country>CAN</country>
+      <birthdate>05.01.1991</birthdate>
+      <personalBest>
+        <result>13:01.74</result>
+      </personalBest>
+      <seasonalBest>
+        <result>13:01.74</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>M</gender>
+      <event>5000</event>
+      <section/>
+      <heat/>
+      <lane>5</lane>
+      <id>31850</id>
+      <firstname>Mohamed</firstname>
+      <lastname>Farah</lastname>
+      <country>GBR</country>
+      <birthdate>23.03.1983</birthdate>
+      <personalBest>
+        <result>12:53.11</result>
+      </personalBest>
+      <seasonalBest>
+        <result>12:59.29</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>M</gender>
+      <event>5000</event>
+      <section/>
+      <heat/>
+      <lane>6</lane>
+      <id>4911</id>
+      <firstname>Bernard</firstname>
+      <lastname>Lagat</lastname>
+      <country>USA</country>
+      <birthdate>12.12.1974</birthdate>
+      <personalBest>
+        <result>12:53.60</result>
+      </personalBest>
+      <seasonalBest>
+        <result>13:06.78</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>M</gender>
+      <event>5000</event>
+      <section/>
+      <heat/>
+      <lane>7</lane>
+      <id>125730</id>
+      <firstname>Abrar</firstname>
+      <lastname>Osman</lastname>
+      <country>ERI</country>
+      <birthdate>01.01.1994</birthdate>
+      <personalBest>
+        <result>13:04.12</result>
+      </personalBest>
+      <seasonalBest>
+        <result>13:04.12</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>M</gender>
+      <event>5000</event>
+      <section/>
+      <heat/>
+      <lane>8</lane>
+      <id>60154</id>
+      <firstname>David</firstname>
+      <lastname>Torrence</lastname>
+      <country>PER</country>
+      <birthdate>26.11.1985</birthdate>
+      <personalBest>
+        <result>13:16.53</result>
+      </personalBest>
+      <seasonalBest>
+        <result>13:19.42</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>M</gender>
+      <event>5000</event>
+      <section/>
+      <heat/>
+      <lane>9</lane>
+      <id>171148</id>
+      <firstname>Birhanu</firstname>
+      <lastname>Yemataw</lastname>
+      <country>BRN</country>
+      <birthdate>27.02.1996</birthdate>
+      <personalBest>
+        <result>13:09.26</result>
+      </personalBest>
+      <seasonalBest>
+        <result>13:09.26</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>M</gender>
+      <event>5000</event>
+      <section/>
+      <heat/>
+      <lane>10</lane>
+      <id>128619</id>
+      <firstname>Muktar</firstname>
+      <lastname>Edris</lastname>
+      <country>ETH</country>
+      <birthdate>14.01.1994</birthdate>
+      <personalBest>
+        <result>12:54.83</result>
+      </personalBest>
+      <seasonalBest>
+        <result>12:59.43</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>M</gender>
+      <event>5000</event>
+      <section/>
+      <heat/>
+      <lane>11</lane>
+      <id>119423</id>
+      <firstname>Andrew</firstname>
+      <lastname>Butchart</lastname>
+      <country>GBR</country>
+      <birthdate>14.10.1991</birthdate>
+      <personalBest>
+        <result>13:08.61</result>
+      </personalBest>
+      <seasonalBest>
+        <result>13:08.61</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>M</gender>
+      <event>5000</event>
+      <section/>
+      <heat/>
+      <lane>12</lane>
+      <id>130984</id>
+      <firstname>Albert</firstname>
+      <lastname>Rop</lastname>
+      <country>BRN</country>
+      <birthdate>17.07.1992</birthdate>
+      <personalBest>
+        <result>12:51.96</result>
+      </personalBest>
+      <seasonalBest>
+        <result>13:04.87</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>M</gender>
+      <event>5000</event>
+      <section/>
+      <heat/>
+      <lane>13</lane>
+      <id>148980</id>
+      <firstname>Joshua</firstname>
+      <lastname>Cheptegei</lastname>
+      <country>UGA</country>
+      <birthdate>12.09.1996</birthdate>
+      <personalBest>
+        <result>13:00.60</result>
+      </personalBest>
+      <seasonalBest>
+        <result>13:00.60</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>M</gender>
+      <event>5000</event>
+      <section/>
+      <heat/>
+      <lane>14</lane>
+      <id>102168</id>
+      <firstname>Brett</firstname>
+      <lastname>Robinson</lastname>
+      <country>AUS</country>
+      <birthdate>08.05.1991</birthdate>
+      <personalBest>
+        <result>13:18.96</result>
+      </personalBest>
+      <seasonalBest>
+        <result>13:19.29</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>M</gender>
+      <event>5000</event>
+      <section/>
+      <heat/>
+      <lane>15</lane>
+      <id>130426</id>
+      <firstname>Hagos</firstname>
+      <lastname>Gebrhiwet</lastname>
+      <country>ETH</country>
+      <birthdate>11.05.1994</birthdate>
+      <personalBest>
+        <result>12:47.53</result>
+      </personalBest>
+      <seasonalBest>
+        <result>13:00.20</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>M</gender>
+      <event>JT</event>
+      <section/>
+      <heat/>
+      <lane>1</lane>
+      <id>119123</id>
+      <firstname>Keshorn</firstname>
+      <lastname>Walcott</lastname>
+      <country>TTO</country>
+      <birthdate>02.04.1993</birthdate>
+      <personalBest>
+        <result>90.16</result>
+      </personalBest>
+      <seasonalBest>
+        <result>88.68</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>M</gender>
+      <event>JT</event>
+      <section/>
+      <heat/>
+      <lane>2</lane>
+      <id>124084</id>
+      <firstname>Johannes</firstname>
+      <lastname>Vetter</lastname>
+      <country>GER</country>
+      <birthdate>26.03.1993</birthdate>
+      <personalBest>
+        <result>89.57</result>
+      </personalBest>
+      <seasonalBest>
+        <result>89.57</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>M</gender>
+      <event>JT</event>
+      <section/>
+      <heat/>
+      <lane>3</lane>
+      <id>93417</id>
+      <firstname>Jakub</firstname>
+      <lastname>Vadlejch</lastname>
+      <country>CZE</country>
+      <birthdate>10.10.1990</birthdate>
+      <personalBest>
+        <result>88.02</result>
+      </personalBest>
+      <seasonalBest>
+        <result>88.02</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>M</gender>
+      <event>JT</event>
+      <section/>
+      <heat/>
+      <lane>4</lane>
+      <id>103715</id>
+      <firstname>Dmytro</firstname>
+      <lastname>Kosynskyy</lastname>
+      <country>UKR</country>
+      <birthdate>31.03.1989</birthdate>
+      <personalBest>
+        <result>84.08</result>
+      </personalBest>
+      <seasonalBest>
+        <result>84.08</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>M</gender>
+      <event>JT</event>
+      <section/>
+      <heat/>
+      <lane>5</lane>
+      <id>52330</id>
+      <firstname>Antti</firstname>
+      <lastname>Ruuskanen</lastname>
+      <country>FIN</country>
+      <birthdate>21.02.1984</birthdate>
+      <personalBest>
+        <result>88.98</result>
+      </personalBest>
+      <seasonalBest>
+        <result>88.23</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>M</gender>
+      <event>JT</event>
+      <section/>
+      <heat/>
+      <lane>6</lane>
+      <id>51255</id>
+      <firstname>V&#xED;t&#x11B;zslav</firstname>
+      <lastname>Vesel&#xFD;</lastname>
+      <country>CZE</country>
+      <birthdate>27.02.1983</birthdate>
+      <personalBest>
+        <result>88.34</result>
+      </personalBest>
+      <seasonalBest>
+        <result>84.82</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>M</gender>
+      <event>JT</event>
+      <section/>
+      <heat/>
+      <lane>7</lane>
+      <id>124079</id>
+      <firstname>Julian</firstname>
+      <lastname>Weber</lastname>
+      <country>GER</country>
+      <birthdate>29.08.1994</birthdate>
+      <personalBest>
+        <result>88.29</result>
+      </personalBest>
+      <seasonalBest>
+        <result>88.29</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>M</gender>
+      <event>JT</event>
+      <section/>
+      <heat/>
+      <lane>8</lane>
+      <id>117114</id>
+      <firstname>Julius</firstname>
+      <lastname>Yego</lastname>
+      <country>KEN</country>
+      <birthdate>04.01.1989</birthdate>
+      <personalBest>
+        <result>92.72</result>
+      </personalBest>
+      <seasonalBest>
+        <result>88.24</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>M</gender>
+      <event>JT</event>
+      <section/>
+      <heat/>
+      <lane>9</lane>
+      <id>123349</id>
+      <firstname>Thomas</firstname>
+      <lastname>R&#xF6;hler</lastname>
+      <country>GER</country>
+      <birthdate>30.09.1991</birthdate>
+      <personalBest>
+        <result>91.28</result>
+      </personalBest>
+      <seasonalBest>
+        <result>91.28</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>M</gender>
+      <event>JT</event>
+      <section/>
+      <heat/>
+      <lane>10</lane>
+      <id>117022</id>
+      <firstname>Braian</firstname>
+      <lastname>Toledo</lastname>
+      <country>ARG</country>
+      <birthdate>08.09.1993</birthdate>
+      <personalBest>
+        <result>83.32</result>
+      </personalBest>
+      <seasonalBest>
+        <result>81.96</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>M</gender>
+      <event>JT</event>
+      <section/>
+      <heat/>
+      <lane>11</lane>
+      <id>130443</id>
+      <firstname>Ryohei</firstname>
+      <lastname>Arai</lastname>
+      <country>JPN</country>
+      <birthdate>23.06.1991</birthdate>
+      <personalBest>
+        <result>86.83</result>
+      </personalBest>
+      <seasonalBest>
+        <result>84.54</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>M</gender>
+      <event>JT</event>
+      <section/>
+      <heat/>
+      <lane>12</lane>
+      <id>68711</id>
+      <firstname>Petr</firstname>
+      <lastname>Frydrych</lastname>
+      <country>CZE</country>
+      <birthdate>13.01.1988</birthdate>
+      <personalBest>
+        <result>88.23</result>
+      </personalBest>
+      <seasonalBest>
+        <result>84.10</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>W</gender>
+      <event>800</event>
+      <section/>
+      <heat/>
+      <lane>1</lane>
+      <id>1043245</id>
+      <firstname>Kate</firstname>
+      <lastname>Grace</lastname>
+      <country>USA</country>
+      <birthdate>24.10.1988</birthdate>
+      <personalBest>
+        <result>1:58.28</result>
+      </personalBest>
+      <seasonalBest>
+        <result>1:58.28</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>W</gender>
+      <event>800</event>
+      <section/>
+      <heat/>
+      <lane>2</lane>
+      <id>1068484</id>
+      <firstname>Joanna</firstname>
+      <lastname>J&#xF3;&#x17A;wik</lastname>
+      <country>POL</country>
+      <birthdate>30.01.1991</birthdate>
+      <personalBest>
+        <result>1:57.37</result>
+      </personalBest>
+      <seasonalBest>
+        <result>1:57.37</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>W</gender>
+      <event>800</event>
+      <section/>
+      <heat/>
+      <lane>3</lane>
+      <id>1063249</id>
+      <firstname>Caster</firstname>
+      <lastname>Semenya</lastname>
+      <country>RSA</country>
+      <birthdate>07.01.1991</birthdate>
+      <personalBest>
+        <result>1:55.28</result>
+      </personalBest>
+      <seasonalBest>
+        <result>1:55.28</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>W</gender>
+      <event>800</event>
+      <section/>
+      <heat/>
+      <lane>4</lane>
+      <id>1136672</id>
+      <firstname>Margaret</firstname>
+      <lastname>Wambui</lastname>
+      <country>KEN</country>
+      <birthdate>15.09.1995</birthdate>
+      <personalBest>
+        <result>1:56.89</result>
+      </personalBest>
+      <seasonalBest>
+        <result>1:56.89</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>W</gender>
+      <event>800</event>
+      <section/>
+      <heat/>
+      <lane>5</lane>
+      <id>1083223</id>
+      <firstname>Francine</firstname>
+      <lastname>Niyonsaba</lastname>
+      <country>BDI</country>
+      <birthdate>05.05.1993</birthdate>
+      <personalBest>
+        <result>1:56.24</result>
+      </personalBest>
+      <seasonalBest>
+        <result>1:56.24</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>W</gender>
+      <event>800</event>
+      <section/>
+      <heat/>
+      <lane>6</lane>
+      <id>1037132</id>
+      <firstname>Melissa</firstname>
+      <lastname>Bishop</lastname>
+      <country>CAN</country>
+      <birthdate>05.08.1988</birthdate>
+      <personalBest>
+        <result>1:57.02</result>
+      </personalBest>
+      <seasonalBest>
+        <result>1:57.02</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>W</gender>
+      <event>800</event>
+      <section/>
+      <heat/>
+      <lane>7</lane>
+      <id>1029919</id>
+      <firstname>Lynsey</firstname>
+      <lastname>Sharp</lastname>
+      <country>GBR</country>
+      <birthdate>11.07.1990</birthdate>
+      <personalBest>
+        <result>1:57.69</result>
+      </personalBest>
+      <seasonalBest>
+        <result>1:57.69</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>W</gender>
+      <event>800</event>
+      <section/>
+      <heat/>
+      <lane>8</lane>
+      <id>1075074</id>
+      <firstname>Maryna</firstname>
+      <lastname>Arzamasova</lastname>
+      <country>BLR</country>
+      <birthdate>17.12.1987</birthdate>
+      <personalBest>
+        <result>1:57.54</result>
+      </personalBest>
+      <seasonalBest>
+        <result>1:58.36</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>W</gender>
+      <event>HJ</event>
+      <section/>
+      <heat/>
+      <lane>1</lane>
+      <id>1017570</id>
+      <firstname>Ruth</firstname>
+      <lastname>Beitia</lastname>
+      <country>ESP</country>
+      <birthdate>01.04.1979</birthdate>
+      <personalBest>
+        <result>2.02</result>
+      </personalBest>
+      <seasonalBest>
+        <result>1.98</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>W</gender>
+      <event>HJ</event>
+      <section/>
+      <heat/>
+      <lane>2</lane>
+      <id>1011131</id>
+      <firstname>Levern</firstname>
+      <lastname>Spencer</lastname>
+      <country>LCA</country>
+      <birthdate>23.06.1984</birthdate>
+      <personalBest>
+        <result>1.98</result>
+      </personalBest>
+      <seasonalBest>
+        <result>1.96</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>W</gender>
+      <event>HJ</event>
+      <section/>
+      <heat/>
+      <lane>3</lane>
+      <id>1046274</id>
+      <firstname>Airin&#x117;</firstname>
+      <lastname>Pal&#x161;yt&#x117;</lastname>
+      <country>LTU</country>
+      <birthdate>13.07.1992</birthdate>
+      <personalBest>
+        <result>1.98</result>
+      </personalBest>
+      <seasonalBest>
+        <result>1.96</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>W</gender>
+      <event>HJ</event>
+      <section/>
+      <heat/>
+      <lane>4</lane>
+      <id>1071981</id>
+      <firstname>Iryna</firstname>
+      <lastname>Herashchenko</lastname>
+      <country>UKR</country>
+      <birthdate>10.03.1995</birthdate>
+      <personalBest>
+        <result>1.94</result>
+      </personalBest>
+      <seasonalBest>
+        <result>1.94</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>W</gender>
+      <event>HJ</event>
+      <section/>
+      <heat/>
+      <lane>5</lane>
+      <id>1055970</id>
+      <firstname>Sofie</firstname>
+      <lastname>Skoog</lastname>
+      <country>SWE</country>
+      <birthdate>07.06.1990</birthdate>
+      <personalBest>
+        <result>1.94</result>
+      </personalBest>
+      <seasonalBest>
+        <result>1.94</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>W</gender>
+      <event>HJ</event>
+      <section/>
+      <heat/>
+      <lane>6</lane>
+      <id>1031146</id>
+      <firstname>Mirela</firstname>
+      <lastname>Demireva</lastname>
+      <country>BUL</country>
+      <birthdate>28.09.1989</birthdate>
+      <personalBest>
+        <result>1.97</result>
+      </personalBest>
+      <seasonalBest>
+        <result>1.97</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>W</gender>
+      <event>HJ</event>
+      <section/>
+      <heat/>
+      <lane>7</lane>
+      <id>1073823</id>
+      <firstname>Desir&#xE9;e</firstname>
+      <lastname>Rossit</lastname>
+      <country>ITA</country>
+      <birthdate>19.03.1994</birthdate>
+      <personalBest>
+        <result>1.97</result>
+      </personalBest>
+      <seasonalBest>
+        <result>1.97</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>W</gender>
+      <event>HJ</event>
+      <section/>
+      <heat/>
+      <lane>8</lane>
+      <id>1063092</id>
+      <firstname>Alyx</firstname>
+      <lastname>Treasure</lastname>
+      <country>CAN</country>
+      <birthdate>15.05.1992</birthdate>
+      <personalBest>
+        <result>1.94</result>
+      </personalBest>
+      <seasonalBest>
+        <result>1.94</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>W</gender>
+      <event>HJ</event>
+      <section/>
+      <heat/>
+      <lane>9</lane>
+      <id>1043678</id>
+      <firstname>Alessia</firstname>
+      <lastname>Trost</lastname>
+      <country>ITA</country>
+      <birthdate>08.03.1993</birthdate>
+      <personalBest>
+        <result>1.98</result>
+      </personalBest>
+      <seasonalBest>
+        <result>1.94</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>W</gender>
+      <event>HJ</event>
+      <section/>
+      <heat/>
+      <lane>10</lane>
+      <id>1002546</id>
+      <firstname>Blanka</firstname>
+      <lastname>Vla&#x161;i&#x107;</lastname>
+      <country>CRO</country>
+      <birthdate>08.11.1983</birthdate>
+      <personalBest>
+        <result>2.08</result>
+      </personalBest>
+      <seasonalBest>
+        <result>1.97</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>W</gender>
+      <event>HJ</event>
+      <section/>
+      <heat/>
+      <lane>11</lane>
+      <id>1003375</id>
+      <firstname>Chaunt&#xE9;</firstname>
+      <lastname>Lowe</lastname>
+      <country>USA</country>
+      <birthdate>12.01.1984</birthdate>
+      <personalBest>
+        <result>2.05</result>
+      </personalBest>
+      <seasonalBest>
+        <result>2.01</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>W</gender>
+      <event>HJ</event>
+      <section/>
+      <heat/>
+      <lane>12</lane>
+      <id>1048368</id>
+      <firstname>Marie-Laurence</firstname>
+      <lastname>Jungfleisch</lastname>
+      <country>GER</country>
+      <birthdate>07.10.1990</birthdate>
+      <personalBest>
+        <result>2.00</result>
+      </personalBest>
+      <seasonalBest>
+        <result>2.00</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>W</gender>
+      <event>HJ</event>
+      <section/>
+      <heat/>
+      <lane>13</lane>
+      <id>1030840</id>
+      <firstname>Kamila</firstname>
+      <lastname>Li&#x107;winko</lastname>
+      <country>POL</country>
+      <birthdate>22.03.1986</birthdate>
+      <personalBest>
+        <result>1.99</result>
+      </personalBest>
+      <seasonalBest>
+        <result>1.99</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>W</gender>
+      <event>HJ</event>
+      <section/>
+      <heat/>
+      <lane>14</lane>
+      <id>1075009</id>
+      <firstname>Morgan</firstname>
+      <lastname>Lake</lastname>
+      <country>GBR</country>
+      <birthdate>12.05.1997</birthdate>
+      <personalBest>
+        <result>1.94</result>
+      </personalBest>
+      <seasonalBest>
+        <result>1.94</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>W</gender>
+      <event>HJ</event>
+      <section/>
+      <heat/>
+      <lane>15</lane>
+      <id>1024976</id>
+      <firstname>Inika</firstname>
+      <lastname>McPherson</lastname>
+      <country>USA</country>
+      <birthdate>29.09.1986</birthdate>
+      <personalBest>
+        <result>1.96</result>
+      </personalBest>
+      <seasonalBest>
+        <result>1.94</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>W</gender>
+      <event>HJ</event>
+      <section/>
+      <heat/>
+      <lane>16</lane>
+      <id>1024373</id>
+      <firstname>Svetlana</firstname>
+      <lastname>Radzivil</lastname>
+      <country>UZB</country>
+      <birthdate>17.01.1987</birthdate>
+      <personalBest>
+        <result>1.97</result>
+      </personalBest>
+      <seasonalBest>
+        <result>1.95</result>
+      </seasonalBest>
+    </athlete>
+    <athlete>
+      <gender>W</gender>
+      <event>HJ</event>
+      <section/>
+      <heat/>
+      <lane>17</lane>
+      <id>1122343</id>
+      <firstname>Vashti</firstname>
+      <lastname>Cunningham</lastname>
+      <country>USA</country>
+      <birthdate>18.01.1998</birthdate>
+      <personalBest>
+        <result>1.97</result>
+      </personalBest>
+      <seasonalBest>
+        <result>1.97</result>
+      </seasonalBest>
+    </athlete>
+  </athletes>
 </message>
