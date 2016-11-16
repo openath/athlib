@@ -188,17 +188,15 @@ def athleticize(node):
 def xml_to_json(xml):
     root = etree.fromstring(xml)
 
-    out = node_to_json(root)
-
-    #lose the top tag, it's pointless
-    top = out["competition"]
-
+    top = node_to_json(root)
 
     athleticize(top)
 
     return dumps(top, indent=2)
 
 if __name__=="__main__":
+    # fn_in = "rio_athletics_results.xml"
+    # fn_out = "rio_athletics_results.json"
     fn_in = "rio_athletics_results.xml"
     fn_out = "rio_athletics_results.json"
     xml = open(fn_in).read()
