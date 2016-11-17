@@ -46,7 +46,7 @@
 			["200K",200,57600,0.693,0.7263,0.7578,0.7874,0.8152,0.8413,0.8654,0.8878,0.9084,0.9271,0.944,0.96,0.976,0.9893,0.9973,1,1,1,1,1,1,1,1,1,1,1,0.9998,0.9989,0.9974,0.9953,0.9926,0.9893,0.9854,0.9808,0.9757,0.9699,0.9635,0.9565,0.9489,0.9406,0.9318,0.9223,0.9122,0.9016,0.8906,0.8796,0.8686,0.8576,0.8466,0.8356,0.8246,0.8136,0.8026,0.7916,0.7806,0.7696,0.7586,0.7476,0.7366,0.7256,0.7146,0.7036,0.6926,0.6816,0.6706,0.6596,0.6486,0.6376,0.6266,0.6156,0.6042,0.592,0.579,0.5652,0.5506,0.5352,0.519,0.502,0.4842,0.4656,0.4462,0.426,0.405,0.3832,0.3606,0.3372,0.313,0.288,0.2622,0.2356,0.2082,0.18,0.151,0.1212,0.0906,0.0592  ]
 			]
 		},
-	"nonroad": {
+	"tf": {
 		"ages":[35,40,45,50,55,60,65,70,75,80,85,90,95,100],
 		"f":	[
 			["T",2,"60",0.989,0.9538,0.9186,0.8834,0.8482,0.813,0.7778,0.7386,0.694,0.641,0.575,0.4898,0.3776,0.2417],
@@ -80,10 +80,10 @@
 			["D",2,"JT400",null,null,null,null,null,1.5408,1.7274,1.9654,2.2794,2.7129,3.35,4.3782,6.3171,11.337],
 			["D",2,"JT500",null,null,null,1.3147,1.4482,1.6118,1.8171,2.0992,null,null,null,null,null,null],
 			["D",2,"JT600",1.0621,1.1475,1.2479,1.3676,1.5126,1.692,1.9197,2.2202,null,null,null,null,null,null],
-			["D",2,"WT9.08K",1.0922,1.1852,1.2955,1.4283,null,null,null,null,null,null,null,null,null,null],
-			["D",2,"WT7.26K",null,null,null,1.1822,1.2918,1.4238,null,null,null,null,null,null,null,null],
+			["D",2,"WT4K",null,null,null,null,null,null,null,null,1.3955,1.5424,1.7304,1.9798,2.3272,2.8449],
 			["D",2,"WT5.45K",null,null,null,null,null,1.2108,1.326,1.4667,1.6428,1.8712,2.1815,2.6308,3.3467,null],
-			["D",2,"WT4K",null,null,null,null,null,null,null,null,1.3955,1.5424,1.7304,1.9798,2.3272,2.8449]
+			["D",2,"WT7.26K",null,null,null,1.1822,1.2918,1.4238,null,null,null,null,null,null,null,null],
+			["D",2,"WT9.08K",1.0922,1.1852,1.2955,1.4283,null,null,null,null,null,null,null,null,null,null]
 			],
 
 		"m": 	[
@@ -111,29 +111,29 @@
 			["D",2,"PV",1.0168,1.0773,1.1481,1.2272,1.3182,1.4236,1.5475,1.6949,1.8733,2.0938,2.373,2.7382,3.2362,4.8547],
 			["D",2,"LJ",1.0317,1.0899,1.1551,1.2286,1.3121,1.4078,1.5186,1.6482,1.8021,1.9876,2.2158,2.5031,2.876,6.4392],
 			["D",2,"HJ",1.0069,1.0636,1.127,1.1984,1.2795,1.3724,1.4799,1.6056,1.7546,1.9428,2.1982,2.5759,4.0644,7.959],
-			["D",2,"H7.250K",1.03,1.1252,1.2397,1.3802,1.5566,null,null,null,null,null,null,null,null,null],
-			["D",2,"H3k",null,null,null,null,null,null,null,null,null,1.8654,2.2212,2.7616,3.6895,5.6369],
-			["D",2,"H4K",null,null,null,null,null,null,null,1.4524,1.649,1.9138,2.2899,2.8686,null,null],
-			["D",2,"H5K",null,null,null,null,null,1.3082,1.4656,1.6661,null,null,null,null,null,null],
-			["D",2,"H6K",null,null,null,1.1864,1.3145,1.4736,null,null,null,null,null,null,null,null],
+			["D",2,"HT7.25K",1.03,1.1252,1.2397,1.3802,1.5566,null,null,null,null,null,null,null,null,null],
+			["D",2,"HT3k",null,null,null,null,null,null,null,null,null,1.8654,2.2212,2.7616,3.6895,5.6369],
+			["D",2,"HT4K",null,null,null,null,null,null,null,1.4524,1.649,1.9138,2.2899,2.8686,null,null],
+			["D",2,"HT5K",null,null,null,null,null,1.3082,1.4656,1.6661,null,null,null,null,null,null],
+			["D",2,"HT6K",null,null,null,1.1864,1.3145,1.4736,null,null,null,null,null,null,null,null],
 			["D",2,"SP3K",null,null,null,null,null,null,null,null,null,1.5053,1.6866,1.9535,2.4044,3.3512],
 			["D",2,"SP4k",null,null,null,null,null,null,null,1.2806,1.3993,1.5427,1.7337,2.0169,2.5012,null],
 			["D",2,"SP5K",null,null,null,null,null,1.2482,1.3607,1.4954,null,null,null,null,null,null],
 			["D",2,"SP6K",null,null,null,1.1721,1.2706,1.3873,null,null,null,null,null,null,null,null],
 			["D",2,"SP7.25K",1.0372,1.1137,1.2023,1.3063,1.43,1.5795,1.767,null,null,null,null,null,null,null],
-			["D",2,"D1K",null,null,null,null,null,1.0628,1.1637,1.2781,1.4332,1.6441,1.9508,2.4402,3.3478,5.6116],
-			["D",2,"D1.5K",null,null,null,1.0218,1.1103,1.2156,1.343,null,null,null,null,null,null,null],
-			["D",2,"D2K",1.0143,1.1014,1.2049,1.3233,1.4838,1.6781,null,null,null,null,null,null,null,null],
-			["D",2,"J400",null,null,null,null,null,null,null,null,null,2.0952,2.4378,2.9137,3.6206,8.7034],
-			["D",2,"J500",null,null,null,null,null,null,null,1.6801,1.8932,2.1682,null,null,null,null],
-			["D",2,"J600",null,null,null,null,null,1.414,1.562,1.7445,1.9755,2.2841,2.7307,3.4626,null,null],
-			["D",2,"J700",null,null,null,1.2278,1.338,null,null,null,null,null,null,null,null,null],
-			["D",2,"J800",1.0126,1.0862,1.1716,1.2715,1.3898,1.5325,1.7079,null,null,null,null,null,null,null],
+			["D",2,"DT1K",null,null,null,null,null,1.0628,1.1637,1.2781,1.4332,1.6441,1.9508,2.4402,3.3478,5.6116],
+			["D",2,"DT1.5K",null,null,null,1.0218,1.1103,1.2156,1.343,null,null,null,null,null,null,null],
+			["D",2,"DT2K",1.0143,1.1014,1.2049,1.3233,1.4838,1.6781,null,null,null,null,null,null,null,null],
+			["D",2,"JT400",null,null,null,null,null,null,null,null,null,2.0952,2.4378,2.9137,3.6206,8.7034],
+			["D",2,"JT500",null,null,null,null,null,null,null,1.6801,1.8932,2.1682,null,null,null,null],
+			["D",2,"JT600",null,null,null,null,null,1.414,1.562,1.7445,1.9755,2.2841,2.7307,3.4626,null,null],
+			["D",2,"JT700",null,null,null,1.2278,1.338,null,null,null,null,null,null,null,null,null],
+			["D",2,"JT800",1.0126,1.0862,1.1716,1.2715,1.3898,1.5325,1.7079,null,null,null,null,null,null,null],
 			["D",2,"WT5.45K",null,null,null,null,null,null,null,null,null,1.3043,1.4452,1.6714,2.1057,3.2456],
 			["D",2,"WT7.26K",null,null,null,null,null,null,null,1.1408,1.2286,1.331,null,null,null,null],
-			["D",2,"WT9.080K",null,null,null,null,null,1.0424,1.1153,1.1988,null,null,null,null,null,null],
+			["D",2,"WT9.08K",null,null,null,null,null,1.0424,1.1153,1.1988,null,null,null,null,null,null],
 			["D",2,"WT11.34K",null,null,null,1.0488,1.1225,1.2074,1.3061,null,null,null,null,null,null,null],
-			["D",2,"WT15.880K",1.0203,1.0898,1.1697,1.2621,1.3704,null,null,null,null,null,null,null,null,null]
+			["D",2,"WT15.88K",1.0203,1.0898,1.1697,1.2621,1.3704,null,null,null,null,null,null,null,null,null]
 			]
 		}
 }
