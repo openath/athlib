@@ -1,3 +1,5 @@
+import os
+import glob
 from json import dumps
 from types import StringTypes
 from lxml import etree
@@ -184,13 +186,41 @@ def athleticize(node):
 
 
 
-
 def xml_to_json(xml):
     root = etree.fromstring(xml)
 
     top = node_to_json(root)
 
     athleticize(top)
+
+    return dumps(top, indent=2)
+
+
+def daily_entries_to_json(xml):
+
+    root = etree.fromstring(xml)
+
+    top = node_to_json(root)
+
+
+
+    # we get some redundant infolike this
+    # "seasonalBest": {
+      #   "seasonalBest": "1:19:32"
+      # }, 
+      # "personalBest": {
+      #   "personalBest": "1:17:40"
+      # }, 
+
+    for ath in top["athletes"]:
+        if ath.has_key("seasonalBest"):
+            if ath["seasonalBest"].has_key("seasonalBest"):
+                ath["seasonalBest"] = ath["seasonalBest"]["seasonalBest"]
+
+        if ath.has_key("personalBest"):
+            if ath["personalBest"].has_key("personalBest"):
+                ath["personalBest"] = ath["personalBest"]["personalBest"]
+
 
     return dumps(top, indent=2)
 
@@ -203,3 +233,11 @@ if __name__=="__main__":
     json = xml_to_json(xml)
     open(fn_out, "w").write(json)
     print "wrote", fn_out
+
+    #pass two - convert entries
+    for xml_filename in glob.glob("rio_entries*.xml"):
+        xml = open(xml_filename).read()
+        json_filename = os.path.splitext(xml_filename)[0] + '.json'
+        json = daily_entries_to_json(xml)
+        open(json_filename, "w").write(json)
+        print "wrote", json_filename
