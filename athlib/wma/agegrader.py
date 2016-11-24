@@ -280,6 +280,62 @@ class AgeGrader(object):
         fac =  table[self._fx][3:][self._ax1]
         return fac
 
+
+    def world_best(self, gender, event, performance):
+        "The world best on the data stats were compiled for this event"
+        kind = self.event_code_to_kind(event)
+
+
+        row = self.find_row_by_event(self,event,table)
+        if kind=='road':
+            return self.calculate_road_factor(gender,age,event)
+        else:
+            return self.calculate_tf_factor(gender,age,event)
+
+
+    def calculate_age_grade(self, gender, age, event, performance):
+        """Return the age grade score (0 to 100ish) for this result.
+
+        >>> from athlib.wma.agegrader import AgeGrader
+        >>> ag=AgeGrader()
+        >>> ag.calculate_age_grade('m',50,'5K', '16:23')
+        >>> 0.9004
+        >>> ag.calculate_age_grade('f',50,'5K', '18:00')
+        >>> 0.9179
+
+        """
+
+        #This works for jumps/throws too, as they are floats
+        float_performance = self.parse_hms(performance)
+        print "performance = %0.2f" % float_performance
+
+        kind = self.event_code_to_kind(event)
+        if kind != 'road':
+            raise NotImplementedError
+        data = self.data['road']
+        table = data[gender]
+        row = self.find_row_by_event(event, table, x=0)
+        world_best = table[row][2]
+        
+
+        print "world best for %s %s = %0.2f" % (gender, event, world_best)
+
+        age_factor = self.calculate_factor(gender, age, event)
+
+        age_group_best = world_best * 1.0 / age_factor
+        print "age group best would be", age_group_best
+
+        kind = self.event_code_to_kind(event)
+        if kind in ['road', 'track']:
+            #performance is a float.  Older people get lower values (shorter/lower)
+            age_grade = age_group_best / float_performance
+        else:
+            age_grade = float_performance / age_group_best
+
+        return age_grade
+
+
+
 if __name__=='__main__':
     import doctest
     doctest.testmod()
