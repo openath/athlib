@@ -1,9 +1,14 @@
 import unittest
+import doctest
 from setuptools import setup, find_packages
 
 def my_test_suite():
     test_loader = unittest.TestLoader()
     test_suite = test_loader.discover('tests', pattern='test_*.py')
+
+    from athlib.wma import agegrader
+    test_suite.addTests(doctest.DocTestSuite(agegrader))
+
     return test_suite
 
 

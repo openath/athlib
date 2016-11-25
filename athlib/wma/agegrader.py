@@ -75,7 +75,9 @@ class AgeGrader(object):
         return g
 
     def calculate_factor(self,gender,age,event,distance=None):
-        '''
+        '''Work out 'slowdown factor' for a geezer of this
+        age taking part in this event e.g.
+
         >>> from athlib.wma.agegrader import AgeGrader
         >>> ag=AgeGrader()
         >>> ag.calculate_factor('M',68,'5k')
@@ -235,26 +237,23 @@ class AgeGrader(object):
             return self.calculate_tf_factor(gender,age,event)
 
 
-    def calculate_age_grade(self, gender, age, event, performance):
+    def calculate_age_grade(self, gender, age, event, performance, 
+        verbose=False):
         """Return the age grade score (0 to 100ish) for this result.
 
         >>> from athlib.wma.agegrader import AgeGrader
         >>> ag=AgeGrader()
-        >>> ag.calculate_age_grade('m',50,'5K', '16:23')
-        performance = 983.00
-        world best for m 5K = 779.00
-        age group best would be 885.126690149
-        0.9004340693274128
-        >>> ag.calculate_age_grade('f',50,'5K', '18:00')
-        performance = 1080.00
-        world best for f 5K = 886.00
-        age group best would be 991.384133378
-        0.9179482716463806
+        >>> "%0.4f" % ag.calculate_age_grade('m',50,'5K', '16:23')
+        '0.9004'
+        >>> "%0.4f" %  ag.calculate_age_grade('f',50,'5K', '18:00')
+        '0.9179'
+        >>>
+
         """
 
         #This works for jumps/throws too, as they are floats
         float_performance = self.parse_hms(performance)
-        print "performance = %0.2f" % float_performance
+        if verbose:  print "performance = %0.2f" % float_performance
 
         kind = self.event_code_to_kind(event)
         data = self.data[self.data_year]
@@ -262,12 +261,13 @@ class AgeGrader(object):
         row = self.find_row_by_event(event, table, x=0)
         world_best = table[row][2]
         
-        print "world best for %s %s = %0.2f" % (gender, event, world_best)
+        if verbose: print "world best for %s %s = %0.2f" % (gender, event, world_best)
 
         age_factor = self.calculate_factor(gender, age, event)
+        if verbose: print "factor %s %s = %0.4f" % (gender, event, age_factor)
 
         age_group_best = world_best * 1.0 / age_factor
-        print "age group best would be", age_group_best
+        if verbose: print "age group best would be", age_group_best
 
         kind = self.event_code_to_kind(event)
         if kind in ['road', 'track']:
