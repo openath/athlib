@@ -3,13 +3,8 @@ This file contains definitions and utility functions for determining IAAF event
 scores.
 """
 import math
-import re
 
-# Regular expressions to match jumps and throws events (everything else is a
-# track event)
-_jump_codes = re.compile("^(LJ|PV|TJ|HJ)$", re.IGNORECASE)
-_throw_codes = re.compile("^(WT|JT|DT|HT|SP)$", re.IGNORECASE)
-
+from athlib.codes import PAT_JUMPS, PAT_THROWS
 # Array of parameters used to determine IAAF scores.
 #
 # For track events: A * (Z - <seconds>)^X
@@ -144,16 +139,17 @@ def score(gender, event_code, value):
         coeffs = _scoring_objects[key]
 
         # Handle based on whether jumps, throws or track event
-        global _jump_codes, _throw_codes
+        
 
-        if _jump_codes.match(event_code):
-            # value = value * 0.01
+        if PAT_JUMPS.match(event_code):
+            #The table is expressed in centimetres in the original source
+            value = value * 100
             if value > coeffs["Z"]:
                 return max(0, int(coeffs["A"] * ((value - coeffs["Z"]) **
                            coeffs["X"])))
             else:
                 return 0
-        elif _throw_codes.match(event_code):
+        elif PAT_THROWS.match(event_code):
             if value > coeffs["Z"]:
                 return max(0, int(coeffs["A"] * ((value - coeffs["Z"]) **
                            coeffs["X"])))
@@ -174,11 +170,11 @@ def score(gender, event_code, value):
 
 def unit_name(event_code):
     """Utility function to get the unit name based on event type."""
-    global _jump_codes, _throw_codes
-
-    if _jump_codes.match(event_code):
-        return "centimetres"
-    elif _throw_codes.match(event_code):
+    
+    if PAT_JUMPS.match(event_code):
+        #used to be cm, but we standardised
+        return "metres"
+    elif PAT_THROWS.match(event_code):
         return "metres"
     else:
         return "seconds"
@@ -208,13 +204,11 @@ def performance(gender, event_code, score):
 
         coeffs = _scoring_objects[key]
 
-        # Handle based on whether jumps, throws or track event
-        global _jump_codes, _throw_codes
-
-        if _jump_codes.match(event_code):
+        
+        if PAT_JUMPS.match(event_code):
             return int(math.ceil(((score / coeffs["A"]) **
                                  (1.0 / coeffs["X"])) + coeffs["Z"]))
-        elif _throw_codes.match(event_code):
+        elif PAT_THROWS.match(event_code):
             return (math.ceil(100.0 * (((score / coeffs["A"]) **
                                        (1.0 / coeffs["X"])) + coeffs["Z"])) /
                     100.0)
@@ -226,4 +220,8 @@ def performance(gender, event_code, score):
     # Return the performance-calculation function
     performance_func = fnew
 
-    return performance_func(gender, event_code, score)
+    perf = performance_func(gender, event_code, score)
+    if PAT_JUMPS.match(event_code):
+        #used to be cm, but we standardised
+        perf = 0.01 * perf
+    return perf

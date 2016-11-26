@@ -5,13 +5,13 @@ import json, re, os
 from collections import namedtuple
 
 from athlib.utils import str2num, normalize_gender, parse_hms
-
-_ = r"\d\.?\d*K"
-_throw_codes = re.compile(r"^(?:WT(P<wtnum>\d?%s|)|JT(P<jtnum>[45678]00|)|DT(?P<dtnum>%s|)|HT(?P<htnum>%s|))|SP(?P<spnum>%s|)$" % (_,_,_,_), re.IGNORECASE)
-_jump_codes = re.compile(r"^(?:LJ|PV|TJ|HJ)$", re.IGNORECASE)
-_track_codes = re.compile(r"^(?:(?P<meters>\d+)(?:[LS]?H(?:3[36])?|SC|W)?)|SC|[2345]MT|LH|SH$", re.IGNORECASE)
-_road_codes = re.compile(r"^(?:MILE|MAR|HM|\d+[MK]?)W?$", re.IGNORECASE)
-del _
+from athlib.codes import PAT_THROWS, PAT_JUMPS, PAT_TRACK, PAT_ROAD
+# _ = r"\d\.?\d*K"
+# PAT_THROWS = re.compile(r"^(?:WT(P<wtnum>\d?%s|)|JT(P<jtnum>[45678]00|)|DT(?P<dtnum>%s|)|HT(?P<htnum>%s|))|SP(?P<spnum>%s|)$" % (_,_,_,_), re.IGNORECASE)
+# PAT_JUMPS = re.compile(r"^(?:LJ|PV|TJ|HJ)$", re.IGNORECASE)
+# PAT_TRACK = re.compile(r"^(?:(?P<meters>\d+)(?:[LS]?H(?:3[36])?|SC|W)?)|SC|[2345]MT|LH|SH$", re.IGNORECASE)
+# PAT_ROAD = re.compile(r"^(?:MILE|MAR|HM|\d+[MK]?)W?$", re.IGNORECASE)
+# del _
 
 
 
@@ -52,7 +52,7 @@ class AgeGrader(object):
         >>> AgeGrader()._check_patterns()
         '''
         for ec in self._all_event_codes:
-            for p in (_throw_codes, _jump_codes, _track_codes, _road_codes):
+            for p in (PAT_THROWS, PAT_JUMPS, PAT_TRACK, PAT_ROAD):
                 if p.match(ec): break
             else:
                 print 'could not match %s' % ec
@@ -69,7 +69,7 @@ class AgeGrader(object):
 
     @staticmethod
     def event_code_to_kind(code):
-        for n,p in (('throw',_throw_codes), ('jump',_jump_codes), ('track',_track_codes), ('road',_road_codes)):
+        for n,p in (('throw',PAT_THROWS), ('jump',PAT_JUMPS), ('track',PAT_TRACK), ('road',PAT_ROAD)):
             if p.match(code): return n
         raise ValueError('could not find event kind for code %R' % code)
 
