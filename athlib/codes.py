@@ -1,0 +1,1 @@
+"Standard event codes, and things to parse and check them"

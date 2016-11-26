@@ -9,6 +9,12 @@ def my_test_suite():
     from athlib.wma import agegrader
     test_suite.addTests(doctest.DocTestSuite(agegrader))
 
+    from athlib import utils
+    test_suite.addTests(doctest.DocTestSuite(utils))
+
+    from athlib import codes
+    test_suite.addTests(doctest.DocTestSuite(codes))
+
     return test_suite
 
 

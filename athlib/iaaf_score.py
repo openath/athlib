@@ -126,7 +126,7 @@ def _scoring_objects_create():
 
 def score(gender, event_code, value):
     """Function to determine IAAF score, based on gender, event and performance.
-    Note that value is <seconds> for track events, <metres> for throws events
+    Note that value is <seconds> for track events, <metres> for throws events.
     and <centimetres> for jumps events.
     """
     # Create _scoring_objects (lazily evaluated)
@@ -147,6 +147,7 @@ def score(gender, event_code, value):
         global _jump_codes, _throw_codes
 
         if _jump_codes.match(event_code):
+            # value = value * 0.01
             if value > coeffs["Z"]:
                 return max(0, int(coeffs["A"] * ((value - coeffs["Z"]) **
                            coeffs["X"])))

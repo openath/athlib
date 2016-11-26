@@ -1,0 +1,11 @@
+#!/bin/bash
+if [ "True" != "`python -c "import sys; print hasattr(sys, 'real_prefix')"`" ]; then
+    echo "ATTENTION!\nYou must use this script whilst inside a virtualenv!\n"
+    exit 1
+fi
+
+
+coverage run setup.py test -q
+coverage report --include=athlib/*
+coverage html --include=athlib/*
+echo "see htmlcov/index.html for details"

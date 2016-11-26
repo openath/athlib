@@ -3,12 +3,18 @@ __all__ =   (
             )
 import json, re, os
 from collections import namedtuple
+
+from athlib.utils import str2num, normalize_gender, parse_hms
+
 _ = r"\d\.?\d*K"
 _throw_codes = re.compile(r"^(?:WT(P<wtnum>\d?%s|)|JT(P<jtnum>[45678]00|)|DT(?P<dtnum>%s|)|HT(?P<htnum>%s|))|SP(?P<spnum>%s|)$" % (_,_,_,_), re.IGNORECASE)
 _jump_codes = re.compile(r"^(?:LJ|PV|TJ|HJ)$", re.IGNORECASE)
 _track_codes = re.compile(r"^(?:(?P<meters>\d+)(?:[LS]?H(?:3[36])?|SC|W)?)|SC|[2345]MT|LH|SH$", re.IGNORECASE)
 _road_codes = re.compile(r"^(?:MILE|MAR|HM|\d+[MK]?)W?$", re.IGNORECASE)
 del _
+
+
+
 
 road_info = namedtuple('road_info','code distance standard factors')
 class AgeGrader(object):
@@ -18,19 +24,21 @@ class AgeGrader(object):
     data_file_name = 'wma-data.json'
     text_columns = 0,
     event_column = 0
+    _data = None
 
-    def __init__(self,):
-        self._get_data(self.data_file_name)
-
-    def _get_data(self,data_file_name):
-        from athlib import wma
-        self.data_path = os.path.join(wma.__path__[0],data_file_name)
-        with open(self.data_path,'rb') as f:
-            self.data = json.load(f)
+    def get_data(self):
+        "Defer this until the first call, so we can bubble a function up to the top of the package"
+        if not self._data:
+            codedir = os.path.dirname(__file__)
+            self.data_path = os.path.join(codedir,self.data_file_name)
+            with open(self.data_path,'rb') as f:
+                self._data = json.load(f)
+            #print "loaded", self.data_file_name
+        return self._data
 
     @property
     def _all_event_codes(self):
-        data = self.data
+        data = self.get_data()
         return list(set([t[self.event_column] for T in (data[self.data_year]['m'],data[self.data_year]['f']) for t in T]))
 
     @staticmethod
@@ -52,7 +60,7 @@ class AgeGrader(object):
         def ccase(x):
             if x.upper()!=x:
                 nuc.append(x)
-        data = self.data[self.data_year]
+        data = self.get_data()[self.data_year]
         for j in self.text_columns:
             self._check_table_column(data['m'],j,ccase)
             self._check_table_column(data['f'],j,ccase)
@@ -71,7 +79,7 @@ class AgeGrader(object):
         if g:
             g = g[0]
         if g not in 'mf':
-            raise ValueError('cannot nomalize gender = %s' % repr(gender))
+            raise ValueError('cannot normalize gender = %s' % repr(gender))
         return g
 
     def calculate_factor(self,gender,age,event,distance=None):
@@ -113,7 +121,7 @@ class AgeGrader(object):
         event = event.upper()
         gender = self.normalize_gender(gender)
         #which table we're using
-        data = self.data[self.data_year]
+        data = self.get_data()[self.data_year]
         table = data[gender]
         ages = data['ages']
         nt = len(table)
@@ -137,47 +145,6 @@ class AgeGrader(object):
         fac1a = FX1[ax1]
         fac = (1-pfac)*(page*faca+(1-page)*fac)+pfac*(page*fac1a+(1-page)*fac1)
         return fac
-
-    @staticmethod
-    def str2num(s):
-        try:
-            return int(s)
-        except ValueError:
-            return float(s)
-
-    @staticmethod
-    def parse_hms(t):
-        '''
-        >>> from athlib.wma.agegrader import AgeGrader
-        >>> ag=AgeGrader()
-        >>> ag.parse_hms('10')
-        10
-        >>> ag.parse_hms('1:10')
-        70
-        >>> ag.parse_hms('1:1:10')
-        3670
-        >>> ag.parse_hms('1:1:10.1')
-        3670.1
-        >>> ag.parse_hms(3670.1)
-        3670.1
-        '''
-        if isinstance(t,(float,int)):
-            return t
-        #try : and ; separators
-        for sep in ':;':
-            if sep not in t: continue
-            sec = 0
-            for s in t.split(sep):
-                sec *= 60
-                try:
-                    sec += AgeGrader.str2num(s)
-                except:
-                    raise ValueError('cannot parse seconds from %s' % repr(t))
-            return sec
-        try:
-            return AgeGrader.str2num(t)
-        except:
-            raise ValueError('cannot parse seconds from %s' % repr(t))
 
 
     def find_row_by_event(self,event,table,x=0,label=''):
@@ -225,16 +192,15 @@ class AgeGrader(object):
         self._page = page
 
 
-    def world_best(self, gender, event, performance):
-        "The world best on the data stats were compiled for this event"
+    def world_best(self, gender, event):
+        "The relevant world-record performance on the date stats were compiled"
         kind = self.event_code_to_kind(event)
-
-
-        row = self.find_row_by_event(self,event,table)
-        if kind=='road':
-            return self.calculate_road_factor(gender,age,event)
-        else:
-            return self.calculate_tf_factor(gender,age,event)
+        kind = self.event_code_to_kind(event)
+        data = self.get_data()[self.data_year]
+        table = data[gender]
+        row = self.find_row_by_event(event, table, x=0)
+        world_best = table[row][2]
+        return world_best
 
 
     def calculate_age_grade(self, gender, age, event, performance, 
@@ -252,14 +218,10 @@ class AgeGrader(object):
         """
 
         #This works for jumps/throws too, as they are floats
-        float_performance = self.parse_hms(performance)
+        float_performance = parse_hms(performance)
         if verbose:  print "performance = %0.2f" % float_performance
 
-        kind = self.event_code_to_kind(event)
-        data = self.data[self.data_year]
-        table = data[gender]
-        row = self.find_row_by_event(event, table, x=0)
-        world_best = table[row][2]
+        world_best = self.world_best(gender, event)  
         
         if verbose: print "world best for %s %s = %0.2f" % (gender, event, world_best)
 
@@ -307,7 +269,7 @@ class AthlonsAgeGrader(AgeGrader):
         event = event.upper()
         gender = self.normalize_gender(gender)
         #which table we're using
-        data = self.data[self.data_year]
+        data = self.get_data()[self.data_year]
         table = data[gender]
         ages = data['ages']
         #we must match an event exactly
@@ -315,6 +277,9 @@ class AthlonsAgeGrader(AgeGrader):
         self.find_age(int(age/5)*5,ages,interpolate=False)
         fac =  table[self._fx][3:][self._ax1]
         return fac
+
+
+
 
 if __name__=='__main__':
     import doctest
