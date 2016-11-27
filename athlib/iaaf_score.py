@@ -121,51 +121,48 @@ def _scoring_objects_create():
 
 def score(gender, event_code, value):
     """Function to determine IAAF score, based on gender, event and performance.
-    Note that value is <seconds> for track events, <metres> for throws events.
-    and <centimetres> for jumps events.
+
+    In the interface, we assume performance is <seconds> for track events, 
+    and <metres> for throws and jumps. Ihe the Wikipedia-sourced factors,
+    jumps are <centimetres>.  Therefore there is a factor of 100 applied at the end.
+
     """
     # Create _scoring_objects (lazily evaluated)
     global _scoring_objects
     _scoring_objects_create()
 
-    # Inner function (closure) to get the score
-    def fnew(gender, event_code, value):
-        key = scoring_key(gender, event_code)
+    key = scoring_key(gender, event_code)
 
-        # Drop out if no coefficients defined (e.g. bad event/gender)
-        if key not in _scoring_objects:
-            return None
+    # Drop out if no coefficients defined (e.g. bad event/gender)
+    if key not in _scoring_objects:
+        return None
 
-        coeffs = _scoring_objects[key]
+    coeffs = _scoring_objects[key]
 
-        # Handle based on whether jumps, throws or track event
-        
+    # Handle based on whether jumps, throws or track event
+    
 
-        if PAT_JUMPS.match(event_code):
-            #The table is expressed in centimetres in the original source
-            value = value * 100
-            if value > coeffs["Z"]:
-                return max(0, int(coeffs["A"] * ((value - coeffs["Z"]) **
-                           coeffs["X"])))
-            else:
-                return 0
-        elif PAT_THROWS.match(event_code):
-            if value > coeffs["Z"]:
-                return max(0, int(coeffs["A"] * ((value - coeffs["Z"]) **
-                           coeffs["X"])))
-            else:
-                return 0
+    if PAT_JUMPS.match(event_code):
+        #The table is expressed in centimetres in the original source
+        value = value * 100
+        if value > coeffs["Z"]:
+            return max(0, int(coeffs["A"] * ((value - coeffs["Z"]) **
+                       coeffs["X"])))
         else:
-            if coeffs["Z"] > value:
-                return max(0, int(coeffs["A"] * ((coeffs["Z"] - value) **
-                           coeffs["X"])))
-            else:
-                return 0
+            return 0
+    elif PAT_THROWS.match(event_code):
+        if value > coeffs["Z"]:
+            return max(0, int(coeffs["A"] * ((value - coeffs["Z"]) **
+                       coeffs["X"])))
+        else:
+            return 0
+    else:
+        if coeffs["Z"] > value:
+            return max(0, int(coeffs["A"] * ((coeffs["Z"] - value) **
+                       coeffs["X"])))
+        else:
+            return 0
 
-    # Return the score-calculation function
-    score_func = fnew
-
-    return score_func(gender, event_code, value)
 
 
 def unit_name(event_code):
@@ -183,45 +180,39 @@ def unit_name(event_code):
 def performance(gender, event_code, score):
     """Function to determine performance required to achieve IAAF score, given
     gender and event.
-    Note that performance is <seconds> for track events, <metres> for throws
-    events and <centimetres> for jumps events.
+
+    In the interface, we assume performance is <seconds> for track events, 
+    and <metres> for throws and jumps. Ihe the Wikipedia-sourced factors,
+    jumps are <centimetres>.  Therefore there is a factor of 100 applied at the end.
     """
     # Create _scoring_objects (lazily evaluated)
     global _scoring_objects
     _scoring_objects_create()
 
-    # Inner function (closure) to get the performance
-    def fnew(gender, event_code, score):
-        # Scores cannot be negative
-        if score < 0:
-            score = 0
+    if score < 0:
+        score = 0
 
-        key = scoring_key(gender, event_code)
+    key = scoring_key(gender, event_code)
 
-        # Drop out if no coefficients defined (e.g. bad event/gender)
-        if key not in _scoring_objects:
-            return None
+    # Drop out if no coefficients defined (e.g. bad event/gender)
+    if key not in _scoring_objects:
+        perf = None
 
-        coeffs = _scoring_objects[key]
+    coeffs = _scoring_objects[key]
 
-        
-        if PAT_JUMPS.match(event_code):
-            return int(math.ceil(((score / coeffs["A"]) **
-                                 (1.0 / coeffs["X"])) + coeffs["Z"]))
-        elif PAT_THROWS.match(event_code):
-            return (math.ceil(100.0 * (((score / coeffs["A"]) **
-                                       (1.0 / coeffs["X"])) + coeffs["Z"])) /
-                    100.0)
-        else:
-            return (math.floor(100.0 * (coeffs["Z"] - ((score / coeffs["A"]) **
-                                                       (1.0 / coeffs["X"])))) /
-                    100.0)
-
-    # Return the performance-calculation function
-    performance_func = fnew
-
-    perf = performance_func(gender, event_code, score)
+    
     if PAT_JUMPS.match(event_code):
-        #used to be cm, but we standardised
+        perf = int(math.ceil(((score / coeffs["A"]) **
+                             (1.0 / coeffs["X"])) + coeffs["Z"]))
+    elif PAT_THROWS.match(event_code):
+        perf = (math.ceil(100.0 * (((score / coeffs["A"]) **
+                                   (1.0 / coeffs["X"])) + coeffs["Z"])) /
+                100.0)
+    else:
+        perf = (math.floor(100.0 * (coeffs["Z"] - ((score / coeffs["A"]) **
+                                                   (1.0 / coeffs["X"])))) /
+                100.0)
+
+    if PAT_JUMPS.match(event_code):
         perf = 0.01 * perf
     return perf
