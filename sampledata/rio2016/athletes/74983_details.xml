@@ -1,0 +1,27 @@
+ï»¿<?xml version="1.0" encoding="utf-8" ?>
+<athletes>
+<athlete>
+<athlete_id>74983</athlete_id>
+<birthdate>13.02.1988</birthdate>
+<birthyear>1988</birthyear>
+<firstname>Luke</firstname>
+<lastname>Cutts</lastname>
+<height>192</height>
+<weight>82</weight>
+<gender>M</gender>
+<club>Sheffield &amp; Dearne/Sheffield &amp; Dearne</club><nationality>GBR</nationality><birthplace></birthplace><accomplishments>
+<line number="0">
+<description>8th at World Indoor Championships</description>
+<details>
+<detail disciplines="PV" year="2014"/>
+</details>
+</line>
+<line number="1">
+<description>European U23 Championships Silver Medallist</description>
+<details>
+<detail disciplines="PV" year="2009"/>
+</details>
+</line>
+</accomplishments>
+</athlete>
+</athletes>

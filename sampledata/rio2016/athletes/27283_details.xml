@@ -1,0 +1,27 @@
+ï»¿<?xml version="1.0" encoding="utf-8" ?>
+<athletes>
+<athlete>
+<athlete_id>27283</athlete_id>
+<birthdate>03.06.1981</birthdate>
+<birthyear>1981</birthyear>
+<firstname>Lois Maikel</firstname>
+<lastname>MartÃ­nez</lastname>
+<height>185</height>
+<weight>90</weight>
+<gender>M</gender>
+<club>Playas de Castellon</club><nationality>ESP</nationality><birthplace></birthplace><accomplishments>
+<line number="0">
+<description>Pan American Games Bronze Medallist</description>
+<details>
+<detail disciplines="DT" year="2003"/>
+</details>
+</line>
+<line number="1">
+<description>6th at World Junior Championships</description>
+<details>
+<detail disciplines="DT" year="2000"/>
+</details>
+</line>
+</accomplishments>
+</athlete>
+</athletes>

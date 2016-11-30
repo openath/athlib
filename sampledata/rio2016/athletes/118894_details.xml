@@ -1,0 +1,51 @@
+ï»¿<?xml version="1.0" encoding="utf-8" ?>
+<athletes>
+<athlete>
+<athlete_id>118894</athlete_id>
+<birthdate>03.12.1992</birthdate>
+<birthyear>1992</birthyear>
+<firstname>Ayanleh</firstname>
+<lastname>Souleiman</lastname>
+<height>172</height>
+<weight>60</weight>
+<gender>M</gender>
+<club></club><nationality>DJI</nationality><birthplace></birthplace><accomplishments>
+<line number="0">
+<description>World Indoor Champion</description>
+<details>
+<detail disciplines="1500" year="2014"/>
+</details>
+</line>
+<line number="1">
+<description>World Championships Bronze Medallist</description>
+<details>
+<detail disciplines="800" year="2013"/>
+</details>
+</line>
+<line number="2">
+<description>4th at Olympic Games</description>
+<details>
+<detail disciplines="1500" year="2016"/>
+</details>
+</line>
+<line number="3">
+<description>5th at World Indoor Championships</description>
+<details>
+<detail disciplines="1500" year="2012"/>
+</details>
+</line>
+<line number="4">
+<description>African Champion</description>
+<details>
+<detail disciplines="1500" year="2014"/>
+</details>
+</line>
+<line number="5">
+<description>African Championships Silver Medallist</description>
+<details>
+<detail disciplines="1500" year="2012"/>
+</details>
+</line>
+</accomplishments>
+</athlete>
+</athletes>

@@ -1,0 +1,52 @@
+ï»¿<?xml version="1.0" encoding="utf-8" ?>
+<athletes>
+<athlete>
+<athlete_id>70807</athlete_id>
+<birthdate>20.02.1988</birthdate>
+<birthyear>1988</birthyear>
+<firstname>Jakub</firstname>
+<lastname>HoluÅ¡a</lastname>
+<height>183</height>
+<weight>72</weight>
+<gender>M</gender>
+<club>TJ Dukla Praha</club><nationality>CZE</nationality><birthplace></birthplace><accomplishments>
+<line number="0">
+<description>2 World Indoor Silvers </description>
+<details>
+<detail disciplines="800" year="2012"/>
+<detail disciplines="1500" year="2016"/>
+</details>
+</line>
+<line number="1">
+<description>European Indoor Champion</description>
+<details>
+<detail disciplines="1500" year="2015"/>
+</details>
+</line>
+<line number="2">
+<description>5th at World Indoor Championships</description>
+<details>
+<detail disciplines="800" year="2010"/>
+</details>
+</line>
+<line number="3">
+<description>5th at World Indoor Championships</description>
+<details>
+<detail disciplines="1500" year="2014"/>
+</details>
+</line>
+<line number="4">
+<description>European Junior Champion</description>
+<details>
+<detail disciplines="3000S" year="2007"/>
+</details>
+</line>
+<line number="5">
+<description>European U23 Championships Bronze Medallist</description>
+<details>
+<detail disciplines="1500" year="2009"/>
+</details>
+</line>
+</accomplishments>
+</athlete>
+</athletes>

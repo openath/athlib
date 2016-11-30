@@ -1,0 +1,33 @@
+ï»¿<?xml version="1.0" encoding="utf-8" ?>
+<athletes>
+<athlete>
+<athlete_id>86938</athlete_id>
+<birthdate>26.04.1990</birthdate>
+<birthyear>1990</birthyear>
+<firstname>Ryan</firstname>
+<lastname>Gregson</lastname>
+<height>184</height>
+<weight>68</weight>
+<gender>M</gender>
+<club>NSW</club><nationality>AUS</nationality><birthplace></birthplace><accomplishments>
+<line number="0">
+<description>Olympic finalist</description>
+<details>
+<detail disciplines="1500" year="2016"/>
+</details>
+</line>
+<line number="1">
+<description>5th at World Junior Championships</description>
+<details>
+<detail disciplines="1500" year="2008"/>
+</details>
+</line>
+<line number="2">
+<description>5th at World Youth Championships</description>
+<details>
+<detail disciplines="1500" year="2007"/>
+</details>
+</line>
+</accomplishments>
+</athlete>
+</athletes>

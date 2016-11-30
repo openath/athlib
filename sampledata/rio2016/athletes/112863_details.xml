@@ -1,0 +1,27 @@
+ï»¿<?xml version="1.0" encoding="utf-8" ?>
+<athletes>
+<athlete>
+<athlete_id>112863</athlete_id>
+<birthdate>18.09.1988</birthdate>
+<birthyear>1988</birthyear>
+<firstname>Mahmoud</firstname>
+<lastname>Samimi</lastname>
+<height>190</height>
+<weight>105</weight>
+<gender>M</gender>
+<club></club><nationality>IRI</nationality><birthplace></birthplace><accomplishments>
+<line number="0">
+<description>Asian Championships Bronze Medallist</description>
+<details>
+<detail disciplines="DT" year="2015"/>
+</details>
+</line>
+<line number="1">
+<description>World University Games Silver Medallist</description>
+<details>
+<detail disciplines="DT" year="2009"/>
+</details>
+</line>
+</accomplishments>
+</athlete>
+</athletes>

@@ -1,0 +1,27 @@
+ï»¿<?xml version="1.0" encoding="utf-8" ?>
+<athletes>
+<athlete>
+<athlete_id>118724</athlete_id>
+<birthdate>31.07.1992</birthdate>
+<birthyear>1992</birthyear>
+<firstname>Danijel</firstname>
+<lastname>Furtula</lastname>
+<height>195</height>
+<weight>115</weight>
+<gender>M</gender>
+<club>Tara. Mojkovac</club><nationality>MNE</nationality><birthplace></birthplace><accomplishments>
+<line number="0">
+<description>European Junior Championships Silver Medallist</description>
+<details>
+<detail disciplines="DT1.75" year="2011"/>
+</details>
+</line>
+<line number="1">
+<description>European U23 Championships Bronze Medallist</description>
+<details>
+<detail disciplines="DT" year="2013"/>
+</details>
+</line>
+</accomplishments>
+</athlete>
+</athletes>

@@ -1,0 +1,33 @@
+ï»¿<?xml version="1.0" encoding="utf-8" ?>
+<athletes>
+<athlete>
+<athlete_id>70421</athlete_id>
+<birthdate>29.04.1987</birthdate>
+<birthyear>1987</birthyear>
+<firstname>Robert</firstname>
+<lastname>Urbanek</lastname>
+<height>200</height>
+<weight>120</weight>
+<gender>M</gender>
+<club>MKS AleksandrÃ³w ÅÃ³dzki</club><nationality>POL</nationality><birthplace></birthplace><accomplishments>
+<line number="0">
+<description>World Championships Bronze Medallist</description>
+<details>
+<detail disciplines="DT" year="2015"/>
+</details>
+</line>
+<line number="1">
+<description>European Bronze Medallist</description>
+<details>
+<detail disciplines="DT" year="2014"/>
+</details>
+</line>
+<line number="2">
+<description>6th at World Championships</description>
+<details>
+<detail disciplines="DT" year="2013"/>
+</details>
+</line>
+</accomplishments>
+</athlete>
+</athletes>

@@ -1,0 +1,1254 @@
+ï»¿<?xml version="1.0" encoding="utf-8" ?>
+<results>
+<result>
+<athlete_id>109569</athlete_id>
+<gender>M</gender>
+<personalBest>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.53</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12839409</competition_ID>
+<compName></compName>
+<date>2013-02-23</date>
+<venue>Albuquerque NM</venue>
+<venueCountry>USA</venueCountry>
+</personalBest>
+<personalBest>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.71</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12873761</competition_ID>
+<compName>Altis Summer Series #2, Paradise Valley CC</compName>
+<date>2016-05-21</date>
+<venue>Phoenix AZ</venue>
+<venueCountry>USA</venueCountry>
+</personalBest>
+<seasonalBest>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.47</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12870151</competition_ID>
+<compName>Louisiana State Twilight, Maddox Fieldhouse</compName>
+<date>2016-02-19</date>
+<venue>Baton Rouge LA</venue>
+<venueCountry>USA</venueCountry>
+</seasonalBest>
+<seasonalBest>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.71</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12873761</competition_ID>
+<compName>Altis Summer Series #2, Paradise Valley CC</compName>
+<date>2016-05-21</date>
+<venue>Phoenix AZ</venue>
+<venueCountry>USA</venueCountry>
+</seasonalBest>
+<athleteresulthistory>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>4.85</result>
+<wind></wind>
+<rank>2</rank>
+<round>-HS</round>
+<roundstage>Prelim</roundstage>
+<agegroup></agegroup>
+<competition_ID>11765687</competition_ID>
+<compName></compName>
+<date>2008-06-07</date>
+<venue>Albuquerque NM</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.00</result>
+<wind></wind>
+<rank>1</rank>
+<round>-18</round>
+<roundstage>Prelim</roundstage>
+<agegroup></agegroup>
+<competition_ID>12478087</competition_ID>
+<compName></compName>
+<date>2008-07-12</date>
+<venue>Fort Worth TX</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>4.95</result>
+<wind></wind>
+<rank>5</rank>
+<round>-19</round>
+<roundstage>Final</roundstage>
+<agegroup>Under 20</agegroup>
+<competition_ID>11989626</competition_ID>
+<compName></compName>
+<date>2008-07-27</date>
+<venue>Omaha NE</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.02</result>
+<wind></wind>
+<rank>2</rank>
+<round>-HS</round>
+<roundstage>Prelim</roundstage>
+<agegroup></agegroup>
+<competition_ID>12701870</competition_ID>
+<compName></compName>
+<date>2009-04-03</date>
+<venue>Austin TX</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.08</result>
+<wind></wind>
+<rank>1</rank>
+<round>-HS</round>
+<roundstage>Prelim</roundstage>
+<agegroup></agegroup>
+<competition_ID>12792765</competition_ID>
+<compName></compName>
+<date>2009-04-09</date>
+<venue>Converse TX</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.05</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12795850</competition_ID>
+<compName></compName>
+<date>2010-04-10</date>
+<venue>San Antonio TX</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.00</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12796180</competition_ID>
+<compName></compName>
+<date>2010-04-24</date>
+<venue>San Marcos TX</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.00</result>
+<wind></wind>
+<rank>5</rank>
+<round>-19</round>
+<roundstage>Final</roundstage>
+<agegroup>Under 20</agegroup>
+<competition_ID>12798896</competition_ID>
+<compName></compName>
+<date>2010-06-24</date>
+<venue>Des Moines IA</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.05</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12808191</competition_ID>
+<compName>Trinity Alumni Classic</compName>
+<date>2011-04-02</date>
+<venue>San Antonio TX</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.05</result>
+<wind></wind>
+<rank>4</rank>
+<round>cB</round>
+<roundstage>Prelim</roundstage>
+<agegroup></agegroup>
+<competition_ID>12808278</competition_ID>
+<compName>84th Clyde Littlefield Texas Relays, Mike A. Myers Stadium</compName>
+<date>2011-04-07</date>
+<venue>Austin TX</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.20</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12808595</competition_ID>
+<compName>Texas State Invitational</compName>
+<date>2011-04-15</date>
+<venue>San Marcos TX</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.25</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12808712</competition_ID>
+<compName>Michael Johnson/Dr. Pepper Classic, Hart/Patterson Track &amp; Field Complex</compName>
+<date>2011-04-23</date>
+<venue>Waco TX</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.00</result>
+<wind></wind>
+<rank>4</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12809024</competition_ID>
+<compName>Bobcat Invitational</compName>
+<date>2011-04-30</date>
+<venue>San Marcos TX</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.05</result>
+<wind></wind>
+<rank>2</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12809685</competition_ID>
+<compName></compName>
+<date>2011-05-15</date>
+<venue>Natchitoches LA</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.15</result>
+<wind></wind>
+<rank>12</rank>
+<round>q</round>
+<roundstage>Prelim</roundstage>
+<agegroup></agegroup>
+<competition_ID>12810647</competition_ID>
+<compName>NCAA West Preliminary Round, Hayward Field</compName>
+<date>2011-05-26</date>
+<venue>Eugene OR</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.25</result>
+<wind></wind>
+<rank>4</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12811335</competition_ID>
+<compName>NCAA Championships, Drake Stadium</compName>
+<date>2011-06-08</date>
+<venue>Des Moines IA</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.08</result>
+<wind></wind>
+<rank>2</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12819914</competition_ID>
+<compName>Texas A&amp;M 10 Team Invitational</compName>
+<date>2012-01-14</date>
+<venue>College Station TX</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.01</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12819756</competition_ID>
+<compName>Houston Indoor Invitational and Multi's, Yeoman Fieldhouse</compName>
+<date>2012-01-28</date>
+<venue>Houston TX</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.28</result>
+<wind></wind>
+<rank>2</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12820015</competition_ID>
+<compName>Texas Tech Indoor Open #3, TTU Athletic Training Center</compName>
+<date>2012-02-04</date>
+<venue>Lubbock TX</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.51</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12820262</competition_ID>
+<compName></compName>
+<date>2012-02-11</date>
+<venue>Fayetteville AR</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.35</result>
+<wind></wind>
+<rank>2</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12820767</competition_ID>
+<compName>Southland Conference Indoor Championships, Mosier Indoor Track</compName>
+<date>2012-02-24</date>
+<venue>Norman OK</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.40</result>
+<wind></wind>
+<rank>8</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12821053</competition_ID>
+<compName></compName>
+<date>2012-03-09</date>
+<venue>Nampa ID</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.30</result>
+<wind></wind>
+<rank>7</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12821585</competition_ID>
+<compName></compName>
+<date>2012-03-31</date>
+<venue>Austin TX</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.30</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12821802</competition_ID>
+<compName></compName>
+<date>2012-04-07</date>
+<venue>San Marcos TX</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.32</result>
+<wind></wind>
+<rank>2</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12821940</competition_ID>
+<compName>Texas Invitational, Mike A. Myers Stadium</compName>
+<date>2012-04-14</date>
+<venue>Austin TX</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.45</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12822321</competition_ID>
+<compName>Texas State Bobcat Classic</compName>
+<date>2012-04-28</date>
+<venue>San Marcos TX</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.53</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12822779</competition_ID>
+<compName></compName>
+<date>2012-05-13</date>
+<venue>San Marcos TX</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.40</result>
+<wind></wind>
+<rank>4</rank>
+<round>q</round>
+<roundstage>Prelim</roundstage>
+<agegroup></agegroup>
+<competition_ID>12823079</competition_ID>
+<compName></compName>
+<date>2012-05-26</date>
+<venue>Austin TX</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result></result>
+<wind></wind>
+<rank></rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12823610</competition_ID>
+<compName></compName>
+<date>2012-06-08</date>
+<venue>Des Moines IA</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result></result>
+<wind></wind>
+<rank></rank>
+<round>q</round>
+<roundstage>Prelim</roundstage>
+<agegroup></agegroup>
+<competition_ID>12824265</competition_ID>
+<compName></compName>
+<date>2012-06-25</date>
+<venue>Eugene OR</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.30</result>
+<wind></wind>
+<rank>3</rank>
+<round>-22</round>
+<roundstage>Final</roundstage>
+<agegroup>Under 23</agegroup>
+<competition_ID>12824480</competition_ID>
+<compName></compName>
+<date>2012-07-07</date>
+<venue>Irapuato</venue>
+<venueCountry>MEX</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.20</result>
+<wind></wind>
+<rank>2</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12827585</competition_ID>
+<compName>Texas A&amp;M 12 Team Invitational, Gilliam Indoor Track Stadium</compName>
+<date>2013-01-12</date>
+<venue>College Station TX</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.20</result>
+<wind></wind>
+<rank>2</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12828345</competition_ID>
+<compName></compName>
+<date>2013-01-26</date>
+<venue>Houston TX</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.22</result>
+<wind></wind>
+<rank>2</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12838826</competition_ID>
+<compName>Texas Tech Red Raider Open</compName>
+<date>2013-02-02</date>
+<venue>Lubbock TX</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.11</result>
+<wind></wind>
+<rank>3</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12839015</competition_ID>
+<compName>Texas A&amp;M Invitational, Gilliam Indoor Track Stadium</compName>
+<date>2013-02-09</date>
+<venue>College Station TX</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.53</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12839409</competition_ID>
+<compName></compName>
+<date>2013-02-23</date>
+<venue>Albuquerque NM</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.40</result>
+<wind></wind>
+<rank>11</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12839690</competition_ID>
+<compName>NCAA Division 1 Indoor Championships, Randal Tyson Track</compName>
+<date>2013-03-08</date>
+<venue>Fayetteville AR</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.25</result>
+<wind></wind>
+<rank>2</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12840153</competition_ID>
+<compName>Texas State Elite Meet</compName>
+<date>2013-03-23</date>
+<venue>San Marcos TX</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.21</result>
+<wind></wind>
+<rank>15</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12840225</competition_ID>
+<compName></compName>
+<date>2013-03-29</date>
+<venue>Austin TX</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.27</result>
+<wind></wind>
+<rank>2</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12840356</competition_ID>
+<compName>Texas State Invitational</compName>
+<date>2013-04-06</date>
+<venue>San Marcos TX</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.37</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12840532</competition_ID>
+<compName>Texas Invitational, Mike A. Myers Stadium</compName>
+<date>2013-04-13</date>
+<venue>Austin TX</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.11</result>
+<wind></wind>
+<rank>4</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12840756</competition_ID>
+<compName>Louisiana State University Alumni Gold, Bernie Moore Track Stadium</compName>
+<date>2013-04-20</date>
+<venue>Baton Rouge LA</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.16</result>
+<wind></wind>
+<rank>2</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12841358</competition_ID>
+<compName>Western Athletic Conference Outdoor Track and Field Championships, Maverick Stadium</compName>
+<date>2013-05-10</date>
+<venue>Arlington TX</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.20</result>
+<wind></wind>
+<rank>28</rank>
+<round>q</round>
+<roundstage>Prelim</roundstage>
+<agegroup></agegroup>
+<competition_ID>12841698</competition_ID>
+<compName></compName>
+<date>2013-05-25</date>
+<venue>Austin TX</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result></result>
+<wind></wind>
+<rank></rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12842909</competition_ID>
+<compName></compName>
+<date>2013-06-21</date>
+<venue>Des Moines IA</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.20</result>
+<wind></wind>
+<rank>2</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12846555</competition_ID>
+<compName>Houston Indoor Opener, Yeoman Fieldhouse</compName>
+<date>2014-01-11</date>
+<venue>Houston TX</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.40</result>
+<wind></wind>
+<rank>2</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12846962</competition_ID>
+<compName></compName>
+<date>2014-01-18</date>
+<venue>Reno NV</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.40</result>
+<wind></wind>
+<rank>2</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12847186</competition_ID>
+<compName>New Mexico Cherry and Silver Inv</compName>
+<date>2014-01-24</date>
+<venue>Albuquerque NM</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.05</result>
+<wind></wind>
+<rank>9</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12847746</competition_ID>
+<compName>New Mexico Classic, Albuquerque Convention Center</compName>
+<date>2014-02-07</date>
+<venue>Albuquerque NM</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.45</result>
+<wind></wind>
+<rank>4</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12848222</competition_ID>
+<compName></compName>
+<date>2014-02-22</date>
+<venue>Albuquerque NM</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.51</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12848774</competition_ID>
+<compName>TCU College, TCU</compName>
+<date>2014-03-21</date>
+<venue>Fort Worth TX</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.70</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12848875</competition_ID>
+<compName></compName>
+<date>2014-03-29</date>
+<venue>Austin TX</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.31</result>
+<wind></wind>
+<rank>2</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12849138</competition_ID>
+<compName>Texas Invitational, Mike A. Myers Stadium</compName>
+<date>2014-04-12</date>
+<venue>Austin TX</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.50</result>
+<wind></wind>
+<rank>3</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12849748</competition_ID>
+<compName>Longhorn Invitational, Mike A. Myers Stadium</compName>
+<date>2014-05-03</date>
+<venue>Austin TX</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.45</result>
+<wind></wind>
+<rank>2</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12850847</competition_ID>
+<compName>American Track League</compName>
+<date>2014-05-23</date>
+<venue>San Marcos TX</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.40</result>
+<wind></wind>
+<rank>12</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12852412</competition_ID>
+<compName></compName>
+<date>2014-06-29</date>
+<venue>Sacramento CA</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.10</result>
+<wind></wind>
+<rank>4=</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12855539</competition_ID>
+<compName>Expo Explosion VI, Expo Center</compName>
+<date>2015-01-03</date>
+<venue>Belton TX</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.45</result>
+<wind></wind>
+<rank>5</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12855900</competition_ID>
+<compName></compName>
+<date>2015-01-16</date>
+<venue>Reno NV</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.31</result>
+<wind></wind>
+<rank>2</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12856416</competition_ID>
+<compName>2015 UW Indoor, Washington</compName>
+<date>2015-01-31</date>
+<venue>Seattle WA</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result></result>
+<wind></wind>
+<rank></rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12860502</competition_ID>
+<compName></compName>
+<date>2015-05-20</date>
+<venue>Beijing</venue>
+<venueCountry>CHN</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.10</result>
+<wind></wind>
+<rank>9</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12860894</competition_ID>
+<compName>International Pole Vault Meeting</compName>
+<date>2015-05-23</date>
+<venue>Busan</venue>
+<venueCountry>KOR</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.38</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12863515</competition_ID>
+<compName>Texas State University Friday Night Lights All Comers</compName>
+<date>2015-06-05</date>
+<venue>San Marcos TX</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.43</result>
+<wind></wind>
+<rank>3</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12867057</competition_ID>
+<compName>Expo VII Pole Vault Explosion</compName>
+<date>2016-01-02</date>
+<venue>Belton TX</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.45</result>
+<wind></wind>
+<rank>3</rank>
+<round>cB</round>
+<roundstage>Prelim</roundstage>
+<agegroup></agegroup>
+<competition_ID>12867265</competition_ID>
+<compName>UCS Spirit Pole Vault Summit, Reno Live Stock Events Center</compName>
+<date>2016-01-15</date>
+<venue>Reno NV</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.37</result>
+<wind></wind>
+<rank>2</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12869517</competition_ID>
+<compName>Univ of New Mexico Collegiate Classic</compName>
+<date>2016-02-05</date>
+<venue>Albuquerque NM</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.47</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12870151</competition_ID>
+<compName>Louisiana State Twilight, Maddox Fieldhouse</compName>
+<date>2016-02-19</date>
+<venue>Baton Rouge LA</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.35</result>
+<wind></wind>
+<rank>13</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12870907</competition_ID>
+<compName>USA Indoor Track &amp; Field Championships, Oregon Convention Center</compName>
+<date>2016-03-11</date>
+<venue>Portland OR</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.30</result>
+<wind></wind>
+<rank>6</rank>
+<round>cB</round>
+<roundstage>Prelim</roundstage>
+<agegroup></agegroup>
+<competition_ID>12871518</competition_ID>
+<compName></compName>
+<date>2016-03-31</date>
+<venue>Austin TX</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.35</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12871936</competition_ID>
+<compName>Skechers Carl Kight Invitational, Stephen F. Austin</compName>
+<date>2016-04-09</date>
+<venue>Nacogdoches TX</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.36</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12872078</competition_ID>
+<compName>Texas Invitational, Mike A. Myers Stadium</compName>
+<date>2016-04-16</date>
+<venue>Austin TX</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.55</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12872390</competition_ID>
+<compName></compName>
+<date>2016-04-23</date>
+<venue>Waco TX</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.30</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12872879</competition_ID>
+<compName>Abilene Christian Oliver Jackson Twilight Meet</compName>
+<date>2016-04-27</date>
+<venue>Abilene TX</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.70</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12873046</competition_ID>
+<compName>Longhorn Invitational, Mike A. Myers Stadium</compName>
+<date>2016-05-07</date>
+<venue>Austin TX</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.71</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12873761</competition_ID>
+<compName>Altis Summer Series #2, Paradise Valley CC</compName>
+<date>2016-05-21</date>
+<venue>Phoenix AZ</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.56</result>
+<wind></wind>
+<rank>2</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12874103</competition_ID>
+<compName>OTC High Performance Meet</compName>
+<date>2016-05-28</date>
+<venue>Chula Vista CA</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.55</result>
+<wind></wind>
+<rank>1</rank>
+<round>q</round>
+<roundstage>Prelim</roundstage>
+<agegroup></agegroup>
+<competition_ID>12876138</competition_ID>
+<compName></compName>
+<date>2016-07-02</date>
+<venue>Eugene OR</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.60</result>
+<wind></wind>
+<rank>3</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12876138</competition_ID>
+<compName></compName>
+<date>2016-07-04</date>
+<venue>Eugene OR</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.30</result>
+<wind></wind>
+<rank>6</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12876814</competition_ID>
+<compName></compName>
+<date>2016-07-18</date>
+<venue>Sotteville-lÃ¨s-Rouen</venue>
+<venueCountry>FRA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.30</result>
+<wind></wind>
+<rank>28=</rank>
+<round>q</round>
+<roundstage>Prelim</roundstage>
+<agegroup></agegroup>
+<competition_ID>12877460</competition_ID>
+<compName></compName>
+<date>2016-08-13</date>
+<venue>RÃ­o de Janeiro</venue>
+<venueCountry>BRA</venueCountry>
+</record>
+</athleteresulthistory>
+</result>
+</results>

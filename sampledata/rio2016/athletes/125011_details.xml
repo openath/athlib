@@ -1,0 +1,27 @@
+ï»¿<?xml version="1.0" encoding="utf-8" ?>
+<athletes>
+<athlete>
+<athlete_id>125011</athlete_id>
+<birthdate>05.12.1990</birthdate>
+<birthyear>1990</birthyear>
+<firstname>Adel</firstname>
+<lastname>Mechaal</lastname>
+<height>184</height>
+<weight>67</weight>
+<gender>M</gender>
+<club>New Balance Team</club><nationality>ESP</nationality><birthplace></birthplace><accomplishments>
+<line number="0">
+<description>European Silver Medallist</description>
+<details>
+<detail disciplines="5000" year="2016"/>
+</details>
+</line>
+<line number="1">
+<description>European Bronze Medallist</description>
+<details>
+<detail disciplines="CC10.117" year="2015"/>
+</details>
+</line>
+</accomplishments>
+</athlete>
+</athletes>

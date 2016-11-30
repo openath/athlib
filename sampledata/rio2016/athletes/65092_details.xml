@@ -1,0 +1,63 @@
+ï»¿<?xml version="1.0" encoding="utf-8" ?>
+<athletes>
+<athlete>
+<athlete_id>65092</athlete_id>
+<birthdate>29.04.1988</birthdate>
+<birthyear>1988</birthyear>
+<firstname>Jan</firstname>
+<lastname>KudliÄka</lastname>
+<height>184</height>
+<weight>76</weight>
+<gender>M</gender>
+<club>TJ Dukla Praha</club><nationality>CZE</nationality><birthplace></birthplace><accomplishments>
+<line number="0">
+<description>World Indoor Bronze Medallist</description>
+<details>
+<detail disciplines="PV" year="2014"/>
+</details>
+</line>
+<line number="1">
+<description>European Silver Medallist</description>
+<details>
+<detail disciplines="PV" year="2016"/>
+</details>
+</line>
+<line number="2">
+<description>European Bronze Medallist</description>
+<details>
+<detail disciplines="PV" year="2014"/>
+</details>
+</line>
+<line number="3">
+<description>4th at Olympic Games</description>
+<details>
+<detail disciplines="PV" year="2016"/>
+</details>
+</line>
+<line number="4">
+<description>4th at World Indoor Championships</description>
+<details>
+<detail disciplines="PV" year="2016"/>
+</details>
+</line>
+<line number="5">
+<description>7th at World Championships</description>
+<details>
+<detail disciplines="PV" year="2013"/>
+</details>
+</line>
+<line number="6">
+<description>8th at Olympic Games</description>
+<details>
+<detail disciplines="PV" year="2012"/>
+</details>
+</line>
+<line number="7">
+<description>Olympic finalist</description>
+<details>
+<detail disciplines="PV" year="2008"/>
+</details>
+</line>
+</accomplishments>
+</athlete>
+</athletes>

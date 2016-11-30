@@ -1,0 +1,40 @@
+ï»¿<?xml version="1.0" encoding="utf-8" ?>
+<athletes>
+<athlete>
+<athlete_id>110948</athlete_id>
+<birthdate>05.03.1990</birthdate>
+<birthyear>1990</birthyear>
+<firstname>Ä°lham Tanui</firstname>
+<lastname>Ãzbilen</lastname>
+<height>177</height>
+<weight>60</weight>
+<gender>M</gender>
+<club>ENKA</club><nationality>TUR</nationality><birthplace>Keiyo</birthplace><accomplishments>
+<line number="0">
+<description>World Indoor Silver Medallist</description>
+<details>
+<detail disciplines="1500" year="2012"/>
+</details>
+</line>
+<line number="1">
+<description>2 European Indoor Silvers </description>
+<details>
+<detail disciplines="1500" year="2013"/>
+<detail disciplines="1500" year="2015"/>
+</details>
+</line>
+<line number="2">
+<description>4th at World Indoor Championships</description>
+<details>
+<detail disciplines="1500" year="2014"/>
+</details>
+</line>
+<line number="3">
+<description>8th at Olympic Games</description>
+<details>
+<detail disciplines="1500" year="2012"/>
+</details>
+</line>
+</accomplishments>
+</athlete>
+</athletes>

@@ -1,0 +1,1329 @@
+ï»¿<?xml version="1.0" encoding="utf-8" ?>
+<results>
+<result>
+<athlete_id>122371</athlete_id>
+<gender>M</gender>
+<personalBest>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT1.75</event>
+<result>57.51</result>
+<wind></wind>
+<rank>2</rank>
+<round>-19</round>
+<roundstage>Final</roundstage>
+<agegroup>Under 20</agegroup>
+<competition_ID>12798896</competition_ID>
+<compName></compName>
+<date>2010-06-24</date>
+<venue>Des Moines IA</venue>
+<venueCountry>USA</venueCountry>
+</personalBest>
+<personalBest>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>SP</event>
+<result>17.12</result>
+<wind></wind>
+<rank>3</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12821643</competition_ID>
+<compName>Toledo Collegiate Challenge</compName>
+<date>2012-03-31</date>
+<venue>Toledo OH</venue>
+<venueCountry>USA</venueCountry>
+</personalBest>
+<personalBest>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>DT</event>
+<result>54.63</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12847741</competition_ID>
+<compName>Akron Invitational</compName>
+<date>2014-02-08</date>
+<venue>Akron OH</venue>
+<venueCountry>USA</venueCountry>
+</personalBest>
+<personalBest>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>SP</event>
+<result>17.69</result>
+<wind></wind>
+<rank>3</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12848353</competition_ID>
+<compName>Mid-American Indoor Track &amp; Field Championships</compName>
+<date>2014-03-01</date>
+<venue>Kent OH</venue>
+<venueCountry>USA</venueCountry>
+</personalBest>
+<personalBest>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>HT</event>
+<result>58.66</result>
+<wind></wind>
+<rank>2</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12863535</competition_ID>
+<compName> Pacific Games, John Guise Stadium</compName>
+<date>2015-07-15</date>
+<venue>Port Moresby</venue>
+<venueCountry>PNG</venueCountry>
+</personalBest>
+<personalBest>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>65.74</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12873487</competition_ID>
+<compName>Field of Dreams</compName>
+<date>2016-05-15</date>
+<venue>Claremont CA</venue>
+<venueCountry>USA</venueCountry>
+</personalBest>
+<seasonalBest>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>SP</event>
+<result>16.70</result>
+<wind></wind>
+<rank>11</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12870160</competition_ID>
+<compName>Margaret Bradley Invitational, Henry Crown Fieldhouse</compName>
+<date>2016-02-20</date>
+<venue>Chicago IL</venue>
+<venueCountry>USA</venueCountry>
+</seasonalBest>
+<seasonalBest>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>65.74</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12873487</competition_ID>
+<compName>Field of Dreams</compName>
+<date>2016-05-15</date>
+<venue>Claremont CA</venue>
+<venueCountry>USA</venueCountry>
+</seasonalBest>
+<athleteresulthistory>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>51.05</result>
+<wind></wind>
+<rank>4</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12795197</competition_ID>
+<compName></compName>
+<date>2010-03-26</date>
+<venue>Raleigh NC</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>52.10</result>
+<wind></wind>
+<rank>2</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12795519</competition_ID>
+<compName></compName>
+<date>2010-04-10</date>
+<venue>Big Rapids MI</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>54.76</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12795961</competition_ID>
+<compName></compName>
+<date>2010-04-16</date>
+<venue>Louisville KY</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>53.73</result>
+<wind></wind>
+<rank>5</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12796095</competition_ID>
+<compName></compName>
+<date>2010-04-24</date>
+<venue>Norman OK</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>55.24</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12796519</competition_ID>
+<compName></compName>
+<date>2010-05-08</date>
+<venue>Ann Arbor MI</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>SP</event>
+<result>16.42</result>
+<wind></wind>
+<rank>8</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12796781</competition_ID>
+<compName></compName>
+<date>2010-05-14</date>
+<venue>Amherst NY</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>54.69</result>
+<wind></wind>
+<rank>7</rank>
+<round>q</round>
+<roundstage>Prelim</roundstage>
+<agegroup></agegroup>
+<competition_ID>12797570</competition_ID>
+<compName></compName>
+<date>2010-05-29</date>
+<venue>Greensboro NC</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>54.01</result>
+<wind></wind>
+<rank>13</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12798019</competition_ID>
+<compName></compName>
+<date>2010-06-09</date>
+<venue>Eugene OR</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT1.75</event>
+<result>57.51</result>
+<wind></wind>
+<rank>2</rank>
+<round>-19</round>
+<roundstage>Final</roundstage>
+<agegroup>Under 20</agegroup>
+<competition_ID>12798896</competition_ID>
+<compName></compName>
+<date>2010-06-24</date>
+<venue>Des Moines IA</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT1.75</event>
+<result>53.46</result>
+<wind></wind>
+<rank>22</rank>
+<round>q-19</round>
+<roundstage>Prelim</roundstage>
+<agegroup></agegroup>
+<competition_ID>12800024</competition_ID>
+<compName></compName>
+<date>2010-07-23</date>
+<venue>Moncton</venue>
+<venueCountry>CAN</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>SP</event>
+<result>16.78</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12805035</competition_ID>
+<compName>CMU Chippewa Invite</compName>
+<date>2011-01-14</date>
+<venue>East Lansing MI</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>SP</event>
+<result>16.70</result>
+<wind></wind>
+<rank>4</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12805610</competition_ID>
+<compName>Simmons-Harvey Invitational, U of M Indoor Track</compName>
+<date>2011-01-22</date>
+<venue>Ann Arbor MI</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>SP</event>
+<result>17.13</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12805876</competition_ID>
+<compName></compName>
+<date>2011-01-28</date>
+<venue>Saginaw MI</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>DT</event>
+<result>54.13</result>
+<wind></wind>
+<rank>2</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12806478</competition_ID>
+<compName></compName>
+<date>2011-02-12</date>
+<venue>Akron OH</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>SP</event>
+<result>16.57</result>
+<wind></wind>
+<rank>8</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12806478</competition_ID>
+<compName></compName>
+<date>2011-02-12</date>
+<venue>Akron OH</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>56.14</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12807795</competition_ID>
+<compName>Defiance Dick Small Invitational</compName>
+<date>2011-03-19</date>
+<venue>Defiance OH</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>SP</event>
+<result>16.67</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12807795</competition_ID>
+<compName>Defiance Dick Small Invitational</compName>
+<date>2011-03-19</date>
+<venue>Defiance OH</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>57.86</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12808174</competition_ID>
+<compName>Toledo Collegiate Challenge</compName>
+<date>2011-04-02</date>
+<venue>Toledo OH</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>58.70</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12808336</competition_ID>
+<compName>Ed Adams Invitational</compName>
+<date>2011-04-09</date>
+<venue>Salinas CA</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>54.52</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12808324</competition_ID>
+<compName>Sacramento State MONDO Mid-Major Challenge</compName>
+<date>2011-04-09</date>
+<venue>Sacramento CA</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>53.52</result>
+<wind></wind>
+<rank>3</rank>
+<round>cB</round>
+<roundstage>Prelim</roundstage>
+<agegroup></agegroup>
+<competition_ID>12808568</competition_ID>
+<compName>John Jacobs Collegiate Invitational</compName>
+<date>2011-04-16</date>
+<venue>Norman OK</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>54.89</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12809025</competition_ID>
+<compName>Lyle Bennett Open</compName>
+<date>2011-04-30</date>
+<venue>Mount Pleasant MI</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>54.53</result>
+<wind></wind>
+<rank>2</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12809227</competition_ID>
+<compName>Len Paddock Invitational</compName>
+<date>2011-05-07</date>
+<venue>Ann Arbor MI</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>56.69</result>
+<wind></wind>
+<rank>3</rank>
+<round>q</round>
+<roundstage>Prelim</roundstage>
+<agegroup></agegroup>
+<competition_ID>12810645</competition_ID>
+<compName></compName>
+<date>2011-05-28</date>
+<venue>Bloomington IN</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>56.64</result>
+<wind></wind>
+<rank>5</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12811335</competition_ID>
+<compName>NCAA Championships, Drake Stadium</compName>
+<date>2011-06-08</date>
+<venue>Des Moines IA</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>DT</event>
+<result>53.86</result>
+<wind></wind>
+<rank>2</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12820355</competition_ID>
+<compName>Akron Invitational</compName>
+<date>2012-02-10</date>
+<venue>Akron OH</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>53.66</result>
+<wind></wind>
+<rank>2</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12821477</competition_ID>
+<compName></compName>
+<date>2012-03-24</date>
+<venue>Baton Rouge LA</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>SP</event>
+<result>17.12</result>
+<wind></wind>
+<rank>3</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12821643</competition_ID>
+<compName>Toledo Collegiate Challenge</compName>
+<date>2012-03-31</date>
+<venue>Toledo OH</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>52.32</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12822001</competition_ID>
+<compName>Northwood Open</compName>
+<date>2012-04-14</date>
+<venue>Midland MI</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>SP</event>
+<result>17.04</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12822001</competition_ID>
+<compName>Northwood Open</compName>
+<date>2012-04-14</date>
+<venue>Midland MI</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>54.55</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12822081</competition_ID>
+<compName>Cal St. Los Angeles Twilight Open</compName>
+<date>2012-04-19</date>
+<venue>Los Angeles CA</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>51.62</result>
+<wind></wind>
+<rank>27</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12822073</competition_ID>
+<compName></compName>
+<date>2012-04-20</date>
+<venue>Walnut CA</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>54.85</result>
+<wind></wind>
+<rank>5</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12826563</competition_ID>
+<compName></compName>
+<date>2012-04-21</date>
+<venue>Norwalk CA</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>55.04</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12822341</competition_ID>
+<compName>Central Michigan Lyle Bennett Open</compName>
+<date>2012-04-28</date>
+<venue>East Lansing MI</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>56.33</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12822505</competition_ID>
+<compName>Len Paddock Invitational</compName>
+<date>2012-05-04</date>
+<venue>Ann Arbor MI</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>SP</event>
+<result>16.98</result>
+<wind></wind>
+<rank>3</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12822741</competition_ID>
+<compName>Mid-American Conference Championships</compName>
+<date>2012-05-11</date>
+<venue>Mount Pleasant MI</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>55.11</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12822741</competition_ID>
+<compName></compName>
+<date>2012-05-12</date>
+<venue>Mount Pleasant MI</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>51.79</result>
+<wind></wind>
+<rank>21</rank>
+<round>q</round>
+<roundstage>Prelim</roundstage>
+<agegroup></agegroup>
+<competition_ID>12823080</competition_ID>
+<compName>NCAA East Preliminary Round, Hodges Stadium</compName>
+<date>2012-05-24</date>
+<venue>Jacksonville FL</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>56.29</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12824355</competition_ID>
+<compName>National Championships &amp; Olympic Trials, National Stadium</compName>
+<date>2012-06-27</date>
+<venue>Cairns</venue>
+<venueCountry>AUS</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>SP</event>
+<result>16.99</result>
+<wind></wind>
+<rank>2</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12828372</competition_ID>
+<compName></compName>
+<date>2013-01-26</date>
+<venue>Allendale MI</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>SP</event>
+<result>17.11</result>
+<wind></wind>
+<rank>5</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12839402</competition_ID>
+<compName>Mid-American Indoor Championships</compName>
+<date>2013-02-22</date>
+<venue>Ypsilanti MI</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>56.04</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12840294</competition_ID>
+<compName>Grand Rapids Open</compName>
+<date>2013-03-30</date>
+<venue>Grand Rapids MI</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>55.30</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12840459</competition_ID>
+<compName>Michigan State Spartan Invitational</compName>
+<date>2013-04-06</date>
+<venue>East Lansing MI</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>57.03</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12840988</competition_ID>
+<compName>Lyle Bennett Open</compName>
+<date>2013-04-27</date>
+<venue>Mount Pleasant MI</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>57.44</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12841218</competition_ID>
+<compName>28th Annual Toledo Invitational</compName>
+<date>2013-05-02</date>
+<venue>Toledo OH</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>57.14</result>
+<wind></wind>
+<rank>9</rank>
+<round>q</round>
+<roundstage>Prelim</roundstage>
+<agegroup></agegroup>
+<competition_ID>12843478</competition_ID>
+<compName></compName>
+<date>2013-07-10</date>
+<venue>Kazan</venue>
+<venueCountry>RUS</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>58.64</result>
+<wind></wind>
+<rank>6</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12843478</competition_ID>
+<compName></compName>
+<date>2013-07-12</date>
+<venue>Kazan</venue>
+<venueCountry>RUS</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>56.19</result>
+<wind></wind>
+<rank>29</rank>
+<round>q</round>
+<roundstage>Prelim</roundstage>
+<agegroup></agegroup>
+<competition_ID>12844203</competition_ID>
+<compName></compName>
+<date>2013-08-12</date>
+<venue>Moskva</venue>
+<venueCountry>RUS</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>DT</event>
+<result>54.63</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12847741</competition_ID>
+<compName>Akron Invitational</compName>
+<date>2014-02-08</date>
+<venue>Akron OH</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>SP</event>
+<result>17.40</result>
+<wind></wind>
+<rank>5</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12847741</competition_ID>
+<compName>Akron Invitational</compName>
+<date>2014-02-08</date>
+<venue>Akron OH</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>SP</event>
+<result>17.69</result>
+<wind></wind>
+<rank>3</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12848353</competition_ID>
+<compName>Mid-American Indoor Track &amp; Field Championships</compName>
+<date>2014-03-01</date>
+<venue>Kent OH</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>56.42</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12850224</competition_ID>
+<compName>Lenny Lyles-Clark Wood Invitational, Louisville</compName>
+<date>2014-03-28</date>
+<venue>Louisville KY</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>57.29</result>
+<wind></wind>
+<rank>2</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12849059</competition_ID>
+<compName>Spartan Invitational, Michigan State</compName>
+<date>2014-04-05</date>
+<venue>East Lansing MI</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>55.69</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12849157</competition_ID>
+<compName>WKU Hilltopper Relays, Western Kentucky </compName>
+<date>2014-04-12</date>
+<venue>Bowling Green KY</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>54.68</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12859087</competition_ID>
+<compName>Alma College Charlie Gray Invitational</compName>
+<date>2015-04-03</date>
+<venue>Alma MI</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>57.75</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12859391</competition_ID>
+<compName>Al Owens Open, Grand Valley State</compName>
+<date>2015-04-18</date>
+<venue>Allendale MI</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>59.16</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12859564</competition_ID>
+<compName>Ernie Mousseau Track &amp; Field Classic, Houseman Field</compName>
+<date>2015-04-25</date>
+<venue>Grand Rapids MI</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>60.95</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12860078</competition_ID>
+<compName>Oceania Area Championships, Barlow Park</compName>
+<date>2015-05-08</date>
+<venue>Cairns</venue>
+<venueCountry>AUS</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>SP</event>
+<result>16.89</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12860078</competition_ID>
+<compName>Oceania Area Championships, Barlow Park</compName>
+<date>2015-05-09</date>
+<venue>Cairns</venue>
+<venueCountry>AUS</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>59.31</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12860753</competition_ID>
+<compName>Running Factory Windsor Open</compName>
+<date>2015-05-23</date>
+<venue>Windsor</venue>
+<venueCountry>CAN</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>60.41</result>
+<wind></wind>
+<rank>2</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12861331</competition_ID>
+<compName>Field of Dreams, Claremont College</compName>
+<date>2015-06-06</date>
+<venue>Claremont CA</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>61.35</result>
+<wind></wind>
+<rank>2</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12861667</competition_ID>
+<compName>Field of Dreams, Claremont College</compName>
+<date>2015-06-07</date>
+<venue>Claremont CA</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>HT</event>
+<result>58.66</result>
+<wind></wind>
+<rank>2</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12863535</competition_ID>
+<compName> Pacific Games, John Guise Stadium</compName>
+<date>2015-07-15</date>
+<venue>Port Moresby</venue>
+<venueCountry>PNG</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>56.40</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12863535</competition_ID>
+<compName> Pacific Games, John Guise Stadium</compName>
+<date>2015-07-16</date>
+<venue>Port Moresby</venue>
+<venueCountry>PNG</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>SP</event>
+<result>16.58</result>
+<wind></wind>
+<rank>2</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12863535</competition_ID>
+<compName> Pacific Games, John Guise Stadium</compName>
+<date>2015-07-17</date>
+<venue>Port Moresby</venue>
+<venueCountry>PNG</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>59.07</result>
+<wind></wind>
+<rank>25</rank>
+<round>q</round>
+<roundstage>Prelim</roundstage>
+<agegroup></agegroup>
+<competition_ID>12863607</competition_ID>
+<compName>Tilastopajacup, Paavo Nurmi Stadium</compName>
+<date>2015-08-27</date>
+<venue>Beijing</venue>
+<venueCountry>CHN</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>SP</event>
+<result>16.70</result>
+<wind></wind>
+<rank>11</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12870160</competition_ID>
+<compName>Margaret Bradley Invitational, Henry Crown Fieldhouse</compName>
+<date>2016-02-20</date>
+<venue>Chicago IL</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>60.24</result>
+<wind></wind>
+<rank>2</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12871521</competition_ID>
+<compName></compName>
+<date>2016-04-02</date>
+<venue>Sydney</venue>
+<venueCountry>AUS</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>58.40</result>
+<wind></wind>
+<rank>2</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12871955</competition_ID>
+<compName>Millikin University Big Blue Invitational</compName>
+<date>2016-04-09</date>
+<venue>Decatur IL</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>62.55</result>
+<wind></wind>
+<rank>10</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12872193</competition_ID>
+<compName>Wheaton Don Church Twilight</compName>
+<date>2016-04-16</date>
+<venue>Wheaton IL</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>63.06</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12872494</competition_ID>
+<compName>Augustana College Meet of Champions</compName>
+<date>2016-04-23</date>
+<venue>Rock Island IL</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>58.98</result>
+<wind></wind>
+<rank>2</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12872647</competition_ID>
+<compName>2016 Drake Relays Presented By Hy-Vee, Drake Stadium </compName>
+<date>2016-04-30</date>
+<venue>Des Moines IA</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>63.23</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12873298</competition_ID>
+<compName>Dr. Keeler Track &amp; Field Meet</compName>
+<date>2016-05-12</date>
+<venue>Naperville IL</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>60.59</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12873358</competition_ID>
+<compName>All On The Line Nationals Qualifier and Harry Marra Multis</compName>
+<date>2016-05-14</date>
+<venue>Santa Barbara CA</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>65.74</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12873487</competition_ID>
+<compName>Field of Dreams</compName>
+<date>2016-05-15</date>
+<venue>Claremont CA</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>62.91</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12873735</competition_ID>
+<compName>Augustana Midwest Twilight Qualifier</compName>
+<date>2016-05-19</date>
+<venue>Rock Island IL</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>60.10</result>
+<wind></wind>
+<rank>6</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12875257</competition_ID>
+<compName>JN Racers Grand Prix, National Stadium</compName>
+<date>2016-06-11</date>
+<venue>Kingston</venue>
+<venueCountry>JAM</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>58.72</result>
+<wind></wind>
+<rank>7</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12875879</competition_ID>
+<compName>34th Meeting Madrid, Centro Deportivo Municipal Moratalaz</compName>
+<date>2016-06-23</date>
+<venue>Madrid</venue>
+<venueCountry>ESP</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>60.56</result>
+<wind></wind>
+<rank>5</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12876040</competition_ID>
+<compName></compName>
+<date>2016-06-28</date>
+<venue>Sollentuna</venue>
+<venueCountry>SWE</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>57.24</result>
+<wind></wind>
+<rank>29</rank>
+<round>q</round>
+<roundstage>Prelim</roundstage>
+<agegroup></agegroup>
+<competition_ID>12877460</competition_ID>
+<compName>31st Olympic Games, Olympic Stadium</compName>
+<date>2016-08-12</date>
+<venue>RÃ­o de Janeiro</venue>
+<venueCountry>BRA</venueCountry>
+</record>
+</athleteresulthistory>
+</result>
+</results>

@@ -1,0 +1,27 @@
+ï»¿<?xml version="1.0" encoding="utf-8" ?>
+<athletes>
+<athlete>
+<athlete_id>71905</athlete_id>
+<birthdate>17.07.1989</birthdate>
+<birthyear>1989</birthyear>
+<firstname>Karsten</firstname>
+<lastname>Dilla</lastname>
+<height>189</height>
+<weight>80</weight>
+<gender>M</gender>
+<club></club><nationality>GER</nationality><birthplace></birthplace><accomplishments>
+<line number="0">
+<description>World Junior Championships Bronze Medallist</description>
+<details>
+<detail disciplines="PV" year="2008"/>
+</details>
+</line>
+<line number="1">
+<description>European U23 Championships Silver Medallist</description>
+<details>
+<detail disciplines="PV" year="2011"/>
+</details>
+</line>
+</accomplishments>
+</athlete>
+</athletes>

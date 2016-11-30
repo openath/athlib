@@ -1,0 +1,39 @@
+ï»¿<?xml version="1.0" encoding="utf-8" ?>
+<athletes>
+<athlete>
+<athlete_id>137252</athlete_id>
+<birthdate>26.09.1996</birthdate>
+<birthyear>1996</birthyear>
+<firstname>Huang Bokai</firstname>
+<lastname></lastname>
+<height>183</height>
+<weight>75</weight>
+<gender>M</gender>
+<club></club><nationality>CHN</nationality><birthplace></birthplace><accomplishments>
+<line number="0">
+<description>World Youth Championships Silver Medallist</description>
+<details>
+<detail disciplines="PV" year="2013"/>
+</details>
+</line>
+<line number="1">
+<description>Asian Championships Bronze Medallist</description>
+<details>
+<detail disciplines="PV" year="2015"/>
+</details>
+</line>
+<line number="2">
+<description>Asian Junior Champion</description>
+<details>
+<detail disciplines="PV" year="2014"/>
+</details>
+</line>
+<line number="3">
+<description>5th at World Junior Championships</description>
+<details>
+<detail disciplines="PV" year="2014"/>
+</details>
+</line>
+</accomplishments>
+</athlete>
+</athletes>

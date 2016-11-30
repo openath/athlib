@@ -1,0 +1,33 @@
+ï»¿<?xml version="1.0" encoding="utf-8" ?>
+<athletes>
+<athlete>
+<athlete_id>123584</athlete_id>
+<birthdate>07.11.1993</birthdate>
+<birthyear>1993</birthyear>
+<firstname>Charlie</firstname>
+<lastname>Grice</lastname>
+<height>182</height>
+<weight>68</weight>
+<gender>M</gender>
+<club>BRIGHTON</club><nationality>GBR</nationality><birthplace></birthplace><accomplishments>
+<line number="0">
+<description>Olympic finalist</description>
+<details>
+<detail disciplines="1500" year="2016"/>
+</details>
+</line>
+<line number="1">
+<description>World Championships finalist</description>
+<details>
+<detail disciplines="1500" year="2015"/>
+</details>
+</line>
+<line number="2">
+<description>European U23 Championships Silver Medallist</description>
+<details>
+<detail disciplines="1500" year="2013"/>
+</details>
+</line>
+</accomplishments>
+</athlete>
+</athletes>

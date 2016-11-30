@@ -1,0 +1,45 @@
+ï»¿<?xml version="1.0" encoding="utf-8" ?>
+<athletes>
+<athlete>
+<athlete_id>85860</athlete_id>
+<birthdate>14.02.1991</birthdate>
+<birthyear>1991</birthyear>
+<firstname>Andrius</firstname>
+<lastname>GudÅ¾ius</lastname>
+<height>200</height>
+<weight>130</weight>
+<gender>M</gender>
+<club>Kaunas</club><nationality>LTU</nationality><birthplace></birthplace><accomplishments>
+<line number="0">
+<description>Olympic finalist</description>
+<details>
+<detail disciplines="DT" year="2016"/>
+</details>
+</line>
+<line number="1">
+<description>World Junior Champion</description>
+<details>
+<detail disciplines="DT1.75" year="2010"/>
+</details>
+</line>
+<line number="2">
+<description>World Youth Championships Bronze Medallist</description>
+<details>
+<detail disciplines="DT1.5" year="2007"/>
+</details>
+</line>
+<line number="3">
+<description>European U23 Champion</description>
+<details>
+<detail disciplines="DT" year="2013"/>
+</details>
+</line>
+<line number="4">
+<description>World University Games Bronze Medallist</description>
+<details>
+<detail disciplines="DT" year="2015"/>
+</details>
+</line>
+</accomplishments>
+</athlete>
+</athletes>

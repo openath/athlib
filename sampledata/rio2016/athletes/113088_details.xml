@@ -1,0 +1,21 @@
+ï»¿<?xml version="1.0" encoding="utf-8" ?>
+<athletes>
+<athlete>
+<athlete_id>113088</athlete_id>
+<birthdate>06.08.1991</birthdate>
+<birthyear>1991</birthyear>
+<firstname>Pauls</firstname>
+<lastname>PujÄts</lastname>
+<height>184</height>
+<weight>73</weight>
+<gender>M</gender>
+<club></club><nationality>LAT</nationality><birthplace></birthplace><accomplishments>
+<line number="0">
+<description>6th at World Junior Championships</description>
+<details>
+<detail disciplines="PV" year="2010"/>
+</details>
+</line>
+</accomplishments>
+</athlete>
+</athletes>

@@ -1,0 +1,45 @@
+ï»¿<?xml version="1.0" encoding="utf-8" ?>
+<athletes>
+<athlete>
+<athlete_id>13826</athlete_id>
+<birthdate>18.10.1978</birthdate>
+<birthyear>1978</birthyear>
+<firstname>Frank</firstname>
+<lastname>CasaÃ±as</lastname>
+<height>187</height>
+<weight>115</weight>
+<gender>M</gender>
+<club>Playas de Castellon</club><nationality>ESP</nationality><birthplace></birthplace><accomplishments>
+<line number="0">
+<description>5th at Olympic Games</description>
+<details>
+<detail disciplines="DT" year="2008"/>
+</details>
+</line>
+<line number="1">
+<description>7th at Olympic Games</description>
+<details>
+<detail disciplines="DT" year="2012"/>
+</details>
+</line>
+<line number="2">
+<description>World Championships finalist</description>
+<details>
+<detail disciplines="DT" year="2013"/>
+</details>
+</line>
+<line number="3">
+<description>World Junior Championships Bronze Medallist</description>
+<details>
+<detail disciplines="DT" year="1996"/>
+</details>
+</line>
+<line number="4">
+<description>Pan American Games Silver Medallist</description>
+<details>
+<detail disciplines="DT" year="2003"/>
+</details>
+</line>
+</accomplishments>
+</athlete>
+</athletes>

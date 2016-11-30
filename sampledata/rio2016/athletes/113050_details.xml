@@ -1,0 +1,21 @@
+ï»¿<?xml version="1.0" encoding="utf-8" ?>
+<athletes>
+<athlete>
+<athlete_id>113050</athlete_id>
+<birthdate>31.05.1989</birthdate>
+<birthyear>1989</birthyear>
+<firstname>Martin</firstname>
+<lastname>Kupper</lastname>
+<height>195</height>
+<weight>108</weight>
+<gender>M</gender>
+<club>Audentese SK</club><nationality>EST</nationality><birthplace></birthplace><accomplishments>
+<line number="0">
+<description>4th at Olympic Games</description>
+<details>
+<detail disciplines="DT" year="2016"/>
+</details>
+</line>
+</accomplishments>
+</athlete>
+</athletes>

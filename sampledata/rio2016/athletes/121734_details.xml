@@ -1,0 +1,39 @@
+ï»¿<?xml version="1.0" encoding="utf-8" ?>
+<athletes>
+<athlete>
+<athlete_id>121734</athlete_id>
+<birthdate>08.03.1994</birthdate>
+<birthyear>1994</birthyear>
+<firstname>Robert</firstname>
+<lastname>Renner</lastname>
+<height>182</height>
+<weight>75</weight>
+<gender>M</gender>
+<club>KLC</club><nationality>SLO</nationality><birthplace></birthplace><accomplishments>
+<line number="0">
+<description>European Bronze Medallist</description>
+<details>
+<detail disciplines="PV" year="2016"/>
+</details>
+</line>
+<line number="1">
+<description>World Youth Champion</description>
+<details>
+<detail disciplines="PV" year="2011"/>
+</details>
+</line>
+<line number="2">
+<description>European U23 Champion</description>
+<details>
+<detail disciplines="PV" year="2015"/>
+</details>
+</line>
+<line number="3">
+<description>5th at World Junior Championships</description>
+<details>
+<detail disciplines="PV" year="2012"/>
+</details>
+</line>
+</accomplishments>
+</athlete>
+</athletes>

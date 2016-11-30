@@ -1,0 +1,51 @@
+ï»¿<?xml version="1.0" encoding="utf-8" ?>
+<athletes>
+<athlete>
+<athlete_id>62913</athlete_id>
+<birthdate>11.10.1988</birthdate>
+<birthyear>1988</birthyear>
+<firstname>Mekonnen</firstname>
+<lastname>Gebremedhin</lastname>
+<height>180</height>
+<weight>64</weight>
+<gender>M</gender>
+<club>St.George</club><nationality>ETH</nationality><birthplace></birthplace><accomplishments>
+<line number="0">
+<description>World Indoor Bronze Medallist</description>
+<details>
+<detail disciplines="1500" year="2012"/>
+</details>
+</line>
+<line number="1">
+<description>4th at World Indoor Championships</description>
+<details>
+<detail disciplines="1500" year="2010"/>
+</details>
+</line>
+<line number="2">
+<description>6th at Olympic Games</description>
+<details>
+<detail disciplines="1500" year="2012"/>
+</details>
+</line>
+<line number="3">
+<description>6th at World Indoor Championships</description>
+<details>
+<detail disciplines="1500" year="2008"/>
+</details>
+</line>
+<line number="4">
+<description>7th at World Championships</description>
+<details>
+<detail disciplines="1500" year="2013"/>
+</details>
+</line>
+<line number="5">
+<description>7th at World Championships</description>
+<details>
+<detail disciplines="1500" year="2011"/>
+</details>
+</line>
+</accomplishments>
+</athlete>
+</athletes>

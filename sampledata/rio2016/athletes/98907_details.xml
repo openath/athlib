@@ -1,0 +1,39 @@
+ï»¿<?xml version="1.0" encoding="utf-8" ?>
+<athletes>
+<athlete>
+<athlete_id>98907</athlete_id>
+<birthdate>20.02.1992</birthdate>
+<birthyear>1992</birthyear>
+<firstname>Lukas</firstname>
+<lastname>WeiÃhaidinger</lastname>
+<height>192</height>
+<weight>115</weight>
+<gender>M</gender>
+<club>ÃTB OÃ LA</club><nationality>AUT</nationality><birthplace></birthplace><accomplishments>
+<line number="0">
+<description>6th at Olympic Games</description>
+<details>
+<detail disciplines="DT" year="2016"/>
+</details>
+</line>
+<line number="1">
+<description>European Junior Champion</description>
+<details>
+<detail disciplines="DT1.75" year="2011"/>
+</details>
+</line>
+<line number="2">
+<description>4th at World Youth Championships</description>
+<details>
+<detail disciplines="SP5" year="2009"/>
+</details>
+</line>
+<line number="3">
+<description>6th at World Junior Championships</description>
+<details>
+<detail disciplines="SP6" year="2010"/>
+</details>
+</line>
+</accomplishments>
+</athlete>
+</athletes>

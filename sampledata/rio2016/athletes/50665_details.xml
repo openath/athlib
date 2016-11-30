@@ -1,0 +1,60 @@
+ï»¿<?xml version="1.0" encoding="utf-8" ?>
+<athletes>
+<athlete>
+<athlete_id>50665</athlete_id>
+<birthdate>18.10.1984</birthdate>
+<birthyear>1984</birthyear>
+<firstname>Robert</firstname>
+<lastname>Harting</lastname>
+<height>201</height>
+<weight>126</weight>
+<gender>M</gender>
+<club>SCC Berlin</club><nationality>GER</nationality><birthplace></birthplace><accomplishments>
+<line number="0">
+<description>Olympic Champion</description>
+<details>
+<detail disciplines="DT" year="2012"/>
+</details>
+</line>
+<line number="1">
+<description>3 World Titles </description>
+<details>
+<detail disciplines="DT" year="2009"/>
+<detail disciplines="DT" year="2011"/>
+<detail disciplines="DT" year="2013"/>
+</details>
+</line>
+<line number="2">
+<description>World Championships Silver Medallist</description>
+<details>
+<detail disciplines="DT" year="2007"/>
+</details>
+</line>
+<line number="3">
+<description>2 European Golds </description>
+<details>
+<detail disciplines="DT" year="2012"/>
+<detail disciplines="DT" year="2014"/>
+</details>
+</line>
+<line number="4">
+<description>European Silver Medallist</description>
+<details>
+<detail disciplines="DT" year="2010"/>
+</details>
+</line>
+<line number="5">
+<description>4th at Olympic Games</description>
+<details>
+<detail disciplines="DT" year="2008"/>
+</details>
+</line>
+<line number="6">
+<description>European U23 Champion</description>
+<details>
+<detail disciplines="DT" year="2005"/>
+</details>
+</line>
+</accomplishments>
+</athlete>
+</athletes>

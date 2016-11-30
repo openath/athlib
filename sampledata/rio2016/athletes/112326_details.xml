@@ -1,0 +1,21 @@
+ï»¿<?xml version="1.0" encoding="utf-8" ?>
+<athletes>
+<athlete>
+<athlete_id>112326</athlete_id>
+<birthdate>27.08.1992</birthdate>
+<birthyear>1992</birthyear>
+<firstname>Daniel</firstname>
+<lastname>StÃ¥hl</lastname>
+<height>200</height>
+<weight>145</weight>
+<gender>M</gender>
+<club></club><nationality>SWE</nationality><birthplace></birthplace><accomplishments>
+<line number="0">
+<description>5th at World Championships</description>
+<details>
+<detail disciplines="DT" year="2015"/>
+</details>
+</line>
+</accomplishments>
+</athlete>
+</athletes>

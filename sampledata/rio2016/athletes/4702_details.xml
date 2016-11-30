@@ -1,0 +1,33 @@
+ï»¿<?xml version="1.0" encoding="utf-8" ?>
+<athletes>
+<athlete>
+<athlete_id>4702</athlete_id>
+<birthdate>14.10.1982</birthdate>
+<birthyear>1982</birthyear>
+<firstname>Benn</firstname>
+<lastname>Harradine</lastname>
+<height>198</height>
+<weight>115</weight>
+<gender>M</gender>
+<club>VIS</club><nationality>AUS</nationality><birthplace></birthplace><accomplishments>
+<line number="0">
+<description>5th at World Championships</description>
+<details>
+<detail disciplines="DT" year="2011"/>
+</details>
+</line>
+<line number="1">
+<description>Olympic finalist</description>
+<details>
+<detail disciplines="DT" year="2012"/>
+</details>
+</line>
+<line number="2">
+<description>World Championships finalist</description>
+<details>
+<detail disciplines="DT" year="2015"/>
+</details>
+</line>
+</accomplishments>
+</athlete>
+</athletes>

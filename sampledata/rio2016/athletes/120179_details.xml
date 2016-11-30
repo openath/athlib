@@ -1,0 +1,33 @@
+ï»¿<?xml version="1.0" encoding="utf-8" ?>
+<athletes>
+<athlete>
+<athlete_id>120179</athlete_id>
+<birthdate>16.07.1990</birthdate>
+<birthyear>1990</birthyear>
+<firstname>Augusto</firstname>
+<lastname>Dutra</lastname>
+<height>180</height>
+<weight>70</weight>
+<gender>M</gender>
+<club>CLUBE BMF/ BOVESPA</club><nationality>BRA</nationality><birthplace></birthplace><accomplishments>
+<line number="0">
+<description>World Championships finalist</description>
+<details>
+<detail disciplines="PV" year="2015"/>
+</details>
+</line>
+<line number="1">
+<description>World Championships finalist</description>
+<details>
+<detail disciplines="PV" year="2013"/>
+</details>
+</line>
+<line number="2">
+<description>7th at World Indoor Championships</description>
+<details>
+<detail disciplines="PV" year="2014"/>
+</details>
+</line>
+</accomplishments>
+</athlete>
+</athletes>

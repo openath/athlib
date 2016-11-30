@@ -1,0 +1,1269 @@
+ï»¿<?xml version="1.0" encoding="utf-8" ?>
+<results>
+<result>
+<athlete_id>110179</athlete_id>
+<gender>M</gender>
+<personalBest>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>SP5.44</event>
+<result>17.79</result>
+<wind></wind>
+<rank>14</rank>
+<round>-HS</round>
+<roundstage>Prelim</roundstage>
+<agegroup></agegroup>
+<competition_ID>11825509</competition_ID>
+<compName></compName>
+<date>2008-06-21</date>
+<venue>Greensboro NC</venue>
+<venueCountry>USA</venueCountry>
+</personalBest>
+<personalBest>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT1.62</event>
+<result>58.70</result>
+<wind></wind>
+<rank>1</rank>
+<round>-HS</round>
+<roundstage>Prelim</roundstage>
+<agegroup></agegroup>
+<competition_ID>12792794</competition_ID>
+<compName></compName>
+<date>2009-05-15</date>
+<venue>Jenison MI</venue>
+<venueCountry>USA</venueCountry>
+</personalBest>
+<personalBest>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT1.75</event>
+<result>59.10</result>
+<wind></wind>
+<rank>1</rank>
+<round>-19</round>
+<roundstage>Final</roundstage>
+<agegroup>Under 20</agegroup>
+<competition_ID>12798896</competition_ID>
+<compName></compName>
+<date>2010-06-24</date>
+<venue>Des Moines IA</venue>
+<venueCountry>USA</venueCountry>
+</personalBest>
+<personalBest>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>SP</event>
+<result>17.89</result>
+<wind></wind>
+<rank>7</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12847756</competition_ID>
+<compName>Doc Hale Virginia Tech Elite, Rector Fieldhouse</compName>
+<date>2014-02-08</date>
+<venue>Blacksburg VA</venue>
+<venueCountry>USA</venueCountry>
+</personalBest>
+<personalBest>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>HT</event>
+<result>60.72</result>
+<wind></wind>
+<rank>3</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12848995</competition_ID>
+<compName>Florida Relays, Percy Beard Track</compName>
+<date>2014-04-04</date>
+<venue>Gainesville FL</venue>
+<venueCountry>USA</venueCountry>
+</personalBest>
+<personalBest>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>SP</event>
+<result>17.93</result>
+<wind></wind>
+<rank>6</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12849755</competition_ID>
+<compName>University of Tennessee Challenge, Tennessee</compName>
+<date>2014-05-03</date>
+<venue>Knoxville TN</venue>
+<venueCountry>USA</venueCountry>
+</personalBest>
+<personalBest>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>66.37</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12849755</competition_ID>
+<compName>University of Tennessee Challenge, Tennessee</compName>
+<date>2014-05-03</date>
+<venue>Knoxville TN</venue>
+<venueCountry>USA</venueCountry>
+</personalBest>
+<seasonalBest>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>65.41</result>
+<wind></wind>
+<rank>2</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12872380</competition_ID>
+<compName>Chula Vista Throws/Vault</compName>
+<date>2016-04-21</date>
+<venue>Chula Vista CA</venue>
+<venueCountry>USA</venueCountry>
+</seasonalBest>
+<athleteresulthistory>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT1.62</event>
+<result>56.46</result>
+<wind></wind>
+<rank>7</rank>
+<round>-HS</round>
+<roundstage>Prelim</roundstage>
+<agegroup></agegroup>
+<competition_ID>11825509</competition_ID>
+<compName></compName>
+<date>2008-06-20</date>
+<venue>Greensboro NC</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>SP5.44</event>
+<result>17.79</result>
+<wind></wind>
+<rank>14</rank>
+<round>-HS</round>
+<roundstage>Prelim</roundstage>
+<agegroup></agegroup>
+<competition_ID>11825509</competition_ID>
+<compName></compName>
+<date>2008-06-21</date>
+<venue>Greensboro NC</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT1.62</event>
+<result>58.70</result>
+<wind></wind>
+<rank>1</rank>
+<round>-HS</round>
+<roundstage>Prelim</roundstage>
+<agegroup></agegroup>
+<competition_ID>12792794</competition_ID>
+<compName></compName>
+<date>2009-05-15</date>
+<venue>Jenison MI</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT1.62</event>
+<result>54.71</result>
+<wind></wind>
+<rank>1</rank>
+<round>-HS</round>
+<roundstage>Prelim</roundstage>
+<agegroup></agegroup>
+<competition_ID>12787754</competition_ID>
+<compName></compName>
+<date>2009-06-13</date>
+<venue>Jackson MI</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT1.62</event>
+<result>55.21</result>
+<wind></wind>
+<rank>6</rank>
+<round>-HS</round>
+<roundstage>Prelim</roundstage>
+<agegroup></agegroup>
+<competition_ID>12787980</competition_ID>
+<compName></compName>
+<date>2009-06-19</date>
+<venue>Greensboro NC</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>52.22</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12796156</competition_ID>
+<compName></compName>
+<date>2010-04-24</date>
+<venue>Hillsdale MI</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>54.05</result>
+<wind></wind>
+<rank>3</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12796519</competition_ID>
+<compName></compName>
+<date>2010-05-08</date>
+<venue>Ann Arbor MI</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT1.75</event>
+<result>59.10</result>
+<wind></wind>
+<rank>1</rank>
+<round>-19</round>
+<roundstage>Final</roundstage>
+<agegroup>Under 20</agegroup>
+<competition_ID>12798896</competition_ID>
+<compName></compName>
+<date>2010-06-24</date>
+<venue>Des Moines IA</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT1.75</event>
+<result>57.18</result>
+<wind></wind>
+<rank>11</rank>
+<round>q-19</round>
+<roundstage>Prelim</roundstage>
+<agegroup></agegroup>
+<competition_ID>12800024</competition_ID>
+<compName></compName>
+<date>2010-07-23</date>
+<venue>Moncton</venue>
+<venueCountry>CAN</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT1.75</event>
+<result>56.91</result>
+<wind></wind>
+<rank>10</rank>
+<round>-19</round>
+<roundstage>Final</roundstage>
+<agegroup>Under 20</agegroup>
+<competition_ID>12800024</competition_ID>
+<compName></compName>
+<date>2010-07-24</date>
+<venue>Moncton</venue>
+<venueCountry>CAN</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>51.01</result>
+<wind></wind>
+<rank>5</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12808531</competition_ID>
+<compName></compName>
+<date>2011-04-15</date>
+<venue>Knoxville TN</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>56.42</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12821371</competition_ID>
+<compName>Bulls Invitational</compName>
+<date>2012-03-16</date>
+<venue>Tampa FL</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>57.56</result>
+<wind></wind>
+<rank>7</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12821585</competition_ID>
+<compName></compName>
+<date>2012-03-31</date>
+<venue>Austin TX</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>52.96</result>
+<wind></wind>
+<rank>3</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12821772</competition_ID>
+<compName></compName>
+<date>2012-04-07</date>
+<venue>Gainesville FL</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>55.40</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12821997</competition_ID>
+<compName>Texas Roadhouse Border Battle</compName>
+<date>2012-04-14</date>
+<venue>Louisville KY</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>53.71</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12822154</competition_ID>
+<compName>Bloomington IN</compName>
+<date>2012-04-21</date>
+<venue>Bloomington IN</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>56.56</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12822254</competition_ID>
+<compName></compName>
+<date>2012-04-27</date>
+<venue>Philadelphia PA</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>55.40</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12822739</competition_ID>
+<compName></compName>
+<date>2012-05-12</date>
+<venue>Baton Rouge LA</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>55.67</result>
+<wind></wind>
+<rank>8</rank>
+<round>q</round>
+<roundstage>Prelim</roundstage>
+<agegroup></agegroup>
+<competition_ID>12823080</competition_ID>
+<compName>NCAA East Preliminary Round, Hodges Stadium</compName>
+<date>2012-05-24</date>
+<venue>Jacksonville FL</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>58.91</result>
+<wind></wind>
+<rank>7</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12823610</competition_ID>
+<compName>NCAA Championships, Drake Stadium</compName>
+<date>2012-06-06</date>
+<venue>Des Moines IA</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>59.27</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12839862</competition_ID>
+<compName>Bulls Invitational</compName>
+<date>2013-03-15</date>
+<venue>Tampa FL</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>59.96</result>
+<wind></wind>
+<rank>3</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12840225</competition_ID>
+<compName></compName>
+<date>2013-03-30</date>
+<venue>Austin TX</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>59.62</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12840549</competition_ID>
+<compName>Louisville Border Battle</compName>
+<date>2013-04-13</date>
+<venue>Louisville KY</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>56.56</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12840768</competition_ID>
+<compName>Heart of the Bluegrass Track &amp; Field Classic, Outdoor Stadium Grand Opening</compName>
+<date>2013-04-20</date>
+<venue>Lexington KY</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>60.12</result>
+<wind></wind>
+<rank>9</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12840884</competition_ID>
+<compName></compName>
+<date>2013-04-27</date>
+<venue>La Jolla CA</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>59.25</result>
+<wind></wind>
+<rank>2</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12841314</competition_ID>
+<compName></compName>
+<date>2013-05-12</date>
+<venue>Columbia MO</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>58.55</result>
+<wind></wind>
+<rank>3</rank>
+<round>q</round>
+<roundstage>Prelim</roundstage>
+<agegroup></agegroup>
+<competition_ID>12841699</competition_ID>
+<compName>NCAA East Preliminary</compName>
+<date>2013-05-23</date>
+<venue>Greensboro NC</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>62.78</result>
+<wind></wind>
+<rank>3</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12842038</competition_ID>
+<compName></compName>
+<date>2013-06-07</date>
+<venue>Eugene OR</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>55.24</result>
+<wind></wind>
+<rank>15</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12842909</competition_ID>
+<compName></compName>
+<date>2013-06-21</date>
+<venue>Des Moines IA</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>SP</event>
+<result>17.27</result>
+<wind></wind>
+<rank>3</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12846951</competition_ID>
+<compName></compName>
+<date>2014-01-18</date>
+<venue>Lexington KY</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>SP</event>
+<result>17.06</result>
+<wind></wind>
+<rank>9</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12847187</competition_ID>
+<compName></compName>
+<date>2014-01-25</date>
+<venue>Lexington KY</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>SP</event>
+<result>17.89</result>
+<wind></wind>
+<rank>7</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12847756</competition_ID>
+<compName>Doc Hale Virginia Tech Elite, Rector Fieldhouse</compName>
+<date>2014-02-08</date>
+<venue>Blacksburg VA</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>SP</event>
+<result>17.61</result>
+<wind></wind>
+<rank>7</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12847985</competition_ID>
+<compName></compName>
+<date>2014-02-15</date>
+<venue>Fayetteville AR</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>SP</event>
+<result>17.65</result>
+<wind></wind>
+<rank>10</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12848338</competition_ID>
+<compName></compName>
+<date>2014-03-01</date>
+<venue>College Station TX</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>56.67</result>
+<wind></wind>
+<rank>2</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12848748</competition_ID>
+<compName>Baldy Castillo Invitational, Arizona State</compName>
+<date>2014-03-22</date>
+<venue>Tempe AZ</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>SP</event>
+<result>16.81</result>
+<wind></wind>
+<rank>7</rank>
+<round>cB</round>
+<roundstage>Prelim</roundstage>
+<agegroup></agegroup>
+<competition_ID>12848875</competition_ID>
+<compName></compName>
+<date>2014-03-28</date>
+<venue>Austin TX</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>58.26</result>
+<wind></wind>
+<rank>9</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12848875</competition_ID>
+<compName></compName>
+<date>2014-03-29</date>
+<venue>Austin TX</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>HT</event>
+<result>60.72</result>
+<wind></wind>
+<rank>3</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12848995</competition_ID>
+<compName>Florida Relays, Percy Beard Track</compName>
+<date>2014-04-04</date>
+<venue>Gainesville FL</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>59.68</result>
+<wind></wind>
+<rank>2</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12848995</competition_ID>
+<compName>Florida Relays, Percy Beard Track</compName>
+<date>2014-04-05</date>
+<venue>Gainesville FL</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>SP</event>
+<result>17.60</result>
+<wind></wind>
+<rank>8</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12848995</competition_ID>
+<compName>Florida Relays, Percy Beard Track</compName>
+<date>2014-04-05</date>
+<venue>Gainesville FL</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>60.87</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12849314</competition_ID>
+<compName>Kentucky Relays</compName>
+<date>2014-04-19</date>
+<venue>Lexington KY</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>60.48</result>
+<wind></wind>
+<rank>11</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12849481</competition_ID>
+<compName>UCSD Triton Invitational, UC San Diego</compName>
+<date>2014-04-26</date>
+<venue>La Jolla CA</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>66.37</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12849755</competition_ID>
+<compName>University of Tennessee Challenge, Tennessee</compName>
+<date>2014-05-03</date>
+<venue>Knoxville TN</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>SP</event>
+<result>17.93</result>
+<wind></wind>
+<rank>6</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12849755</competition_ID>
+<compName>University of Tennessee Challenge, Tennessee</compName>
+<date>2014-05-03</date>
+<venue>Knoxville TN</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>64.09</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12850241</competition_ID>
+<compName>SEC Outdoor Championships, Kentucky</compName>
+<date>2014-05-17</date>
+<venue>Lexington KY</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>SP</event>
+<result>17.39</result>
+<wind></wind>
+<rank>12</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12850241</competition_ID>
+<compName>SEC Outdoor Championships, Kentucky</compName>
+<date>2014-05-18</date>
+<venue>Lexington KY</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>62.75</result>
+<wind></wind>
+<rank>3</rank>
+<round>q</round>
+<roundstage>Prelim</roundstage>
+<agegroup></agegroup>
+<competition_ID>12851434</competition_ID>
+<compName></compName>
+<date>2014-05-31</date>
+<venue>Jacksonville FL</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>57.26</result>
+<wind></wind>
+<rank>14</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12851925</competition_ID>
+<compName></compName>
+<date>2014-06-13</date>
+<venue>Eugene OR</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>59.61</result>
+<wind></wind>
+<rank>8</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12852412</competition_ID>
+<compName></compName>
+<date>2014-06-27</date>
+<venue>Sacramento CA</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>60.57</result>
+<wind></wind>
+<rank>2</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12859189</competition_ID>
+<compName>Mesa Classic, Mesa CC</compName>
+<date>2015-04-10</date>
+<venue>Mesa AZ</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>59.32</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12859197</competition_ID>
+<compName>36th Sun Angel Track Classic, Sun Angel Stadium</compName>
+<date>2015-04-11</date>
+<venue>Tempe AZ</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>60.20</result>
+<wind></wind>
+<rank>8</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12859836</competition_ID>
+<compName>OTC-CV Elite #1, Olympic Training Center</compName>
+<date>2015-04-23</date>
+<venue>Chula Vista CA</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>59.89</result>
+<wind></wind>
+<rank>3</rank>
+<round>cB</round>
+<roundstage>Prelim</roundstage>
+<agegroup></agegroup>
+<competition_ID>12859569</competition_ID>
+<compName>Triton Invitational, UC San Diego</compName>
+<date>2015-04-25</date>
+<venue>La Jolla CA</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>60.00</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12859875</competition_ID>
+<compName>Kentucky Relays</compName>
+<date>2015-05-02</date>
+<venue>Lexington KY</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>61.42</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12860187</competition_ID>
+<compName>Occidental Invitational</compName>
+<date>2015-05-09</date>
+<venue>Eagle Rock CA</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>59.86</result>
+<wind></wind>
+<rank>3</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12860591</competition_ID>
+<compName>Tucson Elite Classic</compName>
+<date>2015-05-21</date>
+<venue>Tucson AZ</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>60.75</result>
+<wind></wind>
+<rank>3</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12860667</competition_ID>
+<compName>Tucson Elite Classic</compName>
+<date>2015-05-23</date>
+<venue>Tucson AZ</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>63.66</result>
+<wind></wind>
+<rank>2</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12861331</competition_ID>
+<compName>Field of Dreams, Claremont College</compName>
+<date>2015-06-06</date>
+<venue>Claremont CA</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>63.91</result>
+<wind></wind>
+<rank>2</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12861667</competition_ID>
+<compName>Field of Dreams, Claremont College</compName>
+<date>2015-06-07</date>
+<venue>Claremont CA</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>60.65</result>
+<wind></wind>
+<rank>3</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12861811</competition_ID>
+<compName>San Diego Imperial USATF Open Championships</compName>
+<date>2015-06-13</date>
+<venue>Chula Vista CA</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>63.67</result>
+<wind></wind>
+<rank>3</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12862030</competition_ID>
+<compName>USATF Outdoor Championships</compName>
+<date>2015-06-25</date>
+<venue>Eugene OR</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>59.27</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12862539</competition_ID>
+<compName>Chicagoland Throw Series, BW Stadium</compName>
+<date>2015-07-11</date>
+<venue>Naperville IL</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>61.35</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12862908</competition_ID>
+<compName>OTC-CV USATF WORLD PRE MEET</compName>
+<date>2015-07-25</date>
+<venue>Chula Vista CA</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>62.17</result>
+<wind></wind>
+<rank>2</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12863058</competition_ID>
+<compName></compName>
+<date>2015-08-01</date>
+<venue>Portland OR</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>59.32</result>
+<wind></wind>
+<rank>2</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12863339</competition_ID>
+<compName>NACAC Open Championships</compName>
+<date>2015-08-07</date>
+<venue>San JosÃ©</venue>
+<venueCountry>CRC</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>64.35</result>
+<wind></wind>
+<rank>2</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12872140</competition_ID>
+<compName>Hartnell College Spring Fling</compName>
+<date>2016-04-17</date>
+<venue>Salinas CA</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>65.41</result>
+<wind></wind>
+<rank>2</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12872380</competition_ID>
+<compName>Chula Vista Throws/Vault</compName>
+<date>2016-04-21</date>
+<venue>Chula Vista CA</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>59.81</result>
+<wind></wind>
+<rank>13</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12872493</competition_ID>
+<compName>Triton Invitational</compName>
+<date>2016-04-23</date>
+<venue>La Jolla CA</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>62.44</result>
+<wind></wind>
+<rank>2</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12872693</competition_ID>
+<compName>Adidas Steve Scott Invitational, Anteater Track Stadium</compName>
+<date>2016-04-30</date>
+<venue>Irvine CA</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>63.02</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12873152</competition_ID>
+<compName>Chula Vista OTC HP #1</compName>
+<date>2016-05-07</date>
+<venue>Chula Vista CA</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>62.80</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12874103</competition_ID>
+<compName>OTC High Performance Meet</compName>
+<date>2016-05-28</date>
+<venue>Chula Vista CA</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>63.20</result>
+<wind></wind>
+<rank>2</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12879147</competition_ID>
+<compName></compName>
+<date>2016-06-04</date>
+<venue>Rathdrum ID</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>62.91</result>
+<wind></wind>
+<rank>2</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12875783</competition_ID>
+<compName>CVOTC HP#3 Last Chance Oly Qualifier</compName>
+<date>2016-06-18</date>
+<venue>Chula Vista CA</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>60.66</result>
+<wind></wind>
+<rank>3</rank>
+<round>q</round>
+<roundstage>Prelim</roundstage>
+<agegroup></agegroup>
+<competition_ID>12876138</competition_ID>
+<compName></compName>
+<date>2016-07-07</date>
+<venue>Eugene OR</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>61.22</result>
+<wind></wind>
+<rank>3</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12876138</competition_ID>
+<compName></compName>
+<date>2016-07-08</date>
+<venue>Eugene OR</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>DT</event>
+<result>61.87</result>
+<wind></wind>
+<rank>16</rank>
+<round>q</round>
+<roundstage>Prelim</roundstage>
+<agegroup></agegroup>
+<competition_ID>12877460</competition_ID>
+<compName>31st Olympic Games, Olympic Stadium</compName>
+<date>2016-08-12</date>
+<venue>RÃ­o de Janeiro</venue>
+<venueCountry>BRA</venueCountry>
+</record>
+</athleteresulthistory>
+</result>
+</results>

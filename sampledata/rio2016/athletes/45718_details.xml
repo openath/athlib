@@ -1,0 +1,45 @@
+ï»¿<?xml version="1.0" encoding="utf-8" ?>
+<athletes>
+<athlete>
+<athlete_id>45718</athlete_id>
+<birthdate>05.07.1983</birthdate>
+<birthyear>1983</birthyear>
+<firstname>Vikas</firstname>
+<lastname>Gowda</lastname>
+<height>196</height>
+<weight>115</weight>
+<gender>M</gender>
+<club>World Throws Center</club><nationality>IND</nationality><birthplace>India</birthplace><accomplishments>
+<line number="0">
+<description>7th at World Championships</description>
+<details>
+<detail disciplines="DT" year="2013"/>
+</details>
+</line>
+<line number="1">
+<description>7th at World Championships</description>
+<details>
+<detail disciplines="DT" year="2011"/>
+</details>
+</line>
+<line number="2">
+<description>8th at Olympic Games</description>
+<details>
+<detail disciplines="DT" year="2012"/>
+</details>
+</line>
+<line number="3">
+<description>World Championships finalist</description>
+<details>
+<detail disciplines="DT" year="2015"/>
+</details>
+</line>
+<line number="4">
+<description>Asian Games Silver Medallist</description>
+<details>
+<detail disciplines="DT" year="2014"/>
+</details>
+</line>
+</accomplishments>
+</athlete>
+</athletes>

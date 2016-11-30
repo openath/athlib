@@ -1,0 +1,33 @@
+ï»¿<?xml version="1.0" encoding="utf-8" ?>
+<athletes>
+<athlete>
+<athlete_id>30266</athlete_id>
+<birthdate>12.09.1982</birthdate>
+<birthyear>1982</birthyear>
+<firstname>Michal</firstname>
+<lastname>Balner</lastname>
+<height>193</height>
+<weight>78</weight>
+<gender>M</gender>
+<club>TJ Dukla Praha</club><nationality>CZE</nationality><birthplace></birthplace><accomplishments>
+<line number="0">
+<description>6th at World Indoor Championships</description>
+<details>
+<detail disciplines="PV" year="2010"/>
+</details>
+</line>
+<line number="1">
+<description>7th at Olympic Games</description>
+<details>
+<detail disciplines="PV" year="2016"/>
+</details>
+</line>
+<line number="2">
+<description>7th at World Championships</description>
+<details>
+<detail disciplines="PV" year="2015"/>
+</details>
+</line>
+</accomplishments>
+</athlete>
+</athletes>

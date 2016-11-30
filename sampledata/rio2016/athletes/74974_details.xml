@@ -1,0 +1,65 @@
+ï»¿<?xml version="1.0" encoding="utf-8" ?>
+<athletes>
+<athlete>
+<athlete_id>74974</athlete_id>
+<birthdate>18.09.1986</birthdate>
+<birthyear>1986</birthyear>
+<firstname>Renaud</firstname>
+<lastname>Lavillenie</lastname>
+<height>177</height>
+<weight>69</weight>
+<gender>M</gender>
+<club>Clermont Athletisme Auvergne *</club><nationality>FRA</nationality><birthplace></birthplace><accomplishments>
+<line number="0">
+<description>Olympic Champion</description>
+<details>
+<detail disciplines="PV" year="2012"/>
+</details>
+</line>
+<line number="1">
+<description>2 World Indoor Titles </description>
+<details>
+<detail disciplines="PV" year="2012"/>
+<detail disciplines="PV" year="2016"/>
+</details>
+</line>
+<line number="2">
+<description>Olympic Silver Medallist</description>
+<details>
+<detail disciplines="PV" year="2016"/>
+</details>
+</line>
+<line number="3">
+<description>World Championships Silver Medallist</description>
+<details>
+<detail disciplines="PV" year="2013"/>
+</details>
+</line>
+<line number="4">
+<description>3 World Championships Bronzes </description>
+<details>
+<detail disciplines="PV" year="2009"/>
+<detail disciplines="PV" year="2011"/>
+<detail disciplines="PV" year="2015"/>
+</details>
+</line>
+<line number="5">
+<description>3 European Golds </description>
+<details>
+<detail disciplines="PV" year="2010"/>
+<detail disciplines="PV" year="2012"/>
+<detail disciplines="PV" year="2014"/>
+</details>
+</line>
+<line number="6">
+<description>4 European Indoor Golds </description>
+<details>
+<detail disciplines="PV" year="2009"/>
+<detail disciplines="PV" year="2011"/>
+<detail disciplines="PV" year="2013"/>
+<detail disciplines="PV" year="2015"/>
+</details>
+</line>
+</accomplishments>
+</athlete>
+</athletes>

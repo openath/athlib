@@ -1,0 +1,954 @@
+ï»¿<?xml version="1.0" encoding="utf-8" ?>
+<results>
+<result>
+<athlete_id>121497</athlete_id>
+<gender>M</gender>
+<personalBest>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.65</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12867650</competition_ID>
+<compName>Air Force Invitational, Cadet Field House</compName>
+<date>2016-01-23</date>
+<venue>Air Force Academy CO</venue>
+<venueCountry>USA</venueCountry>
+</personalBest>
+<personalBest>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.72</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12876226</competition_ID>
+<compName>Kyle Macintosh Twilight</compName>
+<date>2016-06-26</date>
+<venue>Highlands Ranch CO</venue>
+<venueCountry>USA</venueCountry>
+</personalBest>
+<seasonalBest>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.65</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12867650</competition_ID>
+<compName>Air Force Invitational, Cadet Field House</compName>
+<date>2016-01-23</date>
+<venue>Air Force Academy CO</venue>
+<venueCountry>USA</venueCountry>
+</seasonalBest>
+<seasonalBest>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.72</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12876226</competition_ID>
+<compName>Kyle Macintosh Twilight</compName>
+<date>2016-06-26</date>
+<venue>Highlands Ranch CO</venue>
+<venueCountry>USA</venueCountry>
+</seasonalBest>
+<athleteresulthistory>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.05</result>
+<wind></wind>
+<rank>5</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12793293</competition_ID>
+<compName></compName>
+<date>2010-02-06</date>
+<venue>Albuquerque NM</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.05</result>
+<wind></wind>
+<rank>2</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12793837</competition_ID>
+<compName></compName>
+<date>2010-02-19</date>
+<venue>Laramie WY</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.05</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12804993</competition_ID>
+<compName>Air Force All-Comers , Cadet Field House</compName>
+<date>2011-01-14</date>
+<venue>Air Force Academy CO</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.05</result>
+<wind></wind>
+<rank>2</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12805807</competition_ID>
+<compName>Air Force Don Barrett Duals, Cadet Field House</compName>
+<date>2011-01-29</date>
+<venue>Air Force Academy CO</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.05</result>
+<wind></wind>
+<rank>6</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12806472</competition_ID>
+<compName></compName>
+<date>2011-02-12</date>
+<venue>Air Force Academy CO</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.25</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12806847</competition_ID>
+<compName>Robert Shine Invitational, Memorial FH</compName>
+<date>2011-02-18</date>
+<venue>Laramie WY</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.28</result>
+<wind></wind>
+<rank>3</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12807175</competition_ID>
+<compName></compName>
+<date>2011-02-26</date>
+<venue>Albuquerque NM</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.28</result>
+<wind></wind>
+<rank>2</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12807394</competition_ID>
+<compName>Alex Wilson Invitational, Loftus Sports Center</compName>
+<date>2011-03-04</date>
+<venue>Notre Dame IN</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.10</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12807811</competition_ID>
+<compName>UC-Irvine Spring Break Invite</compName>
+<date>2011-03-19</date>
+<venue>Irvine CA</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.03</result>
+<wind></wind>
+<rank>3</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12808296</competition_ID>
+<compName>32nd Sun Angel Track Classic, Sun Angel Stadium</compName>
+<date>2011-04-07</date>
+<venue>Tempe AZ</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.38</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12808739</competition_ID>
+<compName>Jack Christiansen Invitational</compName>
+<date>2011-04-23</date>
+<venue>Fort Collins CO</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.25</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12809004</competition_ID>
+<compName>Front Range Championships</compName>
+<date>2011-05-01</date>
+<venue>Fort Collins CO</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.32</result>
+<wind></wind>
+<rank>3</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12809604</competition_ID>
+<compName></compName>
+<date>2011-05-14</date>
+<venue>Fort Collins CO</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.15</result>
+<wind></wind>
+<rank>16</rank>
+<round>q</round>
+<roundstage>Prelim</roundstage>
+<agegroup></agegroup>
+<competition_ID>12810647</competition_ID>
+<compName>NCAA West Preliminary Round, Hayward Field</compName>
+<date>2011-05-26</date>
+<venue>Eugene OR</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.20</result>
+<wind></wind>
+<rank>3</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12817513</competition_ID>
+<compName>Air Force Blue-Silver Open, Cadet Field House</compName>
+<date>2011-12-09</date>
+<venue>Air Force Academy CO</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.20</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12818617</competition_ID>
+<compName>Air Force All-Comers, Cadet Field House</compName>
+<date>2012-01-13</date>
+<venue>Air Force Academy CO</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.24</result>
+<wind></wind>
+<rank>3</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12819943</competition_ID>
+<compName></compName>
+<date>2012-02-04</date>
+<venue>Albuquerque NM</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.52</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12820259</competition_ID>
+<compName></compName>
+<date>2012-02-11</date>
+<venue>Air Force Academy CO</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.45</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12820512</competition_ID>
+<compName>Wyoming Robert Shine Invitational, War Memorial Fieldhouse</compName>
+<date>2012-02-17</date>
+<venue>Laramie WY</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.31</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12820763</competition_ID>
+<compName></compName>
+<date>2012-02-25</date>
+<venue>Albuquerque NM</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.45</result>
+<wind></wind>
+<rank>5</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12821053</competition_ID>
+<compName></compName>
+<date>2012-03-09</date>
+<venue>Nampa ID</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.30</result>
+<wind></wind>
+<rank>2</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12821479</competition_ID>
+<compName></compName>
+<date>2012-03-24</date>
+<venue>Tempe AZ</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.50</result>
+<wind></wind>
+<rank>4</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12821585</competition_ID>
+<compName></compName>
+<date>2012-03-31</date>
+<venue>Austin TX</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.50</result>
+<wind></wind>
+<rank>4</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12822073</competition_ID>
+<compName></compName>
+<date>2012-04-21</date>
+<venue>Walnut CA</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result></result>
+<wind></wind>
+<rank></rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12822253</competition_ID>
+<compName></compName>
+<date>2012-04-27</date>
+<venue>Des Moines IA</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.53</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12822728</competition_ID>
+<compName></compName>
+<date>2012-05-12</date>
+<venue>Air Force Academy CO</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.35</result>
+<wind></wind>
+<rank>7</rank>
+<round>q</round>
+<roundstage>Prelim</roundstage>
+<agegroup></agegroup>
+<competition_ID>12823079</competition_ID>
+<compName></compName>
+<date>2012-05-26</date>
+<venue>Austin TX</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.40</result>
+<wind></wind>
+<rank>5</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12823610</competition_ID>
+<compName></compName>
+<date>2012-06-08</date>
+<venue>Des Moines IA</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result></result>
+<wind></wind>
+<rank></rank>
+<round>q</round>
+<roundstage>Prelim</roundstage>
+<agegroup></agegroup>
+<competition_ID>12824265</competition_ID>
+<compName></compName>
+<date>2012-06-25</date>
+<venue>Eugene OR</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.40</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12826941</competition_ID>
+<compName>Air Force Holiday Open, Cadet Field House</compName>
+<date>2012-12-07</date>
+<venue>Air Force Academy CO</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.25</result>
+<wind></wind>
+<rank>2</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12838811</competition_ID>
+<compName>New Mexico Collegiate Classic</compName>
+<date>2013-02-01</date>
+<venue>Albuquerque NM</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.54</result>
+<wind></wind>
+<rank>2</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12839010</competition_ID>
+<compName>Air Force Team Challenge, Cadet Field House</compName>
+<date>2013-02-09</date>
+<venue>Air Force Academy CO</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.25</result>
+<wind></wind>
+<rank>3</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12839406</competition_ID>
+<compName></compName>
+<date>2013-02-23</date>
+<venue>Nampa ID</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.40</result>
+<wind></wind>
+<rank>10</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12839690</competition_ID>
+<compName>NCAA Division 1 Indoor Championships, Randal Tyson Track</compName>
+<date>2013-03-08</date>
+<venue>Fayetteville AR</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.26</result>
+<wind></wind>
+<rank>2</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12840083</competition_ID>
+<compName></compName>
+<date>2013-03-23</date>
+<venue>Tempe AZ</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.61</result>
+<wind></wind>
+<rank>3</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12840225</competition_ID>
+<compName></compName>
+<date>2013-03-29</date>
+<venue>Austin TX</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.20</result>
+<wind></wind>
+<rank>9</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12840698</competition_ID>
+<compName></compName>
+<date>2013-04-20</date>
+<venue>Walnut CA</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.50</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12841365</competition_ID>
+<compName>Mountain West Outdoor Track &amp; Field Championships</compName>
+<date>2013-05-11</date>
+<venue>Las Vegas NV</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.40</result>
+<wind></wind>
+<rank>7</rank>
+<round>q</round>
+<roundstage>Prelim</roundstage>
+<agegroup></agegroup>
+<competition_ID>12841698</competition_ID>
+<compName></compName>
+<date>2013-05-25</date>
+<venue>Austin TX</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.60</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12866643</competition_ID>
+<compName>Air Force Holiday Open, Cadet Field House</compName>
+<date>2015-12-11</date>
+<venue>Air Force Academy CO</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.30</result>
+<wind></wind>
+<rank>6</rank>
+<round>cB</round>
+<roundstage>Prelim</roundstage>
+<agegroup></agegroup>
+<competition_ID>12867265</competition_ID>
+<compName>UCS Spirit Pole Vault Summit, Reno Live Stock Events Center</compName>
+<date>2016-01-15</date>
+<venue>Reno NV</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.65</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12867650</competition_ID>
+<compName>Air Force Invitational, Cadet Field House</compName>
+<date>2016-01-23</date>
+<venue>Air Force Academy CO</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.37</result>
+<wind></wind>
+<rank>5</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12869517</competition_ID>
+<compName>Univ of New Mexico Collegiate Classic</compName>
+<date>2016-02-05</date>
+<venue>Albuquerque NM</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.37</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12869846</competition_ID>
+<compName>New Mexico Don Kirby Invitational, Albuquerque Convention Center</compName>
+<date>2016-02-12</date>
+<venue>Albuquerque NM</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>PV</event>
+<result></result>
+<wind></wind>
+<rank></rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12870119</competition_ID>
+<compName>Rocky Mountain Classic, War Memorial Fieldhouse</compName>
+<date>2016-02-19</date>
+<venue>Laramie WY</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Indoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.50</result>
+<wind></wind>
+<rank>3</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12870907</competition_ID>
+<compName>USA Indoor Track &amp; Field Championships, Oregon Convention Center</compName>
+<date>2016-03-11</date>
+<venue>Portland OR</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.48</result>
+<wind></wind>
+<rank>2</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12871424</competition_ID>
+<compName>38th Annual Aztec Invitational</compName>
+<date>2016-03-26</date>
+<venue>San Diego CA</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.50</result>
+<wind></wind>
+<rank>6</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12871518</competition_ID>
+<compName></compName>
+<date>2016-04-02</date>
+<venue>Austin TX</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result></result>
+<wind></wind>
+<rank></rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12872487</competition_ID>
+<compName>89th Kansas Relays, Rock Chalk Park</compName>
+<date>2016-04-21</date>
+<venue>Lawrence KS</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.45</result>
+<wind></wind>
+<rank>3</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12872487</competition_ID>
+<compName>89th Kansas Relays, Rock Chalk Park</compName>
+<date>2016-04-23</date>
+<venue>Lawrence KS</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.50</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12873004</competition_ID>
+<compName>Air Force Twilight</compName>
+<date>2016-05-06</date>
+<venue>Air Force Academy CO</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.32</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12873386</competition_ID>
+<compName>Colorado Mines Sunday Last Chance</compName>
+<date>2016-05-15</date>
+<venue>Golden CO</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.56</result>
+<wind></wind>
+<rank>2</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12873761</competition_ID>
+<compName>Altis Summer Series #2, Paradise Valley CC</compName>
+<date>2016-05-21</date>
+<venue>Phoenix AZ</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.41</result>
+<wind></wind>
+<rank>4</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12874103</competition_ID>
+<compName>OTC High Performance Meet</compName>
+<date>2016-05-28</date>
+<venue>Chula Vista CA</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.57</result>
+<wind></wind>
+<rank>4</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12875602</competition_ID>
+<compName>Altis Summer Series #3, Paradise Valley CC</compName>
+<date>2016-06-11</date>
+<venue>Phoenix AZ</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.72</result>
+<wind></wind>
+<rank>1</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12876226</competition_ID>
+<compName>Kyle Macintosh Twilight</compName>
+<date>2016-06-26</date>
+<venue>Highlands Ranch CO</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.55</result>
+<wind></wind>
+<rank>6</rank>
+<round>q</round>
+<roundstage>Prelim</roundstage>
+<agegroup></agegroup>
+<competition_ID>12876138</competition_ID>
+<compName></compName>
+<date>2016-07-02</date>
+<venue>Eugene OR</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.65</result>
+<wind></wind>
+<rank>2</rank>
+<round></round>
+<roundstage>Final</roundstage>
+<agegroup></agegroup>
+<competition_ID>12876138</competition_ID>
+<compName></compName>
+<date>2016-07-04</date>
+<venue>Eugene OR</venue>
+<venueCountry>USA</venueCountry>
+</record>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>PV</event>
+<result>5.30</result>
+<wind></wind>
+<rank>28=</rank>
+<round>q</round>
+<roundstage>Prelim</roundstage>
+<agegroup></agegroup>
+<competition_ID>12877460</competition_ID>
+<compName></compName>
+<date>2016-08-13</date>
+<venue>RÃ­o de Janeiro</venue>
+<venueCountry>BRA</venueCountry>
+</record>
+</athleteresulthistory>
+</result>
+</results>

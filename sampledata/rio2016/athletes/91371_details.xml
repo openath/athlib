@@ -1,0 +1,59 @@
+ï»¿<?xml version="1.0" encoding="utf-8" ?>
+<athletes>
+<athlete>
+<athlete_id>91371</athlete_id>
+<birthdate>30.06.1989</birthdate>
+<birthyear>1989</birthyear>
+<firstname>Asbel</firstname>
+<lastname>Kiprop</lastname>
+<height>186</height>
+<weight>70</weight>
+<gender>M</gender>
+<club>North Rift</club><nationality>KEN</nationality><birthplace></birthplace><accomplishments>
+<line number="0">
+<description>Olympic Champion</description>
+<details>
+<detail disciplines="1500" year="2008"/>
+</details>
+</line>
+<line number="1">
+<description>3 World Titles </description>
+<details>
+<detail disciplines="1500" year="2011"/>
+<detail disciplines="1500" year="2013"/>
+<detail disciplines="1500" year="2015"/>
+</details>
+</line>
+<line number="2">
+<description>4th at World Championships</description>
+<details>
+<detail disciplines="1500" year="2009"/>
+</details>
+</line>
+<line number="3">
+<description>4th at World Championships</description>
+<details>
+<detail disciplines="1500" year="2007"/>
+</details>
+</line>
+<line number="4">
+<description>6th at Olympic Games</description>
+<details>
+<detail disciplines="1500" year="2016"/>
+</details>
+</line>
+<line number="5">
+<description>Olympic finalist</description>
+<details>
+<detail disciplines="1500" year="2012"/>
+</details>
+</line>
+<line number="6">
+<description>All Africa Games Champion</description>
+<details>
+<detail disciplines="1500" year="2007"/>
+</details>
+</line>
+</accomplishments>
+</athlete>
+</athletes>

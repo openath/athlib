@@ -1,0 +1,33 @@
+ï»¿<?xml version="1.0" encoding="utf-8" ?>
+<athletes>
+<athlete>
+<athlete_id>125810</athlete_id>
+<birthdate>16.12.1993</birthdate>
+<birthyear>1993</birthyear>
+<firstname>Thiago</firstname>
+<lastname>Braz</lastname>
+<height>193</height>
+<weight>84</weight>
+<gender>M</gender>
+<club>CLUBE BMF/ BOVESPA</club><nationality>BRA</nationality><birthplace></birthplace><accomplishments>
+<line number="0">
+<description>Olympic Champion</description>
+<details>
+<detail disciplines="PV" year="2016"/>
+</details>
+</line>
+<line number="1">
+<description>4th at World Indoor Championships</description>
+<details>
+<detail disciplines="PV" year="2014"/>
+</details>
+</line>
+<line number="2">
+<description>World Junior Champion</description>
+<details>
+<detail disciplines="PV" year="2012"/>
+</details>
+</line>
+</accomplishments>
+</athlete>
+</athletes>

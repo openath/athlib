@@ -1,0 +1,72 @@
+ï»¿<?xml version="1.0" encoding="utf-8" ?>
+<athletes>
+<athlete>
+<athlete_id>35783</athlete_id>
+<birthdate>07.06.1983</birthdate>
+<birthyear>1983</birthyear>
+<firstname>Piotr</firstname>
+<lastname>MaÅachowski</lastname>
+<height>194</height>
+<weight>135</weight>
+<gender>M</gender>
+<club>WKS ÅlÄsk WrocÅaw</club><nationality>POL</nationality><birthplace></birthplace><accomplishments>
+<line number="0">
+<description>World Champion</description>
+<details>
+<detail disciplines="DT" year="2015"/>
+</details>
+</line>
+<line number="1">
+<description>2 Olympic Silvers </description>
+<details>
+<detail disciplines="DT" year="2008"/>
+<detail disciplines="DT" year="2016"/>
+</details>
+</line>
+<line number="2">
+<description>2 World Championships Silvers </description>
+<details>
+<detail disciplines="DT" year="2009"/>
+<detail disciplines="DT" year="2013"/>
+</details>
+</line>
+<line number="3">
+<description>2 European Golds </description>
+<details>
+<detail disciplines="DT" year="2010"/>
+<detail disciplines="DT" year="2016"/>
+</details>
+</line>
+<line number="4">
+<description>5th at Olympic Games</description>
+<details>
+<detail disciplines="DT" year="2012"/>
+</details>
+</line>
+<line number="5">
+<description>World Championships finalist</description>
+<details>
+<detail disciplines="DT" year="2011"/>
+</details>
+</line>
+<line number="6">
+<description>World Championships finalist</description>
+<details>
+<detail disciplines="DT" year="2007"/>
+</details>
+</line>
+<line number="7">
+<description>European U23 Championships Silver Medallist</description>
+<details>
+<detail disciplines="DT" year="2005"/>
+</details>
+</line>
+<line number="8">
+<description>6th at World Junior Championships</description>
+<details>
+<detail disciplines="DT1.75" year="2002"/>
+</details>
+</line>
+</accomplishments>
+</athlete>
+</athletes>

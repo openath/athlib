@@ -1,0 +1,39 @@
+ï»¿<?xml version="1.0" encoding="utf-8" ?>
+<athletes>
+<athlete>
+<athlete_id>135266</athlete_id>
+<birthdate>02.06.1996</birthdate>
+<birthyear>1996</birthyear>
+<firstname>Matt</firstname>
+<lastname>Denny</lastname>
+<height>195</height>
+<weight>115</weight>
+<gender>M</gender>
+<club></club><nationality>AUS</nationality><birthplace></birthplace><accomplishments>
+<line number="0">
+<description>World Youth Champion</description>
+<details>
+<detail disciplines="DT1.5" year="2013"/>
+</details>
+</line>
+<line number="1">
+<description>World Youth Championships Bronze Medallist</description>
+<details>
+<detail disciplines="HT5" year="2013"/>
+</details>
+</line>
+<line number="2">
+<description>World University Games Silver Medallist</description>
+<details>
+<detail disciplines="DT" year="2015"/>
+</details>
+</line>
+<line number="3">
+<description>4th at World Junior Championships</description>
+<details>
+<detail disciplines="DT1.75" year="2014"/>
+</details>
+</line>
+</accomplishments>
+</athlete>
+</athletes>

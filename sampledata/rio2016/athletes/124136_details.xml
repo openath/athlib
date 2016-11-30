@@ -1,0 +1,39 @@
+ï»¿<?xml version="1.0" encoding="utf-8" ?>
+<athletes>
+<athlete>
+<athlete_id>124136</athlete_id>
+<birthdate>06.07.1991</birthdate>
+<birthyear>1991</birthyear>
+<firstname>Philip</firstname>
+<lastname>Milanov</lastname>
+<height>191</height>
+<weight>118</weight>
+<gender>M</gender>
+<club></club><nationality>BEL</nationality><birthplace></birthplace><accomplishments>
+<line number="0">
+<description>World Championships Silver Medallist</description>
+<details>
+<detail disciplines="DT" year="2015"/>
+</details>
+</line>
+<line number="1">
+<description>European Silver Medallist</description>
+<details>
+<detail disciplines="DT" year="2016"/>
+</details>
+</line>
+<line number="2">
+<description>Olympic finalist</description>
+<details>
+<detail disciplines="DT" year="2016"/>
+</details>
+</line>
+<line number="3">
+<description>World University Games Champion</description>
+<details>
+<detail disciplines="DT" year="2015"/>
+</details>
+</line>
+</accomplishments>
+</athlete>
+</athletes>

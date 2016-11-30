@@ -1,0 +1,57 @@
+ï»¿<?xml version="1.0" encoding="utf-8" ?>
+<athletes>
+<athlete>
+<athlete_id>93878</athlete_id>
+<birthdate>24.02.1991</birthdate>
+<birthyear>1991</birthyear>
+<firstname>Henrik</firstname>
+<lastname>Ingebrigtsen</lastname>
+<height>180</height>
+<weight>69</weight>
+<gender>M</gender>
+<club>Sandnes IL</club><nationality>NOR</nationality><birthplace></birthplace><accomplishments>
+<line number="0">
+<description>European Champion</description>
+<details>
+<detail disciplines="1500" year="2012"/>
+</details>
+</line>
+<line number="1">
+<description>European Silver Medallist</description>
+<details>
+<detail disciplines="1500" year="2014"/>
+</details>
+</line>
+<line number="2">
+<description>European Bronze Medallist</description>
+<details>
+<detail disciplines="1500" year="2016"/>
+</details>
+</line>
+<line number="3">
+<description>European Indoor Bronze Medallist</description>
+<details>
+<detail disciplines="3000" year="2015"/>
+</details>
+</line>
+<line number="4">
+<description>5th at Olympic Games</description>
+<details>
+<detail disciplines="1500" year="2012"/>
+</details>
+</line>
+<line number="5">
+<description>8th at World Championships</description>
+<details>
+<detail disciplines="1500" year="2013"/>
+</details>
+</line>
+<line number="6">
+<description>European U23 Champion</description>
+<details>
+<detail disciplines="5000" year="2013"/>
+</details>
+</line>
+</accomplishments>
+</athlete>
+</athletes>

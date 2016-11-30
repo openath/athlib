@@ -1,0 +1,39 @@
+ï»¿<?xml version="1.0" encoding="utf-8" ?>
+<athletes>
+<athlete>
+<athlete_id>122597</athlete_id>
+<birthdate>28.02.1994</birthdate>
+<birthyear>1994</birthyear>
+<firstname>Fedrick</firstname>
+<lastname>Dacres</lastname>
+<height>191</height>
+<weight>97</weight>
+<gender>M</gender>
+<club>UWI</club><nationality>JAM</nationality><birthplace></birthplace><accomplishments>
+<line number="0">
+<description>7th at World Championships</description>
+<details>
+<detail disciplines="DT" year="2015"/>
+</details>
+</line>
+<line number="1">
+<description>World Junior Champion</description>
+<details>
+<detail disciplines="DT1.75" year="2012"/>
+</details>
+</line>
+<line number="2">
+<description>World Youth Champion</description>
+<details>
+<detail disciplines="DT1.5" year="2011"/>
+</details>
+</line>
+<line number="3">
+<description>Pan American Games Champion</description>
+<details>
+<detail disciplines="DT" year="2015"/>
+</details>
+</line>
+</accomplishments>
+</athlete>
+</athletes>

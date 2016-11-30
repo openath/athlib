@@ -1,0 +1,51 @@
+ï»¿<?xml version="1.0" encoding="utf-8" ?>
+<athletes>
+<athlete>
+<athlete_id>134423</athlete_id>
+<birthdate>07.09.1992</birthdate>
+<birthyear>1992</birthyear>
+<firstname>Sam</firstname>
+<lastname>Kendricks</lastname>
+<height>189</height>
+<weight>79</weight>
+<gender>M</gender>
+<club></club><nationality>USA</nationality><birthplace></birthplace><accomplishments>
+<line number="0">
+<description>World Indoor Silver Medallist</description>
+<details>
+<detail disciplines="PV" year="2016"/>
+</details>
+</line>
+<line number="1">
+<description>Olympic Bronze Medallist</description>
+<details>
+<detail disciplines="PV" year="2016"/>
+</details>
+</line>
+<line number="2">
+<description>World Championships finalist</description>
+<details>
+<detail disciplines="PV" year="2015"/>
+</details>
+</line>
+<line number="3">
+<description>World University Games Champion</description>
+<details>
+<detail disciplines="PV" year="2013"/>
+</details>
+</line>
+<line number="4">
+<description>NCAA Champion</description>
+<details>
+<detail disciplines="PV" year="2014"/>
+</details>
+</line>
+<line number="5">
+<description>NCAA Champion</description>
+<details>
+<detail disciplines="PV" year="2013"/>
+</details>
+</line>
+</accomplishments>
+</athlete>
+</athletes>

@@ -1,0 +1,21 @@
+ï»¿<?xml version="1.0" encoding="utf-8" ?>
+<athletes>
+<athlete>
+<athlete_id>51913</athlete_id>
+<birthdate>16.06.1977</birthdate>
+<birthyear>1977</birthyear>
+<firstname>Sultan Mubarak</firstname>
+<lastname>Al-Dawoodi</lastname>
+<height>180</height>
+<weight>110</weight>
+<gender>M</gender>
+<club></club><nationality>KSA</nationality><birthplace></birthplace><accomplishments>
+<line number="0">
+<description>Asian Games Bronze Medallist</description>
+<details>
+<detail disciplines="DT" year="2006"/>
+</details>
+</line>
+</accomplishments>
+</athlete>
+</athletes>

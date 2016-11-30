@@ -1,0 +1,45 @@
+ï»¿<?xml version="1.0" encoding="utf-8" ?>
+<athletes>
+<athlete>
+<athlete_id>52623</athlete_id>
+<birthdate>16.04.1987</birthdate>
+<birthyear>1987</birthyear>
+<firstname>GermÃ¡n</firstname>
+<lastname>Chiaraviglio</lastname>
+<height>192</height>
+<weight>77</weight>
+<gender>M</gender>
+<club>SPORT CLUB CATANIA A.S.D.</club><nationality>ARG</nationality><birthplace></birthplace><accomplishments>
+<line number="0">
+<description>Olympic finalist</description>
+<details>
+<detail disciplines="PV" year="2016"/>
+</details>
+</line>
+<line number="1">
+<description>World Championships finalist</description>
+<details>
+<detail disciplines="PV" year="2015"/>
+</details>
+</line>
+<line number="2">
+<description>World Junior Champion</description>
+<details>
+<detail disciplines="PV" year="2006"/>
+</details>
+</line>
+<line number="3">
+<description>World Youth Champion</description>
+<details>
+<detail disciplines="PV" year="2003"/>
+</details>
+</line>
+<line number="4">
+<description>World Junior Championships Silver Medallist</description>
+<details>
+<detail disciplines="PV" year="2004"/>
+</details>
+</line>
+</accomplishments>
+</athlete>
+</athletes>

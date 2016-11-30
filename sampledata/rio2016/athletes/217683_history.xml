@@ -1,0 +1,54 @@
+ï»¿<?xml version="1.0" encoding="utf-8" ?>
+<results>
+<result>
+<athlete_id>217683</athlete_id>
+<gender>M</gender>
+<personalBest>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>1500</event>
+<result>4:03.96</result>
+<wind></wind>
+<rank>11</rank>
+<round>h2</round>
+<roundstage>Prelim</roundstage>
+<agegroup></agegroup>
+<competition_ID>12877460</competition_ID>
+<compName></compName>
+<date>2016-08-16</date>
+<venue>RÃ­o de Janeiro</venue>
+<venueCountry>BRA</venueCountry>
+</personalBest>
+<seasonalBest>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>1500</event>
+<result>4:03.96</result>
+<wind></wind>
+<rank>11</rank>
+<round>h2</round>
+<roundstage>Prelim</roundstage>
+<agegroup></agegroup>
+<competition_ID>12877460</competition_ID>
+<compName></compName>
+<date>2016-08-16</date>
+<venue>RÃ­o de Janeiro</venue>
+<venueCountry>BRA</venueCountry>
+</seasonalBest>
+<athleteresulthistory>
+<record>
+<IndoorOutdoor>Outdoor</IndoorOutdoor>
+<event>1500</event>
+<result>4:03.96</result>
+<wind></wind>
+<rank>11</rank>
+<round>h2</round>
+<roundstage>Prelim</roundstage>
+<agegroup></agegroup>
+<competition_ID>12877460</competition_ID>
+<compName></compName>
+<date>2016-08-16</date>
+<venue>RÃ­o de Janeiro</venue>
+<venueCountry>BRA</venueCountry>
+</record>
+</athleteresulthistory>
+</result>
+</results>

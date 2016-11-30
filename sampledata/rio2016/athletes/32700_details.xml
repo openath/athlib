@@ -1,0 +1,63 @@
+ï»¿<?xml version="1.0" encoding="utf-8" ?>
+<athletes>
+<athlete>
+<athlete_id>32700</athlete_id>
+<birthdate>25.04.1983</birthdate>
+<birthyear>1983</birthyear>
+<firstname>Nick</firstname>
+<lastname>Willis</lastname>
+<height>183</height>
+<weight>68</weight>
+<gender>M</gender>
+<club>WEL</club><nationality>NZL</nationality><birthplace></birthplace><accomplishments>
+<line number="0">
+<description>Olympic Silver Medallist</description>
+<details>
+<detail disciplines="1500" year="2008"/>
+</details>
+</line>
+<line number="1">
+<description>Olympic Bronze Medallist</description>
+<details>
+<detail disciplines="1500" year="2016"/>
+</details>
+</line>
+<line number="2">
+<description>World Indoor Bronze Medallist</description>
+<details>
+<detail disciplines="1500" year="2016"/>
+</details>
+</line>
+<line number="3">
+<description>6th at World Championships</description>
+<details>
+<detail disciplines="1500" year="2015"/>
+</details>
+</line>
+<line number="4">
+<description>Olympic finalist</description>
+<details>
+<detail disciplines="1500" year="2012"/>
+</details>
+</line>
+<line number="5">
+<description>World Championships finalist</description>
+<details>
+<detail disciplines="1500" year="2011"/>
+</details>
+</line>
+<line number="6">
+<description>World Championships finalist</description>
+<details>
+<detail disciplines="1500" year="2007"/>
+</details>
+</line>
+<line number="7">
+<description>NCAA Indoor Champion</description>
+<details>
+<detail disciplines="Mile" year="2005"/>
+</details>
+</line>
+</accomplishments>
+</athlete>
+</athletes>

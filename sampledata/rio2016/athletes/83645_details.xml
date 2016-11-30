@@ -1,0 +1,21 @@
+ï»¿<?xml version="1.0" encoding="utf-8" ?>
+<athletes>
+<athlete>
+<athlete_id>83645</athlete_id>
+<birthdate>05.08.1989</birthdate>
+<birthyear>1989</birthyear>
+<firstname>Daniel</firstname>
+<lastname>Jasinski</lastname>
+<height>207</height>
+<weight>125</weight>
+<gender>M</gender>
+<club>TV Wattenscheid</club><nationality>GER</nationality><birthplace></birthplace><accomplishments>
+<line number="0">
+<description>Olympic Bronze Medallist</description>
+<details>
+<detail disciplines="DT" year="2016"/>
+</details>
+</line>
+</accomplishments>
+</athlete>
+</athletes>

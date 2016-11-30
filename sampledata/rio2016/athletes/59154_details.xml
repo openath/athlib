@@ -1,0 +1,45 @@
+ï»¿<?xml version="1.0" encoding="utf-8" ?>
+<athletes>
+<athlete>
+<athlete_id>59154</athlete_id>
+<birthdate>02.10.1987</birthdate>
+<birthyear>1987</birthyear>
+<firstname>Jorge</firstname>
+<lastname>FernÃ¡ndez</lastname>
+<height>190</height>
+<weight>100</weight>
+<gender>M</gender>
+<club>Mtz</club><nationality>CUB</nationality><birthplace></birthplace><accomplishments>
+<line number="0">
+<description>8th at World Championships</description>
+<details>
+<detail disciplines="DT" year="2011"/>
+</details>
+</line>
+<line number="1">
+<description>Olympic finalist</description>
+<details>
+<detail disciplines="DT" year="2012"/>
+</details>
+</line>
+<line number="2">
+<description>World Championships finalist</description>
+<details>
+<detail disciplines="DT" year="2013"/>
+</details>
+</line>
+<line number="3">
+<description>Pan American Games Champion</description>
+<details>
+<detail disciplines="DT" year="2011"/>
+</details>
+</line>
+<line number="4">
+<description>5th at World Junior Championships</description>
+<details>
+<detail disciplines="DT1.75" year="2006"/>
+</details>
+</line>
+</accomplishments>
+</athlete>
+</athletes>

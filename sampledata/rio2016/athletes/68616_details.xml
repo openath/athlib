@@ -1,0 +1,45 @@
+ï»¿<?xml version="1.0" encoding="utf-8" ?>
+<athletes>
+<athlete>
+<athlete_id>68616</athlete_id>
+<birthdate>15.04.1991</birthdate>
+<birthyear>1991</birthyear>
+<firstname>Mykyta</firstname>
+<lastname>Nesterenko</lastname>
+<height>208</height>
+<weight>115</weight>
+<gender>M</gender>
+<club>ÐÐ½ÑÐ¿ÑÐ¾Ð¿ÐµÑÑÐ¾Ð²ÑÑÐºÐ°</club><nationality>UKR</nationality><birthplace></birthplace><accomplishments>
+<line number="0">
+<description>World Youth Champion</description>
+<details>
+<detail disciplines="DT1.5" year="2007"/>
+</details>
+</line>
+<line number="1">
+<description>World Junior Championships Bronze Medallist</description>
+<details>
+<detail disciplines="DT1.75" year="2008"/>
+</details>
+</line>
+<line number="2">
+<description>European Junior Champion</description>
+<details>
+<detail disciplines="DT1.75" year="2009"/>
+</details>
+</line>
+<line number="3">
+<description>European U23 Championships Silver Medallist</description>
+<details>
+<detail disciplines="DT" year="2011"/>
+</details>
+</line>
+<line number="4">
+<description>European Junior Championships Silver Medallist</description>
+<details>
+<detail disciplines="SP6" year="2009"/>
+</details>
+</line>
+</accomplishments>
+</athlete>
+</athletes>

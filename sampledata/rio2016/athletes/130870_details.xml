@@ -1,0 +1,21 @@
+ï»¿<?xml version="1.0" encoding="utf-8" ?>
+<athletes>
+<athlete>
+<athlete_id>130870</athlete_id>
+<birthdate>31.12.1990</birthdate>
+<birthyear>1990</birthyear>
+<firstname>Charles</firstname>
+<lastname>Philibert-Thiboutot</lastname>
+<height>176</height>
+<weight>62</weight>
+<gender>M</gender>
+<club>Asics Canada</club><nationality>CAN</nationality><birthplace></birthplace><accomplishments>
+<line number="0">
+<description>Pan American Games Bronze Medallist</description>
+<details>
+<detail disciplines="1500" year="2015"/>
+</details>
+</line>
+</accomplishments>
+</athlete>
+</athletes>

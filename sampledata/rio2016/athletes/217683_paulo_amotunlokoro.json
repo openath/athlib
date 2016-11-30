@@ -1,0 +1,31 @@
+{
+  "birthplace": null, 
+  "weight": null, 
+  "firstname": "Paulo", 
+  "club": null, 
+  "lastname": "Amotun Lokoro", 
+  "results": {
+    "athleteresulthistory": {
+      "competition_ID": "12877460", 
+      "compName": null, 
+      "roundstage": "Prelim", 
+      "venue": "R\u00c3\u00ado de Janeiro", 
+      "IndoorOutdoor": "Outdoor", 
+      "agegroup": null, 
+      "venueCountry": "BRA", 
+      "rank": "11", 
+      "event": "1500", 
+      "result": "4:03.96", 
+      "date": "2016-08-16", 
+      "round": "h2", 
+      "wind": null
+    }
+  }, 
+  "athlete_id": "217683", 
+  "birthdate": null, 
+  "height": null, 
+  "birthyear": "1993", 
+  "accomplishments": "\n", 
+  "gender": "M", 
+  "nationality": "SSD"
+}

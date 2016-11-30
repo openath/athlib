@@ -1,0 +1,51 @@
+ï»¿<?xml version="1.0" encoding="utf-8" ?>
+<athletes>
+<athlete>
+<athlete_id>134295</athlete_id>
+<birthdate>27.05.1994</birthdate>
+<birthyear>1994</birthyear>
+<firstname>Shawnacy</firstname>
+<lastname>Barber</lastname>
+<height>190</height>
+<weight>82</weight>
+<gender>M</gender>
+<club></club><nationality>CAN</nationality><birthplace></birthplace><accomplishments>
+<line number="0">
+<description>World Champion</description>
+<details>
+<detail disciplines="PV" year="2015"/>
+</details>
+</line>
+<line number="1">
+<description>4th at World Indoor Championships</description>
+<details>
+<detail disciplines="PV" year="2016"/>
+</details>
+</line>
+<line number="2">
+<description>Olympic finalist</description>
+<details>
+<detail disciplines="PV" year="2016"/>
+</details>
+</line>
+<line number="3">
+<description>World Junior Championships Bronze Medallist</description>
+<details>
+<detail disciplines="PV" year="2012"/>
+</details>
+</line>
+<line number="4">
+<description>Pan American Games Champion</description>
+<details>
+<detail disciplines="PV" year="2015"/>
+</details>
+</line>
+<line number="5">
+<description>NCAA Champion</description>
+<details>
+<detail disciplines="PV" year="2015"/>
+</details>
+</line>
+</accomplishments>
+</athlete>
+</athletes>

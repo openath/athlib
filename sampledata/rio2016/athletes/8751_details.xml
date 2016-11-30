@@ -1,0 +1,45 @@
+ï»¿<?xml version="1.0" encoding="utf-8" ?>
+<athletes>
+<athlete>
+<athlete_id>8751</athlete_id>
+<birthdate>16.09.1980</birthdate>
+<birthyear>1980</birthyear>
+<firstname>Daichi</firstname>
+<lastname>Sawano</lastname>
+<height>183</height>
+<weight>75</weight>
+<gender>M</gender>
+<club>å¯å£«é</club><nationality>JPN</nationality><birthplace></birthplace><accomplishments>
+<line number="0">
+<description>7th at Olympic Games</description>
+<details>
+<detail disciplines="PV" year="2016"/>
+</details>
+</line>
+<line number="1">
+<description>8th at World Championships</description>
+<details>
+<detail disciplines="PV" year="2005"/>
+</details>
+</line>
+<line number="2">
+<description>World Championships finalist</description>
+<details>
+<detail disciplines="PV" year="2009"/>
+</details>
+</line>
+<line number="3">
+<description>Asian Games Champion</description>
+<details>
+<detail disciplines="PV" year="2006"/>
+</details>
+</line>
+<line number="4">
+<description>Asian Games Silver Medallist</description>
+<details>
+<detail disciplines="PV" year="2014"/>
+</details>
+</line>
+</accomplishments>
+</athlete>
+</athletes>
