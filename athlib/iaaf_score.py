@@ -122,10 +122,10 @@ def _scoring_objects_create():
 def score(gender, event_code, value):
     """Function to determine IAAF score, based on gender, event and performance.
 
-    In the interface, we assume performance is <seconds> for track events, 
+    In the interface, we assume performance is <seconds> for track events,
     and <metres> for throws and jumps. Ihe the Wikipedia-sourced factors,
-    jumps are <centimetres>.  Therefore there is a factor of 100 applied at the end.
-
+    jumps are <centimetres>.  Therefore there is a factor of 100 applied at the
+    end.
     """
     # Create _scoring_objects (lazily evaluated)
     global _scoring_objects
@@ -140,11 +140,10 @@ def score(gender, event_code, value):
     coeffs = _scoring_objects[key]
 
     # Handle based on whether jumps, throws or track event
-    
-
     if PAT_JUMPS.match(event_code):
-        #The table is expressed in centimetres in the original source
+        # The table is expressed in centimetres in the original source
         value = value * 100
+
         if value > coeffs["Z"]:
             return max(0, int(coeffs["A"] * ((value - coeffs["Z"]) **
                        coeffs["X"])))
@@ -164,12 +163,10 @@ def score(gender, event_code, value):
             return 0
 
 
-
 def unit_name(event_code):
     """Utility function to get the unit name based on event type."""
-    
     if PAT_JUMPS.match(event_code):
-        #used to be cm, but we standardised
+        # Used to be cm, but we standardised
         return "metres"
     elif PAT_THROWS.match(event_code):
         return "metres"
@@ -181,9 +178,10 @@ def performance(gender, event_code, score):
     """Function to determine performance required to achieve IAAF score, given
     gender and event.
 
-    In the interface, we assume performance is <seconds> for track events, 
+    In the interface, we assume performance is <seconds> for track events,
     and <metres> for throws and jumps. Ihe the Wikipedia-sourced factors,
-    jumps are <centimetres>.  Therefore there is a factor of 100 applied at the end.
+    jumps are <centimetres>.  Therefore there is a factor of 100 applied at the
+    end.
     """
     # Create _scoring_objects (lazily evaluated)
     global _scoring_objects
@@ -200,7 +198,6 @@ def performance(gender, event_code, score):
 
     coeffs = _scoring_objects[key]
 
-    
     if PAT_JUMPS.match(event_code):
         perf = int(math.ceil(((score / coeffs["A"]) **
                              (1.0 / coeffs["X"])) + coeffs["Z"]))
@@ -215,4 +212,5 @@ def performance(gender, event_code, score):
 
     if PAT_JUMPS.match(event_code):
         perf = 0.01 * perf
+
     return perf
