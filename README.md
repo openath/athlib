@@ -34,24 +34,30 @@ If working on this source, you'll need to ensure the inner package (./athlib) is
 # Documentation
 ...can be found at http://athlib.readthedocs.org/
 
-If you want to hack on athlib, look there too.  We'll move some things from below shortly, and try to keep this README very short.
+# Contributing
 
-## Age Groups
-The first Python function included has been in use in our entry system for 2 years, and has a reasonable number of tests.  It just works out age groups from a competition date and birth date.   There are three supported categories: XC, ROAD and TF.
+## Python development
 
-    >>> from athlib.uka.agegroups import calc_age_group
-    >>> from datetime import date
-    >>> calc_age_group(date(1966,3,21), date(2015,1,3), "XC", vets=False)
-    'SEN'
-    >>> calc_age_group(date(2000,1,1), date(2015,1,3), "XC", vets=False)
-    'U15'
-    >>> 
+For Python developers, please install the extra development requirements with
+```
+pip install -r dev_requirements.txt
+```
+Run tests with...
 
-The optional vets argument says whether those over 35 should return a WMA age grade (V45 etc), or just "SEN" for senior
+```
+python setup.py test
+```
 
-## IAAF scores
+Check style with 
+```
+pycodestyle --exclude=bin,lib,include,sampledata
+```
 
-These are available in Javascript, as well as Python.
+You can also copy the file `pre-commit.sample` to `.git/hooks/pre-commit`, and the two above checks will be run before any commit, and block it if they return issues.
+
+## Javascript development
+
+We're discussing the Javascript toolchain.  
 
 ## Next steps - update the documentation, so that it's auto-generated from the code
 
