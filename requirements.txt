@@ -1,2 +1,3 @@
 python-dateutil
 jsonschema
+functools32
