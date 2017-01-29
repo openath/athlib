@@ -102,6 +102,7 @@ def scoring_key(gender, event_code):
     """Utility function to get the <gender>-<event> scoring key."""
     return ("%s-%s" % (gender, event_code)).upper()
 
+
 # Lazily evaluated dictionary to map from scoring key to parameters
 _scoring_objects = None
 
