@@ -1,7 +1,0 @@
-#!/bin/bash
-if [ "True" != "`python -c "import sys; print hasattr(sys, 'real_prefix')"`" ]; then
-    echo "ATTENTION!\nYou must use this script whilst inside a virtualenv!\n"
-    exit 1
-fi
-
-python -m unittest discover -s tests

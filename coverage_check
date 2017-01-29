@@ -5,7 +5,7 @@ if [ "True" != "`python -c "import sys; print hasattr(sys, 'real_prefix')"`" ]; 
 fi
 
 
-coverage run -m unittest discover -s tests
+coverage run -m runtests
 coverage report --include=athlib/*
 coverage html --include=athlib/*
 echo "see htmlcov/index.html for details"

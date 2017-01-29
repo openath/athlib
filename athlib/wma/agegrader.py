@@ -13,6 +13,11 @@ road_info = namedtuple('road_info', 'code distance standard factors')
 
 
 class AgeGrader(object):
+    """
+    We implement an object to cache the data used for lookups.
+
+    end users will appear to be calling a function.
+    """
     min_age = 35
     max_age = 100
     data_year = "2015"
@@ -324,7 +329,3 @@ class AthlonsAgeGrader(AgeGrader):
         fac = table[self._fx][3:][self._ax1]
         return fac
 
-
-if __name__ == '__main__':
-    import doctest
-    doctest.testmod()
