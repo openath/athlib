@@ -3,6 +3,7 @@
 from .codes import PAT_THROWS, PAT_JUMPS, PAT_RELAYS, PAT_HURDLES, PAT_TRACK, \
     PAT_LEADING_DIGITS, FIELD_SORT_ORDER
 
+
 def normalize_gender(gender):
     g = gender.upper()
 
@@ -79,11 +80,11 @@ def get_distance(discipline):
         return 21098
     elif discipline == "MILE":
         return 1609
-        
+
     m = PAT_LEADING_DIGITS.match(discipline)
     if not m:
         return None
-    
+
     qty_text = m.group()
     remains = discipline[len(qty_text):]
     qty = float(qty_text)
@@ -123,11 +124,10 @@ def format_seconds_as_time(seconds, prec=0):
     return t + frac
 
 
-
 def check_performance_for_discipline(discipline, textvalue):
     """
     Fix up and return what they typed in,  or raise ValidationError
-    
+
     """
     # print "checkperf %s %s" % (discipline, repr(textvalue))
     textvalue = textvalue.strip()
@@ -143,20 +143,26 @@ def check_performance_for_discipline(discipline, textvalue):
         textvalue = textvalue.replace(";", ':')
 
     if not PAT_PERF.match(textvalue):
-        raise ValidationError("Illegal numeric pattern.  Use digits, ':' and '.' only")
+        raise ValidationError(
+            "Illegal numeric pattern.  Use digits, ':' and '.' only")
 
     if discipline in FIELD_EVENTS:
         try:
             distance = float(textvalue)
             return "%0.2f" % distance
         except ValueError:
-            raise ValidationError("'%s' is not valid for length/height. Use metres/centimetres e.g. '2.34'" % textvalue)
+            raise ValidationError(
+                "'%s' is not valid for length/height. Use "
+                "metres/centimetres e.g. '2.34'" % textvalue
+            )
 
     elif discipline.upper() in MULTI_EVENTS:
         try:
             points = int(textvalue)
         except ValueError:
-            raise ValidationError("'%s' is not a valid points value for multi-events" % textvalue)
+            raise ValidationError(
+                "'%s' is not a valid points value for multi-events"
+                % textvalue)
         if points < 500:
             raise ValidationError("Multi-events scores should be above 500")
         if points > 9999:
@@ -173,18 +179,20 @@ def check_performance_for_discipline(discipline, textvalue):
         if textvalue.startswith("00:"):
             textvalue = textvalue[3:]
 
-        if distance and (distance <= 200) and (":" in textvalue) and ("." not in textvalue):
+        if distance and (distance <= 200) and (":" in textvalue) \
+                and ("." not in textvalue):
             # print "fixing colon to stop "
             textvalue = textvalue.replace(":", ".")
 
         if discipline in ["800m", "1500m", "3000m"]:
             if "." not in textvalue:
                 chunks = textvalue.split(":")
-                if len(chunks) == 3:   
+                if len(chunks) == 3:
                     textvalue = chunks[0] + ':' + chunks[1] + "." + chunks[2]
-                    # we got hours/mins/secs, should have been min/sec + fraction
+                    # we got hours/mins/secs, should have been min/sec +
+                    # fraction
 
-        # #Now perform brain surgery for the idiots who think 2.33 is an 800m time, not 2:33
+        # Brain surgery for the idiots who think 2.33 is a valid 800m time
         # if expect_minutes and (':' not in textvalue) and ('.' in textvalue):
         #     textvalue = textvalue.replace('.', ':')
         # caught false positives
@@ -205,42 +213,56 @@ def check_performance_for_discipline(discipline, textvalue):
                 minutes = int(mm)
                 seconds = float(ss)
             else:
-                raise ValidationError("Ultra-distance events beyond 24 hours not supported, sorry ;-) Try less colons.")
+                raise ValidationError(
+                    "Ultra-distance events beyond 24 hours not supported"
+                    ", sorry ;-) Try less colons."
+                )
 
         except ValueError:
-            raise ValidationError("%s not valid for %s" % (textvalue, discipline))
+            raise ValidationError("%s not valid for %s" %
+                                  (textvalue, discipline))
 
         if (minutes == 0) and (seconds >= 100):
-            raise ValidationError("Please use mm:ss or h:mm:ss for times above 99 seconds") 
+            raise ValidationError(
+                "Please use mm:ss or h:mm:ss for times above 99 seconds")
 
         if distance == 400 and minutes > 45:
             "63:40 instead of 63.40"
-            seconds = minutes + 0.01*seconds
+            seconds = minutes + 0.01 * seconds
             hours = 0
             minutes = 0
 
-        duration = 3600*hours + 60 * minutes + seconds
+        duration = 3600 * hours + 60 * minutes + seconds
         # print "duration: %0.2f seconds" % duration
 
-        # do sanity checks.  Over 11 metres per second is pretty fishy for a sprint
+        # do sanity checks.  Over 11 metres per second is pretty fishy for a
+        # sprint
         if distance and duration:
 
-            velocity = distance * 1.0 / duration 
-            # print 'distance = %0.2d, duration = %d sec, velocity = %0.2f m/s' % (distance, duration, velocity)
+            velocity = distance * 1.0 / duration
+            # print 'distance = %0.2d, duration = %d sec, velocity = %0.2f m/s'
+            # % (distance, duration, velocity)
             if distance <= 400:
                 if velocity > 11.0:
-                    raise ValidationError("%s too fast for %s, check the format" % (textvalue, discipline))
+                    raise ValidationError(
+                        "%s too fast for %s, check the format" %
+                        (textvalue, discipline))
             elif distance > 400:
                 if velocity > 10.0:
-                    raise ValidationError("%s too fast for %s, check the format" % (textvalue, discipline))
+                    raise ValidationError(
+                        "%s too fast for %s, check the format" %
+                        (textvalue, discipline))
 
             if velocity < 0.5:
-                raise ValidationError("%s too slow for %s, check the format" % (textvalue, discipline))
+                raise ValidationError(
+                    "%s too slow for %s, check the format" %
+                    (textvalue, discipline))
 
-        else: 
+        else:
             if discipline.upper() == 'XC':
                 if not minutes:
-                    raise ValidationError("Please use mm:ss for minutes and seconds, not mm.ss")                    
+                    raise ValidationError(
+                        "Please use mm:ss for minutes and seconds, not mm.ss")
 
         # Format consistently for output
         if hours and minutes:
@@ -270,7 +292,6 @@ def event_sort_key(event_name):
     if not event_name:
         return
 
-
     m = PAT_THROWS.search(event_name)
     if m:
         order = FIELD_SORT_ORDER.index(event_name[0:2])
@@ -280,7 +301,7 @@ def event_sort_key(event_name):
     if m:
         distance = int(m.group(1))
         return 2, distance, event_name
-    
+
     m = PAT_JUMPS.search(event_name)
     if m:
         order = FIELD_SORT_ORDER.index(event_name[0:2])
@@ -291,7 +312,6 @@ def event_sort_key(event_name):
         distance = int(m.group(2))
         return 5, distance, event_name
 
-
     # track last, so '100' doesn't match before '100H'
     m = PAT_TRACK.search(event_name)
     if m:
@@ -301,9 +321,11 @@ def event_sort_key(event_name):
     # anything else sorts to end
     return 6, 0, event_name
 
+
 def text_event_sort_key(event_name):
     "Return a text version of the event_sort_key"
     return "%d_%05d_%s" % event_sort_key(event_name)
+
 
 def sort_by_discipline(stuff, attr="discipline"):
     "Sort dicts or objects into the normal athletics order"
@@ -311,7 +333,7 @@ def sort_by_discipline(stuff, attr="discipline"):
     sorter = []
     for thing in stuff:
         disc = thing.get(attr, None)
-        if disc is None:  #try again as objects
+        if disc is None:  # try again as objects
             disc = getattr(thing, attr, None)
         priority = event_sort_key(disc)
         sorter.append((priority, thing))

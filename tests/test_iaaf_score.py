@@ -19,6 +19,12 @@ class IaafScoreTests(TestCase):
         self.assertEquals(performance("F", "JT", 700), 41.68)
         self.assertEquals(performance("M", "PV", 1284), 6.16)
 
+        #You need 1m to score 0, so that's what you get back
+        self.assertEquals(performance("M", "PV", 0), 1.0)
+        self.assertEquals(performance("M", "PV", -100), 1.0)
+        self.assertEquals(performance("M", "NA", 500), None)
+
+
     def test_scoring_key(self):
         """
         Test the function to calculate the scoring key from the gender and
@@ -42,6 +48,11 @@ class IaafScoreTests(TestCase):
         self.assertEquals(score("M", "WT", 1), 0)
         self.assertEquals(score("F", "JT", 41.68), 700)
         self.assertEquals(score("M", "PV", 6.16), 1284)
+
+        self.assertEquals(score("M", "LJ", 0.5), 0)
+        self.assertEquals(score("M", "100", 45), 0)
+
+        self.assertEquals(score("?", "NA", 42), None)
 
     def test_unit_name(self):
         """Test the unit names for jumps, throws and track events."""

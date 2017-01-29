@@ -195,7 +195,7 @@ def performance(gender, event_code, score):
 
     # Drop out if no coefficients defined (e.g. bad event/gender)
     if key not in _scoring_objects:
-        perf = None
+        return None
 
     coeffs = _scoring_objects[key]
 

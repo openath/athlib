@@ -8,13 +8,12 @@ THROWS = ("DT", "JT", "HT", "SP", "WT")
 MULTI_EVENTS = ("PEN", "HEP", "DEC", "PENI", "PENWT")
 FIELD_EVENTS = JUMPS + THROWS
 
-#When listing field events, the Blazer Brigade suggest this should be the order
+# When listing field events, the Blazer Brigade suggest this should be the
+# order
 FIELD_SORT_ORDER = ["HJ", "PV", "LJ", "TJ", "SP", "DT", "HT", "JT"]
 
 
-
-
-# Patterns allow both for generic (JT = Javelin Throw) and 
+# Patterns allow both for generic (JT = Javelin Throw) and
 # weight-specific (JT800) patterns.
 _ = r"\d\.?\d*K"
 PAT_THROWS = re.compile((r"^(?:WT(P<wtnum>\d?%s|)|JT(P<jtnum>[45678]00|)|"
@@ -31,11 +30,9 @@ del _
 PAT_RUN = re.compile("%s|%s" % (PAT_TRACK.pattern, PAT_ROAD.pattern))
 PAT_FIELD = re.compile("%s|%s" % (PAT_THROWS.pattern, PAT_JUMPS.pattern))
 
-#Although part of PAT_RUN, these 
+# Although part of PAT_RUN, these
 PAT_RELAYS = re.compile("(\d{1,2})x(\d{2,5})")   # 4x100, 4x400
 PAT_HURDLES = re.compile("(\d{2,4})(H|SC)")  # 80H, 110H, 400H
 
 PAT_LEADING_DIGITS = re.compile("^\d+")
 PAT_PERF = re.compile("^(\d{1,2}:)?(\d{1,2}:)?(\d{1,2})(\.?\d+)?$")
-
-
