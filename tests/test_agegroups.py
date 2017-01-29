@@ -20,8 +20,8 @@ class SimpleTest(TestCase):
 
 
 class AgeGroupTests(TestCase):
-    def assertAgeGroup(self, dob, match_date, category, expected):
-        ag = calc_age_group(dob, match_date, category)
+    def assertAgeGroup(self, dob, match_date, category, expected, vets=True, underage=False):
+        ag = calc_age_group(dob, match_date, category, vets=vets, underage=underage)
         self.assertEquals(ag,
                           expected,
                           ("Unexpected age group, expected %s but got %s" %
@@ -236,5 +236,50 @@ class AgeGroupTests(TestCase):
         #                    "'%s'") % (trimmed, ag))
 
 
+    def test_parse_date(self):
+        self.assertAgeGroup("2005-10-31",
+                            date(2014, 10, 31),
+                            "TF",
+                            "U11")
+        self.assertAgeGroup("2005-10-31",
+                            date(2014, 10, 31),
+                            "XC",
+                            "U11")
+
+    def test_underage(self):
+        "To get less than U11, pass underage=True"
+        self.assertAgeGroup("2010-10-31",
+                            date(2017, 10, 31),
+                            "TF",
+                            "U9",
+                            underage=True)
+
+        self.assertAgeGroup("2010-10-31",
+                            date(2017, 10, 31),
+                            "XC",
+                            "U9",
+                            underage=True)
+
+    def test_vets(self):
+        self.assertAgeGroup("1966-03-21",
+                            date(2017, 05, 12),
+                            "TF",
+                            "V50",
+                            vets=True)
+
+        self.assertAgeGroup("1966-03-21",
+                            date(2017, 05, 12),
+                            "TF",
+                            "SEN",
+                            vets=False
+                            )
+
+
+    def test_esaa(self):
+        "English Schools Age Groups not implemented yet"
+        self.assertRaises(NotImplementedError,
+            calc_age_group,
+            "2000-01-01", "2017-05-31", "ESAA"
+            )
 if __name__ == '__main__':
     main()
