@@ -19,5 +19,5 @@ def my_test_suite():
     return test_suite
 
 
-if __name__=='__main__':
- 	unittest.TextTestRunner().run(my_test_suite())
+if __name__ == '__main__':
+    unittest.TextTestRunner().run(my_test_suite())

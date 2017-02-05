@@ -1,2 +1,2 @@
 #!/bin/sh
-pycodestyle --exclude=bin,lib,include,sampledata,tests && python setup.py test
+pycodestyle --exclude=bin,docs,lib,include,sampledata,tests && python setup.py test

@@ -328,4 +328,3 @@ class AthlonsAgeGrader(AgeGrader):
         self.find_age(int(age / 5) * 5, ages, interpolate=False)
         fac = table[self._fx][3:][self._ax1]
         return fac
-

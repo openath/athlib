@@ -54,13 +54,13 @@ def parse_hms(t):
 
             try:
                 sec += str2num(s)
-            except:
+            except ValueError:
                 raise ValueError('cannot parse seconds from %s' % repr(t))
 
         return sec
     try:
         return str2num(t)
-    except:
+    except ValueError:
         raise ValueError('cannot parse seconds from %s' % repr(t))
 
 
@@ -199,8 +199,8 @@ def check_performance_for_discipline(discipline, textvalue):
         #     textvalue = textvalue.replace('.', ':')
         # caught false positives
         chunks = textvalue.split(":")
-        
-        #The regex ensures we have 1, 2 or 3 chunks
+
+        # The regex ensures we have 1, 2 or 3 chunks
         if len(chunks) == 1:
             hours = 0
             minutes = 0
@@ -214,7 +214,6 @@ def check_performance_for_discipline(discipline, textvalue):
             hours = int(hh)
             minutes = int(mm)
             seconds = float(ss)
-
 
         if (minutes == 0) and (seconds >= 100):
             raise ValueError(
@@ -234,8 +233,8 @@ def check_performance_for_discipline(discipline, textvalue):
         if distance and duration:
 
             velocity = distance * 1.0 / duration
-            # print 'distance = %0.2d, duration = %d sec, velocity = %0.2f m/s' % (
-            #     distance, duration, velocity)
+            # print 'distance = %0.2d, duration = %d sec,
+            #        velocity = %0.2f m/s' % (distance, duration, velocity)
             if distance <= 400:
                 if velocity > 11.0:
                     raise ValueError(
@@ -284,7 +283,7 @@ def event_sort_key(event_name):
 
     """
     if not event_name:
-        #Goes at the end
+        # Goes at the end
         return 6, 0, "?"
 
     m = PAT_THROWS.search(event_name)
@@ -329,7 +328,8 @@ def sort_by_discipline(stuff, attr="discipline"):
     for thing in stuff:
         if isinstance(thing, dict):
             disc = thing.get(attr, None)
-        else:  #assume object
+        else:
+            # assume object
             disc = getattr(thing, attr, None)
         priority = event_sort_key(disc)
         sorter.append((priority, thing))

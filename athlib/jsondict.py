@@ -80,7 +80,7 @@ class JSONListSafe(JSONList):
 
         try:
             return condJSONSafe(list.__getitem__(self, x), __name__=__name__)
-        except:
+        except KeyError:
             if mylocals.error_collect:
                 mylocals.error_collect(__name__)
 
