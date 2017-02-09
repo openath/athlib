@@ -25,10 +25,6 @@ import jsonschema.validators
 jsonschema.validators.RefResolver = LocalFileResolver
 
 
-
-
-
-
 def schema_valid(schema_file,
                  validator=jsonschema.Draft3Validator,
                  expect_failure=False):
@@ -113,6 +109,11 @@ class JsonSchemaValidityTests(TestCase):
         self.assertTrue(schema_valid("json/performance.json",
                                      validator=jsonschema.Draft4Validator))
 
+    def test_race_schema_valid(self):
+        self.assertTrue(schema_valid("json/race.json"))
+        self.assertTrue(schema_valid("json/race.json",
+                                     validator=jsonschema.Draft4Validator))
+
     def test_athlete_valid_against_schema(self):
         self.assertTrue(valid_against_schema("json/samples/athlete.json",
                                              "json/athlete.json"))
@@ -182,6 +183,12 @@ class JsonSchemaValidityTests(TestCase):
             valid_against_schema("json/samples/performance_invalid2.json",
                                  "json/performance.json",
                                  expect_failure=True)
+
+    def test_race_valid_against_schema(self):
+        pass
+
+    def test_race_invalid_against_schema(self):
+        pass
 
     def test_valid_against_metaschema(self):
         self.assertTrue(valid_against_schema("json/samples/athlete.json",

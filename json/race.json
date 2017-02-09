@@ -1,0 +1,257 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "definitions": {
+        "athlete": {
+            "description": "General personal information",
+            "type": "object",
+            "properties": {
+                "givenName": {
+                    "description": "first name for western languages",
+                    "type": "string",
+                    "minLength": 1
+                },
+                "familyName": {
+                    "description": "last name for western languages",
+                    "type": "string",
+                    "minLength": 1
+                },
+                "birthDate": {
+                    "description": "date in ISO format (e.g. 1966-03-21)",
+                    "type": "string",
+                    "minLength": 10,
+                    "maxLength": 10
+                },
+                "gender": {
+                    "description": "M or F",
+                    "enum": [
+                        "M",
+                        "F"
+                    ]
+                },
+                "nationality": {
+                    "description": "3-letter code (e.g. EST)",
+                    "type": "string",
+                    "minLength": 3,
+                    "maxLength": 3
+                },
+                "height": {
+                    "description": "height in cm",
+                    "type": "number",
+                    "minimum": 0,
+                    "exclusiveMinimum": true
+                },
+                "weight": {
+                    "description": "weight in kg",
+                    "type": "number",
+                    "minimum": 0,
+                    "exclusiveMinimum": true
+                },
+                "birthPlace": {
+                    "description": "text, town and country (e.g. 'Tallinn, Estonia')",
+                    "type": "string",
+                    "minLength": 1
+                },
+                "personalBests:": {
+                    "description": "list of performances by discipline",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "seasonsBests:": {
+                    "description": "list of performances by discipline",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "bib": {
+                    "description": "the 'number' they wear (string to allow for letters and numbers)",
+                    "type": "string",
+                    "minLength": 1
+                },
+                "ageGroup": {
+                    "description": "group for this competition (e.g. U14, SEN, V45)",
+                    "type": "string",
+                    "minLength": 1
+                },
+                "ageGender": {
+                    "description": "combined age group and gender code (e.g. U13B, SM, M45)",
+                    "type": "string",
+                    "minLength": 1
+                },
+                "category": {
+                    "description": "used for broader or different prize categories",
+                    "type": "string",
+                    "minLength": 1
+                },
+                "tags": {
+                    "description": "short list of strings",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "secondClaim": {
+                    "description": "boolean, default false or absent. Signifies an athlete whose primary club is elsewhere. Use for HCAs in British League",
+                    "type": "boolean",
+                    "default": false
+                },
+                "nonScorer": {
+                    "description": "boolean, default false or absent.  This person may not score points",
+                    "type": "boolean",
+                    "default": false
+                },
+                "athleteId": {
+                    "description": "athlete ID within whatever system you are looking at",
+                    "type": "string",
+                    "minLength":1
+                }
+            }
+        }
+    },
+    "title": "Single race results",
+    "description": "Results for multiple athletes within a single race",
+    "type": "object",
+    "allOf": [
+        {
+            "oneOf": [
+                {
+                    "positions": {
+                        "description": "Ordered list of athletes by overall position, or null for missing position",
+                        "type": "array",
+                        "items": {
+                            "oneOf": [
+                                {
+                                    "description": "Athlete, position and performance",
+                                    "type": "object",
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/definitions/athlete"
+                                        },
+                                        {
+                                            "properties": {
+                                                "rank": {
+                                                    "description": "where they finished",
+                                                    "type": "number",
+                                                    "minimum": 1,
+                                                    "multipleOf": 1
+                                                },
+                                                "points": {
+                                                    "description": "numeric or None",
+                                                    "type": [
+                                                        "number",
+                                                        "null"
+                                                    ],
+                                                    "default": null
+                                                },
+                                                "perf": {
+                                                    "description": "performance, as formatted text (e.g. '9.58', '3:26.8', '75.83')",
+                                                    "type": [
+                                                        "string",
+                                                        "null"
+                                                    ],
+                                                    "default": null
+                                                }
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": null
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "results": {
+                        "description": "Unordered list of athletes and performances",
+                        "type": "array",
+                        "items": {
+                            "description": "Athlete and performance",
+                            "type": "object",
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/athlete"
+                                },
+                                {
+                                    "properties": {
+                                        "rank": {
+                                            "description": "where they finished",
+                                            "type": "number",
+                                            "minimum": 1,
+                                            "multipleOf": 1
+                                        },
+                                        "points": {
+                                            "description": "numeric or None",
+                                            "type": [
+                                                "number",
+                                                "null"
+                                            ],
+                                            "default": null
+                                        },
+                                        "perf": {
+                                            "description": "performance, as formatted text (e.g. '9.58', '3:26.8', '75.83')",
+                                            "type": [
+                                                "string",
+                                                "null"
+                                            ],
+                                            "default": null
+                                        }
+                                    },
+                                    "required": [
+                                        "perf"
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "properties": {
+                "indoor": {
+                    "description": "boolean, default is false or absent",
+                    "type": "boolean",
+                    "default": false
+                },
+                "discipline": {
+                    "description": "standard 'event code' e.g. 200, HJ, 3000SC",
+                    "type": "string",
+                    "minLength": 1
+                },
+                "venue": {
+                    "description": "where it happened - town/track name",
+                    "type": "string",
+                    "minLength": 1
+                },
+                "country": {
+                    "description": "where it happened - country code",
+                    "type": "string",
+                    "minLength": 3,
+                    "maxLength": 3
+                },
+                "wind": {
+                    "description": "true signifies > 2.0 but we don't know speed; or a number for the speed",
+                    "type": [
+                        "string",
+                        "boolean"
+                    ],
+                    "default": false
+                },
+                "compId": {
+                    "description": "competition ID within whatever system you are looking at",
+                    "type": "string",
+                    "minLength": 1
+                },
+                "otCompId": {
+                    "description": "OpenTrack's ID for the competition",
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        }
+    ]
+}
