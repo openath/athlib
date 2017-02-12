@@ -115,96 +115,100 @@
     "type": "object",
     "allOf": [
         {
-            "oneOf": [
+            "allOf": [
                 {
-                    "positions": {
-                        "description": "Ordered list of athletes by overall position, or null for missing position",
-                        "type": "array",
-                        "items": {
-                            "oneOf": [
-                                {
-                                    "description": "Athlete, position and performance",
-                                    "type": "object",
-                                    "allOf": [
-                                        {
-                                            "$ref": "#/definitions/athlete"
-                                        },
-                                        {
-                                            "properties": {
-                                                "rank": {
-                                                    "description": "where they finished",
-                                                    "type": "number",
-                                                    "minimum": 1,
-                                                    "multipleOf": 1
-                                                },
-                                                "points": {
-                                                    "description": "numeric or None",
-                                                    "type": [
-                                                        "number",
-                                                        "null"
-                                                    ],
-                                                    "default": null
-                                                },
-                                                "perf": {
-                                                    "description": "performance, as formatted text (e.g. '9.58', '3:26.8', '75.83')",
-                                                    "type": [
-                                                        "string",
-                                                        "null"
-                                                    ],
-                                                    "default": null
+                    "properties": {
+                        "positions": {
+                            "description": "Ordered list of athletes by overall position, or null for missing position",
+                            "type": "array",
+                            "items": {
+                                "oneOf": [
+                                    {
+                                        "description": "Athlete, position and performance",
+                                        "type": "object",
+                                        "allOf": [
+                                            {
+                                                "$ref": "#/definitions/athlete"
+                                            },
+                                            {
+                                                "properties": {
+                                                    "rank": {
+                                                        "description": "where they finished",
+                                                        "type": "number",
+                                                        "minimum": 1,
+                                                        "multipleOf": 1
+                                                    },
+                                                    "points": {
+                                                        "description": "numeric or None",
+                                                        "type": [
+                                                            "number",
+                                                            "null"
+                                                        ],
+                                                        "default": null
+                                                    },
+                                                    "perf": {
+                                                        "description": "performance, as formatted text (e.g. '9.58', '3:26.8', '75.83')",
+                                                        "type": [
+                                                            "string",
+                                                            "null"
+                                                        ],
+                                                        "default": null
+                                                    }
                                                 }
                                             }
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": null
-                                }
-                            ]
+                                        ]
+                                    },
+                                    {
+                                        "type": "null"
+                                    }
+                                ]
+                            }
                         }
                     }
                 },
                 {
-                    "results": {
-                        "description": "Unordered list of athletes and performances",
-                        "type": "array",
-                        "items": {
-                            "description": "Athlete and performance",
-                            "type": "object",
-                            "allOf": [
-                                {
-                                    "$ref": "#/definitions/athlete"
-                                },
-                                {
-                                    "properties": {
-                                        "rank": {
-                                            "description": "where they finished",
-                                            "type": "number",
-                                            "minimum": 1,
-                                            "multipleOf": 1
-                                        },
-                                        "points": {
-                                            "description": "numeric or None",
-                                            "type": [
-                                                "number",
-                                                "null"
-                                            ],
-                                            "default": null
-                                        },
-                                        "perf": {
-                                            "description": "performance, as formatted text (e.g. '9.58', '3:26.8', '75.83')",
-                                            "type": [
-                                                "string",
-                                                "null"
-                                            ],
-                                            "default": null
-                                        }
+                    "properties": {
+                        "results": {
+                            "description": "Unordered list of athletes and performances",
+                            "type": "array",
+                            "items": {
+                                "description": "Athlete and performance",
+                                "type": "object",
+                                "allOf": [
+                                    {
+                                        "$ref": "#/definitions/athlete"
                                     },
-                                    "required": [
-                                        "perf"
-                                    ]
-                                }
-                            ]
+                                    {
+                                        "properties": {
+                                            "rank": {
+                                                "description": "where they finished",
+                                                "type": "number",
+                                                "minimum": 1,
+                                                "multipleOf": 1
+                                            },
+                                            "points": {
+                                                "description": "numeric or None",
+                                                "type": [
+                                                    "number",
+                                                    "null"
+                                                ],
+                                                "default": null
+                                            },
+                                            "perf": {
+                                                "description": "performance, as formatted text (e.g. '9.58', '3:26.8', '75.83')",
+                                                "type": [
+                                                    "string",
+                                                    "null"
+                                                ],
+                                                "default": null
+                                            }
+                                        },
+                                        "required": [
+                                            "perf"
+                                        ]
+                                    }
+                                ]
+                            }
                         }
                     }
                 }

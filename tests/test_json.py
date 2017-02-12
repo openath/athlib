@@ -185,7 +185,18 @@ class JsonSchemaValidityTests(TestCase):
                                  expect_failure=True)
 
     def test_race_valid_against_schema(self):
-        pass
+        self.assertTrue(valid_against_schema(
+            "json/samples/race_iffleymiles_2016_600mA.json",
+            "json/race.json"))
+        self.assertTrue(valid_against_schema(
+            "json/samples/race_iffleymiles_2016_600mB.json",
+            "json/race.json"))
+        self.assertTrue(valid_against_schema(
+            "json/samples/race_iffleymiles_2016_mileA.json",
+            "json/race.json"))
+        self.assertTrue(valid_against_schema(
+            "json/samples/race_iffleymiles_2016_mileB.json",
+            "json/race.json"))
 
     def test_race_invalid_against_schema(self):
         pass

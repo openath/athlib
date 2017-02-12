@@ -1,0 +1,87 @@
+{
+    "fullName": "Iffley Miles 2016 - 600m - A Race",
+    "shortName": "Iffley Miles - 600mA",
+    "discipline": "600",
+    "positions": [
+        {
+            "category": "SM",
+            "ageGender": "SM",
+            "givenName": "Clark",
+            "familyName": "Roberts",
+            "club": "Coventry Godiva harriers",
+            "bib": "63",
+            "rank": 1,
+            "perf": "1:29.60",
+            "categoryRank": 1
+        },
+        {
+            "category": "U15B",
+            "ageGender": "U15B",
+            "givenName": "Harrison",
+            "familyName": "Reed",
+            "club": "Marshal Milton Keynes AC",
+            "bib": "62",
+            "rank": 2,
+            "perf": "1:33.68",
+            "categoryRank": 1
+        },
+        {
+            "category": "SW",
+            "ageGender": "SW",
+            "givenName": "Kate",
+            "familyName": "Anderson",
+            "club": "City of Stoke AC",
+            "bib": "28",
+            "rank": 3,
+            "perf": "1:34.30",
+            "categoryRank": 1
+        },
+        {
+            "category": "U15B",
+            "ageGender": "U15B",
+            "givenName": "Harry",
+            "familyName": "Ewing",
+            "club": "Milton Keynes AC",
+            "bib": "66",
+            "rank": 4,
+            "perf": "1:34.97",
+            "categoryRank": 2
+        },
+        {
+            "category": "U15B",
+            "ageGender": "U15B",
+            "givenName": "Tom",
+            "familyName": "Ewing",
+            "club": "Milton Keynes AC",
+            "bib": "65",
+            "rank": 5,
+            "perf": "1:35.98",
+            "categoryRank": 3
+        },
+        {
+            "category": "U15G",
+            "ageGender": "U15G",
+            "givenName": "Orla",
+            "familyName": "Brennan",
+            "club": "Windsor Slough Eton & Hounslow AC",
+            "bib": "67",
+            "rank": 6,
+            "perf": "1:38.97",
+            "categoryRank": 1
+        },
+        {
+            "category": "U15G",
+            "ageGender": "U15G",
+            "givenName": "Daisy",
+            "familyName": "Palmer",
+            "club": "Oxford City AC",
+            "bib": "69",
+            "rank": 7,
+            "perf": "1:42.31",
+            "categoryRank": 2
+        }
+    ],
+    "venue": "Iffley Road Athletics Stadium, Iffley Road, Oxford",
+    "startDate": "2016-07-23",
+    "compId": "iffleymilesT01"
+}

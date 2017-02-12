@@ -1,0 +1,73 @@
+{
+    "fullName": "Iffley Miles 2016 - mile - B Race",
+    "shortName": "Iffley Miles - mileB",
+    "discipline": "1M",
+    "results": [
+        {
+            "nonScorer": false,
+            "bib": "95",
+            "rank": 1,
+            "perf": "4:40.84",
+            "categoryRank": 1
+        },
+        {
+            "nonScorer": false,
+            "bib": "91",
+            "rank": 2,
+            "perf": "4:47.26",
+            "categoryRank": 2
+        },
+        {
+            "nonScorer": false,
+            "bib": "92",
+            "rank": 3,
+            "perf": "4:50.17",
+            "categoryRank": 3
+        },
+        {
+            "nonScorer": false,
+            "bib": "90",
+            "rank": 4,
+            "perf": "4:53.14",
+            "categoryRank": 4
+        },
+        {
+            "nonScorer": false,
+            "bib": "100",
+            "rank": 5,
+            "perf": "4:59.98",
+            "categoryRank": 5
+        },
+        {
+            "nonScorer": false,
+            "bib": "34",
+            "rank": 6,
+            "perf": "5:01.30",
+            "categoryRank": 6
+        },
+        {
+            "nonScorer": false,
+            "bib": "96",
+            "rank": 7,
+            "perf": "5:07.80",
+            "categoryRank": 7
+        },
+        {
+            "nonScorer": false,
+            "bib": "88",
+            "rank": 8,
+            "perf": "5:08.87",
+            "categoryRank": 8
+        },
+        {
+            "nonScorer": false,
+            "bib": "94",
+            "rank": 9,
+            "perf": "5:21.50",
+            "categoryRank": 9
+        }
+    ],
+    "venue": "Iffley Road Athletics Stadium, Iffley Road, Oxford",
+    "startDate": "2016-07-23",
+    "compId": "iffleymilesT04"
+}

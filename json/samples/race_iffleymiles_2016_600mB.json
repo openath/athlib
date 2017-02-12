@@ -1,0 +1,76 @@
+{
+    "fullName": "Iffley Miles 2016 - 600m - B Race",
+    "shortName": "Iffley Miles - 600mB",
+    "discipline": "600",
+    "results": [
+        {
+            "category": "U15B",
+            "ageGender": "U15B",
+            "givenName": "Oliver",
+            "familyName": "Henry",
+            "club": "Marshal Milton Keynes AC",
+            "bib": "74",
+            "rank": 1,
+            "perf": "1:39.5",
+            "categoryRank": 1
+        },
+        {
+            "category": "M50",
+            "ageGender": "M50",
+            "givenName": "Phil",
+            "familyName": "Gray",
+            "club": "Oxford City AC",
+            "bib": "72",
+            "rank": 2,
+            "perf": "1:50.9",
+            "categoryRank": 1
+        },
+        {
+            "category": "U13B",
+            "ageGender": "U13B",
+            "givenName": "Robert",
+            "familyName": "Everett",
+            "club": "Milton Keynes AC",
+            "bib": "70",
+            "rank": 3,
+            "perf": "1:50.9",
+            "categoryRank": 1
+        },
+        {
+            "category": "U13B",
+            "ageGender": "U13B",
+            "givenName": "Ollie",
+            "familyName": "Ewing",
+            "club": "Milton Keynes AC",
+            "bib": "76",
+            "rank": 4,
+            "perf": "1:52.0",
+            "categoryRank": 2
+        },
+        {
+            "category": "U13G",
+            "ageGender": "U13G",
+            "givenName": "Emily",
+            "familyName": "Haines-Gray",
+            "club": "Oxford City AC",
+            "bib": "73",
+            "rank": 5,
+            "perf": "1:53.2",
+            "categoryRank": 1
+        },
+        {
+            "category": "U13G",
+            "ageGender": "U13G",
+            "givenName": "Alice",
+            "familyName": "Channon",
+            "club": "Oxford City AC",
+            "bib": "78",
+            "rank": 6,
+            "perf": "1:58.0",
+            "categoryRank": 2
+        }
+    ],
+    "venue": "Iffley Road Athletics Stadium, Iffley Road, Oxford",
+    "startDate": "2016-07-23",
+    "compId": "iffleymilesT02"
+}
