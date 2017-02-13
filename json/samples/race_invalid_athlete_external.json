@@ -1,0 +1,26 @@
+{
+    "fullName": "Iffley Miles 2016 - 600m - B Race",
+    "shortName": "Iffley Miles - 600mB",
+    "discipline": "600",
+    "athletes": [
+        {
+            "category": "U15B",
+            "ageGender": "U15B",
+            "givenName": "Oliver",
+            "familyName": "Henry",
+            "club": "Marshal Milton Keynes AC",
+            "bib": 74
+        }
+    ],
+    "results": [
+        {
+            "bib": "74",
+            "rank": 1,
+            "perf": "1:39.5",
+            "categoryRank": 1
+        }
+    ],
+    "venue": "Iffley Road Athletics Stadium, Iffley Road, Oxford",
+    "startDate": "2016-07-23",
+    "compId": "iffleymilesT02"
+}

@@ -199,7 +199,27 @@ class JsonSchemaValidityTests(TestCase):
             "json/race.json"))
 
     def test_race_invalid_against_schema(self):
-        pass
+        with self.assertRaises(ValidationError):
+            valid_against_schema(
+                "json/samples/race_invalid_athlete_internal.json",
+                "json/race.json",
+                expect_failure=True)
+
+        with self.assertRaises(ValidationError):
+            valid_against_schema(
+                "json/samples/race_invalid_athlete_external.json",
+                "json/race.json",
+                expect_failure=True)
+
+        with self.assertRaises(ValidationError):
+            valid_against_schema("json/samples/race_invalid_position.json",
+                                 "json/race.json",
+                                 expect_failure=True)
+
+        with self.assertRaises(ValidationError):
+            valid_against_schema("json/samples/race_invalid_result.json",
+                                 "json/race.json",
+                                 expect_failure=True)
 
     def test_valid_against_metaschema(self):
         self.assertTrue(valid_against_schema("json/samples/athlete.json",

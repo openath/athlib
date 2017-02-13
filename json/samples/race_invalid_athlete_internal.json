@@ -1,0 +1,21 @@
+{
+    "fullName": "Iffley Miles 2016 - 600m - A Race",
+    "shortName": "Iffley Miles - 600mA",
+    "discipline": "600",
+    "positions": [
+        {
+            "category": "SM",
+            "ageGender": "SM",
+            "givenName": "Clark",
+            "familyName": "Roberts",
+            "club": "Coventry Godiva harriers",
+            "bib": 63,
+            "rank": 1,
+            "perf": "1:29.60",
+            "categoryRank": 1
+        }
+    ],
+    "venue": "Iffley Road Athletics Stadium, Iffley Road, Oxford",
+    "startDate": "2016-07-23",
+    "compId": "iffleymilesT01"
+}

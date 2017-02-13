@@ -1,0 +1,19 @@
+{
+    "fullName": "Iffley Miles 2016 - mile - A Race",
+    "shortName": "Iffley Miles - mileA",
+    "discipline": "1M",
+    "positions": [
+        {
+            "givenName": "unknown",
+            "familyName": "athlete",
+            "nonScorer": "yes",
+            "bib": "80",
+            "rank": 1,
+            "perf": "4:37.89",
+            "categoryRank": 1
+        }
+    ],
+    "venue": "Iffley Road Athletics Stadium, Iffley Road, Oxford",
+    "startDate": "2016-07-23",
+    "compId": "iffleymilesT03"
+}

@@ -113,149 +113,140 @@
     "title": "Single race results",
     "description": "Results for multiple athletes within a single race",
     "type": "object",
-    "allOf": [
-        {
-            "allOf": [
-                {
-                    "properties": {
-                        "positions": {
-                            "description": "Ordered list of athletes by overall position, or null for missing position",
-                            "type": "array",
-                            "items": {
-                                "oneOf": [
-                                    {
-                                        "description": "Athlete, position and performance",
-                                        "type": "object",
-                                        "allOf": [
-                                            {
-                                                "$ref": "#/definitions/athlete"
-                                            },
-                                            {
-                                                "properties": {
-                                                    "rank": {
-                                                        "description": "where they finished",
-                                                        "type": "number",
-                                                        "minimum": 1,
-                                                        "multipleOf": 1
-                                                    },
-                                                    "points": {
-                                                        "description": "numeric or None",
-                                                        "type": [
-                                                            "number",
-                                                            "null"
-                                                        ],
-                                                        "default": null
-                                                    },
-                                                    "perf": {
-                                                        "description": "performance, as formatted text (e.g. '9.58', '3:26.8', '75.83')",
-                                                        "type": [
-                                                            "string",
-                                                            "null"
-                                                        ],
-                                                        "default": null
-                                                    }
-                                                }
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "type": "null"
-                                    }
-                                ]
-                            }
-                        }
-                    }
-                },
-                {
-                    "properties": {
-                        "results": {
-                            "description": "Unordered list of athletes and performances",
-                            "type": "array",
-                            "items": {
-                                "description": "Athlete and performance",
-                                "type": "object",
-                                "allOf": [
-                                    {
-                                        "$ref": "#/definitions/athlete"
-                                    },
-                                    {
-                                        "properties": {
-                                            "rank": {
-                                                "description": "where they finished",
-                                                "type": "number",
-                                                "minimum": 1,
-                                                "multipleOf": 1
-                                            },
-                                            "points": {
-                                                "description": "numeric or None",
-                                                "type": [
-                                                    "number",
-                                                    "null"
-                                                ],
-                                                "default": null
-                                            },
-                                            "perf": {
-                                                "description": "performance, as formatted text (e.g. '9.58', '3:26.8', '75.83')",
-                                                "type": [
-                                                    "string",
-                                                    "null"
-                                                ],
-                                                "default": null
-                                            }
-                                        },
-                                        "required": [
-                                            "perf"
-                                        ]
-                                    }
-                                ]
-                            }
-                        }
-                    }
-                }
-            ]
+    "properties": {
+        "indoor": {
+            "description": "boolean, default is false or absent",
+            "type": "boolean",
+            "default": false
         },
-        {
-            "properties": {
-                "indoor": {
-                    "description": "boolean, default is false or absent",
-                    "type": "boolean",
-                    "default": false
-                },
-                "discipline": {
-                    "description": "standard 'event code' e.g. 200, HJ, 3000SC",
-                    "type": "string",
-                    "minLength": 1
-                },
-                "venue": {
-                    "description": "where it happened - town/track name",
-                    "type": "string",
-                    "minLength": 1
-                },
-                "country": {
-                    "description": "where it happened - country code",
-                    "type": "string",
-                    "minLength": 3,
-                    "maxLength": 3
-                },
-                "wind": {
-                    "description": "true signifies > 2.0 but we don't know speed; or a number for the speed",
-                    "type": [
-                        "string",
-                        "boolean"
-                    ],
-                    "default": false
-                },
-                "compId": {
-                    "description": "competition ID within whatever system you are looking at",
-                    "type": "string",
-                    "minLength": 1
-                },
-                "otCompId": {
-                    "description": "OpenTrack's ID for the competition",
-                    "type": "string",
-                    "minLength": 1
-                }
+        "discipline": {
+            "description": "standard 'event code' e.g. 200, HJ, 3000SC",
+            "type": "string",
+            "minLength": 1
+        },
+        "venue": {
+            "description": "where it happened - town/track name",
+            "type": "string",
+            "minLength": 1
+        },
+        "country": {
+            "description": "where it happened - country code",
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 3
+        },
+        "wind": {
+            "description": "true signifies > 2.0 but we don't know speed; or a number for the speed",
+            "type": [
+                "string",
+                "boolean"
+            ],
+            "default": false
+        },
+        "compId": {
+            "description": "competition ID within whatever system you are looking at",
+            "type": "string",
+            "minLength": 1
+        },
+        "otCompId": {
+            "description": "OpenTrack's ID for the competition",
+            "type": "string",
+            "minLength": 1
+        },
+        "athletes": {
+            "description": "Pre-declared list of athletes",
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/athlete"
+            }
+        },
+        "positions": {
+            "description": "Ordered list of athletes by overall position, or null for missing position",
+            "type": "array",
+            "items": {
+                "oneOf": [
+                    {
+                        "description": "Athlete, position and performance",
+                        "type": "object",
+                        "allOf": [
+                            {
+                                "$ref": "#/definitions/athlete"
+                            },
+                            {
+                                "properties": {
+                                    "rank": {
+                                        "description": "where they finished",
+                                        "type": "number",
+                                        "minimum": 1,
+                                        "multipleOf": 1
+                                    },
+                                    "points": {
+                                        "description": "numeric or None",
+                                        "type": [
+                                            "number",
+                                            "null"
+                                        ],
+                                        "default": null
+                                    },
+                                    "perf": {
+                                        "description": "performance, as formatted text (e.g. '9.58', '3:26.8', '75.83')",
+                                        "type": [
+                                            "string",
+                                            "null"
+                                        ],
+                                        "default": null
+                                    }
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "type": "null"
+                    }
+                ]
+            }
+        },
+        "results": {
+            "description": "Unordered list of athletes and performances",
+            "type": "array",
+            "items": {
+                "description": "Athlete and performance",
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "#/definitions/athlete"
+                    },
+                    {
+                        "properties": {
+                            "rank": {
+                                "description": "where they finished",
+                                "type": "number",
+                                "minimum": 1,
+                                "multipleOf": 1
+                            },
+                            "points": {
+                                "description": "numeric or None",
+                                "type": [
+                                    "number",
+                                    "null"
+                                ],
+                                "default": null
+                            },
+                            "perf": {
+                                "description": "performance, as formatted text (e.g. '9.58', '3:26.8', '75.83')",
+                                "type": [
+                                    "string",
+                                    "null"
+                                ],
+                                "default": null
+                            }
+                        },
+                        "required": [
+                            "perf"
+                        ]
+                    }
+                ]
             }
         }
-    ]
+    }
 }
