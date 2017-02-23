@@ -12,6 +12,7 @@ Athlib - a library for Athletics
 
    intro
    athlib
+   athlibjs
 
 
 Indices and tables

@@ -67,7 +67,7 @@ var _iaaf_scoring_table = [
     {gender: "F", event_code: "WT", A: 52.1403, Z: 1.5, X: 1.05}
 ];
 
-// Utility function to get the <gender>-<event> scoring key
+/** Utility function to get the <gender>-<event> scoring key */
 function iaaf_scoring_key(gender, event_code) {
     var key = (gender + "-" + event_code);
     return key.toUpperCase();
