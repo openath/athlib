@@ -2,12 +2,18 @@
 This file covers testing validity of JSON schemata, plus the fields in the
 schemta themselves.
 """
-import os
+import sys, os
 import json
 from pprint import pprint
 import jsonschema
 from jsonschema.exceptions import SchemaError,ValidationError
 from unittest import TestCase, main
+
+_rootdir = os.path.dirname(os.path.abspath(__file__))
+_rootdir = os.path.normpath(os.path.join(_rootdir,'..'))
+
+def localpath(relpath):
+    return os.path.join(_rootdir,relpath)
 
 #Monkeypatch jsonschema to resolve local, relative urls.
 from jsonschema.validators import RefResolver as OriginalResolver
@@ -15,21 +21,18 @@ class LocalFileResolver(OriginalResolver):
     def resolve_from_url(self, url):
         if url.startswith("file:///"):
             relpath = url[8:]
-            # print "making absolute url for", relpath
-            curdir = os.getcwd()
-            url = "file://%s/%s" % (curdir, relpath)
-            # print "new url is", url
+            url = ("file:///%s/%s" if sys.platform=='win32' else 'file://%s/%s') % (_rootdir, relpath)
         return super(LocalFileResolver, self).resolve_from_url(url)
 
 import jsonschema.validators
 jsonschema.validators.RefResolver = LocalFileResolver
 
 
-def schema_valid(schema_file,
+def schema_valid(schema_file,   #should be relative path
                  validator=jsonschema.Draft3Validator,
                  expect_failure=False):
     """Test that schema is itself valid, using a jsonschema validator"""
-    with open(schema_file) as f:
+    with open(localpath(schema_file)) as f:
         schema = json.load(f)
 
         try:
@@ -46,10 +49,10 @@ def schema_valid(schema_file,
 
 def valid_against_schema(json_file, schema_file, expect_failure=False):
     """Test that JSON file valid against a schema"""
-    with open(json_file) as f:
+    with open(localpath(json_file)) as f:
         json_data = json.load(f)
 
-        with open(schema_file) as f2:
+        with open(localpath(schema_file)) as f2:
             schema = json.load(f2)
 
             try:
