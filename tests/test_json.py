@@ -8,12 +8,7 @@ from pprint import pprint
 import jsonschema
 from jsonschema.exceptions import SchemaError,ValidationError
 from unittest import TestCase, main
-
-_rootdir = os.path.dirname(os.path.abspath(__file__))
-_rootdir = os.path.normpath(os.path.join(_rootdir,'..'))
-
-def localpath(relpath):
-    return os.path.join(_rootdir,relpath)
+from runall import _rootdir, localpath
 
 #Monkeypatch jsonschema to resolve local, relative urls.
 from jsonschema.validators import RefResolver as OriginalResolver
