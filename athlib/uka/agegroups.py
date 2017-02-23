@@ -93,7 +93,7 @@ def rule507_agegroups_crosscountry(birth_date,
                 return "SEN"
 
 
-def calc_age_group(birth_date,
+def calc_uka_age_group(birth_date,
                    match_date,
                    category,
                    vets=True,

@@ -34,8 +34,8 @@ class UtilsTests(TestCase):
             ['100', '400', '1500', '400H', '3000SC', 'PV', 'TJ', 'HT', '4x100', "", "CHUNDER-MILE"]
             )
 
-        from athlib.utils import text_event_sort_key
-        self.assertEquals(text_event_sort_key("100H"), "2_00100_100H")
+        from athlib.utils import text_discipline_sort_key
+        self.assertEquals(text_discipline_sort_key("100H"), "2_00100_100H")
 
 
         #Now sort objects, not dictionaries

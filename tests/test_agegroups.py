@@ -8,7 +8,7 @@ Replace this with more appropriate tests for your application.
 from dateutil.parser import parse as parse_date
 from datetime import date
 from unittest import TestCase, main
-from athlib.uka.agegroups import calc_age_group, prior_date
+from athlib.uka.agegroups import calc_uka_age_group, prior_date
 # from project.reference.trackutils import normalise_club_name
 # from .trackutils import check_performance_for_discipline as check_performance
 
@@ -21,7 +21,7 @@ class SimpleTest(TestCase):
 
 class AgeGroupTests(TestCase):
     def assertAgeGroup(self, dob, match_date, category, expected, vets=True, underage=False):
-        ag = calc_age_group(dob, match_date, category, vets=vets, underage=underage)
+        ag = calc_uka_age_group(dob, match_date, category, vets=vets, underage=underage)
         self.assertEquals(ag,
                           expected,
                           ("Unexpected age group, expected %s but got %s" %
@@ -29,7 +29,7 @@ class AgeGroupTests(TestCase):
 
     def test_cat_check(self):
         self.assertRaises(Exception,
-                          calc_age_group,
+                          calc_uka_age_group,
                           date(1966, 1, 1),
                           date(2015, 1, 3),
                           "FOO")
@@ -42,7 +42,7 @@ class AgeGroupTests(TestCase):
                           date(2014, 8, 31))
 
     def test_vets_xc(self):
-        ag = calc_age_group(date(1966, 3, 21),
+        ag = calc_uka_age_group(date(1966, 3, 21),
                             date(2015, 1, 3),
                             "XC",
                             vets=False)
@@ -222,7 +222,7 @@ class AgeGroupTests(TestCase):
             date_of_birth = parse_date(txtdob, dayfirst=True).date()
             match_date = parse_date(txtmatch, dayfirst=True).date()
 
-            ag = calc_age_group(date_of_birth, match_date, "TF")
+            ag = calc_uka_age_group(date_of_birth, match_date, "TF")
 
             if ag != expected:
                 failures += 1
@@ -278,7 +278,7 @@ class AgeGroupTests(TestCase):
     def test_esaa(self):
         "English Schools Age Groups not implemented yet"
         self.assertRaises(NotImplementedError,
-            calc_age_group,
+            calc_uka_age_group,
             "2000-01-01", "2017-05-31", "ESAA"
             )
 

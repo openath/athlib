@@ -1,4 +1,5 @@
 from athlib.wma.agegrader import AgeGrader, AthlonsAgeGrader
+from athlib.uka.agegroups import calc_uka_age_group
 from athlib.iaaf_score import score as athlon_score
 from athlib.iaaf_score import performance as athlon_performance_needed
 from athlib.utils import *

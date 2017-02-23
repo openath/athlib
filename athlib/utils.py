@@ -6,7 +6,14 @@ from .codes import PAT_THROWS, PAT_JUMPS, PAT_RELAYS, PAT_HURDLES, PAT_TRACK, \
 
 
 def normalize_gender(gender):
-    "Return M, F or raise a ValueError"
+    """
+    Return M, F or raise a ValueError
+
+    :param gender: M or F (case variations and suffixes accepted)
+    :returns: M or F
+    :raises ValueError: raises an exception
+
+    """
     g = gender.upper()
 
     if g:
@@ -275,50 +282,50 @@ def check_performance_for_discipline(discipline, textvalue):
         return t
 
 
-def event_sort_key(event_name):
+def discipline_sort_key(discipline):
     """
     Return a tuple which will sort into programme order
 
     Track should be ordered by distance.
 
     """
-    if not event_name:
+    if not discipline:
         # Goes at the end
         return 6, 0, "?"
 
-    m = PAT_THROWS.search(event_name)
+    m = PAT_THROWS.search(discipline)
     if m:
-        order = FIELD_SORT_ORDER.index(event_name[0:2])
-        return 4, order, event_name
+        order = FIELD_SORT_ORDER.index(discipline[0:2])
+        return 4, order, discipline
 
-    m = PAT_HURDLES.search(event_name)
+    m = PAT_HURDLES.search(discipline)
     if m:
         distance = int(m.group(1))
-        return 2, distance, event_name
+        return 2, distance, discipline
 
-    m = PAT_JUMPS.search(event_name)
+    m = PAT_JUMPS.search(discipline)
     if m:
-        order = FIELD_SORT_ORDER.index(event_name[0:2])
-        return 3, order, event_name
+        order = FIELD_SORT_ORDER.index(discipline[0:2])
+        return 3, order, discipline
 
-    m = PAT_RELAYS.search(event_name)
+    m = PAT_RELAYS.search(discipline)
     if m:
         distance = int(m.group(2))
-        return 5, distance, event_name
+        return 5, distance, discipline
 
     # track last, so '100' doesn't match before '100H'
-    m = PAT_TRACK.search(event_name)
+    m = PAT_TRACK.search(discipline)
     if m:
         distance = int(m.group(1))
-        return 1, distance, event_name
+        return 1, distance, discipline
 
     # anything else sorts to end
-    return 6, 0, event_name
+    return 6, 0, discipline
 
 
-def text_event_sort_key(event_name):
+def text_discipline_sort_key(discipline):
     "Return a text version of the event_sort_key"
-    return "%d_%05d_%s" % event_sort_key(event_name)
+    return "%d_%05d_%s" % discipline_sort_key(discipline)
 
 
 def sort_by_discipline(stuff, attr="discipline"):
@@ -331,7 +338,7 @@ def sort_by_discipline(stuff, attr="discipline"):
         else:
             # assume object
             disc = getattr(thing, attr, None)
-        priority = event_sort_key(disc)
+        priority = discipline_sort_key(disc)
         sorter.append((priority, thing))
 
     sorter.sort()
