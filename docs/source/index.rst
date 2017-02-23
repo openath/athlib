@@ -10,6 +10,8 @@ Welcome to athlib's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   intro
+   athlib
 
 
 Indices and tables

@@ -1,7 +1,7 @@
 from athlib.wma.agegrader import AgeGrader, AthlonsAgeGrader
 from athlib.iaaf_score import score as athlon_score
 from athlib.iaaf_score import performance as athlon_performance_needed
-
+from athlib.utils import *
 ag = AgeGrader()
 
 wma_age_grade = ag.calculate_age_grade

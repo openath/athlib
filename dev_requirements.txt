@@ -1,9 +1,11 @@
 # Requirements to work on athlib itself
 # We aim to be Totallly Buzzword Compliant and use
 # all the cool tools.
-mkdocs   #readthedocs output
-wheel   #used to shop packages to pypi
-twine   #used to shop packages to pypi
-tox     #test on multiple pythons
-coverage  #see how good our test suite is
-
+mkdocs          #readthedocs output
+wheel           #used to shop packages to pypi
+twine           #used to shop packages to pypi
+tox             #test on multiple pythons
+coverage        #see how good our test suite is
+sphinx          #python doc tools
+sphinx-autobuild
+requests[security]  #tell sphinx not to whinge
