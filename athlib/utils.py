@@ -1,4 +1,13 @@
 """General athlib utility functions"""
+__all__= """normalize_gender
+            str2num
+            parse_hms
+            get_distance
+            format_seconds_as_time
+            check_performance_for_discipline
+            discipline_sort_key
+            text_discipline_sort_key
+            sort_by_discipline""".split()
 
 from .codes import PAT_THROWS, PAT_JUMPS, PAT_RELAYS, PAT_HURDLES, PAT_TRACK, \
     PAT_LEADING_DIGITS, PAT_PERF, \
@@ -24,6 +33,12 @@ def normalize_gender(gender):
 
 
 def str2num(s):
+    """convert string to int if possible else float
+    
+    :param s: string number
+    :returns: int(s) or float(s)
+    :raises ValueError: if conversion impossible
+    """
     try:
         return int(s)
     except ValueError:
@@ -109,6 +124,12 @@ def get_distance(discipline):
 
 
 def format_seconds_as_time(seconds, prec=0):
+    """convert seconds to a string formatted as hours:min:secs
+
+    :param seconds: floating point seconds
+    :param prec=0: precision for seconds
+    :returns formatted string:
+    """
     mins, secs = divmod(seconds, 60)
     hours, mins = divmod(mins, 60)
 
@@ -136,7 +157,6 @@ def format_seconds_as_time(seconds, prec=0):
 def check_performance_for_discipline(discipline, textvalue):
     """
     Fix up and return what they typed in,  or raise ValueError
-
     """
     # print "checkperf %s %s" % (discipline, repr(textvalue))
     textvalue = textvalue.strip()
