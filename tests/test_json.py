@@ -2,28 +2,34 @@
 This file covers testing validity of JSON schemata, plus the fields in the
 schemta themselves.
 """
-import sys, os
+import sys
+import os
 import json
 from pprint import pprint
 import jsonschema
-from jsonschema.exceptions import SchemaError,ValidationError
+from jsonschema.exceptions import SchemaError, ValidationError
 from unittest import TestCase, main
 from runall import _rootdir, localpath
+import jsonschema.validators
 
-#Monkeypatch jsonschema to resolve local, relative urls.
+# Monkeypatch jsonschema to resolve local, relative urls.
 from jsonschema.validators import RefResolver as OriginalResolver
+
+
 class LocalFileResolver(OriginalResolver):
+
     def resolve_from_url(self, url):
         if url.startswith("file:///"):
             relpath = url[8:]
-            url = ("file:///%s/%s" if sys.platform=='win32' else 'file://%s/%s') % (_rootdir, relpath)
+            url = ("file:///%s/%s" if sys.platform ==
+                   'win32' else 'file://%s/%s') % (_rootdir, relpath)
         return super(LocalFileResolver, self).resolve_from_url(url)
 
-import jsonschema.validators
+
 jsonschema.validators.RefResolver = LocalFileResolver
 
 
-def schema_valid(schema_file,   #should be relative path
+def schema_valid(schema_file,  # should be relative path
                  validator=jsonschema.Draft3Validator,
                  expect_failure=False):
     """Test that schema is itself valid, using a jsonschema validator"""
@@ -41,6 +47,7 @@ def schema_valid(schema_file,   #should be relative path
                 raise
 
     return False
+
 
 def valid_against_schema(json_file, schema_file, expect_failure=False):
     """Test that JSON file valid against a schema"""
@@ -64,6 +71,7 @@ def valid_against_schema(json_file, schema_file, expect_failure=False):
 
 
 class JsonSchemaValidityTests(TestCase):
+
     def test_metaschema_valid(self):
         self.assertTrue(schema_valid("json/metaschema.json"))
         self.assertTrue(schema_valid("json/metaschema.json",
@@ -113,10 +121,14 @@ class JsonSchemaValidityTests(TestCase):
                                      validator=jsonschema.Draft4Validator))
 
     def test_athlete_valid_against_schema(self):
-        self.assertTrue(valid_against_schema("json/samples/athlete.json",
-                                             "json/athlete.json"))
-        self.assertTrue(valid_against_schema("json/samples/athlete_minimal.json",
-                                             "json/athlete.json"))
+        self.assertTrue(valid_against_schema(
+            "json/samples/athlete.json",
+            "json/athlete.json")
+        )
+        self.assertTrue(valid_against_schema(
+            "json/samples/athlete_minimal.json",
+            "json/athlete.json")
+        )
 
     def test_athlete_invalid_against_schema(self):
         with self.assertRaises(ValidationError):
@@ -125,27 +137,39 @@ class JsonSchemaValidityTests(TestCase):
                                  expect_failure=True)
 
     def test_combined_performance_valid_against_schema(self):
-        self.assertTrue(valid_against_schema("json/samples/combined_performance.json",
-                                             "json/combined_performance.json"))
-        self.assertTrue(valid_against_schema("json/samples/combined_performance_minimal.json",
-                                             "json/combined_performance.json"))
+        self.assertTrue(valid_against_schema(
+            "json/samples/combined_performance.json",
+            "json/combined_performance.json")
+        )
+        self.assertTrue(valid_against_schema(
+            "json/samples/combined_performance_minimal.json",
+            "json/combined_performance.json")
+        )
 
     def test_combined_performance_invalid_against_schema(self):
         with self.assertRaises(ValidationError):
-            valid_against_schema("json/samples/combined_performance_invalid.json",
-                                 "json/combined_performance.json",
-                                 expect_failure=True)
+            valid_against_schema(
+                "json/samples/combined_performance_invalid.json",
+                "json/combined_performance.json",
+                expect_failure=True
+            )
 
         with self.assertRaises(ValidationError):
-            valid_against_schema("json/samples/combined_performance_invalid2.json",
-                                 "json/combined_performance.json",
-                                 expect_failure=True)
+            valid_against_schema(
+                "json/samples/combined_performance_invalid2.json",
+                "json/combined_performance.json",
+                expect_failure=True
+            )
 
     def test_competition_valid_against_schema(self):
-        self.assertTrue(valid_against_schema("json/samples/competition.json",
-                                             "json/competition.json"))
-        self.assertTrue(valid_against_schema("json/samples/competition_minimal.json",
-                                             "json/competition.json"))
+        self.assertTrue(valid_against_schema(
+            "json/samples/competition.json",
+            "json/competition.json")
+        )
+        self.assertTrue(valid_against_schema(
+            "json/samples/competition_minimal.json",
+            "json/competition.json")
+        )
 
     def test_competition_invalid_against_schema(self):
         with self.assertRaises(ValidationError):
@@ -168,8 +192,10 @@ class JsonSchemaValidityTests(TestCase):
     def test_performance_valid_against_schema(self):
         self.assertTrue(valid_against_schema("json/samples/performance.json",
                                              "json/performance.json"))
-        self.assertTrue(valid_against_schema("json/samples/performance_minimal.json",
-                                             "json/performance.json"))
+        self.assertTrue(valid_against_schema(
+            "json/samples/performance_minimal.json",
+            "json/performance.json")
+        )
 
     def test_performance_invalid_against_schema(self):
         with self.assertRaises(ValidationError):
@@ -222,8 +248,10 @@ class JsonSchemaValidityTests(TestCase):
     def test_valid_against_metaschema(self):
         self.assertTrue(valid_against_schema("json/samples/athlete.json",
                                              "json/metaschema.json"))
-        self.assertTrue(valid_against_schema("json/samples/combined_performance.json",
-                                             "json/metaschema.json"))
+        self.assertTrue(valid_against_schema(
+            "json/samples/combined_performance.json",
+            "json/metaschema.json")
+        )
         self.assertTrue(valid_against_schema("json/samples/competition.json",
                                              "json/metaschema.json"))
         self.assertTrue(valid_against_schema("json/samples/event.json",
@@ -238,14 +266,16 @@ class JsonSchemaValidityTests(TestCase):
                                  expect_failure=True)
 
         with self.assertRaises(ValidationError):
-            valid_against_schema("json/samples/combined_performance_invalid.json",
-                                 "json/metaschema.json",
-                                 expect_failure=True)
+            valid_against_schema(
+                "json/samples/combined_performance_invalid.json",
+                "json/metaschema.json",
+                expect_failure=True)
 
         with self.assertRaises(ValidationError):
-            valid_against_schema("json/samples/competition_invalid.json",
-                                 "json/metaschema.json",
-                                 expect_failure=True)
+            valid_against_schema(
+                "json/samples/competition_invalid.json",
+                "json/metaschema.json",
+                expect_failure=True)
 
         with self.assertRaises(ValidationError):
             valid_against_schema("json/samples/event_invalid.json",

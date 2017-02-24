@@ -6,6 +6,7 @@ from athlib.iaaf_score import performance, scoring_key, score, unit_name
 
 class IaafScoreTests(TestCase):
     """Test suite for the IAAF score calculation module."""
+
     def test_performance(self):
         """
         Test the function to calculate the required performance for a given
@@ -19,11 +20,10 @@ class IaafScoreTests(TestCase):
         self.assertEquals(performance("F", "JT", 700), 41.68)
         self.assertEquals(performance("M", "PV", 1284), 6.16)
 
-        #You need 1m to score 0, so that's what you get back
+        # You need 1m to score 0, so that's what you get back
         self.assertEquals(performance("M", "PV", 0), 1.0)
         self.assertEquals(performance("M", "PV", -100), 1.0)
         self.assertEquals(performance("M", "NA", 500), None)
-
 
     def test_scoring_key(self):
         """

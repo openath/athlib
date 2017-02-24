@@ -14,7 +14,7 @@ def prior_date(match_date, cutoff_month, cutoff_day):
     d = match_date.day
     x = date(y, cutoff_month, cutoff_day)
     if x > match_date:
-        x = date(y-1, cutoff_month, cutoff_day)
+        x = date(y - 1, cutoff_month, cutoff_day)
     return x
 
 
@@ -94,10 +94,10 @@ def rule507_agegroups_crosscountry(birth_date,
 
 
 def calc_uka_age_group(birth_date,
-                   match_date,
-                   category,
-                   vets=True,
-                   underage=False):
+                       match_date,
+                       category,
+                       vets=True,
+                       underage=False):
     """Return UKA age group"""
     if category == 'TF':
         return rule107_agegroups_trackandfield(birth_date,

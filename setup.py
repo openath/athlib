@@ -21,7 +21,7 @@ def my_test_suite():
 
 setup(
     name="athlib",
-    version="0.0.1",
+    version="0.0.2",
     packages=find_packages(),
     test_suite="setup.my_test_suite",
 

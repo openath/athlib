@@ -1,5 +1,9 @@
 """General athlib utility functions"""
-__all__= """normalize_gender
+from .codes import PAT_THROWS, PAT_JUMPS, PAT_RELAYS, PAT_HURDLES, PAT_TRACK, \
+    PAT_LEADING_DIGITS, PAT_PERF, \
+    FIELD_EVENTS, MULTI_EVENTS, FIELD_SORT_ORDER
+
+__all__ = """normalize_gender
             str2num
             parse_hms
             get_distance
@@ -8,10 +12,6 @@ __all__= """normalize_gender
             discipline_sort_key
             text_discipline_sort_key
             sort_by_discipline""".split()
-
-from .codes import PAT_THROWS, PAT_JUMPS, PAT_RELAYS, PAT_HURDLES, PAT_TRACK, \
-    PAT_LEADING_DIGITS, PAT_PERF, \
-    FIELD_EVENTS, MULTI_EVENTS, FIELD_SORT_ORDER
 
 
 def normalize_gender(gender):
@@ -34,7 +34,7 @@ def normalize_gender(gender):
 
 def str2num(s):
     """convert string to int if possible else float
-    
+
     :param s: string number
     :returns: int(s) or float(s)
     :raises ValueError: if conversion impossible

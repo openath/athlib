@@ -1,0 +1,44 @@
+{
+  "name": "athlib",
+  "version": "1.0.0",
+  "description": "Athlib is a library of functions, data and schema for Athletics (i.e. Track and Field)",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "dependencies": {
+    "ava": "^0.17.0",
+    "chokidar-cli": "^1.2.0",
+    "precommit-hook": "^3.0.0",
+    "standard": "^8.6.0"
+  },
+  "devDependencies": {
+    "ava": "^0.17.0",
+    "chokidar-cli": "^1.2.0",
+    "jsdoc": "^3.4.3",
+    "precommit-hook": "^3.0.0",
+    "standard": "^8.6.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "jshint .",
+    "validate": "npm ls"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/openath/athlib.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/openath/athlib/issues"
+  },
+  "homepage": "https://github.com/openath/athlib#readme",
+  "pre-commit": [
+    "lint",
+    "validate",
+    "test"
+  ]
+}

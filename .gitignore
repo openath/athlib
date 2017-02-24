@@ -97,4 +97,4 @@ ENV/
 .ropeproject
 
 # Node
-node-modules/
+node_modules/

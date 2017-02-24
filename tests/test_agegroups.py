@@ -14,14 +14,18 @@ from athlib.uka.agegroups import calc_uka_age_group, prior_date
 
 
 class SimpleTest(TestCase):
+
     def test_basic_addition(self):
         """Tests that 1 + 1 always equals 2."""
         self.assertEqual(1 + 1, 2)
 
 
 class AgeGroupTests(TestCase):
-    def assertAgeGroup(self, dob, match_date, category, expected, vets=True, underage=False):
-        ag = calc_uka_age_group(dob, match_date, category, vets=vets, underage=underage)
+
+    def assertAgeGroup(self, dob, match_date, category, expected,
+                       vets=True, underage=False):
+        ag = calc_uka_age_group(dob, match_date, category,
+                                vets=vets, underage=underage)
         self.assertEquals(ag,
                           expected,
                           ("Unexpected age group, expected %s but got %s" %
@@ -43,9 +47,9 @@ class AgeGroupTests(TestCase):
 
     def test_vets_xc(self):
         ag = calc_uka_age_group(date(1966, 3, 21),
-                            date(2015, 1, 3),
-                            "XC",
-                            vets=False)
+                                date(2015, 1, 3),
+                                "XC",
+                                vets=False)
         self.assertEquals(ag, "SEN")
 
     def test_no_vets_when_not_required(self):
@@ -235,7 +239,6 @@ class AgeGroupTests(TestCase):
         #                   ("Unexpected age group.  Test case is '%s', got " +
         #                    "'%s'") % (trimmed, ag))
 
-
     def test_parse_date(self):
         self.assertAgeGroup("2005-10-31",
                             date(2014, 10, 31),
@@ -274,15 +277,12 @@ class AgeGroupTests(TestCase):
                             vets=False
                             )
 
-
     def test_esaa(self):
         "English Schools Age Groups not implemented yet"
         self.assertRaises(NotImplementedError,
-            calc_uka_age_group,
-            "2000-01-01", "2017-05-31", "ESAA"
-            )
-
-
+                          calc_uka_age_group,
+                          "2000-01-01", "2017-05-31", "ESAA"
+                          )
 
 
 if __name__ == '__main__':
