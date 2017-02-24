@@ -7,7 +7,6 @@ class ImportTest(AthlibTestCase):
 	@classmethod
 	def setUpClass(cls):
 		AthlibTestCase.setUpClass()
-		print 'setUpClass', cls
 		with open(localpath(os.path.join('docs','source','athlib.rst')),'r') as f:
 			cls.text = f.read()
 
