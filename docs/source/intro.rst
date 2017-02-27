@@ -8,3 +8,5 @@ We aim to provide well-tested common utility functions in Python and Javascript.
 
 At this time, Python is leading.  Function need to be re-done in Javascript, and we
 have yet to figure out how to include `jsdoc` documentation automatically.
+
+Documentation on schemas is coming soon.
