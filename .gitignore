@@ -22,6 +22,8 @@ lib64/
 parts/
 sdist/
 var/
+pip-selfcheck.json
+.pypirc
 *.egg-info/
 .installed.cfg
 *.egg
