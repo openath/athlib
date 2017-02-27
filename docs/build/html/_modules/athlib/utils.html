@@ -1,0 +1,455 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>athlib.utils &#8212; athlib 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">athlib 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for athlib.utils</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;General athlib utility functions&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">.codes</span> <span class="k">import</span> <span class="n">PAT_THROWS</span><span class="p">,</span> <span class="n">PAT_JUMPS</span><span class="p">,</span> <span class="n">PAT_RELAYS</span><span class="p">,</span> <span class="n">PAT_HURDLES</span><span class="p">,</span> <span class="n">PAT_TRACK</span><span class="p">,</span> \
+    <span class="n">PAT_LEADING_DIGITS</span><span class="p">,</span> <span class="n">PAT_PERF</span><span class="p">,</span> \
+    <span class="n">FIELD_EVENTS</span><span class="p">,</span> <span class="n">MULTI_EVENTS</span><span class="p">,</span> <span class="n">FIELD_SORT_ORDER</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;normalize_gender</span>
+<span class="s2">            str2num</span>
+<span class="s2">            parse_hms</span>
+<span class="s2">            get_distance</span>
+<span class="s2">            format_seconds_as_time</span>
+<span class="s2">            check_performance_for_discipline</span>
+<span class="s2">            discipline_sort_key</span>
+<span class="s2">            text_discipline_sort_key</span>
+<span class="s2">            sort_by_discipline&quot;&quot;&quot;</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+
+
+<div class="viewcode-block" id="normalize_gender"><a class="viewcode-back" href="../../athlib.html#athlib.normalize_gender">[docs]</a><span class="k">def</span> <span class="nf">normalize_gender</span><span class="p">(</span><span class="n">gender</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return M, F or raise a ValueError</span>
+
+<span class="sd">    :param gender: M or F (case variations and suffixes accepted)</span>
+<span class="sd">    :returns: M or F</span>
+<span class="sd">    :raises ValueError: raises an exception</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">g</span> <span class="o">=</span> <span class="n">gender</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">g</span><span class="p">:</span>
+        <span class="n">g</span> <span class="o">=</span> <span class="n">g</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">g</span> <span class="ow">not</span> <span class="ow">in</span> <span class="s1">&#39;MF&#39;</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;cannot normalize gender = </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="nb">repr</span><span class="p">(</span><span class="n">gender</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">g</span></div>
+
+
+<div class="viewcode-block" id="str2num"><a class="viewcode-back" href="../../athlib.html#athlib.str2num">[docs]</a><span class="k">def</span> <span class="nf">str2num</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;convert string to int if possible else float</span>
+
+<span class="sd">    :param s: string number</span>
+<span class="sd">    :returns: int(s) or float(s)</span>
+<span class="sd">    :raises ValueError: if conversion impossible</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">s</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="parse_hms"><a class="viewcode-back" href="../../athlib.html#athlib.parse_hms">[docs]</a><span class="k">def</span> <span class="nf">parse_hms</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parse a time duration with 0, 1 or 2 colons and return seconds.</span>
+
+<span class="sd">    &gt;&gt;&gt; from athlib.utils import parse_hms</span>
+<span class="sd">    &gt;&gt;&gt; parse_hms(&#39;10&#39;)</span>
+<span class="sd">    10</span>
+<span class="sd">    &gt;&gt;&gt; parse_hms(&#39;1:10&#39;)</span>
+<span class="sd">    70</span>
+<span class="sd">    &gt;&gt;&gt; parse_hms(&#39;1:1:10&#39;)</span>
+<span class="sd">    3670</span>
+<span class="sd">    &gt;&gt;&gt; parse_hms(&#39;1:1:10.1&#39;)</span>
+<span class="sd">    3670.1</span>
+<span class="sd">    &gt;&gt;&gt; parse_hms(3670.1)</span>
+<span class="sd">    3670.1</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">)):</span>
+        <span class="k">return</span> <span class="n">t</span>
+
+    <span class="c1"># Try : and ; separators</span>
+    <span class="k">for</span> <span class="n">sep</span> <span class="ow">in</span> <span class="s1">&#39;:;&#39;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">sep</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">t</span><span class="p">:</span>
+            <span class="k">continue</span>
+
+        <span class="n">sec</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">t</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">sep</span><span class="p">):</span>
+            <span class="n">sec</span> <span class="o">*=</span> <span class="mi">60</span>
+
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">sec</span> <span class="o">+=</span> <span class="n">str2num</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;cannot parse seconds from </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="nb">repr</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">sec</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">str2num</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;cannot parse seconds from </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="nb">repr</span><span class="p">(</span><span class="n">t</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="get_distance"><a class="viewcode-back" href="../../athlib.html#athlib.get_distance">[docs]</a><span class="k">def</span> <span class="nf">get_distance</span><span class="p">(</span><span class="n">discipline</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return approx distance in metres, for sanity checking</span>
+<span class="sd">    :param discipline:</span>
+<span class="sd">    :return:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Ignore final words like &#39; road&#39;</span>
+
+    <span class="n">discipline</span> <span class="o">=</span> <span class="n">discipline</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">discipline</span> <span class="o">==</span> <span class="s2">&quot;XC&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">elif</span> <span class="n">discipline</span> <span class="o">==</span> <span class="s1">&#39;MAR&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">42195</span>
+    <span class="k">elif</span> <span class="n">discipline</span> <span class="o">==</span> <span class="s2">&quot;HM&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">21098</span>
+    <span class="k">elif</span> <span class="n">discipline</span> <span class="o">==</span> <span class="s2">&quot;MILE&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1609</span>
+
+    <span class="n">m</span> <span class="o">=</span> <span class="n">PAT_LEADING_DIGITS</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">discipline</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">m</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="n">qty_text</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">()</span>
+    <span class="n">remains</span> <span class="o">=</span> <span class="n">discipline</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">qty_text</span><span class="p">):]</span>
+    <span class="n">qty</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">qty_text</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remains</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">qty</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">remains</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;m&#39;</span><span class="p">,</span> <span class="s1">&#39;mH&#39;</span><span class="p">,</span> <span class="s1">&#39;SC&#39;</span><span class="p">,</span> <span class="s1">&#39;h&#39;</span><span class="p">,</span> <span class="s1">&#39;H&#39;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">qty</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">remains</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="s1">&#39;K&#39;</span><span class="p">,</span> <span class="s1">&#39;km&#39;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="mi">1000</span> <span class="o">*</span> <span class="n">qty</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">remains</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;M&#39;</span><span class="p">,</span> <span class="s1">&#39;Mi&#39;</span><span class="p">,</span> <span class="s1">&#39;MI&#39;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="mi">1609</span> <span class="o">*</span> <span class="n">qty</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="format_seconds_as_time"><a class="viewcode-back" href="../../athlib.html#athlib.format_seconds_as_time">[docs]</a><span class="k">def</span> <span class="nf">format_seconds_as_time</span><span class="p">(</span><span class="n">seconds</span><span class="p">,</span> <span class="n">prec</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;convert seconds to a string formatted as hours:min:secs</span>
+
+<span class="sd">    :param seconds: floating point seconds</span>
+<span class="sd">    :param prec=0: precision for seconds</span>
+<span class="sd">    :returns formatted string:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">mins</span><span class="p">,</span> <span class="n">secs</span> <span class="o">=</span> <span class="nb">divmod</span><span class="p">(</span><span class="n">seconds</span><span class="p">,</span> <span class="mi">60</span><span class="p">)</span>
+    <span class="n">hours</span><span class="p">,</span> <span class="n">mins</span> <span class="o">=</span> <span class="nb">divmod</span><span class="p">(</span><span class="n">mins</span><span class="p">,</span> <span class="mi">60</span><span class="p">)</span>
+
+    <span class="n">frac</span> <span class="o">=</span> <span class="n">secs</span> <span class="o">-</span> <span class="nb">int</span><span class="p">(</span><span class="n">secs</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">prec</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">frac</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="k">elif</span> <span class="n">prec</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">frac</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;</span><span class="si">%0.1f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">frac</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]</span>  <span class="c1"># e.g.&quot;.3&quot;</span>
+    <span class="k">elif</span> <span class="n">prec</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">frac</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;</span><span class="si">%0.2f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">frac</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]</span>  <span class="c1"># e.g.&quot;.34&quot;</span>
+    <span class="k">elif</span> <span class="n">prec</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="n">frac</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;</span><span class="si">%0.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">frac</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]</span>  <span class="c1"># e.g.&quot;.342&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Precision must be 0, 1, 2 or 3 digits&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">hours</span><span class="p">:</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%d</span><span class="s2">:</span><span class="si">%02d</span><span class="s2">:</span><span class="si">%02d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">hours</span><span class="p">,</span> <span class="n">mins</span><span class="p">,</span> <span class="n">secs</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">mins</span><span class="p">:</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%d</span><span class="s2">:</span><span class="si">%02d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">mins</span><span class="p">,</span> <span class="n">secs</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">secs</span>
+    <span class="k">return</span> <span class="n">t</span> <span class="o">+</span> <span class="n">frac</span></div>
+
+
+<div class="viewcode-block" id="check_performance_for_discipline"><a class="viewcode-back" href="../../athlib.html#athlib.check_performance_for_discipline">[docs]</a><span class="k">def</span> <span class="nf">check_performance_for_discipline</span><span class="p">(</span><span class="n">discipline</span><span class="p">,</span> <span class="n">textvalue</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Fix up and return what they typed in,  or raise ValueError</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># print &quot;checkperf %s %s&quot; % (discipline, repr(textvalue))</span>
+    <span class="n">textvalue</span> <span class="o">=</span> <span class="n">textvalue</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">discipline</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;xc&quot;</span> <span class="ow">and</span> <span class="n">textvalue</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">textvalue</span>
+
+    <span class="c1"># fix up &quot;,&quot; for the Frenchies</span>
+    <span class="k">if</span> <span class="s2">&quot;,&quot;</span> <span class="ow">in</span> <span class="n">textvalue</span> <span class="ow">and</span> <span class="s2">&quot;.&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">textvalue</span><span class="p">:</span>
+        <span class="n">textvalue</span> <span class="o">=</span> <span class="n">textvalue</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="s2">&quot;;&quot;</span> <span class="ow">in</span> <span class="n">textvalue</span><span class="p">:</span>
+        <span class="n">textvalue</span> <span class="o">=</span> <span class="n">textvalue</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;;&quot;</span><span class="p">,</span> <span class="s1">&#39;:&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">PAT_PERF</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">textvalue</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">&quot;Illegal numeric pattern.  Use digits, &#39;:&#39; and &#39;.&#39; only&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">discipline</span> <span class="ow">in</span> <span class="n">FIELD_EVENTS</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">distance</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">textvalue</span><span class="p">)</span>
+            <span class="k">return</span> <span class="s2">&quot;</span><span class="si">%0.2f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">distance</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;&#39;</span><span class="si">%s</span><span class="s2">&#39; is not valid for length/height. Use &quot;</span>
+                <span class="s2">&quot;metres/centimetres e.g. &#39;2.34&#39;&quot;</span> <span class="o">%</span> <span class="n">textvalue</span>
+            <span class="p">)</span>
+
+    <span class="k">elif</span> <span class="n">discipline</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="ow">in</span> <span class="n">MULTI_EVENTS</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">points</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">textvalue</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;&#39;</span><span class="si">%s</span><span class="s2">&#39; is not a valid points value for multi-events&quot;</span>
+                <span class="o">%</span> <span class="n">textvalue</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">points</span> <span class="o">&lt;</span> <span class="mi">500</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Multi-events scores should be above 500&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">points</span> <span class="o">&gt;</span> <span class="mi">9999</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Multi-events scores should be below 10000&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># It&#39;s a running distance.  format check.  Try to extract metres</span>
+
+        <span class="n">distance</span> <span class="o">=</span> <span class="n">get_distance</span><span class="p">(</span><span class="n">discipline</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">textvalue</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;0:&quot;</span><span class="p">):</span>
+            <span class="n">textvalue</span> <span class="o">=</span> <span class="n">textvalue</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
+        <span class="k">if</span> <span class="n">textvalue</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;00:&quot;</span><span class="p">):</span>
+            <span class="n">textvalue</span> <span class="o">=</span> <span class="n">textvalue</span><span class="p">[</span><span class="mi">3</span><span class="p">:]</span>
+
+        <span class="k">if</span> <span class="n">distance</span> <span class="ow">and</span> <span class="p">(</span><span class="n">distance</span> <span class="o">&lt;=</span> <span class="mi">200</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="s2">&quot;:&quot;</span> <span class="ow">in</span> <span class="n">textvalue</span><span class="p">)</span> \
+                <span class="ow">and</span> <span class="p">(</span><span class="s2">&quot;.&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">textvalue</span><span class="p">):</span>
+            <span class="c1"># print &quot;fixing colon to stop &quot;</span>
+            <span class="n">textvalue</span> <span class="o">=</span> <span class="n">textvalue</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">discipline</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;800&quot;</span><span class="p">,</span> <span class="s2">&quot;1500&quot;</span><span class="p">,</span> <span class="s2">&quot;3000&quot;</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="s2">&quot;.&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">textvalue</span><span class="p">:</span>
+                <span class="n">chunks</span> <span class="o">=</span> <span class="n">textvalue</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">chunks</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+                    <span class="n">textvalue</span> <span class="o">=</span> <span class="n">chunks</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;:&#39;</span> <span class="o">+</span> <span class="n">chunks</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="n">chunks</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+                    <span class="c1"># we got hours/mins/secs, should have been min/sec +</span>
+                    <span class="c1"># fraction</span>
+
+        <span class="c1"># Brain surgery for the idiots who think 2.33 is a valid 800m time</span>
+        <span class="c1"># if expect_minutes and (&#39;:&#39; not in textvalue) and (&#39;.&#39; in textvalue):</span>
+        <span class="c1">#     textvalue = textvalue.replace(&#39;.&#39;, &#39;:&#39;)</span>
+        <span class="c1"># caught false positives</span>
+        <span class="n">chunks</span> <span class="o">=</span> <span class="n">textvalue</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">)</span>
+
+        <span class="c1"># The regex ensures we have 1, 2 or 3 chunks</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">chunks</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">hours</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">minutes</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">seconds</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">chunks</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">chunks</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">hours</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">minutes</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">chunks</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">seconds</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">chunks</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">chunks</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">hh</span><span class="p">,</span> <span class="n">mm</span><span class="p">,</span> <span class="n">ss</span> <span class="o">=</span> <span class="n">chunks</span>
+            <span class="n">hours</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">hh</span><span class="p">)</span>
+            <span class="n">minutes</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">mm</span><span class="p">)</span>
+            <span class="n">seconds</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">ss</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">minutes</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">seconds</span> <span class="o">&gt;=</span> <span class="mi">100</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;Please use mm:ss or h:mm:ss for times above 99 seconds&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">distance</span> <span class="o">==</span> <span class="mi">400</span> <span class="ow">and</span> <span class="n">minutes</span> <span class="o">&gt;</span> <span class="mi">45</span><span class="p">:</span>
+            <span class="s2">&quot;63:40 instead of 63.40&quot;</span>
+            <span class="n">seconds</span> <span class="o">=</span> <span class="n">minutes</span> <span class="o">+</span> <span class="mf">0.01</span> <span class="o">*</span> <span class="n">seconds</span>
+            <span class="n">hours</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">minutes</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="n">duration</span> <span class="o">=</span> <span class="mi">3600</span> <span class="o">*</span> <span class="n">hours</span> <span class="o">+</span> <span class="mi">60</span> <span class="o">*</span> <span class="n">minutes</span> <span class="o">+</span> <span class="n">seconds</span>
+        <span class="c1"># print &quot;duration: %0.2f seconds&quot; % duration</span>
+
+        <span class="c1"># do sanity checks.  Over 11 metres per second is pretty fishy for a</span>
+        <span class="c1"># sprint</span>
+        <span class="k">if</span> <span class="n">distance</span> <span class="ow">and</span> <span class="n">duration</span><span class="p">:</span>
+
+            <span class="n">velocity</span> <span class="o">=</span> <span class="n">distance</span> <span class="o">*</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">duration</span>
+            <span class="c1"># print &#39;distance = %0.2d, duration = %d sec,</span>
+            <span class="c1">#        velocity = %0.2f m/s&#39; % (distance, duration, velocity)</span>
+            <span class="k">if</span> <span class="n">distance</span> <span class="o">&lt;=</span> <span class="mi">400</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">velocity</span> <span class="o">&gt;</span> <span class="mf">11.0</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                        <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> too fast for </span><span class="si">%s</span><span class="s2">, check the format&quot;</span> <span class="o">%</span>
+                        <span class="p">(</span><span class="n">textvalue</span><span class="p">,</span> <span class="n">discipline</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="n">distance</span> <span class="o">&gt;</span> <span class="mi">400</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">velocity</span> <span class="o">&gt;</span> <span class="mf">10.0</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                        <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> too fast for </span><span class="si">%s</span><span class="s2">, check the format&quot;</span> <span class="o">%</span>
+                        <span class="p">(</span><span class="n">textvalue</span><span class="p">,</span> <span class="n">discipline</span><span class="p">))</span>
+
+            <span class="k">if</span> <span class="n">velocity</span> <span class="o">&lt;</span> <span class="mf">0.5</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> too slow for </span><span class="si">%s</span><span class="s2">, check the format&quot;</span> <span class="o">%</span>
+                    <span class="p">(</span><span class="n">textvalue</span><span class="p">,</span> <span class="n">discipline</span><span class="p">))</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">discipline</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;XC&#39;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">minutes</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                        <span class="s2">&quot;Please use mm:ss for minutes and seconds, not mm.ss&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Format consistently for output</span>
+        <span class="k">if</span> <span class="n">hours</span> <span class="ow">and</span> <span class="n">minutes</span><span class="p">:</span>
+            <span class="n">t</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%d</span><span class="s1">:</span><span class="si">%02d</span><span class="s1">:</span><span class="si">%05.2f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">hours</span><span class="p">,</span> <span class="n">minutes</span><span class="p">,</span> <span class="n">seconds</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">minutes</span><span class="p">:</span>
+            <span class="n">t</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%d</span><span class="s1">:</span><span class="si">%05.2f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">minutes</span><span class="p">,</span> <span class="n">seconds</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">t</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%0.2f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">seconds</span>
+
+        <span class="c1"># Strip trailing zeroes except for short ones</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">:</span>
+            <span class="k">while</span> <span class="n">t</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;0&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">:</span>
+                <span class="n">t</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">t</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">):</span>
+                <span class="n">t</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">t</span></div>
+
+
+<div class="viewcode-block" id="discipline_sort_key"><a class="viewcode-back" href="../../athlib.html#athlib.discipline_sort_key">[docs]</a><span class="k">def</span> <span class="nf">discipline_sort_key</span><span class="p">(</span><span class="n">discipline</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return a tuple which will sort into programme order</span>
+
+<span class="sd">    Track should be ordered by distance.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">discipline</span><span class="p">:</span>
+        <span class="c1"># Goes at the end</span>
+        <span class="k">return</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;?&quot;</span>
+
+    <span class="n">m</span> <span class="o">=</span> <span class="n">PAT_THROWS</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">discipline</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">m</span><span class="p">:</span>
+        <span class="n">order</span> <span class="o">=</span> <span class="n">FIELD_SORT_ORDER</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">discipline</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span>
+        <span class="k">return</span> <span class="mi">4</span><span class="p">,</span> <span class="n">order</span><span class="p">,</span> <span class="n">discipline</span>
+
+    <span class="n">m</span> <span class="o">=</span> <span class="n">PAT_HURDLES</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">discipline</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">m</span><span class="p">:</span>
+        <span class="n">distance</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+        <span class="k">return</span> <span class="mi">2</span><span class="p">,</span> <span class="n">distance</span><span class="p">,</span> <span class="n">discipline</span>
+
+    <span class="n">m</span> <span class="o">=</span> <span class="n">PAT_JUMPS</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">discipline</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">m</span><span class="p">:</span>
+        <span class="n">order</span> <span class="o">=</span> <span class="n">FIELD_SORT_ORDER</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">discipline</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span>
+        <span class="k">return</span> <span class="mi">3</span><span class="p">,</span> <span class="n">order</span><span class="p">,</span> <span class="n">discipline</span>
+
+    <span class="n">m</span> <span class="o">=</span> <span class="n">PAT_RELAYS</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">discipline</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">m</span><span class="p">:</span>
+        <span class="n">distance</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+        <span class="k">return</span> <span class="mi">5</span><span class="p">,</span> <span class="n">distance</span><span class="p">,</span> <span class="n">discipline</span>
+
+    <span class="c1"># track last, so &#39;100&#39; doesn&#39;t match before &#39;100H&#39;</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">PAT_TRACK</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">discipline</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">m</span><span class="p">:</span>
+        <span class="n">distance</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+        <span class="k">return</span> <span class="mi">1</span><span class="p">,</span> <span class="n">distance</span><span class="p">,</span> <span class="n">discipline</span>
+
+    <span class="c1"># anything else sorts to end</span>
+    <span class="k">return</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">discipline</span></div>
+
+
+<div class="viewcode-block" id="text_discipline_sort_key"><a class="viewcode-back" href="../../athlib.html#athlib.text_discipline_sort_key">[docs]</a><span class="k">def</span> <span class="nf">text_discipline_sort_key</span><span class="p">(</span><span class="n">discipline</span><span class="p">):</span>
+    <span class="s2">&quot;Return a text version of the event_sort_key&quot;</span>
+    <span class="k">return</span> <span class="s2">&quot;</span><span class="si">%d</span><span class="s2">_</span><span class="si">%05d</span><span class="s2">_</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">discipline_sort_key</span><span class="p">(</span><span class="n">discipline</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="sort_by_discipline"><a class="viewcode-back" href="../../athlib.html#athlib.sort_by_discipline">[docs]</a><span class="k">def</span> <span class="nf">sort_by_discipline</span><span class="p">(</span><span class="n">stuff</span><span class="p">,</span> <span class="n">attr</span><span class="o">=</span><span class="s2">&quot;discipline&quot;</span><span class="p">):</span>
+    <span class="s2">&quot;Sort dicts or objects into the normal athletics order&quot;</span>
+
+    <span class="n">sorter</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">thing</span> <span class="ow">in</span> <span class="n">stuff</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">thing</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="n">disc</span> <span class="o">=</span> <span class="n">thing</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">attr</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># assume object</span>
+            <span class="n">disc</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">thing</span><span class="p">,</span> <span class="n">attr</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">priority</span> <span class="o">=</span> <span class="n">discipline_sort_key</span><span class="p">(</span><span class="n">disc</span><span class="p">)</span>
+        <span class="n">sorter</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">priority</span><span class="p">,</span> <span class="n">thing</span><span class="p">))</span>
+
+    <span class="n">sorter</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">thing</span> <span class="k">for</span> <span class="p">(</span><span class="n">priority</span><span class="p">,</span> <span class="n">thing</span><span class="p">)</span> <span class="ow">in</span> <span class="n">sorter</span><span class="p">]</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">athlib 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, Andy Robinson and others.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.2.
+    </div>
+  </body>
+</html>
