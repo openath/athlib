@@ -291,7 +291,9 @@ class AthlonsAgeGrader(AgeGrader):
     event_column = 2
 
     def calculate_factor(self, gender, age, event):
-        """
+        """Work out 'slowdown factor' for a geezer of this
+        age taking part in this event e.g.
+
         >>> from athlib.wma.agegrader import AthlonsAgeGrader
         >>> ag=AthlonsAgeGrader()
         >>> ag.calculate_factor('M',65,'100H')

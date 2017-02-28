@@ -21,12 +21,28 @@ from athlib.codes import (
 
 ag = AgeGrader()
 
-wma_age_grade = ag.calculate_age_grade
-wma_age_factor = ag.calculate_factor
-wma_world_best = ag.world_best
+def wma_age_grade(gender, age, event, performance, verbose=False):
+    """Return the age grade score (0 to 100ish) for this result."""
+    return ag.calculate_age_grade(gender, age,event, performance, verbose=verbose)
+
+def wma_age_factor(gender, age, event, distance=None):
+    """Work out 'slowdown factor' for a geezer of this
+    age taking part in this event e.g."""
+    return ag.calculate_factor(self, gender, age, event, distance=distance)
+
+def wma_world_best(gender, event):
+    "The relevant world-record performance on the date stats were compiled"
+    return ag.world_best(gender, event)
 
 aag = AthlonsAgeGrader()
-wma_athlon_age_grade = aag.calculate_factor
+def wma_athlon_age_factor(gender, age, event):
+    """Work out 'slowdown factor' for a geezer of this
+    age taking part in this event e.g."""
+    return aag.calculate_factor(gender, age, event)
+
+def wma_athlon_age_grade(gender, age, event, performance, verbose=False):
+    """Return the age grade score (0 to 100ish) for this result."""
+    return aag.calculate_age_grade(gender, age, event, performance, verbose=verbose)
 
 __all__ = filter(None, """
             athlon_performance_needed
