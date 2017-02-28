@@ -57,7 +57,7 @@
   <div class="section" id="python-library">
 <h1>Python library<a class="headerlink" href="#python-library" title="Permalink to this headline">¶</a></h1>
 <p>Note that all functions are available in the top
-level <cite>athlib</cite> package, even thought they may be defined
+level <cite>athlib</cite> package, even though they may be defined
 in submodules.</p>
 <span class="target" id="module-athlib"></span><dl class="function">
 <dt id="athlib.normalize_gender">
@@ -187,6 +187,38 @@ gender and event.</p>
 and &lt;metres&gt; for throws and jumps. Ihe the Wikipedia-sourced factors,
 jumps are &lt;centimetres&gt;.  Therefore there is a factor of 100 applied at the
 end.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="athlib.wma_age_grade">
+<code class="descclassname">athlib.</code><code class="descname">wma_age_grade</code><span class="sig-paren">(</span><em>gender</em>, <em>age</em>, <em>event</em>, <em>performance</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/athlib.html#wma_age_grade"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#athlib.wma_age_grade" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the age grade score (0 to 100ish) for this result.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="athlib.wma_age_factor">
+<code class="descclassname">athlib.</code><code class="descname">wma_age_factor</code><span class="sig-paren">(</span><em>gender</em>, <em>age</em>, <em>event</em>, <em>distance=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/athlib.html#wma_age_factor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#athlib.wma_age_factor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Work out &#8216;slowdown factor&#8217; for a geezer of this
+age taking part in this event e.g.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="athlib.wma_world_best">
+<code class="descclassname">athlib.</code><code class="descname">wma_world_best</code><span class="sig-paren">(</span><em>gender</em>, <em>event</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/athlib.html#wma_world_best"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#athlib.wma_world_best" title="Permalink to this definition">¶</a></dt>
+<dd><p>The relevant world-record performance on the date stats were compiled</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="athlib.wma_athlon_age_grade">
+<code class="descclassname">athlib.</code><code class="descname">wma_athlon_age_grade</code><span class="sig-paren">(</span><em>gender</em>, <em>age</em>, <em>event</em>, <em>performance</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/athlib.html#wma_athlon_age_grade"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#athlib.wma_athlon_age_grade" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the age grade score (0 to 100ish) for this result.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="athlib.wma_athlon_age_factor">
+<code class="descclassname">athlib.</code><code class="descname">wma_athlon_age_factor</code><span class="sig-paren">(</span><em>gender</em>, <em>age</em>, <em>event</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/athlib.html#wma_athlon_age_factor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#athlib.wma_athlon_age_factor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Work out &#8216;slowdown factor&#8217; for a geezer of this
+age taking part in this event e.g.</p>
 </dd></dl>
 
 <dl class="function">

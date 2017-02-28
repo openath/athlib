@@ -2,7 +2,7 @@ Python library
 ==============
 
 Note that all functions are available in the top
-level `athlib` package, even thought they may be defined
+level `athlib` package, even though they may be defined
 in submodules.
 
 
@@ -12,7 +12,7 @@ in submodules.
 		check_performance_for_discipline, discipline_sort_key,
 		text_discipline_sort_key, sort_by_discipline, 
 		athlon_score, athlon_performance_needed,
-		wma_age_grade, wma_age_factor, wma_world_best, wma_athlon_age_grade,
+		wma_age_grade, wma_age_factor, wma_world_best, wma_athlon_age_grade, wma_athlon_age_factor,
 		calc_uka_age_group
 
 
