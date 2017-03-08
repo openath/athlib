@@ -53,6 +53,19 @@ try:
         license="Apache",
         keywords="athletics track field",
         url="https://github.com/openath/athlib",   # project home page, if any
+        classifiers = [
+            'Development Status :: 5 - Production/Stable',
+            'Intended Audience :: Developers',
+            'License :: OSI Approved :: Apache',
+            'Topic :: Athletics',
+            'Programming Language :: Python :: 2',
+            'Programming Language :: Python :: 2.7',
+            'Programming Language :: Python :: 3',
+            'Programming Language :: Python :: 3.3',
+            'Programming Language :: Python :: 3.4',
+            'Programming Language :: Python :: 3.5',
+            'Programming Language :: Python :: 3.6',
+            ],
         )
 finally:
     if os.path.isdir(jschdir):

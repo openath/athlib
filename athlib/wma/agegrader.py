@@ -34,7 +34,7 @@ class AgeGrader(object):
             codedir = os.path.dirname(__file__)
             self.data_path = os.path.join(codedir, self.data_file_name)
 
-            with open(self.data_path, 'rb') as f:
+            with open(self.data_path, 'r') as f:
                 self._data = json.load(f)
 
         return self._data

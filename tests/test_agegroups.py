@@ -265,13 +265,13 @@ class AgeGroupTests(TestCase):
 
     def test_vets(self):
         self.assertAgeGroup("1966-03-21",
-                            date(2017, 05, 12),
+                            date(2017, 5, 12),
                             "TF",
                             "V50",
                             vets=True)
 
         self.assertAgeGroup("1966-03-21",
-                            date(2017, 05, 12),
+                            date(2017, 5, 12),
                             "TF",
                             "SEN",
                             vets=False
