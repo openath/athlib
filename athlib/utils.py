@@ -24,7 +24,8 @@ __all__ = """normalize_gender
             schema_valid
             validate_against_schema
             lexec
-            localpath""".split()
+            localpath
+            isStr""".split()
 
 def normalize_gender(gender):
     """
@@ -371,6 +372,8 @@ def sort_by_discipline(stuff, attr="discipline"):
 if isPy3:
     import builtins
     lexec = getattr(builtins, 'exec')
+    def isStr(o):
+        return isinstance(o,(str,bytes))
 else:
     def lexec(obj, G=None, L=None):
         if G is None:
@@ -382,20 +385,24 @@ else:
         elif L is None:
             L = G
         exec("""exec obj in G, L""")
+    def isStr(o):
+        return isinstance(o,basestring)
 
 def localpath(relpath,pstart=0):
     fn = os.path.join(_rootdir, relpath)
     if os.path.isfile(fn):
-        return fn if pstart==0 else relpath
-    fn = relpath.replace('\\','/').split('/')
-    if fn[0]=='json':
-        fn = fn[1:]
-    fn = tuple(fn)
-    for pathdefs in (('athlib','json-schemas'),('json',)):
-        pathdefs = (_rootdir,)+pathdefs+fn
-        if os.path.isfile(os.path.join(*pathdefs)):
-            relpath = os.path.join(*pathdefs[pstart:])
-            break
+        if pstart==0:
+            relpath = fn
+    else:
+        fn = relpath.replace('\\','/').split('/')
+        if fn[0]=='json':
+            fn = fn[1:]
+        fn = tuple(fn)
+        for pathdefs in (('athlib','json-schemas'),('json',)):
+            pathdefs = (_rootdir,)+pathdefs+fn
+            if os.path.isfile(os.path.join(*pathdefs)):
+                relpath = os.path.join(*pathdefs[pstart:])
+                break
     return relpath
 
 class LocalFileResolver(OriginalResolver):
