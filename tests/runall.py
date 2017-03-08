@@ -7,10 +7,11 @@ class AthlibTestCase(TestCase):
 
     @classmethod
     def setUpClass(cls):
+        me = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         cls.__sys_path__ = sys.path[:]
         sys.path.insert(0, _rootdir)
         cls.__here__ = os.getcwd()
-        os.chdir(_rootdir)
+        os.chdir(me)
 
     @classmethod
     def tearDownClass(cls):
@@ -20,7 +21,6 @@ class AthlibTestCase(TestCase):
 def main():
     was_here = os.getcwd()
     try:
-        os.chdir(_rootdir)
         import unittest
         import doctest
         import sys

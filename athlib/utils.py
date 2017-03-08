@@ -389,20 +389,24 @@ else:
         return isinstance(o,basestring)
 
 def localpath(relpath,pstart=0):
-    fn = os.path.join(_rootdir, relpath)
-    if os.path.isfile(fn):
+    if os.path.isfile(relpath):
         if pstart==0:
-            relpath = fn
+            relpath = os.path.abspath(relpath)
     else:
-        fn = relpath.replace('\\','/').split('/')
-        if fn[0]=='json':
-            fn = fn[1:]
-        fn = tuple(fn)
-        for pathdefs in (('athlib','json-schemas'),('json',)):
-            pathdefs = (_rootdir,)+pathdefs+fn
-            if os.path.isfile(os.path.join(*pathdefs)):
-                relpath = os.path.join(*pathdefs[pstart:])
-                break
+        fn = os.path.join(_rootdir, relpath)
+        if os.path.isfile(fn):
+            if pstart==0:
+                relpath = fn
+        else:
+            fn = relpath.replace('\\','/').split('/')
+            if fn[0]=='json':
+                fn = fn[1:]
+            fn = tuple(fn)
+            for pathdefs in (('athlib','json-schemas'),('json',)):
+                pathdefs = (_rootdir,)+pathdefs+fn
+                if os.path.isfile(os.path.join(*pathdefs)):
+                    relpath = os.path.join(*pathdefs[pstart:])
+                    break
     return relpath
 
 class LocalFileResolver(OriginalResolver):

@@ -61,168 +61,168 @@ class JsonSchemaValidityTests(TestCase):
 
     def test_athlete_valid_against_schema(self):
         self.assertTrue(valid_against_schema(
-            "json/samples/athlete.json",
+            "sample-jsons/athlete.json",
             "json/athlete.json")
         )
         self.assertTrue(valid_against_schema(
-            "json/samples/athlete_minimal.json",
+            "sample-jsons/athlete_minimal.json",
             "json/athlete.json")
         )
 
     def test_athlete_invalid_against_schema(self):
         with self.assertRaises(ValidationError):
-            valid_against_schema("json/samples/athlete_invalid.json",
+            valid_against_schema("sample-jsons/athlete_invalid.json",
                                  "json/athlete.json",
                                  expect_failure=True)
 
     def test_combined_performance_valid_against_schema(self):
         self.assertTrue(valid_against_schema(
-            "json/samples/combined_performance.json",
+            "sample-jsons/combined_performance.json",
             "json/combined_performance.json")
         )
         self.assertTrue(valid_against_schema(
-            "json/samples/combined_performance_minimal.json",
+            "sample-jsons/combined_performance_minimal.json",
             "json/combined_performance.json")
         )
 
     def test_combined_performance_invalid_against_schema(self):
         with self.assertRaises(ValidationError):
             valid_against_schema(
-                "json/samples/combined_performance_invalid.json",
+                "sample-jsons/combined_performance_invalid.json",
                 "json/combined_performance.json",
                 expect_failure=True
             )
 
         with self.assertRaises(ValidationError):
             valid_against_schema(
-                "json/samples/combined_performance_invalid2.json",
+                "sample-jsons/combined_performance_invalid2.json",
                 "json/combined_performance.json",
                 expect_failure=True
             )
 
     def test_competition_valid_against_schema(self):
         self.assertTrue(valid_against_schema(
-            "json/samples/competition.json",
+            "sample-jsons/competition.json",
             "json/competition.json")
         )
         self.assertTrue(valid_against_schema(
-            "json/samples/competition_minimal.json",
+            "sample-jsons/competition_minimal.json",
             "json/competition.json")
         )
 
     def test_competition_invalid_against_schema(self):
         with self.assertRaises(ValidationError):
-            valid_against_schema("json/samples/competition_invalid.json",
+            valid_against_schema("sample-jsons/competition_invalid.json",
                                  "json/competition.json",
                                  expect_failure=True)
 
     def test_event_valid_against_schema(self):
-        self.assertTrue(valid_against_schema("json/samples/event.json",
+        self.assertTrue(valid_against_schema("sample-jsons/event.json",
                                              "json/event.json"))
-        self.assertTrue(valid_against_schema("json/samples/event_minimal.json",
+        self.assertTrue(valid_against_schema("sample-jsons/event_minimal.json",
                                              "json/event.json"))
 
     def test_event_invalid_against_schema(self):
         with self.assertRaises(ValidationError):
-            valid_against_schema("json/samples/event_invalid.json",
+            valid_against_schema("sample-jsons/event_invalid.json",
                                  "json/event.json",
                                  expect_failure=True)
 
     def test_performance_valid_against_schema(self):
-        self.assertTrue(valid_against_schema("json/samples/performance.json",
+        self.assertTrue(valid_against_schema("sample-jsons/performance.json",
                                              "json/performance.json"))
         self.assertTrue(valid_against_schema(
-            "json/samples/performance_minimal.json",
+            "sample-jsons/performance_minimal.json",
             "json/performance.json")
         )
 
     def test_performance_invalid_against_schema(self):
         with self.assertRaises(ValidationError):
-            valid_against_schema("json/samples/performance_invalid.json",
+            valid_against_schema("sample-jsons/performance_invalid.json",
                                  "json/performance.json",
                                  expect_failure=True)
 
         with self.assertRaises(ValidationError):
-            valid_against_schema("json/samples/performance_invalid2.json",
+            valid_against_schema("sample-jsons/performance_invalid2.json",
                                  "json/performance.json",
                                  expect_failure=True)
 
     def test_race_valid_against_schema(self):
         self.assertTrue(valid_against_schema(
-            "json/samples/race_iffleymiles_2016_600mA.json",
+            "sample-jsons/race_iffleymiles_2016_600mA.json",
             "json/race.json"))
         self.assertTrue(valid_against_schema(
-            "json/samples/race_iffleymiles_2016_600mB.json",
+            "sample-jsons/race_iffleymiles_2016_600mB.json",
             "json/race.json"))
         self.assertTrue(valid_against_schema(
-            "json/samples/race_iffleymiles_2016_mileA.json",
+            "sample-jsons/race_iffleymiles_2016_mileA.json",
             "json/race.json"))
         self.assertTrue(valid_against_schema(
-            "json/samples/race_iffleymiles_2016_mileB.json",
+            "sample-jsons/race_iffleymiles_2016_mileB.json",
             "json/race.json"))
 
     def test_race_invalid_against_schema(self):
         with self.assertRaises(ValidationError):
             valid_against_schema(
-                "json/samples/race_invalid_athlete_internal.json",
+                "sample-jsons/race_invalid_athlete_internal.json",
                 "json/race.json",
                 expect_failure=True)
 
         with self.assertRaises(ValidationError):
             valid_against_schema(
-                "json/samples/race_invalid_athlete_external.json",
+                "sample-jsons/race_invalid_athlete_external.json",
                 "json/race.json",
                 expect_failure=True)
 
         with self.assertRaises(ValidationError):
-            valid_against_schema("json/samples/race_invalid_position.json",
+            valid_against_schema("sample-jsons/race_invalid_position.json",
                                  "json/race.json",
                                  expect_failure=True)
 
         with self.assertRaises(ValidationError):
-            valid_against_schema("json/samples/race_invalid_result.json",
+            valid_against_schema("sample-jsons/race_invalid_result.json",
                                  "json/race.json",
                                  expect_failure=True)
 
     def test_valid_against_metaschema(self):
-        self.assertTrue(valid_against_schema("json/samples/athlete.json",
+        self.assertTrue(valid_against_schema("sample-jsons/athlete.json",
                                              "json/metaschema.json"))
         self.assertTrue(valid_against_schema(
-            "json/samples/combined_performance.json",
+            "sample-jsons/combined_performance.json",
             "json/metaschema.json")
         )
-        self.assertTrue(valid_against_schema("json/samples/competition.json",
+        self.assertTrue(valid_against_schema("sample-jsons/competition.json",
                                              "json/metaschema.json"))
-        self.assertTrue(valid_against_schema("json/samples/event.json",
+        self.assertTrue(valid_against_schema("sample-jsons/event.json",
                                              "json/metaschema.json"))
-        self.assertTrue(valid_against_schema("json/samples/performance.json",
+        self.assertTrue(valid_against_schema("sample-jsons/performance.json",
                                              "json/metaschema.json"))
 
     def test_invalid_against_metaschema(self):
         with self.assertRaises(ValidationError):
-            valid_against_schema("json/samples/athlete_invalid.json",
+            valid_against_schema("sample-jsons/athlete_invalid.json",
                                  "json/metaschema.json",
                                  expect_failure=True)
 
         with self.assertRaises(ValidationError):
             valid_against_schema(
-                "json/samples/combined_performance_invalid.json",
+                "sample-jsons/combined_performance_invalid.json",
                 "json/metaschema.json",
                 expect_failure=True)
 
         with self.assertRaises(ValidationError):
             valid_against_schema(
-                "json/samples/competition_invalid.json",
+                "sample-jsons/competition_invalid.json",
                 "json/metaschema.json",
                 expect_failure=True)
 
         with self.assertRaises(ValidationError):
-            valid_against_schema("json/samples/event_invalid.json",
+            valid_against_schema("sample-jsons/event_invalid.json",
                                  "json/metaschema.json",
                                  expect_failure=True)
 
         with self.assertRaises(ValidationError):
-            valid_against_schema("json/samples/performance_invalid.json",
+            valid_against_schema("sample-jsons/performance_invalid.json",
                                  "json/metaschema.json",
                                  expect_failure=True)
 

@@ -1,19 +1,26 @@
 import os, sys, re, inspect
-from unittest import main
+from unittest import main, skipIf
 from runall import AthlibTestCase
 from athlib.utils import localpath, lexec
+
+def have_docs():
+    path = localpath(os.path.join('docs', 'source', 'athlib.rst'))
+    if os.path.isfile(path):
+        return path
 
 class ImportTest(AthlibTestCase):
 
     @classmethod
     def setUpClass(cls):
         AthlibTestCase.setUpClass()
-        with open(
-            localpath(
-                os.path.join('docs', 'source', 'athlib.rst')
-                ), 'r') as f:
-            cls.text = f.read()
+        path = have_docs()
+        if path:
+            with open(path, 'r') as f:
+                cls.text = f.read()
+        else:
+            cls.text = None
 
+    @skipIf(not have_docs(),'no docs found')
     def test_primitive_imports(self):
         marker = ':members:'
         ML = self.text[self.text.index(
@@ -35,6 +42,7 @@ class ImportTest(AthlibTestCase):
                         "be imported from athlib\n %s"
                         % ' \n'.join(failures))
 
+    @skipIf(not have_docs(),'no docs found')
     def test_athlib_all_is_mentioned(self):
         import athlib
         failures = []
@@ -72,9 +80,9 @@ class ImportTest(AthlibTestCase):
     def test_fake_signatures(self):
         failures = []
         def bad_test(a,b):
-            asig = inspect.getargspec(a)
+            asig = getattr(inspect,'getfullargspec',inspect.getargspec)(a)
             del asig.args[0]
-            bsig = inspect.getargspec(b)
+            bsig = getattr(inspect,'getfullargspec',inspect.getargspec)(b)
             if asig!=bsig:
                 return asig,bsig
 

@@ -16,15 +16,13 @@ def my_test_suite():
 
     return test_suite
 
-def find_schemas(top,drop=1):
+def find_json(top,drop=1,force=False):
     for p,D,F in os.walk(top):
-        if p==top and 'samples' in D:
-            D.remove('samples')
         for f in F:
             fn = os.path.join(p,f)
             with open(fn,'rb') as j:
                 json = j.read()
-            if schema_marker_re.search(json):
+            if force or schema_marker_re.search(json):
                 if drop:
                     fn = os.sep.join(fn.split(os.sep)[drop:])
                 yield fn
@@ -43,7 +41,8 @@ try:
         name="athlib",
         version="0.0.3",
         packages=find_packages(),
-        package_data={'athlib':list(find_schemas(os.path.join('athlib','json-schemas')))},
+        package_data={'athlib':(list(find_json(os.path.join('athlib','json-schemas')))
+                                +list(find_json(os.path.join('athlib','wma'),force=True)))},
         test_suite="setup.my_test_suite",
 
         # metadata for upload to PyPI
