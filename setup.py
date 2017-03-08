@@ -41,7 +41,7 @@ try:
     shutil.copytree('json',jschdir)
     setup(
         name="athlib",
-        version="0.0.2",
+        version="0.0.3",
         packages=find_packages(),
         package_data={'athlib':list(find_schemas(os.path.join('athlib','json-schemas')))},
         test_suite="setup.my_test_suite",
@@ -53,6 +53,10 @@ try:
         license="Apache",
         keywords="athletics track field",
         url="https://github.com/openath/athlib",   # project home page, if any
+        install_requires=[
+                'jsonschema>=2.6.0',
+                'python-dateutil',
+                ],
         classifiers = [
             'Development Status :: 5 - Production/Stable',
             'Intended Audience :: Developers',
