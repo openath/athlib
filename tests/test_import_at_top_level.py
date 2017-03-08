@@ -1,6 +1,7 @@
 import os, sys, re, inspect
 from unittest import main
-from runall import localpath, lexec, AthlibTestCase
+from runall import AthlibTestCase
+from athlib.utils import localpath, lexec
 
 class ImportTest(AthlibTestCase):
 

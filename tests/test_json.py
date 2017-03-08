@@ -2,73 +2,12 @@
 This file covers testing validity of JSON schemata, plus the fields in the
 schemta themselves.
 """
-import sys
-import os
-import json
+import sys, os
 from pprint import pprint
 import jsonschema
 from jsonschema.exceptions import SchemaError, ValidationError
 from unittest import TestCase, main
-from runall import _rootdir, localpath
-import jsonschema.validators
-
-# Monkeypatch jsonschema to resolve local, relative urls.
-from jsonschema.validators import RefResolver as OriginalResolver
-
-
-class LocalFileResolver(OriginalResolver):
-
-    def resolve_from_url(self, url):
-        if url.startswith("file:///"):
-            relpath = url[8:]
-            url = ("file:///%s/%s" if sys.platform ==
-                   'win32' else 'file://%s/%s') % (_rootdir, relpath)
-        return super(LocalFileResolver, self).resolve_from_url(url)
-
-
-jsonschema.validators.RefResolver = LocalFileResolver
-
-
-def schema_valid(schema_file,  # should be relative path
-                 validator=jsonschema.Draft3Validator,
-                 expect_failure=False):
-    """Test that schema is itself valid, using a jsonschema validator"""
-    with open(localpath(schema_file)) as f:
-        schema = json.load(f)
-
-        try:
-            validator.check_schema(schema)
-            return True
-        except SchemaError as e:
-            if not expect_failure:
-                print(e)
-                return False
-            else:
-                raise
-
-    return False
-
-
-def valid_against_schema(json_file, schema_file, expect_failure=False):
-    """Test that JSON file valid against a schema"""
-    with open(localpath(json_file)) as f:
-        json_data = json.load(f)
-
-        with open(localpath(schema_file)) as f2:
-            schema = json.load(f2)
-
-            try:
-                jsonschema.validate(json_data, schema)
-                return True
-            except ValidationError as e:
-                if not expect_failure:
-                    print(e)
-                    return False
-                else:
-                    raise
-
-    return False
-
+from athlib.utils import _rootdir, localpath, schema_valid, valid_against_schema
 
 class JsonSchemaValidityTests(TestCase):
 

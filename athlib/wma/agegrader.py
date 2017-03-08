@@ -61,7 +61,7 @@ class AgeGrader(object):
                 if p.match(ec):
                     break
             else:
-                print 'could not match %s' % ec
+                print('could not match %s' % ec)
 
         nuc = []
 
@@ -76,7 +76,7 @@ class AgeGrader(object):
             self._check_table_column(data['f'], j, ccase)
 
         if nuc:
-            print ('these strings need uppercasing in the json %s' %
+            print('these strings need uppercasing in the json %s' %
                    ' '.join(repr(t) for t in list(set(nuc))))
 
     @staticmethod
@@ -268,10 +268,10 @@ class AgeGrader(object):
         age_group_best = world_best * 1.0 / age_factor
 
         if verbose:
-            print "performance = %0.2f" % float_performance
-            print "world best for %s %s = %0.2f" % (gender, event, world_best)
-            print "factor %s %s = %0.4f" % (gender, event, age_factor)
-            print "age group best would be", age_group_best
+            print("performance = %0.2f" % float_performance)
+            print("world best for %s %s = %0.2f" % (gender, event, world_best))
+            print("factor %s %s = %0.4f" % (gender, event, age_factor))
+            print("age group best would be", age_group_best)
 
         kind = self.event_code_to_kind(event)
 
