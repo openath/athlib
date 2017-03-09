@@ -52,7 +52,7 @@ def rule107_agegroups_trackandfield(birth_date,
             else:
                 # V35, V40, V45 etc
                 if vets:
-                    return "V%02d" % (age_on_match_day / 5 * 5)
+                    return "V%02d" % (int(age_on_match_day // 5) * 5)
                 else:
                     return "SEN"
 
@@ -88,7 +88,7 @@ def rule507_agegroups_crosscountry(birth_date,
         else:
             # V35, V40, V45 etc
             if vets:
-                return "V%02d" % (age_on_match_day / 5 * 5)
+                return "V%02d" % (int(age_on_match_day // 5) * 5)
             else:
                 return "SEN"
 

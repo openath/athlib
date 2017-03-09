@@ -327,6 +327,6 @@ class AthlonsAgeGrader(AgeGrader):
                                x=2,
                                label='wma-athlons.%s.%s' % (self.data_year,
                                                             gender))
-        self.find_age(int(age / 5) * 5, ages, interpolate=False)
+        self.find_age(int(age // 5) * 5, ages, interpolate=False)
         fac = table[self._fx][3:][self._ax1]
         return fac
