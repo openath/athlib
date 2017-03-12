@@ -130,7 +130,7 @@ var _ref2 = _interopRequireDefault(_ref);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function createTransalator() {
+function createTranslator() {
     return {
         numtoword: function numtoword(num) {
             return num < 0 || num > 5 ? 'This is a failure' : converttoword(num);
@@ -154,7 +154,7 @@ var converttonum = function converttonum(word) {
     }, -1);
 };
 
-module.exports = createTransalator();
+module.exports = createTranslator();
 
 /***/ })
 /******/ ]);

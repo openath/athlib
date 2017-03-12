@@ -1,6 +1,6 @@
 export default () => (
     {
-        entry: './index.js',
+        entry: './js/index.js',
         output: {
             path: './dist',
             filename: 'athlib.js',
