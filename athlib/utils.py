@@ -1,4 +1,13 @@
 """General athlib utility functions"""
+import sys, os, json
+from collections import OrderedDict
+import jsonschema.validators
+from jsonschema.validators import RefResolver as OriginalResolver
+from jsonschema.exceptions import SchemaError, ValidationError
+isPy3 = sys.version_info[0] == 3
+_rootdir = os.path.dirname(os.path.abspath(__file__))
+_rootdir = os.path.normpath(os.path.join(_rootdir, '..'))
+
 from .codes import PAT_THROWS, PAT_JUMPS, PAT_RELAYS, PAT_HURDLES, PAT_TRACK, \
     PAT_LEADING_DIGITS, PAT_PERF, \
     FIELD_EVENTS, MULTI_EVENTS, FIELD_SORT_ORDER
@@ -11,8 +20,12 @@ __all__ = """normalize_gender
             check_performance_for_discipline
             discipline_sort_key
             text_discipline_sort_key
-            sort_by_discipline""".split()
-
+            sort_by_discipline
+            schema_valid
+            validate_against_schema
+            lexec
+            localpath
+            isStr""".split()
 
 def normalize_gender(gender):
     """
@@ -31,7 +44,6 @@ def normalize_gender(gender):
         raise ValueError('cannot normalize gender = %s' % repr(gender))
     return g
 
-
 def str2num(s):
     """convert string to int if possible else float
 
@@ -43,7 +55,6 @@ def str2num(s):
         return int(s)
     except ValueError:
         return float(s)
-
 
 def parse_hms(t):
     """
@@ -85,7 +96,6 @@ def parse_hms(t):
     except ValueError:
         raise ValueError('cannot parse seconds from %s' % repr(t))
 
-
 def get_distance(discipline):
     """
     Return approx distance in metres, for sanity checking
@@ -122,7 +132,6 @@ def get_distance(discipline):
     elif remains in ('M', 'Mi', 'MI'):
         return int(1609 * qty)
 
-
 def format_seconds_as_time(seconds, prec=0):
     """convert seconds to a string formatted as hours:min:secs
 
@@ -153,12 +162,11 @@ def format_seconds_as_time(seconds, prec=0):
         t = "%d" % secs
     return t + frac
 
-
 def check_performance_for_discipline(discipline, textvalue):
     """
     Fix up and return what they typed in,  or raise ValueError
     """
-    # print "checkperf %s %s" % (discipline, repr(textvalue))
+    # print("checkperf %s %s" % (discipline, repr(textvalue)))
     textvalue = textvalue.strip()
 
     if discipline.lower() == "xc" and textvalue == "":
@@ -210,7 +218,7 @@ def check_performance_for_discipline(discipline, textvalue):
 
         if distance and (distance <= 200) and (":" in textvalue) \
                 and ("." not in textvalue):
-            # print "fixing colon to stop "
+            # print("fixing colon to stop ")
             textvalue = textvalue.replace(":", ".")
 
         if discipline in ["800", "1500", "3000"]:
@@ -253,15 +261,15 @@ def check_performance_for_discipline(discipline, textvalue):
             minutes = 0
 
         duration = 3600 * hours + 60 * minutes + seconds
-        # print "duration: %0.2f seconds" % duration
+        # print("duration: %0.2f seconds" % duration)
 
         # do sanity checks.  Over 11 metres per second is pretty fishy for a
         # sprint
         if distance and duration:
 
             velocity = distance * 1.0 / duration
-            # print 'distance = %0.2d, duration = %d sec,
-            #        velocity = %0.2f m/s' % (distance, duration, velocity)
+            # print('distance = %0.2d, duration = %d sec,
+            #        velocity = %0.2f m/s' % (distance, duration, velocity))
             if distance <= 400:
                 if velocity > 11.0:
                     raise ValueError(
@@ -300,7 +308,6 @@ def check_performance_for_discipline(discipline, textvalue):
                 t = t[0:-1]
 
         return t
-
 
 def discipline_sort_key(discipline):
     """
@@ -342,11 +349,9 @@ def discipline_sort_key(discipline):
     # anything else sorts to end
     return 6, 0, discipline
 
-
 def text_discipline_sort_key(discipline):
     "Return a text version of the event_sort_key"
     return "%d_%05d_%s" % discipline_sort_key(discipline)
-
 
 def sort_by_discipline(stuff, attr="discipline"):
     "Sort dicts or objects into the normal athletics order"
@@ -363,3 +368,109 @@ def sort_by_discipline(stuff, attr="discipline"):
 
     sorter.sort()
     return [thing for (priority, thing) in sorter]
+
+if isPy3:
+    import builtins
+    lexec = getattr(builtins, 'exec')
+    def isStr(o):
+        return isinstance(o,(str,bytes))
+else:
+    def lexec(obj, G=None, L=None):
+        if G is None:
+            frame = sys._getframe(1)
+            G = frame.f_globals
+            if L is None:
+                L = frame.f_locals
+            del frame
+        elif L is None:
+            L = G
+        exec("""exec obj in G, L""")
+    def isStr(o):
+        return isinstance(o,basestring)
+
+def localpath(relpath,pstart=0):
+    if os.path.isfile(relpath):
+        if pstart==0:
+            relpath = os.path.abspath(relpath)
+    else:
+        fn = os.path.join(_rootdir, relpath)
+        if os.path.isfile(fn):
+            if pstart==0:
+                relpath = fn
+        else:
+            fn = relpath.replace('\\','/').split('/')
+            if fn[0]=='json':
+                fn = fn[1:]
+            fn = tuple(fn)
+            for pathdefs in (('athlib','json-schemas'),('json',)):
+                pathdefs = (_rootdir,)+pathdefs+fn
+                if os.path.isfile(os.path.join(*pathdefs)):
+                    relpath = os.path.join(*pathdefs[pstart:])
+                    break
+    return relpath
+
+class LocalFileResolver(OriginalResolver):
+
+    def resolve_from_url(self, url):
+        if url.startswith("file:///"):
+            relpath = localpath(url[8:].rstrip('#'),1).replace(os.sep,'/')
+            url = ("file:///%s/%s" if sys.platform ==
+                   'win32' else 'file://%s/%s') % (_rootdir, relpath)
+        return super(LocalFileResolver, self).resolve_from_url(url)
+
+# Monkeypatch jsonschema to resolve local, relative urls.
+jsonschema.validators.RefResolver = LocalFileResolver
+
+def _add_to_cache(c,t,v,maxlen=20):
+    while len(c)>=maxlen:
+        c.popitem(False)
+    c[t] = v
+    return v
+
+_schema_valid_cache = OrderedDict()
+def schema_valid(schema_file,  # should be relative path
+                 validator=jsonschema.Draft3Validator,
+                 expect_failure=False):
+    """Test that schema is itself valid, using a jsonschema validator"""
+
+    t = (schema_file,validator)
+    if t in _schema_valid_cache:
+        return _schema_valid_cache[t]
+    with open(localpath(schema_file)) as f:
+        schema = json.load(f)
+
+        try:
+            validator.check_schema(schema)
+            return _add_to_cache(_schema_valid_cache,t,True)
+        except SchemaError as e:
+            if not expect_failure:
+                print(e)
+                return _add_to_cache(_schema_valid_cache,t,False)
+            else:
+                raise
+
+    return False
+
+_valid_against_schema_cache = OrderedDict()
+def valid_against_schema(json_file, schema_file, expect_failure=False):
+    """Test that JSON file valid against a schema"""
+    t = (json_file,schema_file)
+    if t in _valid_against_schema_cache:
+        return _valid_against_schema_cache[t]
+    with open(localpath(json_file)) as f:
+        json_data = json.load(f)
+
+        with open(localpath(schema_file)) as f2:
+            schema = json.load(f2)
+
+            try:
+                jsonschema.validate(json_data, schema)
+                return _add_to_cache(_valid_against_schema_cache,t,True)
+            except ValidationError as e:
+                if not expect_failure:
+                    print(e)
+                    return _add_to_cache(_valid_against_schema_cache,t,False)
+                else:
+                    raise
+
+    return False

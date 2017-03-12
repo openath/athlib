@@ -1,7 +1,5 @@
-import unittest
-import doctest
+import os, re, shutil, unittest, doctest
 from setuptools import setup, find_packages
-
 
 def my_test_suite():
     test_loader = unittest.TestLoader()
@@ -18,18 +16,61 @@ def my_test_suite():
 
     return test_suite
 
+def find_json(top,drop=1,force=False):
+    for p,D,F in os.walk(top):
+        for f in F:
+            fn = os.path.join(p,f)
+            with open(fn,'rb') as j:
+                json = j.read()
+            if force or schema_marker_re.search(json):
+                if drop:
+                    fn = os.sep.join(fn.split(os.sep)[drop:])
+                yield fn
 
-setup(
-    name="athlib",
-    version="0.0.2",
-    packages=find_packages(),
-    test_suite="setup.my_test_suite",
+here = os.getcwd()
+base = os.path.dirname(os.path.abspath(__file__))
+schema_marker_re = re.compile(r'''(?P<q>["'])\$schema(?P=q)\s*:''',re.M)
 
-    # metadata for upload to PyPI
-    author="Andy Robinson and others",
-    author_email="andy@reportlab.com",
-    description="Utilities for track and field athletics",
-    license="Apache",
-    keywords="athletics track field",
-    url="https://github.com/openath/athlib",   # project home page, if any
-)
+os.chdir(base)
+jschdir = os.path.join('athlib','json-schemas')
+try:
+    if os.path.isdir(jschdir):
+        shutil.rmtree(jschdir)
+    shutil.copytree('json',jschdir)
+    setup(
+        name="athlib",
+        version="0.0.3",
+        packages=find_packages(),
+        package_data={'athlib':(list(find_json(os.path.join('athlib','json-schemas')))
+                                +list(find_json(os.path.join('athlib','wma'),force=True)))},
+        test_suite="setup.my_test_suite",
+
+        # metadata for upload to PyPI
+        author="Andy Robinson and others",
+        author_email="andy@reportlab.com",
+        description="Utilities for track and field athletics",
+        license="Apache",
+        keywords="athletics track field",
+        url="https://github.com/openath/athlib",   # project home page, if any
+        install_requires=[
+                'jsonschema>=2.6.0',
+                'python-dateutil',
+                ],
+        classifiers = [
+            'Development Status :: 5 - Production/Stable',
+            'Intended Audience :: Developers',
+            'License :: OSI Approved :: Apache',
+            'Topic :: Athletics',
+            'Programming Language :: Python :: 2',
+            'Programming Language :: Python :: 2.7',
+            'Programming Language :: Python :: 3',
+            'Programming Language :: Python :: 3.3',
+            'Programming Language :: Python :: 3.4',
+            'Programming Language :: Python :: 3.5',
+            'Programming Language :: Python :: 3.6',
+            ],
+        )
+finally:
+    if os.path.isdir(jschdir):
+        shutil.rmtree(jschdir)
+    os.chdir(here)

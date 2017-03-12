@@ -1,7 +1,7 @@
-from types import StringTypes
 from datetime import date, timedelta
 from dateutil.parser import parse as parse_date
 from dateutil.relativedelta import relativedelta
+from athlib.utils import isStr
 
 
 def prior_date(match_date, cutoff_month, cutoff_day):
@@ -25,7 +25,7 @@ def rule107_agegroups_trackandfield(birth_date,
     august_cutoff = date(match_date.year, 8, 31)
     december_cutoff = date(match_date.year, 12, 31)
 
-    if isinstance(birth_date, basestring):
+    if isStr(birth_date):
         birth_date = parse_date(birth_date)
 
     age_on_31_aug = relativedelta(august_cutoff, birth_date).years
@@ -52,7 +52,7 @@ def rule107_agegroups_trackandfield(birth_date,
             else:
                 # V35, V40, V45 etc
                 if vets:
-                    return "V%02d" % (age_on_match_day / 5 * 5)
+                    return "V%02d" % (int(age_on_match_day // 5) * 5)
                 else:
                     return "SEN"
 
@@ -62,7 +62,7 @@ def rule507_agegroups_crosscountry(birth_date,
                                    vets=True,
                                    underage=True):
     """I can't find any actual differences between road and XC"""
-    if isinstance(birth_date, basestring):
+    if isStr(birth_date):
         birth_date = parse_date(birth_date)
 
     cutoff_date = prior_date(match_date, 8, 31)
@@ -88,7 +88,7 @@ def rule507_agegroups_crosscountry(birth_date,
         else:
             # V35, V40, V45 etc
             if vets:
-                return "V%02d" % (age_on_match_day / 5 * 5)
+                return "V%02d" % (int(age_on_match_day // 5) * 5)
             else:
                 return "SEN"
 
