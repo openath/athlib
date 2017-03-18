@@ -1,0 +1,199 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Vocabulary &#8212; athlib 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Schemas" href="schemas.html" />
+    <link rel="prev" title="Identity" href="identity.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="schemas.html" title="Schemas"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="identity.html" title="Identity"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">athlib 0.1 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="vocabulary">
+<h1>Vocabulary<a class="headerlink" href="#vocabulary" title="Permalink to this headline">¶</a></h1>
+<p>The first step towards a standard is a <cite>vocabulary</cite>.  The World Wide Web Consortium (W3C)
+have tools for defining these, but we&#8217;re making a start in plain English, explaining
+the words we have chosen.  These will turn up as the names of records, tags and database
+tables.</p>
+<p>It is important to try to choose unambiguous names.   Words like <cite>event</cite> and <cite>meeting</cite> can be used in too many contexts.  Below is our first attempt, with some notes on other alteratives we considered.</p>
+<div class="section" id="the-main-things-in-athletics">
+<h2>The main <em>Things</em> in Athletics<a class="headerlink" href="#the-main-things-in-athletics" title="Permalink to this headline">¶</a></h2>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Competition:</th><td class="field-body">We prefer this term over <cite>meeting</cite> (used in many contexts) or <cite>match</cite> (which implies a team-against-team contest)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Venue:</th><td class="field-body">where a competition happens.  Venues may be identified in databases, pinpointed by latitude and longitude, and described in different ways, but they are often re-used and so worth identifying.  Venues might include <cite>tracks</cite>, and <cite>courses</cite> used for cross country or road</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Organisation:</th><td class="field-body">Organisations include Clubs, National Governing Bodies or Federations, International Federations, Regional bodies, Leagues and more.   Organisations can <cite>affiliate</cite> to each other.  This is often recognised by the payment of a fee.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Person:</th><td class="field-body">We&#8217;ll need to refer to people in their many roles:  athletes, coaches, officials, parents, managers and more.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="contexts">
+<h1>Contexts<a class="headerlink" href="#contexts" title="Permalink to this headline">¶</a></h1>
+<p>There are quite a few  <cite>contexts</cite> where we may wish to exchange information.  The <cite>context</cite> is about the <cite>task we are trying to address</cite>.  We&#8217;ll have an attempt at naming some of the main ones below.   When we discuss or specify some file format for exchange, the context determines what information is important and needs to be included.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">results:</th><td class="field-body">exchange of results, AFTER a competition is finished, when the results are at least broadly realistic and complete.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">recording:</th><td class="field-body">what happens DURING a competition - exchange of finish line data, field event measurements</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">entries:</th><td class="field-body">start lists and data on who entered what, prior to a competition starting.  This may also include exchange of personal data (e.g. email, next of kin contact numbers) and payment information between athlete or team and the organiser, which is not necessarily open to the world.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">membership:</th><td class="field-body">clubs and governing bodies exchanging data to identify athletes, outside of any particular competition.  This will include data to identify the individual, and to describe their membership status in various organisations.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">statistics:</th><td class="field-body">exchange of rankings lists, and the performances of individuals: who, when, what event, how fast/high/long?</td>
+</tr>
+<tr class="field-even field"><th class="field-name">records:</th><td class="field-body">as a subset of <cite>statistics</cite>,  we also often need to exchange &#8220;record holders&#8221;, at many levels:  school, club, county or region, national, area (e.g. Europe), world.  When publishing a programme for a competition, it&#8217;s common to know what the record is for that meeting.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">fixtures:</th><td class="field-body">exchange of basic information about planned future competitions:  what are they, when and where are they happening?</td>
+</tr>
+<tr class="field-even field"><th class="field-name">programme:</th><td class="field-body">the detailed structure of a competition, including (if it&#8217;s known yet) what&#8217;s on when during the competition.   The <cite>programme</cite> context relates to setting up the competition, and production of programmes and timetables and other materials</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="useful-terms">
+<h2>Useful terms<a class="headerlink" href="#useful-terms" title="Permalink to this headline">¶</a></h2>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">eventCode:</th><td class="field-body">we propose a standard system of codes, covering each standard event in Athletics, as well as an open-ended system to cover races of different lengths.  Examples might include <cite>HJ</cite>, <cite>800</cite> etc.  The coding system gets its own page [here].</td>
+</tr>
+</tbody>
+</table>
+<p>We attempted to call this <cite>discipline</cite>, because of the many ways <cite>event</cite> is used, but have been informed very plainly by many leading statisticians and systems builders that this will never</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">event:</th><td class="field-body">we use this to refer to something that takes place within a competition.  If a group of people line up to run, jump or throw at the same time, we choose to call this an <cite>event</cite></td>
+</tr>
+<tr class="field-even field"><th class="field-name">discipline:</th><td class="field-body">we&#8217;ll use this in the broader sense of which part of the sport.   TF (for track and field), ROAD, XC, WALK, MTN (for mountain)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Vocabulary</a><ul>
+<li><a class="reference internal" href="#the-main-things-in-athletics">The main <em>Things</em> in Athletics</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#contexts">Contexts</a><ul>
+<li><a class="reference internal" href="#useful-terms">Useful terms</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="identity.html"
+                        title="previous chapter">Identity</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="schemas.html"
+                        title="next chapter">Schemas</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/vocab.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="schemas.html" title="Schemas"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="identity.html" title="Identity"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">athlib 0.1 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, Andy Robinson and others.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.2.
+    </div>
+  </body>
+</html>

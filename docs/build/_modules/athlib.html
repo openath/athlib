@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>athlib &#8212; athlib 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">athlib 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for athlib</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">athlib.wma.agegrader</span> <span class="k">import</span> <span class="n">AgeGrader</span><span class="p">,</span> <span class="n">AthlonsAgeGrader</span>
+<span class="kn">from</span> <span class="nn">athlib.uka.agegroups</span> <span class="k">import</span> <span class="n">calc_uka_age_group</span>
+<span class="kn">from</span> <span class="nn">athlib.iaaf_score</span> <span class="k">import</span> <span class="n">score</span> <span class="k">as</span> <span class="n">athlon_score</span>
+<span class="kn">from</span> <span class="nn">athlib.iaaf_score</span> <span class="k">import</span> <span class="n">performance</span> <span class="k">as</span> <span class="n">athlon_performance_needed</span>
+<span class="kn">from</span> <span class="nn">athlib.utils</span> <span class="k">import</span> <span class="p">(</span>
+    <span class="n">normalize_gender</span><span class="p">,</span>
+    <span class="n">str2num</span><span class="p">,</span>
+    <span class="n">parse_hms</span><span class="p">,</span>
+    <span class="n">get_distance</span><span class="p">,</span>
+    <span class="n">format_seconds_as_time</span><span class="p">,</span>
+    <span class="n">check_performance_for_discipline</span><span class="p">,</span>
+    <span class="n">discipline_sort_key</span><span class="p">,</span>
+    <span class="n">text_discipline_sort_key</span><span class="p">,</span>
+    <span class="n">sort_by_discipline</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">athlib.codes</span> <span class="k">import</span> <span class="p">(</span>
+    <span class="n">JUMPS</span><span class="p">,</span> <span class="n">THROWS</span><span class="p">,</span> <span class="n">MULTI_EVENTS</span><span class="p">,</span> <span class="n">FIELD_EVENTS</span><span class="p">,</span>
+    <span class="n">FIELD_SORT_ORDER</span><span class="p">,</span> <span class="n">STANDARD_MALE_TRACK_EVENTS</span><span class="p">,</span>
+    <span class="n">STANDARD_FEMALE_TRACK_EVENTS</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">ag</span> <span class="o">=</span> <span class="n">AgeGrader</span><span class="p">()</span>
+
+<div class="viewcode-block" id="wma_age_grade"><a class="viewcode-back" href="../athlib.html#athlib.wma_age_grade">[docs]</a><span class="k">def</span> <span class="nf">wma_age_grade</span><span class="p">(</span><span class="n">gender</span><span class="p">,</span> <span class="n">age</span><span class="p">,</span> <span class="n">event</span><span class="p">,</span> <span class="n">performance</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return the age grade score (0 to 100ish) for this result.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">ag</span><span class="o">.</span><span class="n">calculate_age_grade</span><span class="p">(</span><span class="n">gender</span><span class="p">,</span> <span class="n">age</span><span class="p">,</span><span class="n">event</span><span class="p">,</span> <span class="n">performance</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="wma_age_factor"><a class="viewcode-back" href="../athlib.html#athlib.wma_age_factor">[docs]</a><span class="k">def</span> <span class="nf">wma_age_factor</span><span class="p">(</span><span class="n">gender</span><span class="p">,</span> <span class="n">age</span><span class="p">,</span> <span class="n">event</span><span class="p">,</span> <span class="n">distance</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Work out &#39;slowdown factor&#39; for a geezer of this</span>
+<span class="sd">    age taking part in this event e.g.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">ag</span><span class="o">.</span><span class="n">calculate_factor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gender</span><span class="p">,</span> <span class="n">age</span><span class="p">,</span> <span class="n">event</span><span class="p">,</span> <span class="n">distance</span><span class="o">=</span><span class="n">distance</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="wma_world_best"><a class="viewcode-back" href="../athlib.html#athlib.wma_world_best">[docs]</a><span class="k">def</span> <span class="nf">wma_world_best</span><span class="p">(</span><span class="n">gender</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+    <span class="s2">&quot;The relevant world-record performance on the date stats were compiled&quot;</span>
+    <span class="k">return</span> <span class="n">ag</span><span class="o">.</span><span class="n">world_best</span><span class="p">(</span><span class="n">gender</span><span class="p">,</span> <span class="n">event</span><span class="p">)</span></div>
+
+<span class="n">aag</span> <span class="o">=</span> <span class="n">AthlonsAgeGrader</span><span class="p">()</span>
+<div class="viewcode-block" id="wma_athlon_age_factor"><a class="viewcode-back" href="../athlib.html#athlib.wma_athlon_age_factor">[docs]</a><span class="k">def</span> <span class="nf">wma_athlon_age_factor</span><span class="p">(</span><span class="n">gender</span><span class="p">,</span> <span class="n">age</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Work out &#39;slowdown factor&#39; for a geezer of this</span>
+<span class="sd">    age taking part in this event e.g.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">aag</span><span class="o">.</span><span class="n">calculate_factor</span><span class="p">(</span><span class="n">gender</span><span class="p">,</span> <span class="n">age</span><span class="p">,</span> <span class="n">event</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="wma_athlon_age_grade"><a class="viewcode-back" href="../athlib.html#athlib.wma_athlon_age_grade">[docs]</a><span class="k">def</span> <span class="nf">wma_athlon_age_grade</span><span class="p">(</span><span class="n">gender</span><span class="p">,</span> <span class="n">age</span><span class="p">,</span> <span class="n">event</span><span class="p">,</span> <span class="n">performance</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return the age grade score (0 to 100ish) for this result.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">aag</span><span class="o">.</span><span class="n">calculate_age_grade</span><span class="p">(</span><span class="n">gender</span><span class="p">,</span> <span class="n">age</span><span class="p">,</span> <span class="n">event</span><span class="p">,</span> <span class="n">performance</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span></div>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">            athlon_performance_needed</span>
+<span class="s2">            athlon_score</span>
+<span class="s2">            calc_uka_age_group</span>
+<span class="s2">            check_performance_for_discipline</span>
+<span class="s2">            discipline_sort_key</span>
+<span class="s2">            format_seconds_as_time</span>
+<span class="s2">            get_distance</span>
+<span class="s2">            normalize_gender</span>
+<span class="s2">            parse_hms</span>
+<span class="s2">            sort_by_discipline</span>
+<span class="s2">            str2num</span>
+<span class="s2">            text_discipline_sort_key</span>
+<span class="s2">            wma_age_factor</span>
+<span class="s2">            wma_age_grade</span>
+<span class="s2">            wma_athlon_age_grade</span>
+<span class="s2">            wma_world_best</span>
+<span class="s2">            FIELD_EVENTS</span>
+<span class="s2">            FIELD_SORT_ORDER</span>
+<span class="s2">            JUMPS</span>
+<span class="s2">            MULTI_EVENTS</span>
+<span class="s2">            STANDARD_FEMALE_TRACK_EVENTS</span>
+<span class="s2">            STANDARD_MALE_TRACK_EVENTS</span>
+<span class="s2">            THROWS</span>
+<span class="s2">            &quot;&quot;&quot;</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">athlib 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, Andy Robinson and others.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.2.
+    </div>
+  </body>
+</html>
