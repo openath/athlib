@@ -1,9 +1,10 @@
 {
   "name": "athlib",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Athletics Library",
   "main": "./index.js",
   "scripts": {
+    "comment": "echo I wish I could put comments in JSON.  Do we really need all these?  -Andy",
     "prepublish": "npm run build-all",
     "preversion": "npm run build-all && npm run unit",
     "version": "git add .",
@@ -13,9 +14,7 @@
     "build-web": "gulp build-web",
     "build-web-dev": "gulp build-web-dev",
     "build-all": "gulp",
-    "unit": "mocha --compilers js:babel-core/register --colors ./test/*.spec.js",
-    "unit-watch": "mocha --compilers js:babel-core/register --colors -w ./test/*.spec.js",
-    "test": "npm run unit-watch",
+    "test": "npm run build && mocha --compilers js:babel-core/register",
     "lint": "eslint src/"
   },
   "repository": {

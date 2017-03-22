@@ -8,7 +8,7 @@
  * @param(arg):  The argument to be appended to hello
 */
 function hello(arg) {
-  return `Hello, $(arg)!`
+  return `Hello, ${arg}!`
 }
 
 /** Takes common gender expressions and returns `m` or `f` */
