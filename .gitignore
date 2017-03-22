@@ -11,7 +11,7 @@ __pycache__/
 bin/
 include/
 env/
-build/
+^build/
 develop-eggs/
 dist/
 downloads/
