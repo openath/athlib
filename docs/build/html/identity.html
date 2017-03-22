@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Identity &#8212; athlib 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Vocabulary" href="vocab.html" />
+    <link rel="prev" title="Introduction" href="intro.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="vocab.html" title="Vocabulary"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="intro.html" title="Introduction"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">athlib 0.1 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="identity">
+<h1>Identity<a class="headerlink" href="#identity" title="Permalink to this headline">¶</a></h1>
+<p>A large part of the problem is to agree on a common set of <cite>identifiers</cite> for the main <cite>things</cite> in athletics. When we&#8217;re exchanging data, we need to know when we are talking about the same competition, organisation, venue or person.</p>
+<p>In the securities business, every fund or stock has an <cite>ISIN</cite> - <cite>Individual Security Identification Number</cite>. Without these, financial trade would be impossible.</p>
+<p>We propose (in fact, we&#8217;re working on) the creation of an open, public registry which is free for anyone to use; and some voluntary standards.  The main entities to be tracked are the <cite>big four</cite> - Organisations, Venues, Competitions and People.</p>
+<p>We hope to start in a top-down manner by giving national governing bodies the ultimate say over their country.   The key concepts are:</p>
+<blockquote>
+<div><ul class="simple">
+<li>an <em>identity server</em> - a public web server where all the things can be registered and found.  We&#8217;ll start at <a class="reference external" href="http://data.opentrack.run/">http://data.opentrack.run/</a>, and welcome anyone wanting to set up mirrors.  Data will be available in several formats - browsing by humans, JSON or XML records, and bulk downloads.</li>
+<li><cite>Universally Unique IDs</cite> or <cite>UUIDs</cite> for each major thing in the sport (Organisation, Person, Venue, Competition).  UUIDs are big long numbers used in software.  They never clash, so if a system is already giving UUIDs to things (like the Danish competition management system), we can just use theirs</li>
+<li>human-readable <cite>short codes</cite> or <cite>slugs</cite> which are unique in the country, or possibly year.  These need to be chosen at some point to use our tools</li>
+<li>a permanent URL or home page for each thing.  For example, the world&#8217;s oldest running club, Thames Hare and Hounds (usually abbreviated <cite>THH</cite>), can be found at <a class="reference external" href="http://data.opentrack.run/o/gbr/thh/">http://data.opentrack.run/o/gbr/thh/</a>.    Anyone else building big athletics databases is invited to use the same codes and relative urls.</li>
+</ul>
+</div></blockquote>
+<p>On this page we will have a shot, terse record with links to other things.  Humans can see HTML, and API clients can see JSON or XML.</p>
+</div>
+<div class="section" id="url-scheme-and-codes">
+<h1>URL scheme and codes<a class="headerlink" href="#url-scheme-and-codes" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="organisations">
+<h2>Organisations<a class="headerlink" href="#organisations" title="Permalink to this headline">¶</a></h2>
+<p>We suggest that all organisations in athletics eventually end up with a code like this:</p>
+<blockquote>
+<div>/o/&lt;countrycode&gt;/&lt;org-code&gt;/</div></blockquote>
+<p>They can be identified when first discovered with a URL like this</p>
+<blockquote>
+<div>/o/&lt;uuid&gt;</div></blockquote>
+<p>but the UUIDs are long and painful  Much better for them to choose a code when they want to use the system (e.g. to enter a competition)</p>
+<p><code class="docutils literal"><span class="pre">&lt;countrycode&gt;</span></code> is a 3-letter ISO country code (GBR, EST etc).  Note that we aim to follow ISO country codes.  IOC, IAAF and European Athletics have some differing codes - for example, <code class="docutils literal"><span class="pre">GER</span></code> rather than <code class="docutils literal"><span class="pre">DEU</span></code> for Germany.  We can provide mappings, but prefer internet standards over historical (and sometimes inconsistent) standards within the sport.</p>
+<dl class="docutils">
+<dt><code class="docutils literal"><span class="pre">&lt;org-code&gt;</span></code> is a code of up to 5 characters which is unique within the country.  5 is long enough to handle abbreviations.</dt>
+<dd><ul class="first last simple">
+<li>Spain has given 5 letter codes to all 250 or so clubs in the country.</li>
+<li>The UK has abbreviations used by Athletics Weekly, but these often include spaces, capital, lowercase letters and apostrophes - not good for data interchange.  However, league results often use 3 letter codes.  We have been promoting simpler codes on a first-come-first-served basis, as people enter our systems.</li>
+<li>Estonia has chosen 4 or 5 letter codes for all their clubs</li>
+</ul>
+</dd>
+</dl>
+<p>We might allow longer codes for <cite>universities</cite> - by which we mean any educational institution for young adults (18+) and <cite>schools</cite>.  These compete some of the time, but there are so many schools that it would crowd out the clubs. For example, we believe there are abou 18,000 schools in the UK.    We still don&#8217;t know how many are named &#8220;King Henry VIII&#8221;, but it&#8217;s a lot.  One suggestion is a prefix:  &#8220;UNI&#8221; or &#8220;SCH&#8221;, then a longer mnemomnic.</p>
+<p>If there are good global standards for identifying universities, we&#8217;d like to know about it.</p>
+</div>
+<div class="section" id="competitions">
+<h2>Competitions<a class="headerlink" href="#competitions" title="Permalink to this headline">¶</a></h2>
+<p>Competitions are prefixed with &#8216;x&#8217;.  We considered &#8216;c&#8217;, but &#8216;x&#8217; is short and has connotations of &#8216;against&#8217;, so it seems appropriate.</p>
+<p>Competitions may choose a <cite>slug</cite> - a URL component - which is unique for the country AND year.  This is because in most cases, they happen year after year.</p>
+<blockquote>
+<div><p><code class="docutils literal"><span class="pre">/x/&lt;year&gt;&lt;countrycode&gt;/&lt;slug&gt;/</span></code> - the preferred format once a slug is chosen.</p>
+<p><code class="docutils literal"><span class="pre">/x/&lt;uuid&gt;</span></code></p>
+<p><code class="docutils literal"><span class="pre">/x/2017/gbr/lm/</span></code>    - London Marathon
+<code class="docutils literal"><span class="pre">/x/2017/gbr/rosenheim-final/</span></code>  - final match of Rosenheim League
+<code class="docutils literal"><span class="pre">/x/2017/gbr/hercopen/</span></code>  - Hercules Wimbledon AC Open Meeting</p>
+<p><code class="docutils literal"><span class="pre">/x/2017/est/ekv-in/</span></code>  - Estonian Inter-Club Cup (indoors)</p>
+</div></blockquote>
+<p>For events which recur, we can build up suffixes.  e.g. the Thames Hare and Hounds &#8220;Second Sunday&#8221; race is monthly, so we can name it</p>
+<blockquote>
+<div><code class="docutils literal"><span class="pre">/x/2017/gbr/thhss07</span></code>    - July (month 17) race in series</div></blockquote>
+<p>And the 3rd of 4 matches in the Surrey League (Men), Division 2, might be</p>
+<blockquote>
+<div><code class="docutils literal"><span class="pre">/x/2017/gbr/slmd1m3</span></code>  <cite>Surrey League Men, Division 1, Match 3</cite></div></blockquote>
+</div>
+<div class="section" id="venues">
+<h2>Venues<a class="headerlink" href="#venues" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><code class="docutils literal"><span class="pre">/v/&lt;country-code&gt;/&lt;venue-code&gt;/</span></code></div></blockquote>
+<p>We can start with athletics tracks, although in time we hope to support courses on road and cross country which are used for competition.  We have found about 4000 in Europe so far by searching OpenStreetMap. We will give them UUIDs as we discover them.</p>
+<p>We suggest taking the name normally used by the local athletes, and <cite>slugifying</cite> it - turning it into something URL-safe.  Do NOT use the city name unless there is only one track. Also, please do not use sponsors&#8217; names (<cite>The HugeCo Stadium</cite>) as these may change.</p>
+<blockquote>
+<div><code class="docutils literal"><span class="pre">/v/gbr/iffley-road/</span></code>  - Iffley Road in Oxford, where the four minute mile was first run</div></blockquote>
+<p>Naming should be &#8216;first come first served&#8217;</p>
+</div>
+<div class="section" id="people">
+<h2>People<a class="headerlink" href="#people" title="Permalink to this headline">¶</a></h2>
+<p>This is the contentious part, where privacy advocates may scream &#8220;what?  another database?&#8221;</p>
+<p>Our view is that almost every federation and many other bodies are constantly trying to identify people, and this is one of the major bottlenecks in the sport, taking up huge amounts of volunteer time on administration.  In future, it MIGHT make sense to have a global directory of people in the sport.  In the short term, in the countries in which we operate, it is at least useful to give a unique ID to licensed athletes.</p>
+<p>UUIDs will be far more common here, but we could potentially let people who use OpenTrack to register an identity if they wished.  They might do this to correct their date, upload a photo, or link their athletics results to their social media identities.</p>
+<blockquote>
+<div><p>/p/&lt;uuid&gt;/ - the default format we give to any person found in a set of results</p>
+<p>/p/est/erki-nool/  - the 2000 Olympic Decathlon champion, Erki Nool, from Estonia</p>
+</div></blockquote>
+<p>Imagine that if you visited the page above, you could see links to Erki Nool&#8217;s page on the national results, Wikipedia page, and on the IAAF or European Athletics websites.</p>
+<p>We would prefer not to encourage anonymous handles like &#8220;sprinter123&#8221; and must be mindful of clashes.  There are a LOT of people called &#8216;Andy Robinson&#8217; in the sport in the UK - indeed, two in the author&#8217;s club.</p>
+</div>
+<div class="section" id="dealing-with-duplicates-and-deletions">
+<h2>Dealing with duplicates and deletions<a class="headerlink" href="#dealing-with-duplicates-and-deletions" title="Permalink to this headline">¶</a></h2>
+<p>Over time we may discover that people are the same person, and likewise with other records.  In these cases we can update the URL with a <cite>redirect</cite> - if you browse to the page, you will be sent onto a new one.  Similarly, we will create a number of record types for inactive or past entities:  tracks closed, clubs merged.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Identity</a></li>
+<li><a class="reference internal" href="#url-scheme-and-codes">URL scheme and codes</a><ul>
+<li><a class="reference internal" href="#organisations">Organisations</a></li>
+<li><a class="reference internal" href="#competitions">Competitions</a></li>
+<li><a class="reference internal" href="#venues">Venues</a></li>
+<li><a class="reference internal" href="#people">People</a></li>
+<li><a class="reference internal" href="#dealing-with-duplicates-and-deletions">Dealing with duplicates and deletions</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="intro.html"
+                        title="previous chapter">Introduction</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="vocab.html"
+                        title="next chapter">Vocabulary</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/identity.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="vocab.html" title="Vocabulary"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="intro.html" title="Introduction"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">athlib 0.1 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, Andy Robinson and others.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.2.
+    </div>
+  </body>
+</html>
