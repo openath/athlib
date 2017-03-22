@@ -45,8 +45,8 @@ function rule507xc(birthDate, matchDate, vets, underAge) {
     // just throw it
     throw error;
   }
-  const ageOn31Aug = _calculateAge(birthDate, augCO);
-  const ageOnMatchDate = _calculateAge(birthDate, matchDate);
+  const ageOn31Aug = _calculateAge(birthDate2, augCO);
+  const ageOnMatchDate = _calculateAge(birthDate2, matchDate);
   if (underAge && ageOn31Aug < 9) {
     return 'U9';
   }
@@ -68,20 +68,20 @@ function rule507xc(birthDate, matchDate, vets, underAge) {
   }
 }
 
-// prior date function
-function priorDate(matchDate, cutoffDate) {
-  try {
-    const md = new Date(matchDate);
-    const cd = new Date(cutoffDate);
-    const x = new Date(md.getFullYear(), cd.getMonth(), cd.getDay());
-    if (x > md) {
-      return new Date(md.getFullYear() - 1, cd.getMonth(), cd.getDay())
-    }
-  } catch (error) {
-    // just throw it again
-    throw error;
-  }
-}
+
+// function priorDate(matchDate, cutoffDate) {
+//   try {
+//     const md = new Date(matchDate);
+//     const cd = new Date(cutoffDate);
+//     const x = new Date(md.getFullYear(), cd.getMonth(), cd.getDay());
+//     if (x > md) {
+//       return new Date(md.getFullYear() - 1, cd.getMonth(), cd.getDay())
+//     }
+//   } catch (error) {
+//     // just throw it again
+//     throw error;
+//   }
+// }
 
 // private function returns the number of years between two dates
 function _calculateAge(birthDate, matchDate) {
@@ -103,7 +103,7 @@ function calcUkaAgeGroup(birthDate, matchDate, category, vets, underAge) {
   switch (category) {
     case 'TF':
       return rule107tf(birthDate, matchDate, vets || true, underAge || false);
-    case 'ROAD':
+    case 'ROAD': // same categories as cross country
     case 'XC':
       return rule507xc(birthDate, matchDate, vets || true, underAge || false);
     case 'ESAA':

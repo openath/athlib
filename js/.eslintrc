@@ -7,7 +7,6 @@
     "node": true
   },
   "ecmaFeatures": {
-    "jsx": true,
     "classes": true,
     "modules": true
   },
