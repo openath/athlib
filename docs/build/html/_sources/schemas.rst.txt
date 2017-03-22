@@ -17,7 +17,9 @@ At the moment, we're just fiddling around with reStructuredText to find a way to
 Results
 -------
 
-This is usually a two-level, nested structure.  At the top level we have information about the race.  nested within it, there will be a number of 
+This is usually a two-level, nested structure.  At the top level we have information about the race.  Nested within it, there will be a number of distinct `events`.  These will come in different flavours for running events, horizontal jump and throw events, and vertical jump events.
+
+The `results` schema should also allow team scores to be held and displayed.  When a team competition takes place, the main thing people want to know is who is winning the match.
 
 
 List of runners

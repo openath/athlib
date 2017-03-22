@@ -23,18 +23,18 @@ Things we hope to put in here:
  - sample JSON files in line with our schemas
  - schemas to validate 
 
-# Installation
-
-For the Python version, it should be just
-
-    pip install athlib
-
-If working on this source, you'll need to ensure the inner package (./athlib) is on your path, so that you can execute "import athlib"
-
 # Documentation
-...can be found at http://athlib.readthedocs.org/
 
-# Contributing
+The main documentation is <a href="http://opentrack.run/athlib/">over here</a>.   What follows below is intended to help people working on athlib; if you are not an experience Python or Javascript developer,
+please head over there.
+
+
+
+
+# Python documentation
+
+## Installation
+    pip install athlib
 
 ## Python development
 
@@ -55,13 +55,27 @@ pycodestyle --exclude=bin,lib,include,sampledata
 
 You can also copy the file `pre-commit.sample` to `.git/hooks/pre-commit`, and the two above checks will be run before any commit, and block it if they return issues.
 
+# Javascript documentation
+
+    npm install athlib
+
+Browser links coming soon
+
 ## Javascript development
 
-We're discussing the Javascript toolchain.  
+We have a complete Javascript environment in the "js/" subdirectory.  This is lifted from someone else's library boilerplate.  
 
-## Next steps - update the documentation, so that it's auto-generated from the code
+    npm run build    # build for node
+    npm run build-web  # build for browser
+    npm run test   # tests running in console.
 
- - Fix up JSON directory structure and schemata
- - Publish on PyPI
- - Work out a testing approach for the Javascript
- - Work out the best way to package and ship, and have on a CDN, for the javascript portions
+We'd welcome help modernising this.  It uses Webpack 1 and gulp.  The authors are a bit out of their depth here a.
+
+# Documentation itself
+
+The docs are written using reStructured Text, the Python standard.  There is an environment
+in `docs`.  
+  
+    cd docs
+    make html
+    

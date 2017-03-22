@@ -7,13 +7,15 @@ Athlib - a library for Athletics
 ==================================
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Contents:
 
    intro
+   identity
+   vocab
+   schemas
    athlib
    athlibjs
-   schemas
 
 
 Indices and tables

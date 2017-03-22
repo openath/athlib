@@ -26,7 +26,6 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Schemas" href="schemas.html" />
     <link rel="prev" title="Python library" href="athlib.html" /> 
   </head>
   <body role="document">
@@ -39,9 +38,6 @@
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="right" >
-          <a href="schemas.html" title="Schemas"
-             accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="athlib.html" title="Python library"
              accesskey="P">previous</a> |</li>
@@ -57,13 +53,27 @@
   <div class="section" id="javascript-library">
 <h1>Javascript library<a class="headerlink" href="#javascript-library" title="Permalink to this headline">¶</a></h1>
 <p>Whoopee!  I got my first Javascript docs to come out.</p>
-<p>Read the JSDoc tutorials.  You at least need a comment starting with <cite>/**</cite></p>
+<p>Read the JSDoc tutorials.  You at least need a comment starting with <code class="docutils literal"><span class="pre">/**</span></code> and ending with <code class="docutils literal"><span class="pre">*/</span></code>.
+We&#8217;ve included a <code class="docutils literal"><span class="pre">hello</span></code> function just to test the doc tools work.</p>
 <dl class="function">
-<dt id="iaaf_scoring_key">
-<code class="descname">iaaf_scoring_key</code><span class="sig-paren">(</span><em>gender</em>, <em>event_code</em><span class="sig-paren">)</span><a class="headerlink" href="#iaaf_scoring_key" title="Permalink to this definition">¶</a></dt>
-<dd><p>Utility function to get the &lt;gender&gt;-&lt;event&gt; scoring key</p>
+<dt id="hello">
+<code class="descname">hello</code><span class="sig-paren">(</span><em>arg</em><span class="sig-paren">)</span><a class="headerlink" href="#hello" title="Permalink to this definition">¶</a></dt>
+<dd><p>The hello functions is just here to test our build tools.</p>
+<p>It turns out that sphinx-js doesn&#8217;t know a lot of ES6.
+To get function bodies documented here, declare them
+as this function is done.  Don&#8217;t assign it to anyone.</p>
 </dd></dl>
 
+<dl class="function">
+<dt id="normalizeGender">
+<code class="descname">normalizeGender</code><span class="sig-paren">(</span><em>gender</em><span class="sig-paren">)</span><a class="headerlink" href="#normalizeGender" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes common gender expressions and returns <cite>m</cite> or <cite>f</cite></p>
+</dd></dl>
+
+<div class="section" id="let-me-try-another-title">
+<h2>Let me try another title<a class="headerlink" href="#let-me-try-another-title" title="Permalink to this headline">¶</a></h2>
+<p>Blah blah</p>
+</div>
 </div>
 
 
@@ -72,12 +82,17 @@
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Javascript library</a><ul>
+<li><a class="reference internal" href="#let-me-try-another-title">Let me try another title</a></li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
   <p class="topless"><a href="athlib.html"
                         title="previous chapter">Python library</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="schemas.html"
-                        title="next chapter">Schemas</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -108,9 +123,6 @@
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="right" >
-          <a href="schemas.html" title="Schemas"
-             >next</a> |</li>
         <li class="right" >
           <a href="athlib.html" title="Python library"
              >previous</a> |</li>

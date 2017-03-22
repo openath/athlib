@@ -47,7 +47,7 @@ templates_path = ['_templates']
 # source_suffix = ['.rst', '.md']
 source_suffix = '.rst'
 
-js_source_path = '../js'
+js_source_path = '../js/src/'
 
 # The master toctree document.
 master_doc = 'index'
