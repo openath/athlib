@@ -18,7 +18,7 @@ The main *Things* in Athletics
 
 :Venue:  where a competition happens.  Venues may be identified in databases, pinpointed by latitude and longitude, and described in different ways, but they are often re-used and so worth identifying.  Venues might include `tracks`, and `courses` used for cross country or road.
 
-:Organisation:  Organisations include Clubs, National Governing Bodies or Federations, International Federations, Regional bodies, Leagues and more.   Organisations can `affiliate` to each other.  This is often recognised by the payment of a fee.  Schools and Universities can also be supported, if they compete actively adn regularly.
+:Organisation:  Organisations include Clubs, National Governing Bodies or Federations, International Federations, Regional bodies, Leagues and more.   Organisations can `affiliate` to each other.  This is often recognised by the payment of a fee.  Schools and Universities can also be supported, if they compete actively and regularly.
 
 :Person:  We'll need to refer to people in their many roles:  athletes, coaches, officials, parents, managers and more.
 
@@ -28,7 +28,7 @@ There are quite a few  `contexts` where we may wish to exchange information.  Th
 
 :results: exchange of results, AFTER a competition is finished, when the results are at least broadly realistic and complete.
 
-:recording: what happens DURING a competition - exchange of finish line data, field event measurements
+:recording: what happens DURING a competition - exchange of finish line data, field event measurements. These differ from results in that they have not been certified by the competition referee.
 
 :entries: start lists and data on who entered what, prior to a competition starting.  This may also include exchange of personal data (e.g. email, next of kin contact numbers) and payment information between athlete or team and the organiser, which is not necessarily open to the world.
 
@@ -52,6 +52,11 @@ We attempted to call this `discipline`, because of the many ways `event` is used
 :discipline:  we're using this term to refer to the major subdivisions of the sport, using common codes which make sense in English:  ROAD, XC, TF (track and field), WALK, and MTN (mountain or fell running).
 
 :event: we use this to refer to something that takes place within a competition.  If a group of people line up to run, jump or throw at the same time, we choose to call this an `event`.   During a county championships, we might have an 800m race in many age groups for men and women.  Each would be a distinct event, but they would all share an ``eventCode`` of ``800`` 
+
+:ageGroups: `Events` are frequenty broken down into `agegroups` both at the Junior level and the Masters level to enable more even competion. Different countries and even disciplices within a given country have different rules for defining agegroups. Here we will use the local nomenclature, the event will have a given 'discipline' and 'country' so the user can back out the rules that govern the event. An agegroup combned with the `sex` of the athletes often defines the `category` that an event falls into.
+
+
+
 
 
 
