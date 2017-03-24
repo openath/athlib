@@ -32,4 +32,28 @@ describe('Given an instance of Athlib', function() {
         });
     });
 
+    describe('perfToFloat', function() {
+        it('should parse performances', function() {
+            expect(Athlib.perfToFloat('1:57.2')).to.equal(117.2);
+            expect(Athlib.perfToFloat('9.58')).to.equal(9.58);
+            expect(Athlib.perfToFloat('63.2')).to.equal(63.2);
+            expect(Athlib.perfToFloat('1:03.2')).to.equal(63.2);
+            expect(Athlib.perfToFloat('2:03:59.1')).to.equal(7439.10);
+        });
+    });
+
+    describe('isFieldEvent', function() {
+        it('should detect field events', function() {
+            expect(Athlib.isFieldEvent('JT')).to.equal(true);
+            expect(Athlib.isFieldEvent('JT700')).to.equal(true);
+            expect(Athlib.isFieldEvent('800')).to.equal(false);
+        });
+    });
+    describe('betterPerformance', function() {
+        it('should detect better performances', function() {
+            expect(Athlib.betterPerformance('83.25', '17.3', 'JT')).to.equal('83.25');
+            expect(Athlib.betterPerformance('10.5', '10.6', '100')).to.equal('10.5');
+        });
+    });
+
 });

@@ -7,6 +7,7 @@
  *
  * @param(arg):  The argument to be appended to hello
 */
+
 function hello(arg) {
   return `Hello, ${arg}!`
 }
@@ -23,4 +24,40 @@ function normalizeGender(gender) {
   throw new Error('this is another error');
 }
 
-module.exports = { hello, normalizeGender }
+/** convert a performance (time or distance) to seconds or metres */
+function perfToFloat(perfText) {
+  const parts = perfText.split(/:/).reverse()
+  let mult = 1
+  let out = 0.0
+  for (const part of parts) {
+    out += (parseFloat(part) * mult)
+    mult = mult * 60.0
+  }
+  return out
+}
+
+function isFieldEvent(eventCode) {
+  const FIELD_PREFIXES = ['HJ', 'PV', 'LJ', 'TJ', 'SP', 'DT', 'JT', 'HT', 'WT']
+  const firstTwo = eventCode.slice(0, 2)
+  return (FIELD_PREFIXES.indexOf(firstTwo) > -1)
+}
+
+/** return the better of two performance strings */
+function betterPerformance(perfA, perfB, eventCode) {
+  const fA = perfToFloat(perfA)
+  const fB = perfToFloat(perfB)
+  let better
+  if (isFieldEvent(eventCode)) {
+    better = (fA > fB) ? perfA : perfB  // further is better
+  } else {
+    better = (fA < fB) ? perfA : perfB  // faster is better
+  }
+  return better
+}
+module.exports = { 
+  hello, 
+  normalizeGender, 
+  perfToFloat, 
+  isFieldEvent,
+  betterPerformance,
+}

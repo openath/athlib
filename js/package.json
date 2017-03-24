@@ -1,6 +1,6 @@
 {
   "name": "athlib",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Athletics Library",
   "main": "./index.js",
   "scripts": {
@@ -14,7 +14,8 @@
     "build-web": "gulp build-web",
     "build-web-dev": "gulp build-web-dev",
     "build-all": "gulp",
-    "test": "npm run build && mocha --compilers js:babel-core/register",
+    "test-build": "npm run build && mocha --compilers js:babel-core/register",
+    "test": "mocha --compilers js:babel-core/register",
     "lint": "eslint src/"
   },
   "repository": {
