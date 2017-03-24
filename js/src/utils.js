@@ -6,7 +6,7 @@
  * as this function is done.  Don't assign it to anyone.
  *
  * @param(arg):  The argument to be appended to hello
-*/
+ */
 
 function hello(arg) {
   return `Hello, ${arg}!`
@@ -15,7 +15,7 @@ function hello(arg) {
 /** Takes common gender expressions and returns `m` or `f` */
 function normalizeGender(gender) {
   const g = gender.toLowerCase();
-  if (g.len === 0) {     
+  if (g.len === 0) {
     throw new Error('this is an error that I am throwing');
   }
   if (/[mf]/.test(g[0])) {
@@ -38,26 +38,33 @@ function perfToFloat(perfText) {
 
 function isFieldEvent(eventCode) {
   const FIELD_PREFIXES = ['HJ', 'PV', 'LJ', 'TJ', 'SP', 'DT', 'JT', 'HT', 'WT']
-  const firstTwo = eventCode.slice(0, 2)
+  const firstTwo = eventCode.trim().toUpperCase().slice(0, 2)
   return (FIELD_PREFIXES.indexOf(firstTwo) > -1)
 }
+
+function isMultiEvent(eventCode) {
+  const firstThree = eventCode.trim().toUpperCase().slice(0, 3)
+  return (['PEN', 'HEP', 'OCT', 'DEC', 'ICO'].indexOf(firstThree) > -1)
+}
+
 
 /** return the better of two performance strings */
 function betterPerformance(perfA, perfB, eventCode) {
   const fA = perfToFloat(perfA)
   const fB = perfToFloat(perfB)
   let better
-  if (isFieldEvent(eventCode)) {
-    better = (fA > fB) ? perfA : perfB  // further is better
+  if (isFieldEvent(eventCode) || isMultiEvent(eventCode)) {
+    better = (fA > fB) ? perfA : perfB // further is better
   } else {
-    better = (fA < fB) ? perfA : perfB  // faster is better
+    better = (fA < fB) ? perfA : perfB // faster is better
   }
   return better
 }
-module.exports = { 
-  hello, 
-  normalizeGender, 
-  perfToFloat, 
+module.exports = {
+  hello,
+  normalizeGender,
+  perfToFloat,
   isFieldEvent,
+  isMultiEvent,
   betterPerformance,
 }
