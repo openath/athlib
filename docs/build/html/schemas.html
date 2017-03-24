@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Schemas &#8212; athlib 0.0.6 documentation</title>
+    <title>Schemas &#8212; athlib 0.0.7 documentation</title>
     
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.0.6',
+        VERSION:     '0.0.7',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -45,7 +45,7 @@
         <li class="right" >
           <a href="vocab.html" title="Vocabulary"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">athlib 0.0.6 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">athlib 0.0.7 documentation</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -69,19 +69,17 @@
 <p>At the moment, we&#8217;re just fiddling around with reStructuredText to find a way to lay out attributes with minimal typing. Tables are a pain to type.  What follows is an example.</p>
 <div class="section" id="competitions">
 <h2>Competitions<a class="headerlink" href="#competitions" title="Permalink to this headline">¶</a></h2>
-<p>Competitions are defined by <cite>name</cite>, there may be a <cite>shortName</cite> and it may be part of a <cite>series</cite>. Useful additonal data includes location, and the timeperiod defined in iso-date format by <cite>startDate</cite> and <cite>endDate</cite>.</p>
-<div class="line-block">
-<div class="line">{</div>
-<div class="line-block">
-<div class="line">&#8220;competition&#8221;: &#8220;Rio Olympics 2016&#8221;,</div>
-<div class="line">&#8220;shortName&#8221;: &#8220;OG16&#8221;</div>
-<div class="line">&#8220;startDate&#8221;: &#8220;2016-08-12&#8221;,</div>
-<div class="line">&#8220;endDate&#8221;: &#8220;2016-08-21&#8221;,</div>
-<div class="line">&#8220;city&#8221;: &#8220;Rio de Janeiro&#8221;,</div>
-<div class="line">&#8220;country&#8221;: &#8220;BRA&#8221;,</div>
-<div class="line">&#8220;series&#8221;: &#8220;olympics&#8221;</div>
-</div>
-<div class="line">}</div>
+<p>Competitions are defined by <cite>name</cite>, there may be a <cite>shortName</cite> and it may be part of a <cite>series</cite>. Useful additonal data includes location, and the timeperiod defined in iso-date format by <cite>startDate</cite> and <cite>endDate</cite>. The absence of an <cite>endDate</cite> signifies a single day event.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+       <span class="s2">&quot;competition&quot;</span><span class="p">:</span> <span class="s2">&quot;Rio Olympics 2016&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;shortName&quot;</span><span class="p">:</span> <span class="s2">&quot;OG16&quot;</span>
+       <span class="s2">&quot;startDate&quot;</span><span class="p">:</span> <span class="s2">&quot;2016-08-12&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;endDate&quot;</span><span class="p">:</span> <span class="s2">&quot;2016-08-21&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;city&quot;</span><span class="p">:</span> <span class="s2">&quot;Rio de Janeiro&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;country&quot;</span><span class="p">:</span> <span class="s2">&quot;BRA&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;series&quot;</span><span class="p">:</span> <span class="s2">&quot;olympics&quot;</span>
+<span class="p">}</span>
+</pre></div>
 </div>
 <p>There are variety of fields that help us analyse the results, these may be more relevant for higher level competions. (is this at an event level or competion ?)</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -101,16 +99,14 @@
 <div class="section" id="events">
 <h2>Events<a class="headerlink" href="#events" title="Permalink to this headline">¶</a></h2>
 <p>Within a competiton, there may be a single event or many. As described in the vocaulary, events are defined in terms of an <cite>eventCode</cite>, which specifies the form of athletic competion from a pre-defined list, e.g JT for Javelin throw. The event may be a heat or a final,</p>
-<div class="line-block">
-<div class="line">{</div>
-<div class="line-block">
-<div class="line">&#8220;event&#8221;: &#8220;M45 Javelin&#8221;,</div>
-<div class="line">&#8220;eventCode&#8221;: &#8220;JT&#8221;,</div>
-<div class="line">&#8220;sex&#8221;: &#8220;M&#8221;,</div>
-<div class="line">&#8220;ageGroup&#8221;: &#8220;V45&#8221;,    -  how do we classify ageGroups?</div>
-<div class="line">&#8220;roundName&#8221;: &#8220;final&#8221;</div>
-</div>
-<div class="line">}</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+       <span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;M45 Javelin&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;eventCode&quot;</span><span class="p">:</span> <span class="s2">&quot;JT&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;sex&quot;</span><span class="p">:</span> <span class="s2">&quot;M&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;ageGroup&quot;</span><span class="p">:</span> <span class="s2">&quot;V45&quot;</span><span class="p">,</span>    <span class="c1">##  how do we classify ageGroups?</span>
+       <span class="s2">&quot;roundName&quot;</span><span class="p">:</span> <span class="s2">&quot;final&quot;</span>
+<span class="p">}</span>
+</pre></div>
 </div>
 <p>At larger events we obviously have different rounds of competition.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -123,16 +119,26 @@
 </tr>
 <tr class="field-odd field"><th class="field-name">qualCriteria:</th><td class="field-body">details what an athlete has to do to get to the next round, for example the first 2 in each heat + the 2 fastest losers is &#8220;2,2&#8221;.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">multiEvent:</th><td class="field-body">is a boolean that signifies if the event is part of multi event such as a heptathalon. Default = false.</td>
-</tr>
+</tbody>
+</table>
+<p>Other qualifiers help us define some of the more specialised events.
+:multiEvent: is a boolean that signifies if the individual event is part of multi event such as a heptathalon. Default = false.
+:numberEvents: how many events are in the parent multi-event event, e.g. Decathalon it is 10.
+:eventList: the list of event codes that makes up the multi-event.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
 <tr class="field-odd field"><th class="field-name">relay:</th><td class="field-body">is a boolean that signifies the event is a relay. Default = false. ( Please note <cite>multiEvent</cite> AND <cite>relay</cite> = FALSE.)</td>
 </tr>
-<tr class="field-even field"><th class="field-name">indoor:</th><td class="field-body">is a boolean that shows whether the event is held indoors. Default is false.</td>
+<tr class="field-even field"><th class="field-name">numberLegs:</th><td class="field-body">the number of athletes in each relay team.</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">programmeCode:</th><td class="field-body">is an id for the event.</td>
+<tr class="field-odd field"><th class="field-name">indoor:</th><td class="field-body">is a boolean that shows whether the event is held indoors. Default is false.</td>
 </tr>
-<tr class="field-even field"><th class="field-name" colspan="2">prizeCategories:</th></tr>
-<tr class="field-even field"><td>&#160;</td><td class="field-body">a list of categories, into which the results may have to be split for the awarding of prizes.</td>
+<tr class="field-even field"><th class="field-name">programmeCode:</th><td class="field-body">is an id for the event.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">prizeCategories:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">a list of categories, into which the results may have to be split for the awarding of prizes.</td>
 </tr>
 </tbody>
 </table>
@@ -154,10 +160,9 @@
 </div>
 <div class="section" id="results">
 <h2>Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h2>
-<p>This is usually a two-level, nested structure.  At the top level we have information about the race.  Nested within it, there will be a number of distinct <cite>events</cite>.  These will come in different flavours for running events, horizontal jump and throw events, and vertical jump events.</p>
+<p>This is usually a two-level, nested structure.  At the top level we have information about the race.  Nested within it, there will be a number of distinct <cite>events</cite>.  These will come in different flavours for running events, horizontal jump and throw events, and vertical jump events. At its simplest an array of <cite>results</cite> links the <cite>ids</cite> of the athletes and performances with a ranking.</p>
 <p>The <cite>results</cite> schema should also allow team scores to be held and displayed.  When a team competition takes place, the main thing people want to know is who is winning the match.</p>
-<p>List of runners.</p>
-<p>The following fields are required:</p>
+<p>To identify the runner  the following fields may be required:</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -170,45 +175,34 @@
 </tr>
 <tr class="field-even field"><th class="field-name">familyName:</th><td class="field-body">surname, in Western languages.</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">dateOfBirth:</th><td class="field-body">d-o-b</td>
-</tr>
-<tr class="field-even field"><th class="field-name">category:</th><td class="field-body">this may be used for non-overlapping prize categories, such as &#8220;Senior Men&#8221;, &#8220;Women over 40&#8221;.  It is common to produce a listing of the leaders in each category, or to offer prizes.  Categories are often, but not always, aligned with age groups and genders.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name" colspan="2">eventPerformance:</th></tr>
-<tr class="field-odd field"><td>&#160;</td><td class="field-body">the finishing time or best distance, represented in hours/minutes/seconds or metres as text e.g. &#8220;35:24&#8221;</td>
+<tr class="field-odd field"><th class="field-name">dateOfBirth:</th><td class="field-body">d-o-b in iso-date format.</td>
 </tr>
 </tbody>
 </table>
-<p>( or do we want <cite>performance</cite> and <cite>attempt</cite> vs <cite>eventPerfrmance</cite> and <cite>performance</cite>)</p>
-<p>For team competitions, we have some different concepts.</p>
+<p>For example, an athlete can be identified as follows. This also is sufficient information to produce a programme or display results</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+        <span class="s2">&quot;givenName&quot;</span><span class="p">:</span> <span class="s2">&quot;Andrew&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;familyName&quot;</span><span class="p">:</span> <span class="s2">&quot;Weir&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;dateOfBirth&quot;</span><span class="p">:</span> <span class="s2">&quot;1990-04-01&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;clubCode&quot;</span><span class="p">:</span> <span class="s2">&quot;THH&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Alternatively, if we are transferring between databases it may be simpler to use a preassigned Id from a recognised system or provider.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;ids&quot;</span><span class="p">:{</span>
+        <span class="s2">&quot;otAthleteId&quot;</span><span class="p">:</span> <span class="s2">&quot;1066-1415-1745-1815&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;tpAthleteId&quot;</span><span class="p">:</span> <span class="s2">&quot;15120&quot;</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">points:</th><td class="field-body">if scoring, the number of points earned by the runner.</td>
+<tr class="field-odd field"><th class="field-name">category:</th><td class="field-body">this may be used for non-overlapping prize categories, such as &#8220;Senior Men&#8221;, &#8220;Women over 40&#8221;.  It is common to produce a listing of the leaders in each category, or to offer prizes.  Categories are often, but not always, aligned with age groups and genders.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">ctry:</th><td class="field-body">the country that the athlete is representing.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">clubName:</th><td class="field-body">the athletics club the athlete is representing or typically represents as first claim if an international fixture.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">clubCode:</th><td class="field-body">we will allow clubs to chose a shorter codified version of their club name, e.g. <cite>THH</cite>. This will typically used in the presentation of results.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">teamName:</th><td class="field-body">the points earned will be allocated to a team. This could be the country or local club.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">teamCode:</th><td class="field-body">the iso code for the country or the <cite>clubCode</cite>.</td>
-</tr>
-</tbody>
-</table>
-<p>Some optional fields that help define team competitions:</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">secondClaim:</th><td class="field-body">boolean that shows if an athlete is competing for a club other than their main one.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">nonScorer:</th><td class="field-body">another boolean that shows if an athlete is to be excluded from team scoring.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">subTeam:</th><td class="field-body">an aditional descriptor that allows a club to have multiple teams in an event, e.g. A or B.</td>
+<tr class="field-even field"><th class="field-name">performance:</th><td class="field-body">the finishing time or best distance, represented in hours/minutes/seconds or metres as text e.g. &#8220;35:24&#8221;</td>
 </tr>
 </tbody>
 </table>
@@ -233,17 +227,6 @@
 </tr>
 </tbody>
 </table>
-<p>How to identify an athlete. National federation ID&#8217;s should be unique and can hopefully be checked with a combination of name, d-o-b and club. Other systems can assign their ID&#8217;s, which may have to be exchanged.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">nationalID:</th><td class="field-body">the Id given by the national federation.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">nationalFed:</th><td class="field-body">an ISO code for the athletics Federation. (UK vs Scotland?)</td>
-</tr>
-</tbody>
-</table>
 <p>Optional fields for road races</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -255,35 +238,270 @@
 </tr>
 </tbody>
 </table>
-<p>The <cite>performance</cite> is the final recorded time or distance of the athlete. For track and field events there is much more information that can be recorded. For field events the performance is the best distance recorded, but we should try and store the other attempts. Attached to the bestPerformance we should display an array with a set of entries for each round:</p>
+<p>The <cite>performance</cite> is the final recorded time or distance of the athlete and has an attached <cite>rank</cite>, signifying where that athlete has finished in the competition. For most running events this is sufficent to complete the results. Here we see the bronze medal winning performance from Rio.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+        <span class="s2">&quot;performance&quot;</span><span class="p">:</span> <span class="s2">&quot;2:10:05&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;recordFlag&quot;</span><span class="p">:</span> <span class="s2">&quot;PB&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;country&quot;</span><span class="p">:</span> <span class="s2">&quot;USA&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;ids&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;tpAthleteId&quot;</span><span class="p">:</span> <span class="s2">&quot;51210&quot;</span><span class="p">},</span>
+        <span class="s2">&quot;givenName&quot;</span><span class="p">:</span> <span class="s2">&quot;Galen&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;familyName&quot;</span><span class="p">:</span> <span class="s2">&quot;Rupp&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;rank&quot;</span><span class="p">:</span> <span class="s2">&quot;3&quot;</span>
+<span class="p">},</span>
+</pre></div>
+</div>
+<p>For track and field events there is much more information that can be recorded. For field events the performance is the best distance recorded, but we should try and store the other attempts. Attached to the performance we should display an array of <cite>roundResults</cite> with a set of entries for each round:</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">round:</th><td class="field-body">the number of the round</td>
+<tr class="field-odd field"><th class="field-name">roundResults:</th><td class="field-body">the array</td>
 </tr>
-<tr class="field-even field"><th class="field-name">performance:</th><td class="field-body">the distance recorded, numeric or text for <cite>pass</cite> or <cite>false</cite></td>
+<tr class="field-even field"><th class="field-name">round:</th><td class="field-body">the number of the round</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">wind:</th><td class="field-body">the wind speed for horizontal jumps in m per s, + showing a trailing wind.</td>
+<tr class="field-odd field"><th class="field-name">attempt:</th><td class="field-body">the distance recorded, numeric or text for <cite>pass</cite> or <cite>false</cite></td>
 </tr>
-<tr class="field-even field"><th class="field-name">recordFlag:</th><td class="field-body">cumulative string that display whether prformance has become a new SB PB event or regional record - Mirko&#8217;s notation - may not be needed in a standard</td>
-</tr>
-</tbody>
-</table>
-<p>Vertical jumps have a slightly different array consisting of</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">jumpHeight:</th><td class="field-body">height attempted</td>
-</tr>
-<tr class="field-even field"><th class="field-name">performance:</th><td class="field-body">success &#8220;O&#8221; or failure &#8220;X&#8221;, upto 3 characters. Three successive &#8220;X&#8220;&#8216;s indicate the end of that athlete&#8217;s competition.</td>
+<tr class="field-even field"><th class="field-name">wind:</th><td class="field-body">the wind speed for horizontal jumps in m per s, + showing a trailing wind.</td>
 </tr>
 <tr class="field-odd field"><th class="field-name">recordFlag:</th><td class="field-body">cumulative string that display whether prformance has become a new SB PB event or regional record - Mirko&#8217;s notation - may not be needed in a standard</td>
 </tr>
 </tbody>
 </table>
-<p>or do we want a longer array with one entry per jump rather than per height attempted. Might make describing a medal jump off easier as the heights can go up and down.</p>
+<p>Optional fields could include</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">distanceFromBoard:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">for long jump events, modern camera technology can measure how close to the board the take off foot was.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">athleteOrder:</th><td class="field-body">is an integer showing the order in which the athletes threw or jumped in the first round.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">time:</th><td class="field-body">is the local time when the attempt took place.</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+     <span class="s2">&quot;performance&quot;</span><span class="p">:</span> <span class="s2">&quot;66.73&quot;</span><span class="p">,</span>
+     <span class="s2">&quot;country&quot;</span><span class="p">:</span> <span class="s2">&quot;FRA&quot;</span><span class="p">,</span>
+     <span class="s2">&quot;athleteOrder&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+     <span class="s2">&quot;ids&quot;</span><span class="p">:</span> <span class="p">{</span>
+       <span class="s2">&quot;tpAthleteId&quot;</span><span class="p">:</span> <span class="s2">&quot;1014456&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;givenName&quot;</span><span class="p">:</span> <span class="s2">&quot;M</span><span class="se">\u00e9</span><span class="s2">lina&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;familyName&quot;</span><span class="p">:</span> <span class="s2">&quot;Robert-Michon&quot;</span>
+     <span class="p">},</span>
+     <span class="s2">&quot;rank&quot;</span><span class="p">:</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span>
+     <span class="s2">&quot;roundResults&quot;</span><span class="p">:</span> <span class="p">[</span>
+       <span class="p">{</span>
+         <span class="s2">&quot;round&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+         <span class="s2">&quot;attempt&quot;</span><span class="p">:</span> <span class="s2">&quot;65.52&quot;</span>
+       <span class="p">},</span>
+       <span class="p">{</span>
+         <span class="s2">&quot;round&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+         <span class="s2">&quot;attempt&quot;</span><span class="p">:</span> <span class="s2">&quot;64.83&quot;</span>
+       <span class="p">},</span>
+       <span class="p">{</span>
+         <span class="s2">&quot;round&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+         <span class="s2">&quot;attempt&quot;</span><span class="p">:</span> <span class="s2">&quot;65.08&quot;</span>
+       <span class="p">},</span>
+       <span class="p">{</span>
+         <span class="s2">&quot;round&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+         <span class="s2">&quot;attempt&quot;</span><span class="p">:</span> <span class="s2">&quot;X&quot;</span>
+       <span class="p">},</span>
+       <span class="p">{</span>
+         <span class="s2">&quot;round&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+         <span class="s2">&quot;attempt&quot;</span><span class="p">:</span> <span class="s2">&quot;66.73&quot;</span>
+       <span class="p">},</span>
+       <span class="p">{</span>
+         <span class="s2">&quot;round&quot;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>
+         <span class="s2">&quot;attempt&quot;</span><span class="p">:</span> <span class="s2">&quot;X&quot;</span>
+       <span class="p">}</span>
+     <span class="p">],</span>
+<span class="p">},</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="vertical-jumps">
+<h2>Vertical jumps<a class="headerlink" href="#vertical-jumps" title="Permalink to this headline">¶</a></h2>
+<p>These have a slightly different array consisting of</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">round:</th><td class="field-body">round number of number of different heights attempted.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">attempt:</th><td class="field-body">height attempted</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">success:</th><td class="field-body">success &#8220;O&#8221; or failure &#8220;X&#8221;, upto 3 characters. Three successive &#8220;X&#8220;&#8216;s indicate the end of that athlete&#8217;s competition.</td>
+</tr>
+</tbody>
+</table>
+<p>Here we see a Chinese athlete qualifying for the final of the Pole Vualt.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;group&quot;</span><span class="p">:</span> <span class="s2">&quot;A 2&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;performance&quot;</span><span class="p">:</span> <span class="s2">&quot;5.70&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;country&quot;</span><span class="p">:</span> <span class="s2">&quot;CHN&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;athleteOrder&quot;</span><span class="p">:</span> <span class="s2">&quot;3&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;ids&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;tpAthleteId&quot;</span><span class="p">:</span> <span class="s2">&quot;97544&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;rank&quot;</span><span class="p">:</span> <span class="s2">&quot;4&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;roundresults&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;success&quot;</span><span class="p">:</span> <span class="s2">&quot;O&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;attempt&quot;</span><span class="p">:</span> <span class="s2">&quot;5.45&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;round&quot;</span><span class="p">:</span> <span class="mi">1</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;success&quot;</span><span class="p">:</span> <span class="s2">&quot;O&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;attempt&quot;</span><span class="p">:</span> <span class="s2">&quot;5.60&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;round&quot;</span><span class="p">:</span> <span class="mi">2</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;success&quot;</span><span class="p">:</span> <span class="s2">&quot;xO&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;attempt&quot;</span><span class="p">:</span> <span class="s2">&quot;5.70&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;round&quot;</span><span class="p">:</span> <span class="mi">3</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;qualification&quot;</span><span class="p">:</span> <span class="s2">&quot;q&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;givenName&quot;</span><span class="p">:</span> <span class="s2">&quot;Changrui &quot;</span><span class="p">,</span>
+  <span class="s2">&quot;familyName&quot;</span><span class="p">:</span> <span class="s2">&quot;Xue&quot;</span>
+<span class="p">},</span>
+</pre></div>
+</div>
+<p>or do we want a longer array with one entry per jump rather than per height attempted. Might make describing a medal jump-off easier as the heights can go up and down.</p>
+</div>
+<div class="section" id="track-races">
+<h2>Track Races<a class="headerlink" href="#track-races" title="Permalink to this headline">¶</a></h2>
+<p>Track races clearly do not have multiple attempts but it is useful to store the reaction times of the athletes, any false starts and the lane order.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">reactionTime:</th><td class="field-body">time in seconds</td>
+</tr>
+<tr class="field-even field"><th class="field-name">laneNumber:</th><td class="field-body">integer showing start lane or start order in longer distance events with more athletes than lanes. 1 is the inside position.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">dqReason:</th><td class="field-body">if performance=&#8221;DQ&#8221;, then this optional field can give reason why, <cite>false start</cite> or <cite>out of lane</cite> could be examples.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="relay-races">
+<h2>Relay Races<a class="headerlink" href="#relay-races" title="Permalink to this headline">¶</a></h2>
+<p>Relay races are a popular athletic format both on and off the track. They differ from normal events in that multiple athletes take part per team and splits are often recorded. On the track the number of athletes is always 4, road relays can have many more and may have different length legs.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;performance&quot;</span><span class="p">:</span> <span class="s2">&quot;4:10:34.89&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;country&quot;</span><span class="p">:</span> <span class="s2">&quot;CAN&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;team&quot;</span><span class="p">:</span> <span class="s2">&quot;Canadian Road Relay&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;teamCode&quot;</span><span class="p">:</span> <span class="s2">&quot;BeerMoose&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;rank&quot;</span><span class="p">:</span> <span class="s2">&quot;3&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;relayRunners&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+          <span class="s2">&quot;legNumber&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+          <span class="s2">&quot;legLength&quot;</span><span class="p">:</span> <span class="s2">&quot;6.410&quot;</span>
+          <span class="s2">&quot;givenName&quot;</span><span class="p">:</span> <span class="s2">&quot;Brendon&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;familyName&quot;</span><span class="p">:</span> <span class="s2">&quot;Bitter&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;ids&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;otAthelteId&quot;</span><span class="p">:</span> <span class="s2">&quot;1234-4321-1234&quot;</span>
+                <span class="p">},</span>
+          <span class="s2">&quot;split&quot;</span><span class="p">:</span> <span class="s2">&quot;23:59.45&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+          <span class="s2">&quot;legNumber&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+          <span class="s2">&quot;legLength&quot;</span><span class="p">:</span> <span class="s2">&quot;4.205&quot;</span><span class="o">.............</span>
+
+        <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;qualification&quot;</span><span class="p">:</span> <span class="s2">&quot;Q&quot;</span>
+<span class="p">},</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="multi-event-competitions">
+<h2>Multi-event Competitions<a class="headerlink" href="#multi-event-competitions" title="Permalink to this headline">¶</a></h2>
+<p>Multi-events obviously involve the athletes competing in various events, scoring points from a commonly agreed table as a function of their performance for each one.
+Each athlete has a record for each event, showing the performance and points displayed in an array <cite>combinedResults</cite>. It is helpful to link the performance to an event stored elsewhere.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;performance&quot;</span><span class="p">:</span> <span class="s2">&quot;8893&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;country&quot;</span><span class="p">:</span> <span class="s2">&quot;USA&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;ids&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;tpAthleteId&quot;</span><span class="p">:</span> <span class="s2">&quot;75823&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;rank&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;combinedResults&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+                <span class="s2">&quot;eventNum&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;eventCode&quot;</span><span class="p">:</span> <span class="s2">&quot;100&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;multiPerformance&quot;</span><span class="p">:</span> <span class="s2">&quot;10.46&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;points&quot;</span><span class="p">:</span> <span class="s2">&quot;945&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;programmeCode&quot;</span><span class="p">:</span> <span class="s2">&quot;TR00341&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+                <span class="s2">&quot;eventNum&quot;</span><span class="p">:</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span><span class="o">......</span>
+
+        <span class="p">}</span>
+  <span class="p">],</span>
+ <span class="p">}</span>
+</pre></div>
+</div>
+<p>Meanwhile, elsewhere in the file is the following</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+        <span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;M100 Decathalon&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;eventCode&quot;</span><span class="p">:</span> <span class="s2">&quot;100&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;sex&quot;</span><span class="p">:</span> <span class="s2">&quot;M&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;roundName&quot;</span><span class="p">:</span> <span class="s2">&quot;heat1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;multiEvent&quot;</span><span class="p">:</span> <span class="s2">&quot;True&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;programmeCode&quot;</span><span class="p">:</span> <span class="s2">&quot;TR00341&quot;</span>
+        <span class="s2">&quot;results&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                <span class="s2">&quot;performance&quot;</span><span class="p">:</span> <span class="s2">&quot;10.46&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;ids&quot;</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">&quot;tpAthleteId&quot;</span><span class="p">:</span> <span class="s2">&quot;75823&quot;</span>
+                <span class="p">}</span>
+
+                <span class="p">},</span>
+
+        <span class="p">]</span>
+ <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="team-competitons">
+<h2>Team Competitons<a class="headerlink" href="#team-competitons" title="Permalink to this headline">¶</a></h2>
+<p>For team competitions, we have some different concepts.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">points:</th><td class="field-body">if scoring, the number of points earned by the runner.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">country:</th><td class="field-body">the country that the athlete is representing.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">clubName:</th><td class="field-body">the athletics club the athlete is representing or typically represents as first claim if an international fixture.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">clubCode:</th><td class="field-body">we will allow clubs to chose a shorter codified version of their club name, e.g. <cite>THH</cite>. This will typically used in the presentation of results.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">teamName:</th><td class="field-body">the points earned will be allocated to a team. This could be the country or local club.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">teamCode:</th><td class="field-body">the iso code for the country or the <cite>clubCode</cite>.</td>
+</tr>
+</tbody>
+</table>
+<p>Some optional fields that help define team competitions:</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">secondClaim:</th><td class="field-body">boolean that shows if an athlete is competing for a club other than their main one. Default = false.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">nonScorer:</th><td class="field-body">another boolean that shows if an athlete is to be excluded from team scoring. Default = false.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">subTeam:</th><td class="field-body">an aditional descriptor that allows a club to have multiple teams in an event, e.g. A or B.</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 
@@ -299,6 +517,11 @@
 <li><a class="reference internal" href="#competitions">Competitions</a></li>
 <li><a class="reference internal" href="#events">Events</a></li>
 <li><a class="reference internal" href="#results">Results</a></li>
+<li><a class="reference internal" href="#vertical-jumps">Vertical jumps</a></li>
+<li><a class="reference internal" href="#track-races">Track Races</a></li>
+<li><a class="reference internal" href="#relay-races">Relay Races</a></li>
+<li><a class="reference internal" href="#multi-event-competitions">Multi-event Competitions</a></li>
+<li><a class="reference internal" href="#team-competitons">Team Competitons</a></li>
 </ul>
 </li>
 </ul>
@@ -345,7 +568,7 @@
         <li class="right" >
           <a href="vocab.html" title="Vocabulary"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">athlib 0.0.6 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">athlib 0.0.7 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

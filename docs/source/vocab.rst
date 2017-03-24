@@ -20,7 +20,7 @@ The main *Things* in Athletics
 
 :Organisation:  Organisations include Clubs, National Governing Bodies or Federations, International Federations, Regional bodies, Leagues and more.   Organisations can `affiliate` to each other.  This is often recognised by the payment of a fee.  Schools and Universities can also be supported, if they compete actively and regularly.
 
-:Person:  We'll need to refer to people in their many roles:  athletes, coaches, officials, parents, managers and more.
+:Person:  We'll need to refer to people in their many roles:  athletes, coaches, officials, parents, managers and more. People can be identified in may ways, the simplest being a name. If we are sending data to be displayed in a results page this is often sufficient. However, if we need to analyse of store the data unique identifiers are required.  These can be specified by an organisation, e.g `otAthleteId` or `tpAthleteId` or a combination of names, date of birth and club will often suffice. 
 
 Contexts
 --------
@@ -53,7 +53,7 @@ We attempted to call this `discipline`, because of the many ways `event` is used
 
 :event: we use this to refer to something that takes place within a competition.  If a group of people line up to run, jump or throw at the same time, we choose to call this an `event`.   During a county championships, we might have an 800m race in many age groups for men and women.  Each would be a distinct event, but they would all share an ``eventCode`` of ``800`` 
 
-:ageGroups: `Events` are frequenty broken down into `agegroups` both at the Junior level and the Masters level to enable more even competion. Different countries and even disciplices within a given country have different rules for defining agegroups. Here we will use the local nomenclature, the event will have a given 'discipline' and 'country' so the user can back out the rules that govern the event. An agegroup combned with the `sex` of the athletes often defines the `category` that an event falls into.
+:ageGroups: `Events` are frequenty broken down into `agegroups` both at the Junior level and the Masters level to enable more even competion. Different countries and even disciplices within a given country have different rules for defining agegroups. Here we will use the local nomenclature, the event will have a given 'discipline' and 'country' so the user can back out the rules that govern the event. An agegroup combined with the `sex` of the athletes often defines the `category` that an event falls into.
 
 
 
