@@ -18,17 +18,19 @@ Competitions
 ------------
 
 Competitions are defined by `name`, there may be a `shortName` and it may be part of a `series`. Useful additonal data includes location, and the timeperiod defined in iso-date format by `startDate` and `endDate`. The absence of an `endDate` signifies a single day event.
-::
 
- {
-  	"competition": "Rio Olympics 2016",
-	"shortName": "OG16"
-  	"startDate": "2016-08-12",
-  	"endDate": "2016-08-21", 
-  	"city": "Rio de Janeiro", 
-  	"country": "BRA",
-	"series": "olympics"
- } 
+.. code-block:: json
+
+  {
+    "name": "Rio Olympics 2016",
+    "shortName": "OG16",
+    "startDate": "2016-08-12",
+    "endDate": "2016-08-21", 
+    "city": "Rio de Janeiro", 
+    "country": "BRA",
+    "series": "olympics",
+    "events": [ ... ]
+  } 
 
 
 There are variety of fields that help us analyse the results, these may be more relevant for higher level competions. (is this at an event level or competion ?)
@@ -40,18 +42,24 @@ There are variety of fields that help us analyse the results, these may be more 
 Events
 ------
 
-Within a competiton, there may be a single event or many. As described in the vocaulary, events are defined in terms of an `eventCode`, which specifies the form of athletic competion from a pre-defined list, e.g JT for Javelin throw. The event may be a heat or a final,
-::
+Within a competition, there may be a single event or many. We propose thateach is assigned a unique text
+ID within the competition.  A simple scheme might be to number the events - e.g. T01, T02, T02 for track
+events and F01, F02 for field.
 
- {
-	"event": "M45 Javelin",
-	"eventCode": "JT",
-	"sex": "M",
-	"ageGroup": "V45",    ##  how do we classify ageGroups?
-	"roundName": "final"
- }
+As described in the vocabulary, events should always have an :ref:`eventCode`. The event may be a heat or a final
 
-At larger events we obviously have different rounds of competition. 
+.. code-block:: json
+
+  {
+    "id": "F34",  # 34th field event in the competition
+    "eventName": "M45 Javelin",
+    "eventCode": "JT",
+    "sex": "M",
+    "ageGroup": "V45",  
+    "roundName": "final"
+  }
+
+This is a rich subject.  If one is only interested in the individual performances after a match, not much information is needed. At larger events we obviously have different rounds of competition.  And if our goal is programme planning or understanding the structure, we need to know a lot more about which events feed into which, how many qualify, points for league scoring and more.
 
 :roundName: shows the level of the round and identifies the members of that round with an integer. Typical values could be "heat6","quarter2","semi1", "prelim3" or "final". An empty field signifies a final.
 :nextRound: is the round to which the successful athlete progresses. No integers required.
@@ -89,7 +97,7 @@ The `results` schema should also allow team scores to be held and displayed.  Wh
 To identify the runner  the following fields may be required:
 
 :bib:  text or numeric.  The race number worn by the athlete
-:rank:	the runner's finishing position.  numeric.  If two runners place equal, they may both be give e.g. `1`, but the next runner should be given `3`
+:rank:  the runner's finishing position.  numeric.  If two runners place equal, they may both be give e.g. `1`, but the next runner should be given `3`
 
 :givenName:  first name, in Western languages. In Roman script.
 :familyName:  surname, in Western languages.
@@ -98,21 +106,21 @@ To identify the runner  the following fields may be required:
 For example, an athlete can be identified as follows. This also is sufficient information to produce a programme or display results
 ::
 
-	{
-		"givenName": "Andrew",
-		"familyName": "Weir",
-		"dateOfBirth": "1990-04-01",
-		"clubCode": "THH"
-	}
+  {
+    "givenName": "Andrew",
+    "familyName": "Weir",
+    "dateOfBirth": "1990-04-01",
+    "clubCode": "THH"
+  }
 
 Alternatively, if we are transferring between databases it may be simpler to use a preassigned Id from a recognised system or provider.
 ::
 
-	{"ids":{
-		"otAthleteId": "1066-1415-1745-1815",
-		"tpAthleteId": "15120"
-		}
-	}
+  {"ids":{
+    "otAthleteId": "1066-1415-1745-1815",
+    "tpAthleteId": "15120"
+    }
+  }
 
 :category:  this may be used for non-overlapping prize categories, such as "Senior Men", "Women over 40".  It is common to produce a listing of the leaders in each category, or to offer prizes.  Categories are often, but not always, aligned with age groups and genders.
 :performance:  the finishing time or best distance, represented in hours/minutes/seconds or metres as text e.g. "35:24"
@@ -140,16 +148,16 @@ The `performance` is the final recorded time or distance of the athlete and has 
 
 ::
 
-		{
-			"performance": "2:10:05", 
-			"recordFlag": "PB", 
-			"country": "USA", 
-			"ids": {
-				"tpAthleteId": "51210"},
-			"givenName": "Galen",
-			"familyName": "Rupp", 
-			"rank": "3"
- 		}, 
+    {
+      "performance": "2:10:05", 
+      "recordFlag": "PB", 
+      "country": "USA", 
+      "ids": {
+        "tpAthleteId": "51210"},
+      "givenName": "Galen",
+      "familyName": "Rupp", 
+      "rank": "3"
+    }, 
 
 
 
@@ -275,21 +283,21 @@ Relay races are a popular athletic format both on and off the track. They differ
           "teamCode": "BeerMoose", 
           "rank": "3", 
           "relayRunners": [
-          	{
-          	  "legNumber": 1,
-          	  "legLength": "6.410"
-          	  "givenName": "Brendon",
-          	  "familyName": "Bitter",
-          	  "ids": {
-          	  	"otAthelteId": "1234-4321-1234"
-          	  	},
-          	  "split": "23:59.45"
-          	},
-          	{
-          	  "legNumber": 2,
-          	  "legLength": "4.205".............
+            {
+              "legNumber": 1,
+              "legLength": "6.410"
+              "givenName": "Brendon",
+              "familyName": "Bitter",
+              "ids": {
+                "otAthelteId": "1234-4321-1234"
+                },
+              "split": "23:59.45"
+            },
+            {
+              "legNumber": 2,
+              "legLength": "4.205".............
  
-          	}
+            }
           ], 
           "qualification": "Q"
         }, 
@@ -311,41 +319,41 @@ Each athlete has a record for each event, showing the performance and points dis
           }, 
           "rank": "1", 
           "combinedResults": [
-         	{
-         		"eventNum": "1",
-         		"eventCode": "100",
-         		"multiPerformance": "10.46",
-         		"points": "945",
-         		"programmeCode": "TR00341"
-         	},
-         	{
-         		"eventNum": "2",......
+          {
+            "eventNum": "1",
+            "eventCode": "100",
+            "multiPerformance": "10.46",
+            "points": "945",
+            "programmeCode": "TR00341"
+          },
+          {
+            "eventNum": "2",......
 
-         	}
+          }
           ], 
          } 
 
 Meanwhile, elsewhere in the file is the following
 ::
 
-	{
-		"event": "M100 Decathalon",
-		"eventCode": "100",
-		"sex": "M",
-		"roundName": "heat1",
-		"multiEvent": "True",
-		"programmeCode": "TR00341"
-		"results": [
-			{
-			"performance": "10.46",
-			"ids": {
-            			"tpAthleteId": "75823"
-            		}
+  {
+    "event": "M100 Decathalon",
+    "eventCode": "100",
+    "sex": "M",
+    "roundName": "heat1",
+    "multiEvent": "True",
+    "programmeCode": "TR00341"
+    "results": [
+      {
+      "performance": "10.46",
+      "ids": {
+                  "tpAthleteId": "75823"
+                }
 
-         		}, 
+            }, 
 
-		]
-	 }
+    ]
+   }
 
 
 Team Competitons

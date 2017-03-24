@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Identity &#8212; athlib 0.0.7 documentation</title>
+    <title>Identifiers &#8212; athlib 0.0.7 documentation</title>
     
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -27,7 +27,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Vocabulary" href="vocab.html" />
-    <link rel="prev" title="Introduction" href="intro.html" /> 
+    <link rel="prev" title="Codes and Representation" href="eventcodes.html" /> 
   </head>
   <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
@@ -43,7 +43,7 @@
           <a href="vocab.html" title="Vocabulary"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="intro.html" title="Introduction"
+          <a href="eventcodes.html" title="Codes and Representation"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">athlib 0.0.7 documentation</a> &#187;</li> 
       </ul>
@@ -54,9 +54,9 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="identity">
-<h1>Identity<a class="headerlink" href="#identity" title="Permalink to this headline">¶</a></h1>
-<p>A large part of the problem is to agree on a common set of <cite>identifiers</cite> for the main <cite>things</cite> in athletics. When we&#8217;re exchanging data, we need to know when we are talking about the same competition, organisation, venue or person.</p>
+  <div class="section" id="identifiers">
+<h1>Identifiers<a class="headerlink" href="#identifiers" title="Permalink to this headline">¶</a></h1>
+<p>When we&#8217;re exchanging data, we need to know when we are talking about the same competition, organisation, venue or person.  So, a large part of the problem is to agree on a common set of <cite>identifiers</cite> for the main <cite>things</cite> in athletics.</p>
 <p>In the securities business, every fund or stock has an <cite>ISIN</cite> - <cite>Individual Security Identification Number</cite>. Without these, financial trade would be impossible.</p>
 <p>We propose (in fact, we&#8217;re working on) the creation of an open, public registry which is free for anyone to use; and some voluntary standards.  The main entities to be tracked are the <cite>big four</cite> - Organisations, Venues, Competitions and People.</p>
 <p>We hope to start in a top-down manner by giving national governing bodies the ultimate say over their country.   The key concepts are:</p>
@@ -76,10 +76,10 @@
 <h2>Organisations<a class="headerlink" href="#organisations" title="Permalink to this headline">¶</a></h2>
 <p>We suggest that all organisations in athletics eventually end up with a code like this:</p>
 <blockquote>
-<div>/o/&lt;countrycode&gt;/&lt;org-code&gt;/</div></blockquote>
-<p>They can be identified when first discovered with a URL like this</p>
+<div><code class="docutils literal"><span class="pre">/o/&lt;countrycode&gt;/&lt;org-code&gt;/</span></code></div></blockquote>
+<p>They can also be identified, even before an org code is assigned, with a URL like this:</p>
 <blockquote>
-<div>/o/&lt;uuid&gt;</div></blockquote>
+<div><code class="docutils literal"><span class="pre">/o/&lt;uuid&gt;</span></code></div></blockquote>
 <p>but the UUIDs are long and painful  Much better for them to choose a code when they want to use the system (e.g. to enter a competition)</p>
 <p><code class="docutils literal"><span class="pre">&lt;countrycode&gt;</span></code> is a 3-letter ISO country code (GBR, EST etc).  Note that we aim to follow ISO country codes.  IOC, IAAF and European Athletics have some differing codes - for example, <code class="docutils literal"><span class="pre">GER</span></code> rather than <code class="docutils literal"><span class="pre">DEU</span></code> for Germany.  We can provide mappings, but prefer internet standards over historical (and sometimes inconsistent) standards within the sport.</p>
 <dl class="docutils">
@@ -100,13 +100,13 @@
 <p>Competitions may choose a <cite>slug</cite> - a URL component - which is unique for the country AND year.  This is because in most cases, they happen year after year.</p>
 <blockquote>
 <div><p><code class="docutils literal"><span class="pre">/x/&lt;year&gt;&lt;countrycode&gt;/&lt;slug&gt;/</span></code> - the preferred format once a slug is chosen.</p>
-<p><code class="docutils literal"><span class="pre">/x/&lt;uuid&gt;</span></code></p>
+<p><code class="docutils literal"><span class="pre">/x/&lt;uuid&gt;</span></code> - always available</p>
 <p><code class="docutils literal"><span class="pre">/x/2017/gbr/lm/</span></code>    - London Marathon
 <code class="docutils literal"><span class="pre">/x/2017/gbr/rosenheim-final/</span></code>  - final match of Rosenheim League
 <code class="docutils literal"><span class="pre">/x/2017/gbr/hercopen/</span></code>  - Hercules Wimbledon AC Open Meeting</p>
 <p><code class="docutils literal"><span class="pre">/x/2017/est/ekv-in/</span></code>  - Estonian Inter-Club Cup (indoors)</p>
 </div></blockquote>
-<p>For events which recur, we can build up suffixes.  e.g. the Thames Hare and Hounds &#8220;Second Sunday&#8221; race is monthly, so we can name it</p>
+<p>For events which recur, we can build up suffixes.  e.g. the Thames Hare and Hounds &#8220;Second Sunday&#8221; race is monthly, so we can use a two-digit month suffix</p>
 <blockquote>
 <div><code class="docutils literal"><span class="pre">/x/2017/gbr/thhss07</span></code>    - July (month 17) race in series</div></blockquote>
 <p>And the 3rd of 4 matches in the Surrey League (Men), Division 2, might be</p>
@@ -129,8 +129,8 @@
 <p>Our view is that almost every federation and many other bodies are constantly trying to identify people, and this is one of the major bottlenecks in the sport, taking up huge amounts of volunteer time on administration.  In future, it MIGHT make sense to have a global directory of people in the sport.  In the short term, in the countries in which we operate, it is at least useful to give a unique ID to licensed athletes.</p>
 <p>UUIDs will be far more common here, but we could potentially let people who use OpenTrack to register an identity if they wished.  They might do this to correct their date, upload a photo, or link their athletics results to their social media identities.</p>
 <blockquote>
-<div><p>/p/&lt;uuid&gt;/ - the default format we give to any person found in a set of results</p>
-<p>/p/est/erki-nool/  - the 2000 Olympic Decathlon champion, Erki Nool, from Estonia</p>
+<div><p><code class="docutils literal"><span class="pre">/p/&lt;uuid&gt;/</span></code> - the default format we give to any person found in a set of results</p>
+<p><code class="docutils literal"><span class="pre">/p/est/erki-nool/</span></code>  - the 2000 Olympic Decathlon champion, Erki Nool, from Estonia</p>
 </div></blockquote>
 <p>Imagine that if you visited the page above, you could see links to Erki Nool&#8217;s page on the national results, Wikipedia page, and on the IAAF or European Athletics websites.</p>
 <p>We would prefer not to encourage anonymous handles like &#8220;sprinter123&#8221; and must be mindful of clashes.  There are a LOT of people called &#8216;Andy Robinson&#8217; in the sport in the UK - indeed, two in the author&#8217;s club.</p>
@@ -149,7 +149,7 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Identity</a></li>
+<li><a class="reference internal" href="#">Identifiers</a></li>
 <li><a class="reference internal" href="#url-scheme-and-codes">URL scheme and codes</a><ul>
 <li><a class="reference internal" href="#organisations">Organisations</a></li>
 <li><a class="reference internal" href="#competitions">Competitions</a></li>
@@ -161,8 +161,8 @@
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="intro.html"
-                        title="previous chapter">Introduction</a></p>
+  <p class="topless"><a href="eventcodes.html"
+                        title="previous chapter">Codes and Representation</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="vocab.html"
                         title="next chapter">Vocabulary</a></p>
@@ -200,14 +200,14 @@
           <a href="vocab.html" title="Vocabulary"
              >next</a> |</li>
         <li class="right" >
-          <a href="intro.html" title="Introduction"
+          <a href="eventcodes.html" title="Codes and Representation"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">athlib 0.0.7 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, Andy Robinson and others.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.2.
     </div>
   </body>
 </html>
