@@ -26,7 +26,7 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Identity" href="identity.html" />
+    <link rel="next" title="Codes and Representation" href="eventcodes.html" />
     <link rel="prev" title="Athlib - a library for Athletics" href="index.html" /> 
   </head>
   <body role="document">
@@ -40,7 +40,7 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="identity.html" title="Identity"
+          <a href="eventcodes.html" title="Codes and Representation"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="index.html" title="Athlib - a library for Athletics"
@@ -56,19 +56,30 @@
             
   <div class="section" id="introduction">
 <h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
-<p><cite>athlib</cite> is an open source library of functions for Athletics (en-US: &#8220;track and field&#8221;) and running.
-It is part of the <cite>OpenTrack</cite> project (<a class="reference external" href="http://opentrack.run/">http://opentrack.run/</a>), which aims to improve systems in the sport through Open Data, Open Standards and Open Source code.</p>
+<p><cite>athlib</cite> is an open source library of functions for Athletics (<cite>en-US: &#8220;track and field&#8221;</cite>) and running.
+It is part of the <cite>OpenTrack</cite> project (<a class="reference external" href="http://opentrack.run/">http://opentrack.run/</a>), which aims to improve systems in the sport through Open Data, Open Standards and Open Source code.  We are extremely grateful to European Athletics for their support of this initiative.</p>
 <dl class="docutils">
-<dt>We aim to provide</dt>
+<dt>In the core library, we aim to provide</dt>
 <dd><ul class="first last simple">
 <li>standard schemas and codes for exchange of data</li>
 <li>well-tested common utility functions in Python and Javascript.</li>
+<li>canned data for scoring</li>
+<li>introductory documentation on the project</li>
 </ul>
 </dd>
 </dl>
-<p>At this time, Python is leading.  Functions need to be re-done in Javascript, and we
-have yet to figure out how to include <cite>jsdoc</cite> documentation automatically.</p>
-<p>Documentation on schemas is coming soon.</p>
+<p>Lots of people are building systems to manage parts of the sport.  No one system will ever do it all.  It would be a huge step forward if we could agree common interchange formats.</p>
+<p>We&#8217;d like to evolve agreed standards for interchange between systems.  This will hopefully involve both system-to-system standards (e.g JSON document formats), and human-friendly ones. The human-friendly ones will largely relate to what headings and values to use in spreadsheets; we can provide tools to check these and convert to JSON.</p>
+<p>This document is not aiming for the levels of precision of an ISO or Internet standard.  In the words of the Internet Engineering Task Force, we want &#8220;rough consensus and running code&#8221;.  To this end we do NOT need to agree now exactly how to represent unusual or historic events such as the six mile track record, or quibble too much about recording the exact weight of the javelin used; these are important, but we can achieve other things while these are being discussed.   We DO need to start representing the common events in the same ways.</p>
+<p>If you disagree with the standards, join the forum (coming soon) and argue, or make counter-suggestions, so we can reach the best solution quickly.  The OpenTrack project wants to set its standards quickly.   If yu are happy to follow these standards, let us know and we&#8217;ll add your name to a list to put pressure on others.</p>
+<p>The process will likely work at two levels</p>
+<blockquote>
+<div><ul class="simple">
+<li>codes and representations: what we put in fields</li>
+<li>commn reference data:  how do we all refer to a particular club or team, or a venue?</li>
+<li>example documents to represent things like athletes, start lists, fixtures and results</li>
+</ul>
+</div></blockquote>
 </div>
 
 
@@ -81,8 +92,8 @@ have yet to figure out how to include <cite>jsdoc</cite> documentation automatic
   <p class="topless"><a href="index.html"
                         title="previous chapter">Athlib - a library for Athletics</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="identity.html"
-                        title="next chapter">Identity</a></p>
+  <p class="topless"><a href="eventcodes.html"
+                        title="next chapter">Codes and Representation</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -114,7 +125,7 @@ have yet to figure out how to include <cite>jsdoc</cite> documentation automatic
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="identity.html" title="Identity"
+          <a href="eventcodes.html" title="Codes and Representation"
              >next</a> |</li>
         <li class="right" >
           <a href="index.html" title="Athlib - a library for Athletics"
@@ -124,7 +135,7 @@ have yet to figure out how to include <cite>jsdoc</cite> documentation automatic
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, Andy Robinson and others.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.2.
     </div>
   </body>
 </html>

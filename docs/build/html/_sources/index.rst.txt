@@ -11,6 +11,7 @@ Athlib - a library for Athletics
    :caption: Contents:
 
    intro
+   eventcodes
    identity
    vocab
    schemas

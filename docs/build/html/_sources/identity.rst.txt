@@ -1,8 +1,8 @@
 
-Identity
-========
+Identifiers
+===========
 
-A large part of the problem is to agree on a common set of `identifiers` for the main `things` in athletics. When we're exchanging data, we need to know when we are talking about the same competition, organisation, venue or person.
+When we're exchanging data, we need to know when we are talking about the same competition, organisation, venue or person.  So, a large part of the problem is to agree on a common set of `identifiers` for the main `things` in athletics. 
 
 In the securities business, every fund or stock has an `ISIN` - `Individual Security Identification Number`. Without these, financial trade would be impossible.
 
@@ -26,11 +26,11 @@ Organisations
 -------------
 We suggest that all organisations in athletics eventually end up with a code like this:
 
-	/o/<countrycode>/<org-code>/
+	``/o/<countrycode>/<org-code>/``
 
-They can be identified when first discovered with a URL like this
+They can also be identified, even before an org code is assigned, with a URL like this:
 
-    /o/<uuid>
+    ``/o/<uuid>``
 
 but the UUIDs are long and painful  Much better for them to choose a code when they want to use the system (e.g. to enter a competition)
 
@@ -56,7 +56,7 @@ Competitions may choose a `slug` - a URL component - which is unique for the cou
 
     ``/x/<year><countrycode>/<slug>/`` - the preferred format once a slug is chosen.
 
-    ``/x/<uuid>``
+    ``/x/<uuid>`` - always available
 
     ``/x/2017/gbr/lm/``    - London Marathon
     ``/x/2017/gbr/rosenheim-final/``  - final match of Rosenheim League
@@ -65,7 +65,7 @@ Competitions may choose a `slug` - a URL component - which is unique for the cou
     ``/x/2017/est/ekv-in/``  - Estonian Inter-Club Cup (indoors)
 
 
-For events which recur, we can build up suffixes.  e.g. the Thames Hare and Hounds "Second Sunday" race is monthly, so we can name it
+For events which recur, we can build up suffixes.  e.g. the Thames Hare and Hounds "Second Sunday" race is monthly, so we can use a two-digit month suffix
   
     ``/x/2017/gbr/thhss07``    - July (month 17) race in series
 
@@ -100,9 +100,9 @@ Our view is that almost every federation and many other bodies are constantly tr
 
 UUIDs will be far more common here, but we could potentially let people who use OpenTrack to register an identity if they wished.  They might do this to correct their date, upload a photo, or link their athletics results to their social media identities.
 
-    /p/<uuid>/ - the default format we give to any person found in a set of results
+    ``/p/<uuid>/`` - the default format we give to any person found in a set of results
 
-    /p/est/erki-nool/  - the 2000 Olympic Decathlon champion, Erki Nool, from Estonia
+    ``/p/est/erki-nool/``  - the 2000 Olympic Decathlon champion, Erki Nool, from Estonia
 
 Imagine that if you visited the page above, you could see links to Erki Nool's page on the national results, Wikipedia page, and on the IAAF or European Athletics websites.
 
