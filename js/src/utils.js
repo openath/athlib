@@ -8,6 +8,13 @@
  * @param(arg):  The argument to be appended to hello
  */
 
+import {
+  JUMPS,
+  THROWS,
+  MULTI_EVENTS,
+  FIELD_EVENTS,
+} from './codes'
+
 function hello(arg) {
   return `Hello, ${arg}!`
 }
@@ -24,6 +31,11 @@ function normalizeGender(gender) {
   throw new Error('this is another error');
 }
 
+/** Trim and uppercase */
+function normalizeEventCode(eventCode) {
+  return eventCode.trim().toUpperCase()
+}
+
 /** convert a performance (time or distance) to seconds or metres */
 function perfToFloat(perfText) {
   const parts = perfText.split(/:/).reverse()
@@ -37,14 +49,13 @@ function perfToFloat(perfText) {
 }
 
 function isFieldEvent(eventCode) {
-  const FIELD_PREFIXES = ['HJ', 'PV', 'LJ', 'TJ', 'SP', 'DT', 'JT', 'HT', 'WT']
-  const firstTwo = eventCode.trim().toUpperCase().slice(0, 2)
-  return (FIELD_PREFIXES.indexOf(firstTwo) > -1)
+  const firstTwo = normalizeEventCode(eventCode).slice(0, 2)
+  return (FIELD_EVENTS.indexOf(firstTwo) > -1)
 }
 
 function isMultiEvent(eventCode) {
-  const firstThree = eventCode.trim().toUpperCase().slice(0, 3)
-  return (['PEN', 'HEP', 'OCT', 'DEC', 'ICO'].indexOf(firstThree) > -1)
+  const firstThree = normalizeEventCode(eventCode).slice(0, 3)
+  return (MULTI_EVENTS.indexOf(firstThree) > -1)
 }
 
 

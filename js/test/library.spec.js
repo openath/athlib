@@ -59,6 +59,7 @@ describe('Given an instance of Athlib', function() {
       expect(Athlib.betterPerformance('83.25', '17.3', 'JT')).to.equal('83.25');
       expect(Athlib.betterPerformance('10.5', '10.6', '100')).to.equal('10.5');
       expect(Athlib.betterPerformance('3456', '4567', 'DEC')).to.equal('4567');
+      expect(Athlib.betterPerformance('3456', '4567', 'MUL')).to.equal('4567');
     });
   });
 

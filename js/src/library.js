@@ -5,9 +5,9 @@ import {
     isFieldEvent,
     isMultiEvent,
     betterPerformance,
-} from "./utils";
+} from './utils';
 
-import { calcUkaAgeGroup } from "./uka_agegroups";
+import { calcUkaAgeGroup } from './uka_agegroups';
 
 module.exports = {
   hello,

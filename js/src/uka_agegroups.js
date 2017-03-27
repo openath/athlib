@@ -98,7 +98,7 @@ function _calculateAge(birthDate, matchDate) {
 function calcUkaAgeGroup(birthDate, matchDate, category, vets, underAge) {
   if (!(birthDate instanceof Date ||
     matchDate instanceof Date)) {
-    throw new Error("you must pass a valid date");
+    throw new Error('you must pass a valid date');
   }
   switch (category) {
     case 'TF':
