@@ -6,6 +6,11 @@ from lxml import etree
 import re
 from pprint import pprint
 
+import sys
+sys.path.insert(0, "../..")
+import athlib
+
+
 pat_DDMMYYYY = re.compile("\d\d\.\d\d\.\d\d\d\d")
 
 
@@ -128,8 +133,8 @@ EVENT_NAMES_TO_CODES = {
     "Heptathlon": "HEP",
     "20 km walk": "20KW",
     "50 km walk": "50KW",
-    "4 x 100 m": "4x400",
-    "4 x 400 m": "4x100",
+    "4 x 100 m": "4x100",
+    "4 x 400 m": "4x400",
     "Marathon": "MAR",
 }
 
@@ -180,6 +185,81 @@ def cleanAthleteName(result):
         result["givenName"] = first
         result["familyName"] = last
     del result["athlete"]
+
+def cleanRelays(result):
+    rename_key(result, 'recordflag', 'recordFlags')
+    cleanRecordFlags(result)
+    rename_key(result, 'tpAthleteId', 'tpTeamId')
+    result['teamCode'] = result['country']
+    #del result["competitor"]
+    runners = []
+    rr = result['relayrunners']
+    for i in range(1,5):
+        name = rr['relayrunner%d' % i]
+        id = rr['relayrunner%did' % i]
+        first, last = name.split(None, 1)
+        first = first.title()
+        last = last.title()
+
+        runner = dict(
+            familyName=last,
+            givenName=first,
+            tpAthleteId=id,
+            legNumber=i
+            )
+        runners.append(runner)
+    result['runners'] = runners
+    del result['relayrunners']
+
+def cleanAthlon(result, eventCode):
+    rename_key(result, 'recordflag', 'recordFlags')
+    cleanRecordFlags(result)
+    
+    if eventCode == 'DEC':
+        events = '100 LJ SP HJ 400 110H DT PV JT 1500'.split()
+        gender = 'M'
+    elif eventCode == 'HEP':
+        events = '100H HJ SP 200 LJ JT 800'.split()
+        gender = "F"
+
+
+    cb = result['combinedresults']
+    results = []
+    total = 0
+    for i in range(len(events)):
+        eventNo = i + 1
+        perf = cb['event%d' % eventNo]
+        # if perf is None:
+        #     perf = 'DNF'
+        wind = None
+        if perf and ('/' in perf):
+            perf, wind = perf.split('/')
+        res = dict(
+            eventNo=eventNo,
+            eventCode=events[i],
+            performance=perf
+            )
+        if perf not in ('DNF', 'NH', None):
+
+            numeric = athlib.parse_hms(perf)
+            points = athlib.athlon_score(gender, events[i], numeric)
+            res['points'] = points
+            if points:
+                total += points
+
+        if wind:
+            res['wind'] = wind
+        results.append(res)
+
+    officialScore = result['performance']
+    if officialScore != 'DNF':
+        if total != int(officialScore):
+            result['performance2'] = total
+            print total, officialScore
+
+    result['results'] = results
+    del result['combinedresults']
+
 
 
 def athleticize(node):
@@ -281,7 +361,7 @@ def athleticize(node):
                         rename_key(att, 'round', 'results')
                         rename_key(att, 'performance', 'height')
 
-            else:
+            elif event_code in ["LJ", "TJ", "JT", "HT", "DT", "SP"]:
                 rename_key(r, "roundresults", "attempts")
                 if 'attempts' in r:
                     atts = r['attempts']
@@ -293,7 +373,14 @@ def athleticize(node):
                         rename_key(att, 'recordflag', 'recordFlags')
                         cleanRecordFlags(att)
                         attNo += 1
-            
+            elif event_code in ["4x100", "4x400"]:
+                cleanRelays(r)
+
+            elif event_code == 'DEC':
+                cleanAthlon(r, event_code)
+            elif event_code == 'HEP':
+                cleanAthlon(r, event_code)
+
     del node['medaltable']
     del node['placingtable']
 
