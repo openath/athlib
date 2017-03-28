@@ -70,15 +70,16 @@
 <div class="section" id="competitions">
 <h2>Competitions<a class="headerlink" href="#competitions" title="Permalink to this headline">¶</a></h2>
 <p>Competitions are defined by <cite>name</cite>, there may be a <cite>shortName</cite> and it may be part of a <cite>series</cite>. Useful additonal data includes location, and the timeperiod defined in iso-date format by <cite>startDate</cite> and <cite>endDate</cite>. The absence of an <cite>endDate</cite> signifies a single day event.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
-       <span class="s2">&quot;competition&quot;</span><span class="p">:</span> <span class="s2">&quot;Rio Olympics 2016&quot;</span><span class="p">,</span>
-       <span class="s2">&quot;shortName&quot;</span><span class="p">:</span> <span class="s2">&quot;OG16&quot;</span>
-       <span class="s2">&quot;startDate&quot;</span><span class="p">:</span> <span class="s2">&quot;2016-08-12&quot;</span><span class="p">,</span>
-       <span class="s2">&quot;endDate&quot;</span><span class="p">:</span> <span class="s2">&quot;2016-08-21&quot;</span><span class="p">,</span>
-       <span class="s2">&quot;city&quot;</span><span class="p">:</span> <span class="s2">&quot;Rio de Janeiro&quot;</span><span class="p">,</span>
-       <span class="s2">&quot;country&quot;</span><span class="p">:</span> <span class="s2">&quot;BRA&quot;</span><span class="p">,</span>
-       <span class="s2">&quot;series&quot;</span><span class="p">:</span> <span class="s2">&quot;olympics&quot;</span>
-<span class="p">}</span>
+<div class="highlight-json"><div class="highlight"><pre><span></span>{
+  &quot;name&quot;: &quot;Rio Olympics 2016&quot;,
+  &quot;shortName&quot;: &quot;OG16&quot;,
+  &quot;startDate&quot;: &quot;2016-08-12&quot;,
+  &quot;endDate&quot;: &quot;2016-08-21&quot;,
+  &quot;city&quot;: &quot;Rio de Janeiro&quot;,
+  &quot;country&quot;: &quot;BRA&quot;,
+  &quot;series&quot;: &quot;olympics&quot;,
+  &quot;events&quot;: [ ... ]
+}
 </pre></div>
 </div>
 <p>There are variety of fields that help us analyse the results, these may be more relevant for higher level competions. (is this at an event level or competion ?)</p>
@@ -91,24 +92,28 @@
 <tr class="field-even field"><th class="field-name">drugTesting:</th><td class="field-body">is drug testing present.</td>
 </tr>
 <tr class="field-odd field"><th class="field-name" colspan="2">drugTestingBody:</th></tr>
-<tr class="field-odd field"><td>&#160;</td><td class="field-body">who is carying out that testing.</td>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">who is carying out that testing.</td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="events">
 <h2>Events<a class="headerlink" href="#events" title="Permalink to this headline">¶</a></h2>
-<p>Within a competiton, there may be a single event or many. As described in the vocaulary, events are defined in terms of an <cite>eventCode</cite>, which specifies the form of athletic competion from a pre-defined list, e.g JT for Javelin throw. The event may be a heat or a final,</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
-       <span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;M45 Javelin&quot;</span><span class="p">,</span>
-       <span class="s2">&quot;eventCode&quot;</span><span class="p">:</span> <span class="s2">&quot;JT&quot;</span><span class="p">,</span>
-       <span class="s2">&quot;sex&quot;</span><span class="p">:</span> <span class="s2">&quot;M&quot;</span><span class="p">,</span>
-       <span class="s2">&quot;ageGroup&quot;</span><span class="p">:</span> <span class="s2">&quot;V45&quot;</span><span class="p">,</span>    <span class="c1">##  how do we classify ageGroups?</span>
-       <span class="s2">&quot;roundName&quot;</span><span class="p">:</span> <span class="s2">&quot;final&quot;</span>
-<span class="p">}</span>
+<p>Within a competition, there may be a single event or many. We propose thateach is assigned a unique text
+ID within the competition.  A simple scheme might be to number the events - e.g. T01, T02, T02 for track
+events and F01, F02 for field.</p>
+<p>As described in the vocabulary, events should always have an <span class="xref std std-ref">eventCode</span>. The event may be a heat or a final</p>
+<div class="highlight-json"><div class="highlight"><pre><span></span>{
+  &quot;id&quot;: &quot;F34&quot;,  # 34th field event in the competition
+  &quot;eventName&quot;: &quot;M45 Javelin&quot;,
+  &quot;eventCode&quot;: &quot;JT&quot;,
+  &quot;sex&quot;: &quot;M&quot;,
+  &quot;ageGroup&quot;: &quot;V45&quot;,
+  &quot;roundName&quot;: &quot;final&quot;
+}
 </pre></div>
 </div>
-<p>At larger events we obviously have different rounds of competition.</p>
+<p>This is a rich subject.  If one is only interested in the individual performances after a match, not much information is needed. At larger events we obviously have different rounds of competition.  And if our goal is programme planning or understanding the structure, we need to know a lot more about which events feed into which, how many qualify, points for league scoring and more.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -138,7 +143,7 @@
 <tr class="field-even field"><th class="field-name">programmeCode:</th><td class="field-body">is an id for the event.</td>
 </tr>
 <tr class="field-odd field"><th class="field-name" colspan="2">prizeCategories:</th></tr>
-<tr class="field-odd field"><td>&#160;</td><td class="field-body">a list of categories, into which the results may have to be split for the awarding of prizes.</td>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">a list of categories, into which the results may have to be split for the awarding of prizes.</td>
 </tr>
 </tbody>
 </table>
@@ -181,18 +186,18 @@
 </table>
 <p>For example, an athlete can be identified as follows. This also is sufficient information to produce a programme or display results</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
-        <span class="s2">&quot;givenName&quot;</span><span class="p">:</span> <span class="s2">&quot;Andrew&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;familyName&quot;</span><span class="p">:</span> <span class="s2">&quot;Weir&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;dateOfBirth&quot;</span><span class="p">:</span> <span class="s2">&quot;1990-04-01&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;clubCode&quot;</span><span class="p">:</span> <span class="s2">&quot;THH&quot;</span>
+  <span class="s2">&quot;givenName&quot;</span><span class="p">:</span> <span class="s2">&quot;Andrew&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;familyName&quot;</span><span class="p">:</span> <span class="s2">&quot;Weir&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;dateOfBirth&quot;</span><span class="p">:</span> <span class="s2">&quot;1990-04-01&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;clubCode&quot;</span><span class="p">:</span> <span class="s2">&quot;THH&quot;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <p>Alternatively, if we are transferring between databases it may be simpler to use a preassigned Id from a recognised system or provider.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;ids&quot;</span><span class="p">:{</span>
-        <span class="s2">&quot;otAthleteId&quot;</span><span class="p">:</span> <span class="s2">&quot;1066-1415-1745-1815&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;tpAthleteId&quot;</span><span class="p">:</span> <span class="s2">&quot;15120&quot;</span>
-        <span class="p">}</span>
+  <span class="s2">&quot;otAthleteId&quot;</span><span class="p">:</span> <span class="s2">&quot;1066-1415-1745-1815&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;tpAthleteId&quot;</span><span class="p">:</span> <span class="s2">&quot;15120&quot;</span>
+  <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -240,14 +245,14 @@
 </table>
 <p>The <cite>performance</cite> is the final recorded time or distance of the athlete and has an attached <cite>rank</cite>, signifying where that athlete has finished in the competition. For most running events this is sufficent to complete the results. Here we see the bronze medal winning performance from Rio.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
-        <span class="s2">&quot;performance&quot;</span><span class="p">:</span> <span class="s2">&quot;2:10:05&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;recordFlag&quot;</span><span class="p">:</span> <span class="s2">&quot;PB&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;country&quot;</span><span class="p">:</span> <span class="s2">&quot;USA&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;ids&quot;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="s2">&quot;tpAthleteId&quot;</span><span class="p">:</span> <span class="s2">&quot;51210&quot;</span><span class="p">},</span>
-        <span class="s2">&quot;givenName&quot;</span><span class="p">:</span> <span class="s2">&quot;Galen&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;familyName&quot;</span><span class="p">:</span> <span class="s2">&quot;Rupp&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;rank&quot;</span><span class="p">:</span> <span class="s2">&quot;3&quot;</span>
+  <span class="s2">&quot;performance&quot;</span><span class="p">:</span> <span class="s2">&quot;2:10:05&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;recordFlag&quot;</span><span class="p">:</span> <span class="s2">&quot;PB&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;country&quot;</span><span class="p">:</span> <span class="s2">&quot;USA&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;ids&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;tpAthleteId&quot;</span><span class="p">:</span> <span class="s2">&quot;51210&quot;</span><span class="p">},</span>
+  <span class="s2">&quot;givenName&quot;</span><span class="p">:</span> <span class="s2">&quot;Galen&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;familyName&quot;</span><span class="p">:</span> <span class="s2">&quot;Rupp&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;rank&quot;</span><span class="p">:</span> <span class="s2">&quot;3&quot;</span>
 <span class="p">},</span>
 </pre></div>
 </div>
@@ -274,7 +279,7 @@
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name" colspan="2">distanceFromBoard:</th></tr>
-<tr class="field-odd field"><td>&#160;</td><td class="field-body">for long jump events, modern camera technology can measure how close to the board the take off foot was.</td>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">for long jump events, modern camera technology can measure how close to the board the take off foot was.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">athleteOrder:</th><td class="field-body">is an integer showing the order in which the athletes threw or jumped in the first round.</td>
 </tr>
@@ -398,21 +403,21 @@
   <span class="s2">&quot;teamCode&quot;</span><span class="p">:</span> <span class="s2">&quot;BeerMoose&quot;</span><span class="p">,</span>
   <span class="s2">&quot;rank&quot;</span><span class="p">:</span> <span class="s2">&quot;3&quot;</span><span class="p">,</span>
   <span class="s2">&quot;relayRunners&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="p">{</span>
-          <span class="s2">&quot;legNumber&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-          <span class="s2">&quot;legLength&quot;</span><span class="p">:</span> <span class="s2">&quot;6.410&quot;</span>
-          <span class="s2">&quot;givenName&quot;</span><span class="p">:</span> <span class="s2">&quot;Brendon&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;familyName&quot;</span><span class="p">:</span> <span class="s2">&quot;Bitter&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;ids&quot;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="s2">&quot;otAthelteId&quot;</span><span class="p">:</span> <span class="s2">&quot;1234-4321-1234&quot;</span>
-                <span class="p">},</span>
-          <span class="s2">&quot;split&quot;</span><span class="p">:</span> <span class="s2">&quot;23:59.45&quot;</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;legNumber&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="s2">&quot;legLength&quot;</span><span class="p">:</span> <span class="s2">&quot;6.410&quot;</span>
+      <span class="s2">&quot;givenName&quot;</span><span class="p">:</span> <span class="s2">&quot;Brendon&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;familyName&quot;</span><span class="p">:</span> <span class="s2">&quot;Bitter&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;ids&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;otAthelteId&quot;</span><span class="p">:</span> <span class="s2">&quot;1234-4321-1234&quot;</span>
         <span class="p">},</span>
-        <span class="p">{</span>
-          <span class="s2">&quot;legNumber&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-          <span class="s2">&quot;legLength&quot;</span><span class="p">:</span> <span class="s2">&quot;4.205&quot;</span><span class="o">.............</span>
+      <span class="s2">&quot;split&quot;</span><span class="p">:</span> <span class="s2">&quot;23:59.45&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;legNumber&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+      <span class="s2">&quot;legLength&quot;</span><span class="p">:</span> <span class="s2">&quot;4.205&quot;</span><span class="o">.............</span>
 
-        <span class="p">}</span>
+    <span class="p">}</span>
   <span class="p">],</span>
   <span class="s2">&quot;qualification&quot;</span><span class="p">:</span> <span class="s2">&quot;Q&quot;</span>
 <span class="p">},</span>
@@ -431,39 +436,39 @@ Each athlete has a record for each event, showing the performance and points dis
   <span class="p">},</span>
   <span class="s2">&quot;rank&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
   <span class="s2">&quot;combinedResults&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="p">{</span>
-                <span class="s2">&quot;eventNum&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;eventCode&quot;</span><span class="p">:</span> <span class="s2">&quot;100&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;multiPerformance&quot;</span><span class="p">:</span> <span class="s2">&quot;10.46&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;points&quot;</span><span class="p">:</span> <span class="s2">&quot;945&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;programmeCode&quot;</span><span class="p">:</span> <span class="s2">&quot;TR00341&quot;</span>
-        <span class="p">},</span>
-        <span class="p">{</span>
-                <span class="s2">&quot;eventNum&quot;</span><span class="p">:</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span><span class="o">......</span>
+  <span class="p">{</span>
+    <span class="s2">&quot;eventNum&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;eventCode&quot;</span><span class="p">:</span> <span class="s2">&quot;100&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;multiPerformance&quot;</span><span class="p">:</span> <span class="s2">&quot;10.46&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;points&quot;</span><span class="p">:</span> <span class="s2">&quot;945&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;programmeCode&quot;</span><span class="p">:</span> <span class="s2">&quot;TR00341&quot;</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="s2">&quot;eventNum&quot;</span><span class="p">:</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span><span class="o">......</span>
 
-        <span class="p">}</span>
+  <span class="p">}</span>
   <span class="p">],</span>
  <span class="p">}</span>
 </pre></div>
 </div>
 <p>Meanwhile, elsewhere in the file is the following</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
-        <span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;M100 Decathalon&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;eventCode&quot;</span><span class="p">:</span> <span class="s2">&quot;100&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;sex&quot;</span><span class="p">:</span> <span class="s2">&quot;M&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;roundName&quot;</span><span class="p">:</span> <span class="s2">&quot;heat1&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;multiEvent&quot;</span><span class="p">:</span> <span class="s2">&quot;True&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;programmeCode&quot;</span><span class="p">:</span> <span class="s2">&quot;TR00341&quot;</span>
-        <span class="s2">&quot;results&quot;</span><span class="p">:</span> <span class="p">[</span>
-                <span class="p">{</span>
-                <span class="s2">&quot;performance&quot;</span><span class="p">:</span> <span class="s2">&quot;10.46&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;ids&quot;</span><span class="p">:</span> <span class="p">{</span>
-                        <span class="s2">&quot;tpAthleteId&quot;</span><span class="p">:</span> <span class="s2">&quot;75823&quot;</span>
-                <span class="p">}</span>
+  <span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;M100 Decathalon&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;eventCode&quot;</span><span class="p">:</span> <span class="s2">&quot;100&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;sex&quot;</span><span class="p">:</span> <span class="s2">&quot;M&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;roundName&quot;</span><span class="p">:</span> <span class="s2">&quot;heat1&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;multiEvent&quot;</span><span class="p">:</span> <span class="s2">&quot;True&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;programmeCode&quot;</span><span class="p">:</span> <span class="s2">&quot;TR00341&quot;</span>
+  <span class="s2">&quot;results&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+    <span class="s2">&quot;performance&quot;</span><span class="p">:</span> <span class="s2">&quot;10.46&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ids&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;tpAthleteId&quot;</span><span class="p">:</span> <span class="s2">&quot;75823&quot;</span>
+              <span class="p">}</span>
 
-                <span class="p">},</span>
+          <span class="p">},</span>
 
-        <span class="p">]</span>
+  <span class="p">]</span>
  <span class="p">}</span>
 </pre></div>
 </div>
@@ -573,7 +578,7 @@ Each athlete has a record for each event, showing the performance and points dis
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, Andy Robinson and others.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.2.
     </div>
   </body>
 </html>

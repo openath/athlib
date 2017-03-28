@@ -39,7 +39,7 @@ try:
     shutil.copytree('json',jschdir)
     setup(
         name="athlib",
-        version="0.0.7",
+        version="0.0.8",
         packages=find_packages(),
         package_data={'athlib':(list(find_json(os.path.join('athlib','json-schemas')))
                                 +list(find_json(os.path.join('athlib','wma'),force=True)))},

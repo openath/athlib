@@ -3,10 +3,11 @@ import {
     normalizeGender, 
     perfToFloat, 
     isFieldEvent,
+    isMultiEvent,
     betterPerformance,
-} from "./utils";
+} from './utils';
 
-import { calcUkaAgeGroup } from "./uka_agegroups";
+import { calcUkaAgeGroup } from './uka_agegroups';
 
 module.exports = {
   hello,
@@ -14,5 +15,6 @@ module.exports = {
   perfToFloat,
   calcUkaAgeGroup,
   isFieldEvent,
+  isMultiEvent,
   betterPerformance,
 }
