@@ -214,7 +214,7 @@ Vertical jumps
 These have a slightly different array consisting of
 
 :round: round number of number of different heights attempted.
-:attempt: height attempted
+:attempt: (IAAF uses trial)height attempted
 :success: success "O" or failure "X", upto 3 characters. Three successive "X"'s indicate the end of that athlete's competition.
 
 Here we see a Chinese athlete qualifying for the final of the Pole Vualt.
@@ -251,7 +251,6 @@ Here we see a Chinese athlete qualifying for the final of the Pole Vualt.
           "familyName": "Xue"
         }, 
 
-or do we want a longer array with one entry per jump rather than per height attempted. Might make describing a medal jump-off easier as the heights can go up and down.
 
 Track Races
 -----------
@@ -293,6 +292,13 @@ Relay races are a popular athletic format both on and off the track. They differ
           ], 
           "qualification": "Q"
         }, 
+
+
+So each team is made of an array of
+
+:relayRunners: each athlete has an id and a 
+:split: which is an iso-format time for their leg if possible.
+:legLength: is important for road relays, though may be better stored in the race definition section.
 
 
 Multi-event Competitions
