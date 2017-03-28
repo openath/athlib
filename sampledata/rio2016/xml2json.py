@@ -4,6 +4,7 @@ from json import dumps
 from types import StringTypes
 from lxml import etree
 import re
+from pprint import pprint
 
 pat_DDMMYYYY = re.compile("\d\d\.\d\d\.\d\d\d\d")
 
@@ -93,8 +94,24 @@ def normalize_dates(text):
         return text
 
 def rename_key(d, oldkey, newkey):
-    d[newkey] = d[oldkey]
-    del d[oldkey]
+    if oldkey in d:
+        d[newkey] = d[oldkey]
+        del d[oldkey]
+
+
+def rename_recursive(d, nameMap):
+    "Recursively renames keys in place"
+    if isinstance(d, list):
+        for elem in d:
+            rename_recursive(elem, nameMap)
+    elif isinstance(d, dict):
+        for k, v in d.items():
+            rename_recursive(v, nameMap)
+            if k in nameMap:
+                k2 = nameMap[k]
+                d[k2] = v
+                del d[k]
+
 
 
 EVENT_NAMES_TO_CODES = {
@@ -116,6 +133,22 @@ EVENT_NAMES_TO_CODES = {
     "Marathon": "MAR",
 }
 
+
+def cleanAgeGroups(text):
+    if text is None:
+        return []
+    else:
+        return text.split(",")
+
+def cleanRecordFlags(d):
+    if 'recordFlags' in d:
+        rf = d['recordFlags']
+        if rf: 
+            rf = d['recordFlags'].strip().split()
+            d['recordFlags'] = rf
+        else:
+            del d['recordFlags']
+
 def event_name_to_code(event_name):
     words = event_name.split()
     if words[-1] in ["Men", 'Women']:
@@ -132,6 +165,23 @@ def event_name_to_code(event_name):
     print "not done yet", event_name
     return event_name
 
+def cleanAthleteName(result):
+    raw = result["athlete"]
+    raw = raw.strip()
+    if raw:
+        #someone with one name...
+        parts = raw.split(None)
+        if len(parts) == 1:
+            raw = "? " + raw
+
+        first, last = raw.split(None, 1)
+        first = first.title()
+        last = last.title()
+        result["givenName"] = first
+        result["familyName"] = last
+    del result["athlete"]
+
+
 def athleticize(node):
     "Recursively modify the raw content in line with our proposed standards"
 
@@ -144,9 +194,9 @@ def athleticize(node):
 
     del node["category"]
     del node["subcategory"]
-    rename_key(node, "startdate", "start_date")
-    rename_key(node, "enddate", "end_date")
-    node["competition_ids"] = {"ITA:D3": node["calendareventid"]}
+    rename_key(node, "startdate", "startDate")
+    rename_key(node, "enddate", "endDate")
+    node["competitionId"] = node["calendareventid"]
     node["slug"] = "OG"
     node["year"] = "2016"
     node["organiser_id"] = "IOC"
@@ -171,19 +221,90 @@ def athleticize(node):
 
         event_code = event_name_to_code(event["event_name"])
         event["discipline"] = event_code
+        event_name = event["event_name"]
+        rename_key(event, "round_name", "round")
+        rename_key(event, "round_detail", "roundName")
+
+
+
+        text = event["round"].strip().lower()[0:4]
+        event["round"] = {
+            "prel": "PRELIM",
+            "heat": "HEAT",
+            "semi": "SEMI",
+            "fina": "FINAL",
+            "qual": "PRELIM"
+        }[text]
+
+
+        del event["age_group"]
+        # rename_key(event, 'age_group', 'ageGroups')
+
+        # #include age groups only if needed
+        # event["ageGroups"] = cleanAgeGroups(event['ageGroup'] or "SEN")
+
 
         for r in event["result"]:
             for key in r.keys():
                 if r[key] is None:
                     del r[key]
 
-            til_id = r["competitorid"]
-            del r["competitorid"]
-            r["ids"] = {"FIN:TILPA": til_id}
+            try:
+                cleanAthleteName(r)                    
+            except (KeyError, ValueError):
+                print r
+                raise
 
-            rename_key(r, "athlete", "name")
+            rename_key(r, 'competitorid', 'tpAthleteId')                    
 
 
+            group = r.get("group", "")
+            if group.startswith("0."):
+                r["reactionTime"] = group
+                del r["group"]
+
+            cleanRecordFlags(r)
+
+
+            rename_key(r, "best_performance", "performance")
+
+            #vertical?
+            if event_code in ["HJ", "PV"]:
+                rename_key(r, "roundresults", "heights")
+
+                if 'heights' in r:
+                    if isinstance(r['heights'], dict):
+                        r['heights'] = [r['heights']]
+                    for att in r['heights']:
+                        rename_key(att, 'recordflag', 'recordFlags')
+                        cleanRecordFlags(att)
+                        rename_key(att, 'round', 'results')
+                        rename_key(att, 'performance', 'height')
+
+            else:
+                rename_key(r, "roundresults", "attempts")
+                if 'attempts' in r:
+                    atts = r['attempts']
+                    if isinstance(atts, dict):
+                        r['attempts'] = [atts['roundresults']]
+                    attNo = 1
+                    for att in r['attempts']:
+                        att['round'] = attNo
+                        rename_key(att, 'recordflag', 'recordFlags')
+                        cleanRecordFlags(att)
+                        attNo += 1
+            
+    del node['medaltable']
+    del node['placingtable']
+
+    rename_recursive(node, {
+        'start_date': 'startDate',
+        'end_date': 'endDate',
+        'discipline': 'eventCode',
+        'event_name': 'name',
+        'event_gender': 'gender',
+
+        })
 
 
 def xml_to_json(xml):
@@ -234,10 +355,10 @@ if __name__=="__main__":
     open(fn_out, "w").write(json)
     print "wrote", fn_out
 
-    #pass two - convert entries
-    for xml_filename in glob.glob("rio_entries*.xml"):
-        xml = open(xml_filename).read()
-        json_filename = os.path.splitext(xml_filename)[0] + '.json'
-        json = daily_entries_to_json(xml)
-        open(json_filename, "w").write(json)
-        print "wrote", json_filename
+    # #pass two - convert entries
+    # for xml_filename in glob.glob("rio_entries*.xml"):
+    #     xml = open(xml_filename).read()
+    #     json_filename = os.path.splitext(xml_filename)[0] + '.json'
+    #     json = daily_entries_to_json(xml)
+    #     open(json_filename, "w").write(json)
+    #     print "wrote", json_filename
