@@ -41358,10 +41358,10 @@
             }, 
             {
               "height": "1.89", 
-              "results": "XXX"
+              "results": "XXO"
             }
           ], 
-          "performance": "1.85", 
+          "performance": "1.89", 
           "tpAthleteId": "1059696", 
           "givenName": "Akela"
         }, 
@@ -51284,7 +51284,6 @@
           ]
         }, 
         {
-          "performance2": 6121, 
           "country": "BAR", 
           "familyName": "Jones", 
           "results": [
@@ -51296,9 +51295,9 @@
               "eventCode": "100H"
             }, 
             {
-              "performance": "1.85", 
+              "performance": "1.89", 
               "eventNo": 2, 
-              "points": 1041, 
+              "points": 1093, 
               "eventCode": "HJ"
             }, 
             {

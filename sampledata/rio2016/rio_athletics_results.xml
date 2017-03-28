@@ -42950,7 +42950,7 @@
       <rank>31</rank>
       <athlete>Akela Jones</athlete>
       <country>BAR</country>
-      <best_performance>1.85</best_performance>
+      <best_performance>1.89</best_performance>
       <group>A </group>
       <qualification/>
       <recordflag/>
@@ -42965,7 +42965,7 @@
         </roundresult>
         <roundresult count="3">
           <performance>1.89</performance>
-          <round>XXX</round>
+          <round>XXO</round>
         </roundresult>
       </roundresults>
     </result>
@@ -52400,7 +52400,7 @@
       <recordflag/>
       <combinedresults>
         <event1>13.00/0.0</event1>
-        <event2>1.85</event2>
+        <event2>1.89</event2>
         <event3>14.09</event3>
         <event4>24.35/-0.1</event4>
         <event5>6.30/0.5</event5>
