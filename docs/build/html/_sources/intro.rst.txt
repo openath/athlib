@@ -19,9 +19,3 @@ This document is not aiming for the levels of precision of an ISO or Internet st
 
 If you disagree with the standards, join the forum (coming soon) and argue, or make counter-suggestions, so we can reach the best solution quickly.  The OpenTrack project wants to set its standards quickly.   If yu are happy to follow these standards, let us know and we'll add your name to a list to put pressure on others.
 
-The process will likely work at two levels
-
- - codes and representations: what we put in fields
- - commn reference data:  how do we all refer to a particular club or team, or a venue?
- - example documents to represent things like athletes, start lists, fixtures and results
- 

@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Javascript library &#8212; athlib 0.0.7 documentation</title>
+    <title>Javascript library &#8212; athlib 0.0.8 documentation</title>
     
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.0.7',
+        VERSION:     '0.0.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -41,7 +41,7 @@
         <li class="right" >
           <a href="athlib.html" title="Python library"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">athlib 0.0.7 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">athlib 0.0.8 documentation</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -52,9 +52,7 @@
             
   <div class="section" id="javascript-library">
 <h1>Javascript library<a class="headerlink" href="#javascript-library" title="Permalink to this headline">¶</a></h1>
-<p>Whoopee!  I got my first Javascript docs to come out.</p>
-<p>Read the JSDoc tutorials.  You at least need a comment starting with <code class="docutils literal"><span class="pre">/**</span></code> and ending with <code class="docutils literal"><span class="pre">*/</span></code>.
-We&#8217;ve included a <code class="docutils literal"><span class="pre">hello</span></code> function just to test the doc tools work.</p>
+<p>The Javascript version of athlib is lagging a little behind the Python.</p>
 <dl class="function">
 <dt id="hello">
 <code class="descname">hello</code><span class="sig-paren">(</span><em>arg</em><span class="sig-paren">)</span><a class="headerlink" href="#hello" title="Permalink to this definition">¶</a></dt>
@@ -68,6 +66,38 @@ as this function is done.  Don&#8217;t assign it to anyone.</p>
 <dt id="normalizeGender">
 <code class="descname">normalizeGender</code><span class="sig-paren">(</span><em>gender</em><span class="sig-paren">)</span><a class="headerlink" href="#normalizeGender" title="Permalink to this definition">¶</a></dt>
 <dd><p>Takes common gender expressions and returns <cite>m</cite> or <cite>f</cite></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="perfToFloat">
+<code class="descname">perfToFloat</code><span class="sig-paren">(</span><em>perfText</em><span class="sig-paren">)</span><a class="headerlink" href="#perfToFloat" title="Permalink to this definition">¶</a></dt>
+<dd><p>convert a performance (time or distance) to seconds or metres</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="calcUkaAgeGroup">
+<code class="descname">calcUkaAgeGroup</code><span class="sig-paren">(</span><em>birthDate</em>, <em>matchDate</em>, <em>category</em>, <em>vets</em>, <em>underAge</em><span class="sig-paren">)</span><a class="headerlink" href="#calcUkaAgeGroup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the UK Athletics age group code for the athlete on match day</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="isFieldEvent">
+<code class="descname">isFieldEvent</code><span class="sig-paren">(</span><em>eventCode</em><span class="sig-paren">)</span><a class="headerlink" href="#isFieldEvent" title="Permalink to this definition">¶</a></dt>
+<dd><p>is this a field event code?  HJ, PV, TJ, LJ etc</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="isMultiEvent">
+<code class="descname">isMultiEvent</code><span class="sig-paren">(</span><em>eventCode</em><span class="sig-paren">)</span><a class="headerlink" href="#isMultiEvent" title="Permalink to this definition">¶</a></dt>
+<dd><p>is this a multi-event code?  DEC, PEN, HEP etc</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="betterPerformance">
+<code class="descname">betterPerformance</code><span class="sig-paren">(</span><em>perfA</em>, <em>perfB</em>, <em>eventCode</em><span class="sig-paren">)</span><a class="headerlink" href="#betterPerformance" title="Permalink to this definition">¶</a></dt>
+<dd><p>return the better of two performance strings.
+For running events, lower times are better
+For field events, greater numbers are better</p>
 </dd></dl>
 
 <div class="section" id="let-me-try-another-title">
@@ -126,12 +156,12 @@ as this function is done.  Don&#8217;t assign it to anyone.</p>
         <li class="right" >
           <a href="athlib.html" title="Python library"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">athlib 0.0.7 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">athlib 0.0.8 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, Andy Robinson and others.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.3.
     </div>
   </body>
 </html>

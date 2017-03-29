@@ -1,3 +1,11 @@
+
+import {
+  JUMPS,
+  THROWS,
+  MULTI_EVENTS,
+  FIELD_EVENTS,
+} from './codes'
+
 /** 
  * The hello functions is just here to test our build tools. 
  *
@@ -7,14 +15,6 @@
  *
  * @param(arg):  The argument to be appended to hello
  */
-
-import {
-  JUMPS,
-  THROWS,
-  MULTI_EVENTS,
-  FIELD_EVENTS,
-} from './codes'
-
 function hello(arg) {
   return `Hello, ${arg}!`
 }
@@ -31,7 +31,7 @@ function normalizeGender(gender) {
   throw new Error('this is another error');
 }
 
-/** Trim and uppercase */
+/** Trim and uppercase an event code */
 function normalizeEventCode(eventCode) {
   return eventCode.trim().toUpperCase()
 }
@@ -48,18 +48,23 @@ function perfToFloat(perfText) {
   return out
 }
 
+/** is this a field event code?  HJ, PV, TJ, LJ etc */
 function isFieldEvent(eventCode) {
   const firstTwo = normalizeEventCode(eventCode).slice(0, 2)
   return (FIELD_EVENTS.indexOf(firstTwo) > -1)
 }
 
+/** is this a multi-event code?  DEC, PEN, HEP etc */
 function isMultiEvent(eventCode) {
   const firstThree = normalizeEventCode(eventCode).slice(0, 3)
   return (MULTI_EVENTS.indexOf(firstThree) > -1)
 }
 
 
-/** return the better of two performance strings */
+/** return the better of two performance strings. 
+ * For running events, lower times are better
+ * For field events, greater numbers are better
+ */
 function betterPerformance(perfA, perfB, eventCode) {
   const fA = perfToFloat(perfA)
   const fB = perfToFloat(perfB)

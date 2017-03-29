@@ -1,15 +1,17 @@
 Javascript library
 ==================
 
-Whoopee!  I got my first Javascript docs to come out.
-
-Read the JSDoc tutorials.  You at least need a comment starting with ``/**`` and ending with ``*/``.
-We've included a ``hello`` function just to test the doc tools work.
-
+The Javascript version of athlib is lagging a little behind the Python.
 
 .. js:autofunction:: hello
-
 .. js:autofunction:: normalizeGender
+.. js:autofunction:: perfToFloat
+.. js:autofunction:: calcUkaAgeGroup
+.. js:autofunction:: isFieldEvent
+.. js:autofunction:: isMultiEvent
+.. js:autofunction:: betterPerformance
+
+
 
 Let me try another title
 ------------------------

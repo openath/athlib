@@ -92,7 +92,7 @@ Distances for jumps and throws can be stored as decimal numbers.
 There are some standard suffixes which are commonly used in results and rankings:  10.3i to denote indoors, 10.3w to suggest wind-assisted. We see this as a presentation layer problem; a good database or rankings system would decompose this to have an 'indoor' or 'wind-assisted' flag.
 
 
--- _eventCode:
+.. _eventCode:
 
 Event Codes
 -----------
