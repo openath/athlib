@@ -98,7 +98,11 @@ Event Codes
 -----------
 If we are exporting the data from an online entry system, or the results of a meeting, we want to use common codes, so that the 400m is always represented the same way.
 
-A wise computer scientist once said "There are only two hard problems in computer science - cache invalidation and naming things".  Never mind the first one - it's really hard to pick names. Especially, it's hard to pin down the word "Event".  BY popular consensus we are calling these things "event codes".  
+    | *There are only two hard problems in computer science - cache invalidation and naming things*
+    | *- Phil Karlton*
+
+
+Never mind the first one - it's really hard to pick names. Especially, it's hard to pin down the word "Event".  BY popular consensus we are calling these things "event codes".  
 
 If you are looking at a programme, the "U13 Girls High Jump first round, Sat 10:35" is more of an "event", in the sense of "something that happens at a point in time".  We might call the latter 'CompEvent' or 'ProgEvent' (to be discussed)
 
