@@ -393,6 +393,8 @@ events and F01, F02 for field.</p>
 </tr>
 <tr class="field-odd field"><th class="field-name">results:</th><td class="field-body">success &#8220;O&#8221; or failure &#8220;X&#8221;, up to 3 characters. Three successive &#8220;X&#8220;&#8216;s indicate the end of that athlete&#8217;s competition.</td>
 </tr>
+<tr class="field-even field"><th class="field-name">jumpOff:</th><td class="field-body">boolean that indicates whether jump is part of a jump off, default=&#8221;False&#8221;.</td>
+</tr>
 </tbody>
 </table>
 <p>Here is the bronze medal jump from Rio.</p>
@@ -695,6 +697,31 @@ Each athlete has a record for each event, showing the performance and points dis
 </table>
 </div>
 </div>
+<div class="section" id="time-stamping-data">
+<h1>Time stamping data<a class="headerlink" href="#time-stamping-data" title="Permalink to this headline">¶</a></h1>
+<p>Results can change through time, athletes&#8217; performances may be mis-measured or at the more senior level athletes may be retrospectively banned. It is important that the original data is not lost, it is also vital that rankings are updated. To this end, we propose a form of time stamping. The event dates are known, we should add to this when the data was last modified,</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">lastModified:</th><td class="field-body">iso date string, showing last modification date, default=eventEndDate. This should be clearly displayed at the competition level.</td>
+</tr>
+</tbody>
+</table>
+<p>In the events where there have been changes, each athlete should have the <code class="docutils literal"><span class="pre">originalRank</span></code> and <code class="docutils literal"><span class="pre">originalPerf</span></code> stored as well as having <code class="docutils literal"><span class="pre">rank</span></code> and <code class="docutils literal"><span class="pre">performance</span></code> updated. Here we have a rounding adjustment to some electronic timing.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+   <span class="s2">&quot;country&quot;</span><span class="p">:</span> <span class="s2">&quot;CAN&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;reactionTime&quot;</span><span class="p">:</span> <span class="s2">&quot;0.138&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;familyName&quot;</span><span class="p">:</span> <span class="s2">&quot;Warner&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;rank&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;originalRank&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span>
+   <span class="s2">&quot;performance&quot;</span><span class="p">:</span> <span class="s2">&quot;10.29&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;originalPerf&quot;</span><span class="p">:</span> <span class="s2">&quot;10.30&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;tpAthleteId&quot;</span><span class="p">:</span> <span class="s2">&quot;94840&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;givenName&quot;</span><span class="p">:</span> <span class="s2">&quot;Damian&quot;</span>
+</pre></div>
+</div>
+</div>
 
 
           </div>
@@ -717,6 +744,7 @@ Each athlete has a record for each event, showing the performance and points dis
 <li><a class="reference internal" href="#team-competitions">Team Competitions</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#time-stamping-data">Time stamping data</a></li>
 </ul>
 
   <h4>Previous topic</h4>

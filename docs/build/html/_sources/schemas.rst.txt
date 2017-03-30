@@ -263,6 +263,7 @@ These have a slightly different array of `heights`, consisting of
 :round: round number of number of different heights attempted.
 :height: height attempted
 :results: success "O" or failure "X", up to 3 characters. Three successive "X"'s indicate the end of that athlete's competition.
+:jumpOff: boolean that indicates whether jump is part of a jump off, default="False".
 
 Here is the bronze medal jump from Rio.
 ::
@@ -547,6 +548,28 @@ Some optional fields that help define team competitions:
 :subTeam: an additional descriptor that allows a club to have multiple teams in an event, e.g. A or B.
 
 
+
+Time stamping data
+==================
+
+Results can change through time, athletes' performances may be mis-measured or at the more senior level athletes may be retrospectively banned. It is important that the original data is not lost, it is also vital that rankings are updated. To this end, we propose a form of time stamping. The event dates are known, we should add to this when the data was last modified,
+
+:lastModified: iso date string, showing last modification date, default=eventEndDate. This should be clearly displayed at the competition level.
+
+In the events where there have been changes, each athlete should have the ``originalRank`` and ``originalPerf`` stored as well as having ``rank`` and ``performance`` updated. Here we have a rounding adjustment to some electronic timing.
+
+::
+
+       {
+          "country": "CAN", 
+          "reactionTime": "0.138", 
+          "familyName": "Warner", 
+          "rank": "1",
+          "originalRank": "1" 
+          "performance": "10.29",
+          "originalPerf": "10.30", 
+          "tpAthleteId": "94840", 
+          "givenName": "Damian"
 
 
 
