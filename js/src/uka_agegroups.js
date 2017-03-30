@@ -94,7 +94,7 @@ function _calculateAge(birthDate, matchDate) {
     throw error;
   }
 }
-
+/** Return the UK Athletics age group code for the athlete on match day */
 function calcUkaAgeGroup(birthDate, matchDate, category, vets, underAge) {
   if (!(birthDate instanceof Date ||
     matchDate instanceof Date)) {

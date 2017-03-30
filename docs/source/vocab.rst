@@ -45,6 +45,8 @@ There are quite a few  `contexts` where we may wish to exchange information.  Th
 Useful terms
 ------------
 
+.. _eventCode:
+
 :eventCode: we propose a standard system of codes, covering each standard event in Athletics, as well as an open-ended system to cover races of different lengths.  Examples might include `HJ`, `800` etc.  See the page :doc:`eventcodes` for details
 
 We attempted to call this `discipline`, because of the many ways `event` is used, but have been informed very plainly by many leading statisticians and systems builders that this will never be accepted.

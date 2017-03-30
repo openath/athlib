@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Codes and Representation &#8212; athlib 0.0.7 documentation</title>
+    <title>Codes and Representation &#8212; athlib 0.0.8 documentation</title>
     
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.0.7',
+        VERSION:     '0.0.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -45,7 +45,7 @@
         <li class="right" >
           <a href="intro.html" title="Introduction"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">athlib 0.0.7 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">athlib 0.0.8 documentation</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -128,12 +128,17 @@ It may also be valuable to have placeholder for international entities:</p>
 </div>
 <p>Distances for jumps and throws can be stored as decimal numbers.</p>
 <p>There are some standard suffixes which are commonly used in results and rankings:  10.3i to denote indoors, 10.3w to suggest wind-assisted. We see this as a presentation layer problem; a good database or rankings system would decompose this to have an &#8216;indoor&#8217; or &#8216;wind-assisted&#8217; flag.</p>
-<p>&#8211; _eventCode:</p>
 </div>
 <div class="section" id="event-codes">
-<h2>Event Codes<a class="headerlink" href="#event-codes" title="Permalink to this headline">¶</a></h2>
+<span id="eventcode"></span><h2>Event Codes<a class="headerlink" href="#event-codes" title="Permalink to this headline">¶</a></h2>
 <p>If we are exporting the data from an online entry system, or the results of a meeting, we want to use common codes, so that the 400m is always represented the same way.</p>
-<p>A wise computer scientist once said &#8220;There are only two hard problems in computer science - cache invalidation and naming things&#8221;.  Never mind the first one - it&#8217;s really hard to pick names. Especially, it&#8217;s hard to pin down the word &#8220;Event&#8221;.  BY popular consensus we are calling these things &#8220;event codes&#8221;.</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line"><em>There are only two hard problems in computer science - cache invalidation and naming things</em></div>
+<div class="line"><em>- Phil Karlton</em></div>
+</div>
+</div></blockquote>
+<p>Never mind the first one - it&#8217;s really hard to pick names. Especially, it&#8217;s hard to pin down the word &#8220;Event&#8221;.  BY popular consensus we are calling these things &#8220;event codes&#8221;.</p>
 <p>If you are looking at a programme, the &#8220;U13 Girls High Jump first round, Sat 10:35&#8221; is more of an &#8220;event&#8221;, in the sense of &#8220;something that happens at a point in time&#8221;.  We might call the latter &#8216;CompEvent&#8217; or &#8216;ProgEvent&#8217; (to be discussed)</p>
 <p>Our &#8220;first stab&#8221; is based on the codes from Power of Ten, which appear in the URL search parameters. However, we have introduced some slight changes.  In particular, we don&#8217;t want the interpretation to depend on the case of a letter.  So &#8216;m&#8217; meaning both Metre and Mile is dangerous:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">HJ</span><span class="p">,</span> <span class="n">PV</span><span class="p">,</span> <span class="n">LJ</span><span class="p">,</span> <span class="n">TJ</span><span class="p">,</span> <span class="n">SP</span><span class="p">,</span> <span class="n">DT</span><span class="p">,</span> <span class="n">HT</span><span class="p">,</span> <span class="n">JT</span><span class="p">,</span> <span class="n">WT</span>               <span class="o">-</span> <span class="n">field</span> <span class="n">events</span>
@@ -276,12 +281,12 @@ HM                 - half marathon
         <li class="right" >
           <a href="intro.html" title="Introduction"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">athlib 0.0.7 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">athlib 0.0.8 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, Andy Robinson and others.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.3.
     </div>
   </body>
 </html>

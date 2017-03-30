@@ -3,23 +3,31 @@ Schemas
 =======
 
 
-We'll start documenting the different schemas here.
+This contains informal documentation on our schemas.
+Our first priority is a schema to exchange results of a meeting, once finished.
 
-We could use schemas for
- * fixtures - a list of meetings
- * full meeting results
- * programme and structure of meeting
+See :download:`the Rio 2016 Olympics results <../../sampledata/rio2016/rio_athletics_results.json>` as an example of what we propose.  We will keep this maintained and current.  The rest of this page walks through some of the concepts and choices.
+
+This is derived by a script from an XML format developed informally by Tilastopaja, DeltaTre, Omega and others.  The XML "just grew", with certain fields being overloaded, and is not recommended as a starting point; the 
+:download:`XML source file<../../sampledata/rio2016/rio_athletics_results.xml>` is here.
+
+Once the first schema is broadly settled, giving us a vocabulary, we'll move on to tackle
+ * competition structure - what events are in a competition, relation of heats and finals, who qualifies and so on
+ * exchange of start lists and entries
+ * in-competition recording details
+
+Preliminary remarks
+-------------------
+Our aim is to have a standard which is simple.  It should be possible to prepare results in Excel and convert without too much complexity or nesting; and/or to convert the other way and generate HTML, PDF and Excel from the JSON.
 
 
-
-At the moment, we're just fiddling around with reStructuredText to find a way to lay out attributes with minimal typing. Tables are a pain to type.  What follows is an example.
 
 Competitions
 ------------
 
 Competitions are defined by `name`, there may be a `shortName` and it may be part of a `series`. Useful additonal data includes location, and the timeperiod defined in iso-date format by `startDate` and `endDate`. The absence of an `endDate` signifies a single day event.
 
-.. code-block:: json
+.. code-block:: js
 
   {
     "name": "Rio Olympics 2016",
@@ -46,12 +54,12 @@ Within a competition, there may be a single event or many. We propose thateach i
 ID within the competition.  A simple scheme might be to number the events - e.g. T01, T02, T02 for track
 events and F01, F02 for field.
 
-As described in the vocabulary, events should always have an :ref:`eventCode`. The event may be a heat or a final
+As described in the vocabulary, events should always have an :ref:`eventCode <eventCode>`. The event may be a heat or a final
 
-.. code-block:: json
+.. code-block:: js
 
   {
-    "id": "F34",  # 34th field event in the competition
+    "id": "F34",  // 34th field event in the competition
     "eventName": "M45 Javelin",
     "eventCode": "JT",
     "sex": "M",

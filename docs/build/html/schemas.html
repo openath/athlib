@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Schemas &#8212; athlib 0.0.7 documentation</title>
+    <title>Schemas &#8212; athlib 0.0.8 documentation</title>
     
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.0.7',
+        VERSION:     '0.0.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -45,7 +45,7 @@
         <li class="right" >
           <a href="vocab.html" title="Vocabulary"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">athlib 0.0.7 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">athlib 0.0.8 documentation</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -56,30 +56,37 @@
             
   <div class="section" id="schemas">
 <h1>Schemas<a class="headerlink" href="#schemas" title="Permalink to this headline">¶</a></h1>
-<p>We&#8217;ll start documenting the different schemas here.</p>
+<p>This contains informal documentation on our schemas.
+Our first priority is a schema to exchange results of a meeting, once finished.</p>
+<p>See <a class="reference download internal" href="_downloads/rio_athletics_results.json" download=""><code class="xref download docutils literal"><span class="pre">the</span> <span class="pre">Rio</span> <span class="pre">2016</span> <span class="pre">Olympics</span> <span class="pre">results</span></code></a> as an example of what we propose.  We will keep this maintained and current.  The rest of this page walks through some of the concepts and choices.</p>
+<p>This is derived by a script from an XML format developed informally by Tilastopaja, DeltaTre, Omega and others.  The XML &#8220;just grew&#8221;, with certain fields being overloaded, and is not recommended as a starting point; the
+<a class="reference download internal" href="_downloads/rio_athletics_results.xml" download=""><code class="xref download docutils literal"><span class="pre">XML</span> <span class="pre">source</span> <span class="pre">file</span></code></a> is here.</p>
 <dl class="docutils">
-<dt>We could use schemas for</dt>
+<dt>Once the first schema is broadly settled, giving us a vocabulary, we&#8217;ll move on to tackle</dt>
 <dd><ul class="first last simple">
-<li>fixtures - a list of meetings</li>
-<li>full meeting results</li>
-<li>programme and structure of meeting</li>
+<li>competition structure - what events are in a competition, relation of heats and finals, who qualifies and so on</li>
+<li>exchange of start lists and entries</li>
+<li>in-competition recording details</li>
 </ul>
 </dd>
 </dl>
-<p>At the moment, we&#8217;re just fiddling around with reStructuredText to find a way to lay out attributes with minimal typing. Tables are a pain to type.  What follows is an example.</p>
+<div class="section" id="preliminary-remarks">
+<h2>Preliminary remarks<a class="headerlink" href="#preliminary-remarks" title="Permalink to this headline">¶</a></h2>
+<p>Our aim is to have a standard which is simple.  It should be possible to prepare results in Excel and convert without too much complexity or nesting; and/or to convert the other way and generate HTML, PDF and Excel from the JSON.</p>
+</div>
 <div class="section" id="competitions">
 <h2>Competitions<a class="headerlink" href="#competitions" title="Permalink to this headline">¶</a></h2>
 <p>Competitions are defined by <cite>name</cite>, there may be a <cite>shortName</cite> and it may be part of a <cite>series</cite>. Useful additonal data includes location, and the timeperiod defined in iso-date format by <cite>startDate</cite> and <cite>endDate</cite>. The absence of an <cite>endDate</cite> signifies a single day event.</p>
-<div class="highlight-json"><div class="highlight"><pre><span></span>{
-  &quot;name&quot;: &quot;Rio Olympics 2016&quot;,
-  &quot;shortName&quot;: &quot;OG16&quot;,
-  &quot;startDate&quot;: &quot;2016-08-12&quot;,
-  &quot;endDate&quot;: &quot;2016-08-21&quot;,
-  &quot;city&quot;: &quot;Rio de Janeiro&quot;,
-  &quot;country&quot;: &quot;BRA&quot;,
-  &quot;series&quot;: &quot;olympics&quot;,
-  &quot;events&quot;: [ ... ]
-}
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;Rio Olympics 2016&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;shortName&quot;</span><span class="o">:</span> <span class="s2">&quot;OG16&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;startDate&quot;</span><span class="o">:</span> <span class="s2">&quot;2016-08-12&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;endDate&quot;</span><span class="o">:</span> <span class="s2">&quot;2016-08-21&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;city&quot;</span><span class="o">:</span> <span class="s2">&quot;Rio de Janeiro&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;country&quot;</span><span class="o">:</span> <span class="s2">&quot;BRA&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;series&quot;</span><span class="o">:</span> <span class="s2">&quot;olympics&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;events&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="p">...</span> <span class="p">]</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>There are variety of fields that help us analyse the results, these may be more relevant for higher level competions. (is this at an event level or competion ?)</p>
@@ -92,7 +99,7 @@
 <tr class="field-even field"><th class="field-name">drugTesting:</th><td class="field-body">is drug testing present.</td>
 </tr>
 <tr class="field-odd field"><th class="field-name" colspan="2">drugTestingBody:</th></tr>
-<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">who is carying out that testing.</td>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">who is carying out that testing.</td>
 </tr>
 </tbody>
 </table>
@@ -102,15 +109,15 @@
 <p>Within a competition, there may be a single event or many. We propose thateach is assigned a unique text
 ID within the competition.  A simple scheme might be to number the events - e.g. T01, T02, T02 for track
 events and F01, F02 for field.</p>
-<p>As described in the vocabulary, events should always have an <span class="xref std std-ref">eventCode</span>. The event may be a heat or a final</p>
-<div class="highlight-json"><div class="highlight"><pre><span></span>{
-  &quot;id&quot;: &quot;F34&quot;,  # 34th field event in the competition
-  &quot;eventName&quot;: &quot;M45 Javelin&quot;,
-  &quot;eventCode&quot;: &quot;JT&quot;,
-  &quot;sex&quot;: &quot;M&quot;,
-  &quot;ageGroup&quot;: &quot;V45&quot;,
-  &quot;roundName&quot;: &quot;final&quot;
-}
+<p>As described in the vocabulary, events should always have an <a class="reference internal" href="eventcodes.html#eventcode"><span class="std std-ref">eventCode</span></a>. The event may be a heat or a final</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;F34&quot;</span><span class="p">,</span>  <span class="c1">// 34th field event in the competition</span>
+  <span class="s2">&quot;eventName&quot;</span><span class="o">:</span> <span class="s2">&quot;M45 Javelin&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;eventCode&quot;</span><span class="o">:</span> <span class="s2">&quot;JT&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;sex&quot;</span><span class="o">:</span> <span class="s2">&quot;M&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;ageGroup&quot;</span><span class="o">:</span> <span class="s2">&quot;V45&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;roundName&quot;</span><span class="o">:</span> <span class="s2">&quot;final&quot;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>This is a rich subject.  If one is only interested in the individual performances after a match, not much information is needed. At larger events we obviously have different rounds of competition.  And if our goal is programme planning or understanding the structure, we need to know a lot more about which events feed into which, how many qualify, points for league scoring and more.</p>
@@ -143,7 +150,7 @@ events and F01, F02 for field.</p>
 <tr class="field-even field"><th class="field-name">programmeCode:</th><td class="field-body">is an id for the event.</td>
 </tr>
 <tr class="field-odd field"><th class="field-name" colspan="2">prizeCategories:</th></tr>
-<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">a list of categories, into which the results may have to be split for the awarding of prizes.</td>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">a list of categories, into which the results may have to be split for the awarding of prizes.</td>
 </tr>
 </tbody>
 </table>
@@ -279,7 +286,7 @@ events and F01, F02 for field.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name" colspan="2">distanceFromBoard:</th></tr>
-<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">for long jump events, modern camera technology can measure how close to the board the take off foot was.</td>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">for long jump events, modern camera technology can measure how close to the board the take off foot was.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">athleteOrder:</th><td class="field-body">is an integer showing the order in which the athletes threw or jumped in the first round.</td>
 </tr>
@@ -519,6 +526,7 @@ Each athlete has a record for each event, showing the performance and points dis
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Schemas</a><ul>
+<li><a class="reference internal" href="#preliminary-remarks">Preliminary remarks</a></li>
 <li><a class="reference internal" href="#competitions">Competitions</a></li>
 <li><a class="reference internal" href="#events">Events</a></li>
 <li><a class="reference internal" href="#results">Results</a></li>
@@ -573,12 +581,12 @@ Each athlete has a record for each event, showing the performance and points dis
         <li class="right" >
           <a href="vocab.html" title="Vocabulary"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">athlib 0.0.7 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">athlib 0.0.8 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, Andy Robinson and others.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.3.
     </div>
   </body>
 </html>
