@@ -274,6 +274,7 @@ def athleticize(node):
 
     del node["category"]
     del node["subcategory"]
+    rename_key(node, "organiser_id", "organiserId")
     rename_key(node, "startdate", "startDate")
     rename_key(node, "enddate", "endDate")
     node["competitionId"] = node["calendareventid"]
@@ -380,6 +381,10 @@ def athleticize(node):
                 cleanAthlon(r, event_code)
             elif event_code == 'HEP':
                 cleanAthlon(r, event_code)
+            else: #running events
+                rename_key(r, 'recordflag', 'recordFlags')
+                cleanRecordFlags(r)
+
 
     del node['medaltable']
     del node['placingtable']
