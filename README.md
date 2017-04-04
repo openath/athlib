@@ -25,7 +25,7 @@ Things we hope to put in here:
 
 # Documentation
 
-The main documentation is <a href="http://opentrack.run/athlib/">over here</a>.   What follows below is intended to help people working on athlib; if you are not an experience Python or Javascript developer,
+The main documentation is [over here](http://opentrack.run/athlib/build/html/index.html).   What follows below is intended to help people working on athlib; if you are not an experience Python or Javascript developer,
 please head over there.
 
 
