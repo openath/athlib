@@ -21,7 +21,7 @@ Competitions
 Most events are part of a bigger meeting, or `competition`.
 Competitions are defined by `name`, there may be a `shortName` and it may be part of a `series`. Useful additonal data includes location, and the timeperiod defined in iso-date format by `startDate` and `endDate`. The absence of an `endDate` signifies a single day format.
 
-.. code-block:: json
+.. code-block:: javascript
 
   {
     "name": "Rio Olympics 2016",
@@ -81,8 +81,7 @@ Other qualifiers help us define some of the more specialised events.
 
 Relays
 ------
-:eventCode: For the classic track relays, 4x100, 4x400 we will use the obvious event codes. Other relays need more detail and we use the label "12xrelay", for a 12 athlete event over a non-standard distance. 
-The number of athletes in each relay team is specified in the event code, we may want to specify the distance run,
+:eventCode: For the classic track relays, 4x100, 4x400 we will use the obvious event codes. Other relays need more detail and we use the label "12xRELAY", for a 12 athlete event over a non-standard distance. The number of athletes in each relay team is specified in the event code, we may want to specify the distance run,
 
 :legLengths: either a single value for equal length relays (e.g 4x1500m) or an array of size equal to number or athletes with the different leg lengths for an Ekiden or a medley relay on the track.
 
@@ -197,8 +196,8 @@ For field events the `performance` is the best distance recorded, but we should 
 
 :attempts: the array of attempts/trials
 :round: the number of the round
-:performance: the distance recorded, numeric or text with 'P' for  `pass` and `X' for a foul.
-:wind: the wind speed for horizontal jumps in m per s, a positive number shows a trailing wind, this must be recorded for each attempt in the horizontal jumps.
+:performance: the distance recorded, numeric or text with `P` for a pass and `X` for a foul.
+:wind: the wind speed for horizontal jumps in m/sec, a positive number shows a trailing wind, this must be recorded for each attempt in the horizontal jumps.
 :recordFlag: list of certain keywords that show if that performance is significant, examples are SB, PB, WL, WR, NR, with the potential for a "=" to signifying equaling a record. This should be shown at bot the `round` and overall `performance` level. Default is no that no records have been broken.
 
 Optional fields could include
@@ -307,12 +306,12 @@ We have to specify both the event and the results differently
 The number of athletes in each relay team is specified in the event code, we may want to specify the distance run,
 
 :legLengths: if the event is not a 4x100 or 4x400 we can use either a single value for equal length relays (e.g 4x1500m) or an array of size equal to number or athletes with the different leg lengths for an Ekiden or a medley relay on the track.
-Each team, defined by ``teamCode`` has a performance which is the aggregate time and a rank driven off this but also is made of an array of
+
+Each team, defined by ``teamCode`` has a performance which is the aggregate time and a rank driven off this but also is made of an array of..
 
 :runners: in which each athlete has an id and a 
 :split: which is an iso-format time for their leg if possible.
- A classic 4x100m would be as follows
-::
+ A classic 4x100m would be as follows::
 
     {
       "roundName": null, 
@@ -364,8 +363,7 @@ Each team, defined by ``teamCode`` has a performance which is the aggregate time
           "rank": "2", 
 
 
-A slightly lower key road-relay could be as follows, note the `performance` and `rank` each leg refer to the cumulative time. The `split` is optional and is merely the difference between the 2 leg performance times. The `legRank" is the ranking of the split on that leg.
-::
+A slightly lower key road-relay could be as follows, note the `performance` and `rank` each leg refer to the cumulative time. The `split` is optional and is merely the difference between the 2 leg performance times. The `legRank` is the ranking of the split on that leg::
 
     {
     	eventCode: "12xrelay",

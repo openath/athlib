@@ -1,58 +1,180 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>Schemas &#8212; athlib 0.0.8 documentation</title>
-    
-    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '0.0.8',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Python library" href="athlib.html" />
-    <link rel="prev" title="Vocabulary" href="vocab.html" /> 
-  </head>
-  <body role="document">
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="athlib.html" title="Python library"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="vocab.html" title="Vocabulary"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">athlib 0.0.8 documentation</a> &#187;</li> 
-      </ul>
-    </div>  
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Schemas &mdash; athlib 0.0.8 documentation</title>
+  
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="athlib 0.0.8 documentation" href="index.html"/>
+        <link rel="next" title="Python library" href="athlib.html"/>
+        <link rel="prev" title="Vocabulary" href="vocab.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> athlib
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eventcodes.html">Codes and Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="identity.html">Identifiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="identity.html#url-scheme-and-codes">URL scheme and codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vocab.html">Vocabulary</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Schemas</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#competitions">Competitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#events">Events</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#relays">Relays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#results">Results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#track-races">Track Races</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#field-events">Field Events</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vertical-jumps">Vertical jumps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#relay-races">Relay Races</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#multi-event-competitions">Multi-event Competitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#team-competitions">Team Competitions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#time-stamping-data">Time stamping data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="athlib.html">Python library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="athlibjs.html">Javascript library</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">athlib</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Schemas</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/schemas.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <div class="section" id="schemas">
 <h1>Schemas<a class="headerlink" href="#schemas" title="Permalink to this headline">¶</a></h1>
@@ -72,17 +194,17 @@ To analyse results as the simplest level we just need a means of identifying an 
 <h2>Competitions<a class="headerlink" href="#competitions" title="Permalink to this headline">¶</a></h2>
 <p>Most events are part of a bigger meeting, or <cite>competition</cite>.
 Competitions are defined by <cite>name</cite>, there may be a <cite>shortName</cite> and it may be part of a <cite>series</cite>. Useful additonal data includes location, and the timeperiod defined in iso-date format by <cite>startDate</cite> and <cite>endDate</cite>. The absence of an <cite>endDate</cite> signifies a single day format.</p>
-<div class="highlight-json"><div class="highlight"><pre><span></span>{
-  &quot;name&quot;: &quot;Rio Olympics 2016&quot;,
-  &quot;organiserId&quot;: &quot;IOC&quot;,
-  &quot;shortName&quot;: &quot;OG16&quot;,
-  &quot;startDate&quot;: &quot;2016-08-12&quot;,
-  &quot;endDate&quot;: &quot;2016-08-21&quot;,
-  &quot;city&quot;: &quot;Rio de Janeiro&quot;,
-  &quot;country&quot;: &quot;BRA&quot;,
-  &quot;series&quot;: &quot;olympics&quot;,
-  &quot;events&quot;: [ ... ]
-}
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;Rio Olympics 2016&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;organiserId&quot;</span><span class="o">:</span> <span class="s2">&quot;IOC&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;shortName&quot;</span><span class="o">:</span> <span class="s2">&quot;OG16&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;startDate&quot;</span><span class="o">:</span> <span class="s2">&quot;2016-08-12&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;endDate&quot;</span><span class="o">:</span> <span class="s2">&quot;2016-08-21&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;city&quot;</span><span class="o">:</span> <span class="s2">&quot;Rio de Janeiro&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;country&quot;</span><span class="o">:</span> <span class="s2">&quot;BRA&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;series&quot;</span><span class="o">:</span> <span class="s2">&quot;olympics&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;events&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="p">...</span> <span class="p">]</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>Attached to a competition is an event or more likely multiple <cite>events</cite>.There are variety of fields that help us analyse the results, these may be more relevant for higher level competitions. (is this at an event level or competition ?)</p>
@@ -95,7 +217,7 @@ Competitions are defined by <cite>name</cite>, there may be a <cite>shortName</c
 <tr class="field-even field"><th class="field-name">drugTesting:</th><td class="field-body">is drug testing present.</td>
 </tr>
 <tr class="field-odd field"><th class="field-name" colspan="2">drugTestingBody:</th></tr>
-<tr class="field-odd field"><td>&#160;</td><td class="field-body">who is carying out that testing.</td>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">who is carying out that testing.</td>
 </tr>
 </tbody>
 </table>
@@ -150,25 +272,18 @@ events and F01, F02 for field.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">eventCode:</th><td class="field-body">For the classic track relays, 4x100, 4x400 we will use the obvious event codes. Other relays need more detail and we use the label &#8220;12xrelay&#8221;, for a 12 athlete event over a non-standard distance.</td>
+<tr class="field-odd field"><th class="field-name">eventCode:</th><td class="field-body">For the classic track relays, 4x100, 4x400 we will use the obvious event codes. Other relays need more detail and we use the label &#8220;12xRELAY&#8221;, for a 12 athlete event over a non-standard distance. The number of athletes in each relay team is specified in the event code, we may want to specify the distance run,</td>
 </tr>
-</tbody>
-</table>
-<p>The number of athletes in each relay team is specified in the event code, we may want to specify the distance run,</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">legLengths:</th><td class="field-body">either a single value for equal length relays (e.g 4x1500m) or an array of size equal to number or athletes with the different leg lengths for an Ekiden or a medley relay on the track.</td>
+<tr class="field-even field"><th class="field-name">legLengths:</th><td class="field-body">either a single value for equal length relays (e.g 4x1500m) or an array of size equal to number or athletes with the different leg lengths for an Ekiden or a medley relay on the track.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">indoor:</th><td class="field-body">is a boolean that shows whether the event is held indoors. Default is false.</td>
+<tr class="field-odd field"><th class="field-name">indoor:</th><td class="field-body">is a boolean that shows whether the event is held indoors. Default is false.</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">discipline:</th><td class="field-body">an either be empty or &#8220;track&#8221;, &#8220;xc&#8221;, &#8220;fell&#8221; or &#8220;road&#8221;, &#8220;track&#8221; is the default. This specifies the governing body and the surface upon which the athletes compete.</td>
+<tr class="field-even field"><th class="field-name">discipline:</th><td class="field-body">an either be empty or &#8220;track&#8221;, &#8220;xc&#8221;, &#8220;fell&#8221; or &#8220;road&#8221;, &#8220;track&#8221; is the default. This specifies the governing body and the surface upon which the athletes compete.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">programmeCode:</th><td class="field-body">is an id for the event.</td>
+<tr class="field-odd field"><th class="field-name">programmeCode:</th><td class="field-body">is an id for the event.</td>
 </tr>
-<tr class="field-odd field"><th class="field-name" colspan="2">prizeCategories:</th></tr>
-<tr class="field-odd field"><td>&#160;</td><td class="field-body">a list of categories, into which the results may have to be split for the awarding of prizes.</td>
+<tr class="field-even field"><th class="field-name" colspan="2">prizeCategories:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">a list of categories, into which the results may have to be split for the awarding of prizes.</td>
 </tr>
 </tbody>
 </table>
@@ -311,9 +426,9 @@ events and F01, F02 for field.</p>
 </tr>
 <tr class="field-even field"><th class="field-name">round:</th><td class="field-body">the number of the round</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">performance:</th><td class="field-body">the distance recorded, numeric or text with &#8216;P&#8217; for  <cite>pass</cite> and <a href="#id1"><span class="problematic" id="id2">`</span></a>X&#8217; for a foul.</td>
+<tr class="field-odd field"><th class="field-name">performance:</th><td class="field-body">the distance recorded, numeric or text with <cite>P</cite> for a pass and <cite>X</cite> for a foul.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">wind:</th><td class="field-body">the wind speed for horizontal jumps in m per s, a positive number shows a trailing wind, this must be recorded for each attempt in the horizontal jumps.</td>
+<tr class="field-even field"><th class="field-name">wind:</th><td class="field-body">the wind speed for horizontal jumps in m/sec, a positive number shows a trailing wind, this must be recorded for each attempt in the horizontal jumps.</td>
 </tr>
 <tr class="field-odd field"><th class="field-name">recordFlag:</th><td class="field-body">list of certain keywords that show if that performance is significant, examples are SB, PB, WL, WR, NR, with the potential for a &#8220;=&#8221; to signifying equaling a record. This should be shown at bot the <cite>round</cite> and overall <cite>performance</cite> level. Default is no that no records have been broken.</td>
 </tr>
@@ -442,19 +557,17 @@ The number of athletes in each relay team is specified in the event code, we may
 </tr>
 </tbody>
 </table>
-<p>Each team, defined by <code class="docutils literal"><span class="pre">teamCode</span></code> has a performance which is the aggregate time and a rank driven off this but also is made of an array of</p>
+<p>Each team, defined by <code class="docutils literal"><span class="pre">teamCode</span></code> has a performance which is the aggregate time and a rank driven off this but also is made of an array of..</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">runners:</th><td class="field-body">in which each athlete has an id and a</td>
+<tr class="field-odd field"><th class="field-name">runners:</th><td class="field-body"><p class="first">in which each athlete has an id and a</p>
+</td>
 </tr>
-<tr class="field-even field"><th class="field-name">split:</th><td class="field-body">which is an iso-format time for their leg if possible.
-A classic 4x100m would be as follows</td>
-</tr>
-</tbody>
-</table>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+<tr class="field-even field"><th class="field-name">split:</th><td class="field-body"><p class="first">which is an iso-format time for their leg if possible.
+A classic 4x100m would be as follows:</p>
+<div class="last highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;roundName&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
   <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;4 x 100 m Men&quot;</span><span class="p">,</span>
   <span class="s2">&quot;eventCode&quot;</span><span class="p">:</span> <span class="s2">&quot;4x100&quot;</span><span class="p">,</span>
@@ -504,7 +617,11 @@ A classic 4x100m would be as follows</td>
       <span class="s2">&quot;rank&quot;</span><span class="p">:</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span>
 </pre></div>
 </div>
-<p>A slightly lower key road-relay could be as follows, note the <cite>performance</cite> and <cite>rank</cite> each leg refer to the cumulative time. The <cite>split</cite> is optional and is merely the difference between the 2 leg performance times. The <a href="#id3"><span class="problematic" id="id4">`</span></a>legRank&#8221; is the ranking of the split on that leg.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>A slightly lower key road-relay could be as follows, note the <cite>performance</cite> and <cite>rank</cite> each leg refer to the cumulative time. The <cite>split</cite> is optional and is merely the difference between the 2 leg performance times. The <cite>legRank</cite> is the ranking of the split on that leg:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
     <span class="n">eventCode</span><span class="p">:</span> <span class="s2">&quot;12xrelay&quot;</span><span class="p">,</span>
     <span class="n">eventName</span><span class="p">:</span> <span class="s2">&quot;Southern 12 stage&quot;</span><span class="p">,</span>
@@ -724,77 +841,75 @@ Each athlete has a record for each event, showing the performance and points dis
 </div>
 
 
+           </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Schemas</a><ul>
-<li><a class="reference internal" href="#competitions">Competitions</a></li>
-<li><a class="reference internal" href="#events">Events</a></li>
-<li><a class="reference internal" href="#relays">Relays</a></li>
-<li><a class="reference internal" href="#results">Results</a></li>
-<li><a class="reference internal" href="#track-races">Track Races</a></li>
-<li><a class="reference internal" href="#field-events">Field Events</a></li>
-<li><a class="reference internal" href="#vertical-jumps">Vertical jumps</a></li>
-<li><a class="reference internal" href="#relay-races">Relay Races</a></li>
-<li><a class="reference internal" href="#multi-event-competitions">Multi-event Competitions</a></li>
-<li><a class="reference internal" href="#team-competitions">Team Competitions</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#time-stamping-data">Time stamping data</a></li>
-</ul>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="athlib.html" class="btn btn-neutral float-right" title="Python library" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="vocab.html" class="btn btn-neutral" title="Vocabulary" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
 
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="vocab.html"
-                        title="previous chapter">Vocabulary</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="athlib.html"
-                        title="next chapter">Python library</a></p>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/schemas.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Andy Robinson and others.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="athlib.html" title="Python library"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="vocab.html" title="Vocabulary"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">athlib 0.0.8 documentation</a> &#187;</li> 
-      </ul>
-    </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2017, Andy Robinson and others.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.3.
-    </div>
-  </body>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.0.8',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
 </html>

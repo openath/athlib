@@ -11,5 +11,5 @@ coverage        	# see how good our test suite is
 sphinx          	# python doc tools
 sphinx-autobuild	# makes authoring easier
 sphinx-js			# javascript docs
-
-requests[security]  #tell sphinx not to whinge
+sphinx_rtd_theme	# make it look prettier
+requests[security]  # tell sphinx not to whinge
