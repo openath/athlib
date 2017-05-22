@@ -1,4 +1,4 @@
-import os, re, shutil, unittest, doctest
+import sys, os, re, shutil, unittest, doctest
 from setuptools import setup, find_packages
 
 def my_test_suite():
@@ -15,6 +15,41 @@ def my_test_suite():
     test_suite.addTests(doctest.DocTestSuite(codes))
 
     return test_suite
+
+def get_version():
+    if os.path.isdir('docs'):
+        NS = {}
+        version_re = re.compile(r'^version\s*=.*$',re.M)
+        with open(os.path.join('docs','source','conf.py'),'r') as f:
+            txt = f.read()
+        m = version_re.search(txt)
+        if not m:
+            raise ValueError('Cannot find version in docs/source/conf.py')
+        sv = m.group()
+        exec m.group() in NS
+        docs_version = NS['version']
+    else:
+        docs_version = 'unknown'
+    if os.path.isdir('athlib'):
+        NS = {}
+        version_re = re.compile(r'^__version__\s*=.*$',re.M)
+        with open(os.path.join('athlib','__init__.py'),'rb') as f:
+            txt = f.read()
+        m = version_re.search(txt)
+        if not m:
+            raise ValueError('Cannot find version in docs/source/conf.py')
+        sv = m.group()
+        exec m.group() in NS
+        athlib_version = NS['__version__']
+        if docs_version!='unknown' and athlib_version!=docs_version:
+            i0 = m.start()
+            i1 = m.end()
+            txt = txt[:i0]+('__version__ = %r' % docs_version)+txt[i1:]
+            with open(os.path.join('athlib','__init__.py'),'wb') as f:
+                f.write(txt)
+        else:
+            docs_version = athlib_version
+    return docs_version
 
 def find_json(top,drop=1,force=False):
     for p,D,F in os.walk(top):
@@ -34,12 +69,14 @@ schema_marker_re = re.compile(r'''(?P<q>["'])\$schema(?P=q)\s*:''',re.M)
 os.chdir(base)
 jschdir = os.path.join('athlib','json-schemas')
 try:
-    if os.path.isdir(jschdir):
-        shutil.rmtree(jschdir)
-    shutil.copytree('json',jschdir)
+    if 'sdist' in sys.argv:
+        if os.path.isdir(jschdir):
+            shutil.rmtree(jschdir)
+        shutil.copytree('json',jschdir)
+        shutil.copyfile('README.md','README.rst')
     setup(
         name="athlib",
-        version="0.0.8",
+        version=get_version(),
         packages=find_packages(),
         package_data={'athlib':(list(find_json(os.path.join('athlib','json-schemas')))
                                 +list(find_json(os.path.join('athlib','wma'),force=True)))},
@@ -73,4 +110,8 @@ try:
 finally:
     if os.path.isdir(jschdir):
         shutil.rmtree(jschdir)
+    try:
+        os.remove('README.rst')
+    except:
+        pass
     os.chdir(here)
