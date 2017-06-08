@@ -22247,6 +22247,7 @@
     }, 
     {
       "roundName": "Heat 1", 
+      "athlon": "Decathlon", 
       "name": "100 m Men", 
       "eventCode": "100", 
       "result": [
@@ -22345,6 +22346,7 @@
     }, 
     {
       "roundName": "Heat 2", 
+      "athlon": "Decathlon", 
       "name": "100 m Men", 
       "eventCode": "100", 
       "result": [
@@ -22443,6 +22445,7 @@
     }, 
     {
       "roundName": "Heat 3", 
+      "athlon": "Decathlon", 
       "name": "100 m Men", 
       "eventCode": "100", 
       "result": [
@@ -22529,6 +22532,7 @@
     }, 
     {
       "roundName": "Heat 4", 
+      "athlon": "Decathlon", 
       "name": "100 m Men", 
       "eventCode": "100", 
       "result": [
@@ -22612,6 +22616,7 @@
     }, 
     {
       "roundName": null, 
+      "athlon": "Decathlon", 
       "name": "Long jump Men", 
       "eventCode": "LJ", 
       "result": [
@@ -23499,6 +23504,7 @@
     }, 
     {
       "roundName": null, 
+      "athlon": "Decathlon", 
       "name": "Shot Men", 
       "eventCode": "SP", 
       "result": [
@@ -24265,6 +24271,7 @@
     }, 
     {
       "roundName": null, 
+      "athlon": "Decathlon", 
       "name": "High jump Men", 
       "eventCode": "HJ", 
       "result": [
@@ -25199,6 +25206,7 @@
     }, 
     {
       "roundName": "Heat 1", 
+      "athlon": "Decathlon", 
       "name": "400 m Men", 
       "eventCode": "400", 
       "result": [
@@ -25273,6 +25281,7 @@
     }, 
     {
       "roundName": "Heat 2", 
+      "athlon": "Decathlon", 
       "name": "400 m Men", 
       "eventCode": "400", 
       "result": [
@@ -25353,6 +25362,7 @@
     }, 
     {
       "roundName": "Heat 3", 
+      "athlon": "Decathlon", 
       "name": "400 m Men", 
       "eventCode": "400", 
       "result": [
@@ -25436,6 +25446,7 @@
     }, 
     {
       "roundName": "Heat 4", 
+      "athlon": "Decathlon", 
       "name": "400 m Men", 
       "eventCode": "400", 
       "result": [
@@ -25525,6 +25536,7 @@
     }, 
     {
       "roundName": "Heat 1", 
+      "athlon": "Decathlon", 
       "name": "110 m hurdles Men", 
       "eventCode": "110H", 
       "result": [
@@ -25593,6 +25605,7 @@
     }, 
     {
       "roundName": "Heat 2", 
+      "athlon": "Decathlon", 
       "name": "110 m hurdles Men", 
       "eventCode": "110H", 
       "result": [
@@ -25679,6 +25692,7 @@
     }, 
     {
       "roundName": "Heat 3", 
+      "athlon": "Decathlon", 
       "name": "110 m hurdles Men", 
       "eventCode": "110H", 
       "result": [
@@ -25756,6 +25770,7 @@
     }, 
     {
       "roundName": "Heat 4", 
+      "athlon": "Decathlon", 
       "name": "110 m hurdles Men", 
       "eventCode": "110H", 
       "result": [
@@ -25830,6 +25845,7 @@
     }, 
     {
       "roundName": null, 
+      "athlon": "Decathlon", 
       "name": "Discus Men", 
       "eventCode": "DT", 
       "result": [
@@ -26480,6 +26496,7 @@
     }, 
     {
       "roundName": null, 
+      "athlon": "Decathlon", 
       "name": "Pole vault Men", 
       "eventCode": "PV", 
       "result": [
@@ -27170,6 +27187,7 @@
     }, 
     {
       "roundName": null, 
+      "athlon": "Decathlon", 
       "name": "Javelin Men", 
       "eventCode": "JT", 
       "result": [
@@ -27806,6 +27824,7 @@
     }, 
     {
       "roundName": "Heat 1", 
+      "athlon": "Decathlon", 
       "name": "1500 m Men", 
       "eventCode": "1500", 
       "result": [
@@ -27926,6 +27945,7 @@
     }, 
     {
       "roundName": "Heat 2", 
+      "athlon": "Decathlon", 
       "name": "1500 m Men", 
       "eventCode": "1500", 
       "result": [
@@ -53190,6 +53210,7 @@
     }, 
     {
       "roundName": "Heat 1", 
+      "athlon": "Heptathlon", 
       "name": "100 m hurdles Women", 
       "eventCode": "100H", 
       "result": [
@@ -53270,6 +53291,7 @@
     }, 
     {
       "roundName": "Heat 2", 
+      "athlon": "Heptathlon", 
       "name": "100 m hurdles Women", 
       "eventCode": "100H", 
       "result": [
@@ -53355,6 +53377,7 @@
     }, 
     {
       "roundName": "Heat 3", 
+      "athlon": "Heptathlon", 
       "name": "100 m hurdles Women", 
       "eventCode": "100H", 
       "result": [
@@ -53438,6 +53461,7 @@
     }, 
     {
       "roundName": "Heat 4", 
+      "athlon": "Heptathlon", 
       "name": "100 m hurdles Women", 
       "eventCode": "100H", 
       "result": [
@@ -53524,6 +53548,7 @@
     }, 
     {
       "roundName": null, 
+      "athlon": "Heptathlon", 
       "name": "High jump Women", 
       "eventCode": "HJ", 
       "result": [
@@ -54563,6 +54588,7 @@
     }, 
     {
       "roundName": null, 
+      "athlon": "Heptathlon", 
       "name": "Shot Women", 
       "eventCode": "SP", 
       "result": [
@@ -55268,6 +55294,7 @@
     }, 
     {
       "roundName": "Heat 1", 
+      "athlon": "Heptathlon", 
       "name": "200 m Women", 
       "eventCode": "200", 
       "result": [
@@ -55339,6 +55366,7 @@
     }, 
     {
       "roundName": "Heat 2", 
+      "athlon": "Heptathlon", 
       "name": "200 m Women", 
       "eventCode": "200", 
       "result": [
@@ -55419,6 +55447,7 @@
     }, 
     {
       "roundName": "Heat 3", 
+      "athlon": "Heptathlon", 
       "name": "200 m Women", 
       "eventCode": "200", 
       "result": [
@@ -55502,6 +55531,7 @@
     }, 
     {
       "roundName": "Heat 4", 
+      "athlon": "Heptathlon", 
       "name": "200 m Women", 
       "eventCode": "200", 
       "result": [
@@ -55585,6 +55615,7 @@
     }, 
     {
       "roundName": null, 
+      "athlon": "Heptathlon", 
       "name": "Long jump Women", 
       "eventCode": "LJ", 
       "result": [
@@ -56387,6 +56418,7 @@
     }, 
     {
       "roundName": null, 
+      "athlon": "Heptathlon", 
       "name": "Javelin Women", 
       "eventCode": "JT", 
       "result": [
@@ -57127,6 +57159,7 @@
     }, 
     {
       "roundName": "Heat 1", 
+      "athlon": "Heptathlon", 
       "name": "800 m Women", 
       "eventCode": "800", 
       "result": [
@@ -57228,6 +57261,7 @@
     }, 
     {
       "roundName": "Heat 2", 
+      "athlon": "Heptathlon", 
       "name": "800 m Women", 
       "eventCode": "800", 
       "result": [
@@ -57334,6 +57368,7 @@
     }, 
     {
       "roundName": "Heat 3", 
+      "athlon": "Heptathlon", 
       "name": "800 m Women", 
       "eventCode": "800", 
       "result": [

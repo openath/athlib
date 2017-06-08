@@ -303,6 +303,7 @@ def athleticize(node):
         event_code = event_name_to_code(event["event_name"])
         event["discipline"] = event_code
         event_name = event["event_name"]
+        rename_key(event, "age_group", "athlon")
         rename_key(event, "round_name", "round")
         rename_key(event, "round_detail", "roundName")
 
@@ -318,7 +319,8 @@ def athleticize(node):
         }[text]
 
 
-        del event["age_group"]
+        if event["athlon"] is None:
+            del event["athlon"]
         # rename_key(event, 'age_group', 'ageGroups')
 
         # #include age groups only if needed
