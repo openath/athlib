@@ -84,13 +84,13 @@ class HighJumpTests(TestCase):
         body = ESAA_2015_HJ[1:]
         info = []
         for row in body:
-            dikt = dict(zip(headers, row))
+            dikt = dict(zip(headers[0:16], row[0:16]))
             info.append(dikt)
 
         # print info[-1]
         for text_height in text_heights:
             c.set_bar_height(Decimal(text_height))
-            #  print "height set to", text_height
+            # print "height set to", text_height
             for attempt in range(3):
                 #  print " try %d" % (attempt + 1)
                 for jumper in info:
@@ -130,8 +130,8 @@ class HighJumpTests(TestCase):
         # print grimsey.failures_at_height
         # print grimsey.consecutive_failures
         # print grimsey.attempts_by_height
-        # # if not for jump-off rules, it would be game over
-        # self.assertEquals(c.remaining(), 0)
+        # if not for jump-off rules, it would be game over
+        self.assertEquals(c.remaining(), 0)
 
 
 
