@@ -13,7 +13,9 @@ in submodules.
 		text_discipline_sort_key, sort_by_discipline, 
 		athlon_score, athlon_performance_needed,
 		wma_age_grade, wma_age_factor, wma_world_best, wma_athlon_age_grade, wma_athlon_age_factor,
-		calc_uka_age_group
+		calc_uka_age_group,
+		RuleViolation,
+		HighJumpCompetition, Jumper
 
 
 Codes

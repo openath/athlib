@@ -50,7 +50,7 @@ class ImportTest(AthlibTestCase):
             if not re.search(r'\W' + member + r'\W', self.text, re.M):
                 failures.append(member)
         self.assertTrue(not failures,
-                        "These athlib members could not be found "
+                        "These athlib members are not documented "
                         "in docs/source/athlib.rst\n %s"
                         % '\n '.join(failures))
 

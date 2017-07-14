@@ -5,6 +5,17 @@ from athlib.iaaf_score import performance as athlon_performance_needed
 
 __version__ = u'0.0.9'
 
+
+class RuleViolation(Exception):
+    """Exception to indicate incorrect athletics logic
+
+    This may be used if, for example, there is a fourth
+    attempt at a high jump.  We use this as a form of
+    assertion within the code; others are welcome to as well.
+    """
+    pass
+
+
 from athlib.utils import (
     normalize_gender,
     str2num,
@@ -21,6 +32,8 @@ from athlib.codes import (
     FIELD_SORT_ORDER, STANDARD_MALE_TRACK_EVENTS,
     STANDARD_FEMALE_TRACK_EVENTS,
 )
+
+from athlib.highjump import HighJumpCompetition, Jumper
 
 ag = AgeGrader()
 
@@ -71,4 +84,5 @@ __all__ = filter(None, """
             STANDARD_FEMALE_TRACK_EVENTS
             STANDARD_MALE_TRACK_EVENTS
             THROWS
+            RuleViolation
             """.split())
