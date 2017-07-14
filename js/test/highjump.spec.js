@@ -30,10 +30,10 @@ describe('Given an instance of Athlib.HighJumpCompetition',function(){
   describe('Tests basic creation of athletes with names and bibs',function(){
     var c=create_empty_competition(ESAA_2015_HJ);
     it('last of jumpers should be named Dwyer',()=>{
-      	expect(c.jumpers[jumpers.length-1].last_name).to.be.equal('Dwyer');
+      	expect(c.jumpers[c.jumpers.length-1].last_name).to.be.equal('Dwyer');
     	});
-    it('jumpers_by_bib[85] should be named Dwyer',()=>{
-      	expect(c.jumpers_by_bib[85].last_name).to.be.equal('Maslin');
+    it('jumpers_by_bib[85] should be named Maslen',()=>{
+      	expect(c.jumpers_by_bib[85].last_name).to.be.equal('Maslen');
     	});
   	});
 	});

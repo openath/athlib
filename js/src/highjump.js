@@ -2,7 +2,7 @@
 
 function Jumper(kwds) {
   const obj = {
-    __init__: (options) => {
+    __init__: function(options) {
       // Allow option setup
       this.order = 1; // if we get only one, I guess they jump first
       this.place = 1; // if we only get one, I guess they are winning
@@ -27,75 +27,75 @@ function Jumper(kwds) {
         const arg = defaults[i];
         let value = options[arg];
         if (typeof value==='undefined') value=defaults[i+1];
-        if (arg=='bib') value = ''+value;
+        if (arg==='bib') value = ''+value;
         this[arg] = value;
-        }
-      },
+      }
+    },
 
-    _set_jump_array: function(height_count) {
+    _set_jump_array: function (height_count) {
       var atts = this.attempts_by_height;
       // Ensure they have one string for each height in the competition
       // Jumpers can miss out heights.
-      if (height_count<=0) throw "Start at height number 1, not 0";
+      if (height_count<=0) throw 'Start at height number 1, not 0';
       // they may have skipped some, pas with empty strings
       while (atts.length < height_count) atts[atts.length] = '';
-      },
+    },
 
-    ranking_key: function() {
+    ranking_key: function () {
       // Return a sort key to determine who is winning"""
-      return [-this.highest_cleared,this.failures_at_height,this.total_failures];
-      },
+      return [-this.highest_cleared, this.failures_at_height, this.total_failures];
+    },
 
-    cleared: function(height_count, height) {
+    cleared: function (height_count, height) {
       // Add a clearance at the current bar position
       // First round is index zero
-      if (this.eliminated) throw "Cannot jump after being eliminated";
+      if (this.eliminated) throw 'Cannot jump after being eliminated';
       this._set_jump_array(height_count);
       // Holds their pattern of 'o' and 'x'
       let cur = this.attempts_by_height[this.attempts_by_height.length-1];
       cur += 'o';
       this.attempts_by_height[this.attempts_by_height.length-1] = cur;
-      if (cur.length > 3) throw "Can attempt a maximum of "+cur.length+" times";
+      if (cur.length > 3) throw 'Can attempt a maximum of '+cur.length+' times';
       this.highest_cleared = height;
       this.failures_at_height = 0;
       this.consecutive_failures = 0;
-      },
+    },
 
-    failed: function(height_count, height) {
+    failed: function (height_count, height) {
       // Add a failure at the current bar position
-      if (this.eliminated) throw "Cannot jump after being eliminated";
+      if (this.eliminated) throw 'Cannot jump after being eliminated';
       this._set_jump_array(height_count);
 
       // Holds their pattern of 'o' and 'x'
       let cur = this.attempts_by_height[this.attempts_by_height.length-1];
       cur += 'x';
       this.attempts_by_height[this.attempts_by_height.length-1] = cur;
-      if (cur.length>3) throw "More than 3 attempts at height";
+      if (cur.length>3) throw 'More than 3 attempts at height';
       this.failures_at_height += 1;
       this.consecutive_failures += 1;
-      if (this.consecutive_failures==3) this.eliminated=true;
-      },
+      if (this.consecutive_failures===3) this.eliminated=true;
+    },
 
-    retired: function(height_count, height) {
+    retired: function (height_count, height) {
       // Competitor had enough, or pulls out injured
-      if (this.eliminated) throw "Cannot retire after being eliminated";
+      if (this.eliminated) throw 'Cannot retire after being eliminated';
       this._set_jump_array(height_count);
       // Holds their pattern of 'o' and 'x'
       var atts = this.attempts_by_height;
       cur = atts[atts.length-1];
       cur += 'r';
       this.attempts_by_height[this.attempts_by_height.length-1] = cur;
-      if (len(cur)>3) throw "More than 3 attempts at height";
+      if (len(cur)>3) throw 'More than 3 attempts at height';
       this.eliminated = true;
       this.actions[this.actions.length] = ['retired', height_count, height];
-      },
-    display_height: function() {
+    },
+    display_height: function () {
       return parseFloat(Math.round(this.height * 100) / 100).toFixed(2);
-      }
     }
-    obj.__init__(kwds);
-    return obj;
   }
+  obj.__init__(kwds);
+  return obj;
+}
 
 function HighJumpCompetition() {
   // Simulation of a HighJump competition in progress.
@@ -103,7 +103,7 @@ function HighJumpCompetition() {
   // "raise the bar", "do a jump", and aims to tell you who is leading
   // at any point.
   var obj = {
-    __init__: function() {
+    __init__: function () {
       this.jumpers = [];
       this.jumpers_by_bib = {};
       this.ranked_jumpers = [];
@@ -112,9 +112,9 @@ function HighJumpCompetition() {
       this.heights = [];  // sequence of heights so far
       this.in_jump_off = false;
       this.actions = [];  // log for replay purposes.
-      },
+    },
 
-    add_jumper: function(kwds) {
+    add_jumper: function (kwds) {
       // Add one more person to the competition
       // Normally we add them first, but can arrive mid-competition.
       // If so, they are in last place until they clear a height.
@@ -127,79 +127,80 @@ function HighJumpCompetition() {
 
       // record what happened
       this.actions[this.actions.length]=['add_jumper', kwds];
-      },
+    },
 
-    set_bar_height: function(new_height) {
+    set_bar_height: function (new_height) {
       var prev_height = this.heights.length ? this.heights[this.heights.length-1] : 0;
-      if ((!this.in_jump_off)  && (prev_height >= new_height)) throw "The bar can only go up, except in a jump-off";
+      if ((!this.in_jump_off)  && (prev_height >= new_height)) throw 'The bar can only go up, except in a jump-off';
       this.heights[this.height.length] = new_height;
       this.bar_height = new_height;
-      },
+    },
 
-    cleared: function(bib) {
+    cleared: function (bib) {
       // Record a successful jump
       var jumper = this.jumpers_by_bib[bib];
       jumper.cleared(this.heights.length, this.bar_height);
       this.actions[this.actions.length] = ['cleared', bib];
-      },
+    },
 
-    failed: function(bib) {
+    failed: function (bib) {
       // Record a failed jump. Throws RuleViolation if out of order
       var jumper = this.jumpers_by_bib[bib];
       jumper.failed(this.heights.length, this.bar_height);
       this.actions[this.actions.length] = ['failed', bib];
-      },
+    },
 
-    retired: function(bib) {
+    retired: function (bib) {
       // Record a failed jump. Throws RuleViolation if out of order
       var jumper = this.jumpers_by_bib[bib];
       jumper.retired(this.heights.length, this.bar_height);
       this.actions[this.actions.length] = ['retired', bib];
-      },
+    },
 
-    remaining: function() {
+    remaining: function () {
       // How many are left in the competition?
       var remaining = 0;
       for (var j;j<=this.jumpers.length;j++) if (!j.eliminated) remaining += 1;
       return remaining;
-      },
+    },
 
-    _compare_ranking_keys(a,b) {
+    _compare_ranking_keys(a, b) {
       // a & b are of the form [[x,y,z],jumper]
       // we only compare the [[x,y,z in order]
       a = a[0]; //extract the keys
       b = b[0];
       for (var i;i<a.length;i++) {
-        if (a[i]==b[i]) continue;
+        if (a[i]===b[i]) continue;
         return (a[i]-0)<(b[i]-0) ? -1 : +1;
-        }
+      }
       return 0;
-      },
+    },
 
-    _rank: function(quite) {
+    _rank: function (quite) {
       // Determine who is winning
       // sort them
       var i, j, k, sorter=[];
       for (i=0;i<this.ranked_jumpers.length;i++) {
         sorter[i] = [j.ranking_key(), j];
-        }
+      }
       sorter.sort(this._compare_ranking_keys)
 
       var pk=null, pj=null;
       for (i=0;i<sorter.length;i++) {
         k=sorter[i][0];
         j=sorter[i][1];
-        j.place = !i ? 1 : (k==pk ? pj.place : i+1);
+        j.place = !i ? 1 : (k===pk ? pj.place : i+1);
         pk = k
         pj = j
         this.ranked_jumpers[i] = j;
-        }
-      },
-
-    display_bar_height: function() {
-      return parseFloat(Math.round(this.bar_height * 100) / 100).toFixed(2);
       }
+    },
+
+    display_bar_height: function () {
+      return parseFloat(Math.round(this.bar_height * 100) / 100).toFixed(2);
     }
+  }
   obj.__init__();
   return obj;
-  }
+}
+module.exports = { HighJumpCompetition }
