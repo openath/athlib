@@ -3,6 +3,29 @@
 This module provides an object to simulate a high jump or pole vault
 competition, and to work out the scores.
 
+We can present and extract data in this format, which is normally
+how field cards are written.
+
+ESAA_2015_HJ = [
+    # Eglish Schools Senior Boys 2015 - epic jumpoff ending in a draw
+    # We did not include all other jumpers
+    # See http://www.esaa.net/v2/2015/tf/national/results/fcards/tf15-sb-field.pdf
+    # and http://www.englandathletics.org/england-athletics-news/great-action-at-the-english-schools-aa-championships
+    ["place", "order", "bib", "first_name", "last_name", "team", "category",
+        "1.81", "1.86", "1.91", "1.97", "2.00", "2.03", "2.06", "2.09", "2.12", "2.12", "2.10", "2.12", "2.10", "2.12"],
+    ["", 1, '85', "Harry", "Maslen", "WYork", "SB",
+        "o", "o", "o", "xo", "xxx"],
+    ["", 2, '77', "Jake", "Field", "Surrey", "SB",
+        "xxx"],
+    ["1", 4, '53', "William", "Grimsey", "Midd", "SB",
+        "", "", "", "o", "o", "o", "o", "o", "xxx", "x", "o", "x", "o", "x"],
+    ["1", 5, '81', "Rory", "Dwyer", "Warks",
+        "SB", "", "", "", "o", "o", "o", "o", "o", "xxx", "x", "o", "x", "o", "x"]
+]
+
+
+
+
 Not yet implemented:  jumpoff
 """
 from decimal import Decimal
@@ -135,6 +158,10 @@ class HighJumpCompetition(object):
 
         self.actions = []  # log for replay purposes.
 
+        self.verbose = 0  # helpful print statements
+
+
+
     def add_jumper(self, **kwargs):
         """Add one more person to the competition
 
@@ -211,3 +238,110 @@ class HighJumpCompetition(object):
             prev_key = key
             prev_jumper = jumper
         self.ranked_jumpers = [j for (key, j) in sorter]
+
+
+    @classmethod
+    def from_matrix(cls, matrix, to_nth_height=None):
+        """ Convert from a pasteable tabular representation like this...
+
+        RIO_MENS_HJ = [  # pasted from Wikipedia
+            ["place", "order", "bib", "first_name", "last_name", "team", "2.20", "2.25", "2.29", "2.33", "2.36", "2.38", "2.40", "best", "note"],
+            ["1", 7, 2197, "Derek", "Drouin", "Canada", "o", "o", "o", "o", "o", "o", "x", 2.38, ""],
+            ["2", 9, 2878, "Mutaz", "Essa Barshim", "Qatar", "o", "o", "o", "o", "o", "xxx", "", 2.36, ""],
+        ]
+
+        Column headers looking like numbers will be taken as the heights.  They may repeat,
+        as for a jumpoff where the bar comes down again.
+        We pay attention only to order, bib, first_name, last_name, team, category and the heights.
+        The place and best are calculated so discarded.  The personal details may be used to
+        create competitor records if corresponding ones are not found.
+
+        replays the bar heights up to the Nth bar if given.
+        pass None for an empty competition.
+
+        """
+        self = cls()
+        # heights are in the top row - change to h1, h2 etc
+        heights = []
+        headers = matrix[0][:]
+        for (colNo, txt) in enumerate(headers):
+            if self._looks_like_height(txt):
+                height = Decimal(txt)
+                heights.append(height)
+                headers[colNo] = 'h%d' % len(heights)
+        dikts = []
+        for row in matrix[1:]:
+            dikt = {}
+            for key, value in zip(headers, row):
+                if key == 'bib':
+                    value = str(value)
+                dikt[key] = value
+            dikts.append(dikt)
+
+        self._ensure_dicts_ordered(dikts)
+
+        dikts.sort(key=lambda x: x['order'])
+
+        for dikt in dikts:
+            self.add_jumper(**dikt)
+
+        if to_nth_height is None:
+            heights_to_replay = heights
+        else:  # we want some of them, or an empty competition
+            heights_to_replay = heights[0:to_nth_height]
+
+
+        for i, height in enumerate(heights_to_replay):
+            height_key = "h%d" % (i + 1)
+            self.set_bar_height(height)
+            if self.verbose: 
+                print "bar at %s" % height
+            for a in range(3):
+                for d in dikts:
+                    bib = d['bib']
+                    name  = d.get('last_name', '')
+                    attempts = d.get(height_key, '')
+                    if len(attempts) > a:
+                        result = attempts[a]
+                        if self.verbose: 
+                            print "  %s %s attempt %d: %s" % (bib, name, a + 1, result)
+                        if result == 'o':
+                            self.cleared(bib)
+                        elif result == 'x':
+                            self.failed(bib)
+                        elif result == 'r':
+                            self.retired(bib)
+                        else:
+                            raise RuleViolation("Unknown jump result code '%s'" % result)
+
+
+
+
+
+        return self
+
+    def _looks_like_height(self, txt):
+        try:
+            h = float(txt)
+            return True
+        except ValueError:
+            return False
+
+
+    def _ensure_dicts_ordered(self, dikts):
+        """Ensure they each have an 'order' attribute in which they jump
+
+        If partially present, respect ordered ones first and place others after
+        """
+        unordered = []
+        highest = 0
+        for dikt in dikts:
+            if 'order' not in dikt:
+                unordered.append(dikt)
+            else:
+                highest = max(highest, dikt['order'])
+
+        for u in unordered:
+            highest += 1
+            u['order'] = highest
+
