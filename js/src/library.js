@@ -9,6 +9,8 @@ import {
 
 import { calcUkaAgeGroup } from './uka_agegroups';
 
+import { HighJumpCompetition } from './highjump.js';
+
 module.exports = {
   hello,
   normalizeGender,
@@ -17,4 +19,5 @@ module.exports = {
   isFieldEvent,
   isMultiEvent,
   betterPerformance,
+  HighJumpCompetition,
 }
