@@ -7,13 +7,14 @@ Not yet implemented:  jumpoff
 """
 from decimal import Decimal
 
+from .exceptions import RuleViolation
 
 class Jumper(object):
     """Used by HighJumpCompetition internally"""
     def __init__(self, **kwargs):
         "Allow keyword initialisation"
         self.order = 1  # if we get only one, I guess they jump first
-        self.rank = 1  # if we only get one, I guess they are winning
+        self.place = 1  # if we only get one, I guess they are winning
 
         # list of strings containing '', 'o', 'xo', 'xxo', 'xxx', 'x', 'xx'
         self.attempts_by_height = []
@@ -44,6 +45,15 @@ class Jumper(object):
         # they may have skipped some, pas with empty strings
         while len(atts) < height_count:
             atts.append('')
+
+    def ranking_key(self):
+        """Return a sort key to determine who is winning"""
+
+        return (
+            - self.highest_cleared,
+            self.failures_at_height,
+            self.total_failures
+        )
 
     def cleared(self, height_count, height):
         """Add a clearance at the current bar position
@@ -87,7 +97,7 @@ class Jumper(object):
         if self.consecutive_failures == 3:
             self.eliminated = True
 
-    def retired(self, height_idx, height):
+    def retired(self, height_count, height):
         "Competitor had enough, or pulls out injured"
         if self.eliminated:
             raise RuleViolation("Cannot retire after being eliminated")
@@ -95,14 +105,15 @@ class Jumper(object):
         self._set_jump_array(height_count)
 
         # Holds their pattern of 'o' and 'x'
-        cur = atts[-1]
+
+        cur = self.attempts_by_height[-1]
         cur += 'r'
         self.attempts_by_height[-1] = cur
         assert len(cur) <= 3, "More than 3 attempts at height"
 
         self.eliminated = True
 
-        self.actions.append(('retired', height_idx, height))
+        self.actions.append(('retired', height_count, height))
 
 
 class HighJumpCompetition(object):
@@ -132,7 +143,7 @@ class HighJumpCompetition(object):
         """
 
         j = Jumper(**kwargs)
-        j.rank = len(self.jumpers) + 1
+        j.place = len(self.jumpers) + 1
 
         self.jumpers_by_bib[j.bib] = j
         self.jumpers.append(j)
@@ -152,18 +163,21 @@ class HighJumpCompetition(object):
         "Record a successful jump"
         jumper = self.jumpers_by_bib[bib]
         jumper.cleared(len(self.heights), self.bar_height)
+        self._rank()
         self.actions.append(('cleared', bib))
 
     def failed(self, bib):
         "Record a failed jump. Throws RuleViolation if out of order"
         jumper = self.jumpers_by_bib[bib]
         jumper.failed(len(self.heights), self.bar_height)
+        self._rank()
         self.actions.append(('failed', bib))
 
     def retired(self, bib):
         "Record a failed jump. Throws RuleViolation if out of order"
         jumper = self.jumpers_by_bib[bib]
         jumper.retired(len(self.heights), self.bar_height)
+        self._rank()
         self.actions.append(('retired', bib))
 
     def remaining(self):
@@ -173,3 +187,27 @@ class HighJumpCompetition(object):
             if not j.eliminated:
                 remaining += 1
         return remaining
+
+    def _rank(self, verbose=True):
+        "Determine who is winning"
+
+        # sort them
+        sorter = []
+        for j in self.ranked_jumpers:
+            key = j.ranking_key()
+            sorter.append((key, j))
+        sorter.sort()
+
+        prev_key = None
+        prev_jumper = None
+        for i, (key, jumper) in enumerate(sorter):
+            if i == 0:
+                jumper.place = 1
+            else:
+                if key == prev_key:
+                    jumper.place = prev_jumper.place
+                else:
+                    jumper.place = i + 1
+            prev_key = key
+            prev_jumper = jumper
+        self.ranked_jumpers = [j for (key, j) in sorter]
