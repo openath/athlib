@@ -36,4 +36,55 @@ describe('Given an instance of Athlib.HighJumpCompetition',function(){
       	expect(c.jumpers_by_bib[85].last_name).to.be.equal('Maslen');
     	});
   	});
+  describe('Tests progression',function(){
+    var c=create_empty_competition(ESAA_2015_HJ);
+	var h1 = 1.81;
+	c.set_bar_height(h1);
+
+	// round 1
+	c.cleared(85);
+
+	var j = c.jumpers_by_bib[85];
+    it("'bib85 expect ['o']",()=>{
+      	expect(c._compare_keys(j.attempts_by_height,['o'])).to.be.equal(0);
+    	});
+    it("'expect highest cleared="+h1,()=>{
+      	expect(j.highest_cleared).to.be.equal(h1);
+    	});
+	c.failed(77);
+	c.failed(77);
+	c.failed(77);
+
+	var jake_field = c.jumpers_by_bib[77];
+    it("'expect highest cleared=0",()=>{
+      	expect(jake_field.highest_cleared).to.be.equal(0);
+    	});
+    it("'jake_field expect ['xxx']",()=>{
+      	expect(c._compare_keys(j.attempts_by_height,['xxx'])).to.be.equal(0);
+    	});
+    it("'jake_field eliminated true",()=>{
+      	expect(jake_field.eliminated).to.be.equal(true);
+    	});
+	var harry_maslen = c.jumpers_by_bib[85];
+
+	//attempt at fourth jump should fail
+    it("'jake_field 4th jump not allowed",()=>{
+		var r=0,e;
+		try{
+			c.failed(77);
+			}
+		catch(e){
+			r=1;
+			}
+      	expect(r).to.be.equal(1);
+    	});
+
+    it("'jake_field 4th",()=>{
+      	expect(jake_field.place).to.be.equal(4);
+    	});
+	//self.assertEquals(harry_maslen.place, 1)
+    it("'harry_maslen 1st",()=>{
+      	expect(harry_maslen.place).to.be.equal(1);
+    	});
 	});
+});

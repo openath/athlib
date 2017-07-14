@@ -2,7 +2,7 @@
 
 function Jumper(kwds) {
   const obj = {
-    __init__: function(options) {
+    __init__(options) {
       // Allow option setup
       this.order = 1; // if we get only one, I guess they jump first
       this.place = 1; // if we only get one, I guess they are winning
@@ -23,7 +23,7 @@ function Jumper(kwds) {
         'category', 'OPEN',
       ];
 
-      for (let i=0;i<defaults.length;i+=2) {
+      for (let i=0; i<defaults.length; i+=2) {
         const arg = defaults[i];
         let value = options[arg];
         if (typeof value==='undefined') value=defaults[i+1];
@@ -32,7 +32,7 @@ function Jumper(kwds) {
       }
     },
 
-    _set_jump_array: function (height_count) {
+    _set_jump_array (height_count) {
       var atts = this.attempts_by_height;
       // Ensure they have one string for each height in the competition
       // Jumpers can miss out heights.
@@ -41,12 +41,12 @@ function Jumper(kwds) {
       while (atts.length < height_count) atts[atts.length] = '';
     },
 
-    ranking_key: function () {
+    ranking_key () {
       // Return a sort key to determine who is winning"""
       return [-this.highest_cleared, this.failures_at_height, this.total_failures];
     },
 
-    cleared: function (height_count, height) {
+    cleared (height_count, height) {
       // Add a clearance at the current bar position
       // First round is index zero
       if (this.eliminated) throw 'Cannot jump after being eliminated';
@@ -61,7 +61,7 @@ function Jumper(kwds) {
       this.consecutive_failures = 0;
     },
 
-    failed: function (height_count, height) {
+    failed (height_count, height) {
       // Add a failure at the current bar position
       if (this.eliminated) throw 'Cannot jump after being eliminated';
       this._set_jump_array(height_count);
@@ -76,7 +76,7 @@ function Jumper(kwds) {
       if (this.consecutive_failures===3) this.eliminated=true;
     },
 
-    retired: function (height_count, height) {
+    retired (height_count, height) {
       // Competitor had enough, or pulls out injured
       if (this.eliminated) throw 'Cannot retire after being eliminated';
       this._set_jump_array(height_count);
@@ -89,7 +89,7 @@ function Jumper(kwds) {
       this.eliminated = true;
       this.actions[this.actions.length] = ['retired', height_count, height];
     },
-    display_height: function () {
+    display_height () {
       return parseFloat(Math.round(this.height * 100) / 100).toFixed(2);
     }
   }
@@ -103,7 +103,7 @@ function HighJumpCompetition() {
   // "raise the bar", "do a jump", and aims to tell you who is leading
   // at any point.
   var obj = {
-    __init__: function () {
+    __init__ () {
       this.jumpers = [];
       this.jumpers_by_bib = {};
       this.ranked_jumpers = [];
@@ -114,7 +114,7 @@ function HighJumpCompetition() {
       this.actions = [];  // log for replay purposes.
     },
 
-    add_jumper: function (kwds) {
+    add_jumper (kwds) {
       // Add one more person to the competition
       // Normally we add them first, but can arrive mid-competition.
       // If so, they are in last place until they clear a height.
@@ -129,74 +129,76 @@ function HighJumpCompetition() {
       this.actions[this.actions.length]=['add_jumper', kwds];
     },
 
-    set_bar_height: function (new_height) {
+    set_bar_height (new_height) {
       var prev_height = this.heights.length ? this.heights[this.heights.length-1] : 0;
       if ((!this.in_jump_off)  && (prev_height >= new_height)) throw 'The bar can only go up, except in a jump-off';
-      this.heights[this.height.length] = new_height;
+      this.heights[this.heights.length] = new_height;
       this.bar_height = new_height;
     },
 
-    cleared: function (bib) {
+    cleared (bib) {
       // Record a successful jump
       var jumper = this.jumpers_by_bib[bib];
       jumper.cleared(this.heights.length, this.bar_height);
       this.actions[this.actions.length] = ['cleared', bib];
     },
 
-    failed: function (bib) {
+    failed (bib) {
       // Record a failed jump. Throws RuleViolation if out of order
       var jumper = this.jumpers_by_bib[bib];
       jumper.failed(this.heights.length, this.bar_height);
       this.actions[this.actions.length] = ['failed', bib];
     },
 
-    retired: function (bib) {
+    retired (bib) {
       // Record a failed jump. Throws RuleViolation if out of order
       var jumper = this.jumpers_by_bib[bib];
       jumper.retired(this.heights.length, this.bar_height);
       this.actions[this.actions.length] = ['retired', bib];
     },
 
-    remaining: function () {
+    remaining () {
       // How many are left in the competition?
       var remaining = 0;
-      for (var j;j<=this.jumpers.length;j++) if (!j.eliminated) remaining += 1;
+      for (var j; j<=this.jumpers.length; j++) if (!j.eliminated) remaining += 1;
       return remaining;
     },
 
-    _compare_ranking_keys(a, b) {
+    _compare_sorter_keys(a, b) {
       // a & b are of the form [[x,y,z],jumper]
       // we only compare the [[x,y,z in order]
-      a = a[0]; //extract the keys
-      b = b[0];
-      for (var i;i<a.length;i++) {
+	  return this.compare_keys(a[0],b[0]);
+		},
+	_compare_keys(a,b){
+      for (let i; i<a.length; i++) {
         if (a[i]===b[i]) continue;
         return (a[i]-0)<(b[i]-0) ? -1 : +1;
       }
       return 0;
     },
 
-    _rank: function (quite) {
+    _rank (quite) {
       // Determine who is winning
       // sort them
-      var i, j, k, sorter=[];
-      for (i=0;i<this.ranked_jumpers.length;i++) {
+      let i, j, k, sorter=[]
+	  const cmpkeys=this._compare_keys;
+      for (i=0; i<this.ranked_jumpers.length; i++) {
         sorter[i] = [j.ranking_key(), j];
       }
-      sorter.sort(this._compare_ranking_keys)
+      sorter.sort(this._compare_sorter_keys)
 
       var pk=null, pj=null;
-      for (i=0;i<sorter.length;i++) {
+      for (i=0; i<sorter.length; i++) {
         k=sorter[i][0];
         j=sorter[i][1];
-        j.place = !i ? 1 : (k===pk ? pj.place : i+1);
+        j.place = !i ? 1 : (cmpkeys(pk,k) ? pj.place : i+1);
         pk = k
         pj = j
         this.ranked_jumpers[i] = j;
       }
     },
 
-    display_bar_height: function () {
+    display_bar_height () {
       return parseFloat(Math.round(this.bar_height * 100) / 100).toFixed(2);
     }
   }
