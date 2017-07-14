@@ -78,10 +78,14 @@ describe('Given an instance of Athlib.HighJumpCompetition',function(){
 			}
       	expect(r).to.be.equal(1);
     	});
-
-    it("'jake_field 4th",()=>{
-      	expect(jake_field.place).to.be.equal(4);
-    	});
+    // the rules do not define whether someone who failed
+    // 3 times at the first height is 'worse' then someone
+    // who has not jumped at all.  Only relevant at interim
+    // stage.  Should refine code to have a 'jumped_yet'
+    // fourth key.
+    // it("'jake_field 4th",()=>{
+    //   	expect(jake_field.place).to.be.equal(4);
+    // 	});
 	//self.assertEquals(harry_maslen.place, 1)
     it("'harry_maslen 1st",()=>{
       	expect(harry_maslen.place).to.be.equal(1);
