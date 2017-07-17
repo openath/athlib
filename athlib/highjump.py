@@ -136,9 +136,6 @@ class Jumper(object):
 
         self.eliminated = True
 
-        self.actions.append(('retired', height_count, height))
-
-
 class HighJumpCompetition(object):
     """Simulation of a HighJump competition in progress.
 

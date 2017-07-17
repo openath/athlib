@@ -2,7 +2,7 @@
 
 function Jumper(kwds) {
   const obj = {
-    __init__(options) {
+    __init__(_options) {
       // Allow option setup
       this.order = 1; // if we get only one, I guess they jump first
       this.place = 1; // if we only get one, I guess they are winning
@@ -23,6 +23,7 @@ function Jumper(kwds) {
         'category', 'OPEN',
       ];
 
+      const options = _options || {};
       for (let i=0; i<defaults.length; i+=2) {
         const arg = defaults[i];
         let value = options[arg];
@@ -55,7 +56,7 @@ function Jumper(kwds) {
       let cur = this.attemptsByHeight[this.attemptsByHeight.length-1];
       cur += 'o';
       this.attemptsByHeight[this.attemptsByHeight.length-1] = cur;
-      if (cur.length > 3) throw new Error(`Can attempt a maximum of $(cur.length) times`);
+      if (cur.length > 3) throw new Error(`Can attempt a maximum of ${cur.length} times`);
       this.highestCleared = height;
       this.failuresAtHeight = 0;
       this.consecutiveFailures = 0;
@@ -87,7 +88,6 @@ function Jumper(kwds) {
       this.attemptsByHeight[this.attemptsByHeight.length-1] = cur;
       if (cur.length>3) throw new Error('More than 3 attempts at height');
       this.eliminated = true;
-      this.actions[this.actions.length] = ['retired', heightCount, height];
     },
     displayHeight() {
       return parseFloat(Math.round(this.height * 100) / 100).toFixed(2);
@@ -146,14 +146,14 @@ function HighJumpCompetition() {
     },
 
     failed(bib) {
-      // Record a failed jump. Throws RuleViolation if out of order
+      // Record a failed jump. Throws Error if out of order
       const jumper = this.jumpersByBib[bib];
       jumper.failed(this.heights.length, this.barHeight);
       this.actions[this.actions.length] = ['failed', bib];
     },
 
     retired(bib) {
-      // Record a failed jump. Throws RuleViolation if out of order
+      // Record a failed jump. Throws Error if out of order
       const jumper = this.jumpersByBib[bib];
       jumper.retired(this.heights.length, this.barHeight);
       this.actions[this.actions.length] = ['retired', bib];
@@ -211,8 +211,118 @@ function HighJumpCompetition() {
     displayBarHeight() {
       return parseFloat(Math.round(this.barHeight * 100) / 100).toFixed(2);
     },
+
+
+    _looksLikeHeight(txt) {
+      return !isNaN(parseFloat(txt));
+    },
+
+
+    _ensureObjsOrdered(objs) {
+      // Ensure they each have an 'order' attribute in which they jump
+
+      // If partially present, respect ordered ones first and place others after
+      const unordered = [];
+      let highest = 0;
+      objs.map((o) => {
+        if ('order'in o) {
+          highest = Math.max(highest, o.order);
+        } else {
+          unordered.push(o);
+        }
+      });
+      for (let i=0; i<unordered.length; i++) {
+        highest++;
+        unordered[i].order = highest;
+      }
+    },
   }
   obj.__init__();
   return obj;
+}
+
+HighJumpCompetition.fromMatrix = function fromMatrix(matrix, toNthHeight) {
+  // Convert from a pasteable tabular representation like this...
+
+  // RIO_MENS_HJ = [  # pasted from Wikipedia
+  //  ["place", "order", "bib", "first_name", "last_name", "team", "2.20", "2.25",
+  //                    "2.29", "2.33", "2.36", "2.38", "2.40", "best", "note"],
+  //  ["1", 7, 2197, "Derek", "Drouin", "Canada", "o", "o", "o", "o", "o", "o",
+  //                     "x", 2.38, ""],
+  //  ["2", 9, 2878, "Mutaz", "Essa Barshim", "Qatar", "o", "o", "o", "o", "o", "xxx",
+  //                     "", 2.36, ""],
+  // ]
+
+  // Column headers looking like numbers will be taken as the heights.  They may repeat,
+  // as for a jumpoff where the bar comes down again.
+  // We pay attention only to order, bib, first_name, last_name, team, category and
+  // the heights.
+  // The place and best are calculated so discarded.  The personal details may be used to
+  // create competitor records if corresponding ones are not found.
+
+  // replays the bar heights up to the Nth bar if given.
+  // pass None for an empty competition.
+  const c = HighJumpCompetition();
+  // heights are in the top row - change to h1, h2 etc
+  const heights = [];
+  const headers = matrix[0].slice(0);
+  for (let colNo=0; colNo<headers.length; colNo++) {
+    const txt = headers[colNo];
+    if (c._looksLikeHeight(txt)) {
+      heights.push(parseFloat(txt));
+      headers[colNo] = `h${colNo}`;
+    }
+  }
+  const objs = [];
+  for (let rowNo=1; rowNo<matrix.length; rowNo+=1) {
+    const row = matrix[rowNo];
+    const ob = {};
+    for (let j=0; j<headers.length; j++) {
+      const key = headers[j];
+      let value = row[j];
+      if (key==='bib') value = `${value}`;
+      ob[key] = value;
+    }
+    objs.push(ob);
+  }
+
+  c._ensureObjsOrdered(objs);
+
+  objs.sort((a, b) => {
+    const la=a.order;
+    const lb=b.order;
+    if (la===lb) return 0; return la<lb?-1:+1;
+  });
+
+  objs.map((o) => {c.addJumper(o)});
+
+  const n = !toNthHeight ? heights.length : toNthHeight - 0;
+  for (let i=0; i<n; i++) {
+    const height = heights[i];
+    const heightKey = `h${i + 1}`;
+    c.setBarHeight(height);
+    for (let a=0; a<3; a++) {
+      for (let j=0; j<objs.length; j++) {
+        const ob = objs[j];
+        const bib = ob.bib;
+        let name  = ob.last_name;
+        if (!name) name='';
+        let attempts = ob[heightKey];
+        if (!attempts) attempts='';
+        if (attempts.length > a) {
+          const result = attempts[a];
+          if (result==='o') c.cleared(bib);
+          else {
+            if (result==='x') c.failed(bib);
+            else {
+              if (result==='r') c.retired(bib);
+              else throw Error(`Unknown jump result code \'${result}\'`);
+            }
+          }
+        }
+      }
+    }
+  }
+  return c;
 }
 module.exports = { HighJumpCompetition }

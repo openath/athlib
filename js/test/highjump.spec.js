@@ -87,8 +87,24 @@ describe('Given an instance of Athlib.HighJumpCompetition', function(){
     //      expect(jake_field.place).to.be.equal(4);
     //  });
     //self.assertEquals(harry_maslen.place, 1)
-    it("'harry_maslen 1st",()=>{
+    it("harry_maslen 1st",()=>{
         expect(harry_maslen.place).to.be.equal(1);
         });
+    });
+  describe('Test replay to jumpoff',function(){
+		// Run through to where the jumpoff began - ninth bar position
+		const c = Athlib.HighJumpCompetition.fromMatrix(ESAA_2015_HJ,9);
+
+		// see who is winning
+		const maslen = c.jumpersByBib['85'];
+		const field = c.jumpersByBib['77'];
+		const grimsey = c.jumpersByBib['53'];
+		const dwyer = c.jumpersByBib['81'];
+
+		it("field.place == 4",()=>{expect(field.place).to.be.equal(4)});
+		it("maslen.place == 3",()=>{expect(maslen.place).to.be.equal(3)});
+		it("grimsey.place == 1",()=>{expect(grimsey.place).to.be.equal(1)});
+		it("dwyer.place == 1",()=>{expect(dwyer.place).to.be.equal(1)});
+		it("c.remaining() == 0",()=>{expect(c.remaining()).to.be.equal(0)});
     });
 });
