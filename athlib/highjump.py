@@ -241,7 +241,7 @@ class HighJumpCompetition(object):
 
 
     @classmethod
-    def from_matrix(cls, matrix, to_nth_height=None):
+    def from_matrix(cls, matrix, to_nth_height=None, verbose=False):
         """ Convert from a pasteable tabular representation like this...
 
         RIO_MENS_HJ = [  # pasted from Wikipedia
@@ -262,6 +262,7 @@ class HighJumpCompetition(object):
         """
         self = cls()
         # heights are in the top row - change to h1, h2 etc
+        self.verbose = verbose
         heights = []
         headers = matrix[0][:]
         for (colNo, txt) in enumerate(headers):
@@ -311,8 +312,14 @@ class HighJumpCompetition(object):
                             self.failed(bib)
                         elif result == 'r':
                             self.retired(bib)
+                        elif result == '-':
+                            pass  # sometimes people use - rather than a blank cell to show
+                                  # a deliberate pass.  Do nothing.
                         else:
                             raise RuleViolation("Unknown jump result code '%s'" % result)
+            if self.verbose:
+                print "rankings at end of %s round" % height
+                self.print_ranking()
 
         return self
 
@@ -340,4 +347,9 @@ class HighJumpCompetition(object):
         for u in unordered:
             highest += 1
             u['order'] = highest
+
+    def print_ranking(self):
+        "Debugging utility to show who's leading at a point in time"
+        for r in self.ranked_jumpers:
+            print r.place, r.bib, r.first_name, r.last_name, r.ranking_key()
 

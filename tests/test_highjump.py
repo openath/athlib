@@ -1,3 +1,4 @@
+# coding: utf8
 """
 Tests of High Jump / Pole Vault competition logic
 """
@@ -24,6 +25,27 @@ ESAA_2015_HJ = [
     ["1", 5, '81', "Rory", "Dwyer", "Warks",
         "SB", "", "", "", "o", "o", "o", "o", "o", "xxx", "x", "o", "x", "o", "x"]
 ]
+
+
+RIO_MENS_HJ = [  # pasted from Wikipedia
+    ["place", "order", "bib", "first_name", "last_name", "team", "category", "2.20", "2.25", "2.29", "2.33", "2.36", "2.38", "2.40", "best", "note"],
+    ["1", 7, 2197, "Derek", "Drouin", "CAN", "M", "o", "o", "o", "o", "o", "o", "x", 2.38, ""],
+    ["2", 9, 2878, "Mutaz", "Essa Barshim", "QAT", "M", "o", "o", "o", "o", "o", "xxx", "", 2.36, ""],
+    ["3", 3, 3026, "Bohdan", "Bondarenko", "UKR", "M", "-", "o", "-", "o", "-", "xx-", "x", 2.33, ""],
+    ["4=", 8, 2456, "Robert", "Grabarz", "GBR", "M", "o", "xo", "o", "o", "xxx", "", "", 2.33, "=SB"],
+    ["4=", 15, 3032, "Andriy", "Protsenko", "UKR", "M", "o", "o", "xo", "o", "xxx", "", "", 2.33, "SB"],
+    ["6", 6, 3084, "Erik", "Kynard", "USA", "M", "o", "xo", "o", "xxo", "xxx", "", "", 2.33, ""],
+    ["7=", 5, 2961, "Majededdin", "Ghazal", "SYR", "M", "o", "o", "o", "xxx", "", "", "", 2.29, ""],
+    ["7=", 12, 2294, "Kyriakos", "Ioannou", "CYP", "M", "o", "o", "o", "xxx", "", "", "", 2.29, ""],
+    ["7=", 13, 2076, "Donald", "Thomas", "BAH", "M", "o", "o", "o", "xxx", "", "", "", 2.29, ""],
+    ["10", 1, 2182, "Tihomir", "Ivanov", "BUL", "M", "o", "xo", "o", "xxx", "", "", "", 2.29, "=PB"],
+    ["11", 10, 2062, "Trevor", "Barry", "BAH", "M", "o", "o", "xxx", "", "", "", "", 2.25, ""],
+    ["12", 4, 2293, "Dimitrios", "Chondrokoukis", "M", "CYP", "xo", "o", "xxx", "", "", "", "", 2.25, ""],
+    ["13", 11, 2871, "Luis", "Castro", "PUR", "M", "o", "xxo", "xxx", "", "", "", "", 2.25, ""],
+    ["14", 14, 2297, "Jaroslav", "Bába", "CZE", "M", "o", "xxx", "", "", "", "", "", 2.2, ""],
+    ["15", 2, 2052, "Brandon", "Starc", "AUS", "M", "xo", "xxx", "", "", "", "", "", 2.2, ""]
+]
+
 
 
 
@@ -89,6 +111,20 @@ class HighJumpTests(TestCase):
         # if not for jump-off rules, it would be game over
         self.assertEquals(c.remaining(), 0)
 
+    def test_score_olympic_final(self):
+        "Do we get the same results as the Olympics?"
+        c = HighJumpCompetition.from_matrix(RIO_MENS_HJ, verbose=False)
+
+        # for r in c.ranked_jumper
+        # all the positions should agree
+        given_finish_positions = []
+        for row in RIO_MENS_HJ[1:]:
+            place, order, bib = row[0:3]
+            expected_place = int(place.replace('=', ''))
+            jumper = c.jumpers_by_bib[str(bib)]
+            actual_place = jumper.place
+            
+            self.assertEquals(actual_place, expected_place)
 
 
 if __name__ == '__main__':
