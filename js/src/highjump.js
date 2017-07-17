@@ -145,6 +145,7 @@ function HighJumpCompetition() {
       // Record a successful jump
       const jumper = this.jumpersByBib[bib];
       jumper.cleared(this.heights.length, this.barHeight);
+      this._rank()
       this.actions.push(['cleared', bib]);
     },
 
@@ -152,6 +153,7 @@ function HighJumpCompetition() {
       // Record a failed jump. Throws Error if out of order
       const jumper = this.jumpersByBib[bib];
       jumper.failed(this.heights.length, this.barHeight);
+      this._rank()
       this.actions.push(['failed', bib]);
     },
 
@@ -159,6 +161,7 @@ function HighJumpCompetition() {
       // Record a failed jump. Throws Error if out of order
       const jumper = this.jumpersByBib[bib];
       jumper.retired(this.heights.length, this.barHeight);
+      this._rank()
       this.actions.push(['retired', bib]);
     },
 

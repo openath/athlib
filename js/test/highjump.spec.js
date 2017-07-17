@@ -94,7 +94,6 @@ describe('Given an instance of Athlib.HighJumpCompetition', function(){
   describe('Test replay to jumpoff',function(){
 		// Run through to where the jumpoff began - ninth bar position
 		const c = Athlib.HighJumpCompetition.fromMatrix(ESAA_2015_HJ,9);
-		c._rank();
 
 		// see who is winning
 		const maslen = c.jumpersByBib['85'];
