@@ -117,6 +117,7 @@ class Jumper(object):
 
         self.failures_at_height += 1
         self.consecutive_failures += 1
+        self.total_failures += 1
         if self.consecutive_failures == 3:
             self.eliminated = True
 
@@ -182,6 +183,7 @@ class HighJumpCompetition(object):
             raise RuleViolation("The bar can only go up, except in a jump-off")
         self.heights.append(new_height)
         self.bar_height = new_height
+        self.actions.append(('set_bar_height', new_height))
 
     def cleared(self, bib):
         "Record a successful jump"
@@ -212,7 +214,7 @@ class HighJumpCompetition(object):
                 remaining += 1
         return remaining
 
-    def _rank(self, verbose=True):
+    def _rank(self, verbose=False):
         "Determine who is winning"
 
         # sort them
@@ -221,6 +223,7 @@ class HighJumpCompetition(object):
             key = j.ranking_key()
             sorter.append((key, j))
         sorter.sort()
+        if verbose: print 'sorted sorter', sorter
 
         prev_key = None
         prev_jumper = None
@@ -310,10 +313,6 @@ class HighJumpCompetition(object):
                             self.retired(bib)
                         else:
                             raise RuleViolation("Unknown jump result code '%s'" % result)
-
-
-
-
 
         return self
 

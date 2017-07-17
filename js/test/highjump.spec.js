@@ -59,8 +59,8 @@ describe('Given an instance of Athlib.HighJumpCompetition', function(){
     it("'expect highest cleared=0",()=>{
         expect(jake_field.highestCleared).to.be.equal(0);
         });
-    it("'jake_field expect ['xxx']",()=>{
-        expect(c._compareKeys(j.attemptsByHeight,['xxx'])).to.be.equal(0);
+    it("jake_field expect ['xxx']",()=>{
+        expect(c._compareKeys(jake_field.attemptsByHeight,['xxx'])).to.be.equal(0);
         });
     it("'jake_field eliminated true",()=>{
         expect(jake_field.eliminated).to.be.equal(true);
@@ -94,6 +94,7 @@ describe('Given an instance of Athlib.HighJumpCompetition', function(){
   describe('Test replay to jumpoff',function(){
 		// Run through to where the jumpoff began - ninth bar position
 		const c = Athlib.HighJumpCompetition.fromMatrix(ESAA_2015_HJ,9);
+		c._rank();
 
 		// see who is winning
 		const maslen = c.jumpersByBib['85'];

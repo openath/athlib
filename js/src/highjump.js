@@ -74,6 +74,7 @@ function Jumper(kwds) {
       if (cur.length>3) throw new Error('More than 3 attempts at height');
       this.failuresAtHeight += 1;
       this.consecutiveFailures += 1;
+      this.totalFailures += 1;
       if (this.consecutiveFailures===3) this.eliminated=true;
     },
 
@@ -129,34 +130,36 @@ function HighJumpCompetition() {
       this.actions[this.actions.length]=['addJumper', kwds];
     },
 
-    setBarHeight(newHeight) {
+    setBarHeight(_newHeight) {
+      const newHeight = isNaN(_newHeight) ? parseFloat(_newHeight) : _newHeight;
       const prevHeight = this.heights.length ? this.heights[this.heights.length-1] : 0;
       if ((!this.inJumpOff)  && (prevHeight >= newHeight)) {
         throw new Error('The bar can only go up, except in a jump-off');
       }
       this.heights[this.heights.length] = newHeight;
       this.barHeight = newHeight;
+      this.actions.push(['setBarHeight', newHeight]);
     },
 
     cleared(bib) {
       // Record a successful jump
       const jumper = this.jumpersByBib[bib];
       jumper.cleared(this.heights.length, this.barHeight);
-      this.actions[this.actions.length] = ['cleared', bib];
+      this.actions.push(['cleared', bib]);
     },
 
     failed(bib) {
       // Record a failed jump. Throws Error if out of order
       const jumper = this.jumpersByBib[bib];
       jumper.failed(this.heights.length, this.barHeight);
-      this.actions[this.actions.length] = ['failed', bib];
+      this.actions.push(['failed', bib]);
     },
 
     retired(bib) {
       // Record a failed jump. Throws Error if out of order
       const jumper = this.jumpersByBib[bib];
       jumper.retired(this.heights.length, this.barHeight);
-      this.actions[this.actions.length] = ['retired', bib];
+      this.actions.push(['retired', bib]);
     },
 
     remaining() {
@@ -166,41 +169,31 @@ function HighJumpCompetition() {
       return remaining;
     },
 
-    _compareSorterKeys(a, b) {
-      // a & b are of the form [[x,y,z],jumper]
-      // we only compare the [[x,y,z in order]
-      return this.compare_keys(a[0], b[0]);
-    },
     _compareKeys(a, b) {
-      for (let i; i<a.length; i++) {
+      for (let i=0; i<a.length; i++) {
         if (a[i]===b[i]) continue;
-        return (a[i]-0)<(b[i]-0) ? -1 : +1;
+        return a[i]<b[i] ? -1 : 1;
       }
       return 0;
     },
 
-    _rank(quite) {
+    _rank() {
       // Determine who is winning
       // sort them
-      let i;
-      let j;
-      let k;
       const sorter=[];
-      const cmpkeys=this._compareKeys;
-      for (i=0; i<this.rankedJumpers.length; i++) {
-        sorter[i] = [j.ranking_key(), j];
-      }
-      sorter.sort(this._compareSorterKeys)
+      const cmpKeys=this._compareKeys;
+      this.rankedJumpers.map((j) => {sorter.push([j.rankingKey(), j])});
+      sorter.sort((a, b) => cmpKeys(a[0], b[0]));
 
       let pk=null;
       let pj=null;
-      for (i=0; i<sorter.length; i++) {
-        k=sorter[i][0];
-        j=sorter[i][1];
+      for (let i=0; i<sorter.length; i++) {
+        const k=sorter[i][0];
+        const j=sorter[i][1];
         if (i===0) {
           j.place = 1
         } else {
-          j.place = (cmpkeys(pk, k) ? pj.place : i+1)
+          j.place = (cmpKeys(pk, k)===0? pj.place : i+1)
         }
         pk = k
         pj = j
@@ -225,8 +218,8 @@ function HighJumpCompetition() {
       const unordered = [];
       let highest = 0;
       objs.map((o) => {
-        if ('order'in o) {
-          highest = Math.max(highest, o.order);
+        if ('order' in o) {
+          if (o.order>highest) highest = o.order;
         } else {
           unordered.push(o);
         }
@@ -270,16 +263,17 @@ HighJumpCompetition.fromMatrix = function fromMatrix(matrix, toNthHeight) {
     const txt = headers[colNo];
     if (c._looksLikeHeight(txt)) {
       heights.push(parseFloat(txt));
-      headers[colNo] = `h${colNo}`;
+      headers[colNo] = `h${heights.length}`;
     }
   }
   const objs = [];
-  for (let rowNo=1; rowNo<matrix.length; rowNo+=1) {
+  for (let rowNo=1; rowNo<matrix.length; rowNo++) {
     const row = matrix[rowNo];
     const ob = {};
     for (let j=0; j<headers.length; j++) {
       const key = headers[j];
       let value = row[j];
+      if (typeof value==='undefined') continue;
       if (key==='bib') value = `${value}`;
       ob[key] = value;
     }
