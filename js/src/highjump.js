@@ -308,13 +308,21 @@ HighJumpCompetition.fromMatrix = function fromMatrix(matrix, toNthHeight) {
         if (!attempts) attempts='';
         if (attempts.length > a) {
           const result = attempts[a];
-          if (result==='o') c.cleared(bib);
-          else {
-            if (result==='x') c.failed(bib);
-            else {
-              if (result==='r') c.retired(bib);
-              else throw Error(`Unknown jump result code \'${result}\'`);
-            }
+          switch (result) {
+            case 'o': 
+              c.cleared(bib);
+              break;
+            case 'x':
+              c.failed(bib);
+              break;
+            case 'r':
+              c.retired(bib);
+              break;
+            case '-':
+              // often, this is pasted to indicate an explicit 'pass'
+              break;
+            default:
+              throw Error(`Unknown jump result code \'${result}\'`);
           }
         }
       }
