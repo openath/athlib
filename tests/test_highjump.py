@@ -22,9 +22,22 @@ ESAA_2015_HJ = [
         "xxx"],
     ["1", 4, '53', "William", "Grimsey", "Midd", "SB",
         "", "", "", "o", "o", "o", "o", "o", "xxx", "x", "o", "x", "o", "x"],
-    ["1", 5, '81', "Rory", "Dwyer", "Warks",
-        "SB", "", "", "", "o", "o", "o", "o", "o", "xxx", "x", "o", "x", "o", "x"]
-]
+    ["1", 5, '81', "Rory", "Dwyer", "Warks", "SB",
+        "", "", "", "o", "o", "o", "o", "o", "xxx", "x", "o", "x", "o", "x"]
+    ]
+_1066 = [
+    #based on above, but we have a winner
+    ["place", "order", "bib", "first_name", "last_name", "team", "category",
+        "1.81", "1.86", "1.91", "1.97", "2.00", "2.03", "2.06", "2.09", "2.12", "2.12", "2.10", "2.12", "2.10", "2.12", "2.11"],
+    ["", 1, '85', "Dafydd", "Briton", "WYork", "SB",
+        "o", "o", "o", "xo", "xxx"],
+    ["", 2, '77', "Jake", "Saxon", "Surrey", "SB",
+        "xxx"],
+    ["1", 4, '53', "William", "Norman", "Midd", "SB",
+        "", "", "", "o", "o", "o", "o", "o", "xxx", "x", "o", "x", "o", "x", "x"],
+    ["1", 5, '81', "Harald", "England", "Warks", "SB",
+        "", "", "", "o", "o", "o", "o", "o", "xxx", "x", "o", "x", "o", "x", "o"]
+    ]
 
 
 RIO_MENS_HJ = [  # pasted from Wikipedia
@@ -45,9 +58,6 @@ RIO_MENS_HJ = [  # pasted from Wikipedia
     ["14", 14, 2297, "Jaroslav", "Bába", "CZE", "M", "o", "xxx", "", "", "", "", "", 2.2, ""],
     ["15", 2, 2052, "Brandon", "Starc", "AUS", "M", "xo", "xxx", "", "", "", "", "", 2.2, ""]
 ]
-
-
-
 
 class HighJumpTests(TestCase):
 
@@ -109,7 +119,52 @@ class HighJumpTests(TestCase):
         # print grimsey.consecutive_failures
         # print grimsey.attempts_by_height
         # if not for jump-off rules, it would be game over
-        self.assertEquals(c.remaining(), 0)
+        self.assertEquals(len(c.remaining), 2)
+        self.assertEquals(c.state, 'jumpoff')
+
+    def test_replay_through_jumpoff(self):
+        "Run through a jumpoff to the final winner"
+        c = HighJumpCompetition.from_matrix(ESAA_2015_HJ)
+        self.assertRaises(RuleViolation,c.failed,'53')
+
+        # see who is winning
+        maslen = c.jumpers_by_bib['85']
+        field = c.jumpers_by_bib['77']
+        grimsey = c.jumpers_by_bib['53']
+        dwyer = c.jumpers_by_bib['81']
+
+        self.assertEquals(field.place, 4)
+        self.assertEquals(maslen.place, 3)
+
+        self.assertEquals(grimsey.place, 1)
+        self.assertEquals(dwyer.place, 1)
+
+        self.assertEquals(len(c.remaining), 2)
+        self.assertEquals(c.state, 'jumpoff')
+
+    def test_replay_jumpoff_and_finish(self):
+        "Run through a jumpoff to the final winner"
+        c = HighJumpCompetition.from_matrix(_1066)
+        self.assertRaises(RuleViolation,c.failed,'53')
+        self.assertRaises(RuleViolation,c.failed,'81')
+
+        # see who is winning
+        briton = c.jumpers_by_bib['85']
+        saxon = c.jumpers_by_bib['77']
+        norman = c.jumpers_by_bib['53']
+        england = c.jumpers_by_bib['81']
+
+        self.assertEquals(saxon.place, 4)
+        self.assertEquals(briton.place, 3)
+
+        self.assertEquals(norman.place, 2)
+        self.assertEquals(england.place, 1)
+
+        self.assertEquals(len(c.remaining), 1)
+        self.assertEquals(c.state, 'finished')
+        self.assertEquals(england.highest_cleared, Decimal("2.11"))
+
+        self.assertRaises(RuleViolation,c.set_bar_height, Decimal("2.12"))
 
     def test_score_olympic_final(self):
         "Do we get the same results as the Olympics?"

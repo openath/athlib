@@ -14,6 +14,20 @@ var ESAA_2015_HJ = [
     ["1", 5, 81, "Rory", "Dwyer", "Warks",     "SB", "", "", "", "o", "o", "o", "o", "o", "xxx", "x", "o", "x", "o", "x"]
     ];
 
+var _1066 = [
+	// based on above, but we have a winner
+	["place", "order", "bib", "first_name", "last_name", "team", "category",
+		"1.81", "1.86", "1.91", "1.97", "2.00", "2.03", "2.06", "2.09", "2.12", "2.12", "2.10", "2.12", "2.10", "2.12", "2.11"],
+	["", 1, '85', "Dafydd", "Briton", "WYork", "SB",
+		"o",    "o",    "o",    "xo",   "xxx"],
+	["", 2, '77', "Jake", "Saxon", "Surrey", "SB",
+		"xxx"],
+	["1", 4, '53', "William", "Norman", "Midd", "SB",
+    "", "", "", "o", "o", "o", "o", "o", "xxx", "x", "o", "x", "o", "x", "x"],
+	["1", 5, '81', "Harald", "England", "Warks", "SB",
+    "", "", "", "o", "o", "o", "o", "o", "xxx", "x", "o", "x", "o", "x", "o"]
+	];
+
 var RIO_MENS_HJ = [  // pasted from Wikipedia
     ["place", "order", "bib", "first_name", "last_name", "team", "category", "2.20", "2.25", "2.29", "2.33", "2.36", "2.38", "2.40", "best", "note"],
     ["1", 7, 2197, "Derek", "Drouin", "CAN", "M", "o", "o", "o", "o", "o", "o", "x", 2.38, ""],
@@ -124,7 +138,83 @@ describe('Given an instance of Athlib.HighJumpCompetition', function(){
 		it("maslen.place == 3",()=>{expect(maslen.place).to.be.equal(3)});
 		it("grimsey.place == 1",()=>{expect(grimsey.place).to.be.equal(1)});
 		it("dwyer.place == 1",()=>{expect(dwyer.place).to.be.equal(1)});
-		it("c.remaining() == 0",()=>{expect(c.remaining()).to.be.equal(0)});
+		it("c.remaining.length == 2",()=>{expect(c.remaining.length).to.be.equal(2)});
+		it("c.state == jumpoff",()=>{expect(c.state).to.be.equal('jumpoff')});
+    });
+  describe('Test replay through jumpoff',function(){
+		// Run through to where the jumpoff began - ninth bar position
+		const c = Athlib.HighJumpCompetition.fromMatrix(ESAA_2015_HJ);
+    it("53 is not allowed to jump again",()=>{
+        var r=0,e;
+        try{
+            c.failed('53');
+            }
+        catch(e){
+            r=1;
+            }
+        expect(r).to.be.equal(1);
+        });
+
+		// see who is winning
+		const maslen = c.jumpersByBib['85'];
+		const field = c.jumpersByBib['77'];
+		const grimsey = c.jumpersByBib['53'];
+		const dwyer = c.jumpersByBib['81'];
+
+		it("field.place == 4",()=>{expect(field.place).to.be.equal(4)});
+		it("maslen.place == 3",()=>{expect(maslen.place).to.be.equal(3)});
+		it("grimsey.place == 1",()=>{expect(grimsey.place).to.be.equal(1)});
+		it("dwyer.place == 1",()=>{expect(dwyer.place).to.be.equal(1)});
+		it("c.remaining.length == 2",()=>{expect(c.remaining.length).to.be.equal(2)});
+		it("c.state == jumpoff",()=>{expect(c.state).to.be.equal('jumpoff')});
+    });
+  describe('Test replay jumpoff and finish',function(){
+		// Run through to where the jumpoff began - ninth bar position
+		const c = Athlib.HighJumpCompetition.fromMatrix(_1066);
+    it("53 is not allowed to jump again",()=>{
+        var r=0,e;
+        try{
+            c.failed('53');
+            }
+        catch(e){
+            r=1;
+            }
+        expect(r).to.be.equal(1);
+        });
+    it("81 is not allowed to jump again",()=>{
+        var r=0,e;
+        try{
+            c.failed('81');
+            }
+        catch(e){
+            r=1;
+            }
+        expect(r).to.be.equal(1);
+        });
+
+		// see who is winning
+		const briton = c.jumpersByBib['85'];
+		const saxon = c.jumpersByBib['77'];
+		const norman = c.jumpersByBib['53'];
+		const england = c.jumpersByBib['81'];
+
+		it("saxon.place == 4",()=>{expect(saxon.place).to.be.equal(4)});
+		it("briton.place == 3",()=>{expect(briton.place).to.be.equal(3)});
+		it("norman.place == 2",()=>{expect(norman.place).to.be.equal(2)});
+		it("england.place == 1",()=>{expect(england.place).to.be.equal(1)});
+		it("c.remaining.length == 1",()=>{expect(c.remaining.length).to.be.equal(1)});
+		it("c.state == won",()=>{expect(c.state).to.be.equal('finished')});
+    it("england.highestCleared == 2.11",()=>england.highestCleared==2.11);
+
+		it("can't set height 2.12 in finished competition",() => {
+        var r=0, e;
+        try {
+          c.setBarHeight(2.12);
+        } catch(e) {
+         r=1;
+        }
+       return r===1;
+      });
     });
   describe('Reproduce Rio Olympic results',function(){
         // Run through to where the jumpoff began - ninth bar position

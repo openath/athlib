@@ -10,10 +10,10 @@ function Jumper(kwds) {
       // list of strings containing '', 'o', 'xo', 'xxo', 'xxx', 'x', 'xx'
       this.attemptsByHeight = [];
       this.highestCleared = 0;
-      this.failuresAtHeight = 0;
-      this.consecutiveFailures = 0;
+      this.highestClearedIndex = -1
       this.totalFailures = 0;
       this.eliminated = false;  // still in the competition?
+      this.roundLim = 3;
       const defaults = [
         'first_name', 'unknown',
         'last_name', 'athlete',
@@ -21,6 +21,7 @@ function Jumper(kwds) {
         'team', 'GUEST',
         'gender', 'M',  // sexist but valid
         'category', 'OPEN',
+        'order', 1,
       ];
 
       const options = _options || {};
@@ -33,18 +34,26 @@ function Jumper(kwds) {
       }
     },
 
-    _setJumpArray(heightCount) {
-      const atts = this.attemptsByHeight;
+    _setJumpArray(heightCount, label) {
+      if (this.eliminated) {
+        throw new Error(`Cannot ${label ? label : 'jump'} after being eliminated`);
+      }
       // Ensure they have one string for each height in the competition
       // Jumpers can miss out heights.
       if (heightCount<=0) throw new Error('Start at height number 1, not 0');
       // they may have skipped some, pas with empty strings
+      const atts = this.attemptsByHeight;
       while (atts.length < heightCount) atts[atts.length] = '';
+      if (this.attemptsByHeight[this.attemptsByHeight.length-1].length > this.roundLim-1) {
+        throw new Error(`Can attempt a maximum of ${this.roundLim} times`)
+      }
     },
 
     rankingKey() {
       // Return a sort key to determine who is winning"""
-      return [-this.highestCleared, this.failuresAtHeight, this.totalFailures];
+      const x = this.highestClearedIndex;
+      const failuresAtHeight = x<0 ? 4 : (this.attemptsByHeight[x].split('x').length-1);
+      return [-this.highestCleared, failuresAtHeight, this.totalFailures];
     },
 
     cleared(heightCount, height) {
@@ -53,13 +62,10 @@ function Jumper(kwds) {
       if (this.eliminated) throw new Error('Cannot jump after being eliminated');
       this._setJumpArray(heightCount);
       // Holds their pattern of 'o' and 'x'
-      let cur = this.attemptsByHeight[this.attemptsByHeight.length-1];
-      cur += 'o';
-      this.attemptsByHeight[this.attemptsByHeight.length-1] = cur;
-      if (cur.length > 3) throw new Error(`Can attempt a maximum of ${cur.length} times`);
+      const n = this.attemptsByHeight.length-1;
+      this.attemptsByHeight[n] += 'o';
       this.highestCleared = height;
-      this.failuresAtHeight = 0;
-      this.consecutiveFailures = 0;
+      this.highestClearedIndex = n;
     },
 
     failed(heightCount, height) {
@@ -68,26 +74,18 @@ function Jumper(kwds) {
       this._setJumpArray(heightCount);
 
       // Holds their pattern of 'o' and 'x'
-      let cur = this.attemptsByHeight[this.attemptsByHeight.length-1];
-      cur += 'x';
-      this.attemptsByHeight[this.attemptsByHeight.length-1] = cur;
-      if (cur.length>3) throw new Error('More than 3 attempts at height');
-      this.failuresAtHeight += 1;
-      this.consecutiveFailures += 1;
+      const n = this.attemptsByHeight.length-1;
+      this.attemptsByHeight[n] += 'x';
       this.totalFailures += 1;
-      if (this.consecutiveFailures===3) this.eliminated=true;
+      if ((this.attemptsByHeight[n].split('x').length-1)===this.roundLim) this.eliminated=true;
     },
 
     retired(heightCount, height) {
       // Competitor had enough, or pulls out injured
-      if (this.eliminated) throw new Error('Cannot retire after being eliminated');
-      this._setJumpArray(heightCount);
+      this._setJumpArray(heightCount, 'retire');
       // Holds their pattern of 'o' and 'x'
-      const atts = this.attemptsByHeight;
-      let cur = atts[atts.length-1];
-      cur += 'r';
-      this.attemptsByHeight[this.attemptsByHeight.length-1] = cur;
-      if (cur.length>3) throw new Error('More than 3 attempts at height');
+      const n = this.attemptsByHeight.length-1;
+      this.attemptsByHeight[n] += 'r';
       this.eliminated = true;
     },
     displayHeight() {
@@ -113,12 +111,16 @@ function HighJumpCompetition() {
       this.heights = [];  // sequence of heights so far
       this.inJumpOff = false;
       this.actions = [];  // log for replay purposes.
+      this.state = 'scheduled';
     },
 
     addJumper(kwds) {
       // Add one more person to the competition
       // Normally we add them first, but can arrive mid-competition.
       // If so, they are in last place until they clear a height.
+      if (this.state!=='scheduled') {
+        throw new Error(`Cannot add jumpers in competition state ${this.state}`)
+      }
       const j = Jumper(kwds);
       j.place = this.jumpers.length + 1;
 
@@ -131,9 +133,14 @@ function HighJumpCompetition() {
     },
 
     setBarHeight(_newHeight) {
+      if (this.state==='scheduled') this.state = 'started';
+      else if (this.state!=='started' && this.state!=='jumpoff' && this.state!=='won') {
+        throw new Error(`Bar height cannot be set in a ${this.state} competition!`);
+      }
+
       const newHeight = isNaN(_newHeight) ? parseFloat(_newHeight) : _newHeight;
       const prevHeight = this.heights.length ? this.heights[this.heights.length-1] : 0;
-      if ((!this.inJumpOff)  && (prevHeight >= newHeight)) {
+      if ((this.state!=='jumpoff')  && (prevHeight >= newHeight)) {
         throw new Error('The bar can only go up, except in a jump-off');
       }
       this.heights[this.heights.length] = newHeight;
@@ -141,9 +148,25 @@ function HighJumpCompetition() {
       this.actions.push(['setBarHeight', newHeight]);
     },
 
+    checkStarted(bib, _label) {
+      const jumper = this.jumpersByBib[bib];
+      const state = this.state;
+      if (state!=='started' && state!=='jumpoff') {
+        const label = _label ? _label : 'jumping';
+        if (state==='won') {
+          if (jumper.place!==1) {
+            throw new Error(`The competition has been won and ${label} is not allowed!`);
+          }
+        } else if (state==='finished') {
+          throw new Error(`The competition has finished and ${label} is not allowed!`);
+        } else throw new Error('The competition has not been started yet!')
+      }
+      return jumper;
+    },
+
     cleared(bib) {
       // Record a successful jump
-      const jumper = this.jumpersByBib[bib];
+      const jumper = this.checkStarted(bib);
       jumper.cleared(this.heights.length, this.barHeight);
       this._rank()
       this.actions.push(['cleared', bib]);
@@ -151,7 +174,7 @@ function HighJumpCompetition() {
 
     failed(bib) {
       // Record a failed jump. Throws Error if out of order
-      const jumper = this.jumpersByBib[bib];
+      const jumper = this.checkStarted(bib);
       jumper.failed(this.heights.length, this.barHeight);
       this._rank()
       this.actions.push(['failed', bib]);
@@ -159,17 +182,22 @@ function HighJumpCompetition() {
 
     retired(bib) {
       // Record a failed jump. Throws Error if out of order
-      const jumper = this.jumpersByBib[bib];
+      const jumper = this.checkStarted(bib, 'retiring');
       jumper.retired(this.heights.length, this.barHeight);
       this._rank()
       this.actions.push(['retired', bib]);
     },
 
-    remaining() {
-      // How many are left in the competition?
-      let remaining = 0;
-      for (let j; j<=this.jumpers.length; j++) if (!j.eliminated) remaining += 1;
-      return remaining;
+    get remaining() {
+      const r = [];
+      this.jumpers.forEach((j) => {if (!j.eliminated) r.push(j)});
+      return r;
+    },
+
+    get eliminated() {
+      const r = [];
+      this.jumpers.forEach((j) => {if (j.eliminated) r.push(j)});
+      return r;
     },
 
     _compareKeys(a, b) {
@@ -185,7 +213,7 @@ function HighJumpCompetition() {
       // sort them
       const sorter=[];
       const cmpKeys=this._compareKeys;
-      this.rankedJumpers.map((j) => {sorter.push([j.rankingKey(), j])});
+      this.rankedJumpers.forEach((j) => {sorter.push([j.rankingKey(), j])});
       sorter.sort((a, b) => cmpKeys(a[0], b[0]));
 
       let pk=null;
@@ -201,6 +229,19 @@ function HighJumpCompetition() {
         pk = k
         pj = j
         this.rankedJumpers[i] = j;
+      }
+      const remj = this.remaining;
+      if (remj.length===0) {
+        const rankj = this.rankedJumpers;
+        if (rankj.length>1 && rankj[1].place===1) {
+          this.state = 'jumpoff';
+          rankj.forEach((_j) => {const j=_j; if (j.place===1) {j.roundLim=1; j.eliminated=false}});
+        } else this.state = 'finished';
+      } else if (remj.length===1 && (1+this.eliminated.length)===this.jumpers.length) {
+        const a = remj[0].attemptsByHeight;
+        if (a.length===this.heights.length && a[a.length-1].split('o').length>=2) {
+          this.state = this.state==='started' ? 'won' : 'finished';
+        }
       }
     },
 
@@ -220,7 +261,7 @@ function HighJumpCompetition() {
       // If partially present, respect ordered ones first and place others after
       const unordered = [];
       let highest = 0;
-      objs.map((o) => {
+      objs.forEach((o) => {
         if ('order' in o) {
           if (o.order>highest) highest = o.order;
         } else {
@@ -291,7 +332,7 @@ HighJumpCompetition.fromMatrix = function fromMatrix(matrix, toNthHeight) {
     if (la===lb) return 0; return la<lb?-1:+1;
   });
 
-  objs.map((o) => {c.addJumper(o)});
+  objs.forEach((o) => {c.addJumper(o)});
 
   const n = !toNthHeight ? heights.length : toNthHeight - 0;
   for (let i=0; i<n; i++) {
