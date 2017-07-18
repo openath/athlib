@@ -11,7 +11,6 @@ module.exports = function getConfig(options){
 
   var isProd = (options.BUILD_ENV || process.env.BUILD_ENV) === 'PROD';
   var isWeb = (options.TARGET_ENV || process.env.TARGET_ENV) === 'WEB';
-  isProd = false;
 
   // get library details from JSON config
   var libraryDesc = require('./package.json').library;
