@@ -50,7 +50,7 @@ function Jumper(kwds) {
       }
     },
 
-    rankingKey() {
+    get rankingKey() {
       // Return a sort key to determine who is winning"""
       const x = this.highestClearedIndex;
       const failuresAtHeight = x<0 ? 4 : (this.attemptsByHeight[x].split('x').length-1);
@@ -216,7 +216,7 @@ function HighJumpCompetition() {
       // sort them
       const sorter=[];
       const cmpKeys=this._compareKeys;
-      this.rankedJumpers.forEach((j) => {sorter.push([j.rankingKey(), j])});
+      this.rankedJumpers.forEach((j) => {sorter.push([j.rankingKey, j])});
       sorter.sort((a, b) => cmpKeys(a[0], b[0]));
 
       let pk=null;

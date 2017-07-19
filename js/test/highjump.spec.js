@@ -141,7 +141,7 @@ describe('Given an instance of Athlib.HighJumpCompetition', function(){
 		it("c.remaining.length == 2",()=>{expect(c.remaining.length).to.be.equal(2)});
 		it("c.state == jumpoff",()=>{expect(c.state).to.be.equal('jumpoff')});
     });
-  describe('Test replay through jumpoff',function(){
+  describe('Test replay through jumpoff to draw',function(){
 		// Run through to where the jumpoff began - ninth bar position
 		const c = Athlib.HighJumpCompetition.fromMatrix(ESAA_2015_HJ);
     it("53 is not allowed to jump again",()=>{
@@ -168,7 +168,7 @@ describe('Given an instance of Athlib.HighJumpCompetition', function(){
 		it("c.remaining.length == 2",()=>{expect(c.remaining.length).to.be.equal(2)});
 		it("c.state == jumpoff",()=>{expect(c.state).to.be.equal('jumpoff')});
     });
-  describe('Test replay jumpoff and finish',function(){
+  describe('Test replay through jumpoff to final winner',function(){
 		// Run through to where the jumpoff began - ninth bar position
 		const c = Athlib.HighJumpCompetition.fromMatrix(_1066);
     it("53 is not allowed to jump again",()=>{
@@ -215,6 +215,92 @@ describe('Given an instance of Athlib.HighJumpCompetition', function(){
         }
        return r===1;
       });
+    });
+  describe('Test countback to tie',function(){
+		// Run through to where the jumpoff began - ninth bar position
+		const c = Athlib.HighJumpCompetition.fromMatrix(
+				[
+				["place", "order", "bib", "first_name", "last_name", "2.06", "2.08", "2.10", "2.12", "2.14"],
+				["",	  1,	   'A',  "Harald", "England",		 "o",	 "o",	 "xo",	 "xo",	 "xxx"],
+				["",	  2,	   'B',  "William", "Norman",		 "o",	 "o",	 "o",	 "xxo",  "xxx"],
+				]
+			);
+    it("A is not allowed to jump again",()=>{
+        var r=0,e;
+        try{
+            c.failed('A');
+            }
+        catch(e){
+            r=1;
+            }
+        expect(r).to.be.equal(1);
+        });
+    it("81 is not allowed to jump again",()=>{
+        var r=0,e;
+        try{
+            c.failed('B');
+            }
+        catch(e){
+            r=1;
+            }
+        expect(r).to.be.equal(1);
+        });
+
+		// see who is winning
+		const A = c.jumpersByBib['A'];
+		const B = c.jumpersByBib['B'];
+
+	it("A.place == 1",()=>{expect(A.place).to.be.equal(1)});
+	it("B.place == 2",()=>{expect(B.place).to.be.equal(2)});
+	it("c.remaining.length == 0",()=>{expect(c.remaining.length).to.be.equal(0)});
+	it("c.state == won",()=>{expect(c.state).to.be.equal('finished')});
+    it("A.highestCleared == 2.12",()=>A.highestCleared==2.12);
+    it("B.highestCleared == 2.12",()=>B.highestCleared==2.12);
+	it("A.rankingKey == [-2.12, 1, 5]",()=>c._compareKeys(A.rankingKey,[-2.12, 1, 5])===0);
+	it("B.rankingKey == [-2.12, 2, 5]",()=>c._compareKeys(B.rankingKey,[-2.12, 2, 5])===0);
+    });
+  describe('Test countback to total failures',function(){
+		// Run through to where the jumpoff began - ninth bar position
+		const c = Athlib.HighJumpCompetition.fromMatrix(
+				[
+				["place", "order", "bib", "first_name", "last_name", "2.06", "2.08", "2.10", "2.12", "2.14"],
+				["",	  1,	   'A',  "Harald", "England",		 "o",	 "o",	 "xo",	 "xo",	 "xxx"],
+				["",	  2,	   'B',  "William", "Norman",		 "o",	 "xo",	 "xo",	 "xo",   "xxx"],
+				]
+			);
+    it("A is not allowed to jump again",()=>{
+        var r=0,e;
+        try{
+            c.failed('A');
+            }
+        catch(e){
+            r=1;
+            }
+        expect(r).to.be.equal(1);
+        });
+    it("81 is not allowed to jump again",()=>{
+        var r=0,e;
+        try{
+            c.failed('B');
+            }
+        catch(e){
+            r=1;
+            }
+        expect(r).to.be.equal(1);
+        });
+
+		// see who is winning
+		const A = c.jumpersByBib['A'];
+		const B = c.jumpersByBib['B'];
+
+	it("A.place == 1",()=>{expect(A.place).to.be.equal(1)});
+	it("B.place == 2",()=>{expect(B.place).to.be.equal(2)});
+	it("c.remaining.length == 0",()=>{expect(c.remaining.length).to.be.equal(0)});
+	it("c.state == won",()=>{expect(c.state).to.be.equal('finished')});
+    it("A.highestCleared == 2.12",()=>A.highestCleared==2.12);
+    it("B.highestCleared == 2.12",()=>B.highestCleared==2.12);
+	it("A.rankingKey == [-2.12, 1, 5]",()=>c._compareKeys(A.rankingKey,[-2.12, 1, 5])===0);
+	it("B.rankingKey == [-2.12, 1, 6]",()=>c._compareKeys(B.rankingKey,[-2.12, 1, 6])===0);
     });
   describe('Reproduce Rio Olympic results',function(){
         // Run through to where the jumpoff began - ninth bar position

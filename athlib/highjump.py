@@ -70,6 +70,7 @@ class Jumper(object):
         if len(self.attempts_by_height[-1]) > self.round_lim-1:
             raise RuleViolation("Can attempt a maximum of %d times" % self.round_lim)
 
+    @property
     def ranking_key(self):
         """Return a sort key to determine who is winning"""
         x = self.highest_cleared_index
@@ -211,10 +212,7 @@ class HighJumpCompetition(object):
         "Determine who is winning"
 
         # sort them
-        sorter = []
-        for j in self.ranked_jumpers:
-            key = j.ranking_key()
-            sorter.append((key, j))
+        sorter = [(j.ranking_key, j) for j in self.ranked_jumpers]
         sorter.sort()
         if verbose: print 'sorted sorter', sorter
 
@@ -358,5 +356,5 @@ class HighJumpCompetition(object):
     def print_ranking(self):
         "Debugging utility to show who's leading at a point in time"
         for r in self.ranked_jumpers:
-            print r.place, r.bib, r.first_name, r.last_name, r.ranking_key()
+            print r.place, r.bib, r.first_name, r.last_name, r.ranking_key
 

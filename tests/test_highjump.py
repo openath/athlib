@@ -123,7 +123,7 @@ class HighJumpTests(TestCase):
         self.assertEquals(c.state, 'jumpoff')
 
     def test_replay_through_jumpoff(self):
-        "Run through a jumpoff to the final winner"
+        "Run through a jumpoff to a draw"
         c = HighJumpCompetition.from_matrix(ESAA_2015_HJ)
         self.assertRaises(RuleViolation,c.failed,'53')
 
@@ -165,6 +165,54 @@ class HighJumpTests(TestCase):
         self.assertEquals(england.highest_cleared, Decimal("2.11"))
 
         self.assertRaises(RuleViolation,c.set_bar_height, Decimal("2.12"))
+
+    def test_countback_to_tie(self):
+        "Run both fail, but tie countback wins"
+        c = HighJumpCompetition.from_matrix(
+                [
+                ["place", "order", "bib", "first_name", "last_name", "2.06", "2.08", "2.10", "2.12", "2.14"],
+                ["",      1,       'A',  "Harald", "England",        "o",    "o",    "xo",   "xo",   "xxx"],
+                ["",      2,       'B',  "William", "Norman",        "o",    "o",    "o",    "xxo",  "xxx"],
+                ]
+                )
+        self.assertRaises(RuleViolation,c.failed,'A')
+        self.assertRaises(RuleViolation,c.failed,'B')
+
+        # see who is winning
+        A = c.jumpers_by_bib['A']
+        B = c.jumpers_by_bib['B']
+        self.assertEquals(A.place, 1)
+        self.assertEquals(B.place, 2)
+        self.assertEquals(len(c.remaining), 0)
+        self.assertEquals(c.state, 'finished')
+        self.assertEquals(A.highest_cleared, Decimal("2.12"))
+        self.assertEquals(B.highest_cleared, Decimal("2.12"))
+        self.assertEquals(A.ranking_key,(Decimal('-2.12'), 1, 5))
+        self.assertEquals(B.ranking_key,(Decimal('-2.12'), 2, 5))
+
+    def test_countback_to_total_failures(self):
+        "Run both fail, but tie countback wins"
+        c = HighJumpCompetition.from_matrix(
+                [
+                ["place", "order", "bib", "first_name", "last_name", "2.06", "2.08", "2.10", "2.12", "2.14"],
+                ["",      1,       'A',  "Harald", "England",        "o",    "o",    "xo",   "xo",   "xxx"],
+                ["",      2,       'B',  "William", "Norman",        "o",    "xo",   "xo",   "xo",  "xxx"],
+                ]
+                )
+        self.assertRaises(RuleViolation,c.failed,'A')
+        self.assertRaises(RuleViolation,c.failed,'B')
+
+        # see who is winning
+        A = c.jumpers_by_bib['A']
+        B = c.jumpers_by_bib['B']
+        self.assertEquals(A.place, 1)
+        self.assertEquals(B.place, 2)
+        self.assertEquals(len(c.remaining), 0)
+        self.assertEquals(c.state, 'finished')
+        self.assertEquals(A.highest_cleared, Decimal("2.12"))
+        self.assertEquals(B.highest_cleared, Decimal("2.12"))
+        self.assertEquals(A.ranking_key,(Decimal('-2.12'), 1, 5))
+        self.assertEquals(B.ranking_key,(Decimal('-2.12'), 1, 6))
 
     def test_score_olympic_final(self):
         "Do we get the same results as the Olympics?"
