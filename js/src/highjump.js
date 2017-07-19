@@ -91,9 +91,6 @@ function Jumper(kwds) {
       this.attemptsByHeight[n] += 'r';
       this.eliminated = true;
     },
-    displayHeight() {
-      return parseFloat(Math.round(this.height * 100) / 100).toFixed(2);
-    },
   }
   obj.__init__(kwds);
   return obj;
