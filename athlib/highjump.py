@@ -23,8 +23,8 @@ ESAA_2015_HJ = [
         "SB", "", "", "", "o", "o", "o", "o", "o", "xxx", "x", "o", "x", "o", "x"]
 ]
 """
+from __future__ import print_function
 from decimal import Decimal
-
 from .exceptions import RuleViolation
 
 class Jumper(object):
@@ -213,8 +213,8 @@ class HighJumpCompetition(object):
 
         # sort them
         sorter = [(j.ranking_key, j) for j in self.ranked_jumpers]
-        sorter.sort()
-        if verbose: print 'sorted sorter', sorter
+        sorter.sort(key=lambda s: s[0]) # python3 Jumpers won't sort
+        if verbose: print('sorted sorter', sorter)
 
         prev_key = None
         prev_jumper = None
@@ -301,7 +301,7 @@ class HighJumpCompetition(object):
             height_key = "h%d" % (i + 1)
             self.set_bar_height(height)
             if self.verbose: 
-                print "bar at %s" % height
+                print("bar at %s" % height)
             for a in range(3):
                 for d in dikts:
                     bib = d['bib']
@@ -310,7 +310,7 @@ class HighJumpCompetition(object):
                     if len(attempts) > a:
                         result = attempts[a]
                         if self.verbose: 
-                            print "  %s %s attempt %d: %s" % (bib, name, a + 1, result)
+                            print("  %s %s attempt %d: %s" % (bib, name, a + 1, result))
                         if result == 'o':
                             self.cleared(bib)
                         elif result == 'x':
@@ -323,7 +323,7 @@ class HighJumpCompetition(object):
                         else:
                             raise RuleViolation("Unknown jump result code '%s'" % result)
             if self.verbose:
-                print "rankings at end of %s round" % height
+                print("rankings at end of %s round" % height)
                 self.print_ranking()
 
         return self
@@ -356,5 +356,5 @@ class HighJumpCompetition(object):
     def print_ranking(self):
         "Debugging utility to show who's leading at a point in time"
         for r in self.ranked_jumpers:
-            print r.place, r.bib, r.first_name, r.last_name, r.ranking_key
+            print(r.place, r.bib, r.first_name, r.last_name, r.ranking_key)
 
