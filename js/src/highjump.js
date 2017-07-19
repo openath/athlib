@@ -14,6 +14,7 @@ function Jumper(kwds) {
       this.totalFailures = 0;
       this.eliminated = false;  // still in the competition?
       this.roundLim = 3;
+      this.consecutiveFailures = 0;
       const defaults = [
         'first_name', 'unknown',
         'last_name', 'athlete',
@@ -66,6 +67,7 @@ function Jumper(kwds) {
       this.attemptsByHeight[n] += 'o';
       this.highestCleared = height;
       this.highestClearedIndex = n;
+      this.consecutiveFailures = 0;
     },
 
     failed(heightCount, height) {
@@ -77,7 +79,8 @@ function Jumper(kwds) {
       const n = this.attemptsByHeight.length-1;
       this.attemptsByHeight[n] += 'x';
       this.totalFailures += 1;
-      if ((this.attemptsByHeight[n].split('x').length-1)===this.roundLim) this.eliminated=true;
+      this.consecutiveFailures += 1;
+      if (this.consecutiveFailures>=this.roundLim) this.eliminated=true;
     },
 
     retired(heightCount, height) {
@@ -168,24 +171,24 @@ function HighJumpCompetition() {
       // Record a successful jump
       const jumper = this.checkStarted(bib);
       jumper.cleared(this.heights.length, this.barHeight);
-      this._rank()
       this.actions.push(['cleared', bib]);
+      this._rank()
     },
 
     failed(bib) {
       // Record a failed jump. Throws Error if out of order
       const jumper = this.checkStarted(bib);
       jumper.failed(this.heights.length, this.barHeight);
-      this._rank()
       this.actions.push(['failed', bib]);
+      this._rank()
     },
 
     retired(bib) {
       // Record a failed jump. Throws Error if out of order
       const jumper = this.checkStarted(bib, 'retiring');
       jumper.retired(this.heights.length, this.barHeight);
-      this._rank()
       this.actions.push(['retired', bib]);
+      this._rank()
     },
 
     get remaining() {
@@ -235,7 +238,13 @@ function HighJumpCompetition() {
         const rankj = this.rankedJumpers;
         if (rankj.length>1 && rankj[1].place===1) {
           this.state = 'jumpoff';
-          rankj.forEach((_j) => {const j=_j; if (j.place===1) {j.roundLim=1; j.eliminated=false}});
+          rankj.forEach((_j) => {
+            const j=_j
+            if (j.place===1) {
+              j.roundLim=1
+              j.eliminated=false
+              j.consecutiveFailures=0;
+            }});
         } else this.state = 'finished';
       } else if (remj.length===1 && (1+this.eliminated.length)===this.jumpers.length) {
         const a = remj[0].attemptsByHeight;

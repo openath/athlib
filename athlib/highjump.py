@@ -41,6 +41,7 @@ class Jumper(object):
         self.total_failures = 0
         self.eliminated = False  # still in the competition?
         self.round_lim = 3
+        self.consecutive_failures = 0
 
         for (arg, default) in [
             ('first_name', 'unknown'),
@@ -90,6 +91,7 @@ class Jumper(object):
         self.attempts_by_height[-1] += 'o'
         self.highest_cleared = height
         self.highest_cleared_index = len(self.attempts_by_height)-1
+        self.consecutive_failures = 0
 
     def failed(self, height_count, height):
         """Add a failure at the current bar position
@@ -100,7 +102,8 @@ class Jumper(object):
         # Holds their pattern of 'o' and 'x'
         self.attempts_by_height[-1] += 'x'
         self.total_failures += 1
-        self.eliminated = self.attempts_by_height[-1].count('x')==self.round_lim
+        self.consecutive_failures += 1
+        self.eliminated = self.consecutive_failures>=self.round_lim
 
     def retired(self, height_count, height):
         "Competitor had enough, or pulls out injured"
@@ -176,23 +179,23 @@ class HighJumpCompetition(object):
         "Record a successful jump"
         jumper = self.check_started(bib)
         jumper.cleared(len(self.heights), self.bar_height)
-        self._rank()
         self.actions.append(('cleared', bib))
+        self._rank()
 
     def failed(self, bib):
         "Record a failed jump. Throws RuleViolation if out of order"
         jumper = self.check_started(bib)
         jumper.failed(len(self.heights), self.bar_height)
-        self._rank()
         self.actions.append(('failed', bib))
+        self._rank()
 
     def retired(self, bib):
         "Record a failed jump. Throws RuleViolation if out of order"
         jumper = self.check_started(bib,'retiring')
         jumper = self.jumpers_by_bib[bib]
         jumper.retired(len(self.heights), self.bar_height)
-        self._rank()
         self.actions.append(('retired', bib))
+        self._rank()
 
     @property
     def remaining(self):
@@ -237,6 +240,7 @@ class HighJumpCompetition(object):
                     if j.place==1:
                         j.eliminated = False
                         j.round_lim = 1
+                        j.consecutive_failures = 0
             else:
                 self.state = 'finished'
         elif (len(remj)==1 and (1+len(self.eliminated))==len(self.jumpers)
