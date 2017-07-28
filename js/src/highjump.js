@@ -13,6 +13,7 @@ function Jumper(kwds) {
       this.highestClearedIndex = -1
       this.totalFailures = 0;
       this.eliminated = false;  // still in the competition?
+      this.dismissed = false;  // still in the round?
       this.roundLim = 3;
       this.consecutiveFailures = 0;
       const defaults = [
@@ -68,6 +69,7 @@ function Jumper(kwds) {
       this.highestCleared = height;
       this.highestClearedIndex = n;
       this.consecutiveFailures = 0;
+      this.dismissed = true;
     },
 
     failed(heightCount, height) {
@@ -81,6 +83,18 @@ function Jumper(kwds) {
       this.totalFailures += 1;
       this.consecutiveFailures += 1;
       if (this.consecutiveFailures>=this.roundLim) this.eliminated=true;
+      else this.dismissed=false;
+    },
+
+    passed(heightCount, height) {
+      // Add a failure at the current bar position
+      if (this.eliminated) throw new Error('Cannot jump after being eliminated');
+      this._setJumpArray(heightCount);
+
+      // Holds their pattern of 'o' and 'x'
+      const n = this.attemptsByHeight.length-1;
+      this.attemptsByHeight[n] += '-';
+      this.dismissed = true;
     },
 
     retired(heightCount, height) {
@@ -90,6 +104,7 @@ function Jumper(kwds) {
       const n = this.attemptsByHeight.length-1;
       this.attemptsByHeight[n] += 'r';
       this.eliminated = true;
+      this.dismissed = true;
     },
   }
   obj.__init__(kwds);
@@ -140,8 +155,12 @@ function HighJumpCompetition() {
 
       const newHeight = isNaN(_newHeight) ? parseFloat(_newHeight) : _newHeight;
       const prevHeight = this.heights.length ? this.heights[this.heights.length-1] : 0;
+      let bib = 0;
       if ((this.state!=='jumpoff')  && (prevHeight >= newHeight)) {
         throw new Error('The bar can only go up, except in a jump-off');
+      }
+      for (bib in this.jumpersByBib) {
+        if (!this.jumpersByBib[bib].eliminated) this.jumpersByBib[bib].dismissed = false;
       }
       this.heights[this.heights.length] = newHeight;
       this.barHeight = newHeight;
@@ -177,6 +196,14 @@ function HighJumpCompetition() {
       const jumper = this.checkStarted(bib);
       jumper.failed(this.heights.length, this.barHeight);
       this.actions.push(['failed', bib]);
+      this._rank()
+    },
+
+    passed(bib) {
+      // Record a failed jump. Throws Error if out of order
+      const jumper = this.checkStarted(bib);
+      jumper.passed(this.heights.length, this.barHeight);
+      this.actions.push(['passed', bib]);
       this._rank()
     },
 
