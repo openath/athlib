@@ -74,7 +74,7 @@ class Jumper(object):
     def ranking_key(self):
         """Return a sort key to determine who is winning"""
         x = self.highest_cleared_index
-        failures_at_height = 4 if x<0 else self.attempts_by_height[x].count('x')
+        failures_at_height = self.round_lim if x<0 else self.attempts_by_height[x].count('x')
         return (
             - self.highest_cleared,
             failures_at_height,
@@ -154,7 +154,7 @@ class HighJumpCompetition(object):
     def set_bar_height(self, new_height):
         if self.state=='scheduled':
             self.state = 'started'
-        elif self.state not in ('started','jumpoff'):
+        elif self.state not in ('started','jumpoff','won'):
             raise RuleViolation('Bar height cannot be set in a %s competition!' % self.state)
         prev_height = (self.heights and self.heights[-1]) or Decimal("0.00")
         if (self.state!='jumpoff') and (prev_height >= new_height):

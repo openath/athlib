@@ -190,6 +190,29 @@ class HighJumpTests(TestCase):
         self.assertEquals(A.ranking_key,(Decimal('-2.12'), 1, 5))
         self.assertEquals(B.ranking_key,(Decimal('-2.12'), 2, 5))
 
+    def test_countback_total_failure_rank(self):
+        "Run both fail, but tie countback wins"
+        c = HighJumpCompetition.from_matrix(
+                [
+                ["place", "order", "bib", "first_name", "last_name", "2.06", "2.08"],
+                ["",    1,     'A',  "Harald", "England",    "o",  "o"],
+                ["",    2,     'B',  "William", "Norman",    "xxx"],
+                ]
+                )
+        self.assertRaises(RuleViolation,c.failed,'B')
+
+        # see who is winning
+        A = c.jumpers_by_bib['A']
+        B = c.jumpers_by_bib['B']
+        self.assertEquals(A.place, 1)
+        self.assertEquals(B.place, 2)
+        self.assertEquals(len(c.remaining), 1)
+        self.assertEquals(c.state, 'finished')
+        self.assertEquals(A.highest_cleared, Decimal("2.08"))
+        self.assertEquals(B.highest_cleared, Decimal("0.00"))
+        self.assertEquals(A.ranking_key,(Decimal('-2.08'), 0, 0))
+        self.assertEquals(B.ranking_key,(Decimal('-0.00'), 3, 3))
+
     def test_countback_to_total_failures(self):
         "Run both fail, but tie countback wins"
         c = HighJumpCompetition.from_matrix(
