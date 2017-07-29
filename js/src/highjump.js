@@ -54,7 +54,7 @@ function Jumper(kwds) {
     get rankingKey() {
       // Return a sort key to determine who is winning"""
       const x = this.highestClearedIndex;
-      const failuresAtHeight = x<0 ? 4 : (this.attemptsByHeight[x].split('x').length-1);
+      const failuresAtHeight = x<0 ? this.roundLim : (this.attemptsByHeight[x].split('x').length-1);
       return [-this.highestCleared, failuresAtHeight, this.totalFailures];
     },
 
