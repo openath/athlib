@@ -39,7 +39,8 @@ class Jumper(object):
         self.highest_cleared = Decimal("0.00")
         self.highest_cleared_index = -1
         self.total_failures = 0
-        self.eliminated = False  # still in the competition?
+        self.eliminated = False     # still in the competition?
+        self.dismissed = False      # still in the round?
         self.round_lim = 3
         self.consecutive_failures = 0
 
@@ -61,8 +62,9 @@ class Jumper(object):
         Jumpers can miss out heights.
         """
         assert height_count > 0, "Start at height number 1, not 0"
-        if self.eliminated:
-            raise RuleViolation("Cannot %s after being eliminated" % label)
+        if self.eliminated or self.dismissed:
+            what = 'being eliminated' if self.eliminated else 'passing'
+            raise RuleViolation("Cannot %s after %s" % (label,what))
         atts = self.attempts_by_height
         # they may have skipped some, pas with empty strings
         while len(atts) < height_count:
@@ -82,10 +84,7 @@ class Jumper(object):
             )
 
     def cleared(self, height_count, height):
-        """Add a clearance at the current bar position
-
-        First round is index zero
-        """
+        """Add a clearance at the current bar position"""
         self._set_jump_array(height_count)
 
         # Holds their pattern of 'o' and 'x'
@@ -93,18 +92,28 @@ class Jumper(object):
         self.highest_cleared = height
         self.highest_cleared_index = len(self.attempts_by_height)-1
         self.consecutive_failures = 0
+        self.dismissed = True
 
     def failed(self, height_count, height):
-        """Add a failure at the current bar position
-
-        """
+        """Add a failure at the current bar position"""
         self._set_jump_array(height_count)
 
         # Holds their pattern of 'o' and 'x'
         self.attempts_by_height[-1] += 'x'
         self.total_failures += 1
         self.consecutive_failures += 1
-        self.eliminated = self.consecutive_failures>=self.round_lim
+        if self.consecutive_failures>=self.round_lim:
+            self.eliminated = self.dismissed = True
+        else:
+            self.dismissed = False
+
+    def passed(self, height_count, height):
+        "Competitor passes"
+        self._set_jump_array(height_count,'pass')
+
+        # Holds their pattern of 'o' and 'x'
+        self.attempts_by_height[-1] += '-'
+        self.dismissed = True
 
     def retired(self, height_count, height):
         "Competitor had enough, or pulls out injured"
@@ -113,6 +122,7 @@ class Jumper(object):
         # Holds their pattern of 'o' and 'x'
         self.attempts_by_height[-1] += 'r'
         self.eliminated = True
+        self.dismissed = True
 
 class HighJumpCompetition(object):
     """Simulation of a HighJump competition in progress.
@@ -159,6 +169,9 @@ class HighJumpCompetition(object):
         prev_height = (self.heights and self.heights[-1]) or Decimal("0.00")
         if (self.state!='jumpoff') and (prev_height >= new_height):
             raise RuleViolation("The bar can only go up, except in a jump-off")
+        for j in self.jumpers:
+            if not j.eliminated:
+                j.dismissed = False
         self.heights.append(new_height)
         self.bar_height = new_height
         self.actions.append(('set_bar_height', new_height))
@@ -173,7 +186,7 @@ class HighJumpCompetition(object):
             elif state=='finished':
                 raise RuleViolation('The competition has finished and %s is not allowed!' % label)
             else:
-                raise AssertionError('The competition has not been started yet!')
+                raise RuleViolation('The competition has not been started yet!')
         return jumper
 
     def cleared(self, bib):
@@ -184,10 +197,17 @@ class HighJumpCompetition(object):
         self._rank()
 
     def failed(self, bib):
-        "Record a failed jump. Throws RuleViolation if out of order"
+        "Record a failed jump, raises RuleViolation if out of order"
         jumper = self.check_started(bib)
         jumper.failed(len(self.heights), self.bar_height)
         self.actions.append(('failed', bib))
+        self._rank()
+
+    def passed(self, bib):
+        "Record a pass,  raises RuleViolation if out of order"
+        jumper = self.check_started(bib)
+        jumper.passed(len(self.heights), self.bar_height)
+        self.actions.append(('passed', bib))
         self._rank()
 
     def retired(self, bib):

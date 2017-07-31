@@ -37,8 +37,9 @@ function Jumper(kwds) {
     },
 
     _setJumpArray(heightCount, label) {
-      if (this.eliminated) {
-        throw new Error(`Cannot ${label ? label : 'jump'} after being eliminated`);
+      if (this.eliminated || this.dismissed) {
+        const what = this.eliminated ? 'being eliminated' : 'passing';
+        throw new Error(`Cannot ${label ? label : 'jump'} after ${what}`);
       }
       // Ensure they have one string for each height in the competition
       // Jumpers can miss out heights.
@@ -61,7 +62,6 @@ function Jumper(kwds) {
     cleared(heightCount, height) {
       // Add a clearance at the current bar position
       // First round is index zero
-      if (this.eliminated) throw new Error('Cannot jump after being eliminated');
       this._setJumpArray(heightCount);
       // Holds their pattern of 'o' and 'x'
       const n = this.attemptsByHeight.length-1;
@@ -74,7 +74,6 @@ function Jumper(kwds) {
 
     failed(heightCount, height) {
       // Add a failure at the current bar position
-      if (this.eliminated) throw new Error('Cannot jump after being eliminated');
       this._setJumpArray(heightCount);
 
       // Holds their pattern of 'o' and 'x'
@@ -82,14 +81,14 @@ function Jumper(kwds) {
       this.attemptsByHeight[n] += 'x';
       this.totalFailures += 1;
       this.consecutiveFailures += 1;
-      if (this.consecutiveFailures>=this.roundLim) this.eliminated=true;
-      else this.dismissed=false;
+      if (this.consecutiveFailures>=this.roundLim) this.eliminated = this.dismissed = true;
+      else this.dismissed = false;
     },
 
     passed(heightCount, height) {
-      // Add a failure at the current bar position
+      // pass at the current height
       if (this.eliminated) throw new Error('Cannot jump after being eliminated');
-      this._setJumpArray(heightCount);
+      this._setJumpArray(heightCount, 'pass');
 
       // Holds their pattern of 'o' and 'x'
       const n = this.attemptsByHeight.length-1;
@@ -103,8 +102,7 @@ function Jumper(kwds) {
       // Holds their pattern of 'o' and 'x'
       const n = this.attemptsByHeight.length-1;
       this.attemptsByHeight[n] += 'r';
-      this.eliminated = true;
-      this.dismissed = true;
+      this.eliminated = this.dismissed = true;
     },
   }
   obj.__init__(kwds);

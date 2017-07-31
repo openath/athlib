@@ -252,6 +252,34 @@ class HighJumpTests(TestCase):
             
             self.assertEquals(actual_place, expected_place)
 
+    def test_dismissed(self):
+        c = HighJumpCompetition()
+        c.add_jumper(bib='A',first_name='Harald',last_name='England')
+        c.add_jumper(bib='B',first_name='William',last_name='Norman')
+        self.assertRaises(RuleViolation,c.cleared,'A')
+        self.assertRaises(RuleViolation,c.passed,'A')
+        self.assertRaises(RuleViolation,c.failed,'A')
+        self.assertRaises(RuleViolation,c.retired,'A')
+        c.set_bar_height(Decimal('2.00'))
+        A=c.jumpers_by_bib['A']
+        B=c.jumpers_by_bib['B']
+        self.assertEquals(A.dismissed,False)
+        self.assertEquals(B.dismissed,False)
+        c.cleared('A')
+        c.passed('B')
+        self.assertEquals(A.dismissed,True)
+        self.assertEquals(B.dismissed,True)
+        c.set_bar_height(Decimal('2.02'))
+        self.assertEquals(A.dismissed,False)
+        self.assertEquals(B.dismissed,False)
+        c.cleared('A')
+        c.failed('B')
+        self.assertEquals(A.dismissed,True)
+        self.assertEquals(B.dismissed,False)
+        c.passed('B')
+        self.assertEquals(B.dismissed,True)
+
+
 
 if __name__ == '__main__':
     main()

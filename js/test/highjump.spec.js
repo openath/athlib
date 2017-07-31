@@ -355,4 +355,44 @@ describe('Given an instance of Athlib.HighJumpCompetition', function(){
     it("bába.place == 14",()=>{expect(c.jumpersByBib['2297'].place).to.be.equal(14)});
     it("starc.place == 15",()=>{expect(c.jumpersByBib['2052'].place).to.be.equal(15)});
   });
+  describe('test dismissed',function(){
+    // Run through to where the jumpoff began - ninth bar position
+    const c = Athlib.HighJumpCompetition();
+	c.addJumper({bib:'A',first_name:'Harald',last_names:'England'});
+	c.addJumper({bib:'B',first_name:'William',last_names:'Norman'});
+	it("cleared should raise an error",()=>{expect(()=>{c.cleared('A')}).to.throw(Error)});
+	it("passed should raise an error",()=>{expect(()=>{c.passed('A')}).to.throw(Error)});
+	it("failed should raise an error",()=>{expect(()=>{c.failed('A')}).to.throw(Error)});
+	it("retired should raise an error",()=>{expect(()=>{c.retired('A')}).to.throw(Error)});
+	c.setBarHeight(2.00);
+	const A=c.jumpersByBib['A'];
+	const B=c.jumpersByBib['B'];
+	(function (){
+		const a=A.dismissed,b=B.dismissed;
+		it("A.dismissed should be false 1",()=>{expect(a).to.be.equal(false)});
+		it("B.dismissed should be false 1",()=>{expect(b).to.be.equal(false)});
+		})();
+	c.cleared('A');
+	c.passed('B');
+	(function (){
+		const a=A.dismissed,b=B.dismissed;
+		it("A.dismissed should be true 2",()=>{expect(a).to.be.equal(true)});
+		it("B.dismissed should be true 2",()=>{expect(b).to.be.equal(true)});
+		})();
+	c.setBarHeight(2.02);
+	(function (){
+		const a=A.dismissed,b=B.dismissed;
+		it("A.dismissed should be false 3",()=>{expect(a).to.be.equal(false)});
+		it("B.dismissed should be false 3",()=>{expect(b).to.be.equal(false)});
+		})();
+	c.cleared('A');
+	c.failed('B');
+	(function (){
+		const a=A.dismissed,b=B.dismissed;
+		it("A.dismissed should be true 4",()=>{expect(a).to.be.equal(true)});
+		it("B.dismissed should be false 4",()=>{expect(b).to.be.equal(false)});
+		})();
+	c.passed('B');
+	it("B.dismissed should be true",()=>{expect(B.dismissed).to.be.equal(true)});
+  });
 });
