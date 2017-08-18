@@ -187,6 +187,8 @@ class HighJumpCompetition(object):
                 raise RuleViolation('The competition has finished and %s is not allowed!' % label)
             else:
                 raise RuleViolation('The competition has not been started yet!')
+        elif jumper.order in ('DQ','DNS'):
+            raise RuleViolation('Jumpern with bib, %s, has order %s and %s is not allowed!' % (jumper.bib,jumper.order,label))
         return jumper
 
     def cleared(self, bib):
@@ -322,14 +324,15 @@ class HighJumpCompetition(object):
             self.set_bar_height(height)
             if self.verbose: 
                 print("bar at %s" % height)
-            for a in range(3):
+            for a in xrange(3):
                 for d in dikts:
+                    if d['order'] in ('DNS','DQ'): continue
                     bib = d['bib']
                     name  = d.get('last_name', '')
                     attempts = d.get(height_key, '')
                     if len(attempts) > a:
                         result = attempts[a]
-                        if self.verbose: 
+                        if self.verbose:
                             print("  %s %s attempt %d: %s" % (bib, name, a + 1, result))
                         if result == 'o':
                             self.cleared(bib)
@@ -367,7 +370,14 @@ class HighJumpCompetition(object):
             if 'order' not in dikt:
                 unordered.append(dikt)
             else:
-                highest = max(highest, dikt['order'])
+                i = dikt['order']
+                try:
+                    i = int(i)
+                    highest = max(highest, i)
+                except:
+                    i = i.upper()
+                    if i not in ('DQ','DNS'):
+                        raise valueError('Invalid order %r' % i)
 
         for u in unordered:
             highest += 1
