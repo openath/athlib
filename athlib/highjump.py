@@ -266,7 +266,7 @@ class HighJumpCompetition(object):
         elif (len(remj)==1 and (1+len(self.eliminated))==len(self.jumpers)
                 and len(remj[0].attempts_by_height)==len(self.heights)
                 and 'o' in remj[0].attempts_by_height[-1]):
-            self.state = 'won' if self.state=='started' else 'finished'
+            self.state = 'won' if self.state in ('started','won') else 'finished'
 
     @classmethod
     def from_matrix(cls, matrix, to_nth_height=None, verbose=False):

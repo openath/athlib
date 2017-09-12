@@ -207,7 +207,7 @@ class HighJumpTests(TestCase):
         self.assertEquals(A.place, 1)
         self.assertEquals(B.place, 2)
         self.assertEquals(len(c.remaining), 1)
-        self.assertEquals(c.state, 'finished')
+        self.assertEquals(c.state, 'won')
         self.assertEquals(A.highest_cleared, Decimal("2.08"))
         self.assertEquals(B.highest_cleared, Decimal("0.00"))
         self.assertEquals(A.ranking_key,(Decimal('-2.08'), 0, 0))

@@ -271,7 +271,7 @@ function HighJumpCompetition() {
       } else if (remj.length===1 && (1+this.eliminated.length)===this.jumpers.length) {
         const a = remj[0].attemptsByHeight;
         if (a.length===this.heights.length && a[a.length-1].split('o').length>=2) {
-          this.state = this.state==='started' ? 'won' : 'finished';
+          this.state = (this.state==='started'||this.state==='won') ? 'won' : 'finished';
         }
       }
     },

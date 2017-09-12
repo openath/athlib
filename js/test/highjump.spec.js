@@ -203,7 +203,7 @@ describe('Given an instance of Athlib.HighJumpCompetition', function(){
     it("norman.place == 2",()=>{expect(norman.place).to.be.equal(2)});
     it("england.place == 1",()=>{expect(england.place).to.be.equal(1)});
     it("c.remaining.length == 1",()=>{expect(c.remaining.length).to.be.equal(1)});
-    it("c.state == won",()=>{expect(c.state).to.be.equal('finished')});
+    it("c.state == finished",()=>{expect(c.state).to.be.equal('finished')});
     it("england.highestCleared == 2.11",()=>england.highestCleared==2.11);
 
     it("can't set height 2.12 in finished competition",() => {
@@ -253,7 +253,7 @@ describe('Given an instance of Athlib.HighJumpCompetition', function(){
   it("A.place == 1",()=>{expect(A.place).to.be.equal(1)});
   it("B.place == 2",()=>{expect(B.place).to.be.equal(2)});
   it("c.remaining.length == 0",()=>{expect(c.remaining.length).to.be.equal(0)});
-  it("c.state == won",()=>{expect(c.state).to.be.equal('finished')});
+  it("c.state == finished",()=>{expect(c.state).to.be.equal('finished')});
   it("A.highestCleared == 2.12",()=>{expect(A.highestCleared).to.be.equal(2.12)});
   it("B.highestCleared == 2.12",()=>{expect(B.highestCleared).to.be.equal(2.12)});
   it("A.rankingKey == [-2.12, 1, 5]",()=>{expect(c._compareKeys(A.rankingKey,[-2.12, 1, 5])).to.be.equal(0)});
@@ -286,9 +286,9 @@ describe('Given an instance of Athlib.HighJumpCompetition', function(){
   it("A.place == 1",()=>{expect(A.place).to.be.equal(1)});
   it("B.place == 2",()=>{expect(B.place).to.be.equal(2)});
   it("c.remaining.length == 1",()=>{expect(c.remaining.length).to.be.equal(1)});
-  it("c.state == finished",()=>{expect(c.state).to.be.equal('finished')});
+  it("c.state == won",()=>{expect(c.state).to.be.equal('won')});
   it("A.highestCleared == 2.08",()=>{expect(A.highestCleared).to.be.equal(2.08)});
-  it("b.highestCleared == 0",()=>{expect(B.highestCleared).to.be.equal(0)});
+  it("B.highestCleared == 0",()=>{expect(B.highestCleared).to.be.equal(0)});
   it("A.rankingKey == [-2.08, 0, 0]",()=>{expect(c._compareKeys(A.rankingKey,[-2.08, 0, 0])).to.be.equal(0)});
   it("B.rankingKey == [-0, 3, 3]",()=>{expect(c._compareKeys(B.rankingKey,[-0, 3, 3])).to.be.equal(0)});
   });
@@ -329,7 +329,7 @@ describe('Given an instance of Athlib.HighJumpCompetition', function(){
   it("A.place == 1",()=>{expect(A.place).to.be.equal(1)});
   it("B.place == 2",()=>{expect(B.place).to.be.equal(2)});
   it("c.remaining.length == 0",()=>{expect(c.remaining.length).to.be.equal(0)});
-  it("c.state == won",()=>{expect(c.state).to.be.equal('finished')});
+  it("c.state == finished",()=>{expect(c.state).to.be.equal('finished')});
   it("A.highestCleared == 2.12",()=>{expect(A.highestCleared).to.be.equal(2.12)});
   it("B.highestCleared == 2.12",()=>{expect(B.highestCleared).to.be.equal(2.12)});
   it("A.rankingKey == [-2.12, 1, 5]",()=>{expect(c._compareKeys(A.rankingKey,[-2.12, 1, 5])).to.be.equal(0)});
