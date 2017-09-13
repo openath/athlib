@@ -37,7 +37,7 @@ def get_version():
             txt = f.read()
         m = version_re.search(txt)
         if not m:
-            raise ValueError('Cannot find version in docs/source/conf.py')
+            raise ValueError('Cannot find version in atlib/__init__.py')
         sv = m.group()
         exec m.group() in NS
         athlib_version = NS['__version__']
