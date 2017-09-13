@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import { assert } from 'chai';
 import Athlib from '../index.js';
 
 var ESAA_2015_HJ = [
@@ -334,6 +335,39 @@ describe('Given an instance of Athlib.HighJumpCompetition', function(){
   it("B.highestCleared == 2.12",()=>{expect(B.highestCleared).to.be.equal(2.12)});
   it("A.rankingKey == [-2.12, 1, 5]",()=>{expect(c._compareKeys(A.rankingKey,[-2.12, 1, 5])).to.be.equal(0)});
   it("B.rankingKey == [-2.12, 1, 6]",()=>{expect(c._compareKeys(B.rankingKey,[-2.12, 1, 6])).to.be.equal(0)});
+  });
+  describe('Test won ending',function(){
+	it("test scheduled-->started-->won-->finished",()=>{
+	const mx = [
+				["place", "order", "bib", "first_name", "last_name", "team", "category"],
+				["1", 1, '53', "William", "Norman", "Midd", "SB"],
+				["1", 2, '81', "Harald", "England", "Warks", "SB"],
+				];
+	const c = Athlib.HighJumpCompetition.fromMatrix(mx);
+	assert.equal(c.state,'scheduled');
+	assert.equal(c.remaining.length,2);
+	const delta = [
+		[2.11,["o","o"],'started',2],
+		[2.12,["o","o"],'started',2],
+		[2.13,["o","o"],'started',2],
+		[2.14,["xxx","o"],'won',1],
+		[2.16,["","o"],'won',1],
+		[2.17,["","xxo"],'won',1],
+		[2.18,["","xxx"],'finished',0]];
+	for(var k=0;k<delta.length;k++){
+		const height=delta[k][0],perfs=delta[k][1],xstate=delta[k][2],lenremj=delta[k][3];
+		c.setBarHeight(height)
+		for(var i=0;i<3;i++){
+			for(var j=0;j<perfs.length;j++){
+				const p=perfs[j];
+				if(p.length<i+1)continue;
+				c.bibTrial(mx[1+j][2],p[i]);
+				}
+			}
+		assert.equal(c.state,xstate);
+		assert.equal(c.remaining.length,lenremj);
+		}
+	});
   });
   describe('Reproduce Rio Olympic results',function(){
     // Run through to where the jumpoff began - ninth bar position

@@ -304,6 +304,25 @@ function HighJumpCompetition() {
         unordered[i].order = highest;
       }
     },
+
+    bibTrial(bib, trial) {
+      switch (trial) {
+        case 'o': 
+          this.cleared(bib);
+          break;
+        case 'x':
+          this.failed(bib);
+          break;
+        case 'r':
+          this.retired(bib);
+          break;
+        case '-':
+          // often, this is pasted to indicate an explicit 'pass'
+          break;
+        default:
+          throw Error(`Unknown jump trial code \'${trial}\'`);
+      }
+    },
   }
   obj.__init__();
   return obj;
@@ -379,23 +398,7 @@ HighJumpCompetition.fromMatrix = function fromMatrix(matrix, toNthHeight) {
         let attempts = ob[heightKey];
         if (!attempts) attempts='';
         if (attempts.length > a) {
-          const result = attempts[a];
-          switch (result) {
-            case 'o': 
-              c.cleared(bib);
-              break;
-            case 'x':
-              c.failed(bib);
-              break;
-            case 'r':
-              c.retired(bib);
-              break;
-            case '-':
-              // often, this is pasted to indicate an explicit 'pass'
-              break;
-            default:
-              throw Error(`Unknown jump result code \'${result}\'`);
-          }
+          c.bibTrial(bib, attempts[a]);
         }
       }
     }

@@ -237,6 +237,32 @@ class HighJumpTests(TestCase):
         self.assertEquals(A.ranking_key,(Decimal('-2.12'), 1, 5))
         self.assertEquals(B.ranking_key,(Decimal('-2.12'), 1, 6))
 
+    def test_won_ending(self):
+        "check the status changes at a won ending which finishes"
+        mx = [
+            ["place", "order", "bib", "first_name", "last_name", "team", "category"],
+            ["1", 1, '53', "William", "Norman", "Midd", "SB"],
+            ["1", 2, '81', "Harald", "England", "Warks", "SB"],
+            ]
+        c = HighJumpCompetition.from_matrix(mx)
+        self.assertEquals(c.state,'scheduled')
+        self.assertEquals(len(c.remaining),2)
+        for height,perfs,xstate,lenremj in (
+                                            (2.11,("o","o"),'started',2),
+                                            (2.12,("o","o"),'started',2),
+                                            (2.13,("o","o"),'started',2),
+                                            (2.14,("xxx","o"),'won',1),
+                                            (2.16,("","o"),'won',1),
+                                            (2.17,("","xxo"),'won',1),
+                                            (2.18,("","xxx"),'finished',0)):
+            c.set_bar_height(height)
+            for i in xrange(3):
+                for j,p in enumerate(perfs):
+                    if len(p)<i+1: continue
+                    c.bib_trial(mx[1+j][2],p[i])
+            self.assertEquals(c.state,xstate,"height=%s expected state %s not %s" % (height,xstate,c.state))
+            self.assertEquals(len(c.remaining),lenremj,"height=%s expected lenremj %s not %s" % (height,lenremj,len(c.remaining)))
+
     def test_score_olympic_final(self):
         "Do we get the same results as the Olympics?"
         c = HighJumpCompetition.from_matrix(RIO_MENS_HJ, verbose=False)

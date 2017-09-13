@@ -268,6 +268,19 @@ class HighJumpCompetition(object):
                 and 'o' in remj[0].attempts_by_height[-1]):
             self.state = 'won' if self.state in ('started','won') else 'finished'
 
+    def bib_trial(self,bib,trial):
+        if trial == 'o':
+            self.cleared(bib)
+        elif trial == 'x':
+            self.failed(bib)
+        elif trial == 'r':
+            self.retired(bib)
+        elif trial == '-':
+            pass  # sometimes people use - rather than a blank cell to show
+                  # a deliberate pass.  Do nothing.
+        else:
+            raise RuleViolation("Unknown jump trial code '%s'" % trial)
+
     @classmethod
     def from_matrix(cls, matrix, to_nth_height=None, verbose=False):
         """ Convert from a pasteable tabular representation like this...
@@ -334,17 +347,7 @@ class HighJumpCompetition(object):
                         result = attempts[a]
                         if self.verbose:
                             print("  %s %s attempt %d: %s" % (bib, name, a + 1, result))
-                        if result == 'o':
-                            self.cleared(bib)
-                        elif result == 'x':
-                            self.failed(bib)
-                        elif result == 'r':
-                            self.retired(bib)
-                        elif result == '-':
-                            pass  # sometimes people use - rather than a blank cell to show
-                                  # a deliberate pass.  Do nothing.
-                        else:
-                            raise RuleViolation("Unknown jump result code '%s'" % result)
+                        self.bib_trial(bib,result)
             if self.verbose:
                 print("rankings at end of %s round" % height)
                 self.print_ranking()
