@@ -120,6 +120,7 @@ function cmpKeys(a, b) {
     if (typeof ai==='object') {
       r = cmpKeys(ai, bi);
       if (r) return r;
+      continue;
     } else if (ai===bi) continue;
     return ai<bi ? -1 : 1;
   }
@@ -251,14 +252,17 @@ function HighJumpCompetition() {
       // sort them
       const rankj=this.rankedJumpers;
       const rankjlen=rankj.length;
+      let i;
 
-      rankj.sort((a, b) => cmpKeys([a.rankingKey, a.place], [b.rankingKey, b.place]));
+      for (i=0; i<rankjlen; i++) rankj[i]._oldPos=i;
+      rankj.sort((a, b) => cmpKeys([a.rankingKey, a._oldPos], [b.rankingKey, b._oldPos]));
 
       let pk=null;
       let pj=null;
-      for (let i=0; i<rankjlen; i++) {
+      for (i=0; i<rankjlen; i++) {
         const j=rankj[i];
         const k=j.rankingKey;
+        delete j._oldPos;
         if (i===0) {
           j.place = 1
         } else {

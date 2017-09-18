@@ -234,13 +234,15 @@ class HighJumpCompetition(object):
         "Determine who is winning"
 
         # sort ranked_jumpers
-        self.ranked_jumpers.sort(key=lambda j: (j.ranking_key,j.place))
         rankj = self.ranked_jumpers;
+        for i,j in enumerate(rankj): j._old_pos = i
+        rankj.sort(key=lambda j: (j.ranking_key,j._old_pos))
         if verbose: print('ranked jumpers in order', rankj)
 
         pk = None
         pj = None
         for i, j in enumerate(rankj):
+            del j._old_pos
             k = j.ranking_key
             if i == 0:
                 j.place = 1
@@ -251,6 +253,7 @@ class HighJumpCompetition(object):
                     j.place = i + 1
             pk = k
             pj = j
+
         remj = self.remaining
         if len(remj)==0:
             #they all failed at this height
