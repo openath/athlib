@@ -109,6 +109,23 @@ function Jumper(kwds) {
   return obj;
 }
 
+// function to compare list of lists/numbers
+function cmpKeys(a, b) {
+  let r;
+  let ai;
+  let bi;
+  for (let i=0; i<a.length; i++) {
+    ai=a[i];
+    bi=b[i];
+    if (typeof ai==='object') {
+      r = cmpKeys(ai, bi);
+      if (r) return r;
+    } else if (ai===bi) continue;
+    return ai<bi ? -1 : 1;
+  }
+  return 0;
+}
+
 function HighJumpCompetition() {
   // Simulation of a HighJump competition in progress.
   // This is a small "state machine" which respons to things like
@@ -226,38 +243,32 @@ function HighJumpCompetition() {
     },
 
     _compareKeys(a, b) {
-      for (let i=0; i<a.length; i++) {
-        if (a[i]===b[i]) continue;
-        return a[i]<b[i] ? -1 : 1;
-      }
-      return 0;
+      return cmpKeys(a, b);
     },
 
     _rank() {
       // Determine who is winning
       // sort them
-      const sorter=[];
-      const cmpKeys=this._compareKeys;
-      this.rankedJumpers.forEach((j) => {sorter.push([j.rankingKey, j])});
-      sorter.sort((a, b) => cmpKeys(a[0], b[0]));
+      const rankj=this.rankedJumpers;
+      const rankjlen=rankj.length;
+
+      rankj.sort((a, b) => cmpKeys([a.rankingKey, a.place], [b.rankingKey, b.place]));
 
       let pk=null;
       let pj=null;
-      for (let i=0; i<sorter.length; i++) {
-        const k=sorter[i][0];
-        const j=sorter[i][1];
+      for (let i=0; i<rankjlen; i++) {
+        const j=rankj[i];
+        const k=j.rankingKey;
         if (i===0) {
           j.place = 1
         } else {
-          j.place = (cmpKeys(pk, k)===0? pj.place : i+1)
+          j.place = cmpKeys(pk, k)===0 ? pj.place : i+1;
         }
         pk = k
         pj = j
-        this.rankedJumpers[i] = j;
       }
       const remj = this.remaining;
       if (remj.length===0) {
-        const rankj = this.rankedJumpers;
         if (rankj.length>1 && rankj[1].place===1) {
           this.state = 'jumpoff';
           rankj.forEach((_j) => {

@@ -233,24 +233,24 @@ class HighJumpCompetition(object):
     def _rank(self, verbose=False):
         "Determine who is winning"
 
-        # sort them
-        sorter = [(j.ranking_key, j) for j in self.ranked_jumpers]
-        sorter.sort(key=lambda s: s[0]) # python3 Jumpers won't sort
-        if verbose: print('sorted sorter', sorter)
+        # sort ranked_jumpers
+        self.ranked_jumpers.sort(key=lambda j: (j.ranking_key,j.place))
+        rankj = self.ranked_jumpers;
+        if verbose: print('ranked jumpers in order', rankj)
 
-        prev_key = None
-        prev_jumper = None
-        for i, (key, jumper) in enumerate(sorter):
+        pk = None
+        pj = None
+        for i, j in enumerate(rankj):
+            k = j.ranking_key
             if i == 0:
-                jumper.place = 1
+                j.place = 1
             else:
-                if key == prev_key:
-                    jumper.place = prev_jumper.place
+                if k == pk:
+                    j.place = pj.place
                 else:
-                    jumper.place = i + 1
-            prev_key = key
-            prev_jumper = jumper
-        self.ranked_jumpers = rankj = [j for (key, j) in sorter]
+                    j.place = i + 1
+            pk = k
+            pj = j
         remj = self.remaining
         if len(remj)==0:
             #they all failed at this height

@@ -3,7 +3,7 @@ from athlib.uka.agegroups import calc_uka_age_group
 from athlib.iaaf_score import score as athlon_score
 from athlib.iaaf_score import performance as athlon_performance_needed
 
-__version__ = u'0.1.6'
+__version__ = u'0.1.7'
 
 from athlib.exceptions import RuleViolation
 
