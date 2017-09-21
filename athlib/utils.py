@@ -195,9 +195,9 @@ def field_event_record(evc,gender='all'):
         gender = 'all'
     return FIELD_EVENT_RECORDS_BY_GENDER[gender].get(evc.upper(),None)
 
-def check_performance_for_discipline(discipline, textvalue, gender='all', ulpc=120/100.0):
+def check_performance_for_discipline(discipline, textvalue, gender='all', ulpc=120/100.0, errorKlass=ValueError):
     """
-    Fix up and return what they typed in,  or raise ValueError
+    Fix up and return what they typed in,  or raise errorKlass(default ValueError)
     """
     # print("checkperf %s %s" % (discipline, repr(textvalue)))
     textvalue = textvalue.strip()
@@ -213,34 +213,35 @@ def check_performance_for_discipline(discipline, textvalue, gender='all', ulpc=1
         textvalue = textvalue.replace(";", ':')
 
     if not PAT_PERF.match(textvalue):
-        raise ValueError(
+        raise errorKlass(
             "Illegal numeric pattern.  Use digits, ':' and '.' only")
 
     if discipline in FIELD_EVENTS:
         try:
             distance = float(textvalue)
-            record = field_event_record(discipline,gender)
-            if record and distance>record*ulpc:
-                raise ValueError('%s(%s) performance %s seems too large as record is %s' % (
-                    discipline, gender, textvalue, record))
-            return "%0.2f" % distance
         except ValueError:
-            raise ValueError(
+            raise errorKlass(
                 "'%s' is not valid for length/height. Use "
                 "metres/centimetres e.g. '2.34'" % textvalue
             )
+        else:
+            record = field_event_record(discipline,gender)
+            if record and distance>record*ulpc:
+                raise errorKlass('%s(%s) performance %s seems too large as record is %.2f' % (
+                    discipline, gender, textvalue, record))
+            return "%0.2f" % distance
 
     elif discipline.upper() in MULTI_EVENTS:
         try:
             points = int(textvalue)
         except ValueError:
-            raise ValueError(
+            raise errorKlass(
                 "'%s' is not a valid points value for multi-events"
                 % textvalue)
         if points < 500:
-            raise ValueError("Multi-events scores should be above 500")
+            raise errorKlass("Multi-events scores should be above 500")
         if points > 9999:
-            raise ValueError("Multi-events scores should be below 10000")
+            raise errorKlass("Multi-events scores should be below 10000")
         return str(points)
 
     else:
@@ -288,7 +289,7 @@ def check_performance_for_discipline(discipline, textvalue, gender='all', ulpc=1
             seconds = float(ss)
 
         if (minutes == 0) and (seconds >= 100):
-            raise ValueError(
+            raise errorKlass(
                 "Please use mm:ss or h:mm:ss for times above 99 seconds")
 
         if distance == 400 and minutes > 45:
@@ -309,24 +310,24 @@ def check_performance_for_discipline(discipline, textvalue, gender='all', ulpc=1
             #        velocity = %0.2f m/s' % (distance, duration, velocity))
             if distance <= 400:
                 if velocity > 11.0:
-                    raise ValueError(
+                    raise errorKlass(
                         "%s too fast for %s, check the format" %
                         (textvalue, discipline))
             elif distance > 400:
                 if velocity > 10.0:
-                    raise ValueError(
+                    raise errorKlass(
                         "%s too fast for %s, check the format" %
                         (textvalue, discipline))
 
             if velocity < 0.5:
-                raise ValueError(
+                raise errorKlass(
                     "%s too slow for %s, check the format" %
                     (textvalue, discipline))
 
         else:
             if discipline.upper() == 'XC':
                 if not minutes:
-                    raise ValueError(
+                    raise errorKlass(
                         "Please use mm:ss for minutes and seconds, not mm.ss")
 
         # Format consistently for output
