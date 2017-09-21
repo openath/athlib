@@ -80,7 +80,7 @@ class Jumper(object):
         return (
             - self.highest_cleared,
             failures_at_height,
-            self.total_failures
+            self.total_failures,
             )
 
     def cleared(self, height_count, height):
@@ -188,7 +188,7 @@ class HighJumpCompetition(object):
             else:
                 raise RuleViolation('The competition has not been started yet!')
         elif jumper.order in ('DQ','DNS'):
-            raise RuleViolation('Jumpern with bib, %s, has order %s and %s is not allowed!' % (jumper.bib,jumper.order,label))
+            raise RuleViolation('Jumper with bib, %s, has order %s and %s is not allowed!' % (jumper.bib,jumper.order,label))
         return jumper
 
     def cleared(self, bib):

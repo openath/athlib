@@ -1,6 +1,6 @@
 {
   "name": "athlib",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "Athletics Library",
   "main": "./index.js",
   "scripts": {

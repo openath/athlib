@@ -186,15 +186,17 @@ function HighJumpCompetition() {
     checkStarted(bib, _label) {
       const jumper = this.jumpersByBib[bib];
       const state = this.state;
+      const label = _label ? _label : 'jumping';
       if (state!=='started' && state!=='jumpoff') {
-        const label = _label ? _label : 'jumping';
         if (state==='won') {
           if (jumper.place!==1) {
-            throw new Error(`The competition has been won and ${label} is not allowed!`);
+            throw new Error(`The competition has been won; ${label} is not allowed!`);
           }
         } else if (state==='finished') {
           throw new Error(`The competition has finished and ${label} is not allowed!`);
         } else throw new Error('The competition has not been started yet!')
+      } else if (jumper.order==='DQ' || jumper.order==='DNS') {
+        throw new Error(`Jumper bib=${bib} has order ${jumper.order}; ${label} is not allowed!`);
       }
       return jumper;
     },
@@ -408,6 +410,7 @@ HighJumpCompetition.fromMatrix = function fromMatrix(matrix, toNthHeight) {
       for (let j=0; j<objs.length; j++) {
         const ob = objs[j];
         const bib = ob.bib;
+		if (ob.order==='DNS' || ob.order==='DQ') continue;
         let name  = ob.last_name;
         if (!name) name='';
         let attempts = ob[heightKey];

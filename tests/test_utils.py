@@ -161,6 +161,7 @@ class UtilsTests(TestCase):
         self.assertRaises(ValueError, checkperf, "DEC", "4:15.8")
 
         for (discipline, perf) in [
+            ("HJ", "25"),
             ("HJ", "Soooo Highhhh!!!"),
             ("HJ", "2:03"),
             ("100m", "9.73w"),  # No wind, indoor figures or suffixes

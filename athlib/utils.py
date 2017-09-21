@@ -162,7 +162,40 @@ def format_seconds_as_time(seconds, prec=0):
         t = "%d" % secs
     return t + frac
 
-def check_performance_for_discipline(discipline, textvalue):
+FIELD_EVENT_RECORDS_BY_GENDER = dict(
+                        m = dict(
+                                HJ = 2.45,
+                                LJ = 8.95,
+                                TJ = 18.29,
+                                PV = 6.16,
+                                HT = 86.74,
+                                DT = 74.08,
+                                WT = 24.57,
+                                SP = 23.12,
+                                JT = 104.80,
+                                ),
+                        f = dict(
+                                HJ = 2.09,
+                                LJ = 7.52,
+                                TJ = 15.50,
+                                PV = 5.06,
+                                HT = 82.98,
+                                DT = 76.80,
+                                WT = 22.50,
+                                SP = 22.63,
+                                JT = 72.28,
+                                ),
+                        )
+FIELD_EVENT_RECORDS_BY_GENDER['all'] = {k: max([FIELD_EVENT_RECORDS_BY_GENDER[r][k] for r in 'mf'])
+                                            for k in FIELD_EVENT_RECORDS_BY_GENDER['m'].keys()}
+
+def field_event_record(evc,gender='all'):
+    gender = gender.lower()
+    if gender not in FIELD_EVENT_RECORDS_BY_GENDER:
+        gender = 'all'
+    return FIELD_EVENT_RECORDS_BY_GENDER[gender].get(evc.upper(),None)
+
+def check_performance_for_discipline(discipline, textvalue, gender='all', ulpc=120/100.0):
     """
     Fix up and return what they typed in,  or raise ValueError
     """
@@ -186,6 +219,10 @@ def check_performance_for_discipline(discipline, textvalue):
     if discipline in FIELD_EVENTS:
         try:
             distance = float(textvalue)
+            record = field_event_record(discipline,gender)
+            if record and distance>record*ulpc:
+                raise ValueError('%s(%s) performance %s seems too large as record is %s' % (
+                    discipline, gender, textvalue, record))
             return "%0.2f" % distance
         except ValueError:
             raise ValueError(
