@@ -3,7 +3,7 @@ from athlib.uka.agegroups import calc_uka_age_group
 from athlib.iaaf_score import score as athlon_score
 from athlib.iaaf_score import performance as athlon_performance_needed
 
-__version__ = u'0.2.0'
+__version__ = u'0.2.1'
 
 from athlib.exceptions import RuleViolation
 
@@ -17,12 +17,13 @@ from athlib.utils import (
     discipline_sort_key,
     text_discipline_sort_key,
     sort_by_discipline,
-)
+    check_event_code,
+    )
 from athlib.codes import (
     JUMPS, THROWS, MULTI_EVENTS, FIELD_EVENTS,
     FIELD_SORT_ORDER, STANDARD_MALE_TRACK_EVENTS,
     STANDARD_FEMALE_TRACK_EVENTS,
-)
+    )
 
 from athlib.highjump import HighJumpCompetition, Jumper
 

@@ -9,7 +9,7 @@ _rootdir = os.path.dirname(os.path.abspath(__file__))
 _rootdir = os.path.normpath(os.path.join(_rootdir, '..'))
 
 from .codes import PAT_THROWS, PAT_JUMPS, PAT_RELAYS, PAT_HURDLES, PAT_TRACK, \
-    PAT_LEADING_DIGITS, PAT_PERF, \
+    PAT_LEADING_DIGITS, PAT_PERF, PAT_EVENT_CODE, \
     FIELD_EVENTS, MULTI_EVENTS, FIELD_SORT_ORDER
 
 __all__ = """normalize_gender
@@ -25,7 +25,8 @@ __all__ = """normalize_gender
             validate_against_schema
             lexec
             localpath
-            isStr""".split()
+            isStr
+            check_event_code""".split()
 
 def normalize_gender(gender):
     """
@@ -406,6 +407,9 @@ def sort_by_discipline(stuff, attr="discipline"):
 
     sorter.sort()
     return [thing for (priority, thing) in sorter]
+
+def check_event_code(c):
+    return PAT_EVENT_CODE.match(c)
 
 if isPy3:
     import builtins

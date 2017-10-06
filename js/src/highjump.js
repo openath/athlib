@@ -410,7 +410,7 @@ HighJumpCompetition.fromMatrix = function fromMatrix(matrix, toNthHeight) {
       for (let j=0; j<objs.length; j++) {
         const ob = objs[j];
         const bib = ob.bib;
-		if (ob.order==='DNS' || ob.order==='DQ') continue;
+        if (ob.order==='DNS' || ob.order==='DQ') continue;
         let name  = ob.last_name;
         if (!name) name='';
         let attempts = ob[heightKey];

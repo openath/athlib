@@ -33,12 +33,16 @@ PAT_TRACK = re.compile((r"^(?:(?P<meters>\d+)(?:[LS]?H(?:3[36])?|SC|W)?)|SC|"
 PAT_ROAD = re.compile(r"^(?:MILE|MAR|HM|\d+[MK]?)W?$", re.IGNORECASE)
 del _
 
-PAT_RUN = re.compile("%s|%s" % (PAT_TRACK.pattern, PAT_ROAD.pattern))
-PAT_FIELD = re.compile("%s|%s" % (PAT_THROWS.pattern, PAT_JUMPS.pattern))
+PAT_RUN = re.compile("%s|%s" % (PAT_TRACK.pattern, PAT_ROAD.pattern), re.IGNORECASE)
+PAT_FIELD = re.compile("%s|%s" % (PAT_THROWS.pattern, PAT_JUMPS.pattern), re.IGNORECASE)
 
 # Although part of PAT_RUN, these
-PAT_RELAYS = re.compile("(\d{1,2})x(\d{2,5})")   # 4x100, 4x400
-PAT_HURDLES = re.compile("(\d{2,4})(H|SC)")  # 80H, 110H, 400H
+PAT_RELAYS = re.compile("(\d{1,2})x(\d{2,5})", re.IGNORECASE)    # 4x100, 4x400
+PAT_HURDLES = re.compile("(\d{2,4})(H|SC)", re.IGNORECASE)  # 80H, 110H, 400H
+PAT_MULTI = re.compile(r'^(?:DEC|HEP)$',re.IGNORECASE)
+PAT_EVENT_CODE=re.compile("%s|%s|%s|%s|%s" % (PAT_MULTI.pattern,PAT_RUN.pattern,
+                PAT_FIELD.pattern,PAT_RELAYS.pattern,PAT_HURDLES.pattern), re.IGNORECASE)
 
 PAT_LEADING_DIGITS = re.compile("^\d+")
 PAT_PERF = re.compile("^(\d{1,2}:)?(\d{1,2}:)?(\d{1,2})(\.?\d+)?$")
+
