@@ -3,7 +3,7 @@ from athlib.uka.agegroups import calc_uka_age_group
 from athlib.iaaf_score import score as athlon_score
 from athlib.iaaf_score import performance as athlon_performance_needed
 
-__version__ = u'0.2.1'
+__version__ = u'0.2.2'
 
 from athlib.exceptions import RuleViolation
 
@@ -20,10 +20,33 @@ from athlib.utils import (
     check_event_code,
     )
 from athlib.codes import (
-    JUMPS, THROWS, MULTI_EVENTS, FIELD_EVENTS,
-    FIELD_SORT_ORDER, STANDARD_MALE_TRACK_EVENTS,
-    STANDARD_FEMALE_TRACK_EVENTS,
-    )
+                    JUMPS,
+                    THROWS,
+                    MULTI_EVENTS,
+                    FIELD_EVENTS,
+                    STANDARD_MALE_TRACK_EVENTS,
+                    STANDARD_FEMALE_TRACK_EVENTS,
+                    FIELD_SORT_ORDER,
+                    PAT_THROWS,
+                    PAT_JUMPS,
+                    PAT_TRACK,
+                    PAT_ROAD,
+                    PAT_RUN,
+                    PAT_FIELD,
+                    PAT_RELAYS,
+                    PAT_HURDLES,
+                    PAT_MULTI,
+                    PAT_EVENT_CODE,
+                    PAT_LEADING_DIGITS,
+                    PAT_VERTICAL_JUMPS,
+                    PAT_HORIZONTAL_JUMPS,
+                    PAT_LENGTH_EVENT,
+                    PAT_TIMED_EVENT,
+                    PAT_PERF,
+                    PAT_LONG_SECONDS,
+                    PAT_NOT_FINISHED,
+                    PAT_FINISH_RECORD,
+                    )
 
 from athlib.highjump import HighJumpCompetition, Jumper
 
