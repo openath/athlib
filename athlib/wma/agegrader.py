@@ -88,7 +88,7 @@ class AgeGrader(object):
             if p.match(code):
                 return n
 
-        raise ValueError('could not find event kind for code %R' % code)
+        raise ValueError('could not find event kind for code %r' % code)
 
     @staticmethod
     def normalize_gender(gender):
