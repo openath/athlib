@@ -116,6 +116,13 @@ def get_distance(discipline):
     elif discipline == "MILE":
         return 1609
 
+    m = PAT_RELAYS.match(discipline)
+    if m:
+        g1 = int(m.group(1))
+        g2 = m.group(2).upper()
+        if g2=='RELAY': return None #cowardly refusing to guess
+        return g1*int(g2)
+
     m = PAT_LEADING_DIGITS.match(discipline)
     if not m:
         return None

@@ -64,10 +64,11 @@ class UtilsTests(TestCase):
         self.assertEquals(get_distance("5M"), 8045)
         self.assertEquals(get_distance("HM"), 21098)
         self.assertEquals(get_distance("MAR"), 42195)
-
         self.assertEquals(get_distance("XC"), None)
-
         self.assertEquals(get_distance("HJ"), None)
+        self.assertEquals(get_distance("4xrelay"), None)
+        self.assertEquals(get_distance("4x100"), 400)
+        self.assertEquals(get_distance("4x400"), 1600)
 
     def test_normalize_gender(self):
         from athlib.utils import normalize_gender
