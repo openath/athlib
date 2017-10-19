@@ -246,8 +246,6 @@ def check_performance_for_discipline(discipline, textvalue, gender='all', ulpc=1
             raise errorKlass(
                 "'%s' is not a valid points value for multi-events"
                 % textvalue)
-        if points < 500:
-            raise errorKlass("Multi-events scores should be above 500")
         if points > 9999:
             raise errorKlass("Multi-events scores should be below 10000")
         return str(points)
@@ -266,6 +264,10 @@ def check_performance_for_discipline(discipline, textvalue, gender='all', ulpc=1
                 and ("." not in textvalue):
             # print("fixing colon to stop ")
             textvalue = textvalue.replace(":", ".")
+
+        if distance and (distance >= 800) and ("." in textvalue) and (":" not in textvalue):
+            # print "fixing stop to colon "
+            textvalue = textvalue.replace(".", ":")
 
         if discipline in ["800", "1500", "3000"]:
             if "." not in textvalue:

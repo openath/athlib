@@ -116,65 +116,43 @@ class UtilsTests(TestCase):
         from athlib.utils import check_performance_for_discipline as checkperf
         self.assertEquals(checkperf("XC", ""), "")
         self.assertEquals(checkperf("xc", ""), "")
-
         self.assertEquals(checkperf("HJ", "2.34"), "2.34")
         self.assertEquals(checkperf("HJ", "  2.34  "), "2.34")
-
         self.assertEquals(checkperf("60m", "7.62"), "7.62")
-
         self.assertEquals(checkperf("100m", "9.73456"), "9.73")
         self.assertEquals(checkperf("100m", "12"), "12.0")
-
         self.assertEquals(checkperf("400m", "63.1"), "63.1")
         self.assertEquals(checkperf("400m", "1:03.1"), "1:03.1")
-
         self.assertEquals(checkperf("800m", "2:33"), "2:33")
-
-        # Correct French commas to decimals
-        self.assertEquals(checkperf("200", "27,33"), "27.33")
-
-        # Correct semicolons - fail to hit the shift key
-        self.assertEquals(checkperf("800m", "2;33"), "2:33")
-
+        self.assertEquals(checkperf("200", "27,33"), "27.33")   # Correct French commas to decimals
+        self.assertEquals(checkperf("800m", "2;33"), "2:33")    # Correct semicolons - fail to hit the shift key
+        self.assertEquals(checkperf("800", "2.33"), "2:33")     # Correct dots for some events
         self.assertEquals(checkperf("Mar", "2:03:59"), "2:03:59")
-
         self.assertEquals(checkperf("XC", "27:50"), "27:50"),
-
         self.assertEquals(checkperf("3000m", "0:11:15"), "11:15")
-
         self.assertEquals(checkperf("60m", "7:62"), "7.62")
-
-        # Excel can prepend zeroes
-        self.assertEquals(checkperf("5000", "0:14:53.2"), "14:53.2")
+        self.assertEquals(checkperf("5000", "0:14:53.2"), "14:53.2")    # Excel can prepend zeroes
         self.assertEquals(checkperf("5000", "00:14:53.2"), "14:53.2")
+        self.assertEquals(checkperf("1500", "3:53:17"), "3:53.17")      # Autocorrect 800/1500/3000 submitted as H:M:S
+        self.assertEquals(checkperf("DEC", "5875"), "5875")             # Multi-events
+        self.assertEquals(checkperf("400", "52:03"), "52.03")           # Correct some common muddles
+        self.assertEquals(checkperf("PEN", "0"), "0")                   # low score is allowed
 
-        # Autocorrect 800/1500/3000 submitted as H:M:S
-        self.assertEquals(checkperf("1500", "3:53:17"), "3:53.17")
-
-        # Multi-events
-        self.assertEquals(checkperf("DEC", "5875"), "5875")
-
-        # Correct some common muddles
-        self.assertEquals(checkperf("400", "52:03"), "52.03")
-
-        self.assertRaises(ValueError, checkperf, "DEC", "23")
+    def test_checkperf_raises(self):
+        from athlib.utils import check_performance_for_discipline as checkperf
+        #self.assertRaises(ValueError, checkperf, "DEC", "23") #lower limit no longer enforced
         self.assertRaises(ValueError, checkperf, "DEC", "10001")
         self.assertRaises(ValueError, checkperf, "DEC", "4:15.8")
-
-        for (discipline, perf) in [
-            ("HJ", "25"),
-            ("HJ", "Soooo Highhhh!!!"),
-            ("HJ", "2:03"),
-            ("100m", "9.73w"),  # No wind, indoor figures or suffixes
-            ("800m", "2.33"),  # seconds, should have been minutes
-            ("XC", "27.50"),
-            ("100M", "1:17:42:03"),  # Multi-day not supported
-            ("400", "0:103"),  # poor format
-            ("100", "8.5"),  # > 11.0 metres per second
-            ("5000", "3:45:27"),  # < 0.5 m/sec
-        ]:
-            self.assertRaises(ValueError, checkperf, discipline, perf)
-
+        self.assertRaises(ValueError, checkperf, "HJ", "25"),
+        self.assertRaises(ValueError, checkperf, "HJ", "Soooo Highhhh!!!"),
+        self.assertRaises(ValueError, checkperf, "HJ", "2:03"),
+        self.assertRaises(ValueError, checkperf, "100m", "9.73w"),  # No wind, indoor figures or suffixes
+        #self.assertRaises(ValueError, checkperf, "800m", "2.33"),  # seconds, should have been minutes dot converted
+        self.assertRaises(ValueError, checkperf, "XC", "27.50"),
+        self.assertRaises(ValueError, checkperf, "100M", "1:17:42:03"),  # Multi-day not supported
+        self.assertRaises(ValueError, checkperf, "400", "0:103"),  # poor format
+        self.assertRaises(ValueError, checkperf, "100", "8.5"),  # > 11.0 metres per second
+        self.assertRaises(ValueError, checkperf, "5000", "3:45:27"),  # < 0.5 m/sec
 
 if __name__ == '__main__':
     main()
