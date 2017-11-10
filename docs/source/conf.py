@@ -64,7 +64,7 @@ author = u'Andy Robinson and others'
 # built documents.
 #
 # The short X.Y version.
-version = u'0.2.4'
+version = u'0.2.5'
 # The full version, including alpha/beta/rc tags.
 release = version
 
