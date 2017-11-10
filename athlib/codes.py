@@ -7,7 +7,14 @@ import re
 
 JUMPS = ("HJ", "PV", "LJ", "TJ")
 THROWS = ("DT", "JT", "HT", "SP", "WT")
-MULTI_EVENTS = ("PEN", "HEP", "DEC", "PENI", "PENWT")
+MULTI_EVENTS = (
+    # Greek prefixes for 2..12 events, and for 20.
+    "BI", "TRI", "QUAD", "PEN", "HEX", "HEP", "OCT", "ENN", "DEC",
+    "HEN", "DOD", "ICO",
+
+    "PENI",  # Indoor Pentathlon, not sure if we should keep this
+    "PENWT",  # Weights Pentathlon - defines what events go in it.
+)
 FIELD_EVENTS = JUMPS + THROWS
 STANDARD_MALE_TRACK_EVENTS = ("100", "200", "400", "800", "1500",
                               "5000", "10000",
