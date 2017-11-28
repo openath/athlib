@@ -203,7 +203,7 @@ def field_event_record(evc,gender='all'):
         gender = 'all'
     return FIELD_EVENT_RECORDS_BY_GENDER[gender].get(evc.upper(),None)
 
-def check_performance_for_discipline(discipline, textvalue, gender='all', ulpc=120/100.0, errorKlass=ValueError):
+def check_performance_for_discipline(discipline, textvalue, gender='all', ulpc=120/100.0, errorKlass=ValueError, prec=None):
     """
     Fix up and return what they typed in,  or raise errorKlass(default ValueError)
     """
@@ -340,22 +340,25 @@ def check_performance_for_discipline(discipline, textvalue, gender='all', ulpc=1
                     raise errorKlass(
                         "Please use mm:ss for minutes and seconds, not mm.ss")
 
-        # Format consistently for output
-        if hours and minutes:
-            t = '%d:%02d:%05.2f' % (hours, minutes, seconds)
-        elif minutes:
-            t = '%d:%05.2f' % (minutes, seconds)
-        else:
-            t = '%0.2f' % seconds
+        if prec is None:
+            #use Andy's method
+            # Format consistently for output
+            if hours and minutes:
+                t = '%d:%02d:%05.2f' % (hours, minutes, seconds)
+            elif minutes:
+                t = '%d:%05.2f' % (minutes, seconds)
+            else:
+                t = '%0.2f' % seconds
 
-        # Strip trailing zeroes except for short ones
-        if len(t) > 4:
-            while t.endswith('0') and len(t) > 4:
-                t = t[0:-1]
-            if t.endswith('.'):
-                t = t[0:-1]
+            # Strip trailing zeroes except for short ones
+            if len(t) > 5:
+                while t.endswith('0') and len(t) > 4:
+                    t = t[0:-1]
+                if t.endswith('.'):
+                    t = t[0:-1]
+            return t
 
-        return t
+        return format_seconds_as_time(duration,prec)
 
 def discipline_sort_key(discipline):
     """

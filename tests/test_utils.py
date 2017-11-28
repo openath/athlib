@@ -120,8 +120,8 @@ class UtilsTests(TestCase):
         self.assertEquals(checkperf("HJ", "  2.34  "), "2.34")
         self.assertEquals(checkperf("60m", "7.62"), "7.62")
         self.assertEquals(checkperf("100m", "9.73456"), "9.73")
-        self.assertEquals(checkperf("100m", "12"), "12.0")
-        self.assertEquals(checkperf("400m", "63.1"), "63.1")
+        self.assertEquals(checkperf("100m", "12"), "12.00")
+        self.assertEquals(checkperf("400m", "63.1"), "63.10")
         self.assertEquals(checkperf("400m", "1:03.1"), "1:03.1")
         self.assertEquals(checkperf("800m", "2:33"), "2:33")
         self.assertEquals(checkperf("200", "27,33"), "27.33")   # Correct French commas to decimals
