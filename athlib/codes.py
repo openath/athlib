@@ -53,6 +53,7 @@ PAT_EVENT_CODE=re.compile('|'.join(_.pattern for _ in (PAT_MULTI,PAT_RUN,
 PAT_VERTICAL_JUMPS = re.compile(r"^(?:HJ|PV)$")
 PAT_HORIZONTAL_JUMPS = re.compile(r"^(?:LJ|TJ)$")
 
+PAT_LEADING_FLOAT = re.compile(r"^\d+\.\d*")
 PAT_LEADING_DIGITS = re.compile("^\d+")
 
 PAT_LENGTH_EVENT = re.compile("|".join(_.pattern for _ in (PAT_HORIZONTAL_JUMPS, PAT_THROWS)))

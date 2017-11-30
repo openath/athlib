@@ -9,7 +9,7 @@ _rootdir = os.path.dirname(os.path.abspath(__file__))
 _rootdir = os.path.normpath(os.path.join(_rootdir, '..'))
 
 from .codes import PAT_THROWS, PAT_JUMPS, PAT_RELAYS, PAT_HURDLES, PAT_TRACK, \
-    PAT_LEADING_DIGITS, PAT_PERF, PAT_EVENT_CODE, \
+    PAT_LEADING_DIGITS, PAT_LEADING_FLOAT, PAT_PERF, PAT_EVENT_CODE, \
     FIELD_EVENTS, MULTI_EVENTS, FIELD_SORT_ORDER
 
 __all__ = """normalize_gender
@@ -123,15 +123,18 @@ def get_distance(discipline):
         if g2=='RELAY': return None #cowardly refusing to guess
         return g1*int(g2)
 
-    m = PAT_LEADING_DIGITS.match(discipline)
+    m = PAT_LEADING_FLOAT.match(discipline)
+    if not m:
+        m = PAT_LEADING_DIGITS.match(discipline)
     if not m:
         return None
 
     qty_text = m.group()
     remains = discipline[len(qty_text):]
     qty = float(qty_text)
-
-    if not remains:
+    if '.' in qty_text:
+        return int(1609 * qty) if remains in ('M', 'Mi', 'MI') else None
+    elif not remains:
         return int(qty)
     elif remains in ('m', 'mH', 'SC', 'h', 'H'):
         return int(qty)
