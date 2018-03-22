@@ -142,6 +142,8 @@ def get_distance(discipline):
         return int(1000 * qty)
     elif remains in ('M', 'Mi', 'MI'):
         return int(1609 * qty)
+    elif remains in ('Y', 'y', 'YD', 'yd'):
+        return int(0.9144 * qty)
 
 def format_seconds_as_time(seconds, prec=0):
     """convert seconds to a string formatted as hours:min:secs

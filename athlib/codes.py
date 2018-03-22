@@ -6,7 +6,12 @@ import re
 
 
 JUMPS = ("HJ", "PV", "LJ", "TJ")
-THROWS = ("DT", "JT", "HT", "SP", "WT")
+THROWS = (
+    "DT", "JT", "HT", "SP", "WT", 
+
+    # Superweight Throw, Ball Throw, Other Throw, Stone Throw
+    "SWT", "BT", "ST", "GDT", "OT"
+)
 MULTI_EVENTS = (
     # Greek prefixes for 2..12 events, and for 20.
     "BI", "TRI", "QUAD", "PEN", "HEX", "HEP", "OCT", "ENN", "DEC",
@@ -34,7 +39,7 @@ PAT_THROWS = re.compile((r"^(?:(?:[wW][tT](?P<wtnum>\d?%s|)|[jJ][tT](?P<jtnum>[4
                          r"[sS][pP](?P<spnum>%s|))$") % (_, _, _, _),
                         )
 PAT_JUMPS = re.compile(r"^(?:[lL][jJ]|[pP][vV]|[tT][jJ]|[hH][jJ])$")
-PAT_TRACK = re.compile(r"^(?:(?:(?P<meters>\d+)(?:[lLsS]?[hH](?:3[36])?|[sS][cC]|[wW])?)|[sS][cC]|"
+PAT_TRACK = re.compile(r"^(?:(?:(?P<meters>\d+)(?:[lLsS]?[hH](?:3[36])?|[yY]|[sS][cC]|[wW])?)|[sS][cC]|"
                         r"[2345][mM][tT]|[lL][hH]|[sS][hH])$",
                        )
 PAT_ROAD = re.compile(r"^(?:(?:[mM][iI][lL][eE]|[mM][aA][rR]|[hH][mM]|\d{1,3}(\.\d\d?)?[MKk]?)[wW]?)$")
