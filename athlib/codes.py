@@ -28,13 +28,17 @@ STANDARD_FEMALE_TRACK_EVENTS = ["100H" if x == "110H" else
                                 x for x in STANDARD_MALE_TRACK_EVENTS]
 # When listing field events, the Blazer Brigade suggest this should be the
 # order
-FIELD_SORT_ORDER = ["HJ", "PV", "LJ", "TJ", "SP", "DT", "HT", "JT"]
+FIELD_SORT_ORDER = ["HJ", "PV", "LJ", "TJ", "SP", "DT", "HT", "JT", 
+  "ST", "GDT", "BT", "WT", "SWT", "OT"]
 
 
 # Patterns allow both for generic (JT = Javelin Throw) and
 # weight-specific (JT800) patterns.
 _ = r"\d\.?\d*[Kk]"
 PAT_THROWS = re.compile((r"^(?:(?:[wW][tT](?P<wtnum>\d?%s|)|[jJ][tT](?P<jtnum>[45678]00|)|"
+                         r"[sS][wW][tT]|[gG][dD][tT]|[bB][tT]|[oO][tT]|"
+
+
                          r"[dD][tT](?P<dtnum>%s|)|[hH][tT](?P<htnum>%s|))|"
                          r"[sS][pP](?P<spnum>%s|))$") % (_, _, _, _),
                         )
