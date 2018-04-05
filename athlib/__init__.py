@@ -3,7 +3,7 @@ from athlib.uka.agegroups import calc_uka_age_group
 from athlib.iaaf_score import score as athlon_score
 from athlib.iaaf_score import performance as athlon_performance_needed
 
-__version__ = u'0.3.1' 
+__version__ = u'0.3.2' 
 
 from athlib.exceptions import RuleViolation
 
@@ -19,6 +19,9 @@ from athlib.utils import (
     sort_by_discipline,
     check_event_code,
     )
+
+from athlib.implements import get_implement_weight
+
 from athlib.codes import (
                     JUMPS,
                     THROWS,
@@ -84,6 +87,7 @@ __all__ = filter(None, """
             discipline_sort_key
             format_seconds_as_time
             get_distance
+            get_implement_weight
             normalize_gender
             parse_hms
             sort_by_discipline
