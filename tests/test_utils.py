@@ -72,6 +72,9 @@ class UtilsTests(TestCase):
         self.assertEquals(get_distance("7.5M"), 12067)
         self.assertEquals(get_distance("7.5SC"), None)
         self.assertEquals(get_distance("440Y"), 402)
+        self.assertEquals(get_distance("3000W"), 3000)
+        self.assertEquals(get_distance("3KW"), 3000)
+        self.assertEquals(get_distance("3kmW"), 3000)
 
     def test_normalize_gender(self):
         from athlib.utils import normalize_gender
@@ -140,6 +143,8 @@ class UtilsTests(TestCase):
         self.assertEquals(checkperf("DEC", "5875"), "5875")             # Multi-events
         self.assertEquals(checkperf("400", "52:03"), "52.03")           # Correct some common muddles
         self.assertEquals(checkperf("PEN", "0"), "0")                   # low score is allowed
+        self.assertEquals(checkperf("3000mW", "0:24:15"), "24:15")
+        self.assertEquals(checkperf("3KW", "0:24:15"), "24:15")
 
     def test_checkperf_raises(self):
         from athlib.utils import check_performance_for_discipline as checkperf
@@ -156,6 +161,7 @@ class UtilsTests(TestCase):
         self.assertRaises(ValueError, checkperf, "400", "0:103"),  # poor format
         self.assertRaises(ValueError, checkperf, "100", "8.5"),  # > 11.0 metres per second
         self.assertRaises(ValueError, checkperf, "5000", "3:45:27"),  # < 0.5 m/sec
+        self.assertRaises(ValueError, checkperf, "3KW", "2:34")
 
 if __name__ == '__main__':
     main()
