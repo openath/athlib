@@ -52,7 +52,8 @@ PAT_RUN = re.compile("%s|%s" % (PAT_TRACK.pattern, PAT_ROAD.pattern))
 PAT_FIELD = re.compile("%s|%s" % (PAT_THROWS.pattern, PAT_JUMPS.pattern))
 
 # Although part of PAT_RUN, these
-PAT_RELAYS = re.compile("^(?:(\d{1,2})[xX](\d{2,5}|[rR][eE][lL][aA][yY]))") # 4x100, 4x400
+PAT_RELAYS =
+re.compile("^(?:(\d{1,2})[xX](\d{2,5}[hH]?|[rR][eE][lL][aA][yY]))$") # 4x100, 4x400, 4xReLAy, 12x200H
 PAT_HURDLES = re.compile("^(?:(\d{2,4})([hH]|[sS][cC]))") # 80H, 110H, 400H
 PAT_MULTI = '|'.join((''.join(('[%s%s]' % (v.lower(),v.upper()) for v in _)) for _ in MULTI_EVENTS))
 PAT_MULTI = re.compile(r"^(?:%s)$" % PAT_MULTI)
