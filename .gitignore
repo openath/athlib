@@ -28,6 +28,9 @@ pip-selfcheck.json
 *.egg-info/
 .installed.cfg
 *.egg
+tmp/
+build/
+share/
 
 #Mac crap
 .DS_Store

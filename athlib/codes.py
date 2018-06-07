@@ -42,7 +42,9 @@ PAT_THROWS = re.compile((r"^(?:(?:[wW][tT](?P<wtnum>\d?%s|)|[jJ][tT](?P<jtnum>[4
                          r"[dD][tT](?P<dtnum>%s|)|[hH][tT](?P<htnum>%s|))|"
                          r"[sS][pP](?P<spnum>%s|))$") % (_, _, _, _),
                         )
-PAT_JUMPS = re.compile(r"^(?:[lL][jJ]|[pP][vV]|[tT][jJ]|[hH][jJ])$")
+PAT_VERTICAL_JUMPS = re.compile(r"^(?:HJ|PV)$")
+PAT_HORIZONTAL_JUMPS = re.compile(r"^(?:LJ|TJ)$")
+PAT_JUMPS = re.compile("|".join(_.pattern for _ in (PAT_VERTICAL_JUMPS,PAT_HORIZONTAL_JUMPS)))
 PAT_TRACK = re.compile(r"^(?:(?:(?P<meters>\d+)(?:[lLsS]?[hH](?:3[36])?|[yY]|[sS][cC]|[wW])?)|[sS][cC]|"
                         r"[2345][mM][tT]|[lL][hH]|[sS][hH])$",
                        )
@@ -58,9 +60,6 @@ PAT_MULTI = '|'.join((''.join(('[%s%s]' % (v.lower(),v.upper()) for v in _)) for
 PAT_MULTI = re.compile(r"^(?:%s)$" % PAT_MULTI)
 PAT_EVENT_CODE=re.compile('|'.join(_.pattern for _ in (PAT_MULTI,PAT_RUN,
                 PAT_FIELD,PAT_RELAYS,PAT_HURDLES)))
-
-PAT_VERTICAL_JUMPS = re.compile(r"^(?:HJ|PV)$")
-PAT_HORIZONTAL_JUMPS = re.compile(r"^(?:LJ|TJ)$")
 
 PAT_LEADING_FLOAT = re.compile(r"^\d+\.\d*")
 PAT_LEADING_DIGITS = re.compile("^\d+")
