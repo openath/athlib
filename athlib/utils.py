@@ -136,7 +136,7 @@ def get_distance(discipline):
         return int(1609 * qty) if remains in ('M', 'Mi', 'MI') else None
     elif not remains:
         return int(qty)
-    elif remains in ('m', 'mH', 'SC', 'h', 'H', 'w', 'W'):
+    elif remains.lower() in ('sc', 'h', 'w') or remains in ('m', 'mH'):
         return int(qty)
     elif remains in ('k', 'K', 'km'):
         return int(1000 * qty)

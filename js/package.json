@@ -1,6 +1,6 @@
 {
   "name": "athlib",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "description": "Athletics Library",
   "main": "./index.js",
   "scripts": {
@@ -52,18 +52,18 @@
     "chai": "^3.4.1",
     "clean-webpack-plugin": "^0.1.8",
     "del": "^2.2.0",
-    "eslint": "^1.10.3",
+    "eslint": "^5.2.0",
     "eslint-config-airbnb": "^4.0.0",
     "eslint-loader": "^1.2.0",
     "eslint-plugin-react": "^3.16.1",
     "eslint-plugin-standard": "^1.3.1",
-    "gulp": "^3.9.0",
+    "gulp": "^4.0.0",
     "gulp-babel": "^6.1.1",
     "gulp-env": "^0.2.0",
-    "gulp-eslint": "^1.1.1",
+    "gulp-eslint": "^5.0.0",
     "gulp-load-plugins": "^1.2.0",
     "gulp-util": "^3.0.6",
-    "mocha": "^2.3.4",
+    "mocha": "^5.2.0",
     "object-assign": "^4.0.1",
     "webpack": "^1.12.11",
     "webpack-node-externals": "^0.4.1"
@@ -74,5 +74,8 @@
     "dist-node": "athlib.js",
     "dist-web": "athlib.web.js",
     "bundle-node": true
+  },
+  "dependencies": {
+    "babel-register": "^6.26.0"
   }
 }
