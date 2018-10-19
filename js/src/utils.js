@@ -1,10 +1,9 @@
-
 import {
   JUMPS,
   THROWS,
   MULTI_EVENTS,
   FIELD_EVENTS,
-} from './codes'
+} from './codes.js'
 
 /** 
  * The hello functions is just here to test our build tools. 
@@ -76,11 +75,5 @@ function betterPerformance(perfA, perfB, eventCode) {
   }
   return better
 }
-module.exports = {
-  hello,
-  normalizeGender,
-  perfToFloat,
-  isFieldEvent,
-  isMultiEvent,
-  betterPerformance,
-}
+
+export default { hello, normalizeGender, perfToFloat, isFieldEvent, isMultiEvent, betterPerformance }

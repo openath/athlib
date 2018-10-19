@@ -1,23 +1,13 @@
-import { 
-    hello, 
-    normalizeGender, 
-    perfToFloat, 
-    isFieldEvent,
-    isMultiEvent,
-    betterPerformance,
-} from './utils';
-
 import { calcUkaAgeGroup } from './uka_agegroups';
-
-import { HighJumpCompetition } from './highjump.js';
-
-module.exports = {
-  hello,
-  normalizeGender,
-  perfToFloat,
+import { HighJumpCompetition } from './highjump';
+var utils = rqquire('./utils');
+export default {
+	hello: utils.hello,
+  normalizeGender: utils.normalizeGender,
+  perfToFloat: utils.perfToFloat,
+  isFieldEvent: utils.isFieldEvent,
+  isMultiEvent: utils.isMultiEvent,
+  betterPerformance: utils.betterPerformance,
   calcUkaAgeGroup,
-  isFieldEvent,
-  isMultiEvent,
-  betterPerformance,
   HighJumpCompetition,
-}
+};
