@@ -1,8 +1,8 @@
 import { calcUkaAgeGroup } from './uka_agegroups';
 import { HighJumpCompetition } from './highjump';
-var utils = rqquire('./utils');
+var utils = require('./utils');
 export default {
-	hello: utils.hello,
+  hello: utils.hello,
   normalizeGender: utils.normalizeGender,
   perfToFloat: utils.perfToFloat,
   isFieldEvent: utils.isFieldEvent,

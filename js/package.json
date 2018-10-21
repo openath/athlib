@@ -54,6 +54,9 @@
     "webpack": "^4.21.0",
     "webpack-cli": "^3.1.2"
   },
+  "browserslist": {
+    "targets": "> 0.25%, not dead"
+  },
   "library": {
     "name": "athlib",
     "entry": "library.js",
@@ -61,5 +64,7 @@
     "dist-web": "athlib.web.js",
     "bundle-node": true
   },
-  "dependencies": {}
+  "dependencies": {
+    "es-check": "^4.0.0"
+  }
 }
