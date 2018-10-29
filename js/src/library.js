@@ -1,13 +1,23 @@
+import { 
+    hello, 
+    normalizeGender, 
+    perfToFloat, 
+    isFieldEvent,
+    isMultiEvent,
+    betterPerformance,
+} from './utils';
+
 import { calcUkaAgeGroup } from './uka_agegroups';
-import { HighJumpCompetition } from './highjump';
-var utils = require('./utils');
-export default {
-  hello: utils.hello,
-  normalizeGender: utils.normalizeGender,
-  perfToFloat: utils.perfToFloat,
-  isFieldEvent: utils.isFieldEvent,
-  isMultiEvent: utils.isMultiEvent,
-  betterPerformance: utils.betterPerformance,
+
+import { HighJumpCompetition } from './highjump.js';
+
+module.exports = {
+  hello,
+  normalizeGender,
+  perfToFloat,
   calcUkaAgeGroup,
+  isFieldEvent,
+  isMultiEvent,
+  betterPerformance,
   HighJumpCompetition,
 };

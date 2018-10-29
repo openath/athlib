@@ -1,65 +1,64 @@
-import { expect } from 'chai';
-import Athlib from '../index.js';
+import Athlib from '../src/library.js';
 
 
-describe('Given an instance of Athlib', function() {
-  describe('testing the hello function', function() {
-    it('hello("world") should return "Hello, world!"', () => {
-      expect(Athlib.hello('world')).to.be.equal('Hello, world!');
+describe('Given an instance of Athlib', () => {
+  describe('testing the hello function', () => {
+    test('hello("world") should return "Hello, world!"', () => {
+      expect(Athlib.hello('world')).toEqual('Hello, world!');
     });
   });
-  describe('testing normalizeGender', function() {
-    it('Male should return M', () => {
-      expect(Athlib.normalizeGender('Male')).to.be.equal('m');
-      expect(Athlib.normalizeGender('FeMale')).to.be.equal('f');
+  describe('testing normalizeGender', () => {
+    test('Male should return M', () => {
+      expect(Athlib.normalizeGender('Male')).toEqual('m');
+      expect(Athlib.normalizeGender('FeMale')).toEqual('f');
     });
   });
-  describe('testing UKA age groups', function() {
-    it('should return SEN for TF', function() {
+  describe('testing UKA age groups', () => {
+    test('should return SEN for TF', () => {
       expect(Athlib.calcUkaAgeGroup(
         new Date('1989-01-26'),
         new Date('2017-01-01'),
         'TF',
         false,
-        false)).to.equal('SEN');
+        false)).toEqual('SEN');
     });
-    it('should return SEN for XC', function() {
+    test('should return SEN for XC', () => {
       expect(Athlib.calcUkaAgeGroup(
         new Date('1989-01-26'),
         new Date('2017-01-01'),
         'XC',
         false,
-        false)).to.equal('SEN');
+        false)).toEqual('SEN');
     });
   });
 
-  describe('perfToFloat', function() {
-    it('should parse performances', function() {
-      expect(Athlib.perfToFloat('1:57.2')).to.equal(117.2);
-      expect(Athlib.perfToFloat('9.58')).to.equal(9.58);
-      expect(Athlib.perfToFloat('63.2')).to.equal(63.2);
-      expect(Athlib.perfToFloat('1:03.2')).to.equal(63.2);
-      expect(Athlib.perfToFloat('2:03:59.1')).to.equal(7439.10);
+  describe('perfToFloat', () => {
+    test('should parse performances', () => {
+      expect(Athlib.perfToFloat('1:57.2')).toEqual(117.2);
+      expect(Athlib.perfToFloat('9.58')).toEqual(9.58);
+      expect(Athlib.perfToFloat('63.2')).toEqual(63.2);
+      expect(Athlib.perfToFloat('1:03.2')).toEqual(63.2);
+      expect(Athlib.perfToFloat('2:03:59.1')).toEqual(7439.10);
     });
   });
 
-  describe('isFieldEvent', function() {
-    it('should detect field events', function() {
-      expect(Athlib.isFieldEvent('JT')).to.equal(true);
-      expect(Athlib.isFieldEvent('JT700')).to.equal(true);
-      expect(Athlib.isFieldEvent('800')).to.equal(false);
-      expect(Athlib.isMultiEvent('PEN')).to.equal(true);
-      expect(Athlib.isMultiEvent(' heptathalon ')).to.equal(true);
-      expect(Athlib.isMultiEvent('Decy')).to.equal(true);
-      expect(Athlib.isMultiEvent('Octa')).to.equal(true);
+  describe('isFieldEvent', () => {
+    test('should detect field events', () => {
+      expect(Athlib.isFieldEvent('JT')).toEqual(true);
+      expect(Athlib.isFieldEvent('JT700')).toEqual(true);
+      expect(Athlib.isFieldEvent('800')).toEqual(false);
+      expect(Athlib.isMultiEvent('PEN')).toEqual(true);
+      expect(Athlib.isMultiEvent(' heptathalon ')).toEqual(true);
+      expect(Athlib.isMultiEvent('Decy')).toEqual(true);
+      expect(Athlib.isMultiEvent('Octa')).toEqual(true);
     });
   });
-  describe('betterPerformance', function() {
-    it('should detect better performances', function() {
-      expect(Athlib.betterPerformance('83.25', '17.3', 'JT')).to.equal('83.25');
-      expect(Athlib.betterPerformance('10.5', '10.6', '100')).to.equal('10.5');
-      expect(Athlib.betterPerformance('3456', '4567', 'DEC')).to.equal('4567');
-      expect(Athlib.betterPerformance('3456', '4567', 'MUL')).to.equal('4567');
+  describe('betterPerformance', () => {
+    test('should detect better performances', () => {
+      expect(Athlib.betterPerformance('83.25', '17.3', 'JT')).toEqual('83.25');
+      expect(Athlib.betterPerformance('10.5', '10.6', '100')).toEqual('10.5');
+      expect(Athlib.betterPerformance('3456', '4567', 'DEC')).toEqual('4567');
+      expect(Athlib.betterPerformance('3456', '4567', 'MUL')).toEqual('4567');
     });
   });
 

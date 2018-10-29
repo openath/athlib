@@ -4,10 +4,9 @@
   "description": "Athletics Library",
   "main": "./index.js",
   "scripts": {
-    "build": "webpack --mode production ./src/library.js --output ./dist/athlib.js --module-bind js=babel-loader",
-    "build-dev": "webpack --mode development ./src/library.js --output ./lib/athlib.js --module-bind js=babel-loader",
-    "test-build": "npm run build && mocha --compilers js:@babel/register",
-    "test": "mocha --compilers js:@babel/register",
+    "build": "webpack --mode production ./src/library.js --output ./dist/athlib.web.js --module-bind js=babel-loader --output-library=\"\"",
+    "unit-tests": "TESTSRC=\"src\" jest",
+    "unit-tests-dist": "TESTSRC=\"dist\" jest",
     "clean": "rimraf dist lib",
     "dist-clean": "rimraf dist lib node_modules",
     "lint": "eslint src/"
@@ -24,7 +23,7 @@
     "name": "Various",
     "url": "https://github.com/openath"
   },
-  "license": "Apache",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/openath/athlib/issues"
   },
@@ -38,18 +37,22 @@
   "homepage": "https://github.com/openath/athlib",
   "devDependencies": {
     "@babel/core": "^7.1.2",
+    "@babel/plugin-proposal-export-default-from": "^7.0.0",
     "@babel/preset-env": "^7.1.0",
     "@babel/register": "^7.0.0",
     "babel-eslint": "^10.0.1",
+    "babel-jest": "^23.6.0",
     "babel-loader": "^8.0.4",
     "babel-plugin-add-module-exports": "^1.0.0",
-    "chai": "^4.2.0",
+    "es-check": "^4.0.0",
     "eslint": "^5.7.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.11.1",
-    "mocha": "^5.2.0",
+    "jest": "^23.6.0",
+    "jest-codemods": "^0.16.0",
+    "regenerator-runtime": "^0.12.1",
     "rimraf": "^2.6.2",
     "webpack": "^4.21.0",
     "webpack-cli": "^3.1.2"
@@ -57,14 +60,18 @@
   "browserslist": {
     "targets": "> 0.25%, not dead"
   },
+  "jest": {
+    "testRegex": "test/.*\\.(js|jsx)$"
+  },
   "library": {
     "name": "athlib",
     "entry": "library.js",
     "dist-node": "athlib.js",
     "dist-web": "athlib.web.js",
-    "bundle-node": true
+    "bundle-web": true
   },
   "dependencies": {
-    "es-check": "^4.0.0"
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-plugin-transform-export-default": "^7.0.0-alpha.20"
   }
 }
