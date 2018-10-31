@@ -2,9 +2,11 @@ module.exports = {
 	filenameHashing: false,
 	configureWebpack: {
 		output: {
+			filename: "athlib.web.js",
+			library: 'Athlib',
       libraryTarget: 'umd',
-			libraryExport: 'default',
-      umdNamedDefine: true
+      umdNamedDefine: true,
+			libraryExport: 'athlib'
 		}
 	}
 }

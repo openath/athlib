@@ -70,7 +70,7 @@ function betterPerformance(perfA, perfB, eventCode) {
   return better;
 }
 
-export default {
+module.exports = {
   hello,
   normalizeGender,
   perfToFloat,

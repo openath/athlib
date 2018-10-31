@@ -1,5 +1,4 @@
-import Athlib from '../src/library.js';
-
+import Athlib from '../src/athlib.js';
 
 describe('Given an instance of Athlib', () => {
   describe('testing the hello function', () => {

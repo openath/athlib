@@ -4,14 +4,17 @@
   "description": "Athletics Library",
   "main": "./index.js",
   "scripts": {
-    "build-lib": "npm run lint && vue-cli-service build --target lib --name athlib src/library.js",
-    "unit-tests": "TESTSRC=\"src\" jest",
-    "unit-tests-dist": "TESTSRC=\"dist\" jest",
-    "clean": "rimraf dist lib && jest --clearCache",
+    "build": "npm run lint && vue-cli-service build --target lib --name athlib src/athlib.js",
+    "build-babelled": "vue-cli-service build --target lib --name athlib babelled/athlib.js",
+    "test": "TESTSRC=\"src\" jest",
+    "test-dist": "TESTSRC=\"dist\" jest",
+    "test-babelled": "TESTSRC=\"babelled\" jest",
+    "clean": "rimraf dist lib babelled && jest --clearCache",
     "dist-clean": "npm run clean && rimraf node_modules",
     "lint": "eslint src/",
     "lint-fix": "eslint --fix src/",
-    "inspect": "vue inspect > inpect.out.js"
+    "inspect": "vue-cli-service inspect > inspect.out.js",
+    "babel": "babel src -d babelled"
   },
   "repository": {
     "type": "git",
@@ -38,6 +41,7 @@
   ],
   "homepage": "https://github.com/openath/athlib",
   "devDependencies": {
+    "@babel/plugin-proposal-export-default-from": "^7.0.0",
     "@cypress/webpack-preprocessor": "^3.0.0",
     "@vue/cli-plugin-babel": "^3.0.5",
     "@vue/cli-plugin-e2e-cypress": "^3.0.5",
@@ -48,15 +52,14 @@
     "@vue/test-utils": "^1.0.0-beta.20",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "^23.0.1",
-    "flush-promises": "^1.0.0",
-    "json-loader": "^0.5.7",
-    "uiv": "^0.27.0",
-    "vue-template-compiler": "^2.5.17",
-    "es-check": "^4.0.0",
-    "@babel/plugin-proposal-export-default-from": "^7.0.0",
     "babel-plugin-add-module-exports": "^1.0.0",
     "babel-plugin-transform-export-default": "^7.0.0-alpha.20",
-    "rimraf": "^2.6.2"
+    "es-check": "^4.0.0",
+    "flush-promises": "^1.0.0",
+    "json-loader": "^0.5.7",
+    "rimraf": "^2.6.2",
+    "uiv": "^0.27.0",
+    "vue-template-compiler": "^2.5.17"
   },
   "browserslist": {
     "targets": "> 0.25%, not dead"
@@ -68,5 +71,7 @@
     "dist-web": "athlib.web.js",
     "bundle-web": true
   },
-  "dependencies": {}
+  "dependencies": {
+    "@babel/cli": "^7.1.2"
+  }
 }

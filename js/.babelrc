@@ -1,8 +1,5 @@
 {
     "plugins": [
-	"add-module-exports",
-	"transform-export-default",
-	"@babel/plugin-proposal-export-default-from"
 	],
-    "presets": [["@babel/preset-env",{modules: 'umd'}]],
+    "presets": [["@babel/preset-env",{"modules": "commonjs"}]],
 }

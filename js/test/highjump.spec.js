@@ -1,4 +1,5 @@
-var Athlib = require(process.env.TESTSRC==='src' ? '../src/library.js' : '../dist/athlib.umd.js');
+var Athlib = process.env.TESTSRC;
+Athlib = require(Athlib==='src' ? '../src/athlib.js' : (Athlib==='babelled' ? '../babelled/athlib.js' : '../dist/athlib.umd.js'));
 
 var ESAA_2015_HJ = [
   //Eglish Schools Senior Boys 2015 - epic jumpoff ending in a draw
