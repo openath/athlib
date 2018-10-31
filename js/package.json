@@ -4,14 +4,14 @@
   "description": "Athletics Library",
   "main": "./index.js",
   "scripts": {
-    "build-lib": "vue-cli-service build --target lib --name athlib src/library.js",
+    "build-lib": "npm run lint && vue-cli-service build --target lib --name athlib src/library.js",
     "unit-tests": "TESTSRC=\"src\" jest",
     "unit-tests-dist": "TESTSRC=\"dist\" jest",
-    "clean": "rimraf dist lib",
-    "dist-clean": "rimraf dist lib node_modules",
+    "clean": "rimraf dist lib && jest --clearCache",
+    "dist-clean": "npm run clean && rimraf node_modules",
     "lint": "eslint src/",
     "lint-fix": "eslint --fix src/",
-		"inspect": "vue inspect > inpect.out.js"
+    "inspect": "vue inspect > inpect.out.js"
   },
   "repository": {
     "type": "git",
@@ -60,9 +60,6 @@
   },
   "browserslist": {
     "targets": "> 0.25%, not dead"
-  },
-  "jest": {
-    "testRegex": "test/.*\\.(js|jsx)$"
   },
   "library": {
     "name": "athlib",
