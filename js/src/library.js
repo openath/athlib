@@ -1,15 +1,15 @@
-import { 
-    hello, 
-    normalizeGender, 
-    perfToFloat, 
-    isFieldEvent,
-    isMultiEvent,
-    betterPerformance,
-} from './utils';
+import {
+  hello,
+  normalizeGender,
+  perfToFloat,
+  isFieldEvent,
+  isMultiEvent,
+  betterPerformance
+} from "./utils";
 
-import { calcUkaAgeGroup } from './uka_agegroups';
+import { calcUkaAgeGroup } from "./uka_agegroups";
 
-import { HighJumpCompetition } from './highjump.js';
+import { HighJumpCompetition } from "./highjump.js";
 
 module.exports = {
   hello,
@@ -19,5 +19,5 @@ module.exports = {
   isFieldEvent,
   isMultiEvent,
   betterPerformance,
-  HighJumpCompetition,
+  HighJumpCompetition
 };
