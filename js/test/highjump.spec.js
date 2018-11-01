@@ -1,5 +1,7 @@
 var Athlib = process.env.TESTSRC;
-Athlib = require(Athlib==='src' ? '../src/athlib.js' : (Athlib==='babelled' ? '../babelled/athlib.js' : '../dist/athlib.umd.js'));
+Athlib = Athlib==='src' ? '../src/athlib.js' : (Athlib==='dist' ? '../dist/athlib.web.js' : '../lib/athlib.js');
+if(process.env.DEBUG=='1') console.log('!!!!! highjump.spec.js require("'+Athlib+'")');
+Athlib = require(Athlib);
 
 var ESAA_2015_HJ = [
   //Eglish Schools Senior Boys 2015 - epic jumpoff ending in a draw

@@ -1,4 +1,7 @@
-import Athlib from '../src/athlib.js';
+var Athlib = process.env.TESTSRC;
+Athlib = Athlib==='src' ? '../src/athlib.js' : (Athlib==='dist' ? '../dist/athlib.web.js' : '../lib/athlib.js');
+if(process.env.DEBUG=='1') console.log('!!!!! athlib.spec.js require("'+Athlib+'")');
+Athlib = require(Athlib);
 
 describe('Given an instance of Athlib', () => {
   describe('testing the hello function', () => {

@@ -2,14 +2,12 @@ module.exports = {
 	filenameHashing: false,
 	configureWebpack: {
 		output: {
-			filename: "athlib.web.js",
-			library: 'Athlib',
-      libraryTarget: 'umd',
-      umdNamedDefine: true,
-			libraryExport: 'athlib'
+			//filename: "athlib.web.js",
+			//library: 'athlib',
 		}
 	}
 }
-if(process.env.NOSPLITCHUNKS==='1'){
-	module.exports['chainWebpack'] = config => {config.optimization.splitChunks(false)}
+module.exports['chainWebpack'] = config => {
+  if(process.env.NOSPLITCHUNKS==='1') config.optimization.splitChunks(false);
+	config.output.filename = "athlib.web.js";
 }

@@ -4,17 +4,17 @@
   "description": "Athletics Library",
   "main": "./index.js",
   "scripts": {
-    "build": "npm run lint && vue-cli-service build --target lib --name athlib src/athlib.js",
-    "build-babelled": "vue-cli-service build --target lib --name athlib babelled/athlib.js",
+    "build": "npm run lint && vue-cli-service build --target lib --formats umd-min  src/athlib.js && rename dist/athlib.umd.min.js dist/athlib.web.js && rename dist/athlib.umd.min.js.map dist/athlib.web.js.map && npm run test-dist",
+    "build-node": "npm run lint && vue-cli-service build --target lib --formats commonjs  --dest lib --name athlib src/athlib.js && rename lib/athlib.common.js lib/athlib.js && rename lib/athlib.common.js.map lib/athlib.js.map && npm run test-node",
     "test": "TESTSRC=\"src\" jest",
     "test-dist": "TESTSRC=\"dist\" jest",
-    "test-babelled": "TESTSRC=\"babelled\" jest",
+    "test-node": "TESTSRC=\"node\" jest",
     "clean": "rimraf dist lib babelled && jest --clearCache",
     "dist-clean": "npm run clean && rimraf node_modules",
     "lint": "eslint src/",
     "lint-fix": "eslint --fix src/",
     "inspect": "vue-cli-service inspect > inspect.out.js",
-    "babel": "babel src -d babelled"
+		"prepare": "npm run build && npm run build-node"
   },
   "repository": {
     "type": "git",
@@ -72,6 +72,7 @@
     "bundle-web": true
   },
   "dependencies": {
-    "@babel/cli": "^7.1.2"
+    "@babel/cli": "^7.1.2",
+    "rename-cli": "^5.1.2"
   }
 }
