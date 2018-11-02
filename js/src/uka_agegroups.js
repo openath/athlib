@@ -1,8 +1,7 @@
 // rule107 Track and Field
 function rule107tf(birthDate, matchDate, vets, underAge) {
-  if (!(birthDate instanceof Date &&
-      matchDate instanceof Date)) {
-    throw new TypeError('birthDate and matchDate must be DATE');
+  if (!(birthDate instanceof Date && matchDate instanceof Date)) {
+    throw new TypeError("birthDate and matchDate must be DATE");
   }
   const augustCutOff = new Date(matchDate.getFullYear(), 7, 11);
   const decemberCutOff = new Date(matchDate.getFullYear(), 11, 31);
@@ -10,23 +9,23 @@ function rule107tf(birthDate, matchDate, vets, underAge) {
   const ageOn31Dec = _calculateAge(birthDate, decemberCutOff);
   const ageOnMatchDate = _calculateAge(birthDate, matchDate);
   if (underAge && ageOn31Aug < 9) {
-    return 'U9';
+    return "U9";
   }
   switch (true) {
     case ageOn31Aug < 11:
-      return 'U11';
-    case (ageOn31Aug === 11 || ageOn31Aug === 12):
-      return 'U13';
-    case (ageOn31Aug === 13 || ageOn31Aug === 14):
-      return 'U15';
-    case (ageOn31Aug === 15 || ageOn31Aug === 16):
-      return 'U17';
+      return "U11";
+    case ageOn31Aug === 11 || ageOn31Aug === 12:
+      return "U13";
+    case ageOn31Aug === 13 || ageOn31Aug === 14:
+      return "U15";
+    case ageOn31Aug === 15 || ageOn31Aug === 16:
+      return "U17";
     case ageOn31Dec < 20:
-      return 'U20';
-    case (ageOnMatchDate > 35 && vets):
-      return 'V${(ageOn31MatchDay/5)*5}';
+      return "U20";
+    case ageOnMatchDate > 35 && vets:
+      return "V${(ageOn31MatchDay/5)*5}";
     default:
-      return 'SEN';
+      return "SEN";
   }
 }
 
@@ -36,10 +35,10 @@ function rule507xc(birthDate, matchDate, vets, underAge) {
   let augCO = new Date();
   try {
     augCO = new Date(matchDate);
-    if (typeof(birthDate) !== Date) {
+    if (typeof birthDate !== Date) {
       birthDate2 = new Date(birthDate);
     } else {
-      birthDate2 = birthDate
+      birthDate2 = birthDate;
     }
   } catch (error) {
     // just throw it
@@ -48,26 +47,25 @@ function rule507xc(birthDate, matchDate, vets, underAge) {
   const ageOn31Aug = _calculateAge(birthDate2, augCO);
   const ageOnMatchDate = _calculateAge(birthDate2, matchDate);
   if (underAge && ageOn31Aug < 9) {
-    return 'U9';
+    return "U9";
   }
   switch (true) {
     case ageOnMatchDate < 11:
-      return 'U11';
-    case (ageOn31Aug === 11 || ageOn31Aug === 12):
-      return 'U13';
-    case (ageOn31Aug === 13 || ageOn31Aug === 14):
-      return 'U15';
-    case (ageOn31Aug === 15 || ageOn31Aug === 16):
-      return 'U17';
+      return "U11";
+    case ageOn31Aug === 11 || ageOn31Aug === 12:
+      return "U13";
+    case ageOn31Aug === 13 || ageOn31Aug === 14:
+      return "U15";
+    case ageOn31Aug === 15 || ageOn31Aug === 16:
+      return "U17";
     case ageOn31Aug < 20:
-      return 'U20';
-    case (ageOnMatchDate > 35 && vets):
-      return 'V${(ageOn31MatchDay/5)*5}';
+      return "U20";
+    case ageOnMatchDate > 35 && vets:
+      return "V${(ageOn31MatchDay/5)*5}";
     default:
-      return 'SEN';
+      return "SEN";
   }
 }
-
 
 // function priorDate(matchDate, cutoffDate) {
 //   try {
@@ -96,21 +94,20 @@ function _calculateAge(birthDate, matchDate) {
 }
 /** Return the UK Athletics age group code for the athlete on match day */
 function calcUkaAgeGroup(birthDate, matchDate, category, vets, underAge) {
-  if (!(birthDate instanceof Date ||
-    matchDate instanceof Date)) {
-    throw new Error('you must pass a valid date');
+  if (!(birthDate instanceof Date || matchDate instanceof Date)) {
+    throw new Error("you must pass a valid date");
   }
   switch (category) {
-    case 'TF':
+    case "TF":
       return rule107tf(birthDate, matchDate, vets || true, underAge || false);
-    case 'ROAD': // same categories as cross country
-    case 'XC':
+    case "ROAD": // same categories as cross country
+    case "XC":
       return rule507xc(birthDate, matchDate, vets || true, underAge || false);
-    case 'ESAA':
-      throw new Error('this has not been implemented');
+    case "ESAA":
+      throw new Error("this has not been implemented");
     default:
-      throw new Error('incorrect category');
+      throw new Error("incorrect category");
   }
 }
 
-module.exports = { calcUkaAgeGroup }
+module.exports = { calcUkaAgeGroup };
