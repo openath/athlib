@@ -14,7 +14,7 @@
     "lint": "eslint src/",
     "lint-fix": "eslint --fix src/",
     "inspect": "vue-cli-service inspect > inspect.out.js",
-		"prepublishOnly": "npm run test-all",
+    "prepublishOnly": "npm run test-all",
     "test-all": "npm run test && npm run build && npm run build-node"
   },
   "repository": {
@@ -52,7 +52,7 @@
     "@vue/eslint-config-prettier": "^3.0.5",
     "@vue/test-utils": "^1.0.0-beta.20",
     "@babel/cli": "^7.1.2",
-    "rename-cli": "^5.1.2"
+    "rename-cli": "^5.1.2",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "^23.0.1",
     "babel-plugin-add-module-exports": "^1.0.0",
@@ -73,6 +73,5 @@
     "dist-web": "athlib.web.js",
     "bundle-web": true
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }
