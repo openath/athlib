@@ -1,33 +1,14 @@
 Athlib Javascript
-================
+=================
 
-This subdirectory is a Javascript environment based on the template from 
-[ES6 starter](https://github.com/liady/es6-library-minimal).
-
-For the time being, the README for that file is below.
+This is the athlib.js library containing code related to athletics. The node version is inlib, the web version is in dist.
 
 
-
-ES6 library starter
+ES6 library
 ===========
 
-[![Version](http://img.shields.io/npm/v/es6-library-minimal.svg)](https://www.npmjs.org/package/es6-library-minimal)
-[![Build Status](https://travis-ci.org/liady/es6-library-minimal.svg?branch=master)](https://travis-ci.org/liady/es6-library-minimal)
-[![Code style: airbnb](https://img.shields.io/badge/code%20style-airbnb-blue.svg?style=flat)](https://github.com/airbnb/javascript)
+This repository contains ES6 code and tests.
 
-> A boilerplate for a universal (Node, web, UMD) ES6 library.
-
-## Quick usage
- 1. Clone this repo.
- 2. Change all relevant entries in `package.json` and `README.md`, so they match your new shiny library.
- 3. Run `npm install` to install dev dependencies.
- 4. Write your ES6 code in `src` folder.
- 5. Write your ES6 tests in `test` folder.
- 6. Run `npm run build` to build for node. This will compile to ES5, minify, and output the result to `lib` folder.
- 7. Run `npm run build-web` to build and pack the files for the web. This will output the result to `dist` folder.
- 8. Run `npm publish` to publish to the world.
- 
-(Or, if you don't need Webpack bundling, you can use the [even lighter ES6 starter](https://github.com/liady/es6-lib-starter-light)).
 
 ## Detailed overview
 
@@ -37,41 +18,67 @@ After cloning this repository, make sure to change all the relevant entries in `
 npm install
 ```
 
-### Build for npm
+### Build for the web
 ```sh
 npm run build
 ```
 This will:
- 1. Run Webpack starting from the entry point file (`src/library.js`, can be configured)
- 2. Convert all files in `src` folder from ES6 to ES5
- 3. According to the `bundle-node` flag in `package.json`, it will either:
-   1. Leave them as separate files, or -
-   2. Minify and bundle them using Webpack, **without their** `node_modules` **dependencies**
- 4. Output the result to the `lib` folder
+ 1. run vue-service build on src/athlib.js to create minified dist/athlib.umd.min.js and associated maps suitable for web.
+ 2. rename the outputs to dist/athlib.web.js & dist/athlib.web.js.map
+ 3. run jest tests/*.spec.js using dist/athlib.web.js as library.
+
 
 ### Build for web
 ```sh
-npm run build-web
+npm run build-node
 ```
 This will:
- 1. Run Webpack starting from the entry point file (`src/library.js`, can be configured)
- 2. Convert all files from ES6 to ES5
- 3. Minify them, **including all of their module dependencies**, as a UMD module (so the file will be self-contained)
- 4. Output the file to the `dist` folder
+ 1. run vue-service build on src/athlib.js to create lib/athlib.common.js and associated maps suitable for commonjs environment.
+ 2. rename the outputs to lib/athlib.js & lib/athlib.js.map
+ 3. run jest tests/*.spec.js using lib/athlib.js as library.
 
-### Test
+### Tests
 ```sh
 npm run test
 ```
+This runs jest tests on the source
+```sh
+npm run test-dist
+```
+This runs jest tests on dist/athlib.web.js
+```sh
+npm run test-node
+```
+This runs jest tests on dist/athlib.js
+
+### Other commands
+```sh
+npm run lint
+```
+show up your errors
+
+```sh
+npm run lint-fix
+```
+show up your errors & try to fix them
+
+```sh
+npm run clean
+```
+clean out lib & dist and any jest cache
+
+```sh
+npm run dist-clean
+```
+clean more thoroughly (removes node_modules)
 
 ### Configuration
-In `package.json`, change all the relevant entries so they match your library.<br/>
+if you want to adapt for your library change all the relevant entries in `package.json` so they match your library.<br/>
 Under the section `library`, you can configure:
  1. Library name (defaults to `"Library"`)
  2. Webpack entry point (defaults to `library.js`)
  3. Dist folder for Node (defaults to `lib`)
  4. Dist folder for Web (defaults to `dist`)
- 5. Choose whether to bundle for Node (defaults to `true`)
 
 ## License
-MIT
+Apache-2.0
