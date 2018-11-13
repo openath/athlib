@@ -4,19 +4,18 @@
   "description": "Athletics Library",
   "main": "./index.js",
   "scripts": {
-    "comment": "echo I wish I could put comments in JSON.  Do we really need all these?  -Andy",
-    "prepublish": "npm run build-all",
-    "preversion": "npm run build-all && npm run unit",
-    "version": "git add .",
-    "postversion": "git push && git push --tags",
-    "build": "gulp build",
-    "build-dev": "gulp build-dev",
-    "build-web": "gulp build-web",
-    "build-web-dev": "gulp build-web-dev",
-    "build-all": "gulp",
-    "test-build": "npm run build && mocha --compilers js:babel-core/register",
-    "test": "mocha --compilers js:babel-core/register",
-    "lint": "eslint src/"
+    "build": "npm run lint && vue-cli-service build --target lib --formats umd-min  src/athlib.js && rename dist/athlib.umd.min.js dist/athlib.web.js && rename dist/athlib.umd.min.js.map dist/athlib.web.js.map && npm run test-dist",
+    "build-node": "npm run lint && vue-cli-service build --target lib --formats commonjs  --dest lib --name athlib src/athlib.js && rename lib/athlib.common.js lib/athlib.js && rename lib/athlib.common.js.map lib/athlib.js.map && npm run test-node",
+    "test": "TESTSRC=\"src\" jest",
+    "test-dist": "TESTSRC=\"dist\" jest",
+    "test-node": "TESTSRC=\"node\" jest",
+    "clean": "rimraf dist lib babelled && jest --clearCache",
+    "dist-clean": "npm run clean && rimraf node_modules",
+    "lint": "eslint src/",
+    "lint-fix": "eslint --fix src/",
+    "inspect": "vue-cli-service inspect > inspect.out.js",
+		"prepublishOnly": "npm run test-all",
+    "test-all": "npm run test && npm run build && npm run build-node"
   },
   "repository": {
     "type": "git",
@@ -30,7 +29,7 @@
     "name": "Various",
     "url": "https://github.com/openath"
   },
-  "license": "Apache",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/openath/athlib/issues"
   },
@@ -43,39 +42,37 @@
   ],
   "homepage": "https://github.com/openath/athlib",
   "devDependencies": {
-    "babel": "^6.3.26",
-    "babel-core": "^6.4.0",
-    "babel-eslint": "^5.0.4",
-    "babel-loader": "^6.2.1",
-    "babel-plugin-add-module-exports": "^0.1.2",
-    "babel-preset-es2015": "^6.3.13",
-    "chai": "^3.4.1",
-    "clean-webpack-plugin": "^0.1.8",
-    "del": "^2.2.0",
-    "eslint": "^5.2.0",
-    "eslint-config-airbnb": "^4.0.0",
-    "eslint-loader": "^1.2.0",
-    "eslint-plugin-react": "^3.16.1",
-    "eslint-plugin-standard": "^1.3.1",
-    "gulp": "^4.0.0",
-    "gulp-babel": "^6.1.1",
-    "gulp-env": "^0.2.0",
-    "gulp-eslint": "^5.0.0",
-    "gulp-load-plugins": "^1.2.0",
-    "gulp-util": "^3.0.6",
-    "mocha": "^5.2.0",
-    "object-assign": "^4.0.1",
-    "webpack": "^1.12.11",
-    "webpack-node-externals": "^0.4.1"
+    "@babel/plugin-proposal-export-default-from": "^7.0.0",
+    "@cypress/webpack-preprocessor": "^3.0.0",
+    "@vue/cli-plugin-babel": "^3.0.5",
+    "@vue/cli-plugin-e2e-cypress": "^3.0.5",
+    "@vue/cli-plugin-eslint": "^3.0.5",
+    "@vue/cli-plugin-unit-jest": "^3.0.5",
+    "@vue/cli-service": "^3.0.5",
+    "@vue/eslint-config-prettier": "^3.0.5",
+    "@vue/test-utils": "^1.0.0-beta.20",
+    "@babel/cli": "^7.1.2",
+    "rename-cli": "^5.1.2"
+    "babel-core": "7.0.0-bridge.0",
+    "babel-jest": "^23.0.1",
+    "babel-plugin-add-module-exports": "^1.0.0",
+    "babel-plugin-transform-export-default": "^7.0.0-alpha.20",
+    "es-check": "^4.0.0",
+    "flush-promises": "^1.0.0",
+    "json-loader": "^0.5.7",
+    "rimraf": "^2.6.2",
+    "uiv": "^0.27.0",
+    "vue-template-compiler": "^2.5.17"
+  },
+  "browserslist": {
+    "targets": "> 0.25%, not dead"
   },
   "library": {
     "name": "athlib",
-    "entry": "library.js",
     "dist-node": "athlib.js",
     "dist-web": "athlib.web.js",
-    "bundle-node": true
+    "bundle-web": true
   },
   "dependencies": {
-    "babel-register": "^6.26.0"
   }
 }
