@@ -1,6 +1,6 @@
 """
 This file contains definitions and utility functions for determining IAAF event
-scores.
+scores.   Taken from IAUM site, 
 """
 import math
 
@@ -16,6 +16,7 @@ _scoring_table = (
     {"gender": "M", "event_code": "100", "A": 25.4347, "Z": 18.0, "X": 1.81},
     {"gender": "M", "event_code": "200", "A": 5.8425, "Z": 38.0, "X": 1.81},
     {"gender": "M", "event_code": "400", "A": 1.53775, "Z": 82.0, "X": 1.81},
+    {"gender": "M", "event_code": "600", "A": 0.42088, "Z": 94.5, "X": 1.85},  # Welsh Athletics
     {"gender": "M", "event_code": "800", "A": 0.13279, "Z": 235.0, "X": 1.85},
     {"gender": "M", "event_code": "1500", "A": 0.03768, "Z": 480.0, "X": 1.85},
     {"gender": "M", "event_code": "3000", "A": 0.0105, "Z": 1005.0, "X": 1.85},
