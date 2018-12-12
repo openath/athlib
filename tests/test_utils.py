@@ -163,5 +163,46 @@ class UtilsTests(TestCase):
         self.assertRaises(ValueError, checkperf, "5000", "3:45:27"),  # < 0.5 m/sec
         self.assertRaises(ValueError, checkperf, "3KW", "2:34")
 
+    def test_discipline_sort_key(self):
+        '''should see if event ordering will work'''
+        from athlib.utils import discipline_sort_key
+        self.assertEqual(discipline_sort_key(''),(6, 0, "?"))
+        self.assertEqual(discipline_sort_key('HJ'),(3, 0, "HJ"))
+        self.assertEqual(discipline_sort_key('LJ'),(3, 2, "LJ"))
+        self.assertEqual(discipline_sort_key('PV'),(3, 1, "PV"))
+        self.assertEqual(discipline_sort_key('100'),(1, 100, "100"))
+        self.assertEqual(discipline_sort_key('4x400'),(5, 400, "4x400"))
+        self.assertEqual(discipline_sort_key('JT'),(4, 7, "JT"))
+        self.assertEqual(discipline_sort_key('200H'),(2, 200, "200H"))
+
+    def test_text_discipline_sort_key(self):
+        '''should see if event ordering will work'''
+        from athlib.utils import text_discipline_sort_key
+        self.assertEqual(text_discipline_sort_key(''),"6_00000_?")
+        self.assertEqual(text_discipline_sort_key('HJ'),"3_00000_HJ")
+        self.assertEqual(text_discipline_sort_key('LJ'),"3_00002_LJ")
+        self.assertEqual(text_discipline_sort_key('PV'),"3_00001_PV")
+        self.assertEqual(text_discipline_sort_key('100'),"1_00100_100")
+        self.assertEqual(text_discipline_sort_key('4x400'),"5_00400_4x400")
+        self.assertEqual(text_discipline_sort_key('JT'),"4_00007_JT")
+        self.assertEqual(text_discipline_sort_key('200H'),"2_00200_200H")
+
+    def test_sort_by_discipline(self):
+        '''sort a list of pseudo-events'''
+        events = [
+            {'e':'','a':60},
+            {'e':'HJ','a':30},
+            {'e':'LJ','a':32},
+            {'e':'PV','a':31},
+            {'e':'100','a':1100},
+            {'e':'800','a':1800},
+            {'e':'4x400','a':5400},
+            {'e':'JT','a':47},
+            {'e':'200H','a':2200},
+            ]
+        from athlib.utils import sort_by_discipline
+        sevents = [e['a'] for e in sort_by_discipline(events,'e')]
+        self.assertEqual(sevents,[1100,1800,2200,30,31,32,47,5400,60])
+
 if __name__ == '__main__':
     main()

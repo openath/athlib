@@ -1,6 +1,6 @@
 {
   "name": "athlib",
-  "version": "0.3.7",
+  "version": "0.3.8",
   "description": "Athletics Library",
   "main": "./index.js",
   "scripts": {
@@ -15,6 +15,7 @@
     "lint-fix": "eslint --fix src/",
     "inspect": "vue-cli-service inspect > inspect.out.js",
     "prepublishOnly": "npm run test-all",
+		"make-patterns-js": "../bin/python ../scripts/make-patterns-js.py src",
     "test-all": "npm run test && npm run build && npm run build-node"
   },
   "repository": {
