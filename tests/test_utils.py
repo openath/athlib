@@ -204,5 +204,59 @@ class UtilsTests(TestCase):
         sevents = [e['a'] for e in sort_by_discipline(events,'e')]
         self.assertEqual(sevents,[1100,1800,2200,30,31,32,47,5400,60])
 
+    def test_event_codes_match_correctly(self):
+        from athlib.codes import PAT_THROWS, PAT_JUMPS, PAT_TRACK, PAT_ROAD, \
+                PAT_RACES_FOR_DISTANCE, PAT_RELAYS, PAT_HURDLES, PAT_MULTI, PAT_EVENT_CODE
+        tpats = [PAT_THROWS, PAT_JUMPS, PAT_TRACK, PAT_ROAD, PAT_RACES_FOR_DISTANCE, PAT_RELAYS, PAT_HURDLES, PAT_MULTI]
+        tpatNames = """PAT_THROWS PAT_JUMPS PAT_TRACK PAT_ROAD PAT_RACES_FOR_DISTANCE PAT_RELAYS PAT_HURDLES PAT_MULTI""".split()
+        codePats = [
+                ('100',PAT_TRACK),
+                ('110mH',PAT_HURDLES),
+                ('1500',PAT_TRACK),
+                ('1HR',PAT_RACES_FOR_DISTANCE),
+                ('1HW',PAT_RACES_FOR_DISTANCE),
+                ('24HR',PAT_RACES_FOR_DISTANCE),
+                ('24HW',PAT_RACES_FOR_DISTANCE),
+                ('2HR',PAT_RACES_FOR_DISTANCE),
+                ('2HW',PAT_RACES_FOR_DISTANCE),
+                ('3000SC',PAT_TRACK),
+                ('3000W',PAT_TRACK),
+                ('3kmW',PAT_ROAD),
+                ('3KW',PAT_ROAD),
+                ('400',PAT_TRACK),
+                ('400H',PAT_HURDLES),
+                ('440Y',PAT_TRACK),
+                ('4x100',PAT_RELAYS),
+                ('4x100',PAT_RELAYS),
+                ('4x400',PAT_RELAYS),
+                ('4xrelay',PAT_RELAYS),
+                ('5K',PAT_ROAD),
+                ('5M',PAT_ROAD),
+                ('7.5M',PAT_ROAD),
+                ('BT',PAT_THROWS),
+                ('BT1.5K',PAT_THROWS),
+                ('BT2K',PAT_THROWS),
+                ('CHUNDER-MILE',PAT_TRACK),
+                ('HJ',PAT_JUMPS),
+                ('HM',PAT_ROAD),
+                ('HT',PAT_THROWS),
+                ('MAR',PAT_ROAD),
+                ('MILE',PAT_ROAD),
+                ('HM',PAT_ROAD),
+                ('LJ',PAT_JUMPS),
+                ('PV',PAT_JUMPS),
+                ('TJ',PAT_JUMPS),
+                ('XC',PAT_ROAD),
+                ]
+        errs = []
+        for code, goodPat in codePats:
+            M = [tpatNames[tpats.index(pat)] for pat in tpats if pat.match(code)]
+            ok = [tpatNames[tpats.index(goodPat)]]
+            if M != ok:
+                errs.append("%r matched %r should have matched %r" % (code,M,ok))
+            #self.assertEqual(M,ok,"%r matched %r should have matched %r" % (code,M,ok))
+        errs = '\n'.join(errs)
+        self.assertEqual(errs,'','event matching failures\n%s\n'%errs)
+
 if __name__ == '__main__':
     main()
