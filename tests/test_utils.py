@@ -207,8 +207,10 @@ class UtilsTests(TestCase):
     def test_event_codes_match_correctly(self):
         from athlib.codes import PAT_THROWS, PAT_JUMPS, PAT_TRACK, PAT_ROAD, \
                 PAT_RACES_FOR_DISTANCE, PAT_RELAYS, PAT_HURDLES, PAT_MULTI, PAT_EVENT_CODE
-        tpats = [PAT_THROWS, PAT_JUMPS, PAT_TRACK, PAT_ROAD, PAT_RACES_FOR_DISTANCE, PAT_RELAYS, PAT_HURDLES, PAT_MULTI]
-        tpatNames = """PAT_THROWS PAT_JUMPS PAT_TRACK PAT_ROAD PAT_RACES_FOR_DISTANCE PAT_RELAYS PAT_HURDLES PAT_MULTI""".split()
+        tpats = [PAT_THROWS, PAT_JUMPS, PAT_TRACK, PAT_ROAD, PAT_RACES_FOR_DISTANCE, PAT_RELAYS, PAT_HURDLES, PAT_MULTI,
+                PAT_EVENT_CODE]
+        tpatNames = """PAT_THROWS PAT_JUMPS PAT_TRACK PAT_ROAD PAT_RACES_FOR_DISTANCE PAT_RELAYS PAT_HURDLES PAT_MULTI
+            PAT_EVENT_CODE""".split()
         codePats = [
                 ('100',PAT_TRACK),
                 ('110mH',PAT_HURDLES),
@@ -249,12 +251,15 @@ class UtilsTests(TestCase):
                 ('XC',PAT_ROAD),
                 ]
         errs = []
+        show = lambda p: repr(sorted(list(p)))
         for code, goodPat in codePats:
-            M = [tpatNames[tpats.index(pat)] for pat in tpats if pat.match(code)]
-            ok = [tpatNames[tpats.index(goodPat)]]
+            M = set([tpatNames[tpats.index(pat)] for pat in tpats if pat.match(code)])
+            if not isinstance(goodPat,(list,tuple)):
+                goodPat = [goodPat]
+            goodPat.append(PAT_EVENT_CODE)
+            ok = set([tpatNames[tpats.index(pat)] for pat in goodPat])
             if M != ok:
-                errs.append("%r matched %r should have matched %r" % (code,M,ok))
-            #self.assertEqual(M,ok,"%r matched %r should have matched %r" % (code,M,ok))
+                errs.append("%r matched %r should have matched %r" % (code,show(M),show(ok)))
         errs = '\n'.join(errs)
         self.assertEqual(errs,'','event matching failures\n%s\n'%errs)
 
