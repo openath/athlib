@@ -113,7 +113,7 @@ def get_distance(discipline):
         return 42195
     elif discipline == "HM":
         return 21098
-    elif discipline == "MILE":
+    elif discipline in ("MILE","CHUNDER-MILE"):
         return 1609
 
     m = PAT_RELAYS.match(discipline)

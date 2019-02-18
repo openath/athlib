@@ -46,7 +46,7 @@ PAT_JUMPS = re.compile("|".join(_.pattern for _ in (PAT_VERTICAL_JUMPS,PAT_HORIZ
 PAT_TRACK = re.compile(r"^(?:(?:(?P<meters>\d+)(?:[lLsS]?[hH](?:3[36])?|[yY]|[sS][cC]|[wW])?)|[sS][cC]|"
                         r"[2345][mM][tT]|[lL][hH]|[sS][hH])$",
                        )
-PAT_ROAD = re.compile(r"^(?:(?:[mM][iI][lL][eE]|[mM][aA][rR]|[hH][mM])[wW]?|(?:\d{1,3}(\.\d\d?)?(?:[MKk]|[MKk][wW]|[wW])))$")
+PAT_ROAD = re.compile(r"^(?:(?:[mM][iI][lL][eE]|[mM][aA][rR]|[hH][mM])[wW]?|[xX][cC]|(?:\d{1,3}(\.\d\d?)?(?:[MKk]|[MKk][wW]|[wW])))$")
 
 PAT_RACES_FOR_DISTANCE = re.compile(r"^(?:\d\d?([hH](?:[rR]|[wW])))$")
 

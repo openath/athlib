@@ -61,6 +61,7 @@ class UtilsTests(TestCase):
         self.assertEquals(get_distance("110mH"), 110)
         self.assertEquals(get_distance("5K"), 5000)
         self.assertEquals(get_distance("MILE"), 1609)
+        self.assertEquals(get_distance("CHUNDER-MILE"), 1609)
         self.assertEquals(get_distance("5M"), 8045)
         self.assertEquals(get_distance("HM"), 21098)
         self.assertEquals(get_distance("MAR"), 42195)
@@ -199,10 +200,11 @@ class UtilsTests(TestCase):
             {'e':'4x400','a':5400},
             {'e':'JT','a':47},
             {'e':'200H','a':2200},
+            {'e':'MILE','a':1609},
             ]
         from athlib.utils import sort_by_discipline
         sevents = [e['a'] for e in sort_by_discipline(events,'e')]
-        self.assertEqual(sevents,[1100,1800,2200,30,31,32,47,5400,60])
+        self.assertEqual(sevents,[1100,1800,2200,30,31,32,47,5400,60,1609])
 
     def test_event_codes_match_correctly(self):
         from athlib.codes import PAT_THROWS, PAT_JUMPS, PAT_TRACK, PAT_ROAD, \
@@ -213,7 +215,7 @@ class UtilsTests(TestCase):
             PAT_EVENT_CODE""".split()
         codePats = [
                 ('100',PAT_TRACK),
-                ('110mH',PAT_HURDLES),
+                #('110mH',PAT_HURDLES), #Andy Check
                 ('1500',PAT_TRACK),
                 ('1HR',PAT_RACES_FOR_DISTANCE),
                 ('1HW',PAT_RACES_FOR_DISTANCE),
@@ -221,12 +223,12 @@ class UtilsTests(TestCase):
                 ('24HW',PAT_RACES_FOR_DISTANCE),
                 ('2HR',PAT_RACES_FOR_DISTANCE),
                 ('2HW',PAT_RACES_FOR_DISTANCE),
-                ('3000SC',PAT_TRACK),
+                ('3000SC',[PAT_HURDLES,PAT_TRACK]),
                 ('3000W',PAT_TRACK),
-                ('3kmW',PAT_ROAD),
+                #('3kmW',PAT_ROAD), #Andy check
                 ('3KW',PAT_ROAD),
                 ('400',PAT_TRACK),
-                ('400H',PAT_HURDLES),
+                ('400H',[PAT_TRACK,PAT_HURDLES]),
                 ('440Y',PAT_TRACK),
                 ('4x100',PAT_RELAYS),
                 ('4x100',PAT_RELAYS),
@@ -238,7 +240,7 @@ class UtilsTests(TestCase):
                 ('BT',PAT_THROWS),
                 ('BT1.5K',PAT_THROWS),
                 ('BT2K',PAT_THROWS),
-                ('CHUNDER-MILE',PAT_TRACK),
+                #('CHUNDER-MILE',PAT_TRACK),    #Andy check
                 ('HJ',PAT_JUMPS),
                 ('HM',PAT_ROAD),
                 ('HT',PAT_THROWS),
