@@ -1,4 +1,3 @@
 var pkg = require('./package.json');
-var name = pkg.name;
-var libFile = (pkg.library['bundle-web'] ? 'dist/'+pkg.library['dist-web'] : 'lib/'+pkg.library['dist-node']);
-export default {require(libFile)};
+var libFile = pkg.library['bundle-node'] ? pkg.library['dist-node'] : pkg.library['entry'];
+module.exports = require('./lib/' + libFile);
