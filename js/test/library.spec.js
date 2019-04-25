@@ -1,7 +1,6 @@
 import { expect } from 'chai';
 import Athlib from '../index.js';
 
-
 describe('Given an instance of Athlib', function() {
   describe('testing the hello function', function() {
     it('hello("world") should return "Hello, world!"', () => {

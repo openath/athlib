@@ -1,12 +1,5 @@
 language: node_js
 node_js:
-  - 7
-  - 6
-  - "0.10"
-  - "0.12"
-  - "iojs"
-env:
-  - TEST_SUITE=unit
-script: 
-  - npm run build
-  - npm run $TEST_SUITE
+  - "node"
+  - "7"
+  - "6"

@@ -429,4 +429,40 @@ describe('Given an instance of Athlib.HighJumpCompetition', function(){
 	c.passed('B');
 	it("B.dismissed should be true",()=>{expect(B.dismissed).to.be.equal(true)});
   });
+  describe('test retired',function(){
+  // Run through to where the jumpoff began - ninth bar position
+  const c = Athlib.HighJumpCompetition();
+	c.addJumper({bib:'A',first_name:'Harald',last_names:'England'});
+	c.addJumper({bib:'B',first_name:'William',last_names:'Norman'});
+	const A=c.jumpersByBib['A'];
+	const B=c.jumpersByBib['B'];
+	c.setBarHeight(2.02);
+	it("trial r should not raise an error",()=>{expect(()=>{c.bibTrial('A','r')}).to.not.throw(Error)});
+	it("trial z should raise an error",()=>{expect(()=>{c.bibTrial('A','z')}).to.throw(Error)});
+	it("rankingKey should not raise an error",()=>{expect(()=>{A.rankingKey}).to.not.throw(Error)});
+  });
+  describe('Test rarities',function(){
+   const M = [
+        ["place", "bib", "first_name", "last_name", "2.06", "2.08", "2.10", "2.12", "2.14"],
+        ["",     'A',  "Harald", "England",    "o",  "o",  "xo",   "xo",   "xxx"],
+        ["",    'B',  "William", "Norman",    "o",  "o",  "o",  "xxo",  "xxx"],
+        ]
+    it("from matrix without order should not error",()=>{expect(()=>{Athlib.HighJumpCompetition.fromMatrix(M)}).to.not.throw(Error)})
+    it("checkStarted before start should raise an error",()=>{expect(()=>{
+      const c=Athlib.HighJumpCompetition.fromMatrix(M);
+	    c.addJumper({bib:'A',first_name:'Harald',last_names:'England'});
+      c.checkStarted('A');
+    }).to.throw(Error)})
+    it("Check downward height change raises an error",()=>{expect(()=>{
+      const c=Athlib.HighJumpCompetition.fromMatrix(M);
+	    c.addJumper({bib:'A',first_name:'Harald',last_names:'England'});
+      c.addJumper({bib:'B',first_name:'William',last_names:'Norman'});
+	    const A=c.jumpersByBib['A'];
+	    const B=c.jumpersByBib['B'];
+	    c.setBarHeight(2.02);
+      A.passed();
+      B.passed();
+	    c.setBarHeight(2.00);
+    }).to.throw(Error)})
+  });
 });

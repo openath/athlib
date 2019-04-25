@@ -1,4 +1,11 @@
 {
-    "plugins": ["babel-plugin-add-module-exports"],
-    "presets": ["es2015"]
+  "presets": ["@babel/preset-env"],
+  //"bot-plugins": ["babel-plugin-add-module-exports"],
+  "env": {
+    "test": {
+      "plugins": [
+        ["istanbul"]
+      ]
+    }
+  }
 }

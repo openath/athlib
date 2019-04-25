@@ -9,11 +9,11 @@ import {
   discipline_sort_key,
   text_discipline_sort_key,
   sort_by_discipline
-} from "./utils";
+} from './utils';
 
-import { calcUkaAgeGroup } from "./uka_agegroups";
+import { calcUkaAgeGroup } from './uka_agegroups';
 
-import { HighJumpCompetition } from "./highjump.js";
+import { HighJumpCompetition } from './highjump.js';
 
 import {
   FIELD_SORT_ORDER,
@@ -23,9 +23,9 @@ import {
   PAT_RELAYS,
   PAT_THROWS,
   PAT_TRACK
-} from "./patterns.js";
+} from './patterns.js';
 
-module.exports = {
+export default {
   // start of patterns exports
   FIELD_SORT_ORDER,
   PAT_EVENT_CODE,
