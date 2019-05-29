@@ -22,6 +22,8 @@ var PAT_JUMPS = /^(?:HJ|PV)$|^(?:LJ|TJ)$/;
 var PAT_RELAYS = /^(?:(\d{1,2})[xX](\d{2,5}[hH]?|[rR][eE][lL][aA][yY]))$/;
 var PAT_THROWS = /^(?:(?:[wW][tT](\d?\d\.?\d*[Kk]|)|[jJ][tT]([45678]00|)|[sS][wW][tT]|[gG][dD][tT]|[bB][tT]|[oO][tT]|[dD][tT](\d\.?\d*[Kk]|)|[hH][tT](\d\.?\d*[Kk]|))|[sS][pP](\d\.?\d*[Kk]|))$/;
 var PAT_TRACK = /^(?:(?:(\d+)(?:[lLsS]?[hH](?:3[36])?|[yY]|[sS][cC]|[wW])?)|[sS][cC]|[2345][mM][tT]|[lL][hH]|[sS][hH])$/;
+var PAT_LEADING_FLOAT = /^\d+\.\d*/
+var PAT_LEADING_DIGITS = /^\d+/
 
 module.exports = {
   FIELD_SORT_ORDER,
@@ -30,5 +32,7 @@ module.exports = {
   PAT_JUMPS,
   PAT_RELAYS,
   PAT_THROWS,
-  PAT_TRACK
+  PAT_TRACK,
+  PAT_LEADING_FLOAT,
+  PAT_LEADING_DIGITS
 };

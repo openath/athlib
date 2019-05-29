@@ -5,6 +5,7 @@ import {
     isFieldEvent,
     isMultiEvent,
     betterPerformance,
+    getDistance,
 } from './utils';
 
 import { calcUkaAgeGroup } from './uka_agegroups';
@@ -20,4 +21,5 @@ module.exports = {
   isMultiEvent,
   betterPerformance,
   HighJumpCompetition,
+  getDistance
 }

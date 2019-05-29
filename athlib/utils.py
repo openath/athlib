@@ -118,10 +118,9 @@ def get_distance(discipline):
 
     m = PAT_RELAYS.match(discipline)
     if m:
-        g1 = int(m.group(1))
         g2 = m.group(2).upper()
         if g2=='RELAY': return None #cowardly refusing to guess
-        return g1*int(g2)
+        return int(m.group(1))*int(g2.rstrip('hH'))
 
     m = PAT_LEADING_FLOAT.match(discipline)
     if not m:

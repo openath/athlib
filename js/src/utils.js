@@ -5,7 +5,9 @@ import {
   PAT_JUMPS,
   PAT_RELAYS,
   PAT_THROWS,
-  PAT_TRACK
+  PAT_TRACK,
+  PAT_LEADING_FLOAT,
+  PAT_LEADING_DIGITS
 } from "./patterns.js";
 
 /**
@@ -145,6 +147,59 @@ function sort_by_discipline(stuff, attr) {
   return sorter.map(e => e[1]);
 }
 
+function getDistance(discipline) {
+  // Return approx distance in metres, for sanity checking
+  // :param discipline:
+
+  // Ignore final words like ' road'
+  discipline = discipline.split(' ')[0];
+  if (discipline === "XC") {
+    return null;
+  } else if (discipline === 'MAR') {
+    return 42195;
+  } else if (discipline === "HM") {
+    return 21098;
+  } else if (discipline === "MILE" || discipline === "CHUNDER-MILE") {
+    return 1609;
+  }
+
+  var m = discipline.match(PAT_RELAYS);
+  if (m) {
+    var g2 = m[2].toUpperCase();
+    if (g2 === 'RELAY') {
+      return null; // cowardly refusing to guess
+    }
+    return parseInt(m[1], 10)*parseInt(g2, 10); // will be NaN if bad stuff
+  }
+
+  m = discipline.match(PAT_LEADING_FLOAT);
+  if (!m) {
+    m = discipline.match(PAT_LEADING_DIGITS);
+  }
+  if (!m) {
+    return null;
+  }
+
+  var qty_text = m[0];
+  var remains = discipline.slice(qty_text.length);
+  var qty = parseFloat(qty_text);
+  if (qty_text.match(/\./)) {
+    return remains.match(/^(?:M|Mi|MI)$/) ? parseInt(1609 * qty, 10) : null;
+  } else if (! remains) {
+    return parseInt(qty, 10);
+  } else if (remains.toLowerCase().match(/^(?:sc|h|w)$/) || remains.match(/^(?:m|mH)$/)) {
+    return parseInt(qty, 10);
+  } else if (remains.match(/^(?:k|K|km)$/)) {
+    return parseInt(1000*qty, 10);
+  } else if (remains.toLowerCase().match(/^(?:kw|kmw)$/)) {
+    return parseInt(1000*qty, 10);
+  } else if (remains.match(/^(?:M|Mi|MI)$/)) {
+    return parseInt(1609*qty, 10);
+  } else if (remains.match(/^(?:Y|y|YD|yd)$/)) {
+    return parseInt(0.9144*qty, 10);
+  }
+}
+
 module.exports = {
   hello,
   normalizeGender,
@@ -155,5 +210,6 @@ module.exports = {
   discipline_sort_key,
   pad,
   text_discipline_sort_key,
-  sort_by_discipline
+  sort_by_discipline,
+  getDistance
 };

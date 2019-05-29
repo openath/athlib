@@ -8,7 +8,8 @@ import {
   pad,
   discipline_sort_key,
   text_discipline_sort_key,
-  sort_by_discipline
+  sort_by_discipline,
+  getDistance
 } from "./utils";
 
 import { calcUkaAgeGroup } from "./uka_agegroups";
@@ -22,7 +23,9 @@ import {
   PAT_JUMPS,
   PAT_RELAYS,
   PAT_THROWS,
-  PAT_TRACK
+  PAT_TRACK,
+  PAT_LEADING_FLOAT,
+  PAT_LEADING_DIGITS
 } from "./patterns.js";
 
 module.exports = {
@@ -34,6 +37,8 @@ module.exports = {
   PAT_RELAYS,
   PAT_THROWS,
   PAT_TRACK,
+  PAT_LEADING_FLOAT,
+  PAT_LEADING_DIGITS,
   // end of patterns exports
   hello,
   normalizeGender,
@@ -46,5 +51,6 @@ module.exports = {
   pad,
   discipline_sort_key,
   text_discipline_sort_key,
-  sort_by_discipline
+  sort_by_discipline,
+	getDistance
 };

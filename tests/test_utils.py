@@ -69,6 +69,8 @@ class UtilsTests(TestCase):
         self.assertEquals(get_distance("HJ"), None)
         self.assertEquals(get_distance("4xrelay"), None)
         self.assertEquals(get_distance("4x100"), 400)
+        self.assertEquals(get_distance("4x100H"), 400)
+        self.assertEquals(get_distance("3x100h"), 300)
         self.assertEquals(get_distance("4x400"), 1600)
         self.assertEquals(get_distance("7.5M"), 12067)
         self.assertEquals(get_distance("7.5SC"), None)
