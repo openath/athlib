@@ -1,6 +1,6 @@
 {
   "name": "athlib",
-  "version": "0.3.11",
+  "version": "0.3.12",
   "description": "Athletics Library",
   "main": "./index.js",
   "scripts": {
@@ -75,7 +75,7 @@
   },
   "library": {
     "name": "athlib",
-    "entry": "library.js",
+    "entry": "athlib.js",
     "dist-node": "athlib.js",
     "dist-web": "athlib.web.js",
     "bundle-node": true

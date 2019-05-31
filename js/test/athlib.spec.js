@@ -1,7 +1,6 @@
 import { expect } from 'chai';
 import Athlib from '../index.js';
 
-
 describe('Given an instance of Athlib', function() {
 	describe('testing the hello function', function() {
 		it('hello("world") should return "Hello, world!"', () => {
@@ -85,6 +84,46 @@ describe('Given an instance of Athlib', function() {
 		  expect(Athlib.getDistance("3000W")).to.equal(3000);
 		  expect(Athlib.getDistance("3KW")).to.equal(3000);
 		  expect(Athlib.getDistance("3kmW")).to.equal(3000);
+		});
+	});
+	describe('sort_by_discipline', function() {
+		it('verify it sorts into standard order', function() {
+			const stuff = [
+				{ e: "100", name: "Jordan"},
+				{ e: "PV", name: "Bilen"},
+				{ e: "4x100", name: "Assorted"},
+				{ e: "400", name: "Adam"},
+				{ e: "400H", name: "Richard"},
+				{ e: "1500", name: "Neil"},
+				{ e: "3000SC", name: "Andy"},
+				{ e: "HT", name: "Chris"},
+				{ e: "TJ", name: "Humphrey"},
+				{ e: "", name: "Nobody"},
+				{ e: "CHUNDER-MILE", name: "BinMan"}
+			]
+			const ordered = Athlib.sort_by_discipline(stuff, "e");
+			const ordered_events = ordered.map(x => x["e"]);
+		  expect(ordered_events).to.eql( [
+				'100', '400', '1500', '400H', '3000SC', 'PV',
+				'TJ', 'HT', '4x100', "", "CHUNDER-MILE"]);
+		});
+		it('text_discipline_sort_key', function() {
+			expect(Athlib.text_discipline_sort_key("100H")).to.be.equal( "2_00100_100H");
+		});
+		it('object sorting', function() {
+			var obj1 = new Object();
+			obj1.discipline = "HJ"
+
+			var obj2 = new Object();
+			obj2.discipline = "200"
+
+			var obj3 = new Object();
+			obj3.discipline = "4x200"
+
+			const stuff = [obj1, obj2, obj3];
+			const ordered = Athlib.sort_by_discipline(stuff);
+			expect(ordered[0].discipline).to.be.equal("200");
+			expect(ordered[1].discipline).to.be.equal("HJ");
 		});
 	});
 });

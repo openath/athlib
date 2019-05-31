@@ -141,7 +141,7 @@ function text_discipline_sort_key(discipline) {
 
 function sort_by_discipline(stuff, attr) {
   // Sort dicts or objects into the normal athletics order
-  attr = attr || "disicpline";
+  attr = attr || "discipline";
   var sorter = stuff.map(e => [text_discipline_sort_key(e[attr]), e]);
   sorter.sort();
   return sorter.map(e => e[1]);

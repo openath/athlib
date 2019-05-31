@@ -52,5 +52,5 @@ module.exports = {
   discipline_sort_key,
   text_discipline_sort_key,
   sort_by_discipline,
-	getDistance
+  getDistance
 };
