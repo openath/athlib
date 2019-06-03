@@ -126,4 +126,20 @@ describe('Given an instance of Athlib', function() {
 			expect(ordered[1].discipline).to.be.equal("HJ");
 		});
 	});
+	describe('formatSecondsAsTime', function() {
+		it('verify it works correctly in good cases', function() {
+      expect(Athlib.formatSecondsAsTime(27.3)).to.be.equal( "27")
+      expect(Athlib.formatSecondsAsTime(27.3, 1)).to.be.equal( "27.3")
+      expect(Athlib.formatSecondsAsTime(27.3, 2)).to.be.equal( "27.30")
+      expect(Athlib.formatSecondsAsTime(27.3, 3)).to.be.equal( "27.300")
+      expect(Athlib.formatSecondsAsTime(63)).to.be.equal( "1:03")
+      expect(Athlib.formatSecondsAsTime(7380)).to.be.equal( "2:03:00")
+		});
+		it('verify it detects bad precisions', function() {
+      //precision must be 0 to 3
+      expect(()=>{Athlib.formatSecondsAsTime(27.3, 4)}).to.throw(Error);
+      expect(()=>{Athlib.formatSecondsAsTime(27.3, null)}).to.throw(Error);
+      expect(()=>{Athlib.formatSecondsAsTime(27.3, "hi")}).to.throw(Error);
+		});
+	});
 });

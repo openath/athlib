@@ -200,6 +200,32 @@ function getDistance(discipline) {
   }
 }
 
+function formatSecondsAsTime(seconds, prec) {
+  // convert seconds to a string formatted as hours:min:secs
+  // :param seconds: floating point seconds
+  // :param prec=0: precision for seconds
+  // :returns formatted string:
+  if (prec === undefined) prec = 0;
+  var secs = parseInt(seconds, 10);
+  var frac = seconds - secs;
+  var mins = parseInt(secs/60, 10);
+  secs = secs - 60*mins;
+  const hours = parseInt(mins/60, 10);
+  mins = mins - 60*hours;
+
+
+  if (prec === 0) frac = '';
+  else if (prec === 1 || prec === 2 || prec === 3) frac = frac.toFixed(prec).slice(1);
+  else {
+    throw new Error("prec parameter should be 0, 1, 2 or 3 not '"+prec+"'");
+  }
+  var t;
+  if (hours) t = [hours+'', pad(mins, 2), pad(secs, 2)];
+  else if (mins) t = [mins+'', pad(secs, 2)];
+  else t = [secs + ''];
+  return t.join(':') + frac
+}
+
 module.exports = {
   hello,
   normalizeGender,
@@ -211,5 +237,6 @@ module.exports = {
   pad,
   text_discipline_sort_key,
   sort_by_discipline,
-  getDistance
+  getDistance,
+  formatSecondsAsTime
 };
