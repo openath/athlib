@@ -13,25 +13,19 @@ def main():
     if debug:
         print("sys.path[0]=%r\nsrcDir=%r" %(sys.path[0],srcDir))
 
-    #currently thos used in athlib.utils.discipline_sort_key
-    wanted = """PAT_THROWS FIELD_SORT_ORDER
-                PAT_HURDLES PAT_JUMPS PAT_RELAYS
-                PAT_TRACK PAT_EVENT_CODE""".split()
-
+    #currently those used in athlib.utils.discipline_sort_key
     ngre = re.compile(r'\(\?P<[^>]+>')
     def discover():
         from athlib import codes
-        for name in dir(codes):
-            if name in wanted:
-                value = getattr(codes,name)
-                if hasattr(value,'pattern'):
-                    value = '/%s/' % ngre.sub('(',value.pattern) if ngre else value.pattern
-                elif isinstance(value,(list,tuple)):
-                    value = "[\n%s\n]" % ',\n'.join(('  "%s"' % v for v in value))
-                else:
-                    raise ValueError('Cannot deal with type %r' % value)
-
-                yield name, value
+        for name in codes.__all__:
+            value = getattr(codes,name)
+            if hasattr(value,'pattern'):
+                value = '/%s/' % ngre.sub('(',value.pattern) if ngre else value.pattern
+            elif isinstance(value,(list,tuple)):
+                value = "[\n%s\n]" % ',\n'.join(('  "%s"' % v for v in value))
+            else:
+                raise ValueError('Cannot deal with type %r' % value)
+            yield name, value
 
     V = list(discover())
     if debug:

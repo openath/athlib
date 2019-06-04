@@ -1,10 +1,22 @@
 """
 Standard event codes, and things to parse and check them
+Ensure all interesting lists and regexps are in the __all__
+variable and no other objects are present.
+
+All the exports should have capital letters.
+
+>>> set(__all__) == set((_ for _ in globals().keys() if _.upper()==_))
+True
 """
-
+__all__ = (
+        'FIELD_EVENTS', 'FIELD_SORT_ORDER', 'JUMPS', 'MULTI_EVENTS', 'STANDARD_FEMALE_TRACK_EVENTS',
+        'STANDARD_MALE_TRACK_EVENTS', 'THROWS',
+        'PAT_EVENT_CODE', 'PAT_FIELD', 'PAT_FINISH_RECORD', 'PAT_HORIZONTAL_JUMPS', 'PAT_HURDLES',
+        'PAT_JUMPS', 'PAT_LEADING_DIGITS', 'PAT_LEADING_FLOAT', 'PAT_LENGTH_EVENT', 'PAT_LONG_SECONDS',
+        'PAT_MULTI', 'PAT_NOT_FINISHED', 'PAT_PERF', 'PAT_RACES_FOR_DISTANCE', 'PAT_RELAYS', 'PAT_ROAD',
+        'PAT_RUN', 'PAT_THROWS', 'PAT_TIMED_EVENT', 'PAT_TRACK', 'PAT_VERTICAL_JUMPS',
+        )
 import re
-
-
 JUMPS = ("HJ", "PV", "LJ", "TJ")
 THROWS = (
     "DT", "JT", "HT", "SP", "WT", 
@@ -77,4 +89,4 @@ PAT_NOT_FINISHED =  re.compile(r"^(DNF|DQ|DNS)$")
 
 # these are the values one might get in results - valid time, DNF, DQ etc.
 PAT_FINISH_RECORD = re.compile("|".join(_.pattern for _ in (PAT_PERF, PAT_NOT_FINISHED)))
-del _
+del _, x
