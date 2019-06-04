@@ -1,16 +1,16 @@
-var webpack = require('webpack');
-var path = require('path');
-var assign = require('object-assign');
-var nodeExternals = require('webpack-node-externals');
-var CleanWebpackPlugin = require('clean-webpack-plugin');
-var UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
+const webpack = require('webpack');
+const path = require('path');
+const assign = require('object-assign');
+const nodeExternals = require('webpack-node-externals');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
+const yargs=require('yargs')
 
-module.exports = function getConfig(options){
+module.exports = getConfig();
 
-  var options = options || {};
-
-  var isProd = (options.BUILD_ENV || process.env.BUILD_ENV) === 'PROD';
-  var isWeb = (options.TARGET_ENV || process.env.TARGET_ENV) === 'WEB';
+function getConfig(){
+	const isProd = yargs.argv.prod === 1;
+	const isWeb = yargs.argv.env === 'WEB';
 
   // get library details from JSON config
   var libraryDesc = require('./package.json').library;
