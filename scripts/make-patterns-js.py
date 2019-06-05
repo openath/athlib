@@ -1,5 +1,5 @@
 def main():
-    import os, sys, re
+    import os, sys, re, json
     prog = sys.argv[0]
     srcDir = os.path.normpath(os.path.abspath(sys.argv[1]))
     here = os.path.dirname(prog)
@@ -13,6 +13,8 @@ def main():
     if debug:
         print("sys.path[0]=%r\nsrcDir=%r" %(sys.path[0],srcDir))
 
+    #replace quotes in json
+    jsonqre = re.compile(r'"(\w+)":')
     #currently those used in athlib.utils.discipline_sort_key
     ngre = re.compile(r'\(\?P<[^>]+>')
     def discover():
@@ -22,10 +24,12 @@ def main():
             if hasattr(value,'pattern'):
                 value = '/%s/' % ngre.sub('(',value.pattern) if ngre else value.pattern
             elif isinstance(value,(list,tuple)):
-                value = "[\n%s\n]" % ',\n'.join(('  "%s"' % v for v in value))
+                value = json.dumps(value,indent=2,ensure_ascii=True)
             else:
                 raise ValueError('Cannot deal with type %r' % value)
             yield name, value
+        from athlib.utils import FIELD_EVENT_RECORDS_BY_GENDER as ferbg
+        yield 'FIELD_EVENT_RECORDS_BY_GENDER', jsonqre.sub('\\1:',json.dumps(ferbg,indent=2,ensure_ascii=True))
 
     V = list(discover())
     if debug:
