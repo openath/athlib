@@ -91,7 +91,7 @@ function getBaseConfig(isProd) {
       root: path.resolve('./src'),
       extensions: ['', '.js']
     },
-    devtool: isProd ? null : '#eval-source-map',
+    devtool: isProd ? null : 'source-map',
     debug: !isProd,
     plugins: isProd ? [
       new webpack.DefinePlugin({'process.env': {'NODE_ENV': '"production"'}}),
