@@ -10,7 +10,12 @@ import {
   text_discipline_sort_key,
   sort_by_discipline,
   getDistance,
-  formatSecondsAsTime
+  formatSecondsAsTime,
+  parseHms,
+  str2num,
+  checkEventCode,
+  fieldEventRecord,
+  checkPerformanceForDiscipline
 } from "./utils";
 
 import { calcUkaAgeGroup } from "./uka_agegroups";
@@ -45,7 +50,8 @@ import {
   PAT_THROWS,
   PAT_TIMED_EVENT,
   PAT_TRACK,
-  PAT_VERTICAL_JUMPS
+  PAT_VERTICAL_JUMPS,
+  FIELD_EVENT_RECORDS_BY_GENDER
 } from "./patterns.js";
 
 module.exports = {
@@ -78,6 +84,7 @@ module.exports = {
   PAT_TIMED_EVENT,
   PAT_TRACK,
   PAT_VERTICAL_JUMPS,
+  FIELD_EVENT_RECORDS_BY_GENDER,
   // end of patterns exports
   hello,
   normalizeGender,
@@ -92,5 +99,10 @@ module.exports = {
   text_discipline_sort_key,
   sort_by_discipline,
   getDistance,
-  formatSecondsAsTime
+  formatSecondsAsTime,
+  parseHms,
+  str2num,
+  checkEventCode,
+  fieldEventRecord,
+  checkPerformanceForDiscipline
 };

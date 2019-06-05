@@ -7,7 +7,10 @@ import {
   PAT_THROWS,
   PAT_TRACK,
   PAT_LEADING_FLOAT,
-  PAT_LEADING_DIGITS
+  PAT_LEADING_DIGITS,
+  PAT_EVENT_CODE,
+  PAT_PERF,
+	FIELD_EVENT_RECORDS_BY_GENDER
 } from "./patterns.js";
 
 /**
@@ -226,6 +229,181 @@ function formatSecondsAsTime(seconds, prec) {
   return t.join(':') + frac
 }
 
+function str2num(s) {
+  // convert string to int if possible else float
+  const f=parseFloat(s, 10);
+  if (isNaN(f)) throw Error('Invalid input '+s+' to str2num');
+  return s.indexOf('.')>=0 ? f : parseInt(f, 10);
+}
+
+function parseHms(t) {
+  // Parse a time duration with 0, 1 or 2 colons and return seconds.
+  if (typeof t === "number") return t;
+
+  // Try : and ; separators
+  for (var sep in { ':': null, ';': null }) {
+    if (t.indexOf(sep) === -1) continue;
+    var sec = 0;
+    const S = t.split(sep);
+    var s;
+
+    for (var i=0; i<S.length; i++) {
+      s = S[i];
+      sec *= 60;
+
+      try {
+        sec += str2num(s);
+      } catch (e) {
+        throw Error('cannot parse component '+s+' from '+t);
+      }
+    }
+    return sec;
+  }
+  try {
+    return str2num(t);
+  } catch (e) {
+    throw Error('cannot parse seconds from '+t);
+  }
+}
+
+function checkEventCode(c) {
+  return c.match(PAT_EVENT_CODE);
+}
+
+function fieldEventRecord(evc, gender) {
+  var R;
+  if (!gender) R = FIELD_EVENT_RECORDS_BY_GENDER.all;
+  else {
+    R = FIELD_EVENT_RECORDS_BY_GENDER[gender.toLowerCase()];
+    if (R===undefined) R = FIELD_EVENT_RECORDS_BY_GENDER.all;
+  }
+  const r = R[evc.toUpperCase()];
+  return (r===undefined) ? null : r;
+}
+
+function checkPerformanceForDiscipline(discipline, textvalue, gender, ulpc, errorKlass, prec) {
+  if (gender===undefined) gender='all';
+  if (ulpc===undefined) ulpc=1.2;
+  if (errorKlass===undefined) errorKlass=Error;
+  if (prec===undefined) prec=null;
+  // Fix up and return what they typed in,  or raise errorKlass(default ValueError)
+  textvalue = textvalue.trim();
+
+  if  (discipline.toLowerCase() === "xc" && textvalue === "") return textvalue;
+
+  //  fix up "," for the Frenchies
+  if (textvalue.indexOf(",")>=0  && textvalue.indexOf(".")===-1) textvalue = textvalue.replace(",", ".");
+  if (textvalue. indexOf(';')>=0) textvalue = textvalue.replace(";", ':');
+  if (!textvalue.match(PAT_PERF)) throw errorKlass("Illegal numeric pattern.  Use digits, ':' and '.' only");
+
+  var distance;
+  var record;
+  if (isFieldEvent(discipline)) {
+    distance = Number(textvalue);
+    if (isNaN(distance) || distance!==parseFloat(textvalue, 10)) {
+      throw errorKlass("`textvalue` is not valid for length/height. Use metres/centimetres e.g. '2.34'");
+    } else {
+      record = fieldEventRecord(discipline, gender);
+      if (record && distance>record*ulpc) throw errorKlass('`discipline`(`gender`) performance `textvalue` seems too large as record is `record`');
+      return distance.toFixed(2)+'';
+    }
+  } else if (MULTI_EVENTS.indexOf(discipline.toUpperCase())>=0) {
+    var points = Number(textvalue);
+    if (isNaN(points) || points!==parseInt(textvalue, 10)) throw errorKlass("'`textvalue`' is not a valid points value for multi-events");
+    if  (points > 9999) throw errorKlass("Multi-events scores should be below 10000 not `textvalue`")
+    return points+'';
+  } else {
+    //  It's a running distance.  format check.  Try to extract metres
+    distance = getDistance(discipline);
+
+    if  (textvalue.startsWith("0:")) textvalue = textvalue.slice(2)
+    if  (textvalue.startsWith("00:")) textvalue = textvalue.slice(3)
+    if  (distance && (distance <= 200) && textvalue.indexOf(':')>=0 && textvalue.indexOf('.')<0) textvalue = textvalue.replace(":", ".");
+    if  (distance && (distance >= 800) && textvalue.indexOf('.')>=0 && textvalue.indexOf(':')<0) textvalue = textvalue.replace(".", ":");
+
+    var chunks;
+    if  (["800", "1500", "3000"].indexOf(discipline)>=0) {
+      if (textvalue.indexOf('.')<0) {
+        chunks = textvalue.split(":");
+        if (chunks.length === 3)
+          textvalue = chunks[0] + ':' + chunks[1] + "." + chunks[2]
+          //  we got hours/mins/secs, should have been min/sec+fraction
+      }
+    }
+
+    chunks = textvalue.split(":");
+
+    var hours;
+    var minutes;
+    var seconds;
+
+    //  The regex ensures we have 1, 2 or 3 chunks
+    if (chunks.length === 1) {
+      hours = 0;
+      minutes = 0;
+      seconds = parseFloat(chunks[0], 10);
+    } else if (chunks.length === 2) {
+      hours = 0;
+      minutes = parseInt(chunks[0], 10);
+      seconds = parseFloat(chunks[1], 10);
+    } else if (chunks.length === 3) {
+      hours = parseInt(chunks[0], 10);
+      minutes = parseInt(chunks[1], 10);
+      seconds = parseFloat(chunks[2], 10);
+    }
+
+    if  (minutes === 0 && seconds >= 100) throw errorKlass("Please use mm:ss or h:mm:ss for times above 99 seconds not `textvalue`");
+
+    if  (distance === 400 && minutes > 45) {
+     // 63:40 instead of 63.40
+      seconds = minutes + 0.01 * seconds;
+      hours = 0;
+      minutes = 0;
+    }
+
+    var duration = 3600 * hours + 60 * minutes + seconds;
+    //  print("duration: %0.2f seconds" % duration)
+
+    //  do sanity checks.  Over 11 metres per second is pretty fishy for a
+    //  sprint
+    if (distance>0 &&  duration>0) {
+      var velocity = distance * 1.0 / duration;
+      if (distance <= 400) {
+        if (velocity > 11.0) throw errorKlass("`textvalue` too fast for `discipline`, check the format");
+      } else if (distance > 400) {
+        if (velocity > 10.0) throw errorKlass("`textvalue` too fast for `discipline`, check the format");
+      }
+      if (velocity < 0.5)  throw errorKlass("`textvalue` too slow for `discipline`, check the format");
+    } else {
+      if (discipline.toUpperCase() === 'XC' && minutes===0) throw errorKlass("Please use mm:ss for minutes and seconds, not mm.ss (entered `textvalue`)");
+    }
+
+    var t;
+    if  (prec === null) {
+      // use Andy's method
+      // Format consistently for output
+      if (hours>0 && minutes>0) {
+        t = parseInt(seconds, 10);
+        t = [hours+'', pad(minutes, 2), pad(t, 2)+(seconds-t).toFixed(2).slice(1)].join(':');
+      } else if (minutes>0) {
+        t = parseInt(seconds, 10);
+        t = [minutes+'', pad(t, 2)+(seconds-t).toFixed(2).slice(1)].join(':');
+      } else {
+        t = seconds.toFixed(2);
+      }
+
+      //  Strip trailing zeroes except for short ones
+      if (t.length>5) {
+        while (t.endsWith('0') && t.length > 4) t = t.slice(0, -1);
+        if (t.endsWith('.')) t = t.slice(0, -1);
+      }
+
+      return t
+    }
+    return formatSecondsAsTime(duration, prec)
+  }
+}
+
 module.exports = {
   hello,
   normalizeGender,
@@ -238,5 +416,10 @@ module.exports = {
   text_discipline_sort_key,
   sort_by_discipline,
   getDistance,
-  formatSecondsAsTime
+  formatSecondsAsTime,
+  parseHms,
+  str2num,
+  checkEventCode,
+  fieldEventRecord,
+  checkPerformanceForDiscipline
 };

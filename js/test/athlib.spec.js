@@ -142,4 +142,70 @@ describe('Given an instance of Athlib', function() {
       expect(()=>{Athlib.formatSecondsAsTime(27.3, "hi")}).to.throw(Error);
 		});
 	});
+	describe('str2num', function() {
+		it('verify it works correctly in good cases', function() {
+		  expect(Athlib.str2num("27")).to.be.equal(27);
+		  expect(Athlib.str2num("27.3")).to.be.equal(27.3);
+		});
+		it('verify it detects bad input', function() {
+      expect(()=>{Athlib.str2num('slow')}).to.throw(Error);
+		});
+	});
+	describe('parseHms', function() {
+		it('verify it works correctly in good cases', function() {
+		  expect(Athlib.parseHms("10")).to.be.equal(10);
+		  expect(Athlib.parseHms("1:10")).to.be.equal(70);
+		  expect(Athlib.parseHms("1:1:10")).to.be.equal(3670);
+		  expect(Athlib.parseHms("1:01:10")).to.be.equal(3670);
+		  expect(Athlib.parseHms("1:01:10.1")).to.be.equal(3670.1);
+
+		  //  floats and ints come through as is
+		  expect(Athlib.parseHms(10)).to.be.equal(10);
+		  expect(Athlib.parseHms(10.1)).to.be.equal(10.1);
+		});
+		it('verify it detects bad input', function() {
+      expect(()=>{Athlib.parseInput('slow')}).to.throw(Error);
+      expect(()=>{Athlib.parseInput('3:32.x')}).to.throw(Error);
+		});
+	});
+	describe('checkPerformanceForDiscipline', function() {
+		it('checkperf("XC","")===""',() =>{expect(Athlib.checkPerformanceForDiscipline("XC","")).to.be.equal("")}                                                     );
+		it('checkperf("xc","")===""',() =>{expect(Athlib.checkPerformanceForDiscipline("xc","")).to.be.equal("")});
+		it('checkperf("HJ","2.34")==="2.34"',() =>{expect(Athlib.checkPerformanceForDiscipline("HJ","2.34")).to.be.equal("2.34")});
+		it('checkperf("HJ","  2.34  ")==="2.34"',() =>{expect(Athlib.checkPerformanceForDiscipline("HJ","  2.34  ")).to.be.equal("2.34")});
+		it('checkperf("60m","7.62")==="7.62"',() =>{expect(Athlib.checkPerformanceForDiscipline("60m","7.62")).to.be.equal("7.62")});
+		it('checkperf("100m","9.73456")==="9.73"',() =>{expect(Athlib.checkPerformanceForDiscipline("100m","9.73456")).to.be.equal("9.73")});
+		it('checkperf("100m","12")==="12.00"',() =>{expect(Athlib.checkPerformanceForDiscipline("100m","12")).to.be.equal("12.00")});
+		it('checkperf("400m","63.1")==="63.10"',() =>{expect(Athlib.checkPerformanceForDiscipline("400m","63.1")).to.be.equal("63.10")});
+		it('checkperf("400m","1:03.1")==="1:03.1"',() =>{expect(Athlib.checkPerformanceForDiscipline("400m","1:03.1")).to.be.equal("1:03.1")});
+		it('checkperf("800m","2:33")==="2:33"',() =>{expect(Athlib.checkPerformanceForDiscipline("800m","2:33")).to.be.equal("2:33")});
+		it('checkperf("200","27,33")==="27.33"',() =>{expect(Athlib.checkPerformanceForDiscipline("200","27,33")).to.be.equal("27.33")});	// Correct French commas to decimals
+		it('checkperf("800m","2;33")==="2:33"',() =>{expect(Athlib.checkPerformanceForDiscipline("800m","2;33")).to.be.equal("2:33")});	// Correct semicolons - fail to hit the shift key
+		it('checkperf("800","2.33")==="2:33"',() =>{expect(Athlib.checkPerformanceForDiscipline("800","2.33")).to.be.equal("2:33")});		// Correct dots for some events
+		it('checkperf("Mar","2:03:59")==="2:03:59"',() =>{expect(Athlib.checkPerformanceForDiscipline("Mar","2:03:59")).to.be.equal("2:03:59")});
+		it('checkperf("XC","27:50")==="27:50"',() =>{expect(Athlib.checkPerformanceForDiscipline("XC","27:50")).to.be.equal("27:50")});
+		it('checkperf("3000m","0:11:15")==="11:15"',() =>{expect(Athlib.checkPerformanceForDiscipline("3000m","0:11:15")).to.be.equal("11:15")});
+		it('checkperf("60m","7:62")==="7.62"',() =>{expect(Athlib.checkPerformanceForDiscipline("60m","7:62")).to.be.equal("7.62")});
+		it('checkperf("5000","0:14:53.2")==="14:53.2"',() =>{expect(Athlib.checkPerformanceForDiscipline("5000","0:14:53.2")).to.be.equal("14:53.2")});	// Excel can prepend zeroes
+		it('checkperf("5000","00:14:53.2")==="14:53.2"',() =>{expect(Athlib.checkPerformanceForDiscipline("5000","00:14:53.2")).to.be.equal("14:53.2")});
+		it('checkperf("1500","3:53:17")==="3:53.17"',() =>{expect(Athlib.checkPerformanceForDiscipline("1500","3:53:17")).to.be.equal("3:53.17")});		// Autocorrect 800/1500/3000 submitted as H:M:S
+		it('checkperf("DEC","5875")==="5875"',() =>{expect(Athlib.checkPerformanceForDiscipline("DEC","5875")).to.be.equal("5875")});				// Multi-events
+		it('checkperf("400","52:03")==="52.03"',() =>{expect(Athlib.checkPerformanceForDiscipline("400","52:03")).to.be.equal("52.03")});			// Correct some common muddles
+		it('checkperf("PEN","0")==="0"',() =>{expect(Athlib.checkPerformanceForDiscipline("PEN","0")).to.be.equal("0")});					 // low score is allowed
+		it('checkperf("3000mW","0:24:15")==="24:15"',() =>{expect(Athlib.checkPerformanceForDiscipline("3000mW","0:24:15")).to.be.equal("24:15")});
+		it('checkperf("3KW","0:24:15")==="24:15"',() =>{expect(Athlib.checkPerformanceForDiscipline("3KW","0:24:15")).to.be.equal("24:15")});
+ 
+		it('checkperf("DEC","10001") throws error',()=>{expect(()=>{Athlib.checkPerformanceForDiscipline("DEC","10001")}).to.throw(Error)});
+		it('checkperf("DEC","4:15.8") throws error',()=>{expect(()=>{Athlib.checkPerformanceForDiscipline("DEC","4:15.8")}).to.throw(Error)});
+		it('checkperf("HJ","25") throws error',()=>{expect(()=>{Athlib.checkPerformanceForDiscipline("HJ","25")}).to.throw(Error)});
+		it('checkperf("HJ","Soooo Highhhh!!!") throws error',()=>{expect(()=>{Athlib.checkPerformanceForDiscipline("HJ","Soooo Highhhh!!!")}).to.throw(Error)});
+		it('checkperf("HJ","2:03") throws error',()=>{expect(()=>{Athlib.checkPerformanceForDiscipline("HJ","2:03")}).to.throw(Error)});
+		it('checkperf("100m","9.73w") throws error',()=>{expect(()=>{Athlib.checkPerformanceForDiscipline("100m","9.73w")}).to.throw(Error)});	// No wind, indoor figures or suffixes
+		it('checkperf("XC","27.50") throws error',()=>{expect(()=>{Athlib.checkPerformanceForDiscipline("XC","27.50")}).to.throw(Error)});
+		it('checkperf("100M","1:17:42:03") throws error',()=>{expect(()=>{Athlib.checkPerformanceForDiscipline("100M","1:17:42:03")}).to.throw(Error)});  // Multi-day not supported
+		it('checkperf("400","0:103") throws error',()=>{expect(()=>{Athlib.checkPerformanceForDiscipline("400","0:103")}).to.throw(Error)});  // poor format
+		it('checkperf("100","8.5") throws error',()=>{expect(()=>{Athlib.checkPerformanceForDiscipline("100","8.5")}).to.throw(Error)});  // > 11.0 metres per second
+		it('checkperf("5000","3:45:27") throws error',()=>{expect(()=>{Athlib.checkPerformanceForDiscipline("5000","3:45:27")}).to.throw(Error)});  // < 0.5 m/sec
+		it('checkperf("3KW","2:34") throws error',()=>{expect(()=>{Athlib.checkPerformanceForDiscipline("3KW","2:34")}).to.throw(Error)});
+  });
 });
