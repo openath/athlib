@@ -231,9 +231,9 @@ function formatSecondsAsTime(seconds, prec) {
 
 function str2num(s) {
   // convert string to int if possible else float
-  const f=parseFloat(s, 10);
-  if (isNaN(f)) throw Error('Invalid input '+s+' to str2num');
-  return s.indexOf('.')>=0 ? f : parseInt(f, 10);
+  const f=Number(s);
+  if (isNaN(f)) throw Error('Invalid input `s` to str2num');
+  return s.indexOf('.')>=0 ? parseFloat(s) : parseInt(s, 10);
 }
 
 function parseHms(t) {
@@ -300,16 +300,16 @@ function checkPerformanceForDiscipline(discipline, textvalue, gender, ulpc, erro
   var record;
   if (isFieldEvent(discipline)) {
     distance = Number(textvalue);
-    if (isNaN(distance) || distance!==parseFloat(textvalue, 10)) {
+    if (isNaN(distance)) {
       throw errorKlass("`textvalue` is not valid for length/height. Use metres/centimetres e.g. '2.34'");
     } else {
       record = fieldEventRecord(discipline, gender);
       if (record && distance>record*ulpc) throw errorKlass('`discipline`(`gender`) performance `textvalue` seems too large as record is `record`');
-      return distance.toFixed(2)+'';
+      return distance.toFixed(2);
     }
   } else if (MULTI_EVENTS.indexOf(discipline.toUpperCase())>=0) {
     var points = Number(textvalue);
-    if (isNaN(points) || points!==parseInt(textvalue, 10)) throw errorKlass("'`textvalue`' is not a valid points value for multi-events");
+    if (isNaN(points)) throw errorKlass("'`textvalue`' is not a valid points value for multi-events");
     if  (points > 9999) throw errorKlass("Multi-events scores should be below 10000 not `textvalue`")
     return points+'';
   } else {

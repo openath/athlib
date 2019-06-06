@@ -143,13 +143,10 @@ describe('Given an instance of Athlib', function() {
 		});
 	});
 	describe('str2num', function() {
-		it('verify it works correctly in good cases', function() {
-		  expect(Athlib.str2num("27")).to.be.equal(27);
-		  expect(Athlib.str2num("27.3")).to.be.equal(27.3);
-		});
-		it('verify it detects bad input', function() {
-      expect(()=>{Athlib.str2num('slow')}).to.throw(Error);
-		});
+		it('str2num("27")===27', ()=>{expect(Athlib.str2num("27")).to.be.equal(27)});
+		it('str2num("27.3")===27.3', ()=>{expect(Athlib.str2num("27.3")).to.be.equal(27.3)});
+		it('str2num("slow") throws error',()=>{expect(()=>{Athlib.str2num("slow")}).to.throw(Error)});
+		it('str2num("3:0") throws error',()=>{expect(()=>{Athlib.str2num("3:0")}).to.throw(Error)});
 	});
 	describe('parseHms', function() {
 		it('verify it works correctly in good cases', function() {

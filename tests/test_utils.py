@@ -90,6 +90,7 @@ class UtilsTests(TestCase):
         self.assertEquals(str2num("27"), 27)
         self.assertEquals(str2num("27.3"), 27.3)
         self.assertRaises(ValueError, str2num, "slow")
+        self.assertRaises(ValueError, str2num, "3:0")
 
     def test_parse_hms(self):
         from athlib.utils import parse_hms
