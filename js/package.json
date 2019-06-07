@@ -67,7 +67,7 @@
     "mocha": "^6.0.0",
     "object-assign": "^4.0.1",
     "webpack": "^1.12.11",
-    "webpack-node-externals": "^0.4.1",
+    "webpack-node-externals": "^1.7.2",
     "yargs": "^13.2.2",
     "nyc": "^13.1.0"
   },
