@@ -1,113 +1,49 @@
+/* global __dirname, require, module*/
 const webpack = require('webpack');
 const path = require('path');
-const assign = require('object-assign');
+const pkg = require('./package.json');
+const CWP = require('clean-webpack-plugin');
 const nodeExternals = require('webpack-node-externals');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-const UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
-const yargs=require('yargs')
 
-module.exports = getConfig();
-
-function getConfig(){
-	const isProd = yargs.argv.prod === 1;
-	const isWeb = yargs.argv.env === 'WEB';
-
-  // get library details from JSON config
-  var libraryDesc = require('./package.json').library;
-  var libraryName = libraryDesc.name;
-
-  // determine output file name
-  var outputName = buildLibraryOutputName(libraryDesc, isWeb, isProd);
-  var outputFolder = isWeb ? 'dist' : 'lib';
-
-  // get base config
-  var config;
-
-  // for the web
-  if(isWeb){
-    config = assign(getBaseConfig(isProd), {
-      output: {
-        path: path.join(__dirname, outputFolder),
-        filename: outputName,
-        library: libraryName,
-        libraryTarget: 'umd',
-        umdNamedDefine: true
-      }
-    });
-  }
-
-  // for the backend
-  else {
-    config = assign(getBaseConfig(isProd), {
-      output: {
-        path: path.join(__dirname, outputFolder),
-        filename: outputName,
-        library: libraryName,
-        libraryTarget: 'commonjs2'
-      },
-      target: 'node',
-      node: {
-        __dirname: true,
-        __filename: true
-      },
-      externals: [nodeExternals()]
-    });
-  }
-
-  config.plugins.push(new CleanWebpackPlugin([outputFolder]));
-
-  return config;
-}
-
-/**
- * Build base config
- * @param  {Boolean} isProd [description]
- * @return {[type]}         [description]
- */
-function getBaseConfig(isProd) {
-
-  // get library details from JSON config
-  var libraryDesc = require('./package.json').library;
-  var libraryEntryPoint = path.join('src', libraryDesc.entry);
-
-  // generate webpack base config
-  return {
-    entry: path.join(__dirname, libraryEntryPoint),
-    output: {
-      // ommitted - will be filled according to target env
-    },
-    module: {
-      preLoaders: [
-        {test: /\.js$/, exclude: /(node_modules|bower_components)/, loader: "eslint-loader"}
-      ],
-      loaders: [
-        {test: /\.js$/, exclude: /(node_modules|bower_components)/, loader: "babel-loader"},
-      ]
-    },
-    eslint: {
-        configFile: './.eslintrc'
-    },
-    resolve: {
-      root: path.resolve('./src'),
-      extensions: ['', '.js']
-    },
-    devtool: isProd ? null : 'source-map',
-    debug: !isProd,
-    plugins: isProd ? [
-      new webpack.DefinePlugin({'process.env': {'NODE_ENV': '"production"'}}),
-      new UglifyJsPlugin({ minimize: true })
-      // Prod plugins here
-    ] : [
-      new webpack.DefinePlugin({'process.env': {'NODE_ENV': '"development"'}})
-      // Dev plugins here
-    ]
-  };
-}
-
-function buildLibraryOutputName(libraryDesc, isWeb, isProd){
-  if(isWeb){
-    return libraryDesc["dist-web"] || [libraryDesc.name, 'web', (isProd ? 'min.js' : 'js')].join('.');
-  } else {
-    return libraryDesc["dist-node"] || [libraryDesc.name, (isProd ? 'min.js' : 'js')].join('.');
-  }
+module.exports = function (env) {
+	const libraryName = pkg.name;
+	const isProd  = env.prod === 1;
+	const isWeb = env.target === 'web';
+	const config = {
+		mode: isProd ? 'production' : 'development',
+		entry: __dirname + '/src/athlib.js',
+    devtool: isProd ? false : 'source-map',
+		output: {
+			path: __dirname + (isWeb ? '/dist' : '/lib'),
+			filename: libraryName + (isWeb ? '.web.js' : '.js'),
+			library: libraryName,
+			libraryTarget: 'umd',
+			umdNamedDefine: true,
+			globalObject: "typeof self !== 'undefined' ? self : this"
+		},
+		module: {
+			rules: [
+				{
+					test: /(\.jsx|\.js)$/,
+					loader: 'babel-loader',
+					exclude: /(node_modules|bower_components)/
+				},
+				{
+					test: /(\.jsx|\.js)$/,
+					loader: 'eslint-loader',
+					exclude: /node_modules/
+				}
+			]
+		},
+    optimization: {minimize: isProd},
+    plugins: [],
+		resolve: {
+			modules: [path.resolve('./node_modules'), path.resolve('./src')],
+			extensions: ['.json', '.js']
+		}
+	}
+	var cwp = CWP;
+	if (cwp.hasOwnProperty('CleanWebpackPlugin')) cwp = cwp.CleanWebpackPlugin;
+  config.plugins.push(new cwp());
+	return config;
 }

@@ -16,11 +16,11 @@ import {
   checkEventCode,
   fieldEventRecord,
   checkPerformanceForDiscipline
-} from "./utils";
+} from './utils';
 
-import { calcUkaAgeGroup } from "./uka_agegroups";
+import { calcUkaAgeGroup } from './uka_agegroups';
 
-import { HighJumpCompetition } from "./highjump.js";
+import { HighJumpCompetition } from './highjump.js';
 
 import {
   FIELD_EVENTS,
@@ -52,7 +52,7 @@ import {
   PAT_TRACK,
   PAT_VERTICAL_JUMPS,
   FIELD_EVENT_RECORDS_BY_GENDER
-} from "./patterns.js";
+} from './patterns.js';
 
 module.exports = {
   // start of patterns exports
