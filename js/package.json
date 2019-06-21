@@ -4,16 +4,12 @@
   "description": "Athletics Library",
   "main": "./index.js",
   "scripts": {
-    "build": "npm run build-node && npm run build-web && npm run test",
-    "build-debug": "npm run build-node-debug && npm run build-web-debug && npm run test",
-    "build-web": "webpack --env.prod=1 --env.target=web",
-    "build-node": "webpack --env.prod=1",
-    "build-web-debug": "webpack --env.target=web",
-    "build-node-debug": "webpack --env.target=node",
+    "build": "webpack --env.prod=1 && npm run test",
     "dev": "webpack --progress --colors --watch --env.prod=1",
     "eslint": "eslint src/*.js",
     "eslint-fix": "eslint --fix src/*.js",
-    "test": "mocha --require @babel/register --colors ./test/*.spec.js",
+    "test": "cross-env target=web mocha --require @babel/register --colors ./test/*.spec.js",
+    "test-node": "cross-env target=node mocha --require @babel/register --colors ./test/*.spec.js",
     "test:watch": "mocha --require @babel/register --colors -w ./test/*.spec.js",
     "test:cover": "cross-env NODE_ENV=test nyc mocha --require @babel/register --colors test/*.js",
     "repl": "node -i -e \"$(< ./lib/athlib.js)\""
@@ -37,9 +33,8 @@
   "files": [
     "LICENSE",
     "README.md",
-    "index.js",
-    "lib",
-    "dist"
+    "dist",
+    "index.js"
   ],
   "homepage": "https://github.com/openath/athlib",
   "devDependencies": {

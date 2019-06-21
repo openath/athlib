@@ -8,14 +8,13 @@ const nodeExternals = require('webpack-node-externals');
 module.exports = function (env) {
 	const libraryName = pkg.name;
 	const isProd  = env.prod === 1;
-	const isWeb = env.target === 'web';
 	const config = {
 		mode: isProd ? 'production' : 'development',
 		entry: __dirname + '/src/athlib.js',
-    devtool: isProd ? false : 'source-map',
+    devtool: 'source-map',
 		output: {
-			path: __dirname + (isWeb ? '/dist' : '/lib'),
-			filename: libraryName + (isWeb ? '.web.js' : '.js'),
+			path: __dirname + '/dist',
+			filename: libraryName + '.web.js',
 			library: libraryName,
 			libraryTarget: 'umd',
 			umdNamedDefine: true,
