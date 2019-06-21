@@ -105,3 +105,5 @@ ENV/
 node_modules/
 
 .nyc_output
+
+js/src/version.js

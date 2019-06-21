@@ -54,6 +54,10 @@ import {
   FIELD_EVENT_RECORDS_BY_GENDER
 } from './patterns.js';
 
+import {
+  version
+} from './version.js';
+
 module.exports = {
   // start of patterns exports
   FIELD_EVENTS,
@@ -104,5 +108,6 @@ module.exports = {
   str2num,
   checkEventCode,
   fieldEventRecord,
-  checkPerformanceForDiscipline
+  checkPerformanceForDiscipline,
+  version
 };

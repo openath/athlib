@@ -3,11 +3,12 @@ const webpack = require('webpack');
 const path = require('path');
 const pkg = require('./package.json');
 const CWP = require('clean-webpack-plugin');
-const nodeExternals = require('webpack-node-externals');
+const write = require('write');
 
 module.exports = function (env) {
 	const libraryName = pkg.name;
 	const isProd  = env.prod === 1;
+	write.sync(__dirname + '/src/version.js', "const version = '"+pkg.version+"';\n\nmodule.exports = {version};\n");
 	const config = {
 		mode: isProd ? 'production' : 'development',
 		entry: __dirname + '/src/athlib.js',

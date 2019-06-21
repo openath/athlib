@@ -1,7 +1,13 @@
 import { expect } from 'chai';
 import Athlib from '../index.js';
+const pkg = require('../package.json');
 
 describe('Given an instance of Athlib', function() {
+	describe('testing version', function() {
+		it('Athlib.version should match package,json version '+pkg.version, () => {
+			expect(Athlib.version).to.be.equal(pkg.version);
+		});
+	});
 	describe('testing the hello function', function() {
 		it('hello("world") should return "Hello, world!"', () => {
 			expect(Athlib.hello('world')).to.be.equal('Hello, world!');
