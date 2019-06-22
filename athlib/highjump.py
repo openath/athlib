@@ -136,7 +136,6 @@ class HighJumpCompetition(object):
         self.jumpers_by_bib = {}
         self.ranked_jumpers = []
         self.bar_height = Decimal("0.00")
-        self.trials = []
         self.heights = []   # sequence of heights so far
         self.in_jump_off = False
         self.actions = []  # log for replay purposes.
@@ -219,6 +218,21 @@ class HighJumpCompetition(object):
         jumper.retired(len(self.heights), self.bar_height)
         self.actions.append(('retired', bib))
         self._rank()
+
+    action_letter = dict(cleared='o', failed='x', passed='-', retired='r')
+
+    @property
+    def trials(self):
+        T = []
+        aT = T.append
+        al = self.action_letter
+        bh = None
+        for a,v in self.actions:
+            if a=='set_bar_height':
+                bh = v
+            elif a in ('cleared failed passed retired'):
+                aT((v,bh,al[a]))
+        return T
 
     @property
     def remaining(self):

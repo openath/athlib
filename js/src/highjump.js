@@ -164,7 +164,6 @@ function HighJumpCompetition() {
       this.jumpersByBib = {};
       this.rankedJumpers = [];
       this.barHeight = 0;
-      this.trials = [];
       this.heights = []; // sequence of heights so far
       this.inJumpOff = false;
       this.actions = []; // log for replay purposes.
@@ -412,6 +411,33 @@ function HighJumpCompetition() {
         default:
           throw Error(`Unknown jump trial code '${trial}'`);
       }
+    },
+    actionLetter: {
+      cleared: 'o',
+      failed: 'x',
+      passed: '-',
+      retired: 'r'
+    },
+    get trials() {
+      const self = this;
+      var T = [];
+      const al = self.actionLetter;
+      var bh;
+
+      function processAction(v) {
+        var a = v[0];
+
+        if (a === 'setBarHeight') {
+          bh = v[1];
+        } else {
+          a = al[a];
+          if (typeof a === 'string') {
+            T.push([v[1], bh, a]);
+          }
+        }
+      }
+      self.actions.forEach(processAction);
+      return T;
     }
   };
 

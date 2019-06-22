@@ -39,7 +39,6 @@ _1066 = [
         "", "", "", "o", "o", "o", "o", "o", "xxx", "x", "o", "x", "o", "x", "o"]
     ]
 
-
 RIO_MENS_HJ = [  # pasted from Wikipedia
     ["place", "order", "bib", "first_name", "last_name", "team", "category", "2.20", "2.25", "2.29", "2.33", "2.36", "2.38", "2.40", "best", "note"],
     ["1", 7, 2197, "Derek", "Drouin", "CAN", "M", "o", "o", "o", "o", "o", "o", "x", 2.38, ""],
@@ -97,7 +96,6 @@ class HighJumpTests(TestCase):
 
         self.assertEquals(jake_field.place, 4)
         self.assertEquals(harry_maslen.place, 1)
-
 
     def test_replay_to_jumpoff(self):
         "Run through to where the jumpoff began - ninth bar position"
@@ -305,6 +303,39 @@ class HighJumpTests(TestCase):
         c.passed('B')
         self.assertEquals(B.dismissed,True)
 
+    def test_trials(self):
+        c = HighJumpCompetition()
+        c.add_jumper(bib='A',first_name='Harald',last_name='England')
+        c.add_jumper(bib='B',first_name='William',last_name='Norman')
+        h1 = Decimal('1.10')
+        h2 = Decimal('1.15')
+        h3 = Decimal('1.14')
+        c.set_bar_height(h1)
+        c.cleared('A')
+        c.cleared('B')
+        c.set_bar_height(h2)
+        c.failed('A')
+        c.failed('B')
+        c.failed('A')
+        c.failed('B')
+        c.failed('A')
+        c.failed('B')
+        self.assertEquals(c.state,'jumpoff')
+        c.set_bar_height(h3)
+        self.assertEquals(c.trials,[('A',h1,'o'),('B',h1,'o'),('A',h2,'x'),('B',h2,'x'),('A',h2,'x'),('B',h2,'x'),('A',h2,'x'),('B',h2,'x')])
+        c.failed('A')
+        self.assertEquals(c.state,'jumpoff')
+        self.assertEquals(c.trials,[('A',h1,'o'),('B',h1,'o'),('A',h2,'x'),('B',h2,'x'),('A',h2,'x'),('B',h2,'x'),('A',h2,'x'),('B',h2,'x'),('A',h3,'x')])
+        c.cleared('B')
+        self.assertEquals(c.state,'finished')
+        self.assertEquals(c.trials,[('A',h1,'o'),('B',h1,'o'),('A',h2,'x'),('B',h2,'x'),('A',h2,'x'),('B',h2,'x'),('A',h2,'x'),('B',h2,'x'),('A',h3,'x'),('B',h3,'o')])
+
+    def test_action_letter(self):
+        c = HighJumpCompetition()
+        self.assertEquals(c.action_letter['cleared'],'o',"action_letter['cleared']=='o'")
+        self.assertEquals(c.action_letter['cleared'],'o',"action_letter['cleared']=='o'")
+        self.assertEquals(c.action_letter['passed'],'-',"action_letter['passed']=='-'")
+        self.assertEquals(c.action_letter['retired'],'r',"action_letter['passed']=='r'")
 
 
 if __name__ == '__main__':

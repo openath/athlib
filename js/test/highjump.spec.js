@@ -429,4 +429,49 @@ describe('Given an instance of Athlib.HighJumpCompetition', function(){
 	c.passed('B');
 	it("B.dismissed should be true",()=>{expect(B.dismissed).to.be.equal(true)});
   });
+  describe('test trials',function(){
+    const c = Athlib.HighJumpCompetition();
+		c.addJumper({bib:'A',first_name:'Harald',last_names:'England'});
+		c.addJumper({bib:'B',first_name:'William',last_names:'Norman'});
+		c.setBarHeight(1.10);
+		c.cleared('A');
+		c.cleared('B');
+		c.setBarHeight(1.15);
+		c.failed('A');
+		c.failed('B');
+		c.failed('A');
+		c.failed('B');
+		c.failed('A');
+		c.failed('B');
+		(function(){
+			const state=c.state;
+			it("state now jumpoff'",()=>{expect(state).to.equal('jumpoff')});
+		})();
+		c.setBarHeight(1.14);
+		(function(){
+			const trials=c.trials.slice();
+			it("check trials at start of jumpoff",()=>{expect(trials).to.eql([['A',1.10,'o'],['B',1.10,'o'],['A',1.15,'x'],['B',1.15,'x'],['A',1.15,'x'],['B',1.15,'x'],['A',1.15,'x'],['B',1.15,'x']])});
+		})();
+		c.failed('A');
+		(function(){
+			const state=c.state;
+			const trials=c.trials.slice();
+			it("state still 'jumpoff'",()=>{expect(state).to.equal('jumpoff')});
+			it("check trials after A fails",()=>{expect(trials).to.eql([['A',1.10,'o'],['B',1.10,'o'],['A',1.15,'x'],['B',1.15,'x'],['A',1.15,'x'],['B',1.15,'x'],['A',1.15,'x'],['B',1.15,'x'],['A',1.14,'x']])});
+		})();
+		c.cleared('B');
+		(function(){
+			const state=c.state;
+			const trials=c.trials.slice();
+			it("state now 'finished'",()=>{expect(state).to.equal('finished')});
+			it("check trials after B clears",()=>{expect(trials).to.eql([['A',1.10,'o'],['B',1.10,'o'],['A',1.15,'x'],['B',1.15,'x'],['A',1.15,'x'],['B',1.15,'x'],['A',1.15,'x'],['B',1.15,'x'],['A',1.14,'x'],['B',1.14,'o']])});
+		})();
+  });
+  describe('test actionLetter',function(){
+    const c = Athlib.HighJumpCompetition();
+		it("actionLetter('cleared')==='o'",()=>{expect(c.actionLetter.cleared).to.be.equal('o')});
+		it("actionLetter('failed')==='x'",()=>{expect(c.actionLetter.failed).to.be.equal('x')});
+		it("actionLetter('passed')==='-'",()=>{expect(c.actionLetter.passed).to.be.equal('-')});
+		it("actionLetter('retired')==='r'",()=>{expect(c.actionLetter.retired).to.be.equal('r')});
+  });
 });
