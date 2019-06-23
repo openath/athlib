@@ -333,7 +333,7 @@ class HighJumpTests(TestCase):
     def test_action_letter(self):
         c = HighJumpCompetition()
         self.assertEquals(c.action_letter['cleared'],'o',"action_letter['cleared']=='o'")
-        self.assertEquals(c.action_letter['cleared'],'o',"action_letter['cleared']=='o'")
+        self.assertEquals(c.action_letter['failed'],'x',"action_letter['failed']=='x'")
         self.assertEquals(c.action_letter['passed'],'-',"action_letter['passed']=='-'")
         self.assertEquals(c.action_letter['retired'],'r',"action_letter['passed']=='r'")
 

@@ -230,7 +230,7 @@ class HighJumpCompetition(object):
         for a,v in self.actions:
             if a=='set_bar_height':
                 bh = v
-            elif a in ('cleared failed passed retired'):
+            elif a in al:
                 aT((v,bh,al[a]))
         return T
 
