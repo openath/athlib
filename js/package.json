@@ -5,6 +5,7 @@
   "main": "./index.js",
   "scripts": {
     "build": "webpack --env.prod=1 && npm run test",
+    "build-debug": "webpack --env.prod=0 && npm run test",
     "dev": "webpack --progress --colors --watch --env.prod=1",
     "eslint": "eslint src/*.js",
     "eslint-fix": "eslint --fix src/*.js",
