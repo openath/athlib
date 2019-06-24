@@ -12,7 +12,7 @@ module.exports = function (env) {
 	const config = {
 		mode: isProd ? 'production' : 'development',
 		entry: __dirname + '/src/athlib.js',
-    devtool: 'source-map',
+    devtool: isProd?false:'source-map',
 		output: {
 			path: __dirname + '/dist',
 			filename: libraryName + '.web.js',

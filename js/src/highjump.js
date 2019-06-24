@@ -438,6 +438,20 @@ function HighJumpCompetition() {
       }
       self.actions.forEach(processAction);
       return T;
+    },
+    get trialObjs() {
+      return this.trials.map(function (t) {
+        return {bib: t[0], height: t[1].toFixed(2), result: t[2]};
+      });
+    },
+    fromActions(actions) {
+      if (typeof actions === 'undefined') actions = this.actions.slice();
+      const hj = HighJumpCompetition();
+
+      actions.forEach(function (action) {
+        hj[action[0]](action[1]);
+      });
+      return hj;
     }
   };
 

@@ -460,11 +460,14 @@ describe('Given an instance of Athlib.HighJumpCompetition', function(){
 			it("check trials after A fails",()=>{expect(trials).to.eql([['A',1.10,'o'],['B',1.10,'o'],['A',1.15,'x'],['B',1.15,'x'],['A',1.15,'x'],['B',1.15,'x'],['A',1.15,'x'],['B',1.15,'x'],['A',1.14,'x']])});
 		})();
 		c.cleared('B');
+		it("state now 'finished'",()=>{expect(c.state).to.equal('finished')});
 		(function(){
-			const state=c.state;
 			const trials=c.trials.slice();
-			it("state now 'finished'",()=>{expect(state).to.equal('finished')});
-			it("check trials after B clears",()=>{expect(trials).to.eql([['A',1.10,'o'],['B',1.10,'o'],['A',1.15,'x'],['B',1.15,'x'],['A',1.15,'x'],['B',1.15,'x'],['A',1.15,'x'],['B',1.15,'x'],['A',1.14,'x'],['B',1.14,'o']])});
+			const trialObjs=c.trialObjs.slice();
+			const xtrials = [['A',1.10,'o'],['B',1.10,'o'],['A',1.15,'x'],['B',1.15,'x'],['A',1.15,'x'],['B',1.15,'x'],['A',1.15,'x'],['B',1.15,'x'],['A',1.14,'x'],['B',1.14,'o']];
+			const xobjs = trials.map(function(e){return {bib:e[0],height:e[1].toFixed(2),result:e[2]}});
+			it("check trials after B clears",()=>{expect(trials).to.eql(xtrials)});
+			it("check trialObjs after B clears",()=>{expect(trialObjs).to.eql(xobjs)});
 		})();
   });
   describe('test actionLetter',function(){
