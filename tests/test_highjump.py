@@ -320,15 +320,20 @@ class HighJumpTests(TestCase):
         c.failed('B')
         c.failed('A')
         c.failed('B')
-        self.assertEquals(c.state,'jumpoff')
+        self.assertEquals(c.state,'jumpoff','jumpoff state should be reached')
         c.set_bar_height(h3)
-        self.assertEquals(c.trials,[('A',h1,'o'),('B',h1,'o'),('A',h2,'x'),('B',h2,'x'),('A',h2,'x'),('B',h2,'x'),('A',h2,'x'),('B',h2,'x')])
+        self.assertEquals(c.trials,[('A',h1,'o'),('B',h1,'o'),('A',h2,'x'),('B',h2,'x'),('A',h2,'x'),('B',h2,'x'),('A',h2,'x'),('B',h2,'x')],'trials in jumpoff state')
         c.failed('A')
-        self.assertEquals(c.state,'jumpoff')
-        self.assertEquals(c.trials,[('A',h1,'o'),('B',h1,'o'),('A',h2,'x'),('B',h2,'x'),('A',h2,'x'),('B',h2,'x'),('A',h2,'x'),('B',h2,'x'),('A',h3,'x')])
+        self.assertEquals(c.state,'jumpoff','still in jumpoff after A fails at 1.14')
+        self.assertEquals(c.trials,[('A',h1,'o'),('B',h1,'o'),('A',h2,'x'),('B',h2,'x'),('A',h2,'x'),('B',h2,'x'),('A',h2,'x'),('B',h2,'x'),('A',h3,'x')], 'trials after A fails at 1.14')
         c.cleared('B')
-        self.assertEquals(c.state,'finished')
-        self.assertEquals(c.trials,[('A',h1,'o'),('B',h1,'o'),('A',h2,'x'),('B',h2,'x'),('A',h2,'x'),('B',h2,'x'),('A',h2,'x'),('B',h2,'x'),('A',h3,'x'),('B',h3,'o')])
+        self.assertEquals(c.state,'finished','state finished after B clears at 1.14')
+        fal = [('A',h1,'o'),('B',h1,'o'),('A',h2,'x'),('B',h2,'x'),('A',h2,'x'),('B',h2,'x'),('A',h2,'x'),('B',h2,'x'),('A',h3,'x'),('B',h3,'o')]
+        fadl = [dict(bib=a[0],height=a[1],result=a[2]) for a in fal]
+        self.assertEquals(c.trials, fal, 'final trials')
+        self.assertEquals(c.trial_objs, fadl, 'final trial_objs')
+        self.assertEquals(c.from_actions().trials, fal, 'd.from_actions().trials should match c.trials')
+        self.assertEquals(c.from_actions().trial_objs, fadl, 'd.from_actions().trial_objs should match c.trial_objs')
 
     def test_action_letter(self):
         c = HighJumpCompetition()

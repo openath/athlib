@@ -124,6 +124,11 @@ class Jumper(object):
         self.eliminated = True
         self.dismissed = True
 
+class TrialObj(dict):
+    def __init__(self, *args, **kwargs):
+        super(TrialObj, self).__init__(*args, **kwargs)
+        self.__dict__ = self
+
 class HighJumpCompetition(object):
     """Simulation of a HighJump competition in progress.
 
@@ -233,6 +238,10 @@ class HighJumpCompetition(object):
             elif a in al:
                 aT((v,bh,al[a]))
         return T
+
+    @property
+    def trial_objs(self):
+        return [TrialObj(bib=t[0],height=t[1],result=t[2]) for t in self.trials]
 
     @property
     def remaining(self):
@@ -408,3 +417,13 @@ class HighJumpCompetition(object):
         for r in self.ranked_jumpers:
             print(r.place, r.bib, r.first_name, r.last_name, r.ranking_key)
 
+    def from_actions(self,actions=None):
+        if actions is None: actions = self.actions
+        hj = self.__class__()
+        for a, v in actions:
+            m = getattr(hj,a)
+            if isinstance(v,dict):
+                m(**v)
+            else:
+                m(v)
+        return hj
