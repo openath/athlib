@@ -445,6 +445,9 @@ describe('Given an instance of Athlib.HighJumpCompetition', function(){
 		c.addJumper({bib:'A',first_name:'Harald',last_names:'England'});
 		c.addJumper({bib:'B',first_name:'William',last_names:'Norman'});
 		c.setBarHeight(1.10);
+		(function(state){it("state should be 'started'",()=>{expect(state).to.equal('started')});})(c.state);
+		(function(v){it("not finished",()=>{expect(v).to.equal(false)});})(c.isFinished);
+		(function(v){it("is running",()=>{expect(v).to.equal(true)});})(c.isRunning);
 		c.cleared('A');
 		c.cleared('B');
 		c.setBarHeight(1.15);
@@ -454,10 +457,9 @@ describe('Given an instance of Athlib.HighJumpCompetition', function(){
 		c.failed('B');
 		c.failed('A');
 		c.failed('B');
-		(function(){
-			const state=c.state;
-			it("state now jumpoff'",()=>{expect(state).to.equal('jumpoff')});
-		})();
+		(function(state){it("state now jumpoff",()=>{expect(state).to.equal('jumpoff')});})(c.state);
+		(function(v){it("jumpoff competition is not finished",()=>{expect(v).to.equal(false)});})(c.isFinished);
+		(function(v){it("jumpoff competition is running",()=>{expect(v).to.equal(true)});})(c.isRunning);
 		c.setBarHeight(1.14);
 		(function(){
 			const trials=c.trials.slice();
@@ -501,5 +503,7 @@ describe('Given an instance of Athlib.HighJumpCompetition', function(){
 		it("fromMatrix both retiring after jumpoffs state-->drawn",()=>{expect(state).to.equal('drawn')});
 		it("fromMatrix tomatrix should round trip",()=>{expect(mx).to.eql(matrix_a)});
 		})(c.state,c.toMatrix());
+		(function(v){it("competition is finished",()=>{expect(v).to.equal(true)});})(c.isFinished);
+		(function(v){it("competition is not running",()=>{expect(v).to.equal(false)});})(c.isRunning);
   });
 });

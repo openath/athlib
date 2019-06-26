@@ -311,6 +311,9 @@ class HighJumpTests(TestCase):
         h2 = Decimal('1.15')
         h3 = Decimal('1.14')
         c.set_bar_height(h1)
+        self.assertEquals(c.state,'started','state should be started')
+        self.assertEquals(c.is_finished,False,'not finished')
+        self.assertEquals(c.is_running,True,'is running')
         c.cleared('A')
         c.cleared('B')
         c.set_bar_height(h2)
@@ -321,6 +324,8 @@ class HighJumpTests(TestCase):
         c.failed('A')
         c.failed('B')
         self.assertEquals(c.state,'jumpoff','jumpoff state should be reached')
+        self.assertEquals(c.is_finished, False,"jumpoff competition is not finished")
+        self.assertEquals(c.is_running, True,"jumpoff competition is running")
         c.set_bar_height(h3)
         self.assertEquals(c.trials,[('A',h1,'o'),('B',h1,'o'),('A',h2,'x'),('B',h2,'x'),('A',h2,'x'),('B',h2,'x'),('A',h2,'x'),('B',h2,'x')],'trials in jumpoff state')
         c.failed('A')
@@ -358,6 +363,8 @@ class HighJumpTests(TestCase):
         c = HighJumpCompetition().from_matrix(self.matrix_a)
         self.assertEquals(c.state,'drawn','both retiring after jumpoffs should draw')
         self.assertEquals(c.to_matrix(),self.matrix_a,'matrix round trip should match')
+        self.assertEquals(c.is_finished, True,"competition is finished")
+        self.assertEquals(c.is_running, False,"competition is not running")
 
 if __name__ == '__main__':
     main()

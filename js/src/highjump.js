@@ -526,6 +526,12 @@ function HighJumpCompetition() {
         R.push(j[0].concat(j[1].attemptsByHeight));
       }
       return R;
+    },
+    get isFinished() {
+      return ['finished', 'won', 'drawn'].indexOf(this.state) >= 0;
+    },
+    get isRunning() {
+      return this.state === 'started' || this.state === 'jumpoff';
     }
   };
 

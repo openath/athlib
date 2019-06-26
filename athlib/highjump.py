@@ -467,3 +467,11 @@ class HighJumpCompetition(object):
         for j in J:
             R.append(j[0]+j[1].attempts_by_height)
         return R
+
+    @property
+    def is_finished(self):
+        return self.state in ('finished','won','drawn')
+
+    @property
+    def is_running(self):
+        return self.state in ['started','jumpoff']
