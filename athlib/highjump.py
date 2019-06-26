@@ -27,6 +27,13 @@ from __future__ import print_function
 from decimal import Decimal
 from .exceptions import RuleViolation
 
+#The countback rule used to separate competitors with equal best heights in High Jump and Pole Vault is possibly the most misunderstood rule in the whole of the sport. Here's how it operates:
+#The athlete with the fewest attempts at the last height successfully cleared gets the verdict.
+#This means that, no matter how poorly your earlier attempts have gone, there's still a way back into the competition.
+#Then you count the athletes's number of failures, not including any attempts beyond the height actually cleared: the athlete with the fewest gets the verdict.
+#So you cannot harm your cause by trying for a height which you think it unlikely that you will clear. But accurate jumping at the lower heights is vital!
+#http://s250914043.websitehome.co.uk/offcourse/HighJumpRules.html
+
 class Jumper(object):
     """Used by HighJumpCompetition internally"""
     def __init__(self, **kwargs):
@@ -38,7 +45,6 @@ class Jumper(object):
         self.attempts_by_height = []
         self.highest_cleared = Decimal("0.00")
         self.highest_cleared_index = -1
-        self.total_failures = 0
         self.eliminated = False     # still in the competition?
         self.dismissed = False      # still in the round?
         self.round_lim = 3
@@ -63,7 +69,7 @@ class Jumper(object):
         """
         assert height_count > 0, "Start at height number 1, not 0"
         if self.eliminated or self.dismissed:
-            what = 'being eliminated' if self.eliminated else 'passing'
+            what = 'retiring' if self.has_retired else 'being eliminated' if self.eliminated else 'passing'
             raise RuleViolation("Cannot %s after %s" % (label,what))
         atts = self.attempts_by_height
         # they may have skipped some, pas with empty strings
@@ -73,14 +79,23 @@ class Jumper(object):
             raise RuleViolation("Can attempt a maximum of %d times" % self.round_lim)
 
     @property
+    def has_retired(self):
+        return self.attempts_by_height and self.attempts_by_height[-1].endswith('r')
+
+    @property
     def ranking_key(self):
         """Return a sort key to determine who is winning"""
         x = self.highest_cleared_index
-        failures_at_height = self.round_lim if x<0 else self.attempts_by_height[x].count('x')
+        if x<0:
+            failures_before_and_at_height = failures_at_height = 0
+        else:
+            failures_at_height = self.attempts_by_height[x].count('x')
+            failures_before_and_at_height = failures_at_height + sum(_.count('x') for _ in self.attempts_by_height[:x])
         return (
+            (2 if self.eliminated else 1) if x<0 else 0,
             - self.highest_cleared,
             failures_at_height,
-            self.total_failures,
+            failures_before_and_at_height,
             )
 
     def cleared(self, height_count, height):
@@ -100,7 +115,6 @@ class Jumper(object):
 
         # Holds their pattern of 'o' and 'x'
         self.attempts_by_height[-1] += 'x'
-        self.total_failures += 1
         self.consecutive_failures += 1
         if self.consecutive_failures>=self.round_lim:
             self.eliminated = self.dismissed = True
@@ -156,6 +170,8 @@ class HighJumpCompetition(object):
         if self.state!='scheduled':
             raise RuleViolation("Cannot add jumpers in competition state %r" % self.state)
         j = Jumper(**kwargs)
+        if j.bib in self.jumpers_by_bib:
+            raise RuleViolation('cannot have two athletes with the same bib (%r)!' % j.bib)
         j.place = len(self.jumpers) + 1
 
         self.jumpers_by_bib[j.bib] = j
@@ -184,10 +200,10 @@ class HighJumpCompetition(object):
         jumper = self.jumpers_by_bib[bib]
         state = self.state
         if state not in ('started','jumpoff'):
-            if state=='won':
+            if state in ('won','drawn'):
                 if jumper.place!=1:
-                    raise RuleViolation('The competition has been won and %s is not allowed!' % label)
-            elif state=='finished':
+                    raise RuleViolation('The competition has been %s and %s is not allowed!' % (state,label))
+            elif state == 'finished':
                 raise RuleViolation('The competition has finished and %s is not allowed!' % label)
             else:
                 raise RuleViolation('The competition has not been started yet!')
@@ -253,14 +269,11 @@ class HighJumpCompetition(object):
         "eliminated jumpers"
         return [j for j in self.jumpers if j.eliminated]
 
-    def _rank(self, verbose=False):
-        "Determine who is winning"
-
+    def _rankj(self):
         # sort ranked_jumpers
         rankj = self.ranked_jumpers;
         for i,j in enumerate(rankj): j._old_pos = i
-        rankj.sort(key=lambda j: (j.ranking_key,j._old_pos))
-        if verbose: print('ranked jumpers in order', rankj)
+        rankj.sort(key=lambda j: (j.ranking_key, j._old_pos))
 
         pk = None
         pj = None
@@ -276,17 +289,36 @@ class HighJumpCompetition(object):
                     j.place = i + 1
             pk = k
             pj = j
+        return rankj
+
+    def _rank(self, verbose=False):
+        "Determine who is winning"
+        rankj = self._rankj()
+        if not rankj: return
+
+        if 1 and verbose: print('ranked jumpers in order %s:' % repr([(j.place,j.bib,j.ranking_key) for j in rankj]))
 
         remj = self.remaining
         if len(remj)==0:
-            #they all failed at this height
-            if len(rankj)>0 and rankj[1].place==1:
-                self.state = 'jumpoff'
+            #they all failed or retired at this height
+            if len(rankj)> 1 and rankj[1].place==1:
+                nc = 0
                 for j in rankj:
-                    if j.place==1:
+                    if j.place!=1: continue
+                    if j.has_retired:
+                        j.rank_group = 1
+                    else:
+                        nc += 1
                         j.eliminated = False
                         j.round_lim = 1
                         j.consecutive_failures = 0
+                        j.rank_group = 2
+                self.state = 'jumpoff' if nc else 'drawn'
+            elif self.state=='jumpoff' and not rankj[0].has_retired:
+                    j = rankj[0]
+                    j.eliminated = False
+                    j.round_lim = 1
+                    j.consecutive_failures = 0
             else:
                 self.state = 'finished'
         elif (len(remj)==1 and (1+len(self.eliminated))==len(self.jumpers)
@@ -427,3 +459,11 @@ class HighJumpCompetition(object):
             else:
                 m(v)
         return hj
+
+    def to_matrix(self,keys=[]):
+        if 'bib' not in keys: keys.insert(0,'bib')
+        R = [keys + ['%.2f'%h for h in self.heights]]
+        J = sorted([([getattr(j,k) for k in keys],j) for j in self.ranked_jumpers])
+        for j in J:
+            R.append(j[0]+j[1].attempts_by_height)
+        return R

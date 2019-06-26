@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import { assert } from 'chai';
 import Athlib from '../index.js';
 
-var ESAA_2015_HJ = [
+const ESAA_2015_HJ = [
   //Eglish Schools Senior Boys 2015 - epic jumpoff ending in a draw
   //We did not include all other jumpers
   //See http://www.esaa.net/v2/2015/tf/national/results/fcards/tf15-sb-field.pdf
@@ -15,7 +15,7 @@ var ESAA_2015_HJ = [
   ["1", 5, 81, "Rory", "Dwyer", "Warks",     "SB", "", "", "", "o", "o", "o", "o", "o", "xxx", "x", "o", "x", "o", "x"]
   ];
 
-var _1066 = [
+const _1066 = [
   // based on above, but we have a winner
   ["place", "order", "bib", "first_name", "last_name", "team", "category",
     "1.81", "1.86", "1.91", "1.97", "2.00", "2.03", "2.06", "2.09", "2.12", "2.12", "2.10", "2.12", "2.10", "2.12", "2.11"],
@@ -29,7 +29,7 @@ var _1066 = [
   "", "", "", "o", "o", "o", "o", "o", "xxx", "x", "o", "x", "o", "x", "o"]
   ];
 
-var RIO_MENS_HJ = [  // pasted from Wikipedia
+const RIO_MENS_HJ = [  // pasted from Wikipedia
   ["place", "order", "bib", "first_name", "last_name", "team", "category", "2.20", "2.25", "2.29", "2.33", "2.36", "2.38", "2.40", "best", "note"],
   ["1", 7, 2197, "Derek", "Drouin", "CAN", "M", "o", "o", "o", "o", "o", "o", "x", 2.38, ""],
   ["2", 9, 2878, "Mutaz", "Essa Barshim", "QAT", "M", "o", "o", "o", "o", "o", "xxx", "", 2.36, ""],
@@ -47,6 +47,17 @@ var RIO_MENS_HJ = [  // pasted from Wikipedia
   ["14", 14, 2297, "Jaroslav", "Bába", "CZE", "M", "o", "xxx", "", "", "", "", "", 2.2, ""],
   ["15", 2, 2052, "Brandon", "Starc", "AUS", "M", "xo", "xxx", "", "", "", "", "", 2.2, ""]
   ];
+
+const actions_a = [["addJumper",{bib:'A'}], ["addJumper",{bib:'B'}], ["setBarHeight",1.1], ["cleared","A"], ["cleared","B"],
+		["setBarHeight",1.2], ["failed","A"], ["failed","B"], ["failed","A"], ["failed","B"], ["failed","A"], ["failed","B"],
+		["setBarHeight",1.15], ["cleared","A"], ["cleared","B"], ["setBarHeight",1.17], ["failed","A"], ["failed","B"],
+		["setBarHeight",1.16], ["retired","A"], ["retired","B"]]
+
+const matrix_a = [
+		["bib", "1.10", "1.20", "1.15", "1.17", "1.16"],
+		["A",	"o",	"xxx",	"o",	"x",	"r"],
+		["B",	"o",	"xxx",	"o",	"x",	"r"],
+		]
 
 function createEmptyCompetition(matrix){
   //Creates from an array similar to above; named athletes with bibs
@@ -257,8 +268,8 @@ describe('Given an instance of Athlib.HighJumpCompetition', function(){
   it("c.state == finished",()=>{expect(c.state).to.be.equal('finished')});
   it("A.highestCleared == 2.12",()=>{expect(A.highestCleared).to.be.equal(2.12)});
   it("B.highestCleared == 2.12",()=>{expect(B.highestCleared).to.be.equal(2.12)});
-  it("A.rankingKey == [-2.12, 1, 5]",()=>{expect(c._compareKeys(A.rankingKey,[-2.12, 1, 5])).to.be.equal(0)});
-  it("B.rankingKey == [-2.12, 2, 5]",()=>{expect(c._compareKeys(B.rankingKey,[-2.12, 2, 5])).to.be.equal(0)});
+  it("A.rankingKey == [0, -2.12, 1, 2]",()=>{expect(c._compareKeys(A.rankingKey,[0, -2.12, 1, 2])).to.be.equal(0)});
+  it("B.rankingKey == [0, -2.12, 2, 2]",()=>{expect(c._compareKeys(B.rankingKey,[0, -2.12, 2, 2])).to.be.equal(0)});
   });
   describe('Test total failure rank',function(){
     // Run through to where the jumpoff began - ninth bar position
@@ -290,8 +301,8 @@ describe('Given an instance of Athlib.HighJumpCompetition', function(){
   it("c.state == won",()=>{expect(c.state).to.be.equal('won')});
   it("A.highestCleared == 2.08",()=>{expect(A.highestCleared).to.be.equal(2.08)});
   it("B.highestCleared == 0",()=>{expect(B.highestCleared).to.be.equal(0)});
-  it("A.rankingKey == [-2.08, 0, 0]",()=>{expect(c._compareKeys(A.rankingKey,[-2.08, 0, 0])).to.be.equal(0)});
-  it("B.rankingKey == [-0, 3, 3]",()=>{expect(c._compareKeys(B.rankingKey,[-0, 3, 3])).to.be.equal(0)});
+  it("A.rankingKey == [0, -2.08, 0, 0]",()=>{expect(c._compareKeys(A.rankingKey,[0, -2.08, 0, 0])).to.be.equal(0)});
+  it("B.rankingKey == [2, -0, 0, 0]",()=>{expect(c._compareKeys(B.rankingKey,[2, -0, 0, 0])).to.be.equal(0)});
   });
   describe('Test countback to total failures',function(){
     // Run through to where the jumpoff began - ninth bar position
@@ -333,8 +344,8 @@ describe('Given an instance of Athlib.HighJumpCompetition', function(){
   it("c.state == finished",()=>{expect(c.state).to.be.equal('finished')});
   it("A.highestCleared == 2.12",()=>{expect(A.highestCleared).to.be.equal(2.12)});
   it("B.highestCleared == 2.12",()=>{expect(B.highestCleared).to.be.equal(2.12)});
-  it("A.rankingKey == [-2.12, 1, 5]",()=>{expect(c._compareKeys(A.rankingKey,[-2.12, 1, 5])).to.be.equal(0)});
-  it("B.rankingKey == [-2.12, 1, 6]",()=>{expect(c._compareKeys(B.rankingKey,[-2.12, 1, 6])).to.be.equal(0)});
+  it("A.rankingKey == [0, -2.12, 1, 2]",()=>{expect(c._compareKeys(A.rankingKey,[0, -2.12, 1, 2])).to.be.equal(0)});
+  it("B.rankingKey == [0, -2.12, 1, 3]",()=>{expect(c._compareKeys(B.rankingKey,[0, -2.12, 1, 3])).to.be.equal(0)});
   });
   describe('Test won ending',function(){
 	it("test scheduled-->started-->won-->finished",()=>{
@@ -479,5 +490,16 @@ describe('Given an instance of Athlib.HighJumpCompetition', function(){
 		it("actionLetter('failed')==='x'",()=>{expect(c.actionLetter.failed).to.be.equal('x')});
 		it("actionLetter('passed')==='-'",()=>{expect(c.actionLetter.passed).to.be.equal('-')});
 		it("actionLetter('retired')==='r'",()=>{expect(c.actionLetter.retired).to.be.equal('r')});
+  });
+  describe('test_retire_after_jumpoff',function(){
+    var c = Athlib.HighJumpCompetition().fromActions(actions_a);
+		(function (state){
+		it("fromActions both retiring after jumpoffs state-->drawn",()=>{expect(state).to.equal('drawn')});
+		})(c.state);
+		c = Athlib.HighJumpCompetition.fromMatrix(matrix_a);
+		(function (state,mx){
+		it("fromMatrix both retiring after jumpoffs state-->drawn",()=>{expect(state).to.equal('drawn')});
+		it("fromMatrix tomatrix should round trip",()=>{expect(mx).to.eql(matrix_a)});
+		})(c.state,c.toMatrix());
   });
 });

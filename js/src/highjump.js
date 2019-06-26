@@ -1,4 +1,14 @@
 // direct copy of Andy's highjump.py
+// The countback rule used to separate competitors with equal best heights in High Jump and Pole Vault
+// is possibly the most misunderstood rule in the whole of the sport.s
+// Here's how it operates:
+// The athlete with the fewest attempts at the last height successfully cleared gets the verdict.
+// This means that, no matter how poorly your earlier attempts have gone, there's still a way back into the competition.
+// Then you count the athletes's number of failures, not including any attempts beyond the height actually cleared:
+// the athlete with the fewest gets the verdict.
+// So you cannot harm your cause by trying for a height which you think it unlikely that you will clear.
+// But accurate jumping at the lower heights is vital!
+// http://s250914043.websitehome.co.uk/offcourse/HighJumpRules.html
 
 function Jumper(kwds) {
   const obj = {
@@ -11,7 +21,6 @@ function Jumper(kwds) {
       this.attemptsByHeight = [];
       this.highestCleared = 0;
       this.highestClearedIndex = -1;
-      this.totalFailures = 0;
       this.eliminated = false; // still in the competition?
       this.dismissed = false; // still in the round?
       this.roundLim = 3;
@@ -47,7 +56,7 @@ function Jumper(kwds) {
 
     _setJumpArray(heightCount, label) {
       if (this.eliminated || this.dismissed) {
-        const what = this.eliminated ? 'being eliminated' : 'passing';
+        const what = this.hasRetired ? 'retiring' : (this.eliminated ? 'being eliminated' : 'passing');
 
         throw new Error(`Cannot ${label ? label : 'jump'} after ${what}`);
       }
@@ -66,13 +75,30 @@ function Jumper(kwds) {
       }
     },
 
+    get hasRetired() {
+      return this.attemptsByHeight.length > 0 && this.attemptsByHeight[this.attemptsByHeight.length - 1].endsWith('r');
+    },
+
     get rankingKey() {
       // Return a sort key to determine who is winning"""
       const x = this.highestClearedIndex;
-      const failuresAtHeight =
-        x < 0 ? this.roundLim : this.attemptsByHeight[x].split('x').length - 1;
+      var failuresAtHeight;
+      var failuresBeforeAndAtHeight;
+      var i;
 
-      return [-this.highestCleared, failuresAtHeight, this.totalFailures];
+      if (x < 0) {
+        failuresAtHeight = failuresBeforeAndAtHeight = 0;
+      } else {
+        failuresAtHeight = failuresBeforeAndAtHeight = this.attemptsByHeight[x].split('x').length - 1;
+        for (i = 0; i < x; i++) failuresBeforeAndAtHeight += this.attemptsByHeight[i].split('x').length - 1;
+      }
+
+      return [
+        x < 0 ? (this.eliminated ? 2 : 1) : 0,
+        -this.highestCleared,
+        failuresAtHeight,
+        failuresBeforeAndAtHeight
+      ];
     },
 
     cleared(heightCount, height) {
@@ -98,7 +124,6 @@ function Jumper(kwds) {
       const n = this.attemptsByHeight.length - 1;
 
       this.attemptsByHeight[n] += 'x';
-      this.totalFailures += 1;
       this.consecutiveFailures += 1;
       if (this.consecutiveFailures >= this.roundLim) {
         this.eliminated = this.dismissed = true;
@@ -181,6 +206,12 @@ function HighJumpCompetition() {
       }
       const j = Jumper(kwds);
 
+      if (typeof this.jumpers[j.bib] !== 'undefined') {
+        throw new Error(
+          `Cannot have two jumpers with the same bib (${this.bib})!`
+        );
+      }
+
       j.place = this.jumpers.length + 1;
 
       this.jumpersByBib[j.bib] = j;
@@ -196,7 +227,8 @@ function HighJumpCompetition() {
       else if (
         this.state !== 'started' &&
         this.state !== 'jumpoff' &&
-        this.state !== 'won'
+        this.state !== 'won' &&
+        this.state !== 'drawn'
       ) {
         throw new Error(
           `Bar height cannot be set in a ${this.state} competition!`
@@ -305,8 +337,7 @@ function HighJumpCompetition() {
       return cmpKeys(a, b);
     },
 
-    _rank() {
-      // Determine who is winning
+    _rankj() {
       // sort them
       const rankj = this.rankedJumpers;
       const rankjlen = rankj.length;
@@ -333,21 +364,41 @@ function HighJumpCompetition() {
         pk = k;
         pj = j;
       }
+      return rankj;
+    },
+
+    _rank() {
+      var nc;
+
+      // Determine who is winning
+      const rankj = this._rankj();
+
+      if (rankj.length === 0) return;
+
       const remj = this.remaining;
 
       if (remj.length === 0) {
+        // they all failed or retired
         if (rankj.length > 1 && rankj[1].place === 1) {
-          this.state = 'jumpoff';
-          rankj.forEach(_j => {
-            const j = _j;
-
-            if (j.place === 1) {
+          nc = 0;
+          rankj.forEach(j => {
+            if (j.place === 1 && !j.hasRetired) {
               j.roundLim = 1;
               j.eliminated = false;
               j.consecutiveFailures = 0;
+              nc += 1;
             }
           });
-        } else this.state = 'finished';
+          this.state = nc > 0 ? 'jumpoff' : 'drawn';
+        } else if (this.state === 'jumpoff' && !rankj[0].hasRetired) {
+          const j = rankj[0];
+
+          j.roundLim = 1;
+          j.eliminated = false;
+          j.consecutiveFailures = 0;
+        } else {
+          this.state = 'finished';
+        }
       } else if (
         remj.length === 1 &&
         1 + this.eliminated.length === this.jumpers.length
@@ -452,6 +503,29 @@ function HighJumpCompetition() {
         hj[action[0]](action[1]);
       });
       return hj;
+    },
+    toMatrix(keys) {
+      var i, j, R, J;
+
+      if (typeof keys === 'undefined') keys = ['bib'];
+      else if (keys.filter(function (k) {k === 'bib';}).length === 0) {
+        keys.unshift('bib');
+      }
+
+      R = [keys.concat(this.heights.map(function (h) {return h.toFixed(2);}))];
+      J = this.jumpers.map(function (j) {
+        return [keys.map(function (k) {
+          const jk = j[k];
+
+          return typeof jk !== 'undefined' ? jk : '';
+        }), j];
+      });
+      J = J.sort(cmpKeys);
+      for (i = 0; i < J.length; i++) {
+        j = J[i];
+        R.push(j[0].concat(j[1].attemptsByHeight));
+      }
+      return R;
     }
   };
 
