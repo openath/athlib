@@ -49,10 +49,12 @@ function perfToFloat(perfText) {
   const parts = perfText.split(/:/).reverse();
   let mult = 1;
   let out = 0.0;
+  let i = 1;
+  const n = parts.length;
 
-  for (const part of parts) {
-    out += parseFloat(part) * mult;
-    mult = mult * 60.0;
+  for (i = 0;i < n;i++) {
+    out += parseFloat(parts[i]) * mult;
+    mult *= 60.0;
   }
   return out;
 }
