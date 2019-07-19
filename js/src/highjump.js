@@ -206,7 +206,7 @@ function HighJumpCompetition() {
       }
       const j = Jumper(kwds);
 
-      if (typeof this.jumpers[j.bib] !== 'undefined') {
+      if (typeof this.jumpersByBib[j.bib] !== 'undefined') {
         throw new Error(
           `Cannot have two jumpers with the same bib (${this.bib})!`
         );
