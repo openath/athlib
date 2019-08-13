@@ -227,29 +227,85 @@ function getDistance(discipline) {
   return null;
 }
 
+function roundUpStrNum(s, prec, maxDP) {
+  // s is a valid non-negative float number string containing possible .xyz
+  // returns string number rounded up to prec places
+
+  // anything after the maxDP'th place is considered to be noise and is not considered
+  var i, f, t, n;
+
+  if (typeof prec === 'undefined') prec = 2;
+  if (typeof maxDP === 'undefined') maxDP = 5;
+
+  if (s.indexOf('.') < 0) {
+    i = s;
+    f = pad('', prec);
+  } else {
+    f = s.split('.', 2);
+    i = f[0];
+    f = f[1].slice(0, maxDP);
+  }
+  n = f.length;
+  if (n > prec) {
+    t = f.slice(prec);
+    f = f.slice(0, prec);
+    while (t.length && t.startsWith('0')) t = t.slice(1); // t.lstrip('0')
+    if (t.length) {
+      i += f;
+      i = i ? '' + ((i - 0) + 1) : '1';
+      n = i.length - prec;
+      if (n < 1) {
+        i = pad('', (1 - n)) + i;
+        n = 1;
+      }
+      f = i.slice(-prec);
+      i = i.slice(0, n);
+    }
+  } else {
+    if (n < prec) f += pad('', prec - n);
+    if (!i) i = '0';
+  }
+  return prec ? [i, f].join('.') : i;
+}
+
 function formatSecondsAsTime(seconds, prec) {
   var t;
   var secs;
   var frac;
   var mins;
+  var hours;
 
-  // convert seconds to a string formatted as hours:min:secs
-  // :param seconds: floating point seconds
+  // convert non-negative seconds to a string formatted as hours:min:secs
+  // fractional seconds are rounded up to prec digits eg
+  // format_seconds_as_time(3599.1, prec=0) == 1:00:00
+  //
+  // :param seconds: non-negative floating point seconds
   // :param prec=0: precision for seconds
   // :returns formatted string:
   if (prec === undefined) prec = 0;
-  secs = parseInt(seconds, 10);
-  frac = seconds - secs;
-  mins = parseInt(secs / 60, 10);
 
-  secs = secs - 60 * mins;
-  const hours = parseInt(mins / 60, 10);
-
-  mins = mins - 60 * hours;
-
-  if (prec === 0) frac = '';
-  else if (prec === 1 || prec === 2 || prec === 3) frac = frac.toFixed(prec).slice(1);
-  else {
+  if (prec === 0 || prec === 1 || prec === 2 || prec === 3) {
+    secs = parseInt(seconds, 10);
+    frac = Math.max(seconds - secs, 0);
+    mins = parseInt(secs / 60, 10);
+    secs -= 60 * mins;
+    hours = parseInt(mins / 60, 10);
+    mins -= 60 * hours;
+    frac = roundUpStrNum('' + frac, prec);
+    t = frac.substr(0, 1);
+    frac = frac.slice(1);
+    if (t !== '0') {
+      secs += 1;
+      if (secs === 60) {
+        secs = 0;
+        mins += 1;
+        if (mins === 60) {
+          mins = 0;
+          hours += 1;
+        }
+      }
+    }
+  } else {
     throw new Error("prec parameter should be 0, 1, 2 or 3 not '" + prec + "'");
   }
 
@@ -464,6 +520,7 @@ module.exports = {
   text_discipline_sort_key,
   sort_by_discipline,
   getDistance,
+  roundUpStrNum,
   formatSecondsAsTime,
   parseHms,
   str2num,

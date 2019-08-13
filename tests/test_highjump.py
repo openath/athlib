@@ -366,5 +366,36 @@ class HighJumpTests(TestCase):
         self.assertEquals(c.is_finished, True,"competition is finished")
         self.assertEquals(c.is_running, False,"competition is not running")
 
+    def test_rieto_pv(self):
+        c = HighJumpCompetition.from_matrix(
+            [_.split() for _ in '''bib 3.00 3.20 3.40 3.60 3.70 3.80 3.85 3.90 3.95 4.00
+QF000595    -    -    o    o    -    o    -    o  xxx
+EH004164    -    -    -   xo   xo    o    o  xxo  xxx
+JA112119    -    -    o   xo    o  xxx
+CB064342    -    -    o   xo    o  xxx
+FC009594    -    -    -    o    o   x-    o  xx-    x
+HC000711    -    -    o    o    -  xxx
+CF058632    -    -   xo   xo  xxx
+GL001818   xo    o  xxx
+EC001108    o   xo    o  xxx
+VA008725    o    o  xxo  xxx
+JE001383    o    o  xxx
+CG000293    o   xo  xxx
+BC000303    o   xo  xxx
+EE010870    -    -    o    o  xxo    o  xx-    x
+EE006186   xo   xo  xxx
+JC003084    o  xxx
+EF007915    -    -    o    o   xo    o  xxo   xo  xxo  xxx
+GL000737    o  xxx
+DA011840    o    o  xxx
+CK006373   xo  xxx
+GJ001614   xo  xxx
+ED000485   x-   xx
+JA103141  xxx'''.split('\n')]
+                , verbose=False)
+        self.assertEquals(c.state,'finished','One winning jumper failed at his chosen height')
+        self.assertEquals(c.jumpers_by_bib['EF007915'].place,1,'EF007915 came first')
+
+
 if __name__ == '__main__':
     main()

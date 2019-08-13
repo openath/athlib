@@ -134,12 +134,15 @@ describe('Given an instance of Athlib', function() {
 	});
 	describe('formatSecondsAsTime', function() {
 		it('verify it works correctly in good cases', function() {
-      expect(Athlib.formatSecondsAsTime(27.3)).to.be.equal( "27")
+      expect(Athlib.formatSecondsAsTime(27.0)).to.be.equal( "27")
+      expect(Athlib.formatSecondsAsTime(27.3)).to.be.equal( "28")
       expect(Athlib.formatSecondsAsTime(27.3, 1)).to.be.equal( "27.3")
       expect(Athlib.formatSecondsAsTime(27.3, 2)).to.be.equal( "27.30")
       expect(Athlib.formatSecondsAsTime(27.3, 3)).to.be.equal( "27.300")
       expect(Athlib.formatSecondsAsTime(63)).to.be.equal( "1:03")
       expect(Athlib.formatSecondsAsTime(7380)).to.be.equal( "2:03:00")
+      expect(Athlib.formatSecondsAsTime(3599.1)).to.be.equal( "1:00:00")
+      expect(Athlib.formatSecondsAsTime(3599.91,1)).to.be.equal( "1:00:00.0")
 		});
 		it('verify it detects bad precisions', function() {
       //precision must be 0 to 3
@@ -210,5 +213,189 @@ describe('Given an instance of Athlib', function() {
 		it('checkperf("100","8.5") throws error',()=>{expect(()=>{Athlib.checkPerformanceForDiscipline("100","8.5")}).to.throw(Error)});  // > 11.0 metres per second
 		it('checkperf("5000","3:45:27") throws error',()=>{expect(()=>{Athlib.checkPerformanceForDiscipline("5000","3:45:27")}).to.throw(Error)});  // < 0.5 m/sec
 		it('checkperf("3KW","2:34") throws error',()=>{expect(()=>{Athlib.checkPerformanceForDiscipline("3KW","2:34")}).to.throw(Error)});
+  });
+	describe('roundUpStrNum', function() {
+    function mytest(prec,v,x){
+      it('roundUpStrNum("'+v+'",'+prec+') == "'+x+'"',()=>{expect(Athlib.roundUpStrNum(v,prec)).to.be.equal(x)});
+    }
+		mytest(3, '11.9990', '11.999');
+		mytest(3, '11.9991', '12.000');
+		mytest(3, '11.4502', '11.451');
+		mytest(3, '11.4520', '11.452');
+		mytest(3, '11.4500', '11.450');
+		mytest(3, '11.452', '11.452');
+		mytest(3, '11.450', '11.450');
+		mytest(3, '11.000', '11.000');
+		mytest(3, '11.0001', '11.001');
+		mytest(3, '11.45', '11.450');
+		mytest(3, '11.05', '11.050');
+		mytest(3, '11.4', '11.400');
+		mytest(3, '11.', '11.000');
+		mytest(3, '11', '11.000');
+		mytest(3, '1.9990', '1.999');
+		mytest(3, '1.9991', '2.000');
+		mytest(3, '1.4502', '1.451');
+		mytest(3, '1.4520', '1.452');
+		mytest(3, '1.4500', '1.450');
+		mytest(3, '1.452', '1.452');
+		mytest(3, '1.450', '1.450');
+		mytest(3, '1.000', '1.000');
+		mytest(3, '1.0001', '1.001');
+		mytest(3, '1.45', '1.450');
+		mytest(3, '1.05', '1.050');
+		mytest(3, '1.4', '1.400');
+		mytest(3, '1.', '1.000');
+		mytest(3, '1', '1.000');
+		mytest(3, '0.9990', '0.999');
+		mytest(3, '0.9991', '1.000');
+		mytest(3, '0.4502', '0.451');
+		mytest(3, '0.4520', '0.452');
+		mytest(3, '0.4500', '0.450');
+		mytest(3, '0.452', '0.452');
+		mytest(3, '0.450', '0.450');
+		mytest(3, '0.000', '0.000');
+		mytest(3, '0.0001', '0.001');
+		mytest(3, '0.45', '0.450');
+		mytest(3, '0.05', '0.050');
+		mytest(3, '0.0001', '0.001');
+		mytest(3, '.0001', '0.001');
+		mytest(3, '0.4', '0.400');
+		mytest(3, '.4', '0.400');
+		mytest(3, '0.', '0.000');
+		mytest(3, '0', '0.000');
+	
+		mytest(2, '11.990', '11.99');
+		mytest(2, '11.991', '12.00');
+		mytest(2, '11.4502', '11.46');
+		mytest(2, '11.450', '11.45');
+		mytest(2, '11.4500', '11.45');
+		mytest(2, '11.452', '11.46');
+		mytest(2, '11.000', '11.00');
+		mytest(2, '11.0001', '11.01');
+		mytest(2, '11.45', '11.45');
+		mytest(2, '11.05', '11.05');
+		mytest(2, '11.4', '11.40');
+		mytest(2, '11.', '11.00');
+		mytest(2, '11', '11.00');
+		mytest(2, '1.990', '1.99');
+		mytest(2, '1.991', '2.00');
+		mytest(2, '1.4502', '1.46');
+		mytest(2, '1.450', '1.45');
+		mytest(2, '1.4500', '1.45');
+		mytest(2, '1.452', '1.46');
+		mytest(2, '1.000', '1.00');
+		mytest(2, '1.0001', '1.01');
+		mytest(2, '1.45', '1.45');
+		mytest(2, '1.05', '1.05');
+		mytest(2, '1.4', '1.40');
+		mytest(2, '1.', '1.00');
+		mytest(2, '1', '1.00');
+		mytest(2, '0.990', '0.99');
+		mytest(2, '0.991', '1.00');
+		mytest(2, '0.4502', '0.46');
+		mytest(2, '0.450', '0.45');
+		mytest(2, '0.4500', '0.45');
+		mytest(2, '0.452', '0.46');
+		mytest(2, '0.000', '0.00');
+		mytest(2, '0.0001', '0.01');
+		mytest(2, '.0001', '0.01');
+		mytest(2, '0.45', '0.45');
+		mytest(2, '0.05', '0.05');
+		mytest(2, '0.4', '0.40');
+		mytest(2, '.4', '0.40');
+		mytest(2, '0.', '0.00');
+		mytest(2, '0', '0.00');
+	
+		mytest(1, '11.90', '11.9');
+		mytest(1, '11.91', '12.0');
+		mytest(1, '11.402', '11.5');
+		mytest(1, '11.40', '11.4');
+		mytest(1, '11.4500', '11.5');
+		mytest(1, '11.0', '11.0');
+		mytest(1, '11.450', '11.5');
+		mytest(1, '11.000', '11.0');
+		mytest(1, '11.0001', '11.1');
+		mytest(1, '11.45', '11.5');
+		mytest(1, '11.05', '11.1');
+		mytest(1, '11.4', '11.4');
+		mytest(1, '11.', '11.0');
+		mytest(1, '11', '11.0');
+		mytest(1, '1.90', '1.9');
+		mytest(1, '1.91', '2.0');
+		mytest(1, '1.402', '1.5');
+		mytest(1, '1.40', '1.4');
+		mytest(1, '1.4500', '1.5');
+		mytest(1, '1.0', '1.0');
+		mytest(1, '1.450', '1.5');
+		mytest(1, '1.000', '1.0');
+		mytest(1, '1.0001', '1.1');
+		mytest(1, '1.45', '1.5');
+		mytest(1, '1.05', '1.1');
+		mytest(1, '1.4', '1.4');
+		mytest(1, '1.', '1.0');
+		mytest(1, '1', '1.0');
+		mytest(1, '0.90', '0.9');
+		mytest(1, '0.91', '1.0');
+		mytest(1, '0.402', '0.5');
+		mytest(1, '0.40', '0.4');
+		mytest(1, '0.4500', '0.5');
+		mytest(1, '0.0', '0.0');
+		mytest(1, '0.450', '0.5');
+		mytest(1, '0.000', '0.0');
+		mytest(1, '0.0001', '0.1');
+		mytest(1, '.0001', '0.1');
+		mytest(1, '0.45', '0.5');
+		mytest(1, '0.05', '0.1');
+		mytest(1, '0.4', '0.4');
+		mytest(1, '.4', '0.4');
+		mytest(1, '0.', '0.0');
+		mytest(1, '0', '0.0');
+		mytest(1, '27.3', '27.3');
+		mytest(1, '0.3000000000000007', '0.3');
+	
+		mytest(0, '11.90', '12');
+		mytest(0, '11.91', '12');
+		mytest(0, '11.402', '12');
+		mytest(0, '11.40', '12');
+		mytest(0, '11.4500', '12');
+		mytest(0, '11.0', '11');
+		mytest(0, '11.450', '12');
+		mytest(0, '11.000', '11');
+		mytest(0, '11.0001', '12');
+		mytest(0, '11.45', '12');
+		mytest(0, '11.05', '12');
+		mytest(0, '11.4', '12');
+		mytest(0, '11.', '11');
+		mytest(0, '11', '11');
+		mytest(0, '1.90', '2');
+		mytest(0, '1.91', '2');
+		mytest(0, '1.402', '2');
+		mytest(0, '1.40', '2');
+		mytest(0, '1.4500', '2');
+		mytest(0, '1.0', '1');
+		mytest(0, '1.450', '2');
+		mytest(0, '1.000', '1');
+		mytest(0, '1.0001', '2');
+		mytest(0, '1.45', '2');
+		mytest(0, '1.05', '2');
+		mytest(0, '1.4', '2');
+		mytest(0, '1.', '1');
+		mytest(0, '1', '1');
+		mytest(0, '0.90', '1');
+		mytest(0, '0.91', '1');
+		mytest(0, '0.402', '1');
+		mytest(0, '0.40', '1');
+		mytest(0, '0.4500', '1');
+		mytest(0, '0.0', '0');
+		mytest(0, '0.450', '1');
+		mytest(0, '0.000', '0');
+		mytest(0, '0.0001', '1');
+		mytest(0, '.0001', '1');
+		mytest(0, '0.45', '1');
+		mytest(0, '0.05', '1');
+		mytest(0, '0.4', '1');
+		mytest(0, '.4', '1');
+		mytest(0, '0.', '0');
+		mytest(0, '0', '0');
   });
 });
