@@ -5,6 +5,8 @@ scores.   Taken from IAUM site,
 import math
 
 from athlib.codes import PAT_JUMPS, PAT_THROWS
+from athlib.wma.agegrader import AthlonsAgeGrader
+
 # Array of parameters used to determine IAAF scores.
 #
 # For track events: A * (Z - <seconds>)^X
@@ -121,8 +123,19 @@ def _scoring_objects_create():
             _scoring_objects[scoring_key(o["gender"], o["event_code"])] = o
 
 
-def score(gender, event_code, value):
+# lazy global age_grader object
+_age_grader = None
+
+def _get_age_grader():
+    global _age_grader
+    if not _age_grader:
+        _age_grader = AthlonsAgeGrader()
+    return _age_grader
+
+def score(gender, event_code, value, age=None):
     """Function to determine IAAF score, based on gender, event and performance.
+    
+    You should only pass the age if you wish to age-adjust in years for WMA events
 
     In the interface, we assume performance is <seconds> for track events,
     and <metres> for throws and jumps. Ihe the Wikipedia-sourced factors,
@@ -133,36 +146,55 @@ def score(gender, event_code, value):
     global _scoring_objects
     _scoring_objects_create()
 
-    key = scoring_key(gender, event_code)
+
+    ag = _get_age_grader()
+    if not age:
+        age_factor = 1.00
+    else:
+        age_factor = ag.calculate_factor(gender, age, event_code)
+
+
+
 
     # Drop out if no coefficients defined (e.g. bad event/gender)
+    key = scoring_key(gender, event_code)
     if key not in _scoring_objects:
         return None
 
     coeffs = _scoring_objects[key]
 
+
+
+
     # Handle based on whether jumps, throws or track event
     if PAT_JUMPS.match(event_code):
         # The table is expressed in centimetres in the original source
-        value = value * 100
+        value = 0.01 * (math.floor(100* value * age_factor))
 
+        value = value * 100
         if value > coeffs["Z"]:
-            return max(0, int(coeffs["A"] * ((value - coeffs["Z"]) **
+            points = max(0, int(coeffs["A"] * ((value - coeffs["Z"]) **
                        coeffs["X"])))
         else:
-            return 0
+            points =  0
     elif PAT_THROWS.match(event_code):
+        value = 0.01 * (math.floor(100* value * age_factor))
         if value > coeffs["Z"]:
-            return max(0, int(coeffs["A"] * ((value - coeffs["Z"]) **
+            points =  max(0, int(coeffs["A"] * ((value - coeffs["Z"]) **
                        coeffs["X"])))
         else:
-            return 0
+            points = 0
     else:
+        value = 0.01 * (math.ceil(100* value * age_factor))
         if coeffs["Z"] > value:
-            return max(0, int(coeffs["A"] * ((coeffs["Z"] - value) **
+            points = max(0, int(coeffs["A"] * ((coeffs["Z"] - value) **
                        coeffs["X"])))
         else:
-            return 0
+            points = 0
+
+    
+    return points
+
 
 
 def unit_name(event_code):

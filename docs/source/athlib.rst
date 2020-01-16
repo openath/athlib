@@ -8,7 +8,7 @@ in submodules.
 
 .. automodule:: athlib
     :members: normalize_gender, str2num, parse_hms, get_distance,
-        format_seconds_as_time,
+        round_up_str_num, format_seconds_as_time,
         check_performance_for_discipline, discipline_sort_key,
         text_discipline_sort_key, sort_by_discipline, 
         athlon_score, athlon_performance_needed,

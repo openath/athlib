@@ -64,6 +64,21 @@ class IaafScoreTests(TestCase):
         self.assertEquals(unit_name("SP"), "metres")
         self.assertEquals(unit_name("WT"), "metres")
 
+    def test_wma_adjusted_score(self):
+        "Extra bonus for being old, used by WMA"
+        self.assertEquals(score("M", "60H", 10.58), 437)
+
+
+        self.assertEquals(score("M", "60H", 11.85, 50), 437)
+        self.assertEquals(score("M", "LJ", 4.53, 50), 494)
+        
+        # needs work, we need full weight event code in age factors e.g. SP6K,
+        # but simple code e.g. SP in points calculation
+        #self.assertEquals(score("M", "SP6K", 8.05, 50), 451)
+
+        self.assertEquals(score("F", "60H", 10.59, 53), 883)
+        self.assertEquals(score("F", "HJ", 1.38, 53), 842)
+
 
 if __name__ == '__main__':
     main()

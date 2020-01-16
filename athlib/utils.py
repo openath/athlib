@@ -16,6 +16,7 @@ __all__ = """normalize_gender
             str2num
             parse_hms
             get_distance
+            round_up_str_num
             format_seconds_as_time
             check_performance_for_discipline
             discipline_sort_key
@@ -113,15 +114,14 @@ def get_distance(discipline):
         return 42195
     elif discipline == "HM":
         return 21098
-    elif discipline == "MILE":
+    elif discipline in ("MILE","CHUNDER-MILE"):
         return 1609
 
     m = PAT_RELAYS.match(discipline)
     if m:
-        g1 = int(m.group(1))
         g2 = m.group(2).upper()
         if g2=='RELAY': return None #cowardly refusing to guess
-        return g1*int(g2)
+        return int(m.group(1))*int(g2.rstrip('hH'))
 
     m = PAT_LEADING_FLOAT.match(discipline)
     if not m:
@@ -147,26 +147,64 @@ def get_distance(discipline):
     elif remains in ('Y', 'y', 'YD', 'yd'):
         return int(0.9144 * qty)
 
-def format_seconds_as_time(seconds, prec=0):
-    """convert seconds to a string formatted as hours:min:secs
+def round_up_str_num(s,prec=2,maxDP=5):
+    '''
+    s is a valid non-negative float number string containing possible .xyz
+    returns string number rounded up to prec places
 
-    :param seconds: floating point seconds
+    anything after the maxDP'th place is considered to be noise and is not considered
+    '''
+    if '.' not in s:
+        i = s
+        f = prec*'0'
+    else:
+        i,f = s.split('.')
+        f = f[:maxDP]
+    n = len(f)
+    if n>prec:
+        f, t = f[:prec], f[prec:]
+        t = t.lstrip('0')
+        if t:
+            i += f
+            i = str(int(i)+1) if i else '1'
+            n = len(i)-prec
+            if n<1:
+                i = (1-n)*'0' + i
+                n = 1
+            f = i[-prec:]
+            i = i[:n]
+    else:
+        if n<prec: f += (prec-n)*'0'
+        if not i: i = '0'
+
+    return '.'.join((i,f)) if prec else i
+
+def format_seconds_as_time(seconds, prec=0):
+    """convert non-negative seconds to a string formatted as hours:min:secs
+    fractional seconds are rounded up to prec digits eg
+
+    format_seconds_as_time(3599.1, prec=0) == 1:00:00
+
+    :param seconds: non-negative floating point seconds
     :param prec=0: precision for seconds
     :returns formatted string:
     """
-    mins, secs = divmod(seconds, 60)
-    hours, mins = divmod(mins, 60)
-
-    frac = secs - int(secs)
-
-    if prec == 0:
-        frac = ''
-    elif prec == 1:
-        frac = ('%0.1f' % frac)[1:]  # e.g.".3"
-    elif prec == 2:
-        frac = ('%0.2f' % frac)[1:]  # e.g.".34"
-    elif prec == 3:
-        frac = ('%0.3f' % frac)[1:]  # e.g.".342"
+    if 0<=prec<=3 and isinstance(prec,int):
+        secs = int(seconds)
+        frac = seconds - secs
+        mins, secs = divmod(secs, 60)
+        hours, mins = divmod(mins, 60)
+        frac = round_up_str_num(repr(frac),prec)
+        rup = frac[0]
+        frac = frac[1:]
+        if rup!='0':
+            secs += 1
+            if secs==60:
+                secs = 0
+                mins += 1
+                if mins==60:
+                    mins = 0
+                    hours += 1
     else:
         raise ValueError("Precision must be 0, 1, 2 or 3 digits")
     if hours:

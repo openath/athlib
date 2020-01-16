@@ -61,6 +61,7 @@ class UtilsTests(TestCase):
         self.assertEquals(get_distance("110mH"), 110)
         self.assertEquals(get_distance("5K"), 5000)
         self.assertEquals(get_distance("MILE"), 1609)
+        self.assertEquals(get_distance("CHUNDER-MILE"), 1609)
         self.assertEquals(get_distance("5M"), 8045)
         self.assertEquals(get_distance("HM"), 21098)
         self.assertEquals(get_distance("MAR"), 42195)
@@ -68,6 +69,8 @@ class UtilsTests(TestCase):
         self.assertEquals(get_distance("HJ"), None)
         self.assertEquals(get_distance("4xrelay"), None)
         self.assertEquals(get_distance("4x100"), 400)
+        self.assertEquals(get_distance("4x100H"), 400)
+        self.assertEquals(get_distance("3x100h"), 300)
         self.assertEquals(get_distance("4x400"), 1600)
         self.assertEquals(get_distance("7.5M"), 12067)
         self.assertEquals(get_distance("7.5SC"), None)
@@ -87,6 +90,7 @@ class UtilsTests(TestCase):
         self.assertEquals(str2num("27"), 27)
         self.assertEquals(str2num("27.3"), 27.3)
         self.assertRaises(ValueError, str2num, "slow")
+        self.assertRaises(ValueError, str2num, "3:0")
 
     def test_parse_hms(self):
         from athlib.utils import parse_hms
@@ -105,7 +109,8 @@ class UtilsTests(TestCase):
 
     def test_format_seconds_as_time(self):
         from athlib.utils import format_seconds_as_time
-        self.assertEquals(format_seconds_as_time(27.3), "27")
+        self.assertEquals(format_seconds_as_time(27.0), "27")
+        self.assertEquals(format_seconds_as_time(27.3), "28")
         self.assertEquals(format_seconds_as_time(27.3, prec=1), "27.3")
         self.assertEquals(format_seconds_as_time(27.3, prec=2), "27.30")
         self.assertEquals(format_seconds_as_time(27.3, prec=3), "27.300")
@@ -117,6 +122,8 @@ class UtilsTests(TestCase):
 
         self.assertEquals(format_seconds_as_time(63), "1:03")
         self.assertEquals(format_seconds_as_time(7380), "2:03:00")
+        self.assertEquals(format_seconds_as_time(3599.1), "1:00:00")
+        self.assertEquals(format_seconds_as_time(3599.91, 1), "1:00:00.0")
 
     def test_checkperf(self):
         from athlib.utils import check_performance_for_discipline as checkperf
@@ -162,6 +169,296 @@ class UtilsTests(TestCase):
         self.assertRaises(ValueError, checkperf, "100", "8.5"),  # > 11.0 metres per second
         self.assertRaises(ValueError, checkperf, "5000", "3:45:27"),  # < 0.5 m/sec
         self.assertRaises(ValueError, checkperf, "3KW", "2:34")
+
+    def test_discipline_sort_key(self):
+        '''should see if event ordering will work'''
+        from athlib.utils import discipline_sort_key
+        self.assertEqual(discipline_sort_key(''),(6, 0, "?"))
+        self.assertEqual(discipline_sort_key('HJ'),(3, 0, "HJ"))
+        self.assertEqual(discipline_sort_key('LJ'),(3, 2, "LJ"))
+        self.assertEqual(discipline_sort_key('PV'),(3, 1, "PV"))
+        self.assertEqual(discipline_sort_key('100'),(1, 100, "100"))
+        self.assertEqual(discipline_sort_key('4x400'),(5, 400, "4x400"))
+        self.assertEqual(discipline_sort_key('JT'),(4, 7, "JT"))
+        self.assertEqual(discipline_sort_key('200H'),(2, 200, "200H"))
+
+    def test_text_discipline_sort_key(self):
+        '''should see if event ordering will work'''
+        from athlib.utils import text_discipline_sort_key
+        self.assertEqual(text_discipline_sort_key(''),"6_00000_?")
+        self.assertEqual(text_discipline_sort_key('HJ'),"3_00000_HJ")
+        self.assertEqual(text_discipline_sort_key('LJ'),"3_00002_LJ")
+        self.assertEqual(text_discipline_sort_key('PV'),"3_00001_PV")
+        self.assertEqual(text_discipline_sort_key('100'),"1_00100_100")
+        self.assertEqual(text_discipline_sort_key('4x400'),"5_00400_4x400")
+        self.assertEqual(text_discipline_sort_key('JT'),"4_00007_JT")
+        self.assertEqual(text_discipline_sort_key('200H'),"2_00200_200H")
+
+    def test_sort_by_discipline(self):
+        '''sort a list of pseudo-events'''
+        events = [
+            {'e':'','a':60},
+            {'e':'HJ','a':30},
+            {'e':'LJ','a':32},
+            {'e':'PV','a':31},
+            {'e':'100','a':1100},
+            {'e':'800','a':1800},
+            {'e':'4x400','a':5400},
+            {'e':'JT','a':47},
+            {'e':'200H','a':2200},
+            {'e':'MILE','a':1609},
+            ]
+        from athlib.utils import sort_by_discipline
+        sevents = [e['a'] for e in sort_by_discipline(events,'e')]
+        self.assertEqual(sevents,[1100,1800,2200,30,31,32,47,5400,60,1609])
+
+    def test_event_codes_match_correctly(self):
+        from athlib.codes import PAT_THROWS, PAT_JUMPS, PAT_TRACK, PAT_ROAD, \
+                PAT_RACES_FOR_DISTANCE, PAT_RELAYS, PAT_HURDLES, PAT_MULTI, PAT_EVENT_CODE
+        tpats = [PAT_THROWS, PAT_JUMPS, PAT_TRACK, PAT_ROAD, PAT_RACES_FOR_DISTANCE, PAT_RELAYS, PAT_HURDLES, PAT_MULTI,
+                PAT_EVENT_CODE]
+        tpatNames = """PAT_THROWS PAT_JUMPS PAT_TRACK PAT_ROAD PAT_RACES_FOR_DISTANCE PAT_RELAYS PAT_HURDLES PAT_MULTI
+            PAT_EVENT_CODE""".split()
+        codePats = [
+                ('100',PAT_TRACK),
+                #('110mH',PAT_HURDLES), #Andy Check
+                ('1500',PAT_TRACK),
+                ('1HR',PAT_RACES_FOR_DISTANCE),
+                ('1HW',PAT_RACES_FOR_DISTANCE),
+                ('24HR',PAT_RACES_FOR_DISTANCE),
+                ('24HW',PAT_RACES_FOR_DISTANCE),
+                ('2HR',PAT_RACES_FOR_DISTANCE),
+                ('2HW',PAT_RACES_FOR_DISTANCE),
+                ('3000SC',[PAT_HURDLES,PAT_TRACK]),
+                ('3000W',PAT_TRACK),
+                #('3kmW',PAT_ROAD), #Andy check
+                ('3KW',PAT_ROAD),
+                ('400',PAT_TRACK),
+                ('400H',[PAT_TRACK,PAT_HURDLES]),
+                ('440Y',PAT_TRACK),
+                ('4x100',PAT_RELAYS),
+                ('4x100',PAT_RELAYS),
+                ('4x400',PAT_RELAYS),
+                ('4xrelay',PAT_RELAYS),
+                ('5K',PAT_ROAD),
+                ('5M',PAT_ROAD),
+                ('7.5M',PAT_ROAD),
+                ('BT',PAT_THROWS),
+                ('BT1.5K',PAT_THROWS),
+                ('BT2K',PAT_THROWS),
+                #('CHUNDER-MILE',PAT_TRACK),    #Andy check
+                ('HJ',PAT_JUMPS),
+                ('HM',PAT_ROAD),
+                ('HT',PAT_THROWS),
+                ('MAR',PAT_ROAD),
+                ('MILE',PAT_ROAD),
+                ('HM',PAT_ROAD),
+                ('LJ',PAT_JUMPS),
+                ('PV',PAT_JUMPS),
+                ('TJ',PAT_JUMPS),
+                ('XC',PAT_ROAD),
+                ]
+        errs = []
+        show = lambda p: repr(sorted(list(p)))
+        for code, goodPat in codePats:
+            M = set([tpatNames[tpats.index(pat)] for pat in tpats if pat.match(code)])
+            if not isinstance(goodPat,(list,tuple)):
+                goodPat = [goodPat]
+            goodPat.append(PAT_EVENT_CODE)
+            ok = set([tpatNames[tpats.index(pat)] for pat in goodPat])
+            if M != ok:
+                errs.append("%r matched %r should have matched %r" % (code,show(M),show(ok)))
+        errs = '\n'.join(errs)
+        self.assertEqual(errs,'','event matching failures\n%s\n'%errs)
+
+    def test_round_up_str_num(self):
+        from athlib.utils import round_up_str_num
+        bad = ['%4s %8s %8s %8s %s' % ('prec', 'text','expected','result','Correct')]
+        for prec, v, x in (
+            (3, '11.9990', '11.999'),
+            (3, '11.9991', '12.000'),
+            (3, '11.4502', '11.451'),
+            (3, '11.4520', '11.452'),
+            (3, '11.4500', '11.450'),
+            (3, '11.452', '11.452'),
+            (3, '11.450', '11.450'),
+            (3, '11.000', '11.000'),
+            (3, '11.0001', '11.001'),
+            (3, '11.45', '11.450'),
+            (3, '11.05', '11.050'),
+            (3, '11.4', '11.400'),
+            (3, '11.', '11.000'),
+            (3, '11', '11.000'),
+            (3, '1.9990', '1.999'),
+            (3, '1.9991', '2.000'),
+            (3, '1.4502', '1.451'),
+            (3, '1.4520', '1.452'),
+            (3, '1.4500', '1.450'),
+            (3, '1.452', '1.452'),
+            (3, '1.450', '1.450'),
+            (3, '1.000', '1.000'),
+            (3, '1.0001', '1.001'),
+            (3, '1.45', '1.450'),
+            (3, '1.05', '1.050'),
+            (3, '1.4', '1.400'),
+            (3, '1.', '1.000'),
+            (3, '1', '1.000'),
+            (3, '0.9990', '0.999'),
+            (3, '0.9991', '1.000'),
+            (3, '0.4502', '0.451'),
+            (3, '0.4520', '0.452'),
+            (3, '0.4500', '0.450'),
+            (3, '0.452', '0.452'),
+            (3, '0.450', '0.450'),
+            (3, '0.000', '0.000'),
+            (3, '0.0001', '0.001'),
+            (3, '0.45', '0.450'),
+            (3, '0.05', '0.050'),
+            (3, '0.0001', '0.001'),
+            (3, '.0001', '0.001'),
+            (3, '0.4', '0.400'),
+            (3, '.4', '0.400'),
+            (3, '0.', '0.000'),
+            (3, '0', '0.000'),
+
+            (2, '11.990', '11.99'),
+            (2, '11.991', '12.00'),
+            (2, '11.4502', '11.46'),
+            (2, '11.450', '11.45'),
+            (2, '11.4500', '11.45'),
+            (2, '11.452', '11.46'),
+            (2, '11.000', '11.00'),
+            (2, '11.0001', '11.01'),
+            (2, '11.45', '11.45'),
+            (2, '11.05', '11.05'),
+            (2, '11.4', '11.40'),
+            (2, '11.', '11.00'),
+            (2, '11', '11.00'),
+            (2, '1.990', '1.99'),
+            (2, '1.991', '2.00'),
+            (2, '1.4502', '1.46'),
+            (2, '1.450', '1.45'),
+            (2, '1.4500', '1.45'),
+            (2, '1.452', '1.46'),
+            (2, '1.000', '1.00'),
+            (2, '1.0001', '1.01'),
+            (2, '1.45', '1.45'),
+            (2, '1.05', '1.05'),
+            (2, '1.4', '1.40'),
+            (2, '1.', '1.00'),
+            (2, '1', '1.00'),
+            (2, '0.990', '0.99'),
+            (2, '0.991', '1.00'),
+            (2, '0.4502', '0.46'),
+            (2, '0.450', '0.45'),
+            (2, '0.4500', '0.45'),
+            (2, '0.452', '0.46'),
+            (2, '0.000', '0.00'),
+            (2, '0.0001', '0.01'),
+            (2, '.0001', '0.01'),
+            (2, '0.45', '0.45'),
+            (2, '0.05', '0.05'),
+            (2, '0.4', '0.40'),
+            (2, '.4', '0.40'),
+            (2, '0.', '0.00'),
+            (2, '0', '0.00'),
+
+            (1, '11.90', '11.9'),
+            (1, '11.91', '12.0'),
+            (1, '11.402', '11.5'),
+            (1, '11.40', '11.4'),
+            (1, '11.4500', '11.5'),
+            (1, '11.0', '11.0'),
+            (1, '11.450', '11.5'),
+            (1, '11.000', '11.0'),
+            (1, '11.0001', '11.1'),
+            (1, '11.45', '11.5'),
+            (1, '11.05', '11.1'),
+            (1, '11.4', '11.4'),
+            (1, '11.', '11.0'),
+            (1, '11', '11.0'),
+            (1, '1.90', '1.9'),
+            (1, '1.91', '2.0'),
+            (1, '1.402', '1.5'),
+            (1, '1.40', '1.4'),
+            (1, '1.4500', '1.5'),
+            (1, '1.0', '1.0'),
+            (1, '1.450', '1.5'),
+            (1, '1.000', '1.0'),
+            (1, '1.0001', '1.1'),
+            (1, '1.45', '1.5'),
+            (1, '1.05', '1.1'),
+            (1, '1.4', '1.4'),
+            (1, '1.', '1.0'),
+            (1, '1', '1.0'),
+            (1, '0.90', '0.9'),
+            (1, '0.91', '1.0'),
+            (1, '0.402', '0.5'),
+            (1, '0.40', '0.4'),
+            (1, '0.4500', '0.5'),
+            (1, '0.0', '0.0'),
+            (1, '0.450', '0.5'),
+            (1, '0.000', '0.0'),
+            (1, '0.0001', '0.1'),
+            (1, '.0001', '0.1'),
+            (1, '0.45', '0.5'),
+            (1, '0.05', '0.1'),
+            (1, '0.4', '0.4'),
+            (1, '.4', '0.4'),
+            (1, '0.', '0.0'),
+            (1, '0', '0.0'),
+            (1, '27.3', '27.3'),
+            (1, repr(27.3 - 27), '0.3'),
+
+            (0, '11.90', '12'),
+            (0, '11.91', '12'),
+            (0, '11.402', '12'),
+            (0, '11.40', '12'),
+            (0, '11.4500', '12'),
+            (0, '11.0', '11'),
+            (0, '11.450', '12'),
+            (0, '11.000', '11'),
+            (0, '11.0001', '12'),
+            (0, '11.45', '12'),
+            (0, '11.05', '12'),
+            (0, '11.4', '12'),
+            (0, '11.', '11'),
+            (0, '11', '11'),
+            (0, '1.90', '2'),
+            (0, '1.91', '2'),
+            (0, '1.402', '2'),
+            (0, '1.40', '2'),
+            (0, '1.4500', '2'),
+            (0, '1.0', '1'),
+            (0, '1.450', '2'),
+            (0, '1.000', '1'),
+            (0, '1.0001', '2'),
+            (0, '1.45', '2'),
+            (0, '1.05', '2'),
+            (0, '1.4', '2'),
+            (0, '1.', '1'),
+            (0, '1', '1'),
+            (0, '0.90', '1'),
+            (0, '0.91', '1'),
+            (0, '0.402', '1'),
+            (0, '0.40', '1'),
+            (0, '0.4500', '1'),
+            (0, '0.0', '0'),
+            (0, '0.450', '1'),
+            (0, '0.000', '0'),
+            (0, '0.0001', '1'),
+            (0, '.0001', '1'),
+            (0, '0.45', '1'),
+            (0, '0.05', '1'),
+            (0, '0.4', '1'),
+            (0, '.4', '1'),
+            (0, '0.', '0'),
+            (0, '0', '0'),
+            ):
+            r = round_up_str_num(v,prec)
+            if r != x:
+                bad.append('%4s %8s %8s %8s %s' % (prec, v,x,r,'yes' if r==x else 'no'))
+        self.assertEqual(len(bad),1,"\nnot all round_up_str_num examples worked\n%s" % '\n'.join(bad))
 
 if __name__ == '__main__':
     main()
