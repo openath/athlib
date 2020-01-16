@@ -39,6 +39,8 @@ class WeightTests(TestCase):
         self.assertEquals(specify("WT", "M", "SEN"), "WT15.88K")
         self.assertEquals(specify("WT", "F", "SEN"), "WT9.08K")
 
+        self.assertEquals(specify("SP", "M", "V50"), "SP6K")
+
 
 if __name__ == '__main__':
     main()

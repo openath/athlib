@@ -56,15 +56,15 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'athlib'
-copyright = u'2017-19, Andy Robinson and others'
-author = u'Andy Robinson and others'
+copyright = u'2017-20, Andy Robinson, Robin Becker and others'
+author = u'Andy Robinson, Robin Becker and others'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
 # built documents.
 #
 # The short X.Y version.
-version = u'0.4.3'
+version = u'0.4.6'
 # The full version, including alpha/beta/rc tags.
 release = version
 

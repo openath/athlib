@@ -6,6 +6,7 @@ import math
 
 from athlib.codes import PAT_JUMPS, PAT_THROWS
 from athlib.wma.agegrader import AthlonsAgeGrader
+from athlib.implements import get_specific_event_code
 
 # Array of parameters used to determine IAAF scores.
 #
@@ -20,6 +21,11 @@ _scoring_table = (
     {"gender": "M", "event_code": "400", "A": 1.53775, "Z": 82.0, "X": 1.81},
     {"gender": "M", "event_code": "600", "A": 0.42088, "Z": 94.5, "X": 1.85},  # Welsh Athletics
     {"gender": "M", "event_code": "800", "A": 0.13279, "Z": 235.0, "X": 1.85},
+#     English Schools uses this different factor: a:0.232, Z:200, x:1.85
+#    {"gender": "M", "event_code": "800", "A": 0.13279, "Z": 235.0, "X": 1.85},
+#   We override this at runtime in the calculator function, if you pass in the esaa option
+
+
     {"gender": "M", "event_code": "1500", "A": 0.03768, "Z": 480.0, "X": 1.85},
     {"gender": "M", "event_code": "3000", "A": 0.0105, "Z": 1005.0, "X": 1.85},
     {
@@ -132,10 +138,13 @@ def _get_age_grader():
         _age_grader = AthlonsAgeGrader()
     return _age_grader
 
-def score(gender, event_code, value, age=None):
+def score(gender, event_code, value, age=None, esaa=False):
     """Function to determine IAAF score, based on gender, event and performance.
     
     You should only pass the age if you wish to age-adjust in years for WMA events
+
+    ESAA option overrides the factor for boys 800m, which differs historically;
+    English Schools AA and the ultra-multi folks invented different factors.
 
     In the interface, we assume performance is <seconds> for track events,
     and <metres> for throws and jumps. Ihe the Wikipedia-sourced factors,
@@ -151,7 +160,9 @@ def score(gender, event_code, value, age=None):
     if not age:
         age_factor = 1.00
     else:
-        age_factor = ag.calculate_factor(gender, age, event_code)
+        age_group = 'V%d' % age
+        specific_event_code = get_specific_event_code(event_code, gender, age_group)
+        age_factor = ag.calculate_factor(gender, age, specific_event_code)
 
 
 
@@ -162,6 +173,15 @@ def score(gender, event_code, value, age=None):
         return None
 
     coeffs = _scoring_objects[key]
+
+    if (key == "M-800") and esaa:
+        coeffs = {
+            "gender": "M", 
+            "event_code": "800", 
+            "A": 0.232, "Z": 200.0, 
+            "X": 1.85
+        }
+
 
 
 

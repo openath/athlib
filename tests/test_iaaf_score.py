@@ -74,10 +74,14 @@ class IaafScoreTests(TestCase):
         
         # needs work, we need full weight event code in age factors e.g. SP6K,
         # but simple code e.g. SP in points calculation
-        #self.assertEquals(score("M", "SP6K", 8.05, 50), 451)
+        self.assertEquals(score("M", "SP", 8.05, 50), 451)
 
         self.assertEquals(score("F", "60H", 10.59, 53), 883)
         self.assertEquals(score("F", "HJ", 1.38, 53), 842)
+
+    def test_esaa_adjusted_score(self):
+        # Tha famous boys 800 issue.
+        self.assertEquals(score("M", "800", 120, esaa=True), 769)
 
 
 if __name__ == '__main__':

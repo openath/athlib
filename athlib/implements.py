@@ -173,7 +173,11 @@ def get_implement_weight(event_code, gender, age_group):
 def get_specific_event_code(generic_event_code, gender, age_group):
     "Given e.g. 'SP', return 'SP7.26K"
 
+    if generic_event_code not in ["SP", "HT", "JT", "DT", "WT"]:
+        return generic_event_code
+
     txt_weight = get_implement_weight(generic_event_code, gender, age_group)
+    # print "    implement weight for %s %s %s as text is %s" % (generic_event_code, gender, age_group, txt_weight)
     mass = float(txt_weight)
 
     if mass == int(mass):
