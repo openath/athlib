@@ -20,7 +20,7 @@ from athlib.utils import (
     check_event_code,
     )
 
-from athlib.implements import get_implement_weight
+from athlib.implements import get_implement_weight, get_specific_event_code
 
 from athlib.codes import (
                     JUMPS,

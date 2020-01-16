@@ -139,6 +139,47 @@ def get_implement_weight(event_code, gender, age_group):
             elif age_group >= "V75":
                 return "2.00"
 
+    elif event_code == "WT":
+        if gender == "M":
+            if age_group in ("V35", "V40", "V45"):
+                return "15.88"
+            elif age_group in ("V50", "V55"):
+                return "11.34"
+            elif age_group in ("V60", "V65"):
+                return "9.08"
+            elif age_group in ("V70", "V75"):
+                return "7.26"
+            elif age_group >= "V80":
+                return "7.26"
+            else:
+                return "15.88"
 
-        # default is we don't know
-        return ""
+        elif gender == "F":
+            if age_group in ("V35", "V40", "V45"):
+                return "9.08"
+            elif age_group in ("V50", "V55"):
+                return "7.26"
+            elif age_group in ("V60", "V65", "V70"):
+                return "5.45"
+            elif age_group >= "V75":
+                return "4.00"
+            else:
+                return "9.08"
+
+
+    # default is we don't know
+    return ""
+
+def get_specific_event_code(generic_event_code, gender, age_group):
+    "Given e.g. 'SP', return 'SP7.26K"
+
+    txt_weight = get_implement_weight(generic_event_code, gender, age_group)
+    mass = float(txt_weight)
+
+    if mass == int(mass):
+        mass = int(mass)  # 4.00 becomes integer 4
+
+    formatted = "%s%s" % (generic_event_code, mass)
+    if mass < 99:  # kg
+        formatted += 'K'
+    return formatted
