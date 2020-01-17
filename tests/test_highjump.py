@@ -6,7 +6,7 @@ Tests of High Jump / Pole Vault competition logic
 from unittest import TestCase, main
 from decimal import Decimal
 
-from athlib.highjump import HighJumpCompetition
+from athlib.highjump import HighJumpCompetition, _012
 from athlib.exceptions import RuleViolation
 
 ESAA_2015_HJ = [
@@ -254,7 +254,7 @@ class HighJumpTests(TestCase):
                                             (2.17,("","xxo"),'won',1),
                                             (2.18,("","xxx"),'finished',0)):
             c.set_bar_height(height)
-            for i in xrange(3):
+            for i in _012:
                 for j,p in enumerate(perfs):
                     if len(p)<i+1: continue
                     c.bib_trial(mx[1+j][2],p[i])

@@ -36,8 +36,8 @@ FIELD_EVENTS = JUMPS + THROWS
 STANDARD_MALE_TRACK_EVENTS = ("100", "200", "400", "800", "1500",
                               "5000", "10000",
                               "110H", "400H", "3000SC", "4x100", "4x400")
-STANDARD_FEMALE_TRACK_EVENTS = ["100H" if x == "110H" else
-                                x for x in STANDARD_MALE_TRACK_EVENTS]
+STANDARD_FEMALE_TRACK_EVENTS = tuple(("100H" if x == "110H" else
+                                x for x in STANDARD_MALE_TRACK_EVENTS))
 # When listing field events, the Blazer Brigade suggest this should be the
 # order
 FIELD_SORT_ORDER = ["HJ", "PV", "LJ", "TJ", "SP", "DT", "HT", "JT", 
@@ -89,4 +89,4 @@ PAT_NOT_FINISHED =  re.compile(r"^(DNF|DQ|DNS)$")
 
 # these are the values one might get in results - valid time, DNF, DQ etc.
 PAT_FINISH_RECORD = re.compile("|".join(_.pattern for _ in (PAT_PERF, PAT_NOT_FINISHED)))
-del _, x
+del _

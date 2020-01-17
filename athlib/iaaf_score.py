@@ -4,9 +4,9 @@ scores.   Taken from IAUM site,
 """
 import math
 
-from athlib.codes import PAT_JUMPS, PAT_THROWS
-from athlib.wma.agegrader import AthlonsAgeGrader
-from athlib.implements import get_specific_event_code
+from .codes import PAT_JUMPS, PAT_THROWS
+from .wma.agegrader import AthlonsAgeGrader
+from .implements import get_specific_event_code
 
 # Array of parameters used to determine IAAF scores.
 #

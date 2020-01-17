@@ -4,8 +4,8 @@ import os
 
 from collections import namedtuple
 
-from athlib.utils import str2num, normalize_gender, parse_hms
-from athlib.codes import PAT_THROWS, PAT_JUMPS, PAT_TRACK, PAT_ROAD
+from ..utils import str2num, normalize_gender, parse_hms
+from ..codes import PAT_THROWS, PAT_JUMPS, PAT_TRACK, PAT_ROAD
 
 __all__ = ('AgeGrader',)
 
@@ -106,7 +106,7 @@ class AgeGrader(object):
         """Work out 'slowdown factor' for a geezer of this
         age taking part in this event e.g.
 
-        >>> from athlib.wma.agegrader import AgeGrader
+        >>> from .agegrader import AgeGrader
         >>> ag=AgeGrader()
         >>> ag.calculate_factor('M',68,'5k')
         0.7592
@@ -252,7 +252,7 @@ class AgeGrader(object):
                             verbose=False):
         """Return the age grade score (0 to 100ish) for this result.
 
-        >>> from athlib.wma.agegrader import AgeGrader
+        >>> from .agegrader import AgeGrader
         >>> ag=AgeGrader()
         >>> "%0.4f" % ag.calculate_age_grade('m',50,'5K', '16:23')
         '0.9004'
@@ -294,7 +294,7 @@ class AthlonsAgeGrader(AgeGrader):
         """Work out 'slowdown factor' for a geezer of this
         age taking part in this event e.g.
 
-        >>> from athlib.wma.agegrader import AthlonsAgeGrader
+        >>> from .agegrader import AthlonsAgeGrader
         >>> ag=AthlonsAgeGrader()
         >>> ag.calculate_factor('M',65,'100H')
         0.8637

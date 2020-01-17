@@ -1,13 +1,13 @@
-from athlib.wma.agegrader import AgeGrader, AthlonsAgeGrader
-from athlib.uka.agegroups import calc_uka_age_group
-from athlib.iaaf_score import score as athlon_score
-from athlib.iaaf_score import performance as athlon_performance_needed
+from .wma.agegrader import AgeGrader, AthlonsAgeGrader
+from .uka.agegroups import calc_uka_age_group
+from .iaaf_score import score as athlon_score
+from .iaaf_score import performance as athlon_performance_needed
 
 __version__ = u'0.4.6'
 
-from athlib.exceptions import RuleViolation
+from .exceptions import RuleViolation
 
-from athlib.utils import (
+from .utils import (
     normalize_gender,
     str2num,
     parse_hms,
@@ -21,9 +21,9 @@ from athlib.utils import (
     check_event_code,
     )
 
-from athlib.implements import get_implement_weight, get_specific_event_code
+from .implements import get_implement_weight, get_specific_event_code
 
-from athlib.codes import (
+from .codes import (
                     JUMPS,
                     THROWS,
                     MULTI_EVENTS,
@@ -53,7 +53,7 @@ from athlib.codes import (
                     PAT_FINISH_RECORD,
                     )
 
-from athlib.highjump import HighJumpCompetition, Jumper
+from .highjump import HighJumpCompetition, Jumper
 
 ag = AgeGrader()
 

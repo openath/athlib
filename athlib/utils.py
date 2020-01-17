@@ -62,7 +62,7 @@ def parse_hms(t):
     """
     Parse a time duration with 0, 1 or 2 colons and return seconds.
 
-    >>> from athlib.utils import parse_hms
+    >>> from .utils import parse_hms
     >>> parse_hms('10')
     10
     >>> parse_hms('1:10')
@@ -189,7 +189,7 @@ def format_seconds_as_time(seconds, prec=0):
     :param prec=0: precision for seconds
     :returns formatted string:
     """
-    if 0<=prec<=3 and isinstance(prec,int):
+    if isinstance(prec,int) and 0<=prec<=3:
         secs = int(seconds)
         frac = seconds - secs
         mins, secs = divmod(secs, 60)

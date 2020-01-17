@@ -26,20 +26,20 @@ def get_version():
         if not m:
             raise ValueError('Cannot find version in docs/source/conf.py')
         sv = m.group()
-        exec m.group() in NS
+        exec(m.group(),NS)
         docs_version = NS['version']
     else:
         docs_version = 'unknown'
     if os.path.isdir('athlib'):
         NS = {}
         version_re = re.compile(r'^__version__\s*=.*$',re.M)
-        with open(os.path.join('athlib','__init__.py'),'rb') as f:
+        with open(os.path.join('athlib','__init__.py'),'r') as f:
             txt = f.read()
         m = version_re.search(txt)
         if not m:
             raise ValueError('Cannot find version in athlib/__init__.py')
         sv = m.group()
-        exec m.group() in NS
+        exec(m.group(), NS)
         athlib_version = NS['__version__']
         if docs_version!='unknown' and athlib_version!=docs_version:
             i0 = m.start()

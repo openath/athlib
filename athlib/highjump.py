@@ -26,6 +26,7 @@ ESAA_2015_HJ = [
 from __future__ import print_function
 from decimal import Decimal
 from .exceptions import RuleViolation
+_012 = 0,1,2    #range of attempts
 
 #The countback rule used to separate competitors with equal best heights in High Jump and Pole Vault is possibly the most misunderstood rule in the whole of the sport. Here's how it operates:
 #The athlete with the fewest attempts at the last height successfully cleared gets the verdict.
@@ -395,7 +396,7 @@ class HighJumpCompetition(object):
             self.set_bar_height(height)
             if self.verbose: 
                 print("bar at %s" % height)
-            for a in xrange(3):
+            for a in _012:
                 for d in dikts:
                     if d['order'] in ('DNS','DQ'): continue
                     bib = d['bib']
