@@ -54,6 +54,9 @@ class IaafScoreTests(TestCase):
 
         self.assertEquals(score("?", "NA", 42), None)
 
+        self.assertEquals(score("M", "1000", 150), 988)
+
+
     def test_unit_name(self):
         """Test the unit names for jumps, throws and track events."""
         self.assertEquals(unit_name("100"), "seconds")
@@ -71,6 +74,7 @@ class IaafScoreTests(TestCase):
 
         self.assertEquals(score("M", "60H", 11.85, 50), 437)
         self.assertEquals(score("M", "LJ", 4.53, 50), 494)
+        self.assertEquals(score("M", "800", 156, 75), 1035)
         
         # needs work, we need full weight event code in age factors e.g. SP6K,
         # but simple code e.g. SP in points calculation

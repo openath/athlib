@@ -16,32 +16,29 @@ from .implements import get_specific_event_code
 #
 # All scores are rounded down.
 _scoring_table = (
+    {"gender": "M", "event_code": "60", "A": 58.015, "Z": 11.5, "X": 1.81},
     {"gender": "M", "event_code": "100", "A": 25.4347, "Z": 18.0, "X": 1.81},
     {"gender": "M", "event_code": "200", "A": 5.8425, "Z": 38.0, "X": 1.81},
     {"gender": "M", "event_code": "400", "A": 1.53775, "Z": 82.0, "X": 1.81},
     {"gender": "M", "event_code": "600", "A": 0.42088, "Z": 94.5, "X": 1.85},  # Welsh Athletics
+
+
+
     {"gender": "M", "event_code": "800", "A": 0.13279, "Z": 235.0, "X": 1.85},
 #     English Schools uses this different factor: a:0.232, Z:200, x:1.85
 #    {"gender": "M", "event_code": "800", "A": 0.13279, "Z": 235.0, "X": 1.85},
 #   We override this at runtime in the calculator function, if you pass in the esaa option
 
 
+    # 1000m from Peter Kennedy's calculator
+    {"gender": "M", "event_code": "1000", "A": 0.08713, "Z": 305.5, "X": 1.85},
+
     {"gender": "M", "event_code": "1500", "A": 0.03768, "Z": 480.0, "X": 1.85},
     {"gender": "M", "event_code": "3000", "A": 0.0105, "Z": 1005.0, "X": 1.85},
-    {
-        "gender": "M",
-        "event_code": "5000",
-        "A": 0.00419,
-        "Z": 1680.0,
-        "X": 1.85
-    },
-    {
-        "gender": "M",
-        "event_code": "10000",
-        "A": 0.000415,
-        "Z": 4245.0,
-        "X": 1.9
-    },
+    {"gender": "M", "event_code": "5000", "A": 0.00419, "Z": 1680.0, "X": 1.85},
+    {"gender": "M", "event_code": "10000", "A": 0.000415, "Z": 4245.0, "X": 1.9},
+
+    {"gender": "M", "event_code": "60H", "A": 20.5173, "Z": 15.5, "X": 1.92},
     {"gender": "M", "event_code": "110H", "A": 5.74352, "Z": 28.5, "X": 1.92},
     {"gender": "M", "event_code": "200H", "A": 3.495, "Z": 45.5, "X": 1.81},
     {"gender": "M", "event_code": "400H", "A": 1.1466, "Z": 92.0, "X": 1.81},
@@ -54,45 +51,22 @@ _scoring_table = (
     {"gender": "M", "event_code": "HT", "A": 13.0449, "Z": 7.0, "X": 1.05},
     {"gender": "M", "event_code": "DT", "A": 12.91, "Z": 4.0, "X": 1.1},
     {"gender": "M", "event_code": "JT", "A": 10.14, "Z": 7.0, "X": 1.08},
-    {"gender": "M", "event_code": "60", "A": 58.015, "Z": 11.5, "X": 1.81},
-    {"gender": "M", "event_code": "60H", "A": 20.5173, "Z": 15.5, "X": 1.92},
     {"gender": "M", "event_code": "WT", "A": 47.8338, "Z": 1.5, "X": 1.05},
+
+
+
     {"gender": "F", "event_code": "100", "A": 17.857, "Z": 21.0, "X": 1.81},
     {"gender": "F", "event_code": "200", "A": 4.99087, "Z": 42.5, "X": 1.81},
     {"gender": "F", "event_code": "400", "A": 1.34285, "Z": 91.7, "X": 1.81},
     {"gender": "F", "event_code": "800", "A": 0.11193, "Z": 254.0, "X": 1.88},
     {"gender": "F", "event_code": "1500", "A": 0.02883, "Z": 535.0, "X": 1.88},
-    {
-        "gender": "F",
-        "event_code": "3000",
-        "A": 0.00683,
-        "Z": 1150.0,
-        "X": 1.88
-    },
-    {
-        "gender": "F",
-        "event_code": "5000",
-        "A": 0.00272,
-        "Z": 1920.0,
-        "X": 1.88
-    },
-    {
-        "gender": "F",
-        "event_code": "10000",
-        "A": 0.000369,
-        "Z": 4920.0,
-        "X": 1.88
-    },
+    {"gender": "F", "event_code": "3000", "A": 0.00683, "Z": 1150.0, "X": 1.88},
+    {"gender": "F", "event_code": "5000", "A": 0.00272, "Z": 1920.0, "X": 1.88},
+    {"gender": "F", "event_code": "10000","A": 0.000369,"Z": 4920.0, "X": 1.88},
     {"gender": "F", "event_code": "100H", "A": 9.23076, "Z": 26.7, "X": 1.835},
     {"gender": "F", "event_code": "200H", "A": 2.975, "Z": 52.0, "X": 1.81},
     {"gender": "F", "event_code": "400H", "A": 0.99674, "Z": 103.0, "X": 1.81},
-    {
-        "gender": "F",
-        "event_code": "3000SC",
-        "A": 0.00408,
-        "Z": 1320.0,
-        "X": 1.9
-    },
+    {"gender": "F", "event_code": "3000SC", "A": 0.00408, "Z": 1320.0, "X": 1.9},
     {"gender": "F", "event_code": "LJ", "A": 0.188807, "Z": 210.0, "X": 1.41},
     {"gender": "F", "event_code": "TJ", "A": 0.08559, "Z": 600.0, "X": 1.41},
     {"gender": "F", "event_code": "HJ", "A": 1.84523, "Z": 75.0, "X": 1.348},
