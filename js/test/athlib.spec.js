@@ -103,15 +103,18 @@ describe('Given an instance of Athlib', function() {
 				{ e: "1500", name: "Neil"},
 				{ e: "3000SC", name: "Andy"},
 				{ e: "HT", name: "Chris"},
+				{ e: "SHJ", name: "SChris"},
 				{ e: "TJ", name: "Humphrey"},
+				{ e: "STJ", name: "SHumphrey"},
+				{ e: "gdt", name: "BHumphrey"},
 				{ e: "", name: "Nobody"},
 				{ e: "CHUNDER-MILE", name: "BinMan"}
 			]
 			const ordered = Athlib.sort_by_discipline(stuff, "e");
 			const ordered_events = ordered.map(x => x["e"]);
 		  expect(ordered_events).to.eql( [
-				'100', '400', '1500', '400H', '3000SC', 'PV',
-				'TJ', 'HT', '4x100', "", "CHUNDER-MILE"]);
+				'100', '400', '1500', '400H', '3000SC', 'SHJ', 'PV',
+				'TJ', 'STJ', 'HT', 'gdt', '4x100', "", "CHUNDER-MILE"]);
 		});
 		it('text_discipline_sort_key', function() {
 			expect(Athlib.text_discipline_sort_key("100H")).to.be.equal( "2_00100_100H");
@@ -200,6 +203,15 @@ describe('Given an instance of Athlib', function() {
 		it('checkperf("PEN","0")==="0"',() =>{expect(Athlib.checkPerformanceForDiscipline("PEN","0")).to.be.equal("0")});					 // low score is allowed
 		it('checkperf("3000mW","0:24:15")==="24:15"',() =>{expect(Athlib.checkPerformanceForDiscipline("3000mW","0:24:15")).to.be.equal("24:15")});
 		it('checkperf("3KW","0:24:15")==="24:15"',() =>{expect(Athlib.checkPerformanceForDiscipline("3KW","0:24:15")).to.be.equal("24:15")});
+		it('checkperf("ST2.1","15.3")==="15.30"',() =>{expect(Athlib.checkPerformanceForDiscipline("ST2.1","15.3")).to.be.equal("15.30")});
+		it('checkperf("GDT2.2","15.4")==="15.40"',() =>{expect(Athlib.checkPerformanceForDiscipline("GDT2.2","15.4")).to.be.equal("15.40")});
+		it('checkperf("BT1.1","15.5")==="15.50"',() =>{expect(Athlib.checkPerformanceForDiscipline("BT1.1","15.5")).to.be.equal("15.50")});
+		it('checkperf("WT1.2","15.6")==="15.60"',() =>{expect(Athlib.checkPerformanceForDiscipline("WT1.2","15.6")).to.be.equal("15.60")});
+		it('checkperf("SWT1.3","15.7")==="15.70"',() =>{expect(Athlib.checkPerformanceForDiscipline("SWT1.3","15.7")).to.be.equal("15.70")});
+		it('checkperf("OT1.4","15.7")==="15.70"',() =>{expect(Athlib.checkPerformanceForDiscipline("OT1.4","15.7")).to.be.equal("15.70")});
+		it('checkperf("SHJ","  2.34	")==="2.34"',() =>{expect(Athlib.checkPerformanceForDiscipline("SHJ","  2.34	")).to.be.equal("2.34")});
+		it('checkperf("SLJ","  2.34	")==="2.34"',() =>{expect(Athlib.checkPerformanceForDiscipline("SLJ","  2.34	")).to.be.equal("2.34")});
+		it('checkperf("stj","  2.34	")==="2.34"',() =>{expect(Athlib.checkPerformanceForDiscipline("stj","  2.34	")).to.be.equal("2.34")});
  
 		it('checkperf("DEC","10001") throws error',()=>{expect(()=>{Athlib.checkPerformanceForDiscipline("DEC","10001")}).to.throw(Error)});
 		it('checkperf("DEC","4:15.8") throws error',()=>{expect(()=>{Athlib.checkPerformanceForDiscipline("DEC","4:15.8")}).to.throw(Error)});

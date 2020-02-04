@@ -1,6 +1,7 @@
-import { MULTI_EVENTS, FIELD_EVENTS } from './codes.js';
 import {
+  FIELD_EVENTS,
   FIELD_SORT_ORDER,
+  MULTI_EVENTS,
   PAT_HURDLES,
   PAT_JUMPS,
   PAT_RELAYS,
@@ -101,14 +102,12 @@ function discipline_sort_key(discipline) {
   }
 
   discipline = discipline.trim();
-  m = discipline.match(PAT_THROWS);
 
+  m = discipline.match(PAT_THROWS);
   if (m) {
-    return [
-      4,
-      FIELD_SORT_ORDER.indexOf(discipline.slice(0, 2).toUpperCase()),
-      discipline
-    ];
+    m = FIELD_SORT_ORDER.indexOf(discipline.slice(0, 3).toUpperCase());
+    if (m < 0) m = FIELD_SORT_ORDER.indexOf(discipline.slice(0, 2).toUpperCase());
+    return [ 4, m, discipline ];
   }
 
   m = discipline.match(PAT_HURDLES);
@@ -118,11 +117,9 @@ function discipline_sort_key(discipline) {
 
   m = discipline.match(PAT_JUMPS);
   if (m) {
-    return [
-      3,
-      FIELD_SORT_ORDER.indexOf(discipline.slice(0, 2).toUpperCase()),
-      discipline
-    ];
+    m = FIELD_SORT_ORDER.indexOf(discipline.slice(0, 3).toUpperCase());
+    if (m < 0) m = FIELD_SORT_ORDER.indexOf(discipline.slice(0, 2).toUpperCase());
+    return [ 3, m, discipline ];
   }
 
   m = discipline.match(PAT_RELAYS);

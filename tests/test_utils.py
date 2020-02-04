@@ -27,14 +27,14 @@ class UtilsTests(TestCase):
         ordered = sort_by_discipline(stuff, attr="e")
 
         ordered_events = [d["e"] for d in ordered]
-        self.assertEquals(
+        self.assertEqual(
             ordered_events,
             ['100', '400', '1500', '400H', '3000SC', 'PV',
                 'TJ', 'HT', '4x100', "", "CHUNDER-MILE"]
         )
 
         from athlib.utils import text_discipline_sort_key
-        self.assertEquals(text_discipline_sort_key("100H"), "2_00100_100H")
+        self.assertEqual(text_discipline_sort_key("100H"), "2_00100_100H")
 
         # Now sort objects, not dictionaries
         class Foo(object):
@@ -51,107 +51,116 @@ class UtilsTests(TestCase):
         stuff = [obj1, obj2, obj3]
 
         ordered = sort_by_discipline(stuff)
-        self.assertEquals(ordered[0].discipline, "200")
-        self.assertEquals(ordered[1].discipline, "HJ")
+        self.assertEqual(ordered[0].discipline, "200")
+        self.assertEqual(ordered[1].discipline, "HJ")
 
     def test_get_distance(self):
         "Extract distance in metres from discipline codes"
         from athlib.utils import get_distance
-        self.assertEquals(get_distance("100"), 100)
-        self.assertEquals(get_distance("110mH"), 110)
-        self.assertEquals(get_distance("5K"), 5000)
-        self.assertEquals(get_distance("MILE"), 1609)
-        self.assertEquals(get_distance("CHUNDER-MILE"), 1609)
-        self.assertEquals(get_distance("5M"), 8045)
-        self.assertEquals(get_distance("HM"), 21098)
-        self.assertEquals(get_distance("MAR"), 42195)
-        self.assertEquals(get_distance("XC"), None)
-        self.assertEquals(get_distance("HJ"), None)
-        self.assertEquals(get_distance("4xrelay"), None)
-        self.assertEquals(get_distance("4x100"), 400)
-        self.assertEquals(get_distance("4x100H"), 400)
-        self.assertEquals(get_distance("3x100h"), 300)
-        self.assertEquals(get_distance("4x400"), 1600)
-        self.assertEquals(get_distance("7.5M"), 12067)
-        self.assertEquals(get_distance("7.5SC"), None)
-        self.assertEquals(get_distance("440Y"), 402)
-        self.assertEquals(get_distance("3000W"), 3000)
-        self.assertEquals(get_distance("3KW"), 3000)
-        self.assertEquals(get_distance("3kmW"), 3000)
+        self.assertEqual(get_distance("100"), 100)
+        self.assertEqual(get_distance("110mH"), 110)
+        self.assertEqual(get_distance("5K"), 5000)
+        self.assertEqual(get_distance("MILE"), 1609)
+        self.assertEqual(get_distance("CHUNDER-MILE"), 1609)
+        self.assertEqual(get_distance("5M"), 8045)
+        self.assertEqual(get_distance("HM"), 21098)
+        self.assertEqual(get_distance("MAR"), 42195)
+        self.assertEqual(get_distance("XC"), None)
+        self.assertEqual(get_distance("HJ"), None)
+        self.assertEqual(get_distance("4xrelay"), None)
+        self.assertEqual(get_distance("4x100"), 400)
+        self.assertEqual(get_distance("4x100H"), 400)
+        self.assertEqual(get_distance("3x100h"), 300)
+        self.assertEqual(get_distance("4x400"), 1600)
+        self.assertEqual(get_distance("7.5M"), 12067)
+        self.assertEqual(get_distance("7.5SC"), None)
+        self.assertEqual(get_distance("440Y"), 402)
+        self.assertEqual(get_distance("3000W"), 3000)
+        self.assertEqual(get_distance("3KW"), 3000)
+        self.assertEqual(get_distance("3kmW"), 3000)
 
     def test_normalize_gender(self):
         from athlib.utils import normalize_gender
-        self.assertEquals(normalize_gender("Male"), "M")
-        self.assertEquals(normalize_gender("fEMale"), "F")
+        self.assertEqual(normalize_gender("Male"), "M")
+        self.assertEqual(normalize_gender("fEMale"), "F")
         self.assertRaises(ValueError, normalize_gender, "tranny")
 
     def test_str2num(self):
         from athlib.utils import str2num
-        self.assertEquals(str2num("27"), 27)
-        self.assertEquals(str2num("27.3"), 27.3)
+        self.assertEqual(str2num("27"), 27)
+        self.assertEqual(str2num("27.3"), 27.3)
         self.assertRaises(ValueError, str2num, "slow")
         self.assertRaises(ValueError, str2num, "3:0")
 
     def test_parse_hms(self):
         from athlib.utils import parse_hms
-        self.assertEquals(parse_hms("10"), 10)
-        self.assertEquals(parse_hms("1:10"), 70)
-        self.assertEquals(parse_hms("1:1:10"), 3670)
-        self.assertEquals(parse_hms("1:01:10"), 3670)
-        self.assertEquals(parse_hms("1:01:10.1"), 3670.1)
+        self.assertEqual(parse_hms("10"), 10)
+        self.assertEqual(parse_hms("1:10"), 70)
+        self.assertEqual(parse_hms("1:1:10"), 3670)
+        self.assertEqual(parse_hms("1:01:10"), 3670)
+        self.assertEqual(parse_hms("1:01:10.1"), 3670.1)
 
         # floats and ints come through as is
-        self.assertEquals(parse_hms(10), 10)
-        self.assertEquals(parse_hms(10.1), 10.1)
+        self.assertEqual(parse_hms(10), 10)
+        self.assertEqual(parse_hms(10.1), 10.1)
 
         self.assertRaises(ValueError, parse_hms, "slow")
         self.assertRaises(ValueError, parse_hms, "3:32.x")
 
     def test_format_seconds_as_time(self):
         from athlib.utils import format_seconds_as_time
-        self.assertEquals(format_seconds_as_time(27.0), "27")
-        self.assertEquals(format_seconds_as_time(27.3), "28")
-        self.assertEquals(format_seconds_as_time(27.3, prec=1), "27.3")
-        self.assertEquals(format_seconds_as_time(27.3, prec=2), "27.30")
-        self.assertEquals(format_seconds_as_time(27.3, prec=3), "27.300")
+        self.assertEqual(format_seconds_as_time(27.0), "27")
+        self.assertEqual(format_seconds_as_time(27.3), "28")
+        self.assertEqual(format_seconds_as_time(27.3, prec=1), "27.3")
+        self.assertEqual(format_seconds_as_time(27.3, prec=2), "27.30")
+        self.assertEqual(format_seconds_as_time(27.3, prec=3), "27.300")
 
         # precision must be 0 to 3
         self.assertRaises(ValueError, format_seconds_as_time, 27.3, 4)
         self.assertRaises(ValueError, format_seconds_as_time, 27.3, None)
         self.assertRaises(ValueError, format_seconds_as_time, 27.3, "hi")
 
-        self.assertEquals(format_seconds_as_time(63), "1:03")
-        self.assertEquals(format_seconds_as_time(7380), "2:03:00")
-        self.assertEquals(format_seconds_as_time(3599.1), "1:00:00")
-        self.assertEquals(format_seconds_as_time(3599.91, 1), "1:00:00.0")
+        self.assertEqual(format_seconds_as_time(63), "1:03")
+        self.assertEqual(format_seconds_as_time(7380), "2:03:00")
+        self.assertEqual(format_seconds_as_time(3599.1), "1:00:00")
+        self.assertEqual(format_seconds_as_time(3599.91, 1), "1:00:00.0")
 
     def test_checkperf(self):
         from athlib.utils import check_performance_for_discipline as checkperf
-        self.assertEquals(checkperf("XC", ""), "")
-        self.assertEquals(checkperf("xc", ""), "")
-        self.assertEquals(checkperf("HJ", "2.34"), "2.34")
-        self.assertEquals(checkperf("HJ", "  2.34  "), "2.34")
-        self.assertEquals(checkperf("60m", "7.62"), "7.62")
-        self.assertEquals(checkperf("100m", "9.73456"), "9.73")
-        self.assertEquals(checkperf("100m", "12"), "12.00")
-        self.assertEquals(checkperf("400m", "63.1"), "63.10")
-        self.assertEquals(checkperf("400m", "1:03.1"), "1:03.1")
-        self.assertEquals(checkperf("800m", "2:33"), "2:33")
-        self.assertEquals(checkperf("200", "27,33"), "27.33")   # Correct French commas to decimals
-        self.assertEquals(checkperf("800m", "2;33"), "2:33")    # Correct semicolons - fail to hit the shift key
-        self.assertEquals(checkperf("800", "2.33"), "2:33")     # Correct dots for some events
-        self.assertEquals(checkperf("Mar", "2:03:59"), "2:03:59")
-        self.assertEquals(checkperf("XC", "27:50"), "27:50"),
-        self.assertEquals(checkperf("3000m", "0:11:15"), "11:15")
-        self.assertEquals(checkperf("60m", "7:62"), "7.62")
-        self.assertEquals(checkperf("5000", "0:14:53.2"), "14:53.2")    # Excel can prepend zeroes
-        self.assertEquals(checkperf("5000", "00:14:53.2"), "14:53.2")
-        self.assertEquals(checkperf("1500", "3:53:17"), "3:53.17")      # Autocorrect 800/1500/3000 submitted as H:M:S
-        self.assertEquals(checkperf("DEC", "5875"), "5875")             # Multi-events
-        self.assertEquals(checkperf("400", "52:03"), "52.03")           # Correct some common muddles
-        self.assertEquals(checkperf("PEN", "0"), "0")                   # low score is allowed
-        self.assertEquals(checkperf("3000mW", "0:24:15"), "24:15")
-        self.assertEquals(checkperf("3KW", "0:24:15"), "24:15")
+        self.assertEqual(checkperf("XC", ""), "")
+        self.assertEqual(checkperf("xc", ""), "")
+        self.assertEqual(checkperf("HJ", "2.34"), "2.34")
+        self.assertEqual(checkperf("HJ", "  2.34  "), "2.34")
+        self.assertEqual(checkperf("60m", "7.62"), "7.62")
+        self.assertEqual(checkperf("100m", "9.73456"), "9.73")
+        self.assertEqual(checkperf("100m", "12"), "12.00")
+        self.assertEqual(checkperf("400m", "63.1"), "63.10")
+        self.assertEqual(checkperf("400m", "1:03.1"), "1:03.1")
+        self.assertEqual(checkperf("800m", "2:33"), "2:33")
+        self.assertEqual(checkperf("200", "27,33"), "27.33")    # Correct French commas to decimals
+        self.assertEqual(checkperf("800m", "2;33"), "2:33") # Correct semicolons - fail to hit the shift key
+        self.assertEqual(checkperf("800", "2.33"), "2:33")      # Correct dots for some events
+        self.assertEqual(checkperf("Mar", "2:03:59"), "2:03:59")
+        self.assertEqual(checkperf("XC", "27:50"), "27:50"),
+        self.assertEqual(checkperf("3000m", "0:11:15"), "11:15")
+        self.assertEqual(checkperf("60m", "7:62"), "7.62")
+        self.assertEqual(checkperf("5000", "0:14:53.2"), "14:53.2") # Excel can prepend zeroes
+        self.assertEqual(checkperf("5000", "00:14:53.2"), "14:53.2")
+        self.assertEqual(checkperf("1500", "3:53:17"), "3:53.17")       # Autocorrect 800/1500/3000 submitted as H:M:S
+        self.assertEqual(checkperf("DEC", "5875"), "5875")              # Multi-events
+        self.assertEqual(checkperf("400", "52:03"), "52.03")            # Correct some common muddles
+        self.assertEqual(checkperf("PEN", "0"), "0")                    # low score is allowed
+        self.assertEqual(checkperf("3000mW", "0:24:15"), "24:15")
+        self.assertEqual(checkperf("3KW", "0:24:15"), "24:15")
+        self.assertEqual(checkperf("ST2.1", "15.3"), "15.30")
+        self.assertEqual(checkperf("GDT2.2", "15.4"), "15.40")
+        self.assertEqual(checkperf("BT1.1", "15.5"), "15.50")
+        self.assertEqual(checkperf("WT1.2", "15.6"), "15.60")
+        self.assertEqual(checkperf("SWT1.3", "15.7"), "15.70")
+        self.assertEqual(checkperf("OT1.4", "15.7"), "15.70")
+        self.assertEqual(checkperf("SHJ", "  2.34   "), "2.34")
+        self.assertEqual(checkperf("SLJ", "  2.34   "), "2.34")
+        self.assertEqual(checkperf("stj", "  2.34   "), "2.34")
 
     def test_checkperf_raises(self):
         from athlib.utils import check_performance_for_discipline as checkperf
@@ -175,23 +184,26 @@ class UtilsTests(TestCase):
         from athlib.utils import discipline_sort_key
         self.assertEqual(discipline_sort_key(''),(6, 0, "?"))
         self.assertEqual(discipline_sort_key('HJ'),(3, 0, "HJ"))
-        self.assertEqual(discipline_sort_key('LJ'),(3, 2, "LJ"))
-        self.assertEqual(discipline_sort_key('PV'),(3, 1, "PV"))
+        self.assertEqual(discipline_sort_key('LJ'),(3, 3, "LJ"))
+        self.assertEqual(discipline_sort_key('PV'),(3, 2, "PV"))
         self.assertEqual(discipline_sort_key('100'),(1, 100, "100"))
         self.assertEqual(discipline_sort_key('4x400'),(5, 400, "4x400"))
-        self.assertEqual(discipline_sort_key('JT'),(4, 7, "JT"))
+        self.assertEqual(discipline_sort_key('JT'),(4, 10, "JT"))
         self.assertEqual(discipline_sort_key('200H'),(2, 200, "200H"))
+        self.assertEqual(discipline_sort_key('SLJ'),(3, 4, "SLJ"))
+        self.assertEqual(discipline_sort_key('SHJ'),(3, 1, "SHJ"))
+        self.assertEqual(discipline_sort_key('GDT'),(4, 12, "GDT"))
 
     def test_text_discipline_sort_key(self):
         '''should see if event ordering will work'''
         from athlib.utils import text_discipline_sort_key
         self.assertEqual(text_discipline_sort_key(''),"6_00000_?")
         self.assertEqual(text_discipline_sort_key('HJ'),"3_00000_HJ")
-        self.assertEqual(text_discipline_sort_key('LJ'),"3_00002_LJ")
-        self.assertEqual(text_discipline_sort_key('PV'),"3_00001_PV")
+        self.assertEqual(text_discipline_sort_key('LJ'),"3_00003_LJ")
+        self.assertEqual(text_discipline_sort_key('PV'),"3_00002_PV")
         self.assertEqual(text_discipline_sort_key('100'),"1_00100_100")
         self.assertEqual(text_discipline_sort_key('4x400'),"5_00400_4x400")
-        self.assertEqual(text_discipline_sort_key('JT'),"4_00007_JT")
+        self.assertEqual(text_discipline_sort_key('JT'),"4_00010_JT")
         self.assertEqual(text_discipline_sort_key('200H'),"2_00200_200H")
 
     def test_sort_by_discipline(self):
@@ -248,14 +260,22 @@ class UtilsTests(TestCase):
                 ('BT2K',PAT_THROWS),
                 #('CHUNDER-MILE',PAT_TRACK),    #Andy check
                 ('HJ',PAT_JUMPS),
+                ('SHJ',PAT_JUMPS),
                 ('HM',PAT_ROAD),
                 ('HT',PAT_THROWS),
+                ('BT',PAT_THROWS),
+                ('OT',PAT_THROWS),
+                ('ST',PAT_THROWS),
+                ('SWT',PAT_THROWS),
+                ('GDT',PAT_THROWS),
                 ('MAR',PAT_ROAD),
                 ('MILE',PAT_ROAD),
                 ('HM',PAT_ROAD),
                 ('LJ',PAT_JUMPS),
+                ('SLJ',PAT_JUMPS),
                 ('PV',PAT_JUMPS),
                 ('TJ',PAT_JUMPS),
+                ('STJ',PAT_JUMPS),
                 ('XC',PAT_ROAD),
                 ]
         errs = []

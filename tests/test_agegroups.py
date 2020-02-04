@@ -26,7 +26,7 @@ class AgeGroupTests(TestCase):
                        vets=True, underage=False):
         ag = calc_uka_age_group(dob, match_date, category,
                                 vets=vets, underage=underage)
-        self.assertEquals(ag,
+        self.assertEqual(ag,
                           expected,
                           ("Unexpected age group, expected %s but got %s" %
                            (expected, ag)))
@@ -39,10 +39,10 @@ class AgeGroupTests(TestCase):
                           "FOO")
 
     def test_cutoff_date(self):
-        self.assertEquals(prior_date(date(2015, 1, 3), 8, 31),
+        self.assertEqual(prior_date(date(2015, 1, 3), 8, 31),
                           date(2014, 8, 31))
 
-        self.assertEquals(prior_date(date(2014, 9, 30), 8, 31),
+        self.assertEqual(prior_date(date(2014, 9, 30), 8, 31),
                           date(2014, 8, 31))
 
     def test_vets_xc(self):
@@ -50,7 +50,7 @@ class AgeGroupTests(TestCase):
                                 date(2015, 1, 3),
                                 "XC",
                                 vets=False)
-        self.assertEquals(ag, "SEN")
+        self.assertEqual(ag, "SEN")
 
     def test_no_vets_when_not_required(self):
         self.assertAgeGroup(date(1966, 3, 21), date(2015, 1, 3), "XC", "V45")
@@ -233,8 +233,8 @@ class AgeGroupTests(TestCase):
                 msg = "Given '%s', got '%s'" % (trimmed, ag)
                 messages.append(msg)
 
-        self.assertEquals(failures, 0, "\n".join(messages))
-        # self.assertEquals(ag,
+        self.assertEqual(failures, 0, "\n".join(messages))
+        # self.assertEqual(ag,
         #                   expected,
         #                   ("Unexpected age group.  Test case is '%s', got " +
         #                    "'%s'") % (trimmed, ag))

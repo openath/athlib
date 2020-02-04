@@ -64,9 +64,9 @@ class HighJumpTests(TestCase):
         """Tests basic creation of athletes with names and bibs"""
 
         c = HighJumpCompetition.from_matrix(ESAA_2015_HJ, to_nth_height=0)
-        self.assertEquals("Dwyer", c.jumpers[-1].last_name)
+        self.assertEqual("Dwyer", c.jumpers[-1].last_name)
 
-        self.assertEquals("Maslen", c.jumpers_by_bib['85'].last_name)
+        self.assertEqual("Maslen", c.jumpers_by_bib['85'].last_name)
 
     def test_progression(self):
         c = HighJumpCompetition.from_matrix(ESAA_2015_HJ, to_nth_height=0)
@@ -77,16 +77,16 @@ class HighJumpTests(TestCase):
         c.cleared('85')
 
         j = c.jumpers_by_bib['85']
-        self.assertEquals(j.attempts_by_height, ['o'])
-        self.assertEquals(j.highest_cleared, h1)
+        self.assertEqual(j.attempts_by_height, ['o'])
+        self.assertEqual(j.highest_cleared, h1)
 
         c.failed('77')
         c.failed('77')
         c.failed('77')
 
         jake_field = c.jumpers_by_bib['77']
-        self.assertEquals(jake_field.highest_cleared, Decimal("0.00"))
-        self.assertEquals(jake_field.attempts_by_height, ['xxx'])
+        self.assertEqual(jake_field.highest_cleared, Decimal("0.00"))
+        self.assertEqual(jake_field.attempts_by_height, ['xxx'])
         self.assertTrue(jake_field.eliminated)
 
         harry_maslen = c.jumpers_by_bib['85']
@@ -94,8 +94,8 @@ class HighJumpTests(TestCase):
         # attempt at fourth jump should fail
         self.assertRaises(RuleViolation, c.failed, '77')
 
-        self.assertEquals(jake_field.place, 4)
-        self.assertEquals(harry_maslen.place, 1)
+        self.assertEqual(jake_field.place, 4)
+        self.assertEqual(harry_maslen.place, 1)
 
     def test_replay_to_jumpoff(self):
         "Run through to where the jumpoff began - ninth bar position"
@@ -107,18 +107,18 @@ class HighJumpTests(TestCase):
         grimsey = c.jumpers_by_bib['53']
         dwyer = c.jumpers_by_bib['81']
 
-        self.assertEquals(field.place, 4)
-        self.assertEquals(maslen.place, 3)
-        self.assertEquals(grimsey.place, 1)
-        self.assertEquals(dwyer.place, 1)
+        self.assertEqual(field.place, 4)
+        self.assertEqual(maslen.place, 3)
+        self.assertEqual(grimsey.place, 1)
+        self.assertEqual(dwyer.place, 1)
 
         # print "after 2:12 round"
         # print grimsey.failures_at_height
         # print grimsey.consecutive_failures
         # print grimsey.attempts_by_height
         # if not for jump-off rules, it would be game over
-        self.assertEquals(len(c.remaining), 2)
-        self.assertEquals(c.state, 'jumpoff')
+        self.assertEqual(len(c.remaining), 2)
+        self.assertEqual(c.state, 'jumpoff')
 
     def test_replay_through_jumpoff(self):
         "Run through a jumpoff to a draw"
@@ -131,14 +131,14 @@ class HighJumpTests(TestCase):
         grimsey = c.jumpers_by_bib['53']
         dwyer = c.jumpers_by_bib['81']
 
-        self.assertEquals(field.place, 4)
-        self.assertEquals(maslen.place, 3)
+        self.assertEqual(field.place, 4)
+        self.assertEqual(maslen.place, 3)
 
-        self.assertEquals(grimsey.place, 1)
-        self.assertEquals(dwyer.place, 1)
+        self.assertEqual(grimsey.place, 1)
+        self.assertEqual(dwyer.place, 1)
 
-        self.assertEquals(len(c.remaining), 2)
-        self.assertEquals(c.state, 'jumpoff')
+        self.assertEqual(len(c.remaining), 2)
+        self.assertEqual(c.state, 'jumpoff')
 
     def test_replay_jumpoff_and_finish(self):
         "Run through a jumpoff to the final winner"
@@ -152,15 +152,15 @@ class HighJumpTests(TestCase):
         norman = c.jumpers_by_bib['53']
         england = c.jumpers_by_bib['81']
 
-        self.assertEquals(saxon.place, 4)
-        self.assertEquals(briton.place, 3)
+        self.assertEqual(saxon.place, 4)
+        self.assertEqual(briton.place, 3)
 
-        self.assertEquals(norman.place, 2)
-        self.assertEquals(england.place, 1)
+        self.assertEqual(norman.place, 2)
+        self.assertEqual(england.place, 1)
 
-        self.assertEquals(len(c.remaining), 1)
-        self.assertEquals(c.state, 'finished')
-        self.assertEquals(england.highest_cleared, Decimal("2.11"))
+        self.assertEqual(len(c.remaining), 1)
+        self.assertEqual(c.state, 'finished')
+        self.assertEqual(england.highest_cleared, Decimal("2.11"))
 
         self.assertRaises(RuleViolation,c.set_bar_height, Decimal("2.12"))
 
@@ -179,14 +179,14 @@ class HighJumpTests(TestCase):
         # see who is winning
         A = c.jumpers_by_bib['A']
         B = c.jumpers_by_bib['B']
-        self.assertEquals(A.place, 1)
-        self.assertEquals(B.place, 2)
-        self.assertEquals(len(c.remaining), 0)
-        self.assertEquals(c.state, 'finished')
-        self.assertEquals(A.highest_cleared, Decimal("2.12"))
-        self.assertEquals(B.highest_cleared, Decimal("2.12"))
-        self.assertEquals(A.ranking_key,(0, Decimal('-2.12'), 1, 2))
-        self.assertEquals(B.ranking_key,(0, Decimal('-2.12'), 2, 2))
+        self.assertEqual(A.place, 1)
+        self.assertEqual(B.place, 2)
+        self.assertEqual(len(c.remaining), 0)
+        self.assertEqual(c.state, 'finished')
+        self.assertEqual(A.highest_cleared, Decimal("2.12"))
+        self.assertEqual(B.highest_cleared, Decimal("2.12"))
+        self.assertEqual(A.ranking_key,(0, Decimal('-2.12'), 1, 2))
+        self.assertEqual(B.ranking_key,(0, Decimal('-2.12'), 2, 2))
 
     def test_countback_total_failure_rank(self):
         "test_countback_total_failure_rank"
@@ -202,14 +202,14 @@ class HighJumpTests(TestCase):
         # see who is winning
         A = c.jumpers_by_bib['A']
         B = c.jumpers_by_bib['B']
-        self.assertEquals(A.place, 1)
-        self.assertEquals(B.place, 2)
-        self.assertEquals(len(c.remaining), 1)
-        self.assertEquals(c.state, 'won')
-        self.assertEquals(A.highest_cleared, Decimal("2.08"))
-        self.assertEquals(B.highest_cleared, Decimal("0.00"))
-        self.assertEquals(A.ranking_key,(0, Decimal('-2.08'), 0, 0))
-        self.assertEquals(B.ranking_key,(2, Decimal('0.00'), 0, 0))
+        self.assertEqual(A.place, 1)
+        self.assertEqual(B.place, 2)
+        self.assertEqual(len(c.remaining), 1)
+        self.assertEqual(c.state, 'won')
+        self.assertEqual(A.highest_cleared, Decimal("2.08"))
+        self.assertEqual(B.highest_cleared, Decimal("0.00"))
+        self.assertEqual(A.ranking_key,(0, Decimal('-2.08'), 0, 0))
+        self.assertEqual(B.ranking_key,(2, Decimal('0.00'), 0, 0))
 
     def test_countback_to_total_failures(self):
         "test_countback_to_total_failures"
@@ -226,14 +226,14 @@ class HighJumpTests(TestCase):
         # see who is winning
         A = c.jumpers_by_bib['A']
         B = c.jumpers_by_bib['B']
-        self.assertEquals(A.place, 1)
-        self.assertEquals(B.place, 2)
-        self.assertEquals(len(c.remaining), 0)
-        self.assertEquals(c.state, 'finished')
-        self.assertEquals(A.highest_cleared, Decimal("2.12"))
-        self.assertEquals(B.highest_cleared, Decimal("2.12"))
-        self.assertEquals(A.ranking_key,(0, Decimal('-2.12'), 1, 2))
-        self.assertEquals(B.ranking_key,(0, Decimal('-2.12'), 1, 3))
+        self.assertEqual(A.place, 1)
+        self.assertEqual(B.place, 2)
+        self.assertEqual(len(c.remaining), 0)
+        self.assertEqual(c.state, 'finished')
+        self.assertEqual(A.highest_cleared, Decimal("2.12"))
+        self.assertEqual(B.highest_cleared, Decimal("2.12"))
+        self.assertEqual(A.ranking_key,(0, Decimal('-2.12'), 1, 2))
+        self.assertEqual(B.ranking_key,(0, Decimal('-2.12'), 1, 3))
 
     def test_won_ending(self):
         "check the status changes at a won ending which finishes"
@@ -243,8 +243,8 @@ class HighJumpTests(TestCase):
             ["1", 2, '81', "Harald", "England", "Warks", "SB"],
             ]
         c = HighJumpCompetition.from_matrix(mx)
-        self.assertEquals(c.state,'scheduled')
-        self.assertEquals(len(c.remaining),2)
+        self.assertEqual(c.state,'scheduled')
+        self.assertEqual(len(c.remaining),2)
         for height,perfs,xstate,lenremj in (
                                             (2.11,("o","o"),'started',2),
                                             (2.12,("o","o"),'started',2),
@@ -258,8 +258,8 @@ class HighJumpTests(TestCase):
                 for j,p in enumerate(perfs):
                     if len(p)<i+1: continue
                     c.bib_trial(mx[1+j][2],p[i])
-            self.assertEquals(c.state,xstate,"height=%s expected state %s not %s" % (height,xstate,c.state))
-            self.assertEquals(len(c.remaining),lenremj,"height=%s expected lenremj %s not %s" % (height,lenremj,len(c.remaining)))
+            self.assertEqual(c.state,xstate,"height=%s expected state %s not %s" % (height,xstate,c.state))
+            self.assertEqual(len(c.remaining),lenremj,"height=%s expected lenremj %s not %s" % (height,lenremj,len(c.remaining)))
 
     def test_score_olympic_final(self):
         "Do we get the same results as the Olympics?"
@@ -274,7 +274,7 @@ class HighJumpTests(TestCase):
             jumper = c.jumpers_by_bib[str(bib)]
             actual_place = jumper.place
             
-            self.assertEquals(actual_place, expected_place)
+            self.assertEqual(actual_place, expected_place)
 
     def test_dismissed(self):
         c = HighJumpCompetition()
@@ -287,21 +287,21 @@ class HighJumpTests(TestCase):
         c.set_bar_height(Decimal('2.00'))
         A=c.jumpers_by_bib['A']
         B=c.jumpers_by_bib['B']
-        self.assertEquals(A.dismissed,False)
-        self.assertEquals(B.dismissed,False)
+        self.assertEqual(A.dismissed,False)
+        self.assertEqual(B.dismissed,False)
         c.cleared('A')
         c.passed('B')
-        self.assertEquals(A.dismissed,True)
-        self.assertEquals(B.dismissed,True)
+        self.assertEqual(A.dismissed,True)
+        self.assertEqual(B.dismissed,True)
         c.set_bar_height(Decimal('2.02'))
-        self.assertEquals(A.dismissed,False)
-        self.assertEquals(B.dismissed,False)
+        self.assertEqual(A.dismissed,False)
+        self.assertEqual(B.dismissed,False)
         c.cleared('A')
         c.failed('B')
-        self.assertEquals(A.dismissed,True)
-        self.assertEquals(B.dismissed,False)
+        self.assertEqual(A.dismissed,True)
+        self.assertEqual(B.dismissed,False)
         c.passed('B')
-        self.assertEquals(B.dismissed,True)
+        self.assertEqual(B.dismissed,True)
 
     def test_trials(self):
         c = HighJumpCompetition()
@@ -311,9 +311,9 @@ class HighJumpTests(TestCase):
         h2 = Decimal('1.15')
         h3 = Decimal('1.14')
         c.set_bar_height(h1)
-        self.assertEquals(c.state,'started','state should be started')
-        self.assertEquals(c.is_finished,False,'not finished')
-        self.assertEquals(c.is_running,True,'is running')
+        self.assertEqual(c.state,'started','state should be started')
+        self.assertEqual(c.is_finished,False,'not finished')
+        self.assertEqual(c.is_running,True,'is running')
         c.cleared('A')
         c.cleared('B')
         c.set_bar_height(h2)
@@ -323,29 +323,29 @@ class HighJumpTests(TestCase):
         c.failed('B')
         c.failed('A')
         c.failed('B')
-        self.assertEquals(c.state,'jumpoff','jumpoff state should be reached')
-        self.assertEquals(c.is_finished, False,"jumpoff competition is not finished")
-        self.assertEquals(c.is_running, True,"jumpoff competition is running")
+        self.assertEqual(c.state,'jumpoff','jumpoff state should be reached')
+        self.assertEqual(c.is_finished, False,"jumpoff competition is not finished")
+        self.assertEqual(c.is_running, True,"jumpoff competition is running")
         c.set_bar_height(h3)
-        self.assertEquals(c.trials,[('A',h1,'o'),('B',h1,'o'),('A',h2,'x'),('B',h2,'x'),('A',h2,'x'),('B',h2,'x'),('A',h2,'x'),('B',h2,'x')],'trials in jumpoff state')
+        self.assertEqual(c.trials,[('A',h1,'o'),('B',h1,'o'),('A',h2,'x'),('B',h2,'x'),('A',h2,'x'),('B',h2,'x'),('A',h2,'x'),('B',h2,'x')],'trials in jumpoff state')
         c.failed('A')
-        self.assertEquals(c.state,'jumpoff','still in jumpoff after A fails at 1.14')
-        self.assertEquals(c.trials,[('A',h1,'o'),('B',h1,'o'),('A',h2,'x'),('B',h2,'x'),('A',h2,'x'),('B',h2,'x'),('A',h2,'x'),('B',h2,'x'),('A',h3,'x')], 'trials after A fails at 1.14')
+        self.assertEqual(c.state,'jumpoff','still in jumpoff after A fails at 1.14')
+        self.assertEqual(c.trials,[('A',h1,'o'),('B',h1,'o'),('A',h2,'x'),('B',h2,'x'),('A',h2,'x'),('B',h2,'x'),('A',h2,'x'),('B',h2,'x'),('A',h3,'x')], 'trials after A fails at 1.14')
         c.cleared('B')
-        self.assertEquals(c.state,'finished','state finished after B clears at 1.14')
+        self.assertEqual(c.state,'finished','state finished after B clears at 1.14')
         fal = [('A',h1,'o'),('B',h1,'o'),('A',h2,'x'),('B',h2,'x'),('A',h2,'x'),('B',h2,'x'),('A',h2,'x'),('B',h2,'x'),('A',h3,'x'),('B',h3,'o')]
         fadl = [dict(bib=a[0],height=a[1],result=a[2]) for a in fal]
-        self.assertEquals(c.trials, fal, 'final trials')
-        self.assertEquals(c.trial_objs, fadl, 'final trial_objs')
-        self.assertEquals(c.from_actions().trials, fal, 'd.from_actions().trials should match c.trials')
-        self.assertEquals(c.from_actions().trial_objs, fadl, 'd.from_actions().trial_objs should match c.trial_objs')
+        self.assertEqual(c.trials, fal, 'final trials')
+        self.assertEqual(c.trial_objs, fadl, 'final trial_objs')
+        self.assertEqual(c.from_actions().trials, fal, 'd.from_actions().trials should match c.trials')
+        self.assertEqual(c.from_actions().trial_objs, fadl, 'd.from_actions().trial_objs should match c.trial_objs')
 
     def test_action_letter(self):
         c = HighJumpCompetition()
-        self.assertEquals(c.action_letter['cleared'],'o',"action_letter['cleared']=='o'")
-        self.assertEquals(c.action_letter['failed'],'x',"action_letter['failed']=='x'")
-        self.assertEquals(c.action_letter['passed'],'-',"action_letter['passed']=='-'")
-        self.assertEquals(c.action_letter['retired'],'r',"action_letter['passed']=='r'")
+        self.assertEqual(c.action_letter['cleared'],'o',"action_letter['cleared']=='o'")
+        self.assertEqual(c.action_letter['failed'],'x',"action_letter['failed']=='x'")
+        self.assertEqual(c.action_letter['passed'],'-',"action_letter['passed']=='-'")
+        self.assertEqual(c.action_letter['retired'],'r',"action_letter['passed']=='r'")
 
     actions_a = [["add_jumper",dict(bib='A')], ["add_jumper",dict(bib='B')], ["set_bar_height",1.1], ["cleared","A"], ["cleared","B"],
         ["set_bar_height",1.2], ["failed","A"], ["failed","B"], ["failed","A"], ["failed","B"], ["failed","A"], ["failed","B"],
@@ -359,12 +359,12 @@ class HighJumpTests(TestCase):
 
     def test_retire_after_jumpoff(self):
         c = HighJumpCompetition().from_actions(self.actions_a)
-        self.assertEquals(c.state,'drawn','both retiring after jumpoffs should draw')
+        self.assertEqual(c.state,'drawn','both retiring after jumpoffs should draw')
         c = HighJumpCompetition().from_matrix(self.matrix_a)
-        self.assertEquals(c.state,'drawn','both retiring after jumpoffs should draw')
-        self.assertEquals(c.to_matrix(),self.matrix_a,'matrix round trip should match')
-        self.assertEquals(c.is_finished, True,"competition is finished")
-        self.assertEquals(c.is_running, False,"competition is not running")
+        self.assertEqual(c.state,'drawn','both retiring after jumpoffs should draw')
+        self.assertEqual(c.to_matrix(),self.matrix_a,'matrix round trip should match')
+        self.assertEqual(c.is_finished, True,"competition is finished")
+        self.assertEqual(c.is_running, False,"competition is not running")
 
     def test_rieto_pv(self):
         c = HighJumpCompetition.from_matrix(
@@ -393,8 +393,8 @@ GJ001614   xo  xxx
 ED000485   x-   xx
 JA103141  xxx'''.split('\n')]
                 , verbose=False)
-        self.assertEquals(c.state,'finished','One winning jumper failed at his chosen height')
-        self.assertEquals(c.jumpers_by_bib['EF007915'].place,1,'EF007915 came first')
+        self.assertEqual(c.state,'finished','One winning jumper failed at his chosen height')
+        self.assertEqual(c.jumpers_by_bib['EF007915'].place,1,'EF007915 came first')
 
 
 if __name__ == '__main__':

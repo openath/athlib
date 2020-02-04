@@ -418,7 +418,9 @@ def discipline_sort_key(discipline):
 
     m = PAT_THROWS.search(discipline)
     if m:
-        order = FIELD_SORT_ORDER.index(discipline[0:2])
+        du = discipline.upper()
+        order = FIELD_SORT_ORDER.index(du[:3]) if du[:3] in FIELD_SORT_ORDER \
+                else FIELD_SORT_ORDER.index(du[:2])
         return 4, order, discipline
 
     m = PAT_HURDLES.search(discipline)
@@ -428,7 +430,9 @@ def discipline_sort_key(discipline):
 
     m = PAT_JUMPS.search(discipline)
     if m:
-        order = FIELD_SORT_ORDER.index(discipline[0:2])
+        du = discipline.upper()
+        order = FIELD_SORT_ORDER.index(du[:3]) if du[:3] in FIELD_SORT_ORDER \
+                else FIELD_SORT_ORDER.index(du[:2])
         return 3, order, discipline
 
     m = PAT_RELAYS.search(discipline)
