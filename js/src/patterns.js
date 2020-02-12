@@ -104,15 +104,15 @@ var THROWS = [
   'GDT',
   'OT'
 ];
-var PAT_EVENT_CODE = /^(?:[bB][iI]|[tT][rR][iI]|[qQ][uU][aA][dD]|[pP][eE][nN]|[hH][eE][xX]|[hH][eE][pP]|[oO][cC][tT]|[eE][nN][nN]|[dD][eE][cC]|[hH][eE][nN]|[dD][oO][dD]|[iI][cC][oO]|[pP][eE][nN][iI]|[pP][eE][nN][wW][tT])$|^(?:(?:(\d+)(?:[lLsS]?[hH](?:3[36])?|[yY]|[sS][cC]|[wW])?)|[sS][cC]|[2345][mM][tT]|[lL][hH]|[sS][hH])$|^(?:(?:[mM][iI][lL][eE]|[mM][aA][rR]|[hH][mM])[wW]?|[xX][cC]|(?:\d{1,3}(\.\d\d?)?(?:[MKk]|[MKk][wW]|[wW])))$|^(?:(?:[wW][tT](\d?\d\.?\d*[Kk]|)|[jJ][tT]([45678]00|)|[sS][wW][tT]|[gG][dD][tT]|[bB][tT](?:((?:\d|\d\.\d)[kK]))?|[oO][tT]|[dD][tT](\d\.?\d*[Kk]|)|[hH][tT](\d\.?\d*[Kk]|))|[sS][pP](\d\.?\d*[Kk]|))$|^(?:HJ|PV)$|^(?:LJ|TJ)$|^(?:(\d{1,2})[xX](\d{2,5}[hH]?|[rR][eE][lL][aA][yY]))$|^(?:(\d{2,4})([hH]|[sS][cC]))$|^(?:\d\d?([hH](?:[rR]|[wW])))$/;
-var PAT_FIELD = /^(?:(?:[wW][tT](\d?\d\.?\d*[Kk]|)|[jJ][tT]([45678]00|)|[sS][wW][tT]|[gG][dD][tT]|[bB][tT](?:((?:\d|\d\.\d)[kK]))?|[oO][tT]|[dD][tT](\d\.?\d*[Kk]|)|[hH][tT](\d\.?\d*[Kk]|))|[sS][pP](\d\.?\d*[Kk]|))$|^(?:HJ|PV)$|^(?:LJ|TJ)$/;
+var PAT_EVENT_CODE = /^(?:[bB][iI]|[tT][rR][iI]|[qQ][uU][aA][dD]|[pP][eE][nN]|[hH][eE][xX]|[hH][eE][pP]|[oO][cC][tT]|[eE][nN][nN]|[dD][eE][cC]|[hH][eE][nN]|[dD][oO][dD]|[iI][cC][oO]|[pP][eE][nN][iI]|[pP][eE][nN][wW][tT]|(?:(\d+)(?:[lLsS]?[hH]((3[36])|(\d\.?\d*cm)\s*(\d\.?\d*m)(\d\.?\d*))?|[yY]|[sS][cC]|[wW])?)|[sS][cC]|[2345][mM][tT]|[lL][hH]|[sS][hH]|(?:[mM][iI][lL][eE]|[mM][aA][rR]|[hH][mM])[wW]?|[xX][cC]|(?:\d{1,3}(\.\d\d?)?(?:[MKk]|[MKk][wW]|[wW]))|[dD][tT](\d\.?\d*[Kk]|)|[jJ][tT]([45678]00|)|[hH][tT](\d\.?\d*[Kk]|)|[sS][pP](\d\.?\d*[Kk]|)|[wW][tT](\d?\d\.?\d*[Kk]|)|[sS][sW][tT](\d\.?\d*[Kk]|)|[bB][tT](\d\.?\d*[Kk]|)|[sS][tT](\d\.?\d*[Kk]|)|[gG][dD][tT](\d\.?\d*[Kk]|)|[oO][tT](\d\.?\d*[Kk]|)||[sS]?[hH][jJ]|[pP][vV]|[sS]?[lL][jJ]|[sS]?[tT][jJ]|(\d{1,2})[xX](\d{2,5}[hH]?|[rR][eE][lL][aA][yY])|(\d{2,4})([hH]|[sS][cC])|\d\d?([hH](?:[rR]|[wW])))$/;
+var PAT_FIELD = /^(?:[dD][tT](\d\.?\d*[Kk]|)|[jJ][tT]([45678]00|)|[hH][tT](\d\.?\d*[Kk]|)|[sS][pP](\d\.?\d*[Kk]|)|[wW][tT](\d?\d\.?\d*[Kk]|)|[sS][sW][tT](\d\.?\d*[Kk]|)|[bB][tT](\d\.?\d*[Kk]|)|[sS][tT](\d\.?\d*[Kk]|)|[gG][dD][tT](\d\.?\d*[Kk]|)|[oO][tT](\d\.?\d*[Kk]|)|)$|^(?:[sS]?[hH][jJ]|[pP][vV]|[sS]?[lL][jJ]|[sS]?[tT][jJ])$/;
 var PAT_FINISH_RECORD = /^(\d{1,2}:)?(\d{1,2}:)?(\d{1,2})(\.?\d+)?$|^(DNF|DQ|DNS)$/;
 var PAT_HORIZONTAL_JUMPS = /^(?:[sS]?[lL][jJ]|[sS]?[tT][jJ])$/;
 var PAT_HURDLES = /^(?:(\d{2,4})([hH]|[sS][cC]))$/;
 var PAT_JUMPS = /^(?:[sS]?[hH][jJ]|[pP][vV]|[sS]?[lL][jJ]|[sS]?[tT][jJ])$/;
 var PAT_LEADING_DIGITS = /^\d+/;
 var PAT_LEADING_FLOAT = /^\d+\.\d*/;
-var PAT_LENGTH_EVENT = /^(?:LJ|TJ)$|^(?:(?:[wW][tT](\d?\d\.?\d*[Kk]|)|[jJ][tT]([45678]00|)|[sS][wW][tT]|[gG][dD][tT]|[bB][tT](?:((?:\d|\d\.\d)[kK]))?|[oO][tT]|[dD][tT](\d\.?\d*[Kk]|)|[hH][tT](\d\.?\d*[Kk]|))|[sS][pP](\d\.?\d*[Kk]|))$/;
+var PAT_LENGTH_EVENT = /^(?:[sS]?[lL][jJ]|[sS]?[tT][jJ]|[dD][tT](\d\.?\d*[Kk]|)|[jJ][tT]([45678]00|)|[hH][tT](\d\.?\d*[Kk]|)|[sS][pP](\d\.?\d*[Kk]|)|[wW][tT](\d?\d\.?\d*[Kk]|)|[sS][sW][tT](\d\.?\d*[Kk]|)|[bB][tT](\d\.?\d*[Kk]|)|[sS][tT](\d\.?\d*[Kk]|)|[gG][dD][tT](\d\.?\d*[Kk]|)|[oO][tT](\d\.?\d*[Kk]|)|)$/;
 var PAT_LONG_SECONDS = /^\d{3,6}(\.?\d+)?$/;
 var PAT_MULTI = /^(?:[bB][iI]|[tT][rR][iI]|[qQ][uU][aA][dD]|[pP][eE][nN]|[hH][eE][xX]|[hH][eE][pP]|[oO][cC][tT]|[eE][nN][nN]|[dD][eE][cC]|[hH][eE][nN]|[dD][oO][dD]|[iI][cC][oO]|[pP][eE][nN][iI]|[pP][eE][nN][wW][tT])$/;
 var PAT_NOT_FINISHED = /^(DNF|DQ|DNS)$/;
@@ -120,10 +120,10 @@ var PAT_PERF = /^(\d{1,2}:)?(\d{1,2}:)?(\d{1,2})(\.?\d+)?$/;
 var PAT_RACES_FOR_DISTANCE = /^(?:\d\d?([hH](?:[rR]|[wW])))$/;
 var PAT_RELAYS = /^(?:(\d{1,2})[xX](\d{2,5}[hH]?|[rR][eE][lL][aA][yY]))$/;
 var PAT_ROAD = /^(?:(?:[mM][iI][lL][eE]|[mM][aA][rR]|[hH][mM])[wW]?|[xX][cC]|(?:\d{1,3}(\.\d\d?)?(?:[MKk]|[MKk][wW]|[wW])))$/;
-var PAT_RUN = /^(?:(?:(\d+)(?:[lLsS]?[hH](?:3[36])?|[yY]|[sS][cC]|[wW])?)|[sS][cC]|[2345][mM][tT]|[lL][hH]|[sS][hH])$|^(?:(?:[mM][iI][lL][eE]|[mM][aA][rR]|[hH][mM])[wW]?|[xX][cC]|(?:\d{1,3}(\.\d\d?)?(?:[MKk]|[MKk][wW]|[wW])))$/;
-var PAT_THROWS = /^(?:[dD][tT](\d?\.?\d*[Kk]|)|[jJ][tT]([45678]00|)|[hH][tT](\d?\.?\d*[Kk]|)|[sS][pP](\d?\.?\d*[Kk]|)|[wW][tT](\d?\.?\d*[Kk]|)|[sS][sW][tT](\d?\.?\d*[Kk]|)|[bB][tT](\d?\.?\d*[Kk]|)|[sS][tT](\d?\.?\d*[Kk]|)|[gG][dD][tT](\d?\.?\d*[Kk]|)|[oO][tT](\d?\.?\d*[Kk]|)|)$/;
-var PAT_TIMED_EVENT = /^(?:(?:(\d+)(?:[lLsS]?[hH](?:3[36])?|[yY]|[sS][cC]|[wW])?)|[sS][cC]|[2345][mM][tT]|[lL][hH]|[sS][hH])$|^(?:(\d{2,4})([hH]|[sS][cC]))$|^(?:(?:[mM][iI][lL][eE]|[mM][aA][rR]|[hH][mM])[wW]?|[xX][cC]|(?:\d{1,3}(\.\d\d?)?(?:[MKk]|[MKk][wW]|[wW])))$|^(?:(\d{1,2})[xX](\d{2,5}[hH]?|[rR][eE][lL][aA][yY]))$/;
-var PAT_TRACK = /^(?:(?:(\d+)(?:[lLsS]?[hH](?:3[36])?|[yY]|[sS][cC]|[wW])?)|[sS][cC]|[2345][mM][tT]|[lL][hH]|[sS][hH])$/;
+var PAT_RUN = /^(?:(?:(\d+)(?:[lLsS]?[hH]((3[36])|(\d\.?\d*cm)\s*(\d\.?\d*m)(\d\.?\d*))?|[yY]|[sS][cC]|[wW])?)|[sS][cC]|[2345][mM][tT]|[lL][hH]|[sS][hH])$|^(?:(?:[mM][iI][lL][eE]|[mM][aA][rR]|[hH][mM])[wW]?|[xX][cC]|(?:\d{1,3}(\.\d\d?)?(?:[MKk]|[MKk][wW]|[wW])))$/;
+var PAT_THROWS = /^(?:[dD][tT](\d\.?\d*[Kk]|)|[jJ][tT]([45678]00|)|[hH][tT](\d\.?\d*[Kk]|)|[sS][pP](\d\.?\d*[Kk]|)|[wW][tT](\d?\d\.?\d*[Kk]|)|[sS][sW][tT](\d\.?\d*[Kk]|)|[bB][tT](\d\.?\d*[Kk]|)|[sS][tT](\d\.?\d*[Kk]|)|[gG][dD][tT](\d\.?\d*[Kk]|)|[oO][tT](\d\.?\d*[Kk]|)|)$/;
+var PAT_TIMED_EVENT = /^(?:(?:(\d+)(?:[lLsS]?[hH]((3[36])|(\d\.?\d*cm)\s*(\d\.?\d*m)(\d\.?\d*))?|[yY]|[sS][cC]|[wW])?)|[sS][cC]|[2345][mM][tT]|[lL][hH]|[sS][hH]|(\d{2,4})([hH]|[sS][cC])|(?:[mM][iI][lL][eE]|[mM][aA][rR]|[hH][mM])[wW]?|[xX][cC]|(?:\d{1,3}(\.\d\d?)?(?:[MKk]|[MKk][wW]|[wW]))|(\d{1,2})[xX](\d{2,5}[hH]?|[rR][eE][lL][aA][yY]))$/;
+var PAT_TRACK = /^(?:(?:(\d+)(?:[lLsS]?[hH]((3[36])|(\d\.?\d*cm)\s*(\d\.?\d*m)(\d\.?\d*))?|[yY]|[sS][cC]|[wW])?)|[sS][cC]|[2345][mM][tT]|[lL][hH]|[sS][hH])$/;
 var PAT_VERTICAL_JUMPS = /^(?:[sS]?[hH][jJ]|[pP][vV])$/;
 var FIELD_EVENT_RECORDS_BY_GENDER = {
   all: {
@@ -161,6 +161,27 @@ var FIELD_EVENT_RECORDS_BY_GENDER = {
   }
 };
 
+var __codesmap = {
+  PAT_EVENT_CODE: {meters: 1, hsfx: 2, hhi: 3, hhh: 4, hsd: 5, hid: 6, dtnum: 8, jtnum: 9, htnum: 10, spnum: 11,
+    wtnum: 12, swtnum: 13, btnum: 14, stnum: 15, gdtnum: 16, otnum: 17},
+  PAT_FIELD: {dtnum: 1, jtnum: 2, htnum: 3, spnum: 4, wtnum: 5, swtnum: 6, btnum: 7, stnum: 8, gdtnum: 9, otnum: 10},
+  PAT_LENGTH_EVENT: {dtnum: 1, jtnum: 2, htnum: 3, spnum: 4, wtnum: 5, swtnum: 6, btnum: 7, stnum: 8, gdtnum: 9,
+    otnum: 10},
+  PAT_RUN: {meters: 1, hsfx: 2, hhi: 3, hhh: 4, hsd: 5, hid: 6},
+  PAT_THROWS: {dtnum: 1, jtnum: 2, htnum: 3, spnum: 4, wtnum: 5, swtnum: 6, btnum: 7, stnum: 8, gdtnum: 9, otnum: 10},
+  PAT_TIMED_EVENT: {meters: 1, hsfx: 2, hhi: 3, hhh: 4, hsd: 5, hid: 6},
+  PAT_TRACK: {meters: 1, hsfx: 2, hhi: 3, hhh: 4, hsd: 5, hid: 6}
+};
+
+function codesmap(pattern, groupname, match) {
+  var gx = __codesmap[pattern];
+
+  if (!gx) return null;
+  gx = gx[groupname];
+  if (gx == null) return null;
+  return match.group(gx);
+}
+
 module.exports = {
   FIELD_EVENTS,
   FIELD_SORT_ORDER,
@@ -190,5 +211,6 @@ module.exports = {
   PAT_TIMED_EVENT,
   PAT_TRACK,
   PAT_VERTICAL_JUMPS,
-  FIELD_EVENT_RECORDS_BY_GENDER
+  FIELD_EVENT_RECORDS_BY_GENDER,
+  codesmap
 };

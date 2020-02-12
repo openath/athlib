@@ -52,6 +52,15 @@ FIELD_SORT_ORDER = [
         "ST", "GDT", "BT", "WT", "SWT", "OT",
         ]
 
+def _orjoin(pats):
+    r = '|'.join(pats);
+    if r.startswith('^(?:') and r.endswith(')$'):
+        bp = [_ for _ in pats if not (_.startswith('^(?:') and _.endswith(')$'))]
+        if bp:
+            raise ValueError('bad _orjoin patterns=%s' % bp)
+        r = r.replace(')$|^(?:','|')
+    return r
+
 # Patterns allow both for generic (JT = Javelin Throw) and
 # weight-specific (JT800) patterns.
 _ = r"\d\.?\d*[Kk]"
@@ -73,8 +82,14 @@ PAT_THROWS = re.compile(
                         )
 PAT_VERTICAL_JUMPS = re.compile(r"^(?:[sS]?[hH][jJ]|[pP][vV])$")
 PAT_HORIZONTAL_JUMPS = re.compile(r"^(?:[sS]?[lL][jJ]|[sS]?[tT][jJ])$")
-PAT_JUMPS = re.compile("|".join(_.pattern for _ in (PAT_VERTICAL_JUMPS,PAT_HORIZONTAL_JUMPS)))
-PAT_TRACK = re.compile(r"^(?:(?:(?P<meters>\d+)(?:[lLsS]?[hH](?:3[36])?|[yY]|[sS][cC]|[wW])?)|[sS][cC]|"
+PAT_JUMPS = re.compile(_orjoin(_.pattern for _ in (PAT_VERTICAL_JUMPS,PAT_HORIZONTAL_JUMPS)))
+
+#hsfx = hurdle suffix optional
+#hhi = hurdle height in inches deprecated
+#hhh = hurdle height cm
+#hsd = hurdle separation m
+#hid = hurdle initial distance m
+PAT_TRACK = re.compile(r"^(?:(?:(?P<meters>\d+)(?:[lLsS]?[hH](?P<hsfx>(?P<hhi>3[36])|(?P<hhh>\d\.?\d*cm)\s*(?P<hsd>\d\.?\d*m)(?P<hid>\d\.?\d*))?|[yY]|[sS][cC]|[wW])?)|[sS][cC]|"
                         r"[2345][mM][tT]|[lL][hH]|[sS][hH])$",
                        )
 PAT_ROAD = re.compile(r"^(?:(?:[mM][iI][lL][eE]|[mM][aA][rR]|[hH][mM])[wW]?|[xX][cC]|(?:\d{1,3}(\.\d\d?)?(?:[MKk]|[MKk][wW]|[wW])))$")
@@ -89,14 +104,15 @@ PAT_RELAYS = re.compile(r"^(?:(\d{1,2})[xX](\d{2,5}[hH]?|[rR][eE][lL][aA][yY]))$
 PAT_HURDLES = re.compile(r"^(?:(\d{2,4})([hH]|[sS][cC]))$") # 80H, 110H, 400H
 PAT_MULTI = '|'.join((''.join(('[%s%s]' % (v.lower(),v.upper()) for v in _)) for _ in MULTI_EVENTS))
 PAT_MULTI = re.compile(r"^(?:%s)$" % PAT_MULTI)
-PAT_EVENT_CODE=re.compile('|'.join(_.pattern for _ in (PAT_MULTI,PAT_RUN,
+
+PAT_EVENT_CODE=re.compile(_orjoin(_.pattern for _ in (PAT_MULTI,PAT_RUN,
                 PAT_FIELD,PAT_RELAYS,PAT_HURDLES,PAT_RACES_FOR_DISTANCE)))
 
 PAT_LEADING_FLOAT = re.compile(r"^\d+\.\d*")
 PAT_LEADING_DIGITS = re.compile(r"^\d+")
 
-PAT_LENGTH_EVENT = re.compile("|".join(_.pattern for _ in (PAT_HORIZONTAL_JUMPS, PAT_THROWS)))
-PAT_TIMED_EVENT = re.compile("|".join(_.pattern for _ in (PAT_TRACK, PAT_HURDLES, PAT_ROAD, PAT_RELAYS)))
+PAT_LENGTH_EVENT = re.compile(_orjoin(_.pattern for _ in (PAT_HORIZONTAL_JUMPS, PAT_THROWS)))
+PAT_TIMED_EVENT = re.compile(_orjoin(_.pattern for _ in (PAT_TRACK, PAT_HURDLES, PAT_ROAD, PAT_RELAYS)))
 
 # matches optional hours, optional minutes, optional seconds, optional two decimal places
 PAT_PERF = re.compile(r"^(\d{1,2}:)?(\d{1,2}:)?(\d{1,2})(\.?\d+)?$")
@@ -107,5 +123,5 @@ PAT_LONG_SECONDS = re.compile(r"^\d{3,6}(\.?\d+)?$")
 PAT_NOT_FINISHED =  re.compile(r"^(DNF|DQ|DNS)$")
 
 # these are the values one might get in results - valid time, DNF, DQ etc.
-PAT_FINISH_RECORD = re.compile("|".join(_.pattern for _ in (PAT_PERF, PAT_NOT_FINISHED)))
-del _
+PAT_FINISH_RECORD = re.compile(_orjoin(_.pattern for _ in (PAT_PERF, PAT_NOT_FINISHED)))
+del _, _orjoin
