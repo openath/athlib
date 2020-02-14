@@ -14,7 +14,8 @@ def my_test_suite():
     from athlib import codes
     test_suite.addTests(doctest.DocTestSuite(codes))
 
-    return test_suite
+    r = unittest.TextTestRunner().run(test_suite)
+    sys.exit(len(r.errors)+len(r.failures))
 
 def get_version():
     if os.path.isdir('docs'):
@@ -68,6 +69,9 @@ schema_marker_re = re.compile(r'''(?P<q>["'])\$schema(?P=q)\s*:''',re.M)
 
 os.chdir(base)
 jschdir = os.path.join('athlib','json-schemas')
+if 'test' in sys.argv:
+    my_test_suite()
+
 try:
     if 'sdist' in sys.argv:
         if os.path.isdir(jschdir):
@@ -80,7 +84,7 @@ try:
         packages=find_packages(),
         package_data={'athlib':(list(find_json(os.path.join('athlib','json-schemas')))
                                 +list(find_json(os.path.join('athlib','wma'),force=True)))},
-        test_suite="setup.my_test_suite",
+        #test_suite="setup.my_test_suite",
 
         # metadata for upload to PyPI
         author="Andy Robinson and others",
