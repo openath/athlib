@@ -247,6 +247,12 @@ class UtilsTests(TestCase):
                 ('3KW',PAT_ROAD),
                 ('400',PAT_TRACK),
                 ('400H',[PAT_TRACK,PAT_HURDLES]),
+                ('400H 67.2cm 9.5m',[PAT_TRACK,PAT_HURDLES]),
+                ('400H 67.2cm 9.5m 10m',[PAT_TRACK,PAT_HURDLES]),
+                ('400H 33',[PAT_TRACK,PAT_HURDLES]),
+                ('400H 36',[PAT_TRACK,PAT_HURDLES]),
+                ('4000H 94cm',None),
+                ('4000H 0.672m 10.9m',None),
                 ('440Y',PAT_TRACK),
                 ('4x100',PAT_RELAYS),
                 ('4x100',PAT_RELAYS),
@@ -282,9 +288,12 @@ class UtilsTests(TestCase):
         show = lambda p: repr(sorted(list(p)))
         for code, goodPat in codePats:
             M = set([tpatNames[tpats.index(pat)] for pat in tpats if pat.match(code)])
-            if not isinstance(goodPat,(list,tuple)):
-                goodPat = [goodPat]
-            goodPat.append(PAT_EVENT_CODE)
+            if goodPat is None:
+                goodPat = []
+            else:
+                if not isinstance(goodPat,(list,tuple)):
+                    goodPat = [goodPat]
+                goodPat.append(PAT_EVENT_CODE)
             ok = set([tpatNames[tpats.index(pat)] for pat in goodPat])
             if M != ok:
                 errs.append("%r matched %r should have matched %r" % (code,show(M),show(ok)))

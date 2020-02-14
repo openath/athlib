@@ -1,24 +1,56 @@
-from athlib import codes
-import re
+import sys, os, json, re
+try:
+    from athlib import codes
+except ImportError:
+    medir = os.path.dirname(sys.argv[0])
+    if not medir: medir = os.getcwd()
+    sys.path.insert(0,os.path.dirname(medir))
+    from athlib import codes
+
+def textWrapper(itext, texts, endText='}', endRemoveChars=' ,', lim=80, wtext='    '):
+    L = [itext]
+    w = len(itext)
+    wtext = '\n' + wtext
+    nwtext = len(wtext)
+    for s in texts:
+        ws = len(s)
+        w += ws
+        if w >= lim:
+            while L[-1].endswith(' '): L[-1] = L[-1][:-1]
+            s = wtext + s
+            w = nwtext+ws
+        L.append(s)
+    while L[-1] and L[-1][-1] in endRemoveChars: L[-1] = L[-1][:-1]
+    L[-1] += endText
+    return ''.join(L)
+
 md = []
 mp = {}
+pat_set = set()
 for pat in dir(codes):
     obj = getattr(codes,pat)
     if isinstance(obj,re.Pattern):
         mp[pat] = obj.pattern
         I = obj.groupindex
+        if pat.startswith('PAT_'): pat_set.add(pat)
         if I:
-            md.append('  %s: {%s}' % (pat,', '.join(('%s: %s' % i for i in I.items()))))
+            md.append(textWrapper('  %s: {' % pat, (('%s: %s, ' % i) for i in I.items())))
 if md:
     print('var __codesmap = {')
     print(',\n'.join(md))
     print('};')
+    print(textWrapper('var __patObjs = [',('%s, ' % k for k in pat_set),endText='];',wtext='  '))
+    print(textWrapper('var __patNames = [',('%r, ' % k for k in pat_set),endText='];',wtext='  '))
     print('''\nfunction codesmap(pattern, groupname, match) {
-  var gx = __codesmap[pattern];
+  var gx;
+
+  if (typeof pattern === 'object') pattern = __patNames[__patObjs.indexOf(pattern)];
+  gx = __codesmap[pattern];
   if (!gx) return null;
   gx = gx[groupname];
   if (gx == null) return null;
-  return match.group(gx);
+  gx = match[gx];
+  return gx == null ? null : gx;
 }
 ''')
 
@@ -26,7 +58,7 @@ ng_pat = re.compile(r'\(\?P<[^>]*>',re.M)
 def jsversion(r):
     return ng_pat.sub('(',r)
 
-for pat in '''PAT_EVENT_CODE
+PAT_LIST='''PAT_EVENT_CODE
 PAT_FIELD
 PAT_FINISH_RECORD
 PAT_HORIZONTAL_JUMPS
@@ -46,5 +78,14 @@ PAT_RUN
 PAT_THROWS
 PAT_TIMED_EVENT
 PAT_TRACK
-PAT_VERTICAL_JUMPS'''.split():
+PAT_VERTICAL_JUMPS'''.split();
+PAT_SET = set(PAT_LIST)
+for pat in PAT_LIST:
     print('var %s = /%s/;' %(pat,jsversion(mp[pat])))
+
+if PAT_SET!=pat_set:
+    print(40*'!')
+    print('! PAT_SET does not match observed PATS_.....')
+    print('! pat_set=%r' % pat_set)
+    print('! PAT_SET=%r' % PAT_SET)
+    print(40*'!')

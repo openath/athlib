@@ -84,14 +84,16 @@ PAT_VERTICAL_JUMPS = re.compile(r"^(?:[sS]?[hH][jJ]|[pP][vV])$")
 PAT_HORIZONTAL_JUMPS = re.compile(r"^(?:[sS]?[lL][jJ]|[sS]?[tT][jJ])$")
 PAT_JUMPS = re.compile(_orjoin(_.pattern for _ in (PAT_VERTICAL_JUMPS,PAT_HORIZONTAL_JUMPS)))
 
+#msfx = metres suffix optional
 #hsfx = hurdle suffix optional
 #hhi = hurdle height in inches deprecated
 #hhh = hurdle height cm
 #hsd = hurdle separation m
 #hid = hurdle initial distance m
-PAT_TRACK = re.compile(r"^(?:(?:(?P<meters>\d+)(?:[lLsS]?[hH](?P<hsfx>(?P<hhi>3[36])|(?P<hhh>\d\.?\d*cm)\s*(?P<hsd>\d\.?\d*m)(?P<hid>\d\.?\d*))?|[yY]|[sS][cC]|[wW])?)|[sS][cC]|"
-                        r"[2345][mM][tT]|[lL][hH]|[sS][hH])$",
-                       )
+_ = r"[lLsS]?[hH]\s*(?P<hsfx>(?P<hhi>3[36])|(?P<hhh>\d{2,3}\.?\d*cm)\s*(?P<hsd>\d{1,3}\.?\d*m)(?:\s*(?P<hid>\d{1,3}\.?\d*m))?)?|[sS][cC]"
+PAT_TRACK = re.compile(r"^(?:(?:(?P<meters>\d+)\s*(?P<msfx>%s|[yY]|[wW])?)|[sS][cC]|[2345][mM][tT]|[lL][hH]|[sS][hH])$" % _)
+PAT_HURDLES = re.compile(r"^(?:(\d{2,4})(?:%s))$" % re.sub(r'\(\?P<[^>]*>','(',_)) # 80H, 110H, 400H
+
 PAT_ROAD = re.compile(r"^(?:(?:[mM][iI][lL][eE]|[mM][aA][rR]|[hH][mM])[wW]?|[xX][cC]|(?:\d{1,3}(\.\d\d?)?(?:[MKk]|[MKk][wW]|[wW])))$")
 
 PAT_RACES_FOR_DISTANCE = re.compile(r"^(?:\d\d?([hH](?:[rR]|[wW])))$")
@@ -101,7 +103,6 @@ PAT_FIELD = re.compile("%s|%s" % (PAT_THROWS.pattern, PAT_JUMPS.pattern))
 
 # Although part of PAT_RUN, these
 PAT_RELAYS = re.compile(r"^(?:(\d{1,2})[xX](\d{2,5}[hH]?|[rR][eE][lL][aA][yY]))$") # 4x100, 4x400, 4xReLAy, 12x200H
-PAT_HURDLES = re.compile(r"^(?:(\d{2,4})([hH]|[sS][cC]))$") # 80H, 110H, 400H
 PAT_MULTI = '|'.join((''.join(('[%s%s]' % (v.lower(),v.upper()) for v in _)) for _ in MULTI_EVENTS))
 PAT_MULTI = re.compile(r"^(?:%s)$" % PAT_MULTI)
 

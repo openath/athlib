@@ -1,7 +1,15 @@
 import { expect } from 'chai';
 import Athlib from '../index.js';
 const pkg = require('../package.json');
-
+function arrayDistinct(A) {
+  return A.filter(function(v, x, self){return self.indexOf(v)===x});
+  }
+function arrayUniq(A){
+  return arrayDistinct(A).sort()
+}
+function arrayEqual(A,B) {
+  return A.length === B.length && A.every(function(value, index) { return value === B[index]});
+}
 describe('Given an instance of Athlib', function() {
 	describe('testing version', function() {
 		it('Athlib.version should match package,json version '+pkg.version, () => {
@@ -226,188 +234,278 @@ describe('Given an instance of Athlib', function() {
 		it('checkperf("5000","3:45:27") throws error',()=>{expect(()=>{Athlib.checkPerformanceForDiscipline("5000","3:45:27")}).to.throw(Error)});  // < 0.5 m/sec
 		it('checkperf("3KW","2:34") throws error',()=>{expect(()=>{Athlib.checkPerformanceForDiscipline("3KW","2:34")}).to.throw(Error)});
   });
-	describe('roundUpStrNum', function() {
-    function mytest(prec,v,x){
-      it('roundUpStrNum("'+v+'",'+prec+') == "'+x+'"',()=>{expect(Athlib.roundUpStrNum(v,prec)).to.be.equal(x)});
+	describe('testEventCodesMatchCorrectly', function() {
+		var tpatNames = "PAT_THROWS PAT_JUMPS PAT_TRACK PAT_ROAD PAT_RACES_FOR_DISTANCE PAT_RELAYS PAT_HURDLES PAT_MULTI PAT_EVENT_CODE".split(' ');
+		var tpats = tpatNames.map(function (t) {return Athlib[t]});
+		var codePats = [
+				['100',Athlib.PAT_TRACK],
+				//['110mH',Athlib.PAT_HURDLES], //Andy Check
+				['1500',Athlib.PAT_TRACK],
+				['1HR',Athlib.PAT_RACES_FOR_DISTANCE],
+				['1HW',Athlib.PAT_RACES_FOR_DISTANCE],
+				['24HR',Athlib.PAT_RACES_FOR_DISTANCE],
+				['24HW',Athlib.PAT_RACES_FOR_DISTANCE],
+				['2HR',Athlib.PAT_RACES_FOR_DISTANCE],
+				['2HW',Athlib.PAT_RACES_FOR_DISTANCE],
+				['3000SC',[Athlib.PAT_HURDLES,Athlib.PAT_TRACK]],
+				['3000W',Athlib.PAT_TRACK],
+				//['3kmW',Athlib.PAT_ROAD], //Andy check
+				['3KW',Athlib.PAT_ROAD],
+				['400',Athlib.PAT_TRACK],
+				['400H',[Athlib.PAT_TRACK,Athlib.PAT_HURDLES]],
+				['400H 67.2cm 9.5m',[Athlib.PAT_TRACK,Athlib.PAT_HURDLES]],
+				['400H 67.2cm 9.5m 10m',[Athlib.PAT_TRACK,Athlib.PAT_HURDLES]],
+				['400H 33',[Athlib.PAT_TRACK,Athlib.PAT_HURDLES]],
+				['400H 36',[Athlib.PAT_TRACK,Athlib.PAT_HURDLES]],
+				['4000H 94cm',null],
+				['4000H 0.672m 10.9m',null],
+				['440Y',Athlib.PAT_TRACK],
+				['4x100',Athlib.PAT_RELAYS],
+				['4x100',Athlib.PAT_RELAYS],
+				['4x400',Athlib.PAT_RELAYS],
+				['4xrelay',Athlib.PAT_RELAYS],
+				['5K',Athlib.PAT_ROAD],
+				['5M',Athlib.PAT_ROAD],
+				['7.5M',Athlib.PAT_ROAD],
+				['BT',Athlib.PAT_THROWS],
+				['BT1.5K',Athlib.PAT_THROWS],
+				['BT2K',Athlib.PAT_THROWS],
+				//['CHUNDER-MILE',Athlib.PAT_TRACK],	//Andy check
+				['HJ',Athlib.PAT_JUMPS],
+				['SHJ',Athlib.PAT_JUMPS],
+				['HM',Athlib.PAT_ROAD],
+				['HT',Athlib.PAT_THROWS],
+				['BT',Athlib.PAT_THROWS],
+				['OT',Athlib.PAT_THROWS],
+				['ST',Athlib.PAT_THROWS],
+				['SWT',Athlib.PAT_THROWS],
+				['GDT',Athlib.PAT_THROWS],
+				['MAR',Athlib.PAT_ROAD],
+				['MILE',Athlib.PAT_ROAD],
+				['HM',Athlib.PAT_ROAD],
+				['LJ',Athlib.PAT_JUMPS],
+				['SLJ',Athlib.PAT_JUMPS],
+				['PV',Athlib.PAT_JUMPS],
+				['TJ',Athlib.PAT_JUMPS],
+				['STJ',Athlib.PAT_JUMPS],
+				['XC',Athlib.PAT_ROAD]
+				];
+		function patNames(pats){
+			return pats===null?'[]':Array.isArray(pats)?arrayUniq(pats.map(function(pat){return tpatNames[tpats.indexOf(pat)]})):tpatNames[tpats.indexOf(pats)];
+		}
+    function checkCodeMatches(code,goodPat) {
+      var M = tpats.filter(function(pat){return code.match(pat)});
+			M = arrayUniq(M.map(function(pat){return tpatNames[tpats.indexOf(pat)]}));
+			if (goodPat === null) {
+				goodPat = [];
+      } else {
+				if (!Array.isArray(goodPat)) goodPat = [goodPat];
+				goodPat.push(Athlib.PAT_EVENT_CODE);
+      }
+			var ok = patNames(goodPat);
+			return arrayEqual(M,ok) ? "" : '"'+code+'" matched '+M+' should have matched '+ok;
     }
-		mytest(3, '11.9990', '11.999');
-		mytest(3, '11.9991', '12.000');
-		mytest(3, '11.4502', '11.451');
-		mytest(3, '11.4520', '11.452');
-		mytest(3, '11.4500', '11.450');
-		mytest(3, '11.452', '11.452');
-		mytest(3, '11.450', '11.450');
-		mytest(3, '11.000', '11.000');
-		mytest(3, '11.0001', '11.001');
-		mytest(3, '11.45', '11.450');
-		mytest(3, '11.05', '11.050');
-		mytest(3, '11.4', '11.400');
-		mytest(3, '11.', '11.000');
-		mytest(3, '11', '11.000');
-		mytest(3, '1.9990', '1.999');
-		mytest(3, '1.9991', '2.000');
-		mytest(3, '1.4502', '1.451');
-		mytest(3, '1.4520', '1.452');
-		mytest(3, '1.4500', '1.450');
-		mytest(3, '1.452', '1.452');
-		mytest(3, '1.450', '1.450');
-		mytest(3, '1.000', '1.000');
-		mytest(3, '1.0001', '1.001');
-		mytest(3, '1.45', '1.450');
-		mytest(3, '1.05', '1.050');
-		mytest(3, '1.4', '1.400');
-		mytest(3, '1.', '1.000');
-		mytest(3, '1', '1.000');
-		mytest(3, '0.9990', '0.999');
-		mytest(3, '0.9991', '1.000');
-		mytest(3, '0.4502', '0.451');
-		mytest(3, '0.4520', '0.452');
-		mytest(3, '0.4500', '0.450');
-		mytest(3, '0.452', '0.452');
-		mytest(3, '0.450', '0.450');
-		mytest(3, '0.000', '0.000');
-		mytest(3, '0.0001', '0.001');
-		mytest(3, '0.45', '0.450');
-		mytest(3, '0.05', '0.050');
-		mytest(3, '0.0001', '0.001');
-		mytest(3, '.0001', '0.001');
-		mytest(3, '0.4', '0.400');
-		mytest(3, '.4', '0.400');
-		mytest(3, '0.', '0.000');
-		mytest(3, '0', '0.000');
-	
-		mytest(2, '11.990', '11.99');
-		mytest(2, '11.991', '12.00');
-		mytest(2, '11.4502', '11.46');
-		mytest(2, '11.450', '11.45');
-		mytest(2, '11.4500', '11.45');
-		mytest(2, '11.452', '11.46');
-		mytest(2, '11.000', '11.00');
-		mytest(2, '11.0001', '11.01');
-		mytest(2, '11.45', '11.45');
-		mytest(2, '11.05', '11.05');
-		mytest(2, '11.4', '11.40');
-		mytest(2, '11.', '11.00');
-		mytest(2, '11', '11.00');
-		mytest(2, '1.990', '1.99');
-		mytest(2, '1.991', '2.00');
-		mytest(2, '1.4502', '1.46');
-		mytest(2, '1.450', '1.45');
-		mytest(2, '1.4500', '1.45');
-		mytest(2, '1.452', '1.46');
-		mytest(2, '1.000', '1.00');
-		mytest(2, '1.0001', '1.01');
-		mytest(2, '1.45', '1.45');
-		mytest(2, '1.05', '1.05');
-		mytest(2, '1.4', '1.40');
-		mytest(2, '1.', '1.00');
-		mytest(2, '1', '1.00');
-		mytest(2, '0.990', '0.99');
-		mytest(2, '0.991', '1.00');
-		mytest(2, '0.4502', '0.46');
-		mytest(2, '0.450', '0.45');
-		mytest(2, '0.4500', '0.45');
-		mytest(2, '0.452', '0.46');
-		mytest(2, '0.000', '0.00');
-		mytest(2, '0.0001', '0.01');
-		mytest(2, '.0001', '0.01');
-		mytest(2, '0.45', '0.45');
-		mytest(2, '0.05', '0.05');
-		mytest(2, '0.4', '0.40');
-		mytest(2, '.4', '0.40');
-		mytest(2, '0.', '0.00');
-		mytest(2, '0', '0.00');
-	
-		mytest(1, '11.90', '11.9');
-		mytest(1, '11.91', '12.0');
-		mytest(1, '11.402', '11.5');
-		mytest(1, '11.40', '11.4');
-		mytest(1, '11.4500', '11.5');
-		mytest(1, '11.0', '11.0');
-		mytest(1, '11.450', '11.5');
-		mytest(1, '11.000', '11.0');
-		mytest(1, '11.0001', '11.1');
-		mytest(1, '11.45', '11.5');
-		mytest(1, '11.05', '11.1');
-		mytest(1, '11.4', '11.4');
-		mytest(1, '11.', '11.0');
-		mytest(1, '11', '11.0');
-		mytest(1, '1.90', '1.9');
-		mytest(1, '1.91', '2.0');
-		mytest(1, '1.402', '1.5');
-		mytest(1, '1.40', '1.4');
-		mytest(1, '1.4500', '1.5');
-		mytest(1, '1.0', '1.0');
-		mytest(1, '1.450', '1.5');
-		mytest(1, '1.000', '1.0');
-		mytest(1, '1.0001', '1.1');
-		mytest(1, '1.45', '1.5');
-		mytest(1, '1.05', '1.1');
-		mytest(1, '1.4', '1.4');
-		mytest(1, '1.', '1.0');
-		mytest(1, '1', '1.0');
-		mytest(1, '0.90', '0.9');
-		mytest(1, '0.91', '1.0');
-		mytest(1, '0.402', '0.5');
-		mytest(1, '0.40', '0.4');
-		mytest(1, '0.4500', '0.5');
-		mytest(1, '0.0', '0.0');
-		mytest(1, '0.450', '0.5');
-		mytest(1, '0.000', '0.0');
-		mytest(1, '0.0001', '0.1');
-		mytest(1, '.0001', '0.1');
-		mytest(1, '0.45', '0.5');
-		mytest(1, '0.05', '0.1');
-		mytest(1, '0.4', '0.4');
-		mytest(1, '.4', '0.4');
-		mytest(1, '0.', '0.0');
-		mytest(1, '0', '0.0');
-		mytest(1, '27.3', '27.3');
-		mytest(1, '0.3000000000000007', '0.3');
-	
-		mytest(0, '11.90', '12');
-		mytest(0, '11.91', '12');
-		mytest(0, '11.402', '12');
-		mytest(0, '11.40', '12');
-		mytest(0, '11.4500', '12');
-		mytest(0, '11.0', '11');
-		mytest(0, '11.450', '12');
-		mytest(0, '11.000', '11');
-		mytest(0, '11.0001', '12');
-		mytest(0, '11.45', '12');
-		mytest(0, '11.05', '12');
-		mytest(0, '11.4', '12');
-		mytest(0, '11.', '11');
-		mytest(0, '11', '11');
-		mytest(0, '1.90', '2');
-		mytest(0, '1.91', '2');
-		mytest(0, '1.402', '2');
-		mytest(0, '1.40', '2');
-		mytest(0, '1.4500', '2');
-		mytest(0, '1.0', '1');
-		mytest(0, '1.450', '2');
-		mytest(0, '1.000', '1');
-		mytest(0, '1.0001', '2');
-		mytest(0, '1.45', '2');
-		mytest(0, '1.05', '2');
-		mytest(0, '1.4', '2');
-		mytest(0, '1.', '1');
-		mytest(0, '1', '1');
-		mytest(0, '0.90', '1');
-		mytest(0, '0.91', '1');
-		mytest(0, '0.402', '1');
-		mytest(0, '0.40', '1');
-		mytest(0, '0.4500', '1');
-		mytest(0, '0.0', '0');
-		mytest(0, '0.450', '1');
-		mytest(0, '0.000', '0');
-		mytest(0, '0.0001', '1');
-		mytest(0, '.0001', '1');
-		mytest(0, '0.45', '1');
-		mytest(0, '0.05', '1');
-		mytest(0, '0.4', '1');
-		mytest(0, '.4', '1');
-		mytest(0, '0.', '0');
-		mytest(0, '0', '0');
+		codePats.map((cp)=>{it('checkCodeMatches("'+cp[0]+'", '+patNames(cp[1])+') ==""',()=>{expect(checkCodeMatches(cp[0],cp[1])).to.be.equal("")})});
+  });
+	describe('codesmap', function() {
+		const PAT_EVENT_CODE = Athlib.PAT_EVENT_CODE;
+		const codesmap = Athlib.codesmap;
+		const tests =	[
+			['400H 67.2cm 9.5m 9m','meters', '400'],
+			['400H 67.2cm 9.5m 9m','hsfx', '67.2cm 9.5m 9m'],
+			['400H 67.2cm 9.5m 9m','hhh', '67.2cm'],
+			['400H 67.2cm 9.5m 9m','hsd', '9.5m'],
+			['400H 67.2cm 9.5m 9m','hid', '9m'],
+			['400H 67.2cm 9.5m','hid', null],
+			['400H 67.2cm 9.5m','hhid', null],
+			['DT1.5K','hid', null],
+			['DT1.5K','dtnum', '1.5K']
+		];
+    function checkCodesMap(c,v){const m=c.match(PAT_EVENT_CODE);return codesmap('PAT_EVENT_CODE',v,m)};
+    tests.map(function(c){it('checkCodesMap('+c+') == "'+c[2]+'"',()=>{expect(checkCodesMap(c[0],c[1])).to.be.equal(c[2])})});
+	});
+	describe('roundUpStrNum', function() {
+		var tests =	[
+			[3, '11.9990', '11.999'],
+			[3, '11.9991', '12.000'],
+			[3, '11.4502', '11.451'],
+			[3, '11.4520', '11.452'],
+			[3, '11.4500', '11.450'],
+			[3, '11.452', '11.452'],
+			[3, '11.450', '11.450'],
+			[3, '11.000', '11.000'],
+			[3, '11.0001', '11.001'],
+			[3, '11.45', '11.450'],
+			[3, '11.05', '11.050'],
+			[3, '11.4', '11.400'],
+			[3, '11.', '11.000'],
+			[3, '11', '11.000'],
+			[3, '1.9990', '1.999'],
+			[3, '1.9991', '2.000'],
+			[3, '1.4502', '1.451'],
+			[3, '1.4520', '1.452'],
+			[3, '1.4500', '1.450'],
+			[3, '1.452', '1.452'],
+			[3, '1.450', '1.450'],
+			[3, '1.000', '1.000'],
+			[3, '1.0001', '1.001'],
+			[3, '1.45', '1.450'],
+			[3, '1.05', '1.050'],
+			[3, '1.4', '1.400'],
+			[3, '1.', '1.000'],
+			[3, '1', '1.000'],
+			[3, '0.9990', '0.999'],
+			[3, '0.9991', '1.000'],
+			[3, '0.4502', '0.451'],
+			[3, '0.4520', '0.452'],
+			[3, '0.4500', '0.450'],
+			[3, '0.452', '0.452'],
+			[3, '0.450', '0.450'],
+			[3, '0.000', '0.000'],
+			[3, '0.0001', '0.001'],
+			[3, '0.45', '0.450'],
+			[3, '0.05', '0.050'],
+			[3, '0.0001', '0.001'],
+			[3, '.0001', '0.001'],
+			[3, '0.4', '0.400'],
+			[3, '.4', '0.400'],
+			[3, '0.', '0.000'],
+			[3, '0', '0.000'],
+		
+			[2, '11.990', '11.99'],
+			[2, '11.991', '12.00'],
+			[2, '11.4502', '11.46'],
+			[2, '11.450', '11.45'],
+			[2, '11.4500', '11.45'],
+			[2, '11.452', '11.46'],
+			[2, '11.000', '11.00'],
+			[2, '11.0001', '11.01'],
+			[2, '11.45', '11.45'],
+			[2, '11.05', '11.05'],
+			[2, '11.4', '11.40'],
+			[2, '11.', '11.00'],
+			[2, '11', '11.00'],
+			[2, '1.990', '1.99'],
+			[2, '1.991', '2.00'],
+			[2, '1.4502', '1.46'],
+			[2, '1.450', '1.45'],
+			[2, '1.4500', '1.45'],
+			[2, '1.452', '1.46'],
+			[2, '1.000', '1.00'],
+			[2, '1.0001', '1.01'],
+			[2, '1.45', '1.45'],
+			[2, '1.05', '1.05'],
+			[2, '1.4', '1.40'],
+			[2, '1.', '1.00'],
+			[2, '1', '1.00'],
+			[2, '0.990', '0.99'],
+			[2, '0.991', '1.00'],
+			[2, '0.4502', '0.46'],
+			[2, '0.450', '0.45'],
+			[2, '0.4500', '0.45'],
+			[2, '0.452', '0.46'],
+			[2, '0.000', '0.00'],
+			[2, '0.0001', '0.01'],
+			[2, '.0001', '0.01'],
+			[2, '0.45', '0.45'],
+			[2, '0.05', '0.05'],
+			[2, '0.4', '0.40'],
+			[2, '.4', '0.40'],
+			[2, '0.', '0.00'],
+			[2, '0', '0.00'],
+		
+			[1, '11.90', '11.9'],
+			[1, '11.91', '12.0'],
+			[1, '11.402', '11.5'],
+			[1, '11.40', '11.4'],
+			[1, '11.4500', '11.5'],
+			[1, '11.0', '11.0'],
+			[1, '11.450', '11.5'],
+			[1, '11.000', '11.0'],
+			[1, '11.0001', '11.1'],
+			[1, '11.45', '11.5'],
+			[1, '11.05', '11.1'],
+			[1, '11.4', '11.4'],
+			[1, '11.', '11.0'],
+			[1, '11', '11.0'],
+			[1, '1.90', '1.9'],
+			[1, '1.91', '2.0'],
+			[1, '1.402', '1.5'],
+			[1, '1.40', '1.4'],
+			[1, '1.4500', '1.5'],
+			[1, '1.0', '1.0'],
+			[1, '1.450', '1.5'],
+			[1, '1.000', '1.0'],
+			[1, '1.0001', '1.1'],
+			[1, '1.45', '1.5'],
+			[1, '1.05', '1.1'],
+			[1, '1.4', '1.4'],
+			[1, '1.', '1.0'],
+			[1, '1', '1.0'],
+			[1, '0.90', '0.9'],
+			[1, '0.91', '1.0'],
+			[1, '0.402', '0.5'],
+			[1, '0.40', '0.4'],
+			[1, '0.4500', '0.5'],
+			[1, '0.0', '0.0'],
+			[1, '0.450', '0.5'],
+			[1, '0.000', '0.0'],
+			[1, '0.0001', '0.1'],
+			[1, '.0001', '0.1'],
+			[1, '0.45', '0.5'],
+			[1, '0.05', '0.1'],
+			[1, '0.4', '0.4'],
+			[1, '.4', '0.4'],
+			[1, '0.', '0.0'],
+			[1, '0', '0.0'],
+			[1, '27.3', '27.3'],
+			[1, '0.3000000000000007', '0.3'],
+		
+			[0, '11.90', '12'],
+			[0, '11.91', '12'],
+			[0, '11.402', '12'],
+			[0, '11.40', '12'],
+			[0, '11.4500', '12'],
+			[0, '11.0', '11'],
+			[0, '11.450', '12'],
+			[0, '11.000', '11'],
+			[0, '11.0001', '12'],
+			[0, '11.45', '12'],
+			[0, '11.05', '12'],
+			[0, '11.4', '12'],
+			[0, '11.', '11'],
+			[0, '11', '11'],
+			[0, '1.90', '2'],
+			[0, '1.91', '2'],
+			[0, '1.402', '2'],
+			[0, '1.40', '2'],
+			[0, '1.4500', '2'],
+			[0, '1.0', '1'],
+			[0, '1.450', '2'],
+			[0, '1.000', '1'],
+			[0, '1.0001', '2'],
+			[0, '1.45', '2'],
+			[0, '1.05', '2'],
+			[0, '1.4', '2'],
+			[0, '1.', '1'],
+			[0, '1', '1'],
+			[0, '0.90', '1'],
+			[0, '0.91', '1'],
+			[0, '0.402', '1'],
+			[0, '0.40', '1'],
+			[0, '0.4500', '1'],
+			[0, '0.0', '0'],
+			[0, '0.450', '1'],
+			[0, '0.000', '0'],
+			[0, '0.0001', '1'],
+			[0, '.0001', '1'],
+			[0, '0.45', '1'],
+			[0, '0.05', '1'],
+			[0, '0.4', '1'],
+			[0, '.4', '1'],
+			[0, '0.', '0'],
+			[0, '0', '0']
+		];
+		tests.map((e)=>{const prec=e[0], v=e[1], x=e[2];it('roundUpStrNum("'+v+'",'+prec+') == "'+x+'"',()=>{expect(Athlib.roundUpStrNum(v,prec)).to.be.equal(x)})});
   });
 });

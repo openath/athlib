@@ -52,7 +52,8 @@ import {
   PAT_TIMED_EVENT,
   PAT_TRACK,
   PAT_VERTICAL_JUMPS,
-  FIELD_EVENT_RECORDS_BY_GENDER
+  FIELD_EVENT_RECORDS_BY_GENDER,
+  codesmap
 } from './patterns.js';
 
 import {
@@ -90,6 +91,7 @@ module.exports = {
   PAT_TRACK,
   PAT_VERTICAL_JUMPS,
   FIELD_EVENT_RECORDS_BY_GENDER,
+  codesmap,
   // end of patterns exports
   hello,
   normalizeGender,
