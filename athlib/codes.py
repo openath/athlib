@@ -90,7 +90,7 @@ PAT_JUMPS = re.compile(_orjoin(_.pattern for _ in (PAT_VERTICAL_JUMPS,PAT_HORIZO
 #hhh = hurdle height cm
 #hsd = hurdle separation m
 #hid = hurdle initial distance m
-_ = r"[lLsS]?[hH]\s*(?P<hsfx>(?P<hhi>3[36])|(?P<hhh>\d{2,3}\.?\d*cm)\s*(?P<hsd>\d{1,3}\.?\d*m)(?:\s*(?P<hid>\d{1,3}\.?\d*m))?)?|[sS][cC]"
+_ = r"[lLsS]?[hH]\s*(?P<hsfx>(?P<hhi>3[36])|(?P<hhh>\d{2,3}\.?\d*cm)\s*(?:(?P<hsd>\d{1,3}\.?\d*m)(?:\s*(?P<hid>\d{1,3}\.?\d*m))?)?)?|[sS][cC]"
 PAT_TRACK = re.compile(r"^(?:(?:(?P<meters>\d+)\s*(?P<msfx>%s|[yY]|[wW])?)|[sS][cC]|[2345][mM][tT]|[lL][hH]|[sS][hH])$" % _)
 PAT_HURDLES = re.compile(r"^(?:(\d{2,4})(?:%s))$" % re.sub(r'\(\?P<[^>]*>','(',_)) # 80H, 110H, 400H
 

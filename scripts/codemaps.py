@@ -7,7 +7,7 @@ except ImportError:
     sys.path.insert(0,os.path.dirname(medir))
     from athlib import codes
 
-def textWrapper(itext, texts, endText='}', endRemoveChars=' ,', lim=80, wtext='    '):
+def textWrapper(itext, texts, endText='}', endRemoveChars='\x20,', lim=80, wtext=4*'\x20'):
     L = [itext]
     w = len(itext)
     wtext = '\n' + wtext
