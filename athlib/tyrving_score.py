@@ -78,7 +78,7 @@ class TyrvingDataM:
 class TyrvingDataF(TyrvingDataM):
 	gender = 'F'
 
-def tyrvingPoints(gender, age, event_code, perf, timing_kind='automatic'):
+def tyrving_score(gender, age, event_code, perf, timing_kind='automatic'):
 	obj = _tyrvingTables.get(gender.upper(),None)
 	if obj is None:
 		raise ValueError('Cannot get a Tyrving table for gender=%r' % gender)

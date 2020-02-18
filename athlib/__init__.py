@@ -80,6 +80,8 @@ def wma_athlon_age_grade(gender, age, event, performance, verbose=False):
     """Return the age grade score (0 to 100ish) for this result."""
     return aag.calculate_age_grade(gender, age, event, performance, verbose=verbose)
 
+from .tyrving_score import tyrving_score
+
 __all__ = filter(None, """
             athlon_performance_needed
             athlon_score
@@ -99,6 +101,7 @@ __all__ = filter(None, """
             wma_age_grade
             wma_athlon_age_grade
             wma_world_best
+            tyrving_score
             FIELD_EVENTS
             FIELD_SORT_ORDER
             JUMPS
