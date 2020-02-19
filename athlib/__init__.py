@@ -19,6 +19,7 @@ from .utils import (
     text_discipline_sort_key,
     sort_by_discipline,
     check_event_code,
+    normalize_event_code,
     )
 
 from .implements import get_implement_weight, get_specific_event_code
@@ -86,6 +87,7 @@ __all__ = filter(None, """
             athlon_performance_needed
             athlon_score
             calc_uka_age_group
+            check_event_code
             check_performance_for_discipline
             discipline_sort_key
             round_up_str_num
@@ -97,11 +99,11 @@ __all__ = filter(None, """
             sort_by_discipline
             str2num
             text_discipline_sort_key
+            tyrving_score,
             wma_age_factor
             wma_age_grade
             wma_athlon_age_grade
             wma_world_best
-            tyrving_score
             FIELD_EVENTS
             FIELD_SORT_ORDER
             JUMPS

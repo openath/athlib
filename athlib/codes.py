@@ -63,12 +63,12 @@ def _orjoin(pats):
 
 # Patterns allow both for generic (JT = Javelin Throw) and
 # weight-specific (JT800) patterns.
-_ = r"\d\.?\d*[Kk]"
+_ = r"\d\.?\d*\s*[Kk][Gg]?"
 PAT_THROWS = re.compile(
                         (
                         r"^(?:"
                         r"[dD][tT](?P<dtnum>%s|)|"
-                        r"[jJ][tT](?P<jtnum>[45678]00|)|"
+                        r"[jJ][tT](?P<jtnum>[45678]00\s*g?|)|"
                         r"[hH][tT](?P<htnum>%s|)|"
                         r"[sS][pP](?P<spnum>%s|)|"
                         r"[wW][tT](?P<wtnum>\d?%s|)|"
@@ -76,9 +76,9 @@ PAT_THROWS = re.compile(
                         r"[bB][tT](?P<btnum>%s|)|"
                         r"[sS][tT](?P<stnum>%s|)|"
                         r"[gG][dD][tT](?P<gdtnum>%s|)|"
-                        r"[oO][tT](?P<otnum>%s|)|"
+                        r"[oO][tT](?P<otnum>\d+\s*g?|)|"
                         ")$"
-                        ) % (_, _, _, _, _, _, _, _, _),
+                        ) % (_, _, _, _, _, _, _, _),
                         )
 PAT_VERTICAL_JUMPS = re.compile(r"^(?:[sS]?[hH][jJ]|[pP][vV])$")
 PAT_HORIZONTAL_JUMPS = re.compile(r"^(?:[sS]?[lL][jJ]|[sS]?[tT][jJ])$")

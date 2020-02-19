@@ -27,7 +27,8 @@ __all__ = """normalize_gender
             lexec
             localpath
             isStr
-            check_event_code""".split()
+            check_event_code
+            normalize_event_code""".split()
 
 def normalize_gender(gender):
     """
@@ -471,6 +472,61 @@ def sort_by_discipline(stuff, attr="discipline"):
 
 def check_event_code(c):
     return PAT_EVENT_CODE.match(c)
+
+def _norm_tzeroes(s):
+    s = s.strip()
+    if '.' in s:
+        while s and s[-1] in ' .0': s = s[:-1]
+    return s
+
+def _norm_cm(s):
+    '''normalize cm values; these must end with cm'''
+    return _norm_tzeroes(s[:-2])+'cm'
+    
+def _norm_m(s):
+    '''normalize m values which must end in m'''
+    return _norm_tzeroes(s[:-1])+'m'
+
+def _norm_kg(s):
+    '''normalize kilogram values may or may not end in [Kk][gG]
+    '''
+    if s[-1].lower()=='g': s = s[:-1]
+    if s[-1].lower()=='k': s = s[:-1]
+    return _norm_tzeroes(s)+'K'
+
+def _norm_g(s):
+    '''normalize gram values may or may not end in g
+    we normalize to just the number
+    '''
+    if s[-1].lower()=='g': s = s[:-1]
+    return _norm_tzeroes(s)
+
+#group name to normalizer map
+_gnorms = dict(
+    #hhi=_norm_inch,
+    #wtnum=_norm_int,
+    jtnum=_norm_g,
+    hhh=_norm_cm, hsd=_norm_m, hid=_norm_m, dtnum=_norm_kg,
+    htnum=_norm_kg, spnum=_norm_kg,
+    swtnum=_norm_kg,
+    btnum=_norm_kg, stnum=_norm_kg, gdtnum=_norm_kg,otnum=_norm_g,
+    )
+
+def normalize_event_code(c):
+    m =  PAT_EVENT_CODE.match(c)
+    if not m:
+        raise ValueError('cannot normalize event code %r' % c)
+    R = [].append
+    for k, v in m.groupdict().items():
+        if v is None or k not in _gnorms: continue
+        s = v.strip()
+        if not s: continue
+        R((m.span(k),_gnorms[k](s)))
+    R = R.__self__
+    c = c.upper()
+    for ((start,end),repl) in sorted(R, reverse=True):
+        c = c[:start] + repl + c[end:] 
+    return c.replace(' ','')
 
 if isPy3:
     import builtins

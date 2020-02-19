@@ -1,12 +1,12 @@
 #!/usr/bin/env python
-import sys, os, re
+import sys, os, re, time
+medir = os.path.dirname(sys.argv[0])
+if not medir: medir = os.getcwd()
 try:
     from athlib.utils import parse_hms
 except ImportError:
-    medir = os.path.dirname(sys.argv[0])
-    if not medir: medir = os.getcwd()
     sys.path.insert(0,os.path.dirname(medir))
-    from athlib.utils import parse_hms
+    from athlib import parse_hms, normalize_event_code, normalize_gender
 jumpCodeMap = {u'H\xf8yde':u'HJ', u'H\xf8yde u.t.':u'SHJ', u'Lengde':u'LJ',
         u'Lengde u.t.':u'SLJ', u'Tresteg':u'TJ', u'Stav':u'PV',
         u'Kule': u'SP', u'Diskos': u'DT', u'Slegge': u'HT',
@@ -76,7 +76,7 @@ def translate(txt):
                 yv[y] = cyv(v)
             return yv
         else:
-            return (years[first],tuple((cyv(v) for v in values[first:last+1])))
+            return [years[first],[cyv(v) for v in values[first:last+1]]]
             
     while i<n:
         line = L[i]
@@ -111,14 +111,14 @@ def translate(txt):
                 mx = 1
             multiplier = num(line[mx])
             yv = xyv(line,xvx)
-            args = (dist,multiplier,yv)
+            args = [dist,multiplier,yv]
             #out('%s%r: TyrvingRace(%s,%s,%r),' % (4*'\x20',code,dist,multiplier,yv))
         elif l0 in (u'H\xf8yde', u'H\xf8yde u.t.', u'Lengde', u'Lengde u.t.', u'Tresteg'):
             multiplier = num(line[1])
             yv = xyv(line,xvx)
             code = jumpCodeMap[l0]
             kind = 'jump'
-            args = (multiplier,yv)
+            args = [multiplier,yv]
             #out('%s%r: TyrvingJump(%r,%s,%r),' % (4*'\x20',code,code,multiplier,yv))
         else:
             code = jumpCodeMap[l0]
@@ -129,26 +129,57 @@ def translate(txt):
             xvx= 6
             multipliers = [num(_[mx]) for _ in (line,line1,line2)]
             yvs = [xyv(_,xvx) for _ in (line,line1,line2)]
-            args = (multipliers,yvs)
+            args = [multipliers,yvs]
             if l0=='Stav':
                 kind = 'pv'
             elif l0 in (u'Kule',u'Diskos',u'Slegge',u'Spyd',u'Liten ball',u'Slengball'):
-                code += line1[0].split()[0]
+                code += line1[0].strip()
                 kind = 'throw'
             else:
                 raise ValueError('Unknown code in line %r' % line)
-        out(shorten('%s%r: TyrvingData%s(%r, %r, *%r),' % (4*'\x20', code, gender, code, kind, args)))
+        out(shorten('%s%r: [%r, %r],' % (4*'\x20', normalize_event_code(code), kind, args)))
     out('\x20\x20},')
     return out.__self__
 
 def main():
-    s = ['_tyrvingTables = {']
-    for fn in sys.argv[1:]:
+    s = ['#start tyrving tables calculated by %s %s\n_tyrvingTables = {' % (os.path.basename(sys.argv[0]),time.asctime())]
+    if '--install' in sys.argv:
+        install = True
+        while '--install' in sys.argv:
+            sys.argv.remove('--install')
+    FN = sys.argv[1:]
+    if not FN:
+        from glob import glob
+        FN = glob(os.path.join(medir,'data','tyrving_?.tsv'))
+    for fn in FN:
         with open(fn,'r') as f:
             s.extend(translate(f.read()))
-    s.append('}')
+    s.append('}\n#end tyrving tables\n')
     s = '\n'.join(s)
-    print(endCommaPat.sub(r'\g<space>\g<bracket>',s))
+    if install:
+        fn = os.path.normpath(os.path.join(medir,'..','athlib','tyrving_score.py'))
+        if not os.path.isfile(fn):
+            raise ValueError('cannot locate file %r' % fn)
+        with open(fn,'r') as f:
+            txt = f.read()
+        i = txt.find('\n#start tyrving tables')
+        if i>=0:
+            end = '\n#end tyrving tables\n'
+            j = txt.find(end)
+            if j>=i:
+                j += len(end)
+            else:
+                raise ValueError('found start of tyrving tables did not find end')
+            txt = txt[:i] + '\n' + s + txt[j:]
+        else:
+            txt += '\n'+ s
+        bfn = os.path.normpath(os.path.join(medir,'..','tmp','tyrving_score-%s.py' % time.time()))
+        import shutil
+        shutil.move(fn, bfn)
+        with open(fn,'w') as f:
+            f.write(txt)
+    else:
+        print(endCommaPat.sub(r'\g<space>\g<bracket>',s))
 
 if __name__=='__main__':
     main()

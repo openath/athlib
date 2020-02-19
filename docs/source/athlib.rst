@@ -8,12 +8,13 @@ in submodules.
 
 .. automodule:: athlib
     :members: normalize_gender, str2num, parse_hms, get_distance,
-        round_up_str_num, format_seconds_as_time,
+        round_up_str_num, format_seconds_as_time, check_event_code,
         check_performance_for_discipline, discipline_sort_key,
         text_discipline_sort_key, sort_by_discipline, 
+        normalize_event_code,
         athlon_score, athlon_performance_needed,
         wma_age_grade, wma_age_factor, wma_world_best, 
-        wma_athlon_age_grade, wma_athlon_age_factor,
+        wma_athlon_age_grade, wma_athlon_age_factor, tyrving_score,
         calc_uka_age_group,
         get_implement_weight,
         RuleViolation,
