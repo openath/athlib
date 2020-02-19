@@ -143,7 +143,8 @@ def translate(txt):
 
 def main():
     s = ['#start tyrving tables calculated by %s %s\n_tyrvingTables = {' % (os.path.basename(sys.argv[0]),time.asctime())]
-    if '--install' in sys.argv:
+    install = '--install' in sys.argv
+    if install:
         install = True
         while '--install' in sys.argv:
             sys.argv.remove('--install')
@@ -173,7 +174,7 @@ def main():
             txt = txt[:i] + '\n' + s + txt[j:]
         else:
             txt += '\n'+ s
-        bfn = os.path.normpath(os.path.join(medir,'..','tmp','tyrving_score-%s.py' % time.time()))
+        bfn = os.path.normpath(os.path.join(medir,'..','tmp','tyrving_score-%s.py' % int(time.time())))
         import shutil
         shutil.move(fn, bfn)
         with open(fn,'w') as f:
