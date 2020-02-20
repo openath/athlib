@@ -22,6 +22,8 @@ import {
   checkPerformanceForDiscipline
 } from './utils';
 
+import { tyrvingScore } from './tyrving_score.js';
+
 import { calcUkaAgeGroup } from './uka_agegroups';
 
 import { HighJumpCompetition } from './highjump.js';
@@ -100,6 +102,7 @@ module.exports = {
   normalizeGender,
   perfToFloat,
   calcUkaAgeGroup,
+  tyrvingScore,
   isFieldEvent,
   isMultiEvent,
   betterPerformance,

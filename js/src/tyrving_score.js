@@ -1,95 +1,13 @@
-__all__ = 'tyrving_score'
+// direct copy of tyrving_score.py
+import {
+  normalizeEventCode,
+  normalizeGender,
+  parseHms
+} from './utils.js';
 
-from athlib import parse_hms, normalize_gender, normalize_event_code
-
-class TyrvingCalculator:
-	def __init__(self, gender, event_code, kind, args):
-		self.gender = gender
-		self.event_code = event_code	#so we can talk about it
-		self.kind = kind	#race jump pv & throw
-		self.args = args
-
-	def points(self, age, perf, timing_kind='automatic'):
-		'''compute points according to kind and params'''
-		meth = getattr(self,self.kind+'_points',self.bad_points)
-		self.timing_kind = timing_kind
-		age = int(age)
-		return meth(age, perf)
-
-	@property
-	def ident(self):
-		return '%s(%r,%r,%r)' % (self.__class__.__name__, self.event_code, self.gender, self.kind)
-
-	def bad_points(self, *args, **kwds):
-		raise ValueError('cannot compute points for %s' % self.ident)
-
-	def get_base_perf(self, age, yv):
-		if isinstance(yv,dict):
-			base_perf = yv.get(age,None)
-		else:
-			y, v = yv
-			base_perf = v[age-y] if y<=age<y+len(v) else None
-		if base_perf is None:
-			raise ValueError('cannot obtain base performance for %s at age=%s' % (self.ident,age))
-		return base_perf
-
-	def race_points(self, age, perf):
-		dist, multiplier, yv = self.args
-		base_perf = self.get_base_perf(age,yv)
-
-		#perf is a time
-		v = perf
-		if not isinstance(v,(int,float)):
-			perf.replace(',','.')
-			while v.count('.')>1: v = v.replace('.',':',1)
-			v = parse_hms(v) if ':' in v else float(v)
-
-		timing_kind = self.timing_kind
-
-		if self.timing_kind=='manual':
-			inc = 0.24 if dist in (100,110,200) else 0.20 if dist in (40,60,80,300) else 0.14 if dist == 400 else 0
-			v += inc #correct for manual timing
-
-		return max(0,int(1000 + 1e-8 + (base_perf - v) * (multiplier / (0.01 if dist<=500 else 0.1))))
-
-	def jump_points(self, age, perf):
-		multiplier, yv = self.args
-		base_perf = self.get_base_perf(age,yv)
-
-		#perf is a distance
-		v = perf
-		if not isinstance(v,(int,float)):
-			v = float(v.replace(',','.'))
-		return max(0,int(1000 + 1e-8 + multiplier * (v - base_perf)*100))
-
-	def stav_points(self, age, perf):
-		'''this works for all the piecewise linear distance events'''
-		multipliers, yvs = self.args
-
-		levels = [self.get_base_perf(age,yv) for yv in yvs]
-		v = perf
-		if not isinstance(v,(int,float)):
-			v = float(v.replace(',','.'))
-		diffs = 100*(v - levels[0]), 100*(v - levels[1])
-		return max(0, int(1000 + 1e-8 + (diffs[0]*multipliers[0] if diffs[0]>=0
-						else diffs[0]*multipliers[1] if diffs[1]>0 
-						else diffs[1]*multipliers[2]+levels[2]-1000)))
-	throw_points = stav_points
-	pv_points = stav_points
-
-def tyrving_score(gender, age, event_code, perf, timing_kind='automatic'):
-	event_code = normalize_event_code(event_code)
-	gender = normalize_gender(gender)
-	params = _tyrvingTables.get(gender,None)
-	if params is None:
-		raise ValueError('Cannot get a Tyrving table for gender=%r' % gender)
-	params = params.get(event_code,None)
-	if not params:
-		raise ValueError('Cannot get a Tyrving calculation for gender=%r event_code=%r' % (gender, event_code))
-	return TyrvingCalculator(gender, event_code, params[0], params[1]).points(age, perf, timing_kind=timing_kind)
-
-#start tyrving tables created by tyrving-translate.py Thu Feb 20 21:38:49 2020
-_tyrvingTables = {
+// start tyrving tables created by tyrving-translate.py Thu Feb 20 21:47:22 2020
+/* eslint-disable */
+var _tyrvingTables = {
   'M': {
     '40': ['race', [40, 3.5, [10, [6.6, 6.4]]]],
     '60': ['race', [60, 2.7, [10, [9.2, 8.8, 8.4, 8, 7.75, 7.55, 7.4, 7.3,
@@ -287,5 +205,121 @@ _tyrvingTables = {
     'BT1K': ['throw', [[0.13, 0.25, 0.5], [[10, [20, 26, 31]],
         [10, [16, 20.8, 24.8]], [10, [900, 865, 840]]]]]
   }
+};
+/* eslint-enable */
+// end tyrving tables
+
+function TyrvingCalculator(gender, eventCode, kind, args) {
+  const obj = {
+    __init__(gender, eventCode, kind, args) {
+      this.gender = gender;
+      this.eventCode = eventCode;
+      this.kind = kind;
+      this.args = args;
+    },
+
+    points(age, perf, timingKind) {
+      const meth = this[this.kind + 'Points'];
+
+      if (meth == null) meth = this.badPoints;
+      this.timingKind = timingKind ? timingKind : 'automatic';
+      age = parseInt(age, 10);
+      return meth(age, perf);
+    },
+
+    get ident() {
+      return 'TyrvingCalulator("' + this.eventCode + '", "' + this.gender + '", "' + this.kind + '")';
+    },
+
+    getBasePerf(age, yv) {
+      var basePerf, y, v;
+
+      if (!Array.isArray(yv)) {
+        basePerf = yv[age];
+        if (basePerf == null) basePerf = null;
+      } else {
+        y = yv[0];
+        v = yv[1];
+        basePerf = y <= age && age < y + v.length ? v[age - y] : null;
+      }
+      if (basePerf == null) throw new Error(`cannot obtain base performance for ${this.ident} at age=$[age}`);
+      return basePerf;
+    },
+
+    racePoints(age, perf) {
+      const dist = this.args[0];
+      const multiplier = this.args[1];
+      const yv = this.args[2];
+      const basePerf = this.getBasePerf(age, yv);
+      var v = perf;
+      var inc;
+
+      // perf is a time
+      if (typeof v === 'string') {
+        perf = perf.replace(',', '.');
+        while ((v.match(/\./) || []).kength > 1) v = v.replace('.', ':', 1);
+        v = v.indexOf('.') >= 0 ? parseHms(v) : v - 0;
+      }
+
+      if (this.timingKind === 'manual') {
+        inc = [100, 110, 200].indexOf(dist) >= 0 ? 0.24 : [40, 60, 80, 300].indexOf(v) >= 0 ? 0.20 :
+          dist === 400 ? 0.14 : 0;
+        v += inc; // correct for manual timing
+      }
+
+      return Math.max(0, parseInt(1000 + 1e-8 + (basePerf - v) * (multiplier / (dist <= 500 ? 0.01 : 0.1)), 10));
+    },
+
+    jumpPoints(age, perf) {
+      const multiplier = this.args[0];
+      const yv = this.args[1];
+      const basePerf = this.getBasePerf(age, yv);
+      var v = perf;
+
+      if (typeof v === 'string') v = v.replace(',', '.') - 0;
+      return Math.max(0, parseInt(1000 + 1e-8 + multiplier * (v - basePerf) * 100, 10));
+    },
+
+    stavPoints(age, perf) {
+      var multipliers = this.args[0];
+      var yvs = this.args[1];
+      var v = perf;
+      var d0, d1, levels;
+
+      if (typeof v === 'string') v = v.replace(',', '.') - 0;
+      levels = yvs.map(function (yv) {return this.getBasePerf(age, yv);});
+      d0 = 100 * (v - levels[0]);
+      d1 = 100 * (v - levels[1]);
+      return Math.max(0, parseInt(1000 + 1e-8 + (d0 >= 0 ? d0 * multipliers[0] :
+        d1 > 0 ? d0 * multipliers[1] : d1 * multipliers[2] + levels[2] - 1000), 10));
+    },
+
+    throwPoints(age, perf) {
+      return this.stavPoints(age, perf);
+    },
+
+    pvPoints(age, perf) {
+      return this.stavPoints(age, perf);
+    }
+
+  };
+
+  obj.__init__(gender, eventCode, kind, args);
+  return obj;
 }
-#end tyrving tables
+
+function tyrvingScore(gender, age, eventCode, perf, timingKind) {
+  var params;
+
+  eventCode = normalizeEventCode(eventCode);
+  gender = normalizeGender(gender);
+  params = _tyrvingTables[gender];
+  if (params == null) throw new Error(`Cannot get a Tyrving table for gender="${gender}"`);
+  params = params[eventCode];
+  if (params == null) {
+    throw new Error(`Cannot get a Tyrving calculation for gender="${gender}" eventCode="${eventCode}"`);
+  }
+  return TyrvingCalculator(gender, eventCode, params[0], params[1]).points(age, perf, timingKind);
+}
+
+module.exports = { tyrvingScore };

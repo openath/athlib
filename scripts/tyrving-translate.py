@@ -29,18 +29,20 @@ def cyv(v):
         v = parse_hms(v)
     return num(v)
 
-def shorten(line):
+def shorten(line, indent=4):
     if len(line)<80: return line
+    indent = max(indent+2,8)
+    space = indent*'\x20'
     for pat in ('),', '],', '},', ','):
         x = line.rfind(pat,0,80-len(pat))
         if x>=0:
             x += len(pat)
-            return line[:x]+'\n'+shorten('      '+line[x:])
+            return line[:x]+'\n'+shorten(space+line[x:].strip(), indent)
     return line
 
 def translate(txt):
     gender = 'M' if 'Gutter' in txt else 'F'
-    out = ['\x20\x20%r:{' % gender].append
+    out = ['\x20\x20%r: {' % gender].append
     txt = txt.replace(',','.')
     try:
         txt = decode('utf-8')
@@ -141,11 +143,45 @@ def translate(txt):
     out('\x20\x20},')
     return out.__self__
 
+def installText(s, fn, c='#', t=''):
+    if not os.path.isfile(fn):
+        raise ValueError('cannot locate file %r' % fn)
+    with open(fn,'r') as f:
+        txt = f.read()
+    start = '%sstart tyrving tables' % c
+    i = txt.find('\n'+start)
+    if i>=0:
+        iold = txt.find('\n',i+1)
+        if iold>=0:
+            iold += 1
+        else:                       
+            raise ValueError('cannot find end of start line in %r' % fn)
+        end = '%send tyrving tables\n' % c
+        nend = '\n' + end
+        j = txt.find(nend)
+        if j>=i:
+            jold = j
+            j += len(nend)
+        else:
+            raise ValueError('found start of tyrving tables did not find end in %r' % fn)
+        sold = txt[iold:jold]
+        if sold==s:
+            print('code unchanged in %r' % fn)
+            return
+        txt = ''.join((txt[:i] + '\n', start, t, '\n', s, '\n', end, txt[j:]))
+    else:
+        raise ValueError('could not find start of tyrving tables in %r' % fn)
+    bfn = os.path.splitext(os.path.basename(fn))
+    bfn = os.path.normpath(os.path.join(medir,'..','tmp','%s-%s%s' % (bfn[0],int(time.time()),bfn[1])))
+    import shutil
+    shutil.move(fn, bfn)
+    with open(fn,'w') as f:
+        f.write(txt)
+
 def main():
-    s = ['#start tyrving tables calculated by %s %s\n_tyrvingTables = {' % (os.path.basename(sys.argv[0]),time.asctime())]
+    s = ['_tyrvingTables = {']
     install = '--install' in sys.argv
     if install:
-        install = True
         while '--install' in sys.argv:
             sys.argv.remove('--install')
     FN = sys.argv[1:]
@@ -155,32 +191,15 @@ def main():
     for fn in FN:
         with open(fn,'r') as f:
             s.extend(translate(f.read()))
-    s.append('}\n#end tyrving tables\n')
-    s = '\n'.join(s)
+    s.append('}')
+    s = endCommaPat.sub(r'\g<space>\g<bracket>','\n'.join(s))
     if install:
-        fn = os.path.normpath(os.path.join(medir,'..','athlib','tyrving_score.py'))
-        if not os.path.isfile(fn):
-            raise ValueError('cannot locate file %r' % fn)
-        with open(fn,'r') as f:
-            txt = f.read()
-        i = txt.find('\n#start tyrving tables')
-        if i>=0:
-            end = '\n#end tyrving tables\n'
-            j = txt.find(end)
-            if j>=i:
-                j += len(end)
-            else:
-                raise ValueError('found start of tyrving tables did not find end')
-            txt = txt[:i] + '\n' + s + txt[j:]
-        else:
-            txt += '\n'+ s
-        bfn = os.path.normpath(os.path.join(medir,'..','tmp','tyrving_score-%s.py' % int(time.time())))
-        import shutil
-        shutil.move(fn, bfn)
-        with open(fn,'w') as f:
-            f.write(txt)
+        t = ' created by %s %s' % (os.path.basename(sys.argv[0]),time.asctime())
+        installText(s, os.path.normpath(os.path.join(medir,'..','athlib','tyrving_score.py')), c='#', t=t)
+        js = ('/* eslint-disable */\nvar '+s+';\n/* eslint-enable */')
+        installText(js, os.path.normpath(os.path.join(medir,'..','js','src', 'tyrving_score.js')), c='// ', t=t)
     else:
-        print(endCommaPat.sub(r'\g<space>\g<bracket>',s))
+        print(s)
 
 if __name__=='__main__':
     main()

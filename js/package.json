@@ -59,7 +59,7 @@
     "jsdom-global": "3.0.2",
     "mocha": "^4.0.1",
     "nyc": "^14.1.1",
-    "webpack": "^4.41.2",
+    "webpack": "^4.41.6",
     "webpack-cli": "^3.3.10",
     "webpack-node-externals": "^1.7.2"
   },
