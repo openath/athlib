@@ -325,6 +325,26 @@ describe('Given an instance of Athlib', function() {
     function checkCodesMap(c,v){const m=c.match(PAT_EVENT_CODE);return codesmap('PAT_EVENT_CODE',v,m)};
     tests.map(function(c){it('checkCodesMap('+c+') == "'+c[2]+'"',()=>{expect(checkCodesMap(c[0],c[1])).to.be.equal(c[2])})});
 	});
+	describe('normalizeEventCode', function() {
+    const normalizeEventCode = Athlib.normalizeEventCode;
+		const tests =	[
+      ['400H 67.2cm 9.5m 9m', '400H67.2cm9.5m9m'],
+		  ['400H 67.20cm 9.50m 9.0m', '400H67.2cm9.5m9m'],
+			['400H 67.00cm 9.50m 9.0m', '400H67cm9.5m9m'],
+			['400H 67.00cm 9.50m 9.0m ', '400H67cm9.5m9m'],
+			[' 400H 67.2cm 9.5m 9m', '400H67.2cm9.5m9m'],
+			[' 400H 67.20cm 9.50m 9.0m', '400H67.2cm9.5m9m'],
+			[' 400H 67.00cm 9.50m 9.0m', '400H67cm9.5m9m'],
+			[' 400H 67.00cm 9.50m 9.0m ', '400H67cm9.5m9m'],
+			['DT 1.5 Kg ', 'DT1.5K'],
+			['DT1.5 Kg', 'DT1.5K'],
+			['DT 1.5Kg', 'DT1.5K'],
+			[' DT 1.5 Kg ', 'DT1.5K'],
+			[' DT1.5 Kg', 'DT1.5K'],
+			[' DT 1.5Kg', 'DT1.5K'],
+		];
+    tests.map(function(c){it('normalizeEventCode('+c[0]+') == "'+c[1]+'"',()=>{expect(normalizeEventCode(c[0])).to.be.equal(c[1])})});
+	});
 	describe('roundUpStrNum', function() {
 		var tests =	[
 			[3, '11.9990', '11.999'],

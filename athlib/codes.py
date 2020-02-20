@@ -63,7 +63,7 @@ def _orjoin(pats):
 
 # Patterns allow both for generic (JT = Javelin Throw) and
 # weight-specific (JT800) patterns.
-_ = r"\d\.?\d*\s*[Kk][Gg]?"
+_ = r"\s*\d\.?\d*\s*[Kk][Gg]?"
 PAT_THROWS = re.compile(
                         (
                         r"^(?:"

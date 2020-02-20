@@ -513,6 +513,7 @@ _gnorms = dict(
     )
 
 def normalize_event_code(c):
+    c = c.strip()   #remove excess whitespace
     m =  PAT_EVENT_CODE.match(c)
     if not m:
         raise ValueError('cannot normalize event code %r' % c)

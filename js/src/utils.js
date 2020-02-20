@@ -11,7 +11,8 @@ import {
   PAT_LEADING_DIGITS,
   PAT_EVENT_CODE,
   PAT_PERF,
-  FIELD_EVENT_RECORDS_BY_GENDER
+  FIELD_EVENT_RECORDS_BY_GENDER,
+  codesmap
 } from './patterns.js';
 
 /**
@@ -41,7 +42,7 @@ function normalizeGender(gender) {
 }
 
 /** Trim and uppercase an event code */
-function normalizeEventCode(eventCode) {
+function _normalizeEventCode(eventCode) {
   return eventCode.trim().toUpperCase();
 }
 
@@ -62,14 +63,14 @@ function perfToFloat(perfText) {
 
 /** is this a field event code?  HJ, PV, TJ, LJ etc */
 function isFieldEvent(eventCode) {
-  const firstTwo = normalizeEventCode(eventCode).slice(0, 2);
+  const firstTwo = _normalizeEventCode(eventCode).slice(0, 2);
 
   return FIELD_EVENTS.indexOf(firstTwo) > -1;
 }
 
 /** is this a multi-event code?  DEC, PEN, HEP etc */
 function isMultiEvent(eventCode) {
-  const firstThree = normalizeEventCode(eventCode).slice(0, 3);
+  const firstThree = _normalizeEventCode(eventCode).slice(0, 3);
 
   return MULTI_EVENTS.indexOf(firstThree) > -1;
 }
@@ -357,6 +358,119 @@ function checkEventCode(c) {
   return c.match(PAT_EVENT_CODE);
 }
 
+function invertKeyValues(obj, options) {
+  // invert { key0: val0, key1: val1,....}
+  // default assumes unique mapping
+  const fn = (options || {}).fn;
+  const uniq = (options || {}).uniq || true;
+  var val;
+
+  return Object.keys(obj).reduce(function (acc, key) {
+    val = obj[key];
+    if (fn) val = fn(val);
+    if (uniq) {
+      acc[val] = key;
+    } else {
+      acc[val] = acc[val] || [];
+      acc[val].push(key);
+    }
+    return acc;
+  }, {});
+}
+
+// returns an array containing non-trivial captures
+function regexCaptures(pat, s) {
+  const A = pat.exec(s);
+  var R, n, ss, sst, i;
+
+  if (A !== null) {
+    R = [];
+    n = (Object.keys(A).length - 3);
+
+    for (i = 1; i < n; i++) { // avoid full result
+      ss = A[i];
+
+      if (ss != null) {
+        sst = ss.trim();
+
+        if (sst !== '') {
+          const start = s.indexOf(ss);
+          const end = start + ss.length;
+
+          R[i] = [start, end, sst];
+        }
+      }
+    }
+  }
+  return R;
+}
+
+function _normTZeroes(s) {
+  s = s.trim();
+  if (s.indexOf('.') >= 0) {
+    while (s.length && s.slice(-1).match(/[' .0']/)) s = s.slice(0, -1);
+  }
+  return s;
+}
+
+function _normCM(s) {
+  return _normTZeroes(s.slice(0, -2)) + 'cm';
+}
+
+function _normm(s) {
+  while (s.slice(-1).match(/[ m]/)) s = s.slice(0, -1);
+  return _normTZeroes(s) + 'm';
+}
+
+function _normgKg(s) {
+  while (s.slice(-1).match(/[ g]/)) s = s.slice(0, -1);
+  while (s.slice(-1).match(/[ kK]/)) s = s.slice(0, -1);
+  return _normTZeroes(s) + 'K';
+}
+
+function _normg(s) {
+  while (s.slice(-1).match(/[ g]/)) s = s.slice(0, -1);
+  return _normTZeroes(s);
+}
+
+var _gnorms = { // eslint-disable-line vars-on-top
+  jtnum: _normg, hhh: _normCM, hsd: _normm, hid: _normm, dtnum: _normgKg,
+  htnum: _normgKg, spnum: _normgKg, swtnum: _normgKg,
+  btnum: _normgKg, stnum: _normgKg, gdtnum: _normgKg, otnum: _normg
+};
+
+function normalizeEventCode(c) {
+  var m, n, ign, k, i, v, start, end, gnr;
+
+  c = c.trim();
+  m = regexCaptures(PAT_EVENT_CODE, c);
+
+  if (!m) {
+    throw new Error(`cannot normalize event code ${c}`);
+  } else {
+    n = m.length;
+    ign = invertKeyValues(codesmap(PAT_EVENT_CODE));
+
+    c = c.toUpperCase();
+
+    for (i = n - 1; i > 0; i--) { // move backwards through the captures
+      k = ign[i];
+
+      if (k != null && (gnr = _gnorms[k]) != null) {
+        v = m[i];
+        if (v == null) continue;
+
+        start = v[0];
+        end = v[1];
+
+        v = v[2];
+        c = c.slice(0, start) + gnr(v) + c.slice(end);
+      }
+    }
+    return c.replace(/\s/g, '');
+  }
+}
+
 function fieldEventRecord(evc, gender) {
   var R;
 
@@ -498,7 +612,6 @@ function checkPerformanceForDiscipline(discipline, textvalue, gender, ulpc, erro
         while (t.endsWith('0') && t.length > 4) t = t.slice(0, -1);
         if (t.endsWith('.')) t = t.slice(0, -1);
       }
-
       return t;
     }
     return formatSecondsAsTime(duration, prec);
@@ -522,6 +635,9 @@ module.exports = {
   parseHms,
   str2num,
   checkEventCode,
+  invertKeyValues,
+  regexCaptures,
+  normalizeEventCode,
   fieldEventRecord,
   checkPerformanceForDiscipline
 };

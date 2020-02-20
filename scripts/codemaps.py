@@ -86,13 +86,14 @@ def main():
         out('var __codesmap = {')
         out(',\n'.join(md))
         out('};')
-        out(textWrapper('var __patObjs = [',('%s, ' % k for k in pat_set),endText='];',wtext='  '))
-        out(textWrapper('var __patNames = [',('%r, ' % k for k in pat_set),endText='];',wtext='  '))
+        out(textWrapper('var __patObjs = [',('%s, ' % k for k in sorted(pat_set)),endText='];',wtext='  '))
+        out(textWrapper('var __patNames = [',('%r, ' % k for k in sorted(pat_set)),endText='];',wtext='  '))
         out('''\nfunction codesmap(pattern, groupname, match) {
   var gx;
 
   if (typeof pattern === 'object') pattern = __patNames[__patObjs.indexOf(pattern)];
   gx = __codesmap[pattern];
+  if (groupname == null) return gx;
   if (!gx) return null;
   gx = gx[groupname];
   if (gx == null) return null;

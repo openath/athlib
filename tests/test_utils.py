@@ -85,6 +85,29 @@ class UtilsTests(TestCase):
         self.assertEqual(normalize_gender("fEMale"), "F")
         self.assertRaises(ValueError, normalize_gender, "tranny")
 
+    def test_normalize_event_code(self):
+        from athlib.utils import normalize_event_code
+        tests = [
+                ['400H 67.2cm 9.5m 9m', '400H67.2cm9.5m9m'],
+                ['400H 67.20cm 9.50m 9.0m', '400H67.2cm9.5m9m'],
+                ['400H 67.00cm 9.50m 9.0m', '400H67cm9.5m9m'],
+                ['400H 67.00cm 9.50m 9.0m ', '400H67cm9.5m9m'],
+                [' 400H 67.2cm 9.5m 9m', '400H67.2cm9.5m9m'],
+                [' 400H 67.20cm 9.50m 9.0m', '400H67.2cm9.5m9m'],
+                [' 400H 67.00cm 9.50m 9.0m', '400H67cm9.5m9m'],
+                [' 400H 67.00cm 9.50m 9.0m ', '400H67cm9.5m9m'],
+                ['DT 1.5 Kg ', 'DT1.5K'],
+                ['DT1.5 Kg', 'DT1.5K'],
+                ['DT 1.5Kg', 'DT1.5K'],
+                [' DT 1.5 Kg ', 'DT1.5K'],
+                [' DT1.5 Kg', 'DT1.5K'],
+                [' DT 1.5Kg', 'DT1.5K'],
+                ]
+        for evc, xevc in tests:
+            r = normalize_event_code(evc)
+            self.assertEqual(r,xevc,
+                "normalize_event_code(%r) is %r not expected %r" % (evc, r,xevc))
+
     def test_str2num(self):
         from athlib.utils import str2num
         self.assertEqual(str2num("27"), 27)

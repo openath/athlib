@@ -15,6 +15,9 @@ import {
   parseHms,
   str2num,
   checkEventCode,
+  invertKeyValues,
+  regexCaptures,
+  normalizeEventCode,
   fieldEventRecord,
   checkPerformanceForDiscipline
 } from './utils';
@@ -111,6 +114,9 @@ module.exports = {
   parseHms,
   str2num,
   checkEventCode,
+  invertKeyValues,
+  regexCaptures,
+  normalizeEventCode,
   fieldEventRecord,
   checkPerformanceForDiscipline,
   version
