@@ -82,8 +82,13 @@ class UtilsTests(TestCase):
     def test_normalize_gender(self):
         from athlib.utils import normalize_gender
         self.assertEqual(normalize_gender("Male"), "M")
+        self.assertEqual(normalize_gender(" Male "), "M")
         self.assertEqual(normalize_gender("fEMale"), "F")
-        self.assertRaises(ValueError, normalize_gender, "tranny")
+        self.assertEqual(normalize_gender(" fEMale "), "F")
+        self.assertRaises(ValueError, normalize_gender, "  ")
+        self.assertRaises(ValueError, normalize_gender, " tranny ")
+        self.assertRaises(ValueError, normalize_gender, "")
+        self.assertRaises(ValueError, normalize_gender, 100)
 
     def test_normalize_event_code(self):
         from athlib.utils import normalize_event_code

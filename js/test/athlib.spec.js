@@ -10,6 +10,9 @@ function arrayUniq(A){
 function arrayEqual(A,B) {
   return A.length === B.length && A.every(function(value, index) { return value === B[index]});
 }
+function _av(v) {
+	return typeof v === 'string' ? '"'+v+'"' : v;
+}
 describe('Given an instance of Athlib', function() {
 	describe('testing version', function() {
 		it('Athlib.version should match package,json version '+pkg.version, () => {
@@ -21,11 +24,34 @@ describe('Given an instance of Athlib', function() {
 			expect(Athlib.hello('world')).to.be.equal('Hello, world!');
 		});
 	});
-	describe('testing normalizeGender', function() {
+	describe('testing normalizeGender --> M', function() {
 		it('Male should return M', () => {
-			expect(Athlib.normalizeGender('Male')).to.be.equal('m');
-			expect(Athlib.normalizeGender('FeMale')).to.be.equal('f');
+			expect(Athlib.normalizeGender('Male')).to.be.equal('M');
+			expect(Athlib.normalizeGender(' Male')).to.be.equal('M');
 		});
+	});
+
+	describe('testing normalizeGender --> F', function() {
+		it('female should return F', () => {
+			expect(Athlib.normalizeGender('FeMale')).to.be.equal('F');
+			expect(Athlib.normalizeGender(' FeMale')).to.be.equal('F');
+		});
+	});
+	describe('testing normalizeGender --> Error', function() {
+		const tests = [' ',' tranny ', '', 100];
+		function countErrors() {
+			var errs = 0;
+			for (var i=0; i<tests.length; i++) {
+				try {
+					Athlib.normalizeGender(tests[i]);
+				}
+				catch (error) {
+					errs += 1;
+				}
+			}
+			return errs;
+		}
+		it('check error count', () => {expect(countErrors()).to.be.equal(tests.length)});
 	});
 	describe('testing UKA age groups', function() {
 		it('should return SEN for TF', function() {
@@ -529,4 +555,26 @@ describe('Given an instance of Athlib', function() {
 		];
 		tests.map((e)=>{const prec=e[0], v=e[1], x=e[2];it('roundUpStrNum("'+v+'",'+prec+') == "'+x+'"',()=>{expect(Athlib.roundUpStrNum(v,prec)).to.be.equal(x)})});
   });
+	describe('tyrvingScore', function() {
+    const tyrvingScore = Athlib.tyrvingScore;
+		const tests =	[
+				['M', 12, '1500', '4:32', 1154],
+				['M', 12, '1000W', '280.3', 1137],
+				['M', 12, '200H68.0cm18.29m', '30.5', 1138],
+				['M', 12, 'PV', '2.5', 965],
+				['M', 12, 'SP3Kg', '5', 379],
+				['M', 12, 'SP3Kg', '10', 922],
+				['M', 12, 'SP3Kg', '16', 1141],
+				['M', 12, 'HJ', '1.5', 1000],
+				['M', 12, 'HJ', '1.6', 1070],
+				['M', 14, 'HJ', '1.5', 846],
+				['M', 14, 'SHJ', '1.6', 1195],
+				['F', 15, '100', '12.5', 1064],
+				['F', 15, '1000W', '300', 825],
+				['F', 15, '200h76.2cm19m', '30', 1050],
+				['F', 15, '1500SC', 311.8, 1083],
+				['F', 15, 'JT500', 30, 790],
+		];
+    tests.map(function(c){it('tyrvingScore("'+c[0]+'",'+c[1]+',"'+c[2]+'",'+_av(c[3])+') == "'+c[4]+'"',()=>{expect(tyrvingScore(c[0],c[1],c[2],c[3])).to.be.equal(c[4])})});
+	});
 });

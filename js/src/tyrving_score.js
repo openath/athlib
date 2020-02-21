@@ -224,11 +224,11 @@ function TyrvingCalculator(gender, eventCode, kind, args) {
       if (meth == null) meth = this.badPoints;
       this.timingKind = timingKind ? timingKind : 'automatic';
       age = parseInt(age, 10);
-      return meth(age, perf);
+      return meth.apply(this, [age, perf]);
     },
 
     get ident() {
-      return 'TyrvingCalulator("' + this.eventCode + '", "' + this.gender + '", "' + this.kind + '")';
+      return `TyrvingCalculator("${this.eventCode}", "${this.gender}", "${this.kind}")`;
     },
 
     getBasePerf(age, yv) {
@@ -242,7 +242,7 @@ function TyrvingCalculator(gender, eventCode, kind, args) {
         v = yv[1];
         basePerf = y <= age && age < y + v.length ? v[age - y] : null;
       }
-      if (basePerf == null) throw new Error(`cannot obtain base performance for ${this.ident} at age=$[age}`);
+      if (basePerf == null) throw new Error(`cannot obtain base performance for ${this.ident} at age=${age}`);
       return basePerf;
     },
 
@@ -256,9 +256,9 @@ function TyrvingCalculator(gender, eventCode, kind, args) {
 
       // perf is a time
       if (typeof v === 'string') {
-        perf = perf.replace(',', '.');
-        while ((v.match(/\./) || []).kength > 1) v = v.replace('.', ':', 1);
-        v = v.indexOf('.') >= 0 ? parseHms(v) : v - 0;
+        v = v.replace(/,/g, '.');
+        while ((v.match(/\./g) || []).length > 1) v = v.replace('.', ':', 1);
+        v = v.indexOf(':') >= 0 ? parseHms(v) : v - 0;
       }
 
       if (this.timingKind === 'manual') {
@@ -285,9 +285,10 @@ function TyrvingCalculator(gender, eventCode, kind, args) {
       var yvs = this.args[1];
       var v = perf;
       var d0, d1, levels;
+      var self = this;
 
       if (typeof v === 'string') v = v.replace(',', '.') - 0;
-      levels = yvs.map(function (yv) {return this.getBasePerf(age, yv);});
+      levels = yvs.map(function (yv) {return self.getBasePerf(age, yv);});
       d0 = 100 * (v - levels[0]);
       d1 = 100 * (v - levels[1]);
       return Math.max(0, parseInt(1000 + 1e-8 + (d0 >= 0 ? d0 * multipliers[0] :

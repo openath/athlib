@@ -30,15 +30,14 @@ function hello(arg) {
 
 /** Takes common gender expressions and returns 'm' or 'f' */
 function normalizeGender(gender) {
-  const g = gender.toLowerCase();
+  if (typeof gender !== 'string') throw new Error(`cannot normalizeGender(${gender})`);
 
-  if (g.len === 0) {
-    throw new Error('this is an error that I am throwing');
-  }
-  if (/[mf]/.test(g[0])) {
+  const g = gender.trim().toUpperCase();
+
+  if (g.length >= 1 && /[MF]/.test(g[0])) {
     return g[0];
   }
-  throw new Error('this is another error');
+  throw new Error(`cannot normalize gender for "${gender}"`);
 }
 
 /** Trim and uppercase an event code */

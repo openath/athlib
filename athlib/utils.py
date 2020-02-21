@@ -39,13 +39,13 @@ def normalize_gender(gender):
     :raises ValueError: raises an exception
 
     """
-    g = gender.upper()
-
-    if g:
-        g = g[0]
-    if g not in 'MF':
-        raise ValueError('cannot normalize gender = %s' % repr(gender))
-    return g
+    if gender and isStr(gender):
+        g = gender.upper().strip()
+        if g:
+            g = g[0]
+            if g in ('M','F'):
+                return g
+    raise ValueError('cannot normalize gender = %s' % repr(gender))
 
 def str2num(s):
     """convert string to int if possible else float
