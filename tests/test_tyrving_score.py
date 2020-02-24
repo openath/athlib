@@ -29,6 +29,15 @@ class TyrvingScoreTests(TestCase):
                 ('F', 15, '200h76.2cm19m', '30', 1050),
                 ('F', 15, '1500SC', 311.8, 1083),
                 ('F', 15, 'JT500', 30, 790),
+                ('F', 10, 'BT1K', 10, 600),
+                ('F', 10, 'BT1K', 20, 1000),
+                ('F', 10, 'BT1K', 30, 1130),
+                ('F', 11, 'BT1K', 18, 730),
+                ('F', 11, 'BT1K', 24, 950),
+                ('F', 11, 'BT1K', 30, 1052),
+                ('F', 12, 'BT1K', 20, 605),
+                ('F', 12, 'BT1K', 30.1, 977),
+                ('F', 12, 'BT1K', 39.8, 1114),
                 ]:
             self.assertEqual(tyrving_score(gender, age, event, performance), expected,
                     "tyrving_score(%r, %r, %r, %r) returned %r not the expected %r" %(
