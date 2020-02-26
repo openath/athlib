@@ -2,7 +2,8 @@
 import {
   normalizeEventCode,
   normalizeGender,
-  parseHms
+  parseHms,
+  PAT_RUN
 } from './utils.js';
 
 // start tyrving tables created by tyrving-translate.py Mon Feb 24 13:59:28 2020
@@ -309,8 +310,43 @@ function TyrvingCalculator(gender, eventCode, kind, args) {
   return obj;
 }
 
-function tyrvingScore(gender, age, eventCode, perf, timingKind) {
-  var params;
+function isHandTiming(performance) {
+  var isHand, arry;
+
+  if (typeof performance === 'number') { return false; };
+
+  isHand = false;
+  arry = performance.split('.');
+  switch (arry.length) {
+    case 0:
+      isHand = false;
+      break;
+    case 1:
+      isHand = true;
+      break;
+    case 2:
+      if (arry[1].length < 2) {
+        isHand = true;
+      }
+
+      break;
+    default:
+      isHand = false;
+  }
+  return isHand;
+
+}
+
+function tyrvingScore(gender, age, eventCode, perf) {
+  var params, timingKind;
+
+  timingKind = 'automatic';
+  if (eventCode.match(PAT_RUN) != null) {
+    if (isHandTiming(perf)) {
+      timingKind = 'manual';
+      console.log('manual timing', eventCode, perf);
+    }
+  }
 
   eventCode = normalizeEventCode(eventCode);
   gender = normalizeGender(gender);
