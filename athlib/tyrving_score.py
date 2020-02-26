@@ -1,92 +1,108 @@
 __all__ = 'tyrving_score'
 
+from types import StringTypes
 from athlib import parse_hms, normalize_gender, normalize_event_code
+from athlib.codes import PAT_RUN
+
+def is_hand_timing(perf):
+    words = perf.split('.')
+    if len(words) == 1:
+        return True
+    elif len(words) == 2:
+        if len(words[1]) < 2:
+            return True
+    return False
 
 class TyrvingCalculator:
-	def __init__(self, gender, event_code, kind, args):
-		self.gender = gender
-		self.event_code = event_code	#so we can talk about it
-		self.kind = kind	#race jump pv & throw
-		self.args = args
+    def __init__(self, gender, event_code, kind, args):
+        self.gender = gender
+        self.event_code = event_code    #so we can talk about it
+        self.kind = kind    #race jump pv & throw
+        self.args = args
 
-	def points(self, age, perf, timing_kind='automatic'):
-		'''compute points according to kind and params'''
-		meth = getattr(self,self.kind+'_points',self.bad_points)
-		self.timing_kind = timing_kind
-		age = int(age)
-		return meth(age, perf)
+    def points(self, age, perf, timing_kind='automatic'):
+        '''compute points according to kind and params'''
+        meth = getattr(self,self.kind+'_points',self.bad_points)
+        self.timing_kind = timing_kind
+        age = int(age)
+        return meth(age, perf)
 
-	@property
-	def ident(self):
-		return '%s(%r,%r,%r)' % (self.__class__.__name__, self.event_code, self.gender, self.kind)
+    @property
+    def ident(self):
+        return '%s(%r,%r,%r)' % (self.__class__.__name__, self.event_code, self.gender, self.kind)
 
-	def bad_points(self, *args, **kwds):
-		raise ValueError('cannot compute points for %s' % self.ident)
+    def bad_points(self, *args, **kwds):
+        raise ValueError('cannot compute points for %s' % self.ident)
 
-	def get_base_perf(self, age, yv):
-		if isinstance(yv,dict):
-			base_perf = yv.get(age,None)
-		else:
-			y, v = yv
-			base_perf = v[age-y] if y<=age<y+len(v) else None
-		if base_perf is None:
-			raise ValueError('cannot obtain base performance for %s at age=%s' % (self.ident,age))
-		return base_perf
+    def get_base_perf(self, age, yv):
+        if isinstance(yv,dict):
+            base_perf = yv.get(age,None)
+        else:
+            y, v = yv
+            base_perf = v[age-y] if y<=age<y+len(v) else None
+        if base_perf is None:
+            raise ValueError('cannot obtain base performance for %s at age=%s' % (self.ident,age))
+        return base_perf
 
-	def race_points(self, age, perf):
-		dist, multiplier, yv = self.args
-		base_perf = self.get_base_perf(age,yv)
+    def race_points(self, age, perf):
+        dist, multiplier, yv = self.args
+        base_perf = self.get_base_perf(age,yv)
 
-		#perf is a time
-		v = perf
-		if not isinstance(v,(int,float)):
-			perf.replace(',','.')
-			while v.count('.')>1: v = v.replace('.',':',1)
-			v = parse_hms(v) if ':' in v else float(v)
+        #perf is a time
+        v = perf
+        if not isinstance(v,(int,float)):
+            perf.replace(',','.')
+            while v.count('.')>1: v = v.replace('.',':',1)
+            v = parse_hms(v) if ':' in v else float(v)
 
-		timing_kind = self.timing_kind
+        timing_kind = self.timing_kind
 
-		if self.timing_kind=='manual':
-			inc = 0.24 if dist in (100,110,200) else 0.20 if dist in (40,60,80,300) else 0.14 if dist == 400 else 0
-			v += inc #correct for manual timing
+        if self.timing_kind=='manual':
+            inc = 0.24 if dist in (100,110,200) else 0.20 if dist in (40,60,80,300) else 0.14 if dist == 400 else 0
+            v += inc #correct for manual timing
 
-		return max(0,int(1000 + 1e-8 + (base_perf - v) * (multiplier / (0.01 if dist<=500 else 0.1))))
+        return max(0,int(1000 + 1e-8 + (base_perf - v) * (multiplier / (0.01 if dist<=500 else 0.1))))
 
-	def jump_points(self, age, perf):
-		multiplier, yv = self.args
-		base_perf = self.get_base_perf(age,yv)
+    def jump_points(self, age, perf):
+        multiplier, yv = self.args
+        base_perf = self.get_base_perf(age,yv)
 
-		#perf is a distance
-		v = perf
-		if not isinstance(v,(int,float)):
-			v = float(v.replace(',','.'))
-		return max(0,int(1000 + 1e-8 + multiplier * (v - base_perf)*100))
+        #perf is a distance
+        v = perf
+        if not isinstance(v,(int,float)):
+            v = float(v.replace(',','.'))
+        return max(0,int(1000 + 1e-8 + multiplier * (v - base_perf)*100))
 
-	def stav_points(self, age, perf):
-		'''this works for all the piecewise linear distance events'''
-		multipliers, yvs = self.args
+    def stav_points(self, age, perf):
+        '''this works for all the piecewise linear distance events'''
+        multipliers, yvs = self.args
 
-		levels = [self.get_base_perf(age,yv) for yv in yvs]
-		v = perf
-		if not isinstance(v,(int,float)):
-			v = float(v.replace(',','.'))
-		diffs = 100*(v - levels[0]), 100*(v - levels[1])
-		return max(0, int(1000 + 1e-8 + (diffs[0]*multipliers[0] if diffs[0]>=0
-						else diffs[0]*multipliers[1] if diffs[1]>0 
-						else diffs[1]*multipliers[2]+levels[2]-1000)))
-	throw_points = stav_points
-	pv_points = stav_points
+        levels = [self.get_base_perf(age,yv) for yv in yvs]
+        v = perf
+        if not isinstance(v,(int,float)):
+            v = float(v.replace(',','.'))
+        diffs = 100*(v - levels[0]), 100*(v - levels[1])
+        return max(0, int(1000 + 1e-8 + (diffs[0]*multipliers[0] if diffs[0]>=0
+                        else diffs[0]*multipliers[1] if diffs[1]>0 
+                        else diffs[1]*multipliers[2]+levels[2]-1000)))
+    throw_points = stav_points
+    pv_points = stav_points
 
-def tyrving_score(gender, age, event_code, perf, timing_kind='automatic'):
-	event_code = normalize_event_code(event_code)
-	gender = normalize_gender(gender)
-	params = _tyrvingTables.get(gender,None)
-	if params is None:
-		raise ValueError('Cannot get a Tyrving table for gender=%r' % gender)
-	params = params.get(event_code,None)
-	if not params:
-		raise ValueError('Cannot get a Tyrving calculation for gender=%r event_code=%r' % (gender, event_code))
-	return TyrvingCalculator(gender, event_code, params[0], params[1]).points(age, perf, timing_kind=timing_kind)
+def tyrving_score(gender, age, event_code, perf):
+    timing_kind='automatic'
+    if PAT_RUN.match(event_code):
+        if is_hand_timing(perf):
+            timing_kind = 'manual'
+
+    event_code = normalize_event_code(event_code)
+    gender = normalize_gender(gender)
+    params = _tyrvingTables.get(gender,None)
+    if params is None:
+        raise ValueError('Cannot get a Tyrving table for gender=%r' % gender)
+    params = params.get(event_code,None)
+    if not params:
+        raise ValueError('Cannot get a Tyrving calculation for gender=%r event_code=%r' % (gender, event_code))
+    return TyrvingCalculator(gender, event_code, params[0], params[1]).points(age, perf, timing_kind=timing_kind)
 
 #start tyrving tables created by tyrving-translate.py Mon Feb 24 13:59:28 2020
 _tyrvingTables = {
