@@ -20,6 +20,9 @@ from .utils import (
     sort_by_discipline,
     check_event_code,
     normalize_event_code,
+    isStr,
+    nativeStr,
+    is_hand_timing
     )
 
 from .implements import get_implement_weight, get_specific_event_code
@@ -99,6 +102,9 @@ __all__ = filter(None, """
             sort_by_discipline
             str2num
             text_discipline_sort_key
+            isStr,
+            nativeStr,
+            is_hand_timing,
             tyrving_score,
             wma_age_factor
             wma_age_grade

@@ -27,8 +27,10 @@ __all__ = """normalize_gender
             lexec
             localpath
             isStr
+            nativeStr
             check_event_code
-            normalize_event_code""".split()
+            normalize_event_code
+            is_hand_timing""".split()
 
 def normalize_gender(gender):
     """
@@ -533,7 +535,11 @@ if isPy3:
     import builtins
     lexec = getattr(builtins, 'exec')
     def isStr(o):
+        '''return true if argument is a string type'''
         return isinstance(o,(str,bytes))
+    def nativeStr(o, enc="utf8"):
+        '''converts arg to str with possible decoding if bytes'''
+        return  o if isinstance(o,str) else o.decode(enc) if isinstance(o,bytes) else str(o)
 else:
     def lexec(obj, G=None, L=None):
         if G is None:
@@ -546,7 +552,11 @@ else:
             L = G
         exec("""exec obj in G, L""")
     def isStr(o):
+        '''return true if argument is a string type'''
         return isinstance(o,basestring)
+    def nativeStr(o, enc="utf8"):
+        '''converts arg to str with possible encoding if unicode'''
+        return  o if isinstance(o,str) else o.encode(enc) if isinstance(o,unicode) else str(o)
 
 def localpath(relpath,pstart=0):
     if os.path.isfile(relpath):
@@ -634,3 +644,11 @@ def valid_against_schema(json_file, schema_file, expect_failure=False):
                     raise
 
     return False
+
+def is_hand_timing(perf):
+    if isStr(perf):
+        perf = nativeStr(perf)
+        dp = perf.rfind('.')
+        return dp<0 or len(perf)-dp<3
+    return False
+

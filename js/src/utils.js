@@ -617,6 +617,16 @@ function checkPerformanceForDiscipline(discipline, textvalue, gender, ulpc, erro
   }
 }
 
+// direct copy of utils.py
+function isHandTiming(perf) {
+  var dp;
+
+  if (typeof perf === 'number') return false;
+
+  dp = perf.lastIndexOf('.');
+  return dp < 0 || (perf.length - dp) < 3;
+}
+
 module.exports = {
   hello,
   normalizeGender,
@@ -638,5 +648,6 @@ module.exports = {
   regexCaptures,
   normalizeEventCode,
   fieldEventRecord,
-  checkPerformanceForDiscipline
+  checkPerformanceForDiscipline,
+  isHandTiming
 };

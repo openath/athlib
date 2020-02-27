@@ -1,17 +1,7 @@
 __all__ = 'tyrving_score'
 
-from types import StringTypes
-from athlib import parse_hms, normalize_gender, normalize_event_code
+from athlib import parse_hms, normalize_gender, normalize_event_code, is_hand_timing
 from athlib.codes import PAT_RUN
-
-def is_hand_timing(perf):
-    words = perf.split('.')
-    if len(words) == 1:
-        return True
-    elif len(words) == 2:
-        if len(words[1]) < 2:
-            return True
-    return False
 
 class TyrvingCalculator:
     def __init__(self, gender, event_code, kind, args):

@@ -590,4 +590,16 @@ describe('Given an instance of Athlib', function() {
 		];
     tests.map(function(c){it('tyrvingScore("'+c[0]+'",'+c[1]+',"'+c[2]+'",'+_av(c[3])+') == "'+c[4]+'"',()=>{expect(tyrvingScore(c[0],c[1],c[2],c[3])).to.be.equal(c[4])})});
 	});
+	describe('isHandTiming', function() {
+    const isHandTiming = Athlib.isHandTiming;
+		const tests =	[
+				[10.9, false],
+				['10.9', true],
+				['10.90', false],
+				[100, false],
+				['1.00.0', true],
+				['1.00.00', false],
+    ];
+    tests.map(function(c){it('isHandTiming('+_av(c[0])+') == '+c[1],()=>{expect(isHandTiming(c[0])).to.be.equal(c[1])})});
+	});
 });

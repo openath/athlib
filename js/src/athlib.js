@@ -19,7 +19,8 @@ import {
   regexCaptures,
   normalizeEventCode,
   fieldEventRecord,
-  checkPerformanceForDiscipline
+  checkPerformanceForDiscipline,
+  isHandTiming
 } from './utils';
 
 import { tyrvingScore } from './tyrving_score.js';
@@ -122,5 +123,6 @@ module.exports = {
   normalizeEventCode,
   fieldEventRecord,
   checkPerformanceForDiscipline,
+  isHandTiming,
   version
 };

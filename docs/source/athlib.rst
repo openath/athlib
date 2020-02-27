@@ -18,7 +18,8 @@ in submodules.
         calc_uka_age_group,
         get_implement_weight,
         RuleViolation,
-        HighJumpCompetition, Jumper
+        HighJumpCompetition, Jumper, isStr, nativeStr,
+        is_hand_timing,
 
 
 Codes

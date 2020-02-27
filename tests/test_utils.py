@@ -518,5 +518,23 @@ class UtilsTests(TestCase):
                 bad.append('%4s %8s %8s %8s %s' % (prec, v,x,r,'yes' if r==x else 'no'))
         self.assertEqual(len(bad),1,"\nnot all round_up_str_num examples worked\n%s" % '\n'.join(bad))
 
+    def test_is_hand_timing(self):
+        from athlib import is_hand_timing
+        bad = ['%7s %6s %6s' % ('perf', 'expected', 'result')]
+        for v, x in [
+                (10.9, False),
+                ('10.9', True),
+                ('10.90', False),
+                (100, False),
+                ('1.00.0', True),
+                ('1.00.00', False),
+                ]:
+            r = is_hand_timing(v)
+            if r!=x:
+                bad.append('%7r %6r %6r' % (v, x, r))
+        self.assertEqual(len(bad),1,"\nnot all is_hand_timing results were correct\n%s" % '\n'.join(bad))
+
+
+
 if __name__ == '__main__':
     main()
