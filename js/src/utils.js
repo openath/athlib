@@ -447,23 +447,28 @@ function normalizeEventCode(c) {
   if (!m) {
     throw new Error(`cannot normalize event code ${c}`);
   } else {
-    n = m.length;
-    ign = invertKeyValues(codesmap(PAT_EVENT_CODE));
+    n = c.match(PAT_RELAYS);
+    if (n) {
+      c = n[1] + 'x' + n[2].toUpperCase();
+    } else {
+      n = m.length;
+      ign = invertKeyValues(codesmap(PAT_EVENT_CODE));
 
-    c = c.toUpperCase();
+      c = c.toUpperCase();
 
-    for (i = n - 1; i > 0; i--) { // move backwards through the captures
-      k = ign[i];
+      for (i = n - 1; i > 0; i--) { // move backwards through the captures
+        k = ign[i];
 
-      if (k != null && (gnr = _gnorms[k]) != null) {
-        v = m[i];
-        if (v == null) continue;
+        if (k != null && (gnr = _gnorms[k]) != null) {
+          v = m[i];
+          if (v == null) continue;
 
-        start = v[0];
-        end = v[1];
+          start = v[0];
+          end = v[1];
 
-        v = v[2];
-        c = c.slice(0, start) + gnr(v) + c.slice(end);
+          v = v[2];
+          c = c.slice(0, start) + gnr(v) + c.slice(end);
+        }
       }
     }
     return c.replace(/\s/g, '');

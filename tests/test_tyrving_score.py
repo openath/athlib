@@ -1,16 +1,15 @@
-
-"""Unit tests for iaaf_score.py."""
+"""Unit tests for tyrving_score.py."""
 
 from unittest import TestCase, main
 from athlib import tyrving_score
 
 
 class TyrvingScoreTests(TestCase):
-    """Test suite for the IAAF score calculation module."""
+    """Test suite for the Tyrving score calculation module."""
 
     def test_performance(self):
         """
-        test returned points.  INput string or float perfprmance
+        test returned points.  Input string or float perfprmance
         """
         for gender, age, event, performance, expected in [
                 ('M', 12, '1500', '4:32.00', 1154),

@@ -1,0 +1,45 @@
+Wessex League						
+Points	75m	600m	Long_Jump	Howler	Relay	Points
+INC	0.1	0:01	0.03	0.5	0.5	INC
+MIN	16	3:00	2.2	5	94	MIN
+MAX	7	1:30	4.9	50	49	MAX
+Wessex League (U13)						
+Points	70/75mH	800m	Long_Jump	Shot	Relay	Points
+INC	0.1	0:01	0.04	0.1	0.5	INC
+MIN	20	3:50	2	2	94	MIN
+MAX	11	2:20	5.6	11	49	MAX
+QuadKids Secondary						
+Points	100m	800m	Long_Jump	Howler	Relay	Points
+INC	0.1	0:01	0.05	0.6	0.5	INC
+MIN	19.5	3:50	2	6	94	MIN
+MAX	10.5	2:20	6.5	60	49	MAX
+QuadKids Primary						
+Points	75m	600m	SLJ	Howler	Relay	Points
+INC	0.1	0:01	0.02	0.5	0.5	INC
+MIN	16	3:00	1.02	5	94	MIN
+MAX	7	1:30	2.82	50	49	MAX
+QuadKids Start						
+Points	50m	400m	SLJ	Howler	Relay	Points
+INC	0.1	0:01	0.03	0.5	0.5	INC
+MIN	12	2:05	0.75	2.5	94	MIN
+MAX	3	0:35	3	47.5	49	MAX
+QuadKids Club						
+Points	75m	600m	Long_Jump	Howler	Relay	Points
+INC	0.1	0:01	0.03	0.5	0.5	INC
+MIN	16	3:00	2.2	5	94	MIN
+MAX	7	1:30	4.9	50	49	MAX
+QuadKids Club U13						
+Points	100m	800m	Long_Jump	Howler	Relay	Points
+INC	0.1	0:01	0.05	0.6	0.5	INC
+MIN	19.5	3:50	2	6	94	MIN
+MAX	10.5	2:20	6.5	60	49	MAX
+QuadKids Club U9						
+Points	50m	400m	SLJ	Howler	Relay	Points
+INC	0.1	0:01	0.02	0.5	0.5	INC
+MIN	12	2:10	0.9	0	94	MIN
+MAX	3	0:40	2.7	45	49	MAX
+QuadKids Pre-Start						
+Points	50m	300m	SLJ	Howler	Relay	Points
+INC	0.1	0:01	0.03	0.5	0.5	INC
+MIN	13	2:15	0.5	0	99	MIN
+MAX	4	0:45	3.2	45	54	MAX

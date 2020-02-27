@@ -519,16 +519,20 @@ def normalize_event_code(c):
     m =  PAT_EVENT_CODE.match(c)
     if not m:
         raise ValueError('cannot normalize event code %r' % c)
-    R = [].append
-    for k, v in m.groupdict().items():
-        if v is None or k not in _gnorms: continue
-        s = v.strip()
-        if not s: continue
-        R((m.span(k),_gnorms[k](s)))
-    R = R.__self__
-    c = c.upper()
-    for ((start,end),repl) in sorted(R, reverse=True):
-        c = c[:start] + repl + c[end:] 
+    rm = PAT_RELAYS.match(c)
+    if rm:
+        c = '%sx%s' % (rm.group(1),rm.group(2).upper())
+    else:
+        R = [].append
+        for k, v in m.groupdict().items():
+            if v is None or k not in _gnorms: continue
+            s = v.strip()
+            if not s: continue
+            R((m.span(k),_gnorms[k](s)))
+        R = R.__self__
+        c = c.upper()
+        for ((start,end),repl) in sorted(R, reverse=True):
+            c = c[:start] + repl + c[end:] 
     return c.replace(' ','')
 
 if isPy3:

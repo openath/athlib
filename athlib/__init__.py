@@ -3,7 +3,7 @@ from .uka.agegroups import calc_uka_age_group
 from .iaaf_score import score as athlon_score
 from .iaaf_score import performance as athlon_performance_needed
 
-__version__ = u'0.5.3'
+__version__ = u'0.5.4'
 
 from .exceptions import RuleViolation
 
@@ -85,6 +85,7 @@ def wma_athlon_age_grade(gender, age, event, performance, verbose=False):
     return aag.calculate_age_grade(gender, age, event, performance, verbose=verbose)
 
 from .tyrving_score import tyrving_score
+from .qkids_score import qkids_score
 
 __all__ = filter(None, """
             athlon_performance_needed
@@ -106,6 +107,7 @@ __all__ = filter(None, """
             nativeStr,
             is_hand_timing,
             tyrving_score,
+            qkids_score,
             wma_age_factor
             wma_age_grade
             wma_athlon_age_grade

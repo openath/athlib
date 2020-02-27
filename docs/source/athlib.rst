@@ -19,7 +19,7 @@ in submodules.
         get_implement_weight,
         RuleViolation,
         HighJumpCompetition, Jumper, isStr, nativeStr,
-        is_hand_timing,
+        is_hand_timing, qkids_score,
 
 
 Codes
