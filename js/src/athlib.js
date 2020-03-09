@@ -68,6 +68,9 @@ import {
   version
 } from './version.js';
 
+var disciplineSortKey = discipline_sort_key;
+var textDisciplineSortKey = text_discipline_sort_key;
+
 module.exports = {
   // start of patterns exports
   FIELD_EVENTS,
@@ -113,7 +116,9 @@ module.exports = {
   HighJumpCompetition,
   pad,
   discipline_sort_key,
+  disciplineSortKey,
   text_discipline_sort_key,
+  textDisciplineSortKey,
   sort_by_discipline,
   getDistance,
   roundUpStrNum,
