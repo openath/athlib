@@ -70,6 +70,7 @@ import {
 
 var disciplineSortKey = discipline_sort_key;
 var textDisciplineSortKey = text_discipline_sort_key;
+var sortByDiscipline = sort_by_discipline;
 
 module.exports = {
   // start of patterns exports
@@ -120,6 +121,7 @@ module.exports = {
   text_discipline_sort_key,
   textDisciplineSortKey,
   sort_by_discipline,
+  sortByDiscipline,
   getDistance,
   roundUpStrNum,
   formatSecondsAsTime,
