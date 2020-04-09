@@ -107,6 +107,8 @@ class UtilsTests(TestCase):
                 [' DT 1.5 Kg ', 'DT1.5K'],
                 [' DT1.5 Kg', 'DT1.5K'],
                 [' DT 1.5Kg', 'DT1.5K'],
+                [' H1 ', 'H1'],
+                [' h9 ', 'H9'],
                 ]
         for evc, xevc in tests:
             r = normalize_event_code(evc)
@@ -189,6 +191,8 @@ class UtilsTests(TestCase):
         self.assertEqual(checkperf("SHJ", "  2.34   "), "2.34")
         self.assertEqual(checkperf("SLJ", "  2.34   "), "2.34")
         self.assertEqual(checkperf("stj", "  2.34   "), "2.34")
+        self.assertEqual(checkperf("h1", "  2.34    "), "2.34")
+        self.assertEqual(checkperf("h9", "  2.34    "), "2.34")
 
     def test_checkperf_raises(self):
         from athlib.utils import check_performance_for_discipline as checkperf

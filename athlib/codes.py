@@ -50,6 +50,7 @@ FIELD_SORT_ORDER = [
         "TJ", "STJ",
         "SP", "DT", "HT", "JT", 
         "ST", "GDT", "BT", "WT", "SWT", "OT",
+        "H1", "H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9",   #Custom Events
         ]
 
 def _orjoin(pats):
@@ -77,6 +78,7 @@ PAT_THROWS = re.compile(
                         r"[sS][tT](?P<stnum>%s|)|"
                         r"[gG][dD][tT](?P<gdtnum>%s|)|"
                         r"[oO][tT](?P<otnum>\d+\s*g?|)|"
+                        r"[Hh][1-9]"
                         ")$"
                         ) % (_, _, _, _, _, _, _, _),
                         )

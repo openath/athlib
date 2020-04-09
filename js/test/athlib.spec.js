@@ -246,6 +246,8 @@ describe('Given an instance of Athlib', function() {
 		it('checkperf("SHJ","  2.34	")==="2.34"',() =>{expect(Athlib.checkPerformanceForDiscipline("SHJ","  2.34	")).to.be.equal("2.34")});
 		it('checkperf("SLJ","  2.34	")==="2.34"',() =>{expect(Athlib.checkPerformanceForDiscipline("SLJ","  2.34	")).to.be.equal("2.34")});
 		it('checkperf("stj","  2.34	")==="2.34"',() =>{expect(Athlib.checkPerformanceForDiscipline("stj","  2.34	")).to.be.equal("2.34")});
+		it('checkperf("H1","  2.34	")==="2.34"',() =>{expect(Athlib.checkPerformanceForDiscipline("H1","  2.34	")).to.be.equal("2.34")});
+		it('checkperf("h9","  2.34	")==="2.34"',() =>{expect(Athlib.checkPerformanceForDiscipline("h9","  2.34	")).to.be.equal("2.34")});
  
 		it('checkperf("DEC","10001") throws error',()=>{expect(()=>{Athlib.checkPerformanceForDiscipline("DEC","10001")}).to.throw(Error)});
 		it('checkperf("DEC","4:15.8") throws error',()=>{expect(()=>{Athlib.checkPerformanceForDiscipline("DEC","4:15.8")}).to.throw(Error)});
@@ -368,6 +370,8 @@ describe('Given an instance of Athlib', function() {
 			[' DT 1.5 Kg ', 'DT1.5K'],
 			[' DT1.5 Kg', 'DT1.5K'],
 			[' DT 1.5Kg', 'DT1.5K'],
+			[' H1 ', 'H1'],
+			[' h9 ', 'H9'],
 		];
     tests.map(function(c){it('normalizeEventCode('+c[0]+') == "'+c[1]+'"',()=>{expect(normalizeEventCode(c[0])).to.be.equal(c[1])})});
 	});
