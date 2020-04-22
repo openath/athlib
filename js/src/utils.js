@@ -12,7 +12,8 @@ import {
   PAT_EVENT_CODE,
   PAT_PERF,
   FIELD_EVENT_RECORDS_BY_GENDER,
-  codesmap
+  codesmap,
+  PAT_RACES_FOR_DISTANCE
 } from './patterns.js';
 
 /**
@@ -222,6 +223,17 @@ function getDistance(discipline) {
     return parseInt(0.9144 * qty, 10);
   }
   return null;
+}
+
+function getDurationEventTime(dev) {
+  var m, t;
+
+  dev = dev.replace(/\s/g, '');
+  m = dev.match(PAT_RACES_FOR_DISTANCE);
+  if (!m) return null;
+  t = codesmap(PAT_RACES_FOR_DISTANCE, 'dhours', m);
+  if (t) return (t - 0) * 3600;
+  return (codesmap(PAT_RACES_FOR_DISTANCE, 'dmins', m) - 0) * 60;
 }
 
 function roundUpStrNum(s, prec, maxDP) {
@@ -654,5 +666,6 @@ module.exports = {
   normalizeEventCode,
   fieldEventRecord,
   checkPerformanceForDiscipline,
-  isHandTiming
+  isHandTiming,
+  getDurationEventTime
 };

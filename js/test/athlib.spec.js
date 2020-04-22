@@ -126,6 +126,13 @@ describe('Given an instance of Athlib', function() {
 		  expect(Athlib.getDistance("3kmW")).to.equal(3000);
 		});
 	});
+	describe('getDurationEventTime', function() {
+		it('checks itself', function() {
+		  expect(Athlib.getDurationEventTime("1hr")).to.equal(3600);
+		  expect(Athlib.getDurationEventTime("t26")).to.equal(26*60);
+		  expect(Athlib.getDurationEventTime("t1440")).to.equal(1440*60);
+		});
+	});
 	describe('sort_by_discipline', function() {
 		it('verify it sorts into standard order', function() {
 			const stuff = [
@@ -248,6 +255,8 @@ describe('Given an instance of Athlib', function() {
 		it('checkperf("stj","  2.34	")==="2.34"',() =>{expect(Athlib.checkPerformanceForDiscipline("stj","  2.34	")).to.be.equal("2.34")});
 		it('checkperf("H1","  2.34	")==="2.34"',() =>{expect(Athlib.checkPerformanceForDiscipline("H1","  2.34	")).to.be.equal("2.34")});
 		it('checkperf("h9","  2.34	")==="2.34"',() =>{expect(Athlib.checkPerformanceForDiscipline("h9","  2.34	")).to.be.equal("2.34")});
+		it('checkperf("L1","  2.34	")==="2.34"',() =>{expect(Athlib.checkPerformanceForDiscipline("L1","  2.34	")).to.be.equal("2.34")});
+		it('checkperf("l9","  2.34	")==="2.34"',() =>{expect(Athlib.checkPerformanceForDiscipline("l9","  2.34	")).to.be.equal("2.34")});
  
 		it('checkperf("DEC","10001") throws error',()=>{expect(()=>{Athlib.checkPerformanceForDiscipline("DEC","10001")}).to.throw(Error)});
 		it('checkperf("DEC","4:15.8") throws error',()=>{expect(()=>{Athlib.checkPerformanceForDiscipline("DEC","4:15.8")}).to.throw(Error)});
@@ -317,7 +326,14 @@ describe('Given an instance of Athlib', function() {
 				['PV',Athlib.PAT_JUMPS],
 				['TJ',Athlib.PAT_JUMPS],
 				['STJ',Athlib.PAT_JUMPS],
-				['XC',Athlib.PAT_ROAD]
+				['XC',Athlib.PAT_ROAD],
+				['H1',Athlib.PAT_THROWS],
+				['H9',Athlib.PAT_THROWS],
+				['L1',Athlib.PAT_THROWS],
+				['L9',Athlib.PAT_THROWS],
+				['1HR',Athlib.PAT_RACES_FOR_DISTANCE],
+				['T26',Athlib.PAT_RACES_FOR_DISTANCE],
+				['T1440',Athlib.PAT_RACES_FOR_DISTANCE]
 				];
 		function patNames(pats){
 			return pats===null?'[]':Array.isArray(pats)?arrayUniq(pats.map(function(pat){return tpatNames[tpats.indexOf(pat)]})):tpatNames[tpats.indexOf(pats)];
@@ -372,6 +388,8 @@ describe('Given an instance of Athlib', function() {
 			[' DT 1.5Kg', 'DT1.5K'],
 			[' H1 ', 'H1'],
 			[' h9 ', 'H9'],
+			[' L1 ', 'L1'],
+			[' l9 ', 'L9'],
 		];
     tests.map(function(c){it('normalizeEventCode('+c[0]+') == "'+c[1]+'"',()=>{expect(normalizeEventCode(c[0])).to.be.equal(c[1])})});
 	});

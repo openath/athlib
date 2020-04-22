@@ -10,7 +10,7 @@ _rootdir = os.path.normpath(os.path.join(_rootdir, '..'))
 
 from .codes import PAT_THROWS, PAT_JUMPS, PAT_RELAYS, PAT_HURDLES, PAT_TRACK, \
     PAT_LEADING_DIGITS, PAT_LEADING_FLOAT, PAT_PERF, PAT_EVENT_CODE, \
-    FIELD_EVENTS, MULTI_EVENTS, FIELD_SORT_ORDER
+    FIELD_EVENTS, MULTI_EVENTS, FIELD_SORT_ORDER, PAT_RACES_FOR_DISTANCE
 
 __all__ = """normalize_gender
             str2num
@@ -30,7 +30,8 @@ __all__ = """normalize_gender
             nativeStr
             check_event_code
             normalize_event_code
-            is_hand_timing""".split()
+            is_hand_timing
+            get_duration_event_time""".split()
 
 def normalize_gender(gender):
     """
@@ -149,6 +150,16 @@ def get_distance(discipline):
         return int(1609 * qty)
     elif remains in ('Y', 'y', 'YD', 'yd'):
         return int(0.9144 * qty)
+
+def get_duration_event_time(dev):
+    '''map duration event code to seconds'''
+    dev = dev.strip().replace(' ','')
+    m = PAT_RACES_FOR_DISTANCE.match(dev)
+    if m:
+        t = m.group('dhours')
+        if t:
+            return int(t)*3600
+        return int(m.group('dmins'))*60
 
 def round_up_str_num(s,prec=2,maxDP=5):
     '''

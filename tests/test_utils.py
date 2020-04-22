@@ -79,6 +79,13 @@ class UtilsTests(TestCase):
         self.assertEqual(get_distance("3KW"), 3000)
         self.assertEqual(get_distance("3kmW"), 3000)
 
+    def test_get_duration_event_time(self):
+        "Extract seconds from duration event code"
+        from athlib.utils import get_duration_event_time
+        self.assertEqual(get_duration_event_time("1hr"), 3600)
+        self.assertEqual(get_duration_event_time("t26"), 26*60)
+        self.assertEqual(get_duration_event_time("T1440"), 1440*60)
+
     def test_normalize_gender(self):
         from athlib.utils import normalize_gender
         self.assertEqual(normalize_gender("Male"), "M")
@@ -109,6 +116,8 @@ class UtilsTests(TestCase):
                 [' DT 1.5Kg', 'DT1.5K'],
                 [' H1 ', 'H1'],
                 [' h9 ', 'H9'],
+                [' l1 ', 'L1'],
+                [' l9 ', 'L9'],
                 ]
         for evc, xevc in tests:
             r = normalize_event_code(evc)
@@ -193,6 +202,8 @@ class UtilsTests(TestCase):
         self.assertEqual(checkperf("stj", "  2.34   "), "2.34")
         self.assertEqual(checkperf("h1", "  2.34    "), "2.34")
         self.assertEqual(checkperf("h9", "  2.34    "), "2.34")
+        self.assertEqual(checkperf("l1", "  2.34    "), "2.34")
+        self.assertEqual(checkperf("l9", "  2.34    "), "2.34")
 
     def test_checkperf_raises(self):
         from athlib.utils import check_performance_for_discipline as checkperf
@@ -316,6 +327,13 @@ class UtilsTests(TestCase):
                 ('TJ',PAT_JUMPS),
                 ('STJ',PAT_JUMPS),
                 ('XC',PAT_ROAD),
+                ('H1',PAT_THROWS),
+                ('H9',PAT_THROWS),
+                ('L1',PAT_THROWS),
+                ('L9',PAT_THROWS),
+                ('1HR',PAT_RACES_FOR_DISTANCE),
+                ('T26',PAT_RACES_FOR_DISTANCE),
+                ('T1440',PAT_RACES_FOR_DISTANCE),
                 ]
         errs = []
         show = lambda p: repr(sorted(list(p)))

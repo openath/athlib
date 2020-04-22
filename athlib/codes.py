@@ -51,6 +51,7 @@ FIELD_SORT_ORDER = [
         "SP", "DT", "HT", "JT", 
         "ST", "GDT", "BT", "WT", "SWT", "OT",
         "H1", "H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9",   #Custom Events
+        "L1", "L2", "L3", "L4", "L5", "L6", "L7", "L8", "L9",   #Custom Events
         ]
 
 def _orjoin(pats):
@@ -78,7 +79,8 @@ PAT_THROWS = re.compile(
                         r"[sS][tT](?P<stnum>%s|)|"
                         r"[gG][dD][tT](?P<gdtnum>%s|)|"
                         r"[oO][tT](?P<otnum>\d+\s*g?|)|"
-                        r"[Hh][1-9]"
+                        r"[Hh][1-9]|"
+                        r"[Ll][1-9]"
                         ")$"
                         ) % (_, _, _, _, _, _, _, _),
                         )
@@ -98,7 +100,7 @@ PAT_HURDLES = re.compile(r"^(?:(\d{2,4})(?:%s))$" % re.sub(r'\(\?P<[^>]*>','(',_
 
 PAT_ROAD = re.compile(r"^(?:(?:[mM][iI][lL][eE]|[mM][aA][rR]|[hH][mM])[wW]?|[xX][cC]|(?:\d{1,3}(\.\d\d?)?(?:[MKk]|[MKk][wW]|[wW])))$")
 
-PAT_RACES_FOR_DISTANCE = re.compile(r"^(?:\d\d?([hH](?:[rR]|[wW])))$")
+PAT_RACES_FOR_DISTANCE = re.compile(r"^(?:(?P<dhours>\d\d?)([hH](?:[rR]|[wW]))|[tT](?P<dmins>\d+))$")
 
 PAT_RELAYS = re.compile(r"^(?:(\d{1,2})[xX](\d{2,5}[hH]?|[rR][eE][lL][aA][yY]))$") # 4x100, 4x400, 4xReLAy, 12x200H
 PAT_RUN = re.compile(_orjoin((PAT_TRACK.pattern, PAT_ROAD.pattern, PAT_RELAYS.pattern)))
