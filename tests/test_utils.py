@@ -78,6 +78,7 @@ class UtilsTests(TestCase):
         self.assertEqual(get_distance("3000W"), 3000)
         self.assertEqual(get_distance("3KW"), 3000)
         self.assertEqual(get_distance("3kmW"), 3000)
+        self.assertEqual(get_distance("T26"), None)
 
     def test_get_duration_event_time(self):
         "Extract seconds from duration event code"
@@ -85,6 +86,8 @@ class UtilsTests(TestCase):
         self.assertEqual(get_duration_event_time("1hr"), 3600)
         self.assertEqual(get_duration_event_time("t26"), 26*60)
         self.assertEqual(get_duration_event_time("T1440"), 1440*60)
+        self.assertEqual(get_duration_event_time("3000"), None)
+
 
     def test_normalize_gender(self):
         from athlib.utils import normalize_gender
@@ -204,6 +207,8 @@ class UtilsTests(TestCase):
         self.assertEqual(checkperf("h9", "  2.34    "), "2.34")
         self.assertEqual(checkperf("l1", "  2.34    "), "2.34")
         self.assertEqual(checkperf("l9", "  2.34    "), "2.34")
+        self.assertEqual(checkperf("l9", "  10002.34    "), "10002.34") # no checking 100 seconds
+        self.assertEqual(checkperf("T26", "  6789.12    "), "6789.12") # no checking 100 seconds
 
     def test_checkperf_raises(self):
         from athlib.utils import check_performance_for_discipline as checkperf
@@ -221,6 +226,7 @@ class UtilsTests(TestCase):
         self.assertRaises(ValueError, checkperf, "100", "8.5"),  # > 11.0 metres per second
         self.assertRaises(ValueError, checkperf, "5000", "3:45:27"),  # < 0.5 m/sec
         self.assertRaises(ValueError, checkperf, "3KW", "2:34")
+        self.assertRaises(ValueError, checkperf, "T26", "26:01")
 
     def test_discipline_sort_key(self):
         '''should see if event ordering will work'''

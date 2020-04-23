@@ -10,11 +10,12 @@ True
 """
 __all__ = (
         'FIELD_EVENTS', 'FIELD_SORT_ORDER', 'JUMPS', 'MULTI_EVENTS', 'STANDARD_FEMALE_TRACK_EVENTS',
-        'STANDARD_MALE_TRACK_EVENTS', 'THROWS',
+        'STANDARD_MALE_TRACK_EVENTS', 'THROWS', 'CUSTOM_EVENTS', 'CUSTOM_HIGHSCORING_EVENTS', 'CUSTOM_LOWSCORING_EVENTS',
         'PAT_EVENT_CODE', 'PAT_FIELD', 'PAT_FINISH_RECORD', 'PAT_HORIZONTAL_JUMPS', 'PAT_HURDLES',
         'PAT_JUMPS', 'PAT_LEADING_DIGITS', 'PAT_LEADING_FLOAT', 'PAT_LENGTH_EVENT', 'PAT_LONG_SECONDS',
         'PAT_MULTI', 'PAT_NOT_FINISHED', 'PAT_PERF', 'PAT_RACES_FOR_DISTANCE', 'PAT_RELAYS', 'PAT_ROAD',
         'PAT_RUN', 'PAT_THROWS', 'PAT_TIMED_EVENT', 'PAT_TRACK', 'PAT_VERTICAL_JUMPS',
+        'PAT_HIGHSCORING_EVENT', 'PAT_LOWSCORING_EVENT'
         )
 import re
 JUMPS = ("HJ", "PV", "LJ", "TJ",
@@ -36,6 +37,13 @@ MULTI_EVENTS = (
     "PENWT",  # Weights Pentathlon - defines what events go in it.
 )
 FIELD_EVENTS = JUMPS + THROWS
+
+CUSTOM_LOWSCORING_EVENTS = ('L1', 'L2', 'L3', 'L4', 'L5', 'L6', 'L7', 'L8', 'L9')
+CUSTOM_HIGHSCORING_EVENTS = ('H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'H7', 'H8', 'H9')
+CUSTOM_EVENTS = CUSTOM_HIGHSCORING_EVENTS + CUSTOM_LOWSCORING_EVENTS
+
+
+
 STANDARD_MALE_TRACK_EVENTS = ("100", "200", "400", "800", "1500",
                               "5000", "10000",
                               "110H", "400H", "3000SC", "4x100", "4x400")
@@ -101,6 +109,9 @@ PAT_HURDLES = re.compile(r"^(?:(\d{2,4})(?:%s))$" % re.sub(r'\(\?P<[^>]*>','(',_
 PAT_ROAD = re.compile(r"^(?:(?:[mM][iI][lL][eE]|[mM][aA][rR]|[hH][mM])[wW]?|[xX][cC]|(?:\d{1,3}(\.\d\d?)?(?:[MKk]|[MKk][wW]|[wW])))$")
 
 PAT_RACES_FOR_DISTANCE = re.compile(r"^(?:(?P<dhours>\d\d?)([hH](?:[rR]|[wW]))|[tT](?P<dmins>\d+))$")
+
+PAT_HIGHSCORING_EVENT = re.compile(r"[Hh][1-9]|")
+PAT_LOWSCORING_EVENT = re.compile(r"[Ll][1-9]|")
 
 PAT_RELAYS = re.compile(r"^(?:(\d{1,2})[xX](\d{2,5}[hH]?|[rR][eE][lL][aA][yY]))$") # 4x100, 4x400, 4xReLAy, 12x200H
 PAT_RUN = re.compile(_orjoin((PAT_TRACK.pattern, PAT_ROAD.pattern, PAT_RELAYS.pattern)))

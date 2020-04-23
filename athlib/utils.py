@@ -9,8 +9,8 @@ _rootdir = os.path.dirname(os.path.abspath(__file__))
 _rootdir = os.path.normpath(os.path.join(_rootdir, '..'))
 
 from .codes import PAT_THROWS, PAT_JUMPS, PAT_RELAYS, PAT_HURDLES, PAT_TRACK, \
-    PAT_LEADING_DIGITS, PAT_LEADING_FLOAT, PAT_PERF, PAT_EVENT_CODE, \
-    FIELD_EVENTS, MULTI_EVENTS, FIELD_SORT_ORDER, PAT_RACES_FOR_DISTANCE
+    PAT_LEADING_DIGITS, PAT_LEADING_FLOAT, PAT_PERF, PAT_LONG_SECONDS, PAT_EVENT_CODE, \
+    FIELD_EVENTS, MULTI_EVENTS, CUSTOM_EVENTS, FIELD_SORT_ORDER, PAT_RACES_FOR_DISTANCE
 
 __all__ = """normalize_gender
             str2num
@@ -279,9 +279,31 @@ def check_performance_for_discipline(discipline, textvalue, gender='all', ulpc=1
     if ";" in textvalue:
         textvalue = textvalue.replace(";", ':')
 
+
+    if PAT_RACES_FOR_DISTANCE.match(discipline):
+        try:
+            distance = float(textvalue)
+            return str(distance)
+        except ValueError:
+            raise errorKlass("%s not valid.  Input a distance in metres"  % textvalue)
+
+    if discipline.upper() in CUSTOM_EVENTS:
+        try:
+            distance = float(textvalue)
+            return str(distance)
+        except ValueError:
+            raise errorKlass("%s not valid.  Input a valid number e.g. '2.34'. This will be assumed to be seconds or metres"  % textvalue)
+
+
+    # this rejects long numbers. (e.g. metres in 24 hours) so must follow the above clause
     if not PAT_PERF.match(textvalue):
         raise errorKlass(
             "Illegal numeric pattern.  Use digits, ':' and '.' only")
+
+
+
+    
+
 
     if discipline in FIELD_EVENTS:
         try:
