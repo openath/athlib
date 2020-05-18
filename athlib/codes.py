@@ -26,7 +26,10 @@ THROWS = (
     "DT", "JT", "HT", "SP", "WT", 
 
     # Superweight Throw, Ball Throw, Other Throw, Stone Throw
-    "SWT", "BT", "ST", "GDT", "OT"
+    "SWT", "BT", "ST", "GDT", "OT", 
+
+    #Target Throw, Overhead Throw, Chest Throw from UK SportsHall (kids) format
+    "TART", "OHT", "CHT"
 )
 MULTI_EVENTS = (
     # Greek prefixes for 2..12 events, and for 20.
@@ -39,7 +42,7 @@ MULTI_EVENTS = (
 FIELD_EVENTS = JUMPS + THROWS
 
 CUSTOM_LOWSCORING_EVENTS = ('L1', 'L2', 'L3', 'L4', 'L5', 'L6', 'L7', 'L8', 'L9')
-CUSTOM_HIGHSCORING_EVENTS = ('H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'H7', 'H8', 'H9')
+CUSTOM_HIGHSCORING_EVENTS = ('H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'H7', 'H8', 'H9', 'BAL')
 CUSTOM_EVENTS = CUSTOM_HIGHSCORING_EVENTS + CUSTOM_LOWSCORING_EVENTS
 
 
@@ -57,7 +60,7 @@ FIELD_SORT_ORDER = [
         "LJ", "SLJ",
         "TJ", "STJ",
         "SP", "DT", "HT", "JT", 
-        "ST", "GDT", "BT", "WT", "SWT", "OT",
+        "ST", "GDT", "BT", "WT", "SWT", "OT", "TART", "OHT", "CHT",
         "H1", "H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9",   #Custom Events
         "L1", "L2", "L3", "L4", "L5", "L6", "L7", "L8", "L9",   #Custom Events
         ]
