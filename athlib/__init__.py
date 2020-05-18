@@ -86,6 +86,7 @@ def wma_athlon_age_grade(gender, age, event, performance, verbose=False):
 
 from .tyrving_score import tyrving_score
 from .qkids_score import qkids_score
+from .sportshall_score import sportshall_score
 
 __all__ = filter(None, """
             athlon_performance_needed
@@ -103,11 +104,12 @@ __all__ = filter(None, """
             sort_by_discipline
             str2num
             text_discipline_sort_key
-            isStr,
-            nativeStr,
-            is_hand_timing,
-            tyrving_score,
-            qkids_score,
+            isStr
+            nativeStr
+            is_hand_timing
+            tyrving_score
+            qkids_score
+            sportshall_score
             wma_age_factor
             wma_age_grade
             wma_athlon_age_grade
