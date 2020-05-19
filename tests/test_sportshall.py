@@ -1,7 +1,7 @@
 """Unit tests for sportshall_score.py."""
 
 from unittest import TestCase, main
-from athlib import sportshall_score
+from athlib import sportshall_score, codes
 
 
 class QKidsScoreTests(TestCase):
@@ -43,6 +43,14 @@ class QKidsScoreTests(TestCase):
                         event, perf, r, expected))
         bad = bad.__self__
         self.assertEqual(len(bad),0,"\nnot all sportshall_score tests were correct\n%s" % '\n'.join(bad))
+
+    def test_patterns_match(self):
+        for code in ['TART', 'CHT', 'OHT', 'SLJ', 'STJ', 'SHJ', '32H', '100']:
+            m = codes.PAT_EVENT_CODE.match(code)
+            if not m:
+                print "No pattern match for %s" % code
+            self.assertNotEqual(m, None)
+
 
 if __name__ == '__main__':
     main()

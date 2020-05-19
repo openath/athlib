@@ -90,6 +90,9 @@ PAT_THROWS = re.compile(
                         r"[sS][tT](?P<stnum>%s|)|"
                         r"[gG][dD][tT](?P<gdtnum>%s|)|"
                         r"[oO][tT](?P<otnum>\d+\s*g?|)|"
+                        r"[tT][aA][rR][tT]|"  # weight not relevant
+                        r"[cC][hH][tT]|"
+                        r"[oO][hH][tT]|"                         
                         r"[Hh][1-9]|"
                         r"[Ll][1-9]"
                         ")$"
