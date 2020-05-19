@@ -116,7 +116,7 @@ PAT_ROAD = re.compile(r"^(?:(?:[mM][iI][lL][eE]|[mM][aA][rR]|[hH][mM])[wW]?|[xX]
 
 PAT_RACES_FOR_DISTANCE = re.compile(r"^(?:(?P<dhours>\d\d?)([hH](?:[rR]|[wW]))|[tT](?P<dmins>\d+))$")
 
-PAT_HIGHSCORING_EVENT = re.compile(r"[Hh][1-9]|")
+PAT_HIGHSCORING_EVENT = re.compile(r"[Hh][1-9]|SPB|BAL|")
 PAT_LOWSCORING_EVENT = re.compile(r"[Ll][1-9]|")
 
 PAT_RELAYS = re.compile(r"^(?:(\d{1,2})[xX](\d{2,5}[hH]?|[rR][eE][lL][aA][yY]))$") # 4x100, 4x400, 4xReLAy, 12x200H
@@ -127,7 +127,8 @@ PAT_MULTI = '|'.join((''.join(('[%s%s]' % (v.lower(),v.upper()) for v in _)) for
 PAT_MULTI = re.compile(r"^(?:%s)$" % PAT_MULTI)
 
 PAT_EVENT_CODE=re.compile(_orjoin(_.pattern for _ in (PAT_MULTI,PAT_RUN,
-                PAT_FIELD,PAT_RELAYS,PAT_HURDLES,PAT_RACES_FOR_DISTANCE)))
+                PAT_FIELD,PAT_RELAYS,PAT_HURDLES,PAT_RACES_FOR_DISTANCE, 
+                PAT_HIGHSCORING_EVENT, PAT_LOWSCORING_EVENT)))
 
 PAT_LEADING_FLOAT = re.compile(r"^\d+\.\d*")
 PAT_LEADING_DIGITS = re.compile(r"^\d+")

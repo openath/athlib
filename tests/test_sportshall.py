@@ -4,7 +4,7 @@ from unittest import TestCase, main
 from athlib import sportshall_score, codes
 
 
-class QKidsScoreTests(TestCase):
+class SportsHallScoreTests(TestCase):
     """Test suite for the sportshall_score score calculation module."""
 
     def test_performance(self):
@@ -35,6 +35,7 @@ class QKidsScoreTests(TestCase):
             ('CHT', '10.5', 70),
             ('100', '26.0', 70),
             ('JT', '23', 69),
+            ('800', '144', 70),
 
             ]:
             r = sportshall_score(event, perf)
@@ -45,7 +46,7 @@ class QKidsScoreTests(TestCase):
         self.assertEqual(len(bad),0,"\nnot all sportshall_score tests were correct\n%s" % '\n'.join(bad))
 
     def test_patterns_match(self):
-        for code in ['TART', 'CHT', 'OHT', 'SLJ', 'STJ', 'SHJ', '32H', '100']:
+        for code in ['TART', 'CHT', 'OHT', 'SLJ', 'STJ', 'SHJ', '32H', '100', '800', 'BAL', 'SPB']:
             m = codes.PAT_EVENT_CODE.match(code)
             if not m:
                 print "No pattern match for %s" % code

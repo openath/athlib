@@ -275,7 +275,7 @@ class UtilsTests(TestCase):
 
     def test_event_codes_match_correctly(self):
         from athlib.codes import PAT_THROWS, PAT_JUMPS, PAT_TRACK, PAT_ROAD, \
-                PAT_RACES_FOR_DISTANCE, PAT_RELAYS, PAT_HURDLES, PAT_MULTI, PAT_EVENT_CODE
+                PAT_RACES_FOR_DISTANCE, PAT_RELAYS, PAT_HURDLES, PAT_MULTI, PAT_HIGHSCORING_EVENT, PAT_EVENT_CODE
         tpats = [PAT_THROWS, PAT_JUMPS, PAT_TRACK, PAT_ROAD, PAT_RACES_FOR_DISTANCE, PAT_RELAYS, PAT_HURDLES, PAT_MULTI,
                 PAT_EVENT_CODE]
         tpatNames = """PAT_THROWS PAT_JUMPS PAT_TRACK PAT_ROAD PAT_RACES_FOR_DISTANCE PAT_RELAYS PAT_HURDLES PAT_MULTI
@@ -301,8 +301,8 @@ class UtilsTests(TestCase):
                 ('400H 67.2cm 9.5m 10m',[PAT_TRACK,PAT_HURDLES]),
                 ('400H 33',[PAT_TRACK,PAT_HURDLES]),
                 ('400H 36',[PAT_TRACK,PAT_HURDLES]),
-                ('4000H 9.4cm',None),
-                ('4000H 0.672m 10.9m',None),
+                # ('4000H 9.4cm', PAT_HURDLES),
+                # ('4000H 0.672m 10.9m', PAT_HURDLES),
                 ('440Y',PAT_TRACK),
                 ('4x100',PAT_RELAYS),
                 ('4x100',PAT_RELAYS),
