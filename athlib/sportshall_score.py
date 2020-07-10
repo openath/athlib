@@ -63,7 +63,7 @@ def load_data():
 def score_high_event(dperf, info, verbose=False):
     "Look in given event's info dict - binary search, high numbers good"
     if verbose:
-        print "Looking for performance of", dperf
+        print("Looking for performance of", dperf)
     p2p = info['perf2points']
     max_points, dmax_perf = p2p[-1]
     max_perf = Decimal(dmax_perf)
@@ -93,8 +93,8 @@ def score_high_event(dperf, info, verbose=False):
             (p1, v1) = p2p[mid+1]
 
             if verbose:
-                print "try %d: index %d, p0=%s, v0=%s; p1=%s, v1=%s" % (
-                    tries, mid, p0, v0, p1, v1)
+                print("try %d: index %d, p0=%s, v0=%s; p1=%s, v1=%s" % (
+                    tries, mid, p0, v0, p1, v1))
 
             if tries > 10: 
                 return 0
@@ -102,14 +102,14 @@ def score_high_event(dperf, info, verbose=False):
             if dperf >= Decimal(v1):  # look higher
                 lo = mid # narrow the range if we overshoot later
                 mid = int(floor(0.5 * (mid + hi)))
-                if verbose: print "    look higher"
+                if verbose: print("    look higher")
             elif dperf < Decimal(v0): # look higher
                 hi = mid
                 mid = int(floor(0.5 * (lo + mid)))
-                if verbose: print "    look lower"
+                if verbose: print("    look lower")
             else:
                 points = p0
-                if verbose: print "    found it"
+                if verbose: print("    found it")
 
                 break
 
@@ -119,7 +119,7 @@ def score_high_event(dperf, info, verbose=False):
 def score_low_event(dperf, info, verbose=False):
     "Look in given event's info dict - binary search, low numbers good"
     if verbose:
-        print "Looking for performance of", dperf
+        print("Looking for performance of", dperf)
     p2p = info['perf2points']
     max_points, dmax_perf = p2p[-1]
     max_perf = Decimal(dmax_perf)
@@ -149,8 +149,8 @@ def score_low_event(dperf, info, verbose=False):
             (p1, v1) = p2p[mid+1]
 
             if verbose:
-                print "try %d: index %d, p0=%s, v0=%s; p1=%s, v1=%s" % (
-                    tries, mid, p0, v0, p1, v1)
+                print("try %d: index %d, p0=%s, v0=%s; p1=%s, v1=%s" % (
+                    tries, mid, p0, v0, p1, v1))
 
             if tries > 10: 
                 return 0
@@ -158,14 +158,14 @@ def score_low_event(dperf, info, verbose=False):
             if dperf <= Decimal(v1):  # look higher
                 lo = mid # narrow the range if we overshoot later
                 mid = int(floor(0.5 * (mid + hi)))
-                if verbose: print "    look higher"
+                if verbose: print("    look higher")
             elif dperf > Decimal(v0): # look higher
                 hi = mid
                 mid = int(floor(0.5 * (lo + mid)))
-                if verbose: print "    look lower"
+                if verbose: print("    look lower")
             else:
                 points = p0
-                if verbose: print "    found it"
+                if verbose: print("    found it")
 
                 break
 
@@ -293,5 +293,5 @@ RAWDATA = [
 if __name__=='__main__':
     d = load_data()
     
-    print sportshall_score("800", "144", verbose=True)
+    print(sportshall_score("800", "144", verbose=True))
 
