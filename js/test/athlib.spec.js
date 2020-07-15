@@ -119,7 +119,7 @@ describe('Given an instance of Athlib', function() {
 		  expect(Athlib.getDistance("3x100h")).to.equal(300);
 		  expect(Athlib.getDistance("4x400")).to.equal(1600);
 		  expect(Athlib.getDistance("7.5M")).to.equal(12067);
-		  expect(Athlib.getDistance("7.5SC")).to.equal(null);
+		  expect(Athlib.getDistance("3000SC")).to.equal(3000);
 		  expect(Athlib.getDistance("440Y")).to.equal(402);
 		  expect(Athlib.getDistance("3000W")).to.equal(3000);
 		  expect(Athlib.getDistance("3KW")).to.equal(3000);

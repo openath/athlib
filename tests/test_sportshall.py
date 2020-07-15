@@ -49,7 +49,7 @@ class SportsHallScoreTests(TestCase):
         for code in ['TART', 'CHT', 'OHT', 'SLJ', 'STJ', 'SHJ', '32H', '100', '800', 'BAL', 'SPB']:
             m = codes.PAT_EVENT_CODE.match(code)
             if not m:
-                print "No pattern match for %s" % code
+                print("No pattern match for %s" % code)
             self.assertNotEqual(m, None)
 
 

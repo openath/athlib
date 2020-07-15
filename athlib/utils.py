@@ -136,9 +136,7 @@ def get_distance(discipline):
     qty_text = m.group()
     remains = discipline[len(qty_text):]
     qty = float(qty_text)
-    if '.' in qty_text:
-        return int(1609 * qty) if remains in ('M', 'Mi', 'MI') else None
-    elif not remains:
+    if not remains:
         return int(qty)
     elif remains.lower() in ('sc', 'h', 'w') or remains in ('m', 'mH'):
         return int(qty)

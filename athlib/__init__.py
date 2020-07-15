@@ -3,7 +3,7 @@ from .uka.agegroups import calc_uka_age_group
 from .iaaf_score import score as athlon_score
 from .iaaf_score import performance as athlon_performance_needed
 
-__version__ = u'0.5.13'
+__version__ = u'0.5.14'
 
 from .exceptions import RuleViolation
 
@@ -88,7 +88,7 @@ from .tyrving_score import tyrving_score
 from .qkids_score import qkids_score
 from .sportshall_score import sportshall_score
 
-__all__ = filter(None, """
+__all__ = list(filter(None, """
             athlon_performance_needed
             athlon_score
             calc_uka_age_group
@@ -122,4 +122,4 @@ __all__ = filter(None, """
             STANDARD_MALE_TRACK_EVENTS
             THROWS
             RuleViolation
-            """.split())
+            """.split()))

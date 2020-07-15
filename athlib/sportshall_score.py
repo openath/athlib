@@ -23,7 +23,7 @@ def load_data():
 
     data_by_event_code = {}
     event_codes = []
-    by_col = zip(*RAWDATA)
+    by_col = list(zip(*RAWDATA))
     keys = by_col[0]
     for col in by_col[1:]:
         d = dict(zip(keys, col))

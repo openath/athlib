@@ -207,9 +207,7 @@ function getDistance(discipline) {
   remains = discipline.slice(qtyText.length);
   qty = parseFloat(qtyText);
 
-  if (qtyText.match(/\./)) {
-    return remains.match(/^(?:M|Mi|MI)$/) ? parseInt(1609 * qty, 10) : null;
-  } else if (!remains) {
+  if (!remains) {
     return parseInt(qty, 10);
   } else if (remains.toLowerCase().match(/^(?:sc|h|w)$/) || remains.match(/^(?:m|mH)$/)) {
     return parseInt(qty, 10);
@@ -516,7 +514,7 @@ function checkPerformanceForDiscipline(discipline, textvalue, gender, ulpc, erro
   if (ulpc === undefined) ulpc = 1.2;
   if (errorKlass === undefined) errorKlass = Error;
   if (prec === undefined) prec = null;
-  // Fix up and return what they typed in,  or raise errorKlass(default ValueError)
+  // Fix up and return what they typed in,    or raise errorKlass(default ValueError)
   textvalue = textvalue.trim();
 
   if (discipline.toLowerCase() === 'xc' && textvalue === '') return textvalue;
@@ -544,7 +542,7 @@ function checkPerformanceForDiscipline(discipline, textvalue, gender, ulpc, erro
     if (points > 9999) throw errorKlass(`Multi-events scores should be below 10000 not ${textvalue}`);
     return points + '';
   } else {
-    //  It's a running distance.  format check.  Try to extract metres
+    //    It's a running distance.  format check.  Try to extract metres
     distance = getDistance(discipline);
 
     if (textvalue.startsWith('0:')) textvalue = textvalue.slice(2);
@@ -558,13 +556,13 @@ function checkPerformanceForDiscipline(discipline, textvalue, gender, ulpc, erro
       if (textvalue.indexOf('.') < 0) {
         chunks = textvalue.split(':');
         if (chunks.length === 3) {textvalue = chunks[0] + ':' + chunks[1] + '.' + chunks[2];}
-        //  we got hours/mins/secs, should have been min/sec+fraction
+        // we got hours/mins/secs, should have been min/sec+fraction
       }
     }
 
     chunks = textvalue.split(':');
 
-    //  The regex ensures we have 1, 2 or 3 chunks
+    //    The regex ensures we have 1, 2 or 3 chunks
     if (chunks.length === 1) {
       hours = 0;
       minutes = 0;
@@ -591,10 +589,10 @@ function checkPerformanceForDiscipline(discipline, textvalue, gender, ulpc, erro
     }
 
     duration = 3600 * hours + 60 * minutes + seconds;
-    //  print("duration: %0.2f seconds" % duration)
+    //    print("duration: %0.2f seconds" % duration)
 
-    //  do sanity checks.  Over 11 metres per second is pretty fishy for a
-    //  sprint
+    //    do sanity checks.  Over 11 metres per second is pretty fishy for a
+    //    sprint
     if (distance > 0 && duration > 0) {
       velocity = distance * 1.0 / duration;
 

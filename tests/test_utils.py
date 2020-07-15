@@ -73,7 +73,7 @@ class UtilsTests(TestCase):
         self.assertEqual(get_distance("3x100h"), 300)
         self.assertEqual(get_distance("4x400"), 1600)
         self.assertEqual(get_distance("7.5M"), 12067)
-        self.assertEqual(get_distance("7.5SC"), None)
+        self.assertEqual(get_distance("3000SC"), 3000)
         self.assertEqual(get_distance("440Y"), 402)
         self.assertEqual(get_distance("3000W"), 3000)
         self.assertEqual(get_distance("3KW"), 3000)
