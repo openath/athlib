@@ -88,38 +88,8 @@ from .tyrving_score import tyrving_score
 from .qkids_score import qkids_score
 from .sportshall_score import sportshall_score
 
-__all__ = list(filter(None, """
-            athlon_performance_needed
-            athlon_score
-            calc_uka_age_group
-            check_event_code
-            check_performance_for_discipline
-            discipline_sort_key
-            round_up_str_num
-            format_seconds_as_time
-            get_distance
-            get_implement_weight
-            normalize_gender
-            parse_hms
-            sort_by_discipline
-            str2num
-            text_discipline_sort_key
-            isStr
-            nativeStr
-            is_hand_timing
-            tyrving_score
-            qkids_score
-            sportshall_score
-            wma_age_factor
-            wma_age_grade
-            wma_athlon_age_grade
-            wma_world_best
-            FIELD_EVENTS
-            FIELD_SORT_ORDER
-            JUMPS
-            MULTI_EVENTS
-            STANDARD_FEMALE_TRACK_EVENTS
-            STANDARD_MALE_TRACK_EVENTS
-            THROWS
-            RuleViolation
-            """.split()))
+def __make_all__():
+    return [k for k, v in sorted(globals().items()) if not (k.startswith('__') or v.__class__.__name__== 'module')]
+
+__all__ = __make_all__()
+del __make_all__
