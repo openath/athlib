@@ -6,6 +6,7 @@ const CWP = require('clean-webpack-plugin');
 const write = require('write');
 
 module.exports = function (env) {
+	if (!env) env = {prod: 1};
 	const libraryName = pkg.name;
 	const isProd  = env.prod === 1;
 	write.sync(__dirname + '/src/version.js', "const version = '"+pkg.version+"';\n\nmodule.exports = {version};\n");
