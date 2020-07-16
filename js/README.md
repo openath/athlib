@@ -1,7 +1,7 @@
 Athlib Javascript
 =================
 
-This is the athlib.js library containing code related to athletics. The node version is inlib, the web version is in dist.
+This is the athlib.js library containing code related to athletics. Produces `dist/athlib.web.js` and optionally `dist/athlib.web.js.map`.
 
 
 ES6 library
@@ -48,6 +48,11 @@ npm run eslint
 ### Check and fix formatting with eslint
 ```sh
 npm run eslint-fix
+```
+
+### Tests web code
+```sh
+npm run test
 ```
 
 ### Tests web code in node mode
