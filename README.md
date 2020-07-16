@@ -49,21 +49,9 @@ pycodestyle --exclude=bin,lib,include,sampledata
 
 You can also copy the file `pre-commit.sample` to `.git/hooks/pre-commit`, and the two above checks will be run before any commit, and block it if they return issues.
 
-# Javascript documentation
+# Javascript documentation & development
 
-    npm install athlib
-
-Browser links coming soon
-
-## Javascript development
-
-We have a complete Javascript environment in the "js/" subdirectory.  This is lifted from someone else's library boilerplate.  
-
-    npm run build    # build for node
-    npm run build-web  # build for browser
-    npm run test   # tests running in console.
-
-We'd welcome help modernising this.  It uses Webpack 1 and gulp.  The authors are a bit out of their depth here a.
+see the [documentation](js/README.md) in folder js 
 
 # Documentation itself
 
