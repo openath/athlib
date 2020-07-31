@@ -642,6 +642,12 @@ function isHandTiming(perf) {
   return dp < 0 || (perf.length - dp) < 3;
 }
 
+function zip(arrays) {
+  return arrays[0].map(function (_, i) {
+    return arrays.map(function (array) {return array[i];});
+  });
+}
+
 module.exports = {
   hello,
   normalizeGender,
@@ -665,5 +671,6 @@ module.exports = {
   fieldEventRecord,
   checkPerformanceForDiscipline,
   isHandTiming,
-  getDurationEventTime
+  getDurationEventTime,
+  zip
 };

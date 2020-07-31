@@ -21,7 +21,8 @@ import {
   fieldEventRecord,
   checkPerformanceForDiscipline,
   isHandTiming,
-  getDurationEventTime
+  getDurationEventTime,
+  zip
 } from './utils';
 
 import { tyrvingScore } from './tyrving_score.js';
@@ -146,5 +147,6 @@ module.exports = {
   checkPerformanceForDiscipline,
   isHandTiming,
   getDurationEventTime,
+  zip,
   version
 };

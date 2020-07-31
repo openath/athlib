@@ -132,6 +132,12 @@ describe('Given an instance of Athlib', function() {
 		  expect(Athlib.getDurationEventTime("t1440")).to.equal(1440*60);
 		});
 	});
+	describe('zip', function() {
+		it('checks zip', function() {
+		  expect(JSON.stringify(Athlib.zip([[1,2],[11,22],[111,222]]))).to.equal(JSON.stringify([[1,11,111],[2,22,222]]));
+		  expect(JSON.stringify(Athlib.zip([[1,11,111],[2,22,222]]))).to.equal(JSON.stringify([[1,2],[11,22],[111,222]]));
+		});
+	});
 	describe('sort_by_discipline', function() {
 		it('verify it sorts into standard order', function() {
 			const stuff = [
@@ -158,6 +164,7 @@ describe('Given an instance of Athlib', function() {
 		});
 		it('text_discipline_sort_key', function() {
 			expect(Athlib.text_discipline_sort_key("100H")).to.be.equal( "2_00100_100H");
+			expect(Athlib.textDisciplineSortKey("100H")).to.be.equal( "2_00100_100H");
 		});
 		it('object sorting', function() {
 			var obj1 = new Object();
