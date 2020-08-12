@@ -15,10 +15,11 @@ Codes of interest:
 
 from decimal import Decimal
 from math import floor, ceil
+from typing import Dict
 
 FUZZ = 0.0001
 
-def load_data():
+def load_data() -> Dict:
     "Transform data on first load into something more usable"
 
     data_by_event_code = {}
@@ -60,7 +61,7 @@ def load_data():
     return db
 
 
-def score_high_event(dperf, info, verbose=False):
+def score_high_event(dperf: Decimal, info: Dict, verbose: bool = False) -> int:
     "Look in given event's info dict - binary search, high numbers good"
     if verbose:
         print("Looking for performance of", dperf)
@@ -116,7 +117,7 @@ def score_high_event(dperf, info, verbose=False):
     return points
 
 
-def score_low_event(dperf, info, verbose=False):
+def score_low_event(dperf: Decimal, info: Dict, verbose: bool = False) -> int:
     "Look in given event's info dict - binary search, low numbers good"
     if verbose:
         print("Looking for performance of", dperf)
@@ -174,7 +175,7 @@ def score_low_event(dperf, info, verbose=False):
 
 _DB = None
 
-def sportshall_score(event_code, perf, verbose=False):
+def sportshall_score(event_code: str, perf: str, verbose=False) -> int:
     "Return Sportshall At Home score for the event"
     global _DB # initialize on first call
     if not _DB:
@@ -190,8 +191,6 @@ def sportshall_score(event_code, perf, verbose=False):
         return score_high_event(perf, event_info, verbose=verbose)
     else:
         return score_low_event(perf, event_info, verbose=verbose)
-
-    return None
 
 
 
@@ -294,4 +293,6 @@ if __name__=='__main__':
     d = load_data()
     
     print(sportshall_score("800", "144", verbose=True))
+    print(d)
+    print(type(d))
 

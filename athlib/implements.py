@@ -1,7 +1,7 @@
 "Standard weights and measures"
 
 
-def get_implement_weight(event_code, gender, age_group):
+def get_implement_weight(event_code:str, gender: str, age_group: str) -> str:
     """Return standard weights in KG, as a formatted string
 
     Because UKA and IAAF have odd and even codes, hopefully
@@ -170,7 +170,7 @@ def get_implement_weight(event_code, gender, age_group):
     # default is we don't know
     return ""
 
-def get_specific_event_code(generic_event_code, gender, age_group):
+def get_specific_event_code(generic_event_code: str, gender: str, age_group: str) -> str:
     "Given e.g. 'SP', return 'SP7.26K"
 
     if generic_event_code not in ["SP", "HT", "JT", "DT", "WT"]:

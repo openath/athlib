@@ -1,7 +1,9 @@
 __all__ = 'tyrving_score'
 
+import typing
 from athlib import parse_hms, normalize_gender, normalize_event_code, is_hand_timing
 from athlib.codes import PAT_RUN
+from typing import Union, Dict, Tuple
 
 class TyrvingCalculator:
     def __init__(self, gender, event_code, kind, args):
@@ -10,21 +12,21 @@ class TyrvingCalculator:
         self.kind = kind    #race jump pv & throw
         self.args = args
 
-    def points(self, age, perf, timing_kind='automatic'):
+    def points(self, age: int, perf: Union[int, float, str], timing_kind: str = 'automatic') -> int:
         '''compute points according to kind and params'''
-        meth = getattr(self,self.kind+'_points',self.bad_points)
+        meth = getattr(self, self.kind+'_points', self.bad_points)
         self.timing_kind = timing_kind
         age = int(age)
         return meth(age, perf)
 
     @property
-    def ident(self):
+    def ident(self) -> str:
         return '%s(%r,%r,%r)' % (self.__class__.__name__, self.event_code, self.gender, self.kind)
 
     def bad_points(self, *args, **kwds):
         raise ValueError('cannot compute points for %s' % self.ident)
 
-    def get_base_perf(self, age, yv):
+    def get_base_perf(self, age: int, yv: Union[Dict, Tuple]) -> int:
         if isinstance(yv,dict):
             base_perf = yv.get(age,None)
         else:
@@ -34,14 +36,14 @@ class TyrvingCalculator:
             raise ValueError('cannot obtain base performance for %s at age=%s' % (self.ident,age))
         return base_perf
 
-    def race_points(self, age, perf):
+    def race_points(self, age: int, perf: Union[int, float, str]) -> int:
         dist, multiplier, yv = self.args
         base_perf = self.get_base_perf(age,yv)
 
         #perf is a time
         v = perf
         if not isinstance(v,(int,float)):
-            perf.replace(',','.')
+            v.replace(',','.')
             while v.count('.')>1: v = v.replace('.',':',1)
             v = parse_hms(v) if ':' in v else float(v)
 
@@ -53,7 +55,7 @@ class TyrvingCalculator:
 
         return max(0,int(1000 + 1e-8 + (base_perf - v) * (multiplier / (0.01 if dist<=500 else 0.1))))
 
-    def jump_points(self, age, perf):
+    def jump_points(self, age, perf: Union[int, float, str]) -> int:
         multiplier, yv = self.args
         base_perf = self.get_base_perf(age,yv)
 
@@ -63,7 +65,7 @@ class TyrvingCalculator:
             v = float(v.replace(',','.'))
         return max(0,int(1000 + 1e-8 + multiplier * (v - base_perf)*100))
 
-    def stav_points(self, age, perf):
+    def stav_points(self, age, perf: Union[int, float, str]) -> int:
         '''this works for all the piecewise linear distance events'''
         multipliers, yvs = self.args
 
@@ -78,7 +80,7 @@ class TyrvingCalculator:
     throw_points = stav_points
     pv_points = stav_points
 
-def tyrving_score(gender, age, event_code, perf):
+def tyrving_score(gender: str, age: int, event_code: str, perf: Union[int, float, str]) -> int:
     timing_kind='automatic'
     if PAT_RUN.match(event_code):
         if is_hand_timing(perf):

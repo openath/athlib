@@ -1,10 +1,13 @@
 """General athlib utility functions"""
 import sys, os, json
 from collections import OrderedDict
+import jsonschema
 import jsonschema.validators
 from jsonschema.validators import RefResolver as OriginalResolver
 from jsonschema.exceptions import SchemaError, ValidationError
-isPy3 = sys.version_info[0] == 3
+from typing import Any, Union, Dict, Optional, Type, Tuple, Match, List, TypeVar
+import builtins
+
 _rootdir = os.path.dirname(os.path.abspath(__file__))
 _rootdir = os.path.normpath(os.path.join(_rootdir, '..'))
 
@@ -33,7 +36,7 @@ __all__ = """normalize_gender
             is_hand_timing
             get_duration_event_time""".split()
 
-def normalize_gender(gender):
+def normalize_gender(gender: Any) -> str:
     """
     Return M, F or raise a ValueError
 
@@ -50,7 +53,7 @@ def normalize_gender(gender):
                 return g
     raise ValueError('cannot normalize gender = %s' % repr(gender))
 
-def str2num(s):
+def str2num(s: str) -> Union[int, float]:
     """convert string to int if possible else float
 
     :param s: string number
@@ -62,7 +65,7 @@ def str2num(s):
     except ValueError:
         return float(s)
 
-def parse_hms(t):
+def parse_hms(t: Union[int, float, str]) -> Union[int, float]:
     """
     Parse a time duration with 0, 1 or 2 colons and return seconds.
 
@@ -102,7 +105,7 @@ def parse_hms(t):
     except ValueError:
         raise ValueError('cannot parse seconds from %s' % repr(t))
 
-def get_distance(discipline):
+def get_distance(discipline: str) -> Optional[int]:
     """
     Return approx distance in metres, for sanity checking
     :param discipline:
@@ -149,7 +152,7 @@ def get_distance(discipline):
     elif remains in ('Y', 'y', 'YD', 'yd'):
         return int(0.9144 * qty)
 
-def get_duration_event_time(dev):
+def get_duration_event_time(dev: str) -> Optional[int]:
     '''map duration event code to seconds'''
     dev = dev.strip().replace(' ','')
     m = PAT_RACES_FOR_DISTANCE.match(dev)
@@ -159,7 +162,7 @@ def get_duration_event_time(dev):
             return int(t)*3600
         return int(m.group('dmins'))*60
 
-def round_up_str_num(s,prec=2,maxDP=5):
+def round_up_str_num(s: str, prec: int = 2, maxDP: int = 5) -> str:
     '''
     s is a valid non-negative float number string containing possible .xyz
     returns string number rounded up to prec places
@@ -191,7 +194,7 @@ def round_up_str_num(s,prec=2,maxDP=5):
 
     return '.'.join((i,f)) if prec else i
 
-def format_seconds_as_time(seconds, prec=0):
+def format_seconds_as_time(seconds: float, prec: int = 0) -> str:
     """convert non-negative seconds to a string formatted as hours:min:secs
     fractional seconds are rounded up to prec digits eg
 
@@ -227,7 +230,7 @@ def format_seconds_as_time(seconds, prec=0):
         t = "%d" % secs
     return t + frac
 
-FIELD_EVENT_RECORDS_BY_GENDER = dict(
+FIELD_EVENT_RECORDS_BY_GENDER : Dict [str, Dict[str, float]]= dict(
                         m = dict(
                                 HJ = 2.45,
                                 LJ = 8.95,
@@ -254,13 +257,20 @@ FIELD_EVENT_RECORDS_BY_GENDER = dict(
 FIELD_EVENT_RECORDS_BY_GENDER['all'] = {k: max([FIELD_EVENT_RECORDS_BY_GENDER[r][k] for r in 'mf'])
                                             for k in FIELD_EVENT_RECORDS_BY_GENDER['m'].keys()}
 
-def field_event_record(evc,gender='all'):
+def field_event_record(evc: str, gender: str = 'all') -> Optional[float]:
     gender = gender.lower()
     if gender not in FIELD_EVENT_RECORDS_BY_GENDER:
         gender = 'all'
     return FIELD_EVENT_RECORDS_BY_GENDER[gender].get(evc.upper(),None)
 
-def check_performance_for_discipline(discipline, textvalue, gender='all', ulpc=120/100.0, errorKlass=ValueError, prec=None):
+def check_performance_for_discipline(
+    discipline: str,
+    textvalue: str,
+    gender: str = 'all',
+    ulpc: float = 120/100.0,
+    errorKlass: Type[Exception] = ValueError,
+    prec: int = None
+) -> str:
     """
     Fix up and return what they typed in,  or raise errorKlass(default ValueError)
     """
@@ -439,7 +449,7 @@ def check_performance_for_discipline(discipline, textvalue, gender='all', ulpc=1
 
         return format_seconds_as_time(duration,prec)
 
-def discipline_sort_key(discipline):
+def discipline_sort_key(discipline: Optional[str]) -> Tuple[int, int, str]:
     """
     Return a tuple which will sort into programme order
 
@@ -483,11 +493,13 @@ def discipline_sort_key(discipline):
     # anything else sorts to end
     return 6, 0, discipline
 
-def text_discipline_sort_key(discipline):
+def text_discipline_sort_key(discipline: str) -> str:
     "Return a text version of the event_sort_key"
     return "%d_%05d_%s" % discipline_sort_key(discipline)
 
-def sort_by_discipline(stuff, attr="discipline"):
+T = TypeVar('T')
+
+def sort_by_discipline(stuff: List[T], attr: str = "discipline") -> List[T]:
     "Sort dicts or objects into the normal athletics order"
 
     sorter = []
@@ -500,34 +512,34 @@ def sort_by_discipline(stuff, attr="discipline"):
         priority = discipline_sort_key(disc)
         sorter.append((priority, thing))
 
-    sorter.sort()
+    sorter.sort(key=lambda x: x[0])
     return [thing for (priority, thing) in sorter]
 
-def check_event_code(c):
+def check_event_code(c: str) -> Optional[Match[str]]:
     return PAT_EVENT_CODE.match(c)
 
-def _norm_tzeroes(s):
+def _norm_tzeroes(s: str) -> str:
     s = s.strip()
     if '.' in s:
         while s and s[-1] in ' .0': s = s[:-1]
     return s
 
-def _norm_cm(s):
+def _norm_cm(s: str) -> str:
     '''normalize cm values; these must end with cm'''
     return _norm_tzeroes(s[:-2])+'cm'
     
-def _norm_m(s):
+def _norm_m(s: str) -> str:
     '''normalize m values which must end in m'''
     return _norm_tzeroes(s[:-1])+'m'
 
-def _norm_kg(s):
+def _norm_kg(s: str) -> str:
     '''normalize kilogram values may or may not end in [Kk][gG]
     '''
     if s[-1].lower()=='g': s = s[:-1]
     if s[-1].lower()=='k': s = s[:-1]
     return _norm_tzeroes(s)+'K'
 
-def _norm_g(s):
+def _norm_g(s: str) -> str:
     '''normalize gram values may or may not end in g
     we normalize to just the number
     '''
@@ -545,7 +557,7 @@ _gnorms = dict(
     btnum=_norm_kg, stnum=_norm_kg, gdtnum=_norm_kg,otnum=_norm_g,
     )
 
-def normalize_event_code(c):
+def normalize_event_code(c : str) -> str:
     c = c.strip()   #remove excess whitespace
     m =  PAT_EVENT_CODE.match(c)
     if not m:
@@ -566,34 +578,16 @@ def normalize_event_code(c):
             c = c[:start] + repl + c[end:] 
     return c.replace(' ','')
 
-if isPy3:
-    import builtins
-    lexec = getattr(builtins, 'exec')
-    def isStr(o):
-        '''return true if argument is a string type'''
-        return isinstance(o,(str,bytes))
-    def nativeStr(o, enc="utf8"):
-        '''converts arg to str with possible decoding if bytes'''
-        return  o if isinstance(o,str) else o.decode(enc) if isinstance(o,bytes) else str(o)
-else:
-    def lexec(obj, G=None, L=None):
-        if G is None:
-            frame = sys._getframe(1)
-            G = frame.f_globals
-            if L is None:
-                L = frame.f_locals
-            del frame
-        elif L is None:
-            L = G
-        exec("""exec obj in G, L""")
-    def isStr(o):
-        '''return true if argument is a string type'''
-        return isinstance(o,basestring)
-    def nativeStr(o, enc="utf8"):
-        '''converts arg to str with possible encoding if unicode'''
-        return  o if isinstance(o,str) else o.encode(enc) if isinstance(o,unicode) else str(o)
 
-def localpath(relpath,pstart=0):
+lexec = getattr(builtins, 'exec')
+def isStr(o):
+    '''return true if argument is a string type'''
+    return isinstance(o,(str,bytes))
+def nativeStr(o, enc="utf8"):
+    '''converts arg to str with possible decoding if bytes'''
+    return  o if isinstance(o,str) else o.decode(enc) if isinstance(o,bytes) else str(o)
+
+def localpath(relpath: str, pstart: int = 0) -> str:
     if os.path.isfile(relpath):
         if pstart==0:
             relpath = os.path.abspath(relpath)
@@ -616,7 +610,7 @@ def localpath(relpath,pstart=0):
 
 class LocalFileResolver(OriginalResolver):
 
-    def resolve_from_url(self, url):
+    def resolve_from_url(self, url: str) -> str:
         if url.startswith("file:///"):
             relpath = localpath(url[8:].rstrip('#'),1).replace(os.sep,'/')
             url = ("file:///%s/%s" if sys.platform ==
@@ -626,16 +620,18 @@ class LocalFileResolver(OriginalResolver):
 # Monkeypatch jsonschema to resolve local, relative urls.
 jsonschema.validators.RefResolver = LocalFileResolver
 
-def _add_to_cache(c,t,v,maxlen=20):
-    while len(c)>=maxlen:
-        c.popitem(False)
+R = TypeVar('R')
+def _add_to_cache(c: Dict[R, T], t: R, v: T, maxlen: int = 20) -> T:
+    it = reversed(c)
+    while len(c) >= maxlen:
+        c.pop(next(it))
     c[t] = v
     return v
 
-_schema_valid_cache = OrderedDict()
-def schema_valid(schema_file,  # should be relative path
+_schema_valid_cache = dict()
+def schema_valid(schema_file : str,  # should be relative path
                  validator=jsonschema.Draft3Validator,
-                 expect_failure=False):
+                 expect_failure: bool = False) -> bool:
     """Test that schema is itself valid, using a jsonschema validator"""
 
     t = (schema_file,validator)
@@ -646,18 +642,18 @@ def schema_valid(schema_file,  # should be relative path
 
         try:
             validator.check_schema(schema)
-            return _add_to_cache(_schema_valid_cache,t,True)
+            return _add_to_cache(_schema_valid_cache, t, True)
         except SchemaError as e:
             if not expect_failure:
                 print(e)
-                return _add_to_cache(_schema_valid_cache,t,False)
+                return _add_to_cache(_schema_valid_cache, t, False)
             else:
                 raise
 
-    return False
+    return False # unreachable
 
-_valid_against_schema_cache = OrderedDict()
-def valid_against_schema(json_file, schema_file, expect_failure=False):
+_valid_against_schema_cache = dict()
+def valid_against_schema(json_file: str, schema_file: str, expect_failure: bool = False) -> bool:
     """Test that JSON file valid against a schema"""
     t = (json_file,schema_file)
     if t in _valid_against_schema_cache:
@@ -680,7 +676,7 @@ def valid_against_schema(json_file, schema_file, expect_failure=False):
 
     return False
 
-def is_hand_timing(perf):
+def is_hand_timing(perf: Any) -> bool:
     if isStr(perf):
         perf = nativeStr(perf)
         dp = perf.rfind('.')
