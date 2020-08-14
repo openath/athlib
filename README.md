@@ -27,6 +27,8 @@ What follows below is intended to help people working on athlib.
 
 # Python documentation
 
+We require a modern python>=3.8.0 some functions already have typing information and it will be applied later to others.
+
 ## Installation
     pip install athlib
 
