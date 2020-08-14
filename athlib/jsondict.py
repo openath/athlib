@@ -1,3 +1,7 @@
+from os import name
+from typing import Union, Dict, List, Any
+from __future__ import annotations
+
 """Utilities for working with JSON and json-like structures - deeply nested
 Python dicts and lists.
 
@@ -19,27 +23,27 @@ def setErrorCollect(collect):
 setErrorCollect(False)
 
 
-def errorValue(x):
-    if isinstance(x, (str, unicode)):
+def errorValue(x) -> Union[str, bytes]:
+    if isinstance(x, (str, bytes)):
         return repr(x) if ' ' in x else x
 
     return 'None' if x is None else str(x)
 
 
-def condJSON(v, __name__=''):
+def condJSON(v: Union[Dict, List, Any], name: str = '') -> Union[JSONDict, JSONList, Any]:
     if isinstance(v, dict):
-        return JSONDict(v, __name__=__name__)
+        return JSONDict(v, name=name)
     elif isinstance(v, list):
-        return JSONList(v, __name__=__name__)
+        return JSONList(v, name=name)
     else:
         return v
 
 
-def condJSONSafe(v, __name__=''):
+def condJSONSafe(v: Union[Dict, List, Any], name: str = '') -> Union[JSONDictSafe, JSONListSafe, Any]:
     if isinstance(v, dict):
-        return JSONDictSafe(v, __name__=__name__)
+        return JSONDictSafe(v, name=name)
     elif isinstance(v, list):
-        return JSONListSafe(v, __name__=__name__)
+        return JSONListSafe(v, name=name)
     else:
         return v
 
@@ -62,13 +66,13 @@ class JSONListIter(object):
 
 
 class JSONList(list):
-    def __init__(self, v, __name__=''):
+    def __init__(self, v, name=''):
         list.__init__(self, v)
-        self.__name__ = __name__
+        self.__name__ = name
 
     def __getitem__(self, x):
         return condJSON(list.__getitem__(self, x),
-                        __name__='%s\t%s' % (self.__name__, errorValue(x)))
+                        name='%s\t%s' % (self.__name__, errorValue(x)))
 
     def __iter__(self):
         return JSONListIter(self, condJSON)
@@ -79,7 +83,7 @@ class JSONListSafe(JSONList):
         __name__ = '%s\t%s' % (self.__name__, errorValue(x))
 
         try:
-            return condJSONSafe(list.__getitem__(self, x), __name__=__name__)
+            return condJSONSafe(list.__getitem__(self, x), name=__name__)
         except KeyError:
             if mylocals.error_collect:
                 mylocals.error_collect(__name__)
@@ -99,22 +103,22 @@ class JSONStrSafe(str):
 
 class JSONDict(dict):
     "Allows dotted access"
-    def __new__(cls, v={}, __name__=''):
+    def __new__(cls, v={}, name=''):
         self = dict.__new__(cls, v)
-        self.__name__ = __name__
+        self.__name__ = name
         return self
 
     def __getattr__(self, attr, default=None):
         if attr in self:
             return condJSON(self[attr],
-                            __name__='%s\t%s' % (self.__name__,
+                            name='%s\t%s' % (self.__name__,
                                                  errorValue(attr)))
-        elif unicode(attr) in self:
-            return condJSON(self[unicode(attr)],
-                            __name__='%s\t%s' % (self.__name__,
+        elif str(attr) in self:
+            return condJSON(self[str(attr)],
+                            name='%s\t%s' % (self.__name__,
                                                  errorValue(attr)))
         elif attr == '__safe__':
-            return JSONDictSafe(self, __name__=self.__name__)
+            return JSONDictSafe(self, name=self.__name__)
         else:
             raise AttributeError("No attribute or key named '%s'" % attr)
 
@@ -130,11 +134,11 @@ class JSONDictSafe(JSONDict):
     def __getattr__(self, attr, default=None):
         if attr in self:
             return condJSONSafe(self[attr],
-                                __name__='%s\t%s' % (self.__name__,
+                                name='%s\t%s' % (self.__name__,
                                                      errorValue(attr)))
-        elif unicode(attr) in self:
-            return condJSONSafe(self[unicode(attr)],
-                                __name__='%s\t%s' % (self.__name__,
+        elif str(attr) in self:
+            return condJSONSafe(self[str(attr)],
+                                name='%s\t%s' % (self.__name__,
                                                      errorValue(attr)))
         elif attr == '__safe__':
             return self
@@ -145,7 +149,7 @@ class JSONDictSafe(JSONDict):
         __name__ = '%s\t%s' % (self.__name__, errorValue(x))
 
         try:
-            return condJSONSafe(dict.__getitem__(self, x), __name__=__name__)
+            return condJSONSafe(dict.__getitem__(self, x), name=__name__)
         except KeyError:
             if mylocals.error_collect:
                 mylocals.error_collect(__name__)

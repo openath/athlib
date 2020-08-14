@@ -8,6 +8,8 @@ from .codes import PAT_JUMPS, PAT_THROWS
 from .wma.agegrader import AthlonsAgeGrader
 from .implements import get_specific_event_code
 
+from typing import Union, Optional
+
 # Array of parameters used to determine IAAF scores.
 #
 # For track events: A * (Z - <seconds>)^X
@@ -81,7 +83,7 @@ _scoring_table = (
 )
 
 
-def scoring_key(gender, event_code):
+def scoring_key(gender: str, event_code: str) -> str:
     """Utility function to get the <gender>-<event> scoring key."""
     return ("%s-%s" % (gender, event_code)).upper()
 
@@ -90,7 +92,7 @@ def scoring_key(gender, event_code):
 _scoring_objects = None
 
 
-def _scoring_objects_create():
+def _scoring_objects_create() -> None:
     """Function to handle lazy evaluation of _scoring_objects, which maps from
     scoring key to parameters.
     """
@@ -106,13 +108,13 @@ def _scoring_objects_create():
 # lazy global age_grader object
 _age_grader = None
 
-def _get_age_grader():
+def _get_age_grader() -> AthlonsAgeGrader:
     global _age_grader
     if not _age_grader:
         _age_grader = AthlonsAgeGrader()
     return _age_grader
 
-def score(gender, event_code, value, age=None, esaa=False):
+def score(gender: str, event_code: str, value: Union[float, int], age: str = None, esaa: bool = False) -> Optional[int]:
     """Function to determine IAAF score, based on gender, event and performance.
     
     You should only pass the age if you wish to age-adjust in years for WMA events
@@ -191,7 +193,7 @@ def score(gender, event_code, value, age=None, esaa=False):
 
 
 
-def unit_name(event_code):
+def unit_name(event_code: str) -> str:
     """Utility function to get the unit name based on event type."""
     if PAT_JUMPS.match(event_code):
         # Used to be cm, but we standardised
@@ -202,7 +204,7 @@ def unit_name(event_code):
         return "seconds"
 
 
-def performance(gender, event_code, score):
+def performance(gender: str, event_code: str, score: int) -> Optional[Union[float, int]]:
     """Function to determine performance required to achieve IAAF score, given
     gender and event.
 

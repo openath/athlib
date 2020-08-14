@@ -23,9 +23,10 @@ ESAA_2015_HJ = [
         "SB", "", "", "", "o", "o", "o", "o", "o", "xxx", "x", "o", "x", "o", "x"]
 ]
 """
-from __future__ import print_function
+from __future__ import print_function, annotations
 from decimal import Decimal
 from .exceptions import RuleViolation
+from typing import Tuple, List, Dict
 _012 = 0,1,2    #range of attempts
 
 #The countback rule used to separate competitors with equal best heights in High Jump and Pole Vault is possibly the most misunderstood rule in the whole of the sport. Here's how it operates:
@@ -63,7 +64,7 @@ class Jumper(object):
             value = kwargs.get(arg, default)
             setattr(self, arg, value)
 
-    def _set_jump_array(self, height_count, label='jump'):
+    def _set_jump_array(self, height_count: int, label : str = 'jump') -> None:
         """Ensure they have one string for each height in the competition
 
         Jumpers can miss out heights.
@@ -84,7 +85,7 @@ class Jumper(object):
         return self.attempts_by_height and self.attempts_by_height[-1].endswith('r')
 
     @property
-    def ranking_key(self):
+    def ranking_key(self) -> Tuple[int, Decimal, int, int]:
         """Return a sort key to determine who is winning"""
         x = self.highest_cleared_index
         if x<0:
@@ -99,7 +100,7 @@ class Jumper(object):
             failures_before_and_at_height,
             )
 
-    def cleared(self, height_count, height):
+    def cleared(self, height_count: int, height: Decimal) -> None:
         """Add a clearance at the current bar position"""
         self._set_jump_array(height_count)
 
@@ -110,7 +111,7 @@ class Jumper(object):
         self.consecutive_failures = 0
         self.dismissed = True
 
-    def failed(self, height_count, height):
+    def failed(self, height_count: int, height: Decimal) -> None:
         """Add a failure at the current bar position"""
         self._set_jump_array(height_count)
 
@@ -122,7 +123,7 @@ class Jumper(object):
         else:
             self.dismissed = False
 
-    def passed(self, height_count, height):
+    def passed(self, height_count: int, height: Decimal) -> None:
         "Competitor passes"
         self._set_jump_array(height_count,'pass')
 
@@ -130,7 +131,7 @@ class Jumper(object):
         self.attempts_by_height[-1] += '-'
         self.dismissed = True
 
-    def retired(self, height_count, height):
+    def retired(self, height_count: int, height: Decimal) -> None:
         "Competitor had enough, or pulls out injured"
         self._set_jump_array(height_count,'retire')
 
@@ -162,7 +163,7 @@ class HighJumpCompetition(object):
         self.verbose = 0  # helpful print statements
         self.state = 'scheduled'
 
-    def add_jumper(self, **kwargs):
+    def add_jumper(self, **kwargs) -> None:
         """Add one more person to the competition
 
         Normally we add them first, but can arrive mid-competition.
@@ -182,7 +183,7 @@ class HighJumpCompetition(object):
         # record what happened
         self.actions.append(('add_jumper', kwargs))
 
-    def set_bar_height(self, new_height):
+    def set_bar_height(self, new_height: Decimal) -> None:
         if self.state=='scheduled':
             self.state = 'started'
         elif self.state not in ('started','jumpoff','won'):
@@ -197,7 +198,7 @@ class HighJumpCompetition(object):
         self.bar_height = new_height
         self.actions.append(('set_bar_height', new_height))
 
-    def check_started(self,bib,label='jumping'):
+    def check_started(self, bib: str, label: str = 'jumping') -> Jumper:
         jumper = self.jumpers_by_bib[bib]
         state = self.state
         if state not in ('started','jumpoff'):
@@ -212,28 +213,28 @@ class HighJumpCompetition(object):
             raise RuleViolation('Jumper with bib, %s, has order %s and %s is not allowed!' % (jumper.bib,jumper.order,label))
         return jumper
 
-    def cleared(self, bib):
+    def cleared(self, bib: str) -> None:
         "Record a successful jump"
         jumper = self.check_started(bib)
         jumper.cleared(len(self.heights), self.bar_height)
         self.actions.append(('cleared', bib))
         self._rank()
 
-    def failed(self, bib):
+    def failed(self, bib: str) -> None:
         "Record a failed jump, raises RuleViolation if out of order"
         jumper = self.check_started(bib)
         jumper.failed(len(self.heights), self.bar_height)
         self.actions.append(('failed', bib))
         self._rank()
 
-    def passed(self, bib):
+    def passed(self, bib: str) -> None:
         "Record a pass,  raises RuleViolation if out of order"
         jumper = self.check_started(bib)
         jumper.passed(len(self.heights), self.bar_height)
         self.actions.append(('passed', bib))
         self._rank()
 
-    def retired(self, bib):
+    def retired(self, bib: str) -> None:
         "Record a failed jump. Throws RuleViolation if out of order"
         jumper = self.check_started(bib,'retiring')
         jumper = self.jumpers_by_bib[bib]
@@ -244,7 +245,7 @@ class HighJumpCompetition(object):
     action_letter = dict(cleared='o', failed='x', passed='-', retired='r')
 
     @property
-    def trials(self):
+    def trials(self) -> List[Tuple[str, Decimal, str]]:
         T = []
         aT = T.append
         al = self.action_letter
@@ -257,22 +258,22 @@ class HighJumpCompetition(object):
         return T
 
     @property
-    def trial_objs(self):
+    def trial_objs(self) -> List[TrialObj]:
         return [TrialObj(bib=t[0],height=t[1],result=t[2]) for t in self.trials]
 
     @property
-    def remaining(self):
+    def remaining(self) -> List[Jumper]:
         "remaining jumpers"
         return [j for j in self.jumpers if not j.eliminated]
 
     @property
-    def eliminated(self):
+    def eliminated(self) -> List[Jumper]:
         "eliminated jumpers"
         return [j for j in self.jumpers if j.eliminated]
 
-    def _rankj(self):
+    def _rankj(self) -> List[Jumper]:
         # sort ranked_jumpers
-        rankj = self.ranked_jumpers;
+        rankj = self.ranked_jumpers
         for i,j in enumerate(rankj): j._old_pos = i
         rankj.sort(key=lambda j: (j.ranking_key, j._old_pos))
 
@@ -292,7 +293,7 @@ class HighJumpCompetition(object):
             pj = j
         return rankj
 
-    def _rank(self, verbose=False):
+    def _rank(self, verbose: bool = False) -> None:
         "Determine who is winning"
         rankj = self._rankj()
         if not rankj: return
@@ -327,7 +328,7 @@ class HighJumpCompetition(object):
                 and 'o' in remj[0].attempts_by_height[-1]):
             self.state = 'won' if self.state in ('started','won') else 'finished'
 
-    def bib_trial(self,bib,trial):
+    def bib_trial(self, bib: str, trial: str) -> None:
         if trial == 'o':
             self.cleared(bib)
         elif trial == 'x':
@@ -341,7 +342,7 @@ class HighJumpCompetition(object):
             raise RuleViolation("Unknown jump trial code '%s'" % trial)
 
     @classmethod
-    def from_matrix(cls, matrix, to_nth_height=None, verbose=False):
+    def from_matrix(cls, matrix: List[List[str]], to_nth_height: int = None, verbose: bool = False) -> HighJumpCompetition:
         """ Convert from a pasteable tabular representation like this...
 
         RIO_MENS_HJ = [  # pasted from Wikipedia
@@ -413,7 +414,7 @@ class HighJumpCompetition(object):
 
         return self
 
-    def _looks_like_height(self, txt):
+    def _looks_like_height(self, txt:str) -> bool:
         try:
             h = float(txt)
             return True
@@ -421,7 +422,7 @@ class HighJumpCompetition(object):
             return False
 
 
-    def _ensure_dicts_ordered(self, dikts):
+    def _ensure_dicts_ordered(self, dikts: List[Dict[str, str]]) -> None:
         """Ensure they each have an 'order' attribute in which they jump
 
         If partially present, respect ordered ones first and place others after
@@ -439,7 +440,7 @@ class HighJumpCompetition(object):
                 except:
                     i = i.upper()
                     if i not in ('DQ','DNS'):
-                        raise valueError('Invalid order %r' % i)
+                        raise ValueError('Invalid order %r' % i)
 
         for u in unordered:
             highest += 1
@@ -450,7 +451,7 @@ class HighJumpCompetition(object):
         for r in self.ranked_jumpers:
             print(r.place, r.bib, r.first_name, r.last_name, r.ranking_key)
 
-    def from_actions(self,actions=None):
+    def from_actions(self, actions: List[Tuple] = None) -> HighJumpCompetition:
         if actions is None: actions = self.actions
         hj = self.__class__()
         for a, v in actions:
@@ -461,8 +462,8 @@ class HighJumpCompetition(object):
                 m(v)
         return hj
 
-    def to_matrix(self,keys=[]):
-        if 'bib' not in keys: keys.insert(0,'bib')
+    def to_matrix(self, keys: List[str] = []) -> List[List[str]]:
+        if 'bib' not in keys: keys.insert(0, 'bib')
         R = [keys + ['%.2f'%h for h in self.heights]]
         J = sorted([([getattr(j,k) for k in keys],j) for j in self.ranked_jumpers])
         for j in J:
@@ -470,9 +471,9 @@ class HighJumpCompetition(object):
         return R
 
     @property
-    def is_finished(self):
+    def is_finished(self) -> bool:
         return self.state in ('finished','won','drawn')
 
     @property
-    def is_running(self):
+    def is_running(self) -> bool:
         return self.state in ['started','jumpoff']
