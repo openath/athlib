@@ -1,6 +1,8 @@
 Python library
 ==============
 
+The athlib package requires a python >= 3.8.0; attempt to install in lesser pythons will/may result in error messages.
+
 Note that all functions are available in the top
 level `athlib` package, even though they may be defined
 in submodules.
