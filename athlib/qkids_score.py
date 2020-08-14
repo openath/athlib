@@ -1,7 +1,8 @@
 __all__ = 'qkids_score'
 from athlib import parse_hms, normalize_event_code, PAT_RUN
+from typing import Union
 
-def qkids_score(competition_type, event, perf):
+def qkids_score(competition_type: str, event: str, perf: Union[str, int, float]) -> int:
     competition_type = competition_type.replace(' ','').upper()
     if competition_type in _compTypeMap:
         competition_type = _compTypeMap[competition_type]
