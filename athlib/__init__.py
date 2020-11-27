@@ -1,9 +1,11 @@
-from .wma.agegrader import AgeGrader, AthlonsAgeGrader
+def __wma_delay__():
+    from .wma.agegrader import AgeGrader, AthlonsAgeGrader
+    return AgeGrader, AthlonsAgeGrader
 from .uka.agegroups import calc_uka_age_group
 from .iaaf_score import score as athlon_score
 from .iaaf_score import performance as athlon_performance_needed
 
-__version__ = u'0.6.0'
+__version__ = u'0.6.1'
 
 from .exceptions import RuleViolation
 
@@ -59,6 +61,8 @@ from .codes import (
 
 from .highjump import HighJumpCompetition, Jumper
 
+AgeGrader, AthlonsAgeGrader = __wma_delay__()
+del __wma_delay__
 ag = AgeGrader()
 
 def wma_age_grade(gender, age, event, performance, verbose=False):

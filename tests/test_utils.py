@@ -209,6 +209,8 @@ class UtilsTests(TestCase):
         self.assertEqual(checkperf("l9", "  2.34    "), "2.34")
         self.assertEqual(checkperf("l9", "  10002.34    "), "10002.34") # no checking 100 seconds
         self.assertEqual(checkperf("T26", "  6789.12    "), "6789.12") # no checking 100 seconds
+        self.assertEqual(checkperf("10000", "01:00:00.23"), "1:00:00.23")
+        self.assertEqual(checkperf("10000", "1:00:00.23"), "1:00:00.23")
 
     def test_checkperf_raises(self):
         from athlib.utils import check_performance_for_discipline as checkperf

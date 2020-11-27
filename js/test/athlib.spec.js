@@ -276,6 +276,8 @@ describe('Given an instance of Athlib', function() {
 		it('checkperf("100","8.5") throws error',()=>{expect(()=>{Athlib.checkPerformanceForDiscipline("100","8.5")}).to.throw(Error)});  // > 11.0 metres per second
 		it('checkperf("5000","3:45:27") throws error',()=>{expect(()=>{Athlib.checkPerformanceForDiscipline("5000","3:45:27")}).to.throw(Error)});  // < 0.5 m/sec
 		it('checkperf("3KW","2:34") throws error',()=>{expect(()=>{Athlib.checkPerformanceForDiscipline("3KW","2:34")}).to.throw(Error)});
+		it('checkperf("10000","01:00:00.23")==="1:00:00.23"',() =>{expect(Athlib.checkPerformanceForDiscipline("10000","01:00:00.23")).to.be.equal("1:00:00.23")});
+		it('checkperf("10000","1:00:00.23")==="1:00:00.23"',() =>{expect(Athlib.checkPerformanceForDiscipline("10000","1:00:00.23")).to.be.equal("1:00:00.23")});
   });
 	describe('testEventCodesMatchCorrectly', function() {
 		var tpatNames = "PAT_THROWS PAT_JUMPS PAT_TRACK PAT_ROAD PAT_RACES_FOR_DISTANCE PAT_RELAYS PAT_HURDLES PAT_MULTI PAT_EVENT_CODE".split(' ');

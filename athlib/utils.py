@@ -432,7 +432,7 @@ def check_performance_for_discipline(
         if prec is None:
             #use Andy's method
             # Format consistently for output
-            if hours and minutes:
+            if hours:
                 t = '%d:%02d:%05.2f' % (hours, minutes, seconds)
             elif minutes:
                 t = '%d:%05.2f' % (minutes, seconds)

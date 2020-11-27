@@ -611,7 +611,7 @@ function checkPerformanceForDiscipline(discipline, textvalue, gender, ulpc, erro
     if (prec === null) {
       // use Andy's method
       // Format consistently for output
-      if (hours > 0 && minutes > 0) {
+      if (hours > 0) {
         t = parseInt(seconds, 10);
         t = [hours + '', pad(minutes, 2), pad(t, 2) + (seconds - t).toFixed(2).slice(1)].join(':');
       } else if (minutes > 0) {
