@@ -5,7 +5,7 @@ from .uka.agegroups import calc_uka_age_group
 from .iaaf_score import score as athlon_score
 from .iaaf_score import performance as athlon_performance_needed
 
-__version__ = u'0.6.1'
+__version__ = u'0.6.2'
 
 from .exceptions import RuleViolation
 

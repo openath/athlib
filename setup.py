@@ -102,10 +102,13 @@ try:
             'Intended Audience :: Developers',
             'License :: OSI Approved :: Apache Software License',
             'Topic :: Utilities',
+            'Programming Language :: Python :: 2.7',
+            'Programming Language :: Python :: 3.6',
+            'Programming Language :: Python :: 3.7',
             'Programming Language :: Python :: 3.8',
             'Programming Language :: Python :: 3.9',
             ],
-        python_requires='>=3.8.0',
+        python_requires='>=2.7',
         )
 finally:
     if os.path.isdir(jschdir):
