@@ -1,0 +1,5 @@
+python-dateutil
+jsonschema
+
+# to read in scoring tables and convert to machine readable form
+xlrd
