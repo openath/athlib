@@ -11,6 +11,7 @@ the tables at AthTech Conference 2018
 import os
 import sys
 import json
+import csv
 from collections import defaultdict, OrderedDict
 
 import xlrd
@@ -19,9 +20,9 @@ def run():
     print("This will parse the IAAF tables and output a machine readable file")
 
 
-    for filename in [
-        'data/iaaf_scoring_tables_2017_outdoors.xls',
-        'data/iaaf_scoring_tables_2017_indoor.xls'
+    for (where, filename) in [
+        ('outdoors', 'data/iaaf_scoring_tables_2017_outdoors.xls'),
+        ('indoor', 'data/iaaf_scoring_tables_2017_indoor.xls')
         ]:  
         print("Reading" + filename)
 
@@ -54,7 +55,8 @@ def run():
             points_col = headers.index('Points')
             body = matrix[1:]
             for row in body:
-                points = row[points_col]
+                t = row[points_col]
+                points = t and int(t) or None
                 pairs = zip(headers, row)
                 for (header, value) in pairs:
                     if header not in ('', 'Points'):
@@ -67,18 +69,55 @@ def run():
                             datapoints += 1
 
 
+        # sanity check, should go up to 1400ish and down near 1
+        maxpoints = minpoints = 700 # midrange
+        for gender in 'MF':
+            p = points_table[gender]
+            for (event_code, stuff) in p.items():
+                for ((points, value)) in stuff:
+                    if points and (points > maxpoints):
+                        maxpoints = points
+                    if points and (points < minpoints):
+                        minpoints = points
 
-        print("    Extracted %d data points" % datapoints)
-        print("    Mens events:" , points_table['M'].keys())
-        print("    Womens events:" , points_table['F'].keys())
+        print("    Extracted %d data points - from %d down to %d" % (datapoints, maxpoints, minpoints))
+        # print("    Mens events:" , points_table['M'].keys())
+        # print("    Womens events:" , points_table['F'].keys())
 
         outfilename = os.path.splitext(filename)[0] + '.json'
         with open(outfilename, 'w') as outfile:
             json.dump(points_table, outfile)
         print("    Saved %s" % outfilename)
 
+        # now write two CSV files with all event points values
+        # for this we want a sparse matrix, then we can loop over the indices 
+
+        spm = {}
+        for (gender, gpointsdict) in points_table.items():
+            for (event_code, event_data) in gpointsdict.items():
+                for (points, value) in event_data:
+                    key = (gender, event_code, points)
+                    spm[key] = value
 
 
+        for gender in 'MF':
+            outfilename = "data/points_table_%s_%s.csv" % (gender, where)
+
+            with open(outfilename, mode='w') as outfile:
+                gpointsdict = points_table[gender]
+                event_codes = gpointsdict.keys()
+                header = ['Points'] + event_codes
+                print(gender, header)
+                writer = csv.writer(outfile)
+                writer.writerow(header)
+                for points in range(1400, 0, -1):
+                    row = [points]
+                    for event_code in event_codes:
+                        key = (gender, event_code, points)
+                        perf = spm.get(key, None)
+                        row.append(perf)
+                    writer.writerow(row)
+                print("Wrote %s" % outfilename)
 
 
 
