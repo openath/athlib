@@ -1,7 +1,7 @@
 """Unit tests for iaaf_score.py."""
 
 from unittest import TestCase, main
-from athlib.iaaf_score import performance, scoring_key, score, unit_name
+from athlib.athlon_score import performance, scoring_key, score, unit_name
 
 
 class IaafScoreTests(TestCase):

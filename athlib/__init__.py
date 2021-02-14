@@ -2,8 +2,8 @@ def __wma_delay__():
     from .wma.agegrader import AgeGrader, AthlonsAgeGrader
     return AgeGrader, AthlonsAgeGrader
 from .uka.agegroups import calc_uka_age_group
-from .iaaf_score import score as athlon_score
-from .iaaf_score import performance as athlon_performance_needed
+from .athlon_score import score as athlon_score
+from .athlon_score import performance as athlon_performance_needed
 
 __version__ = u'0.6.2'
 
