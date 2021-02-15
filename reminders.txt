@@ -1,0 +1,22 @@
+
+
+Last login: Sun Feb 14 21:29:10 on ttys001
+
+The default interactive shell is now zsh.
+To update your account to use zsh, please run `chsh -s /bin/zsh`.
+For more details, please visit https://support.apple.com/kb/HT208050.
+popocatapetl:~ harry$ pwd
+/Users/harry
+popocatapetl:~ harry$ cd code/athlib
+popocatapetl:athlib harry$ source bin/activate
+(athlib) popocatapetl:athlib harry$ git pull
+Already up to date.
+(athlib) popocatapetl:athlib harry$ python runtests.py
+........................................................................................
+----------------------------------------------------------------------
+Ran 88 tests in 0.495s
+
+OK
+(athlib) popocatapetl:athlib harry$ touch reminders.txt
+(athlib) popocatapetl:athlib harry$ 
+
