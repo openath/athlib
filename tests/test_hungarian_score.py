@@ -6,20 +6,20 @@ from athlib.hungarian_score import get_lookup_table, score
 class HunTest(TestCase):
 
     def test_table_lookup(self):
-        """Tests that 1 + 1 always equals 2."""
+        """Just verify we pasted the right factors, some sources are rounded off"""
 
         tbl = get_lookup_table()
         inputs = ('M', 'OUT', '200')
         values = tbl[inputs]
-        self.assertEquals(values, (5.08, 35.5, 0))
+        self.assertEquals(values, (5.08, -35.5, 0))
 
 
     def test_scores(self):
 
         tests = [
                 ('M', 'OUT', '100', 9.46, 1400),
-                ('M', 'OUT', 'MILE', 240, 918),
-                # ('F', 'OUT', 'LJ', , ) This goes wrong, need to find the field event formula
+                ('M', 'OUT', 'MILE', 240, 1074),
+                ('F', 'OUT', 'LJ', 7.50, 1329) 
             ]
 
         for test in tests:
