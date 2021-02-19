@@ -1,5 +1,5 @@
 
-Here are Robin Becler's notes on how to publish new versions of athlib:
+Here are Robin Becker's notes on how to publish new versions of athlib:
 
 	#modify version
 	vim athlib/__init__.py docs/source/conf.py js/package.json
