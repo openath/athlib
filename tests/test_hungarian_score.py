@@ -19,7 +19,8 @@ class HunTest(TestCase):
         tests = [
                 ('M', 'OUT', '100', 9.46, 1400),
                 ('M', 'OUT', 'MILE', 240, 1074),
-                ('F', 'OUT', 'LJ', 7.50, 1329) 
+                ('F', 'OUT', 'LJ', 7.50, 1329), 
+                ('M', 'IND', 'SP', 20.00, 1121),
             ]
 
         for test in tests:
