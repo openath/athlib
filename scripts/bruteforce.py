@@ -2,9 +2,8 @@ import os
 import sys
 import json
 sys.path.insert(0, '..')
-import athlib
-
 from athlib.codes import FIELD_EVENTS
+from athlib import hungarian_score, check_event_code, parse_hms
 
 FILES = [
     'data/iaaf_scoring_tables_2017_outdoors.json',
@@ -81,18 +80,79 @@ def score(gender, inout, event_code, performance):
                 return points1
     return 0
 
+def opentrackify_event_code(iec):
+    iec = iec.upper()
+    if iec.endswith('MH'):
+        iec = iec[0:-2] + 'H'
+        return iec
+    if iec.endswith('M'):
+        return iec[0:-1]
+    if iec.endswith('m SC'):
+        iec = iec[0:-4] + 'SC'
+        return iec
+    if iec.endswith(' km'):
+        iec = iec[0:-2] + 'K'
+        return iec
+    # a few more to do
+    return iec
+
+def compare_events():
+    db = load_scores()
 
 
-    return 0
+    for key in db.keys():
+
+
+        matching = 0
+        nonzero = 0
+        delta = 0  # sum of squares
+        (gender, where, event_code) = key
+
+        oec = opentrackify_event_code(event_code)
+        ec = check_event_code(oec)
+        if not ec:
+            continue
+
+        series = db[key]
+
+
+
+        for (official_points, performance) in series:
+            if official_points and performance:
+                if isinstance(performance, str):
+                    performance = parse_hms(performance)
+                nonzero += 1
+                try:
+                    alleged_points = hungarian_score(gender, where, oec, performance)
+                except TypeError:
+                    print("    Problem scoring %s" % performance)
+                    continue
+                except KeyError:
+                    print("    Problem with event code", oec)
+                    break
+                delta = (alleged_points - official_points) ** 2
+                if not delta:
+                    matching += 1
+
+        print('%s %s %s:  %d values match perfectly out of %d' % (
+            gender, where, event_code,
+            matching, nonzero
+            ))
+
+
+
+
 
 if __name__=='__main__':
     sc = load_scores()
+    compare_events()
 
-    print("9sec in Mens 100 =", score('M', 'OUT', '100', 9.0))    
-    print("110m in Mens Javelin =", score('M', 'OUT', 'JT', 110.0))    
+    # print("9sec in Mens 100 =", score('M', 'OUT', '100', 9.0))    
+    # print("110m in Mens Javelin =", score('M', 'OUT', 'JT', 110.0))    
 
-    print("12sec in Mens 100 =", score('M', 'OUT', '100', 12.0))    
-    print("50m in Mens Javelin =", score('M', 'OUT', 'JT', 50.0))    
+    # print("12sec in Mens 100 =", score('M', 'OUT', '100', 12.0))    
+    # print("50m in Mens Javelin =", score('M', 'OUT', 'JT', 50.0))    
 
-    print("30sec in Mens 100 =", score('M', 'OUT', '100', 30.0))    
-    print("1m in Mens Javelin =", score('M', 'OUT', 'JT', 1.0))    
+    # print("30sec in Mens 100 =", score('M', 'OUT', '100', 30.0))    
+    # print("1m in Mens Javelin =", score('M', 'OUT', 'JT', 1.0))    
+

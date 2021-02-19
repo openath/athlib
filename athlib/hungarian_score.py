@@ -13,11 +13,11 @@ from math import floor
 from athlib.utils import check_event_code
 
 def score(gender, inout, event_code, performance):
-
+    "Return IAAF (Hungarian) points, or raise AssertionError"
     assert inout in ('IN', 'OUT'), "Must specify indoor (IN) or outdoor (OUT)"
     assert gender in 'MFX', "Gender must be M , F or X. X will be looked up in Male points tables!"
     ec = check_event_code(event_code)
-    assert ec is not None, "Unrecognised event code"
+    assert ec is not None, "Unrecognised event code %s" % event_code
 
 
     key = (gender, inout, event_code)
