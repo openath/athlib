@@ -21,7 +21,7 @@ def load_scores():
             if 'outdoors' in filename:
                 where = 'OUT'
             else:
-                where = 'IN'
+                where = 'IND'
             f = open(filename, 'r')
             stuff = json.load(f)
 
