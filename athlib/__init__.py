@@ -6,7 +6,7 @@ from .athlon_score import score as athlon_score
 from .hungarian_score import score as hungarian_score
 from .athlon_score import performance as athlon_performance_needed
 
-__version__ = u'0.6.4'
+__version__ = u'0.6.5'
 
 from .exceptions import RuleViolation
 
