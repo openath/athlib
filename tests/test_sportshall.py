@@ -30,6 +30,8 @@ class SportsHallScoreTests(TestCase):
             ('BAL', '50', 55),
             ('SPB', '70', 70),
             ('TART', '23', 69),
+            ('TART', '24', 72),
+            ('TART', '26', 72),  # 26 is the max
             ('OHT', '10.75', 70),
             ('32H', '12.7', 70),
             ('CHT', '10.5', 70),

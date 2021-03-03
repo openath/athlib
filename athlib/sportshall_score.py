@@ -74,8 +74,16 @@ def score_high_event(dperf: Decimal, info: Dict, verbose: bool = False) -> int:
     if dperf > max_perf:
         # above 80 points, use increment
         excess = dperf - max_perf
-        excess_steps = int(floor(float(excess) /  info['increment']))
-        excess_points = excess_steps * int(info['incpoints'])
+        if 'increment' in info:
+            excess_steps = int(floor(float(excess) /  info['increment']))
+        else:
+            excess_steps = 0
+        incpoints = info['incpoints']
+        if (incpoints == "n/a"):
+            incpoints = 0
+        else:
+            incpoints = int(incpoints)
+        excess_points = excess_steps * incpoints
         points = max_points + excess_points
     elif dperf == max_perf:
         # special case, avoid binary search
