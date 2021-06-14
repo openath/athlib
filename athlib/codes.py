@@ -24,9 +24,11 @@ JUMPS = ("HJ", "PV", "LJ", "TJ",
         )
 THROWS = (
     "DT", "JT", "HT", "SP", "WT", 
+    "SDT", "SJT",                   #seated DT & JT
 
     # Superweight Throw, Ball Throw, Other Throw, Stone Throw
     "SWT", "BT", "ST", "GDT", "OT", 
+    "SBT",                          #seated BT
 
     #Target Throw, Overhead Throw, Chest Throw from UK SportsHall (kids) format
     "TART", "OHT", "CHT"
@@ -60,7 +62,7 @@ FIELD_SORT_ORDER = [
         "LJ", "SLJ",
         "TJ", "STJ",
         "SP", "DT", "HT", "JT", 
-        "ST", "GDT", "BT", "WT", "SWT", "OT", "TART", "OHT", "CHT",
+        "ST", "GDT", "BT", "WT", "SWT", "OT", "TART", "OHT", "CHT", "SDT", "SJT", "SBT",
         "H1", "H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9",   #Custom Events
         "L1", "L2", "L3", "L4", "L5", "L6", "L7", "L8", "L9",   #Custom Events
         ]
@@ -82,13 +84,13 @@ _ = r"\s*\d\.?\d*\s*[Kk][Gg]?"
 PAT_THROWS = re.compile(
                         (
                         r"^(?:"
-                        r"[dD][tT](?P<dtnum>%s|)|"
-                        r"[jJ][tT](?P<jtnum>[45678]00\s*g?|)|"
+                        r"[sS]?[dD][tT](?P<dtnum>%s|)|"
+                        r"[sS]?[jJ][tT](?P<jtnum>[45678]00\s*g?|)|"
                         r"[hH][tT](?P<htnum>%s|)|"
                         r"[sS][pP](?P<spnum>%s|)|"
                         r"[wW][tT](?P<wtnum>\d?%s|)|"
                         r"[sS][sW][tT](?P<swtnum>%s|)|"
-                        r"[bB][tT](?P<btnum>%s|)|"
+                        r"[sS]?[bB][tT](?P<btnum>%s|)|"
                         r"[sS][tT](?P<stnum>%s|)|"
                         r"[gG][dD][tT](?P<gdtnum>%s|)|"
                         r"[oO][tT](?P<otnum>\d+\s*g?|)|"

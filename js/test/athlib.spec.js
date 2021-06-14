@@ -339,9 +339,12 @@ describe('Given an instance of Athlib', function() {
 				['H9',Athlib.PAT_THROWS],
 				['L1',Athlib.PAT_THROWS],
 				['L9',Athlib.PAT_THROWS],
+				['SDT1Kg',Athlib.PAT_THROWS],
+				['SJT600',Athlib.PAT_THROWS],
+				['SBT',Athlib.PAT_THROWS],
 				['1HR',Athlib.PAT_RACES_FOR_DISTANCE],
 				['T26',Athlib.PAT_RACES_FOR_DISTANCE],
-				['T1440',Athlib.PAT_RACES_FOR_DISTANCE]
+				['T1440',Athlib.PAT_RACES_FOR_DISTANCE],
 				];
 		function patNames(pats){
 			return pats===null?'[]':Array.isArray(pats)?arrayUniq(pats.map(function(pat){return tpatNames[tpats.indexOf(pat)]})):tpatNames[tpats.indexOf(pats)];
