@@ -31,7 +31,7 @@ def get_implement_weight(event_code:str, gender: str, age_group: str) -> str:
             elif age_group in ("V70", "V75"):
                 return "500"
             elif age_group >= "V80":
-                return "700"
+                return "400"
         if gender == "F":
             if age_group in ["U13", "U14"]:
                 return "400"

@@ -2,7 +2,13 @@
 
 from unittest import TestCase, main
 from athlib.athlon_score import performance, scoring_key, score, unit_name
+from athlib.implements import get_implement_weight, get_specific_event_code
 
+
+class MastersImplementWeightTests(TestCase):
+    def test_specific_weight(self):
+        self.assertEqual(get_implement_weight('JT', 'M', 'V80'), '400')
+        self.assertEqual(get_implement_weight('JT', 'M', 'V85'), '400')
 
 class IaafScoreTests(TestCase):
     """Test suite for the IAAF score calculation module."""
@@ -75,6 +81,13 @@ class IaafScoreTests(TestCase):
         self.assertEqual(score("M", "60H", 11.85, 50), 437)
         self.assertEqual(score("M", "LJ", 4.53, 50), 494)
         self.assertEqual(score("M", "800", 156, 75), 1035)
+
+        # Javelin for different ages
+        self.assertEqual(score("M", "JT", 30.0), 299) # senior
+        self.assertEqual(score("M", "JT", 30.0, 50), 396) # M50
+        self.assertEqual(score("M", "JT", 30.0, 80), 781) 
+        self.assertEqual(score("M", "JT", 30.0, 85), 937) 
+
         
         # needs work, we need full weight event code in age factors e.g. SP6K,
         # but simple code e.g. SP in points calculation
@@ -86,6 +99,9 @@ class IaafScoreTests(TestCase):
     def test_esaa_adjusted_score(self):
         # Tha famous boys 800 issue.
         self.assertEqual(score("M", "800", 120, esaa=True), 769)
+
+
+
 
 
 if __name__ == '__main__':
