@@ -98,7 +98,7 @@ class IaafScoreTests(TestCase):
 
         # PK's tests from BMAF events in June 2021
         self.assertEqual(score("M", "LJ", 5.0, 60), 821)
-        # self.assertEqual(score("F", "80H", 12.0, 45), 1270)
+        self.assertEqual(score("F", "80H", 12.0, 45), 1109)
         self.assertEqual(score("F", "HJ", 1.50, 70), 1741)
         self.assertEqual(score("M", "SP", 10.0, 70), 655)
         self.assertEqual(score("M", "SP", 10.0, 85), 904)

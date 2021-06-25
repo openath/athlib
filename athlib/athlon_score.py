@@ -141,12 +141,16 @@ def score(gender: str, event_code: str, value: Union[float, int], age: str = Non
         age_factor = ag.calculate_factor(gender, age, specific_event_code)
 
 
-
+        # special case: old people run shorter hurdles races, score as if 100/110H
+    if event_code =="80H":
+        event_code = "100H"
+        # print("Scoring veterans 80H as 100H")
 
     # Drop out if no coefficients defined (e.g. bad event/gender)
     key = scoring_key(gender, event_code)
     if key not in _scoring_objects:
         return None
+
 
     coeffs = _scoring_objects[key]
 
