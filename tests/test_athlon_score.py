@@ -96,6 +96,18 @@ class IaafScoreTests(TestCase):
         self.assertEqual(score("F", "60H", 10.59, 53), 883)
         self.assertEqual(score("F", "HJ", 1.38, 53), 842)
 
+        # PK's tests from BMAF events in June 2021
+        self.assertEqual(score("M", "LJ", 5.0, 60), 821)
+        # self.assertEqual(score("F", "80H", 12.0, 45), 1270)
+        self.assertEqual(score("F", "HJ", 1.50, 70), 1741)
+        self.assertEqual(score("M", "SP", 10.0, 70), 655)
+        self.assertEqual(score("M", "SP", 10.0, 85), 904)
+        self.assertEqual(score("M", "WT", 12.0, 85), 869)
+        self.assertEqual(score("F", "SP", 7.0, 75), 715)
+        self.assertEqual(score("F", "DT", 25.0, 75), 928)
+        # self.assertEqual(score("F", "HJ", 1.50, 70), 1741)
+        # self.assertEqual(score("F", "HJ", 1.50, 70), 1741)
+
     def test_esaa_adjusted_score(self):
         # Tha famous boys 800 issue.
         self.assertEqual(score("M", "800", 120, esaa=True), 769)

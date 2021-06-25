@@ -11,7 +11,6 @@ def get_implement_weight(event_code:str, gender: str, age_group: str) -> str:
 
     See IAAF rules page 155
     """
-
     if event_code == "JT":
         if gender == "M":
             if age_group == "U13":
@@ -62,8 +61,13 @@ def get_implement_weight(event_code:str, gender: str, age_group: str) -> str:
                 return "7.26"
             elif age_group in ("V50", "V55"):
                 return "6.00"
-            elif age_group in ("V60", "V65", "V70"):
+            elif age_group in ("V60", "V65"):
                 return "5.00"
+            elif age_group in ("V70", "V75"):
+                return "4.00"
+            elif age_group >= "V80":
+                return "3.00"
+
         elif gender == "F":
             if age_group == "U13":
                 return "2.72"
@@ -75,8 +79,10 @@ def get_implement_weight(event_code:str, gender: str, age_group: str) -> str:
                 return "3.00"
             elif age_group in ("U20", "U23", "SEN", "V35", "V40", "V45"):
                 return "4.00"
-            elif age_group >= "V50":
+            elif age_group in ("V50", "V55", "V60", "V65", "V70"):
                 return "3.00"
+            elif age_group >= "V75":
+                return "2.00"
 
     elif event_code == "DT":
         if gender == "M":
@@ -94,6 +100,7 @@ def get_implement_weight(event_code:str, gender: str, age_group: str) -> str:
                 return "1.50"
             elif age_group >= "V60":
                 return "1.00"
+
         elif gender == "F":
             if age_group in ["U13", "U14"]:
                 return "0.75"
@@ -150,7 +157,7 @@ def get_implement_weight(event_code:str, gender: str, age_group: str) -> str:
             elif age_group in ("V70", "V75"):
                 return "7.26"
             elif age_group >= "V80":
-                return "7.26"
+                return "5.45"
             else:
                 return "15.88"
 
@@ -177,7 +184,7 @@ def get_specific_event_code(generic_event_code: str, gender: str, age_group: str
         return generic_event_code
 
     txt_weight = get_implement_weight(generic_event_code, gender, age_group)
-    # print "    implement weight for %s %s %s as text is %s" % (generic_event_code, gender, age_group, txt_weight)
+    # print("    implement weight for %s %s %s as text is %s" % (generic_event_code, gender, age_group, txt_weight))
     mass = float(txt_weight)
 
     if mass == int(mass):
