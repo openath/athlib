@@ -185,8 +185,8 @@ class HighJumpTests(TestCase):
         self.assertEqual(c.state, 'finished')
         self.assertEqual(A.highest_cleared, Decimal("2.12"))
         self.assertEqual(B.highest_cleared, Decimal("2.12"))
-        self.assertEqual(A.ranking_key,(0, Decimal('-2.12'), 1, 2))
-        self.assertEqual(B.ranking_key,(0, Decimal('-2.12'), 2, 2))
+        self.assertEqual(A.ranking_key,(2, Decimal('-2.12'), 1, 2))
+        self.assertEqual(B.ranking_key,(2, Decimal('-2.12'), 2, 2))
 
     def test_countback_total_failure_rank(self):
         "test_countback_total_failure_rank"
@@ -209,7 +209,7 @@ class HighJumpTests(TestCase):
         self.assertEqual(A.highest_cleared, Decimal("2.08"))
         self.assertEqual(B.highest_cleared, Decimal("0.00"))
         self.assertEqual(A.ranking_key,(0, Decimal('-2.08'), 0, 0))
-        self.assertEqual(B.ranking_key,(2, Decimal('0.00'), 0, 0))
+        self.assertEqual(B.ranking_key,(3, Decimal('0.00'), 0, 0))
 
     def test_countback_to_total_failures(self):
         "test_countback_to_total_failures"
@@ -232,8 +232,8 @@ class HighJumpTests(TestCase):
         self.assertEqual(c.state, 'finished')
         self.assertEqual(A.highest_cleared, Decimal("2.12"))
         self.assertEqual(B.highest_cleared, Decimal("2.12"))
-        self.assertEqual(A.ranking_key,(0, Decimal('-2.12'), 1, 2))
-        self.assertEqual(B.ranking_key,(0, Decimal('-2.12'), 1, 3))
+        self.assertEqual(A.ranking_key,(2, Decimal('-2.12'), 1, 2))
+        self.assertEqual(B.ranking_key,(2, Decimal('-2.12'), 1, 3))
 
     def test_won_ending(self):
         "check the status changes at a won ending which finishes"

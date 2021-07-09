@@ -94,7 +94,7 @@ function Jumper(kwds) {
       }
 
       return [
-        x < 0 ? (this.eliminated ? 2 : 1) : 0,
+        this.eliminated ? (x < 0 ? 3 : 2) : (x < 0 ? 1 : 0),
         -this.highestCleared,
         failuresAtHeight,
         failuresBeforeAndAtHeight

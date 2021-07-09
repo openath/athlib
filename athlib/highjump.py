@@ -94,7 +94,7 @@ class Jumper(object):
             failures_at_height = self.attempts_by_height[x].count('x')
             failures_before_and_at_height = failures_at_height + sum(_.count('x') for _ in self.attempts_by_height[:x])
         return (
-            (2 if self.eliminated else 1) if x<0 else 0,
+            (3 if x<0 else 2) if self.eliminated else (1 if x<0 else 0),
             - self.highest_cleared,
             failures_at_height,
             failures_before_and_at_height,

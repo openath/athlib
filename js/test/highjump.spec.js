@@ -247,7 +247,7 @@ describe('Given an instance of Athlib.HighJumpCompetition', function(){
       }
     expect(r).to.be.equal(1);
     });
-  it("81 is not allowed to jump again",()=>{
+  it("B is not allowed to jump again",()=>{
     var r=0,e;
     try{
       c.failed('B');
@@ -268,8 +268,8 @@ describe('Given an instance of Athlib.HighJumpCompetition', function(){
   it("c.state == finished",()=>{expect(c.state).to.be.equal('finished')});
   it("A.highestCleared == 2.12",()=>{expect(A.highestCleared).to.be.equal(2.12)});
   it("B.highestCleared == 2.12",()=>{expect(B.highestCleared).to.be.equal(2.12)});
-  it("A.rankingKey == [0, -2.12, 1, 2]",()=>{expect(c._compareKeys(A.rankingKey,[0, -2.12, 1, 2])).to.be.equal(0)});
-  it("B.rankingKey == [0, -2.12, 2, 2]",()=>{expect(c._compareKeys(B.rankingKey,[0, -2.12, 2, 2])).to.be.equal(0)});
+  it("A.rankingKey == [0, -2.12, 1, 2]",()=>{expect(c._compareKeys(A.rankingKey,[2, -2.12, 1, 2])).to.be.equal(0)});
+  it("B.rankingKey == [0, -2.12, 2, 2]",()=>{expect(c._compareKeys(B.rankingKey,[2, -2.12, 2, 2])).to.be.equal(0)});
   });
   describe('Test total failure rank',function(){
     // Run through to where the jumpoff began - ninth bar position
@@ -302,7 +302,7 @@ describe('Given an instance of Athlib.HighJumpCompetition', function(){
   it("A.highestCleared == 2.08",()=>{expect(A.highestCleared).to.be.equal(2.08)});
   it("B.highestCleared == 0",()=>{expect(B.highestCleared).to.be.equal(0)});
   it("A.rankingKey == [0, -2.08, 0, 0]",()=>{expect(c._compareKeys(A.rankingKey,[0, -2.08, 0, 0])).to.be.equal(0)});
-  it("B.rankingKey == [2, -0, 0, 0]",()=>{expect(c._compareKeys(B.rankingKey,[2, -0, 0, 0])).to.be.equal(0)});
+  it("B.rankingKey == [2, -0, 0, 0]",()=>{expect(c._compareKeys(B.rankingKey,[3, -0, 0, 0])).to.be.equal(0)});
   });
   describe('Test countback to total failures',function(){
     // Run through to where the jumpoff began - ninth bar position
@@ -323,7 +323,7 @@ describe('Given an instance of Athlib.HighJumpCompetition', function(){
       }
     expect(r).to.be.equal(1);
     });
-  it("81 is not allowed to jump again",()=>{
+  it("B is not allowed to jump again",()=>{
     var r=0,e;
     try{
       c.failed('B');
@@ -344,8 +344,8 @@ describe('Given an instance of Athlib.HighJumpCompetition', function(){
   it("c.state == finished",()=>{expect(c.state).to.be.equal('finished')});
   it("A.highestCleared == 2.12",()=>{expect(A.highestCleared).to.be.equal(2.12)});
   it("B.highestCleared == 2.12",()=>{expect(B.highestCleared).to.be.equal(2.12)});
-  it("A.rankingKey == [0, -2.12, 1, 2]",()=>{expect(c._compareKeys(A.rankingKey,[0, -2.12, 1, 2])).to.be.equal(0)});
-  it("B.rankingKey == [0, -2.12, 1, 3]",()=>{expect(c._compareKeys(B.rankingKey,[0, -2.12, 1, 3])).to.be.equal(0)});
+  it("A.rankingKey == [0, -2.12, 1, 2]",()=>{expect(c._compareKeys(A.rankingKey,[2, -2.12, 1, 2])).to.be.equal(0)});
+  it("B.rankingKey == [0, -2.12, 1, 3]",()=>{expect(c._compareKeys(B.rankingKey,[2, -2.12, 1, 3])).to.be.equal(0)});
   });
   describe('Test won ending',function(){
 	it("test scheduled-->started-->won-->finished",()=>{
