@@ -506,4 +506,21 @@ describe('Given an instance of Athlib.HighJumpCompetition', function(){
 		(function(v){it("competition is finished",()=>{expect(v).to.equal(true)});})(c.isFinished);
 		(function(v){it("competition is not running",()=>{expect(v).to.equal(false)});})(c.isRunning);
   });
+  describe('test_nor_strangness',function(){
+	var mx =[ 
+		  	['bib', '4.65', '4.75', '4.85', '4.95', '5.05', '4.95', '4.90', '4.85'],
+			['193','o','xo','o','xxx','-','x','x','x'],
+			['175','o','xo','o','-','xxx','x','x','o']
+			];
+	function check(title, r1v, r2v, p175, p193){
+		mx[1][8] = r1v;
+		mx[2][8] = r2v;
+    	var c = Athlib.HighJumpCompetition.fromMatrix(mx);
+		it(title+' '+r1v+' '+r2v,()=>{expect(c.jumpersByBib['175'].place).to.equal(p175) && expect(c.jumpersByBib['193'].place).to.equal(p193)});
+		};
+	check("175 place 1, 193 place 2", 'x', 'o', 1, 2);
+	check("175 place 1, 193 place 2", 'r', 'o', 1, 2);
+	check("175 place 1, 193 place 1", 'r', 'r', 1, 1);
+	check("175 place 1, 193 place 1", 'x', 'x', 1, 1);
+  });
 });

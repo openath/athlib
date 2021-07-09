@@ -396,6 +396,23 @@ JA103141  xxx'''.split('\n')]
         self.assertEqual(c.state,'finished','One winning jumper failed at his chosen height')
         self.assertEqual(c.jumpers_by_bib['EF007915'].place,1,'EF007915 came first')
 
+    def test_nor_strangeness(self):
+        mx = [_.split() for _ in '''bib 4.65 4.75 4.85 4.95 5.05 4.95 4.90 4.85
+193 o xo o xxx - x x x
+175 o xo o - xxx x x o'''.split('\n')]
+        def check(r1v, r2v, p175, p193):
+            mx[1][8] = r1v;
+            mx[2][8] = r2v;
+            c = HighJumpCompetition.from_matrix(mx)
+            self.assertTrue(c.jumpers_by_bib['175'].place==p175
+                            and
+                            c.jumpers_by_bib['193'].place==p193,
+                            '175 place %s 193 place %s %s %s' % (p175,p193,r1v,r2v))
+        check('x', 'o', 1, 2);
+        check('r', 'o', 1, 2);
+        check('r', 'r', 1, 1);
+        check('x', 'x', 1, 1);
+
 
 if __name__ == '__main__':
     main()
