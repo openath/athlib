@@ -397,6 +397,7 @@ JA103141  xxx'''.split('\n')]
         self.assertEqual(c.jumpers_by_bib['EF007915'].place,1,'EF007915 came first')
 
     def test_nor_strangeness(self):
+        '''based on https://norway.opentrack.run/en-gb/x/2021/NOR/2021julistevnet/event/F02/1/1/'''
         mx = [_.split() for _ in '''bib 4.65 4.75 4.85 4.95 5.05 4.95 4.90 4.85
 193 o xo o xxx - x x x
 175 o xo o - xxx x x o'''.split('\n')]
