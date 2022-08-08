@@ -243,7 +243,8 @@ class UtilsTests(TestCase):
         self.assertEqual(discipline_sort_key('200H'),(2, 200, "200H"))
         self.assertEqual(discipline_sort_key('SLJ'),(3, 4, "SLJ"))
         self.assertEqual(discipline_sort_key('SHJ'),(3, 1, "SHJ"))
-        self.assertEqual(discipline_sort_key('GDT'),(4, 12, "GDT"))
+        self.assertEqual(discipline_sort_key('GDT'),(4, 13, "GDT"))
+        self.assertEqual(discipline_sort_key('CT'),(4, 11, "CT"))
 
     def test_text_discipline_sort_key(self):
         '''should see if event ordering will work'''

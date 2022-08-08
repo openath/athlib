@@ -31,7 +31,10 @@ THROWS = (
     "SBT",                          #seated BT
 
     #Target Throw, Overhead Throw, Chest Throw from UK SportsHall (kids) format
-    "TART", "OHT", "CHT"
+    "TART", "OHT", "CHT",
+
+    #disabled hammer throw
+    "CT",
 )
 MULTI_EVENTS = (
     # Greek prefixes for 2..12 events, and for 20.
@@ -61,7 +64,7 @@ FIELD_SORT_ORDER = [
         "PV", 
         "LJ", "SLJ",
         "TJ", "STJ",
-        "SP", "DT", "HT", "JT", 
+        "SP", "DT", "HT", "JT", "CT",
         "ST", "GDT", "BT", "WT", "SWT", "OT", "TART", "OHT", "CHT", "SDT", "SJT", "SBT",
         "H1", "H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9",   #Custom Events
         "L1", "L2", "L3", "L4", "L5", "L6", "L7", "L8", "L9",   #Custom Events
@@ -86,7 +89,7 @@ PAT_THROWS = re.compile(
                         r"^(?:"
                         r"[sS]?[dD][tT](?P<dtnum>%s|)|"
                         r"[sS]?[jJ][tT](?P<jtnum>[45678]00\s*g?|)|"
-                        r"[hH][tT](?P<htnum>%s|)|"
+                        r"[hHcC][tT](?P<htnum>%s|)|"
                         r"[sS][pP](?P<spnum>%s|)|"
                         r"[wW][tT](?P<wtnum>\d?%s|)|"
                         r"[sS][sW][tT](?P<swtnum>%s|)|"
