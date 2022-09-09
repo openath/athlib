@@ -109,7 +109,6 @@ class IaafScoreTests(TestCase):
         # self.assertEqual(score("F", "HJ", 1.50, 70), 1741)
         
         self.assertEqual(score("M", "LJ", 4.03, 35), 230)
-        self.assertEqual(score("M", "LJ", 4.03, 35), 229)        
 
     def test_esaa_adjusted_score(self):
         # Tha famous boys 800 issue.
