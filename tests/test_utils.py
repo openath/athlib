@@ -79,6 +79,9 @@ class UtilsTests(TestCase):
         self.assertEqual(get_distance("3KW"), 3000)
         self.assertEqual(get_distance("3kmW"), 3000)
         self.assertEqual(get_distance("T26"), None)
+        self.assertEqual(get_distance("4xRELAY"), None)
+        self.assertEqual(get_distance("4xDMR"), None)
+        self.assertEqual(get_distance("4xSMR"), None)
 
     def test_get_duration_event_time(self):
         "Extract seconds from duration event code"
