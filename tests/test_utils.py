@@ -311,6 +311,9 @@ class UtilsTests(TestCase):
                 ('4x100',PAT_RELAYS),
                 ('4x400',PAT_RELAYS),
                 ('4xrelay',PAT_RELAYS),
+                ('4xRELAY',PAT_RELAYS),
+                ('4xSMR',PAT_RELAYS), # sprint medley relay at World Relays
+                ('4xDMR',PAT_RELAYS), # distance medley relay at World Relays
                 ('5K',PAT_ROAD),
                 ('5M',PAT_ROAD),
                 ('7.5M',PAT_ROAD),
