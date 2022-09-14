@@ -310,6 +310,8 @@ describe('Given an instance of Athlib', function() {
 				['4x100',Athlib.PAT_RELAYS],
 				['4x400',Athlib.PAT_RELAYS],
 				['4xrelay',Athlib.PAT_RELAYS],
+				['4xSMR',Athlib.PAT_RELAYS],
+				['4xDMR',Athlib.PAT_RELAYS],
 				['5K',Athlib.PAT_ROAD],
 				['5M',Athlib.PAT_ROAD],
 				['7.5M',Athlib.PAT_ROAD],
