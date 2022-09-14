@@ -41,7 +41,7 @@ class Jumper(object):
     def __init__(self, **kwargs):
         "Allow keyword initialisation"
         self.order = 1  # if we get only one, I guess they jump first
-        self.place = 1  # if we only get one, I guess they are winning
+        self._place = 1 # if we only get one, I guess they are winning
 
         # list of strings containing '', 'o', 'xo', 'xxo', 'xxx', 'x', 'xx'
         self.attempts_by_height = []
@@ -99,6 +99,14 @@ class Jumper(object):
             failures_at_height,
             failures_before_and_at_height,
             )
+
+    @property
+    def place(self):
+        if self.order in ('DQ','DNS'):
+            return self.order
+        elif self.highest_cleared_index<0:
+            return ''
+        return self._place
 
     def cleared(self, height_count: int, height: Decimal) -> None:
         """Add a clearance at the current bar position"""
@@ -174,7 +182,7 @@ class HighJumpCompetition(object):
         j = Jumper(**kwargs)
         if j.bib in self.jumpers_by_bib:
             raise RuleViolation('cannot have two athletes with the same bib (%r)!' % j.bib)
-        j.place = len(self.jumpers) + 1
+        j._place = len(self.jumpers) + 1
 
         self.jumpers_by_bib[j.bib] = j
         self.jumpers.append(j)
@@ -203,7 +211,7 @@ class HighJumpCompetition(object):
         state = self.state
         if state not in ('started','jumpoff'):
             if state in ('won','drawn'):
-                if jumper.place!=1:
+                if jumper._place!=1:
                     raise RuleViolation('The competition has been %s and %s is not allowed!' % (state,label))
             elif state == 'finished':
                 raise RuleViolation('The competition has finished and %s is not allowed!' % label)
@@ -283,12 +291,12 @@ class HighJumpCompetition(object):
             del j._old_pos
             k = j.ranking_key
             if i == 0:
-                j.place = 1
+                j._place = 1
             else:
                 if k == pk:
-                    j.place = pj.place
+                    j._place = pj._place
                 else:
-                    j.place = i + 1
+                    j._place = i + 1
             pk = k
             pj = j
         return rankj
@@ -298,15 +306,15 @@ class HighJumpCompetition(object):
         rankj = self._rankj()
         if not rankj: return
 
-        if 1 and verbose: print('ranked jumpers in order %s:' % repr([(j.place,j.bib,j.ranking_key) for j in rankj]))
+        if 1 and verbose: print('ranked jumpers in order %s:' % repr([(j._place,j.bib,j.ranking_key) for j in rankj]))
 
         remj = self.remaining
         if len(remj)==0:
             #they all failed or retired at this height
-            if len(rankj)> 1 and rankj[1].place==1:
+            if len(rankj)> 1 and rankj[1]._place==1:
                 nc = 0
                 for j in rankj:
-                    if j.place!=1: continue
+                    if j._place!=1: continue
                     if j.has_retired:
                         j.rank_group = 1
                     else:

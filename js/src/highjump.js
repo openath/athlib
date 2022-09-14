@@ -15,7 +15,7 @@ function Jumper(kwds) {
     __init__(_options) {
       // Allow option setup
       this.order = 1; // if we get only one, I guess they jump first
-      this.place = 1; // if we only get one, I guess they are winning
+      this._place = 1; // if we only get one, I guess they are winning
 
       // list of strings containing '', 'o', 'xo', 'xxo', 'xxx', 'x', 'xx'
       this.attemptsByHeight = [];
@@ -52,6 +52,16 @@ function Jumper(kwds) {
         if (arg === 'bib') value = `${value}`;
         this[arg] = value;
       }
+    },
+
+    get place() {
+      if (this.order === 'DQ' || this.order === 'DNS') {
+        return self.order;
+      }
+      if (this.highestClearedIndex < 0) {
+        return '';
+      }
+      return this._place;
     },
 
     _setJumpArray(heightCount, label) {
@@ -212,7 +222,7 @@ function HighJumpCompetition() {
         );
       }
 
-      j.place = this.jumpers.length + 1;
+      j._place = this.jumpers.length + 1;
 
       this.jumpersByBib[j.bib] = j;
       this.jumpers[this.jumpers.length] = j;
@@ -259,7 +269,7 @@ function HighJumpCompetition() {
 
       if (state !== 'started' && state !== 'jumpoff') {
         if (state === 'won') {
-          if (jumper.place !== 1) {
+          if (jumper._place !== 1) {
             throw new Error(
               `The competition has been won; ${label} is not allowed!`
             );
@@ -357,9 +367,9 @@ function HighJumpCompetition() {
 
         delete j._oldPos;
         if (i === 0) {
-          j.place = 1;
+          j._place = 1;
         } else {
-          j.place = cmpKeys(pk, k) === 0 ? pj.place : i + 1;
+          j._place = cmpKeys(pk, k) === 0 ? pj._place : i + 1;
         }
         pk = k;
         pj = j;
@@ -379,10 +389,10 @@ function HighJumpCompetition() {
 
       if (remj.length === 0) {
         // they all failed or retired
-        if (rankj.length > 1 && rankj[1].place === 1) {
+        if (rankj.length > 1 && rankj[1]._place === 1) {
           nc = 0;
           rankj.forEach(j => {
-            if (j.place === 1 && !j.hasRetired) {
+            if (j._place === 1 && !j.hasRetired) {
               j.roundLim = 1;
               j.eliminated = false;
               j.consecutiveFailures = 0;

@@ -146,7 +146,8 @@ describe('Given an instance of Athlib.HighJumpCompetition', function(){
     const grimsey = c.jumpersByBib['53'];
     const dwyer = c.jumpersByBib['81'];
 
-    it("field.place == 4",()=>{expect(field.place).to.be.equal(4)});
+    it("field._place == 4",()=>{expect(field._place).to.be.equal(4)});
+    it("field.place == ''",()=>{expect(field.place).to.be.equal('')});
     it("maslen.place == 3",()=>{expect(maslen.place).to.be.equal(3)});
     it("grimsey.place == 1",()=>{expect(grimsey.place).to.be.equal(1)});
     it("dwyer.place == 1",()=>{expect(dwyer.place).to.be.equal(1)});
@@ -173,7 +174,8 @@ describe('Given an instance of Athlib.HighJumpCompetition', function(){
     const grimsey = c.jumpersByBib['53'];
     const dwyer = c.jumpersByBib['81'];
 
-    it("field.place == 4",()=>{expect(field.place).to.be.equal(4)});
+    it("field._place == 4",()=>{expect(field._place).to.be.equal(4)});
+    it("field.place == ''",()=>{expect(field.place).to.be.equal('')});
     it("maslen.place == 3",()=>{expect(maslen.place).to.be.equal(3)});
     it("grimsey.place == 1",()=>{expect(grimsey.place).to.be.equal(1)});
     it("dwyer.place == 1",()=>{expect(dwyer.place).to.be.equal(1)});
@@ -210,7 +212,7 @@ describe('Given an instance of Athlib.HighJumpCompetition', function(){
     const norman = c.jumpersByBib['53'];
     const england = c.jumpersByBib['81'];
 
-    it("saxon.place == 4",()=>{expect(saxon.place).to.be.equal(4)});
+    it("saxon.place == ''",()=>{expect(saxon.place).to.be.equal('')});
     it("briton.place == 3",()=>{expect(briton.place).to.be.equal(3)});
     it("norman.place == 2",()=>{expect(norman.place).to.be.equal(2)});
     it("england.place == 1",()=>{expect(england.place).to.be.equal(1)});
@@ -296,7 +298,8 @@ describe('Given an instance of Athlib.HighJumpCompetition', function(){
   const B = c.jumpersByBib['B'];
 
   it("A.place == 1",()=>{expect(A.place).to.be.equal(1)});
-  it("B.place == 2",()=>{expect(B.place).to.be.equal(2)});
+  it("B._place == 2",()=>{expect(B._place).to.be.equal(2)});
+  it("B.place == ''",()=>{expect(B.place).to.be.equal('')});
   it("c.remaining.length == 1",()=>{expect(c.remaining.length).to.be.equal(1)});
   it("c.state == won",()=>{expect(c.state).to.be.equal('won')});
   it("A.highestCleared == 2.08",()=>{expect(A.highestCleared).to.be.equal(2.08)});

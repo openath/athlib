@@ -94,7 +94,8 @@ class HighJumpTests(TestCase):
         # attempt at fourth jump should fail
         self.assertRaises(RuleViolation, c.failed, '77')
 
-        self.assertEqual(jake_field.place, 4)
+        self.assertEqual(jake_field._place, 4)
+        self.assertEqual(jake_field.place, '')
         self.assertEqual(harry_maslen.place, 1)
 
     def test_replay_to_jumpoff(self):
@@ -107,7 +108,8 @@ class HighJumpTests(TestCase):
         grimsey = c.jumpers_by_bib['53']
         dwyer = c.jumpers_by_bib['81']
 
-        self.assertEqual(field.place, 4)
+        self.assertEqual(field._place, 4)
+        self.assertEqual(field.place, '')
         self.assertEqual(maslen.place, 3)
         self.assertEqual(grimsey.place, 1)
         self.assertEqual(dwyer.place, 1)
@@ -131,7 +133,8 @@ class HighJumpTests(TestCase):
         grimsey = c.jumpers_by_bib['53']
         dwyer = c.jumpers_by_bib['81']
 
-        self.assertEqual(field.place, 4)
+        self.assertEqual(field._place, 4)
+        self.assertEqual(field.place, '')
         self.assertEqual(maslen.place, 3)
 
         self.assertEqual(grimsey.place, 1)
@@ -152,7 +155,8 @@ class HighJumpTests(TestCase):
         norman = c.jumpers_by_bib['53']
         england = c.jumpers_by_bib['81']
 
-        self.assertEqual(saxon.place, 4)
+        self.assertEqual(saxon._place, 4)
+        self.assertEqual(saxon.place, '')
         self.assertEqual(briton.place, 3)
 
         self.assertEqual(norman.place, 2)
@@ -203,7 +207,8 @@ class HighJumpTests(TestCase):
         A = c.jumpers_by_bib['A']
         B = c.jumpers_by_bib['B']
         self.assertEqual(A.place, 1)
-        self.assertEqual(B.place, 2)
+        self.assertEqual(B._place, 2)
+        self.assertEqual(B.place, '')
         self.assertEqual(len(c.remaining), 1)
         self.assertEqual(c.state, 'won')
         self.assertEqual(A.highest_cleared, Decimal("2.08"))
