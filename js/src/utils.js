@@ -189,7 +189,7 @@ function getDistance(discipline) {
   if (m) {
     g2 = m[2].toUpperCase();
 
-    if (g2 === 'RELAY') {
+    if (g2 === 'RELAY' || g2 === 'DMR' || g2 === 'SMR') {
       return null; // cowardly refusing to guess
     }
     return parseInt(m[1], 10) * parseInt(g2, 10); // will be NaN if bad stuff

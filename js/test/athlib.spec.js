@@ -112,7 +112,10 @@ describe('Given an instance of Athlib', function() {
 		  expect(Athlib.getDistance("MAR")).to.equal(42195);
 		  expect(Athlib.getDistance("XC")).to.equal(null);
 		  expect(Athlib.getDistance("HJ")).to.equal(null);
-		  expect(Athlib.getDistance("4xrelay")).to.equal(null);
+		  expect(Athlib.getDistance("T26")).to.equal(null);
+		  expect(Athlib.getDistance("4xRELAY")).to.equal(null);
+		  expect(Athlib.getDistance("4xDMR")).to.equal(null);
+		  expect(Athlib.getDistance("4xSMR")).to.equal(null);
 		  expect(Athlib.getDistance("4x100")).to.equal(400);
 		  expect(Athlib.getDistance("4x100H")).to.equal(400);
 		  expect(Athlib.getDistance("3x100h")).to.equal(300);
