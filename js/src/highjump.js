@@ -102,6 +102,9 @@ function Jumper(kwds) {
         failuresAtHeight = failuresBeforeAndAtHeight = this.attemptsByHeight[x].split('x').length - 1;
         for (i = 0; i < x; i++) failuresBeforeAndAtHeight += this.attemptsByHeight[i].split('x').length - 1;
       }
+      if (this.highestCleared === 0 && this.attemptsByHeight.length === 0) {
+        return [3, -0, 0, 0];
+      }
 
       return [
         this.eliminated ? (x < 0 ? 3 : 2) : (x < 0 ? 1 : 0),
@@ -175,6 +178,7 @@ function cmpKeys(a, b) {
   let ai;
   let bi;
 
+  // console.log('a, b', a, b);
   for (let i = 0; i < a.length; i++) {
     ai = a[i];
     bi = b[i];
@@ -222,7 +226,7 @@ function HighJumpCompetition() {
         );
       }
 
-      j._place = this.jumpers.length + 1;
+      // j._place = this.jumpers.length + 1;
 
       this.jumpersByBib[j.bib] = j;
       this.jumpers[this.jumpers.length] = j;
@@ -353,10 +357,18 @@ function HighJumpCompetition() {
       const rankjlen = rankj.length;
       let i;
 
+      // console.log('rankj before', rankj);
+
       for (i = 0; i < rankjlen; i++) rankj[i]._oldPos = i;
-      rankj.sort((a, b) =>
-        cmpKeys([a.rankingKey, a._oldPos], [b.rankingKey, b._oldPos])
-      );
+      rankj.sort(function (a, b) {
+        var r;
+
+        // console.log(a.first_name, b.first_name);
+        r = cmpKeys([a.rankingKey, a._oldPos], [b.rankingKey, b._oldPos]);
+
+        // console.log('result', r);
+        return r;
+      });
 
       let pk = null;
       let pj = null;
@@ -364,6 +376,8 @@ function HighJumpCompetition() {
       for (i = 0; i < rankjlen; i++) {
         const j = rankj[i];
         const k = j.rankingKey;
+
+        // console.log(j);
 
         delete j._oldPos;
         if (i === 0) {
@@ -374,6 +388,7 @@ function HighJumpCompetition() {
         pk = k;
         pj = j;
       }
+      // console.log('rankj after', rankj);
       return rankj;
     },
 
@@ -424,7 +439,16 @@ function HighJumpCompetition() {
               'won' :
               'finished';
         }
+      } else {
+        // Check for any athletes without jumps (should be eliminated)
+        rankj.forEach(j => {
+          // console.log(j.first_name + j.last_name, j.highestCleared === 0, j.attemptsByHeight.length === 0);
+          if (this.state === 'finished' && j.highestCleared === 0 && j.attemptsByHeight.length === 0) {
+            j.eliminated = true;
+          }
+        });
       }
+      // console.log('this.rankedJumpers', this.rankedJumpers);
     },
 
     displayBarHeight() {

@@ -58,6 +58,16 @@ const matrix_a = [
 		["A",	"o",	"xxx",	"o",	"x",	"r"],
 		["B",	"o",	"xxx",	"o",	"x",	"r"],
 		]
+    
+const BELGRADE_INDOOR_HJ = [  // from here /en-gb/x/2022/SRB/belgradeindoor/event/F3/1/1/
+    ["place", "order", "bib", "first_name", "last_name", "team", "category", "5.01", "5.16", "5.31", "5.46", "5.61", "5.71", "5.81", "5.85", "6", "6.19", "best", "note"],
+    ["1", 1, 148, "Armand", "DUPLANTIS", "SWE", "M", "", "", "", "", "o", "", "", "o", "o", "xxo", 6.19, ""],
+    ["1", 1, 149, "Emanuoil", "KARALIS", "GRE", "M", "", "", "", "", "", "", "", "", "", "", 0, ""],
+    ["1", 1, 152, "Robert", "RENNER", "SLO", "M",  "", "xo", "xxo", "xxx", "", "", "", "", "", "", 5.31, ""],
+    ["1", 1, 153, "Ivan", "PARAVAC", "CRO", "M", "o", "o", "xxx", "", "", "", "", "", "", "", 5.16, ""],
+    ["1", 1, 150, "Bokai", "HUANG", "CHN", "M",  "", "", "", "xxx", "", "", "", "", "", "", 0, ""],
+    ["1", 1, 151, "Wenwen", "CHEN", "CHN", "M",  "", "", "xxx", "", "", "", "", "", "", "", 0, ""],
+    ];
 
 function createEmptyCompetition(matrix){
   //Creates from an array similar to above; named athletes with bibs
@@ -73,18 +83,18 @@ function createEmptyCompetition(matrix){
 
 describe('Given an instance of Athlib.HighJumpCompetition', function(){
   describe('Tests basic creation of athletes with names and bibs', function(){
-  var c=createEmptyCompetition(ESAA_2015_HJ);
-  it('last of jumpers should be named Dwyer',()=>{
-    expect(c.jumpers[c.jumpers.length-1].last_name).to.be.equal('Dwyer');
-    });
-  it('jumpersByBib[85] should be named Maslen',()=>{
-    expect(c.jumpersByBib[85].last_name).to.be.equal('Maslen');
-    });
+    var c=createEmptyCompetition(ESAA_2015_HJ);
+    it('last of jumpers should be named Dwyer',()=>{
+      expect(c.jumpers[c.jumpers.length-1].last_name).to.be.equal('Dwyer');
+      });
+    it('jumpersByBib[85] should be named Maslen',()=>{
+      expect(c.jumpersByBib[85].last_name).to.be.equal('Maslen');
+      });
   });
   describe('Tests progression',function(){
-  var c = createEmptyCompetition(ESAA_2015_HJ);
-  var h1 = 1.81;
-  c.setBarHeight(h1);
+    var c = createEmptyCompetition(ESAA_2015_HJ);
+    var h1 = 1.81;
+    c.setBarHeight(h1);
 
   // round 1
   c.cleared(85);
@@ -525,5 +535,28 @@ describe('Given an instance of Athlib.HighJumpCompetition', function(){
 	check("175 place 1, 193 place 2", 'r', 'o', 1, 2);
 	check("175 place 1, 193 place 1", 'r', 'r', 1, 1);
 	check("175 place 1, 193 place 1", 'x', 'x', 1, 1);
+  });
+
+  describe('test result for BELGRADE INDOOR MEETING 2022',function(){
+    const c = Athlib.HighJumpCompetition.fromMatrix(BELGRADE_INDOOR_HJ);
+    c.state = 'finished' // pretend we simulated a HJ competition
+    // console.log(c)
+    c._rank()
+    var rank_aths = c.rankedJumpers
+
+    var emanuoil_karalis = rank_aths.find(ath => ath.bib === "149")
+    var wenwen_chen = rank_aths.find(ath => ath.bib === "151")
+
+
+    it("test ordering correct",()=>{ expect(rank_aths.map(r => r.bib)).deep.to.be.equal(["148", "152", "153", "150", "151", "149"]) });
+
+    it("test correct calc rankingKey", ()=>{ expect(emanuoil_karalis.rankingKey).deep.to.be.equal([ 3, -0, 0, 0 ]) })
+
+    it("test athlete is eliminated", ()=>{ expect(wenwen_chen.eliminated).to.be.equal(true) })
+
+    // athletes with no jump will be set as eliminted once the state is set to 'finished'
+    it("test athlete with no jumps is eliminated", ()=>{ expect(emanuoil_karalis.eliminated).to.be.equal(true) })
+
+    
   });
 });
