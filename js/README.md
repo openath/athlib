@@ -10,7 +10,7 @@ ES6 library
 This repository contains ES6 code and tests.
 
 
-## Detailed overview
+## Detailed overview.
 
 ### Installation
 After cloning this repository, make changes in `package.json` so they match your ideas.
