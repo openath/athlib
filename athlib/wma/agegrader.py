@@ -286,9 +286,12 @@ class AgeGrader(object):
 
 
 class AthlonsAgeGrader(AgeGrader):
-    data_file_name = "wma-athlons-data.json"
     text_columns = 0, 2
     event_column = 2
+    
+    def __init__(self, data_year="2023", data_file_name="wma-athlons-data.json"):
+        self.data_file_name = data_file_name
+        self.data_year = data_year
 
     def calculate_factor(self, gender, age, event):
         """Work out 'slowdown factor' for a geezer of this
