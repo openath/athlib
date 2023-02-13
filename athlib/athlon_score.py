@@ -108,13 +108,13 @@ def _scoring_objects_create() -> None:
 # lazy global age_grader object
 _age_grader = None
 
-def _get_age_grader() -> AthlonsAgeGrader:
+def _get_age_grader(data_year="2023") -> AthlonsAgeGrader:
     global _age_grader
     if not _age_grader:
-        _age_grader = AthlonsAgeGrader()
+        _age_grader = AthlonsAgeGrader(data_year=data_year)
     return _age_grader
 
-def score(gender: str, event_code: str, value: Union[float, int], age: str = None, esaa: bool = False) -> Optional[int]:
+def score(gender: str, event_code: str, value: Union[float, int], age: str = None, esaa: bool = False, data_year: str = "2015") -> Optional[int]:
     """Function to determine IAAF score, based on gender, event and performance.
     
     You should only pass the age if you wish to age-adjust in years for WMA events
@@ -132,7 +132,7 @@ def score(gender: str, event_code: str, value: Union[float, int], age: str = Non
     _scoring_objects_create()
 
 
-    ag = _get_age_grader()
+    ag = _get_age_grader(data_year=data_year)
     if not age:
         age_factor = 1.00
     else:

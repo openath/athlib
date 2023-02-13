@@ -298,7 +298,7 @@ class AthlonsAgeGrader(AgeGrader):
         age taking part in this event e.g.
 
         >>> from .agegrader import AthlonsAgeGrader
-        >>> ag=AthlonsAgeGrader()
+        >>> ag=AthlonsAgeGrader("2015")
         >>> ag.calculate_factor('M',65,'100H')
         0.8637
         >>> ag.calculate_factor('M',69,'100H')
@@ -315,6 +315,17 @@ class AthlonsAgeGrader(AgeGrader):
         0.9872
         >>> ag.calculate_factor('f',39,'1500')
         0.9872
+
+
+        >>> ag=AthlonsAgeGrader("2023")
+        >>> ag.calculate_factor('M',65,'100H')
+        0.9355
+
+        >>> ag=AthlonsAgeGrader() # default is 2023
+        >>> ag.calculate_factor('M',65,'100H')
+        0.9355
+
+
         """
         event = event.upper()
         gender = self.normalize_gender(gender)
