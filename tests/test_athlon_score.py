@@ -110,6 +110,12 @@ class IaafScoreTests(TestCase):
         
         self.assertEqual(score("M", "LJ", 4.03, 35, data_year="2015"), 230)
 
+        # real one - Leanne Buxton at BMAF indoor pentathlon
+        # https://data.opentrack.run/en-gb/x/2022/GBR/bmaf-ipen/event/P01/
+        self.assertEqual(score("F", "60H", 9.54, 40, data_year="2015"), 984)
+
+        self.assertEqual(score("F", "60H", 9.54, 40, data_year="2023"), 856)
+
     def test_esaa_adjusted_score(self):
         # Tha famous boys 800 issue.
         self.assertEqual(score("M", "800", 120, esaa=True), 769)

@@ -318,13 +318,17 @@ class AthlonsAgeGrader(AgeGrader):
 
 
         >>> ag=AthlonsAgeGrader("2023")
-        >>> ag.calculate_factor('M',65,'100H')
-        0.9355
+        >>> ag.calculate_factor('F',40,'60H')
+        0.9698
 
-        >>> ag=AthlonsAgeGrader() # default is 2023
-        >>> ag.calculate_factor('M',65,'100H')
-        0.9355
+        >>> ag=AthlonsAgeGrader("2015") 
+        >>> ag.calculate_factor('F',40,'60H')
+        0.906
 
+        # with no year given, use 2023
+        >>> ag=AthlonsAgeGrader()
+        >>> ag.calculate_factor('F',40,'60H')
+        0.9698
 
         """
         event = event.upper()
