@@ -78,43 +78,30 @@ class IaafScoreTests(TestCase):
         self.assertEqual(score("M", "60H", 10.58), 437)
 
 
-        self.assertEqual(score("M", "60H", 11.85, 50, data_year="2015"), 437)
-        self.assertEqual(score("M", "LJ", 4.53, 50, data_year="2015"), 494)
-        self.assertEqual(score("M", "800", 156, 75, data_year="2015"), 1035)
+        self.assertEqual(score("M", "60H", 11.25, 50), 489)
+        self.assertEqual(score("M", "LJ", 4.77, 50), 556)
+        self.assertEqual(score("M", "1000", 272.91, 62), 299)
 
-        # Javelin for different ages
-        self.assertEqual(score("M", "JT", 30.0, data_year="2015"), 299) # senior
-        self.assertEqual(score("M", "JT", 30.0, 50, data_year="2015"), 396) # M50
-        self.assertEqual(score("M", "JT", 30.0, 80, data_year="2015"), 781) 
-        self.assertEqual(score("M", "JT", 30.0, 85, data_year="2015"), 937) 
+        # Javelin for different ages - reintroduce with some proper jav test data
+        # self.assertEqual(score("M", "JT", 30.0), 299) # senior
+        # self.assertEqual(score("M", "JT", 30.0, 50), 396) # M50
+        # self.assertEqual(score("M", "JT", 30.0, 80), 781)
+        # self.assertEqual(score("M", "JT", 30.0, 85), 937)
 
         
-        # needs work, we need full weight event code in age factors e.g. SP6K,
-        # but simple code e.g. SP in points calculation
-        self.assertEqual(score("M", "SP", 8.05, 50, data_year="2015"), 451)
+        self.assertEqual(score("M", "SP", 7.33, 63), 425)
 
-        self.assertEqual(score("F", "60H", 10.59, 53, data_year="2015"), 883)
-        self.assertEqual(score("F", "HJ", 1.38, 53, data_year="2015"), 842)
+        self.assertEqual(score("F", "60H", 10.90, 53), 777)
+        self.assertEqual(score("F", "HJ", 1.29, 53), 644)
 
-        # PK's tests from BMAF events in June 2021
-        self.assertEqual(score("M", "LJ", 5.0, 60, data_year="2015"), 821)
-        self.assertEqual(score("F", "80H", 12.0, 45, data_year="2015"), 1109)
-        self.assertEqual(score("F", "HJ", 1.50, 70, data_year="2015"), 1741)
-        self.assertEqual(score("M", "SP", 10.0, 70, data_year="2015"), 655)
-        self.assertEqual(score("M", "SP", 10.0, 85, data_year="2015"), 904)
-        self.assertEqual(score("M", "WT", 12.0, 85, data_year="2015"), 869)
-        self.assertEqual(score("F", "SP", 7.0, 75, data_year="2015"), 715)
-        self.assertEqual(score("F", "DT", 25.0, 75, data_year="2015"), 928)
-        # self.assertEqual(score("F", "HJ", 1.50, 70), 1741)
-        # self.assertEqual(score("F", "HJ", 1.50, 70), 1741)
-        
-        self.assertEqual(score("M", "LJ", 4.03, 35, data_year="2015"), 230)
+        # tests from BMAF indoor pentathlon 2023
+        self.assertEqual(score("M", "LJ", 3.57, 77), 593)
+        self.assertEqual(score("M", "LJ", 5.43, 35), 508)
 
-        # real one - Leanne Buxton at BMAF indoor pentathlon
-        # https://data.opentrack.run/en-gb/x/2022/GBR/bmaf-ipen/event/P01/
-        self.assertEqual(score("F", "60H", 9.54, 40, data_year="2015"), 984)
+        # real one - Amanda Broadhurst at BMAF indoor pentathlon
+        # https://data.opentrack.run/en-gb/x/2023/GBR/bmaf-ipen/event/
+        self.assertEqual(score("F", "60H", 12.18, 40), 485)
 
-        self.assertEqual(score("F", "60H", 9.54, 40, data_year="2023"), 856)
 
     def test_esaa_adjusted_score(self):
         # Tha famous boys 800 issue.

@@ -20,7 +20,6 @@ class AgeGrader(object):
     """
     min_age = 35
     max_age = 100
-    data_year = "2015"
     data_file_name = "wma-data.json"
     text_columns = 0,
     event_column = 0
@@ -44,7 +43,7 @@ class AgeGrader(object):
         data = self.get_data()
 
         return list(set([t[self.event_column] for T in (
-            data[self.data_year]['m'], data[self.data_year]['f']) for t in T]))
+            data['m'], data['f']) for t in T]))
 
     @staticmethod
     def _check_table_column(table, x, func):
@@ -69,7 +68,7 @@ class AgeGrader(object):
             if x.upper() != x:
                 nuc.append(x)
 
-        data = self.get_data()[self.data_year]
+        data = self.get_data()
 
         for j in self.text_columns:
             self._check_table_column(data['m'], j, ccase)
@@ -139,10 +138,11 @@ class AgeGrader(object):
         """
         kind = self.event_code_to_kind(event)
         event = event.upper()
+
         gender = self.normalize_gender(gender)
 
         # Which table we're using
-        data = self.get_data()[self.data_year]
+        data = self.get_data()
         table = data[gender]
         ages = data['ages']
         nt = len(table)
@@ -152,14 +152,12 @@ class AgeGrader(object):
             self.find_row_by_event(event,
                                    table,
                                    x=self.event_column,
-                                   label='wma.%s.%s' % (self.data_year,
-                                                        gender))
+                                   label='wma.%s' % (gender))
         else:
             self.find_row_by_distance(distance,
                                       table,
                                       x=1,
-                                      label='wma.%s.%s' % (self.data_year,
-                                                           gender))
+                                      label='wma.%s' % (gender))
 
         self.find_age(age, ages)
         fx = self._fx
@@ -212,7 +210,6 @@ class AgeGrader(object):
     def find_age(self, age, ages, interpolate=True):
         if not age:
             age = 29
-
         na = len(ages)
         i = 0
 
@@ -238,7 +235,7 @@ class AgeGrader(object):
         "The relevant world-record performance on the date stats were compiled"
         kind = self.event_code_to_kind(event)
         kind = self.event_code_to_kind(event)
-        data = self.get_data()[self.data_year]
+        data = self.get_data()
         table = data[gender]
         row = self.find_row_by_event(event, table, x=0)
         world_best = table[row][2]
@@ -289,62 +286,47 @@ class AthlonsAgeGrader(AgeGrader):
     text_columns = 0, 2
     event_column = 2
     
-    def __init__(self, data_year="2023", data_file_name="wma-athlons-data.json"):
+    def __init__(self, data_file_name="wma-athlons-data.json"):
         self.data_file_name = data_file_name
-        self.data_year = data_year
 
     def calculate_factor(self, gender, age, event):
         """Work out 'slowdown factor' for a geezer of this
         age taking part in this event e.g.
 
         >>> from .agegrader import AthlonsAgeGrader
-        >>> ag=AthlonsAgeGrader("2015")
-        >>> ag.calculate_factor('M',65,'100H')
-        0.8637
-        >>> ag.calculate_factor('M',69,'100H')
-        0.8637
-        >>> ag.calculate_factor('M',65,'10000')
-        0.7858
-        >>> ag.calculate_factor('M',69,'10000')
-        0.7858
-        >>> ag.calculate_factor('f',35,'100H')
-        0.9852
-        >>> ag.calculate_factor('F',39,'100H')
-        0.9852
-        >>> ag.calculate_factor('F',35,'1500')
-        0.9872
-        >>> ag.calculate_factor('f',39,'1500')
-        0.9872
-
-
-        >>> ag=AthlonsAgeGrader("2023")
-        >>> ag.calculate_factor('F',40,'60H')
-        0.9698
-
-        >>> ag=AthlonsAgeGrader("2015") 
-        >>> ag.calculate_factor('F',40,'60H')
-        0.906
-
-        # with no year given, use 2023
         >>> ag=AthlonsAgeGrader()
-        >>> ag.calculate_factor('F',40,'60H')
-        0.9698
-
+        >>> ag.calculate_factor('M',35,'100')
+        0.9999
+        >>> ag.calculate_factor('M',66,'60H')
+        0.8351
+        >>> ag.calculate_factor('M',69,'SH')
+        0.8958
+        >>> ag.calculate_factor('M',69,'100H')
+        0.8958
+        >>> ag.calculate_factor('f',69,'LJ')
+        1.4736
         """
         event = event.upper()
+        if event[-1] == 'H' and event not in ('LH', 'SH', '60H'):
+            if int(event[:-1]) <= 110:
+                event = 'SH'
+            elif int(event[:-1]) >= 300:
+                event = 'LH'
+            else:
+                raise ValueError('event %s looks like hurdles'
+                ', but is not a standard distance so not supported' % event)
         gender = self.normalize_gender(gender)
 
         # Which table we're using
-        data = self.get_data()[self.data_year]
+        data = self.get_data()
         table = data[gender]
         ages = data['ages']
 
         # We must match an event exactly
         self.find_row_by_event(event,
                                table,
-                               x=2,
-                               label='wma-athlons.%s.%s' % (self.data_year,
-                                                            gender))
+                               x=0,
+                               label='wma-athlons.%s' % (gender))
         self.find_age(int(age // 5) * 5, ages, interpolate=False)
-        fac = table[self._fx][3:][self._ax1]
+        fac = table[self._fx][self._ax1]
         return fac

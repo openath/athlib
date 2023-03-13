@@ -105,16 +105,7 @@ def _scoring_objects_create() -> None:
             _scoring_objects[scoring_key(o["gender"], o["event_code"])] = o
 
 
-# lazy global age_grader object
-_age_graders = {}
-
-def _get_age_grader(data_year="2023") -> AthlonsAgeGrader:
-    global _age_grader
-    if data_year not in _age_graders:
-        _age_graders[data_year] = AthlonsAgeGrader(data_year=data_year)
-    return _age_graders[data_year]
-
-def score(gender: str, event_code: str, value: Union[float, int], age: str = None, esaa: bool = False, data_year: str = "2023") -> Optional[int]:
+def score(gender: str, event_code: str, value: Union[float, int], age: str = None, esaa: bool = False) -> Optional[int]:
     """Function to determine IAAF score, based on gender, event and performance.
     
     You should only pass the age if you wish to age-adjust in years for WMA events
@@ -132,13 +123,13 @@ def score(gender: str, event_code: str, value: Union[float, int], age: str = Non
     _scoring_objects_create()
 
 
-    ag = _get_age_grader(data_year=data_year)
+    ag = AthlonsAgeGrader()
     if not age:
         age_factor = 1.00
     else:
         age_group = 'V%d' % age
-        specific_event_code = get_specific_event_code(event_code, gender, age_group)
-        age_factor = ag.calculate_factor(gender, age, specific_event_code)
+        # specific_event_code = get_specific_event_code(event_code, gender, age_group)
+        age_factor = ag.calculate_factor(gender, age, event_code)
 
 
         # special case: old people run shorter hurdles races, score as if 100/110H
