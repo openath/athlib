@@ -73,7 +73,7 @@ def wma_age_grade(gender, age, event, performance, verbose=False):
 def wma_age_factor(gender, age, event, distance=None):
     """Work out 'slowdown factor' for a geezer of this
     age taking part in this event e.g."""
-    return ag.calculate_factor(self, gender, age, event, distance=distance)
+    return ag.calculate_factor(gender, age, event, distance=distance)
 
 def wma_world_best(gender, event):
     "The relevant world-record performance on the date stats were compiled"
