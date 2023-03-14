@@ -310,7 +310,7 @@ class AthlonsAgeGrader(AgeGrader):
         if event[-1] == 'H' and event not in ('LH', 'SH', '60H'):
             if int(event[:-1]) <= 110:
                 event = 'SH'
-            elif int(event[:-1]) >= 300:
+            elif int(event[:-1]) >= 200:
                 event = 'LH'
             else:
                 raise ValueError('event %s looks like hurdles'
