@@ -64,7 +64,7 @@ author = u'Andy Robinson, Robin Becker, Llewellyn Brunsdon-Haland and others'
 # built documents.
 #
 # The short X.Y version.
-version = u'0.7.5'
+version = u'0.7.6'
 # The full version, including alpha/beta/rc tags.
 release = version
 
