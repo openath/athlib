@@ -79,7 +79,7 @@ _scoring_table = (
     {"gender": "F", "event_code": "JT", "A": 15.9803, "Z": 3.8, "X": 1.04},
     {"gender": "F", "event_code": "60", "A": 46.0849, "Z": 13.0, "X": 1.81},
     {"gender": "F", "event_code": "60H", "A": 20.0479, "Z": 17.0, "X": 1.835},
-    {"gender": "F", "event_code": "WT", "A": 52.1403, "Z": 1.5, "X": 1.05}
+    {"gender": "F", "event_code": "WT", "A": 44.2593, "Z": 1.5, "X": 1.05}
 )
 
 

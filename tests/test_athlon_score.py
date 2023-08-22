@@ -109,6 +109,7 @@ class IaafScoreTests(TestCase):
         # Hammer only done by Masters,  Cheshire Tables has changed too
         # Brian Slaughter's throw from BMAF Throws Pentathlon...
         self.assertEqual(score("M", "HT", 29.43, 65), 504)
+        self.assertEqual(score("F", "WT", 13.62, 65), 824)
 
 
 
