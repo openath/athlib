@@ -31,6 +31,7 @@ class IaafScoreTests(TestCase):
         self.assertEqual(performance("M", "PV", -100), 1.0)
         self.assertEqual(performance("M", "NA", 500), None)
 
+
     def test_scoring_key(self):
         """
         Test the function to calculate the scoring key from the gender and
@@ -61,6 +62,7 @@ class IaafScoreTests(TestCase):
         self.assertEqual(score("?", "NA", 42), None)
 
         self.assertEqual(score("M", "1000", 150), 988)
+
 
 
     def test_unit_name(self):
@@ -101,6 +103,13 @@ class IaafScoreTests(TestCase):
         # real one - Amanda Broadhurst at BMAF indoor pentathlon
         # https://data.opentrack.run/en-gb/x/2023/GBR/bmaf-ipen/event/
         self.assertEqual(score("F", "60H", 12.18, 40), 485)
+
+
+        # 2023, someone changed the WMA Hammer factors for some reason.
+        # Hammer only done by Masters,  Cheshire Tables has changed too
+        # Brian Slaughter's throw from BMAF Throws Pentathlon...
+        self.assertEqual(score("M", "HT", 29.43, 65), 504)
+
 
 
     def test_esaa_adjusted_score(self):
