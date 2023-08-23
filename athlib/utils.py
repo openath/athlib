@@ -115,13 +115,13 @@ def get_distance(discipline: str) -> Optional[int]:
     # Ignore final words like ' road'
 
     discipline = discipline.split()[0]
-    if discipline == "XC":
+    if discipline.upper() == "XC":
         return None
-    elif discipline == 'MAR':
+    elif discipline.upper() == 'MAR':
         return 42195
-    elif discipline == "HM":
+    elif discipline.upper() == "HM":
         return 21098
-    elif discipline in ("MILE","CHUNDER-MILE"):
+    elif discipline.upper() in ("MILE","CHUNDER-MILE"):
         return 1609
 
     m = PAT_RELAYS.match(discipline)
