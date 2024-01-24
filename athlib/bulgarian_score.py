@@ -2,7 +2,7 @@
 """
 from athlib.utils import check_event_code, parse_hms
 
-def score(gender, event_code, performance):
+def score(ag, gender, event_code, performance):
   assert gender in 'MFX'
   ec = check_event_code(event_code)
   assert ec is not None, (f"Unrecognised event code {event_code}")
@@ -12,7 +12,7 @@ def score(gender, event_code, performance):
     int_perf = int(100 * parse_hms(performance))
   else:
     int_perf = int(100 * performance)
-  key = str(gender) + str(event_code)
+  key = str(ag) + str(gender) + str(event_code)
   min_val = scores[key]['min']
   max_val = scores[key]['max']
   if event_code in ['SP', 'LJ', 'HJ']:
@@ -22,18 +22,20 @@ def score(gender, event_code, performance):
       return 150
     else:
       score = scores[key][int_perf]
-  elif event_code in [60, 100, 200, 600, 800, '60H', '100H']:
+      return score
+  elif event_code in ['60', '100', '200', '600', '800', '60H', '100H']:
     if int_perf > min_val:
       return 0
     elif int_perf < max_val:
       return 150
     else:
       score = scores[key][int_perf]
-  else
+      return score
+  else:
     return 0
   
 scores = {
-  M60: {
+  'U16M60': {
     'min': 1200,
     'max': 680,
     1200: 1,
@@ -557,8 +559,8 @@ scores = {
     682: 138,
     681: 138,
     680: 150
-  }
-  M100: {
+  },
+  'U16M100': {
     'min': 1600,
     'max': 1080,
     1600: 1,
@@ -1082,8 +1084,8 @@ scores = {
     1082: 138,
     1081: 138,
     1080: 150
-  }
-  M800: {
+  },
+  'U16M800': {
     'min': 24760,
     'max': 11530,
     24760: 1,
@@ -14317,8 +14319,8 @@ scores = {
     11532: 149,
     11531: 149,
     11530: 150
-  }
-  M60H: {
+  },
+  'U16M60H': {
     'min': 1370,
     'max': 840,
     1370: 1,
@@ -14852,8 +14854,8 @@ scores = {
     842: 138,
     841: 138,
     840: 150
-  }
-  M100H: {
+  },
+  'U16M100H': {
     'min': 1830,
     'max': 1300,
     1830: 1,
@@ -15387,8 +15389,8 @@ scores = {
     1302: 138,
     1301: 138,
     1300: 150
-  }
-  MHJ: {
+  },
+  'U16MHJ': {
     'min': 94,
     'max': 197,
     94: 1,
@@ -15495,8 +15497,8 @@ scores = {
     195: 145,
     196: 147,
     197: 150
-  }
-  MLJ: {
+  },
+  'U16MLJ': {
     'min': 293,
     'max': 700,
     293: 1,
@@ -15907,8 +15909,8 @@ scores = {
     698: 148,
     699: 149,
     700: 150
-  }
-  MSP: {
+  },
+  'U16MSP': {
     'min': 690,
     'max': 1500,
     690: 1,
@@ -16722,8 +16724,8 @@ scores = {
     1498: 148,
     1499: 149,
     1500: 150
-  }
-  F60: {
+  },
+  'U16F60': {
     'min': 1250,
     'max': 720,
     1250: 1,
@@ -17257,8 +17259,8 @@ scores = {
     722: 138,
     721: 138,
     720: 150
-  }
-  F200: {
+  },
+  'U16F200': {
     'min': 3510,
     'max': 2360,
     3510: 1,
@@ -18412,8 +18414,8 @@ scores = {
     2362: 144,
     2361: 144,
     2360: 150
-  }
-  F600: {
+  },
+  'U16F600': {
     'min': 18150,
     'max': 8850,
     18150: 1,
@@ -27717,8 +27719,8 @@ scores = {
     8852: 149,
     8851: 149,
     8850: 150
-  }
-  F60H: {
+  },
+  'U16F60H': {
     'min': 1370,
     'max': 840,
     1370: 1,
@@ -28252,8 +28254,8 @@ scores = {
     842: 138,
     841: 138,
     840: 150
-  }
-  F100H: {
+  },
+  'U16F100H': {
     'min': 1890,
     'max': 1360,
     1890: 1,
@@ -28787,8 +28789,8 @@ scores = {
     1362: 138,
     1361: 138,
     1360: 150
-  }
-  FHJ: {
+  },
+  'U16FHJ': {
     'min': 84,
     'max': 183,
     84: 1,
@@ -28891,8 +28893,8 @@ scores = {
     181: 145,
     182: 147,
     183: 150
-  }
-  FLJ: {
+  },
+  'U16FLJ': {
     'min': 252,
     'max': 643,
     252: 1,
@@ -29287,8 +29289,8 @@ scores = {
     641: 149,
     642: 149,
     643: 150
-  }
-  FSP: {
+  },
+  'U16FSP': {
     'min': 530,
     'max': 1300,
     530: 1,
