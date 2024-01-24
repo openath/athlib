@@ -8,7 +8,7 @@ def score(ag, gender, event_code, performance):
   assert ec is not None, (f"Unrecognised event code {event_code}")
   """ Distance events are dealt with in centimetres, time events in centiseconds """
   
-  if event_code in [60, 100, 200, 600, 800, '60H', '100H']:
+  if event_code in ['60', '100', '200', '600', '800', '60H', '100H']:
     int_perf = int(100 * parse_hms(performance))
   else:
     int_perf = int(100 * performance)
