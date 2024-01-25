@@ -4,6 +4,7 @@ def __wma_delay__():
 from .uka.agegroups import calc_uka_age_group
 from .athlon_score import score as athlon_score
 from .hungarian_score import score as hungarian_score
+from .bulgarian_score import score as bulgarian_score
 from .athlon_score import performance as athlon_performance_needed
 
 __version__ = u'0.7.8'

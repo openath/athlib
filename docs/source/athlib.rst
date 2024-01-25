@@ -16,6 +16,7 @@ in submodules.
         normalize_event_code,
         athlon_score, athlon_performance_needed,
         hungarian_score,
+        bulgarian_score,
         wma_age_grade, wma_age_factor, wma_world_best, 
         wma_athlon_age_grade, wma_athlon_age_factor, tyrving_score,
         calc_uka_age_group,
