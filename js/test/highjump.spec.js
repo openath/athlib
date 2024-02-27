@@ -559,4 +559,37 @@ describe('Given an instance of Athlib.HighJumpCompetition', function(){
 
     
   });
+
+  describe('test ranking order of result with non scorer',function(){
+    // add disqualification
+    BELGRADE_INDOOR_HJ.push(["1", 1, 1999, "Llewellyn", "BRUNSDON-HALAND", "SWE", "M", "", "", "", "", "", "", "", "", "", "", "DNS", ""])
+    const c = Athlib.HighJumpCompetition.fromMatrix(BELGRADE_INDOOR_HJ);
+    c.state = 'finished' // pretend we simulated a HJ competition
+    // console.log(c)
+
+    c.sortNonScorersLast = true
+
+    // ["1", 1, 148, "Armand", "DUPLANTIS", "SWE", "M", "", "", "", "", "o", "", "", "o", "o", "xxo", 6.19, ""],
+    c.jumpers[0].non_scorer = true
+    
+
+
+    c._rank(true)
+    var rank_aths = c.rankedJumpers
+    
+    var armand_duplantis = rank_aths.find(ath => ath.bib === "148")
+
+    it("test armand_duplantis placed last but infront of any disqualifications",()=>{ expect(rank_aths[2]).deep.to.be.equal(armand_duplantis) });
+
+    it("test ordering correct",()=>{ expect(rank_aths.map(r => r.bib)).deep.to.be.equal(["152", "153", "148", "150", "151", "149", "1999"]) });
+
+    // it("test correct calc rankingKey", ()=>{ expect(emanuoil_karalis.rankingKey).deep.to.be.equal([ 3, -0, 0, 0 ]) })
+
+    // it("test athlete is eliminated", ()=>{ expect(wenwen_chen.eliminated).to.be.equal(true) })
+
+    // // athletes with no jump will be set as eliminted once the state is set to 'finished'
+    // it("test athlete with no jumps is eliminated", ()=>{ expect(emanuoil_karalis.eliminated).to.be.equal(true) })
+
+    
+  });
 });

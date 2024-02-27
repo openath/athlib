@@ -39,7 +39,9 @@ function Jumper(kwds) {
         'category',
         'OPEN',
         'order',
-        1
+        1,
+        'non_scorer',
+        false
       ];
 
       const options = _options || {};
@@ -207,6 +209,7 @@ function HighJumpCompetition() {
       this.inJumpOff = false;
       this.actions = []; // log for replay purposes.
       this.state = 'scheduled';
+      this.sortNonScorersLast = false;
     },
 
     addJumper(kwds) {
@@ -351,22 +354,35 @@ function HighJumpCompetition() {
       return cmpKeys(a, b);
     },
 
-    _rankj() {
+    _rankj(verbose = false) {
       // sort them
+      const self = this;
       const rankj = this.rankedJumpers;
       const rankjlen = rankj.length;
       let i;
 
-      // console.log('rankj before', rankj);
-
+      if (verbose) {
+        console.log('rankj before', rankj);
+      }
       for (i = 0; i < rankjlen; i++) rankj[i]._oldPos = i;
       rankj.sort(function (a, b) {
-        var r;
+        var r,
+          aKeys = [a.rankingKey, a._oldPos],
+          bKeys = [b.rankingKey, b._oldPos];
 
-        // console.log(a.first_name, b.first_name);
-        r = cmpKeys([a.rankingKey, a._oldPos], [b.rankingKey, b._oldPos]);
-
-        // console.log('result', r);
+        if (self.sortNonScorersLast) {
+          if (a.non_scorer) {
+            aKeys = [[3, ...a.rankingKey.splice(1)], a._oldPos];
+          } else if (b.non_scorer) {
+            bKeys = [[3, ...b.rankingKey.splice(1)], b._oldPos];
+          }
+          r = cmpKeys(aKeys, bKeys);
+        } else {
+          r = cmpKeys(aKeys, bKeys);
+        }
+        if (verbose) {
+          console.log(a.first_name, aKeys, b.first_name, bKeys, 'result', r);
+        }
         return r;
       });
 
@@ -392,11 +408,11 @@ function HighJumpCompetition() {
       return rankj;
     },
 
-    _rank() {
+    _rank(verbose = false) {
       var nc;
 
       // Determine who is winning
-      const rankj = this._rankj();
+      const rankj = this._rankj(verbose);
 
       if (rankj.length === 0) return;
 
