@@ -133,9 +133,12 @@ def score(gender: str, event_code: str, value: Union[float, int], age: str = Non
 
 
         # special case: old people run shorter hurdles races, score as if 100/110H
-    if event_code =="80H":
+    if gender == "F" and event_code =="80H":
         event_code = "100H"
         # print("Scoring veterans 80H as 100H")
+    elif gender == "M" and event_code in ["80H", "100H"]:
+        event_code = "110H"
+        # print("Scoring veterans 80H/100H as 110H")
 
     # Drop out if no coefficients defined (e.g. bad event/gender)
     key = scoring_key(gender, event_code)
