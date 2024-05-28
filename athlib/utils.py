@@ -487,7 +487,15 @@ def discipline_sort_key(discipline: Optional[str]) -> Tuple[int, int, str]:
     # track last, so '100' doesn't match before '100H'
     m = PAT_TRACK.search(discipline)
     if m:
-        distance = int(m.group(1))
+        group1 = m.group(1)
+        # usually distance but might be MILE, 2MILE
+        if group1 == "MILE":
+            distance = 1609
+        elif group1.endswith("MILE"):
+            miles = int(group1[0]) # 2 miles, 6 miles historic on track
+            distance = 1609 * miles
+        else:
+            distance = int(m.group(1))
         return 1, distance, discipline
 
     # anything else sorts to end

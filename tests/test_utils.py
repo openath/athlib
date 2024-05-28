@@ -277,7 +277,7 @@ class UtilsTests(TestCase):
             ]
         from athlib.utils import sort_by_discipline
         sevents = [e['a'] for e in sort_by_discipline(events,'e')]
-        self.assertEqual(sevents,[1100,1800,2200,30,31,32,47,5400,60,1609])
+        self.assertEqual(sevents,[1100,1800,1609,2200,30,31,32,47,5400,60])
 
     def test_event_codes_match_correctly(self):
         from athlib.codes import PAT_THROWS, PAT_JUMPS, PAT_TRACK, PAT_ROAD, \
@@ -334,7 +334,8 @@ class UtilsTests(TestCase):
                 ('SWT',PAT_THROWS),
                 ('GDT',PAT_THROWS),
                 ('MAR',PAT_ROAD),
-                ('MILE',PAT_ROAD),
+                ('MILE',[PAT_ROAD, PAT_TRACK]),
+                ('2MILE',PAT_TRACK),
                 ('HM',PAT_ROAD),
                 ('LJ',PAT_JUMPS),
                 ('SLJ',PAT_JUMPS),
