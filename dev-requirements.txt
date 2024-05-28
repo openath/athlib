@@ -1,5 +1,5 @@
 python-dateutil
-jsonschema
+jsonschema==3.2.0
 
 # to read in scoring tables and convert to machine readable form
 xlrd
