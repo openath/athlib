@@ -1,0 +1,24 @@
+[project]
+name = "athlib"
+version = "0.7.10"
+authors = [
+  { name="Andy Robinson and others", email="andy@opentrack.run" },
+]
+description = "Utilities for track and field athletics"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+]
+
+license = {file = "LICENSE"}
+
+[project.urls]
+Homepage = "https://github.com/openath/athlib"
+Issues = "https://github.com/openath/athlib/issues"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"

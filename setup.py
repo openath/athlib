@@ -56,7 +56,10 @@ def find_json(top,drop=1,force=False):
     for p,D,F in os.walk(top):
         for f in F:
             fn = os.path.join(p,f)
-            with open(fn,'rb') as j:
+            if '__pycache__' in fn:
+                continue
+            print("scanning", fn)
+            with open(fn,'r') as j:
                 json = j.read()
             if force or schema_marker_re.search(json):
                 if drop:
