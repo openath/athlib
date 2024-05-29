@@ -1,2 +1,2 @@
 python-dateutil
-jsonschema
+jsonschema==3.2.0. # must be version 2
