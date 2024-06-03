@@ -20,10 +20,15 @@ class AgeGrader(object):
     """
     min_age = 35
     max_age = 100
-    data_file_name = "wma-data.json"
+    data_file_name = "wma-data-2015.json"
     text_columns = 0,
     event_column = 0
     _data = None
+
+    def __init__(self, year="2015"):
+        # if year not in ["2015", "2023"]:
+        #     raise ValueError("No age grade data for %s" % year) 
+        self.data_file_name = "wma-data-%s.json" % year
 
     def get_data(self):
         """Defer this until the first call, so we can bubble a function up to

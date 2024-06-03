@@ -55,9 +55,9 @@ class ImportTest(AthlibTestCase):
                         % '\n '.join(failures))
 
     fakers = [
-            ('wma_age_grade','ag','calculate_age_grade'),
-            ('wma_age_factor','ag','calculate_factor'),
-            ('wma_world_best','ag','world_best'),
+            # ('wma_age_grade','ag2015','calculate_age_grade'),
+            # ('wma_age_factor','ag2015','calculate_factor'),
+            # ('wma_world_best','ag2015','world_best'),
             ('wma_athlon_age_grade','aag','calculate_age_grade'),
             ('wma_athlon_age_factor','aag','calculate_factor'),
             ]

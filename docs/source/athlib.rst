@@ -60,4 +60,6 @@ Codes
 .. autoattribute:: athlib.codes.AthlonsAgeGrader
 .. autoattribute:: athlib.codes.aag
 .. autoattribute:: athlib.codes.ag
+.. autoattribute:: athlib.codes.ag2015
+.. autoattribute:: athlib.codes.ag2023
 .. autoattribute:: athlib.codes.get_specific_event_code
