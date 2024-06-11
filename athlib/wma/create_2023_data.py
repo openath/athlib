@@ -1,11 +1,19 @@
 """Create a 2023 json file with the factors in reasonably readable form.
 
-The WMA factors for official athletics events are in a file sourced from
-Howard Grubb's site, with event code hadn-adjusted to match OpenTrack.
+The starting poits is Howard Grubb's 2015 calculator data which combined
+track and field, walks and road factors.
 
-We overwrite 2015 factors with the newer ones for official track events.
+The WMA factors for official athletics events are published in PDF in
+Appendix B of the WMA rules, and taken here from  a file sourced from
+Howard Grubb's site, with event code hand-adjusted to match OpenTrack.
 
-Other overwrites are anticipated for 
+The standards come from John Seto in email, and represent the World Record
+when statisticians are comfortable with that performance, or in other cases 
+what they consider as the best legitimate performance
+
+We overwrite 2015 factors and standards with the newer ones for official track events.
+
+Other overwrites are anticipated in the next release for 
 - factors for younger kids (5 up to adult)
 - road and non-standard distances
 - world records, in third column. 
@@ -19,7 +27,7 @@ import json
 
 
 def run():
-    stuff = json.loads(open("wma-howard-2023.json").read())
+    stuff = json.loads(open("wma-inputs-2023.json").read())
 
 
 
