@@ -34,6 +34,12 @@ def run():
     new_factor_dict = {}
     new_events = []
 
+    standards = {}
+    for (event_code, female_wr, male_wr) in stuff["standards"]:
+        standards[(event_code, "f")] = female_wr
+        standards[(event_code, "m")] = male_wr
+    print("Standards:", standards)
+
     gender_tables = (
         ("f", stuff["female"]),
         ("m", stuff["male"])
@@ -87,23 +93,32 @@ def run():
                 if event not in old_womens_events:
                     old_womens_events.append(event)
 
-    print("old M events list (%d): %s" % (len(old_mens_events), old_mens_events))
-    print("old F events list (%d): %s" % (len(old_womens_events), old_womens_events))
+    # print("old M events list (%d): %s" % (len(old_mens_events), old_mens_events))
+    # print("old F events list (%d): %s" % (len(old_womens_events), old_womens_events))
 
 
     for gender in "mf":
-        print("Doing gender", gender)
+        # print("Doing gender", gender)
         oldtable = old[gender]
         newtable = []
         for row in oldtable: # mutate in place
             newrow = row[:]
             event = row[0]
             distance = row[1]
-            wr = row[2]
+            wr = newrow[2]
+            standards_key = (event, gender)
+            if standards_key in standards:
+                standard = standards[standards_key]
+                print("WR for %s is now %s" % (standards_key, standard))
+                newrow[2] = standard
+            else:
+                print("Could not find standard for", standards_key)
+
+
             if event not in new_events:
                 print("Event %s for %s not in new tables, unchanged" % (event, gender))
             else:
-                print("Amending", ev, "cells", len(newrow))
+                # print("Amending", ev, "cells", len(newrow))
                 for age in range(30, 111):
                     colidx = age - 2 
                     # is there a new factor?
@@ -113,7 +128,6 @@ def run():
                     f = float(new_factor)
                     if f == 1.0:
                         f = 1
-                    print(colidx, key, f)
                     newrow[colidx] = f
             newtable.append(newrow)
         old[gender] = newtable
