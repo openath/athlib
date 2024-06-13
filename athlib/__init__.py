@@ -69,18 +69,18 @@ ag2015 = AgeGrader(year=2015)
 ag = ag2023 = AgeGrader(year=2023)
 
 
-def wma_age_grade(gender, age, event, performance, verbose=False, year="2015"):
+def wma_age_grade(gender, age, event, performance, verbose=False, year="2023"):
     """Return the age grade score (0 to 100ish) for this result."""
     ag = (year == 2015) and ag2015 or ag2023
     return ag.calculate_age_grade(gender, age,event, performance, verbose=verbose)
 
-def wma_age_factor(gender, age, event, distance=None, year="2015"):
+def wma_age_factor(gender, age, event, year="2015"):
     """Work out 'slowdown factor' for a geezer of this
     age taking part in this event e.g."""
     ag = (year == 2015) and ag2015 or ag2023
-    return ag.calculate_factor(gender, age, event, distance=distance)
+    return ag.calculate_factor(gender, age, event)
 
-def wma_world_best(gender, event, year="2015"):
+def wma_world_best(gender, event, year="2023"):
     "The relevant world-record performance on the date stats were compiled"
     ag = (year == 2015) and ag2015 or ag2023
     return ag.world_best(gender, event)

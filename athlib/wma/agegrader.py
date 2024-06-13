@@ -4,7 +4,7 @@ import os
 
 from collections import namedtuple
 
-from ..utils import str2num, normalize_gender, parse_hms
+from ..utils import str2num, normalize_gender, parse_hms, get_distance
 from ..codes import PAT_THROWS, PAT_JUMPS, PAT_TRACK, PAT_ROAD
 
 __all__ = ('AgeGrader',)
@@ -20,12 +20,12 @@ class AgeGrader(object):
     """
     min_age = 35
     max_age = 100
-    data_file_name = "wma-data-2015.json"
+    data_file_name = "wma-data-2023.json"
     text_columns = 0,
     event_column = 0
     _data = None
 
-    def __init__(self, year="2015"):
+    def __init__(self, year="2023"):
         # if year not in ["2015", "2023"]:
         #     raise ValueError("No age grade data for %s" % year) 
         self.data_file_name = "wma-data-%s.json" % year
@@ -106,40 +106,9 @@ class AgeGrader(object):
 
         return g
 
-    def calculate_factor(self, gender, age, event, distance=None):
-        """Work out 'slowdown factor' for a geezer of this
-        age taking part in this event e.g.
-
-        >>> from .agegrader import AgeGrader
-        >>> ag=AgeGrader()
-        >>> ag.calculate_factor('M',68,'5k')
-        0.7592
-        >>> ag.calculate_factor('M',68,'200K')
-        0.7561
-        >>> ag.calculate_factor('M',68.5,'200K')
-        0.7522
-        >>> ag.calculate_factor('f',35,'5k')
-        0.9935
-        >>> ag.calculate_factor('f',35,'200K')
-        0.9926
-        >>> ag.calculate_factor('F',35.5,'200K')
-        0.99095
-        >>> ag.calculate_factor('M',65,'10000')
-        0.7691
-        >>> ag.calculate_factor('M',69,'10000')
-        0.7402
-        >>> ag.calculate_factor('F',35,'1500')
-        0.9822
-        >>> ag.calculate_factor('f',39,'1500')
-        0.9547
-        >>> ag.calculate_factor('f',35,'SH')
-        0.9791
-        >>> ag.calculate_factor('f',39,'SH')
-        0.9576
-        >>> ag.calculate_factor('m',35,'LH')
-        0.9647
-        >>> ag.calculate_factor('m',39,'LH')
-        0.9254
+    def calculate_factor(self, gender, age, event):
+        """Work out 'slowdown factor' for a person of this
+        age taking part in this event
         """
         kind = self.event_code_to_kind(event)
         event = event.upper()
@@ -152,19 +121,37 @@ class AgeGrader(object):
         ages = data['ages']
         nt = len(table)
 
-        if distance is None:
-            # We must match an event exactly
-            self.find_row_by_event(event,
-                                   table,
-                                   x=self.event_column,
-                                   label='wma.%s' % (gender))
-        else:
-            self.find_row_by_distance(distance,
-                                      table,
-                                      x=1,
-                                      label='wma.%s' % (gender))
 
         self.find_age(age, ages)
+
+        try:
+            self.find_row_by_event(event,
+                                   table,
+                                   label='wma.%s' % (gender))
+        except ValueError:
+            # parse event code and get distance
+            distance = get_distance(event)
+            self.find_row_by_distance(distance,
+                                      table,
+                                      label='wma.%s' % (gender))
+            # we have rows above and below.
+            event_shorter = table[self._fx][0]
+            event_longer = table[self._fx1][0]
+            factor_shorter = self.calculate_factor(gender, age, event_shorter)
+            distance_shorter = get_distance(event_shorter)
+            
+            factor_longer = self.calculate_factor(gender, age, event_longer)
+            distance_longer = get_distance(event_longer)
+
+            # fraction between longer and shorter
+            frac = (distance - distance_shorter) / (distance_longer - distance_shorter)
+            factor_interpolated = ((1 - frac) * factor_shorter) + (frac * factor_longer)
+            return factor_interpolated
+
+
+        # for a known event, is all this interpolation of ages and distances needed?
+        # AR 2024
+
         fx = self._fx
         fx1 = self._fx1
         pfac = self._pfac
@@ -177,29 +164,39 @@ class AgeGrader(object):
         faca = FX[ax1]
         fac1 = FX1[ax]
         fac1a = FX1[ax1]
-        fac = ((1 - pfac) * ((page * faca) + ((1 - page) * fac)) +
-               (pfac * ((page * fac1a) + ((1 - page) * fac1))))
+        fac = (
+                (1 - pfac) * ((page * faca) + ((1 - page) * fac)) +
+                (pfac * ((page * fac1a) + ((1 - page) * fac1)))
+               )
 
         return fac
 
-    def find_row_by_event(self, event, table, x=0, label=''):
+    def find_row_by_event(self, event, table, label=''):
         for i, row in enumerate(table):
-            if row[x] == event:
+            if row[0] == event:
                 self._fx = self._fx1 = i
                 self._pfac = 0
                 return i
 
         raise ValueError('cannot locate event %s in %s' % (repr(event), label))
 
-    def find_row_by_distance(self, d, table, x=0, label=''):
+    def find_row_by_distance(self, dist, table, label=''):
+        # second item in each row is the distance in metres
+
+
+        d = 0.001 * dist
         i = 0
+        x = 1
         nt = len(table)
+
+        # skip past field and walks, we know runs are at the end
+        while table[i][0] != "50":
+            i += 1
 
         try:
             while i < nt and table[i][x] < d:
                 i += 1
         except TypeError:
-            print(i, nt, table[i][x], d)
             raise
 
         if i == 0:
@@ -208,7 +205,7 @@ class AgeGrader(object):
             # Within the data
             fx = i - 1
             fx1 = i
-            pfac = float(dist - table[fx][x]) / (table[fx1][x] - table[fx][x])
+            pfac = float(d - table[fx][x]) / (table[fx1][x] - table[fx][x])
         else:
             fx = fx1 = nt - 1
             pfac = 0
@@ -243,12 +240,32 @@ class AgeGrader(object):
     def world_best(self, gender, event):
         "The relevant world-record performance on the date stats were compiled"
         kind = self.event_code_to_kind(event)
-        kind = self.event_code_to_kind(event)
         data = self.get_data()
         table = data[gender]
-        row = self.find_row_by_event(event, table, x=0)
-        world_best = table[row][2]
-        return world_best
+        try:
+            row = self.find_row_by_event(event, table)
+            world_best = table[row][2]
+            return world_best
+        except ValueError:
+            distance = get_distance(event)
+            self.find_row_by_distance(distance,
+                                      table,
+                                      label='wma.%s' % (gender))
+            # find the speeds of the previous and later bests in m/sec
+            shorter_row = table[self._fx]
+            longer_row = table[self._fx1]
+            v_shorter_best = shorter_row[1] * 1000 / shorter_row[2]
+            v_longer_best = longer_row[1] * 1000 / longer_row[2]
+
+            # average in proportions
+            v_averaged = v_longer_best + ((1 - self._pfac) * (v_shorter_best - v_longer_best))
+
+            # print("speed between ", v_longer_best, "and", v_shorter_best)
+            world_best = distance / v_averaged
+            # print("choosing speed", v_averaged, "giving best of", world_best, "for", distance)
+
+            return world_best
+
 
     def calculate_age_grade(self,
                             gender,
@@ -261,9 +278,9 @@ class AgeGrader(object):
         >>> from .agegrader import AgeGrader
         >>> ag=AgeGrader()
         >>> "%0.4f" % ag.calculate_age_grade('m',50,'5K', '16:23')
-        '0.9004'
+        '0.8917'
         >>> "%0.4f" %  ag.calculate_age_grade('f',50,'5K', '18:00')
-        '0.9179'
+        '0.9159'
         >>>
         """
 
@@ -334,7 +351,6 @@ class AthlonsAgeGrader(AgeGrader):
         # We must match an event exactly
         self.find_row_by_event(event,
                                table,
-                               x=0,
                                label='wma-athlons.%s' % (gender))
         self.find_age(int(age // 5) * 5, ages, interpolate=False)
         fac = table[self._fx][self._ax1]

@@ -2,6 +2,54 @@
 
 from unittest import TestCase, main
 from athlib import wma_age_grade, wma_age_factor, wma_world_best
+from athlib.wma.agegrader import AgeGrader
+
+
+class AgeGraderTests(TestCase):
+    def assertBetween(self, a, b, c):
+        "b should be between and c"
+        if b > a:
+            self.assertTrue(b < c)
+        else:
+            self.assertTrue(c < b)
+
+    def test_interpolate_factors(self):
+        # exploring some inner functions.
+        ag = AgeGrader(year=2023)
+        self.assertEqual(ag.event_code_to_kind("800"), "track")
+        self.assertEqual(ag.event_code_to_kind("5M"), "road")
+
+        distance = "2400"
+
+        fac1 = ag.calculate_factor("m", 40, "2000")         
+        fac2 = ag.calculate_factor("m", 40, distance)
+        fac3 = ag.calculate_factor("m", 40, "3000")
+
+        factors = sorted([fac1, fac2, fac3])
+
+        self.assertEqual(fac2, factors[1]) # should be in the middle
+
+        bestimate = ag.world_best("m", distance)
+        # should be around 6 minutes, a bit over 4 laps
+        self.assertTrue(bestimate < 400)
+        self.assertTrue(bestimate > 300)
+
+        # 6 laps record should be around 5:45, so this will be 95% age grade 
+        grade = wma_age_grade("m", 30, str(distance), "6:00")
+        self.assertTrue(grade < 1.0)
+        self.assertTrue(grade > 0.9)
+
+    def test_interpolate_xc(self):
+        ag = AgeGrader(year=2023)
+        grade1 = wma_age_factor("m", 50, "10K") # standard
+        grade2 = wma_age_factor("m", 50, "11K") # not standard
+        grade3 = wma_age_factor("m", 50, "12K") # standard
+        ordered = sorted([grade1, grade2, grade3])
+        # should be in between the two standard factors
+        self.assertEqual(ordered[1], grade2)
+
+        # we should get a grade for a funny distance
+        self.assertTrue(wma_age_grade("m", 58, "5.31M", "41:37") > 0)
 
 
 class AgeGrade2015FactorTests(TestCase):
@@ -17,9 +65,6 @@ class AgeGrade2023FactorTests(TestCase):
         epsilon = 10 ** -digits
         self.assertTrue(delta < epsilon)
 
-    def test_find_by_distance(self):
-        "Can look up a factor by distance as well as by event code"
-        pass
 
     def test_mens_100(self):
         self.assertEqual(0.5344, wma_age_factor("m", 5, "100", year="2023"))
