@@ -195,8 +195,12 @@ class AgeGrader(object):
         i = 0
         nt = len(table)
 
-        while i < nt and table[i][x] < d:
-            i += 1
+        try:
+            while i < nt and table[i][x] < d:
+                i += 1
+        except TypeError:
+            print(i, nt, table[i][x], d)
+            raise
 
         if i == 0:
             pfac = fx = fx1 = 0
