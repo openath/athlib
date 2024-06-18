@@ -79,10 +79,17 @@ class UtilsTests(TestCase):
         self.assertEqual(get_distance("3KW"), 3000)
         self.assertEqual(get_distance("3kmW"), 3000)
         self.assertEqual(get_distance("T26"), None)
+
         self.assertEqual(get_distance("4xRELAY"), None)
         self.assertEqual(get_distance("4xDMR"), None)
         self.assertEqual(get_distance("4xSMR"), None)
         self.assertEqual(get_distance("4xSWR"), 1000)
+
+        self.assertEqual(get_distance("6x5000"), 30000)
+        self.assertEqual(get_distance("6x5K"), 30000)
+        self.assertEqual(get_distance("6x3M"), 6 * 3 * 1609)
+
+
 
     def test_get_duration_event_time(self):
         "Extract seconds from duration event code"
@@ -322,6 +329,7 @@ class UtilsTests(TestCase):
                 ('6x5000', PAT_RELAYS),
                 ('6x5K', PAT_RELAYS),
                 ('3x3M', PAT_RELAYS),
+                ('10x12K', PAT_RELAYS),
                 
                 ('5K',PAT_ROAD),
                 ('5M',PAT_ROAD),
