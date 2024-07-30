@@ -149,7 +149,7 @@ def get_distance(discipline: str) -> Optional[int]:
         return int(1000 * qty)
     elif remains.lower() in ('kw', 'kmw'):
         return int(1000 * qty)
-    elif remains in ('M', 'Mi', 'MI'):
+    elif remains in ('M', 'Mi', 'MI', 'MT'):  # MT = Mile Track in latest factors
         return int(1609 * qty)
     elif remains in ('Y', 'y', 'YD', 'yd'):
         return int(0.9144 * qty)

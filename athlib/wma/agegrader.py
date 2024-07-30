@@ -131,23 +131,34 @@ class AgeGrader(object):
         except ValueError:
             # parse event code and get distance
             distance = get_distance(event)
+            # print("finding row by distance %s" % distance)
             self.find_row_by_distance(distance,
                                       table,
                                       label='wma.%s' % (gender))
             # we have rows above and below.
             event_shorter = table[self._fx][0]
             event_longer = table[self._fx1][0]
+            # print(f"Longer = {event_longer}")
+            # print(f"Shorter = {event_shorter}")
             factor_shorter = self.calculate_factor(gender, age, event_shorter)
             distance_shorter = get_distance(event_shorter)
             
             factor_longer = self.calculate_factor(gender, age, event_longer)
             distance_longer = get_distance(event_longer)
-
             # fraction between longer and shorter
-            frac = (distance - distance_shorter) / (distance_longer - distance_shorter)
+            # print(f"d={distance}, ds={distance_shorter}, dl={distance_longer}")
+
+
+            if distance_shorter is None:  # really short sprint, 
+                return factor_longer
+
+            if distance_longer is None: # more than 200 miles
+                return factor_shorter
+                
+            frac = distance - distance_shorter
+            frac = frac / (distance_longer - distance_shorter)
             factor_interpolated = ((1 - frac) * factor_shorter) + (frac * factor_longer)
             return factor_interpolated
-
 
         # for a known event, is all this interpolation of ages and distances needed?
         # AR 2024
