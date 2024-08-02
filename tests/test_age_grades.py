@@ -99,10 +99,29 @@ class AgeGrade2023FactorTests(TestCase):
 
         self.assertAlmostEqual(1.0092, wma_age_grade("f", 60, "5M", "30:00", year="2023"), 2)
 
+
+    def test_find_row_by_event(self):
+        ag = AgeGrader(year=2023)
+        tbl = ag.get_data()["m"]
+        self.assertTrue(ag.find_row_by_event("800", tbl) is not None)
+
     def test_interpolated_distance(self):
-        "Not implemented yet but should be easy enough"
-        # ag = wma_age_grade("f", 60, "5.31M", "40:00")
-        pass
+        "Example constructed by hand"
+        ag = wma_age_grade("f", 60, "5.3M", "40:00")
+        self.assertTrue(ag > 0.82)
+        self.assertTrue(ag < 0.8202)
+
+
+
+        # check interpolation where below the shortest distance - 42 metre sprint
+        self.assertEqual(5.54, wma_world_best("m", "42"))
+        self.assertEqual(1.0, wma_age_grade("m", 25, "42", 5.54))
+
+
+        # check interpolation where above the longest distance (200K)
+        # very close to Sorokin's actual 24 hour world record!
+        best = wma_world_best("m", "200M")
+        self.assertTrue((best > 84955) and (best < 84966))
 
 
 
