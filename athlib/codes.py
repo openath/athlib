@@ -34,7 +34,7 @@ THROWS = (
     "TART", "OHT", "CHT",
 
     #disabled hammer throw
-    "CT", "SCT"
+    "CT"
 )
 MULTI_EVENTS = (
     # Greek prefixes for 2..12 events, and for 20.
