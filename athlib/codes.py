@@ -24,7 +24,7 @@ JUMPS = ("HJ", "PV", "LJ", "TJ",
         )
 THROWS = (
     "DT", "JT", "HT", "SP", "WT", 
-    "SDT", "SJT",                   #seated DT & JT
+    "SDT", "SJT",  "SSP",                 #seated DT & JT
 
     # Superweight Throw, Ball Throw, Other Throw, Stone Throw
     "SWT", "BT", "ST", "GDT", "OT", 
@@ -34,7 +34,7 @@ THROWS = (
     "TART", "OHT", "CHT",
 
     #disabled hammer throw
-    "CT",
+    "CT", "SCT"
 )
 MULTI_EVENTS = (
     # Greek prefixes for 2..12 events, and for 20.
@@ -65,7 +65,7 @@ FIELD_SORT_ORDER = [
         "LJ", "SLJ",
         "TJ", "STJ",
         "SP", "DT", "HT", "JT", "CT",
-        "ST", "GDT", "BT", "WT", "SWT", "OT", "TART", "OHT", "CHT", "SDT", "SJT", "SBT",
+        "ST", "GDT", "BT", "WT", "SWT", "OT", "TART", "OHT", "CHT", "SSP", "SDT", "SJT", "SBT", "SCT"
         "H1", "H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9",   #Custom Events
         "L1", "L2", "L3", "L4", "L5", "L6", "L7", "L8", "L9",   #Custom Events
         ]
