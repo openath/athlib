@@ -126,7 +126,9 @@ def get_distance(discipline: str) -> Optional[int]:
     m = PAT_RELAYS.match(discipline)
     if m:
         g2 = m.group(2).upper()
-        if g2 in ['RELAY', 'DMR', 'SMR']: return None #cowardly refusing to guess
+        if g2 in ['RELAY', 'DMR']: return None #cowardly refusing to guess
+        if g2 == "SMR": return 1600 # 2-2-4-8
+        if g2 == "SSMR": return 800 # 1-1-2-4
         if g2 == "SWR": return 1000
 
 
