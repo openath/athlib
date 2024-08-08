@@ -39,7 +39,9 @@ function Jumper(kwds) {
         'category',
         'OPEN',
         'order',
-        1
+        1,
+        'non_scorer',
+        false
       ];
 
       const options = _options || {};
@@ -373,6 +375,8 @@ function HighJumpCompetition() {
       let pk = null;
       let pj = null;
 
+      let p = 0;
+
       for (i = 0; i < rankjlen; i++) {
         const j = rankj[i];
         const k = j.rankingKey;
@@ -380,13 +384,21 @@ function HighJumpCompetition() {
         // console.log(j);
 
         delete j._oldPos;
-        if (i === 0) {
+        if (p === 0) {
           j._place = 1;
         } else {
-          j._place = cmpKeys(pk, k) === 0 ? pj._place : i + 1;
+          if (cmpKeys(pk, k) === 0) {
+            j._place = pj._place;
+          } else if (pj.non_scorer) {
+            j._place = pj._place;
+            p--;
+          } else {
+            j._place = p + 1;
+          }
         }
         pk = k;
         pj = j;
+        p++;
       }
       // console.log('rankj after', rankj);
       return rankj;

@@ -540,7 +540,6 @@ describe('Given an instance of Athlib.HighJumpCompetition', function(){
   describe('test result for BELGRADE INDOOR MEETING 2022',function(){
     const c = Athlib.HighJumpCompetition.fromMatrix(BELGRADE_INDOOR_HJ);
     c.state = 'finished' // pretend we simulated a HJ competition
-    // console.log(c)
     c._rank()
     var rank_aths = c.rankedJumpers
 
@@ -558,5 +557,35 @@ describe('Given an instance of Athlib.HighJumpCompetition', function(){
     it("test athlete with no jumps is eliminated", ()=>{ expect(emanuoil_karalis.eliminated).to.be.equal(true) })
 
     
+  });
+
+  describe('test non scorer ignored when ranking jumpers', function() {
+    /* 
+      Non scorer should not affect places, e.g. if non scorer comes in 2nd then the next ranked scorer should be 2nd
+    */
+    const c = Athlib.HighJumpCompetition.fromMatrix(BELGRADE_INDOOR_HJ);
+
+    // make a small change to data to make one of them non scorer
+    var Armand_DUPLANTIS = c.jumpers.find(c => c.bib === "148")
+    Armand_DUPLANTIS.non_scorer = true
+    var index = Armand_DUPLANTIS.order-1
+    c.jumpers[index] = Armand_DUPLANTIS
+    // console.log(c.jumpers)
+
+    c._rank()
+    var rank_aths = c.rankedJumpers
+    var Armand_DUPLANTIS = rank_aths.find(ath => ath.bib === "148")
+    var Robert_RENNER = rank_aths.find(ath => ath.bib === "152")
+    var Ivan_PARAVAC = rank_aths.find(ath => ath.bib === "153")
+
+
+    console.log(rank_aths)
+
+    it("Armand DUPLANTIS should be non scorer",()=>{ expect(Armand_DUPLANTIS.non_scorer).to.be.equal(true) });
+    it("Armand DUPLANTIS should be placed 1st",()=>{ expect(Armand_DUPLANTIS.place).to.be.equal(1) });
+    it("Robert Renner should be placed 1st",()=>{ expect(Robert_RENNER.place).to.be.equal(1) });
+    it("Ivan Paravac should be placed 2nd",()=>{ expect(Ivan_PARAVAC.place).to.be.equal(2) });
+
+
   });
 });
