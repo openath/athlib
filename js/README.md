@@ -16,11 +16,19 @@ This repository contains ES6 code and tests.
 After cloning this repository, make changes in `package.json` so they match your ideas.
 ```sh
 #optionally rm -rf package-lock.json node_modules
+# you might need to add --legacy-peer-deps
 npm install --no-optional   #ignore warnings
 npm audit
 ```
 
 ### Build and test the library in umd production format
+Until we upgrade all the packages, you will need to be on version 16.0 of node which uses older version of SSL:
+https://stackoverflow.com/questions/69692842/error-message-error0308010cdigital-envelope-routinesunsupported
+```
+nvm install 16.0
+nvm use 16.0
+```
+
 ```sh
 npm run build  #produces dist/athlib.web.js
 ```
