@@ -149,6 +149,7 @@ PAT_PERF = re.compile(r"^(\d{1,2}:)?(\d{1,2}:)?(\d{1,2})(\.?\d+)?$")
 # matches time pasted as seconds only, more than 100 sec.
 PAT_LONG_SECONDS = re.compile(r"^\d{3,6}(\.?\d+)?$")
 
+PAT_FINISHED = re.compile(r"^NT$")
 PAT_NOT_FINISHED =  re.compile(r"^(DNF|DQ|DNS)$")
 
 # these are the values one might get in results - valid time, DNF, DQ etc.
