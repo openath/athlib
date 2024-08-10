@@ -153,5 +153,5 @@ PAT_FINISHED = re.compile(r"^NT$")
 PAT_NOT_FINISHED =  re.compile(r"^(DNF|DQ|DNS)$")
 
 # these are the values one might get in results - valid time, DNF, DQ etc.
-PAT_FINISH_RECORD = re.compile(_orjoin(PAT_PERF, PAT_NOT_FINISHED))
+PAT_FINISH_RECORD = re.compile(_orjoin(PAT_PERF, PAT_FINISHED, PAT_NOT_FINISHED))
 del _, _orjoin
