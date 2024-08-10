@@ -82,7 +82,7 @@ class UtilsTests(TestCase):
 
         self.assertEqual(get_distance("4xRELAY"), None)
         self.assertEqual(get_distance("4xDMR"), None)
-        self.assertEqual(get_distance("4xSMR"), None)
+        self.assertEqual(get_distance("4xSMR"), 1600)
         self.assertEqual(get_distance("4xSWR"), 1000)
 
         self.assertEqual(get_distance("6x5000"), 30000)
