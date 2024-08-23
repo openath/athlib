@@ -126,7 +126,7 @@ PAT_RACES_FOR_DISTANCE = re.compile(r"^(?:(?P<dhours>\d\d?)([hH](?:[rR]|[wW]))|[
 PAT_HIGHSCORING_EVENT = re.compile(r"^(?:[Hh][1-9]|SPB|BAL)$")
 PAT_LOWSCORING_EVENT = re.compile(r"^(?:[Ll][1-9])$")
 
-PAT_RELAYS = re.compile(r"^(?:(\d{1,2})[xX](\d{1,5}[hHMK]?|[rR][eE][lL][aA][yY]|[sS]?[dDsS][mM][rR]|[sS][wW][rR]))$") # 4x100, 4x400, 4xReLAy, 4xDMR, 4xSMR, 12x200H
+PAT_RELAYS = re.compile(r"^(?:(\d{1,2})[xX]((\d+(\.\d+)?)[hHMK]?|[rR][eE][lL][aA][yY]|[sS]?[dDsS][mM][rR]|[sS][wW][rR]))$") # 4x100, 4x400, 4xReLAy, 4xDMR, 4xSMR, 12x200H
 PAT_RUN = re.compile(_orjoin(PAT_TRACK, PAT_ROAD, PAT_RELAYS))
 PAT_FIELD = re.compile(_orjoin(PAT_THROWS, PAT_JUMPS))
 
