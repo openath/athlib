@@ -357,6 +357,7 @@ function HighJumpCompetition() {
       // sort them
       const rankj = this.rankedJumpers;
       const rankjlen = rankj.length;
+      const state = this.state;
       let i;
 
       // console.log('rankj before', rankj);
@@ -364,10 +365,17 @@ function HighJumpCompetition() {
       for (i = 0; i < rankjlen; i++) rankj[i]._oldPos = i;
       rankj.sort(function (a, b) {
         var r;
+        var aRankingKey = a.rankingKey;
+        var bRankingKey = b.rankingKey;
+
+        if (state === 'started') {
+          aRankingKey.shift();
+          bRankingKey.shift();
+        }
 
         // console.log(a.first_name, b.first_name);
-        r = cmpKeys([a.rankingKey, a._oldPos], [b.rankingKey, b._oldPos]);
-
+        // console.log(aRankingKey, bRankingKey);
+        r = cmpKeys([aRankingKey, a._oldPos], [bRankingKey, b._oldPos]);
         // console.log('result', r);
         return r;
       });

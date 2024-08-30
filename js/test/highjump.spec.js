@@ -69,6 +69,19 @@ const BELGRADE_INDOOR_HJ = [  // from here /en-gb/x/2022/SRB/belgradeindoor/even
     ["1", 1, 151, "Wenwen", "CHEN", "CHN", "M",  "", "", "xxx", "", "", "", "", "", "", "", 0, ""],
     ];
 
+const INPROGRESS_SCHOOLGAMES_HJ = [ // from here /en-gb/x/2024/GBR/sgnf/event/1/1/1/
+    ["place", "order", "bib", "first_name", "last_name", "team", "category", "1.50", "1.55", "1.60", "1.65", "1.70", "1.76", "1.82", "best", "note"],
+    ["1", 1, 214, "Isla", "PAIN", "BEI", "F",      "", "o", "xo", "xx", "", "", "", "", "", "", 1.60, ""],
+    ["1", 1, 277, "Maddy", "VEITZ", "TOK", "F",    "", "o", "xxo", "xx", "", "", "", "", "", "", 1.60, ""],
+    ["1", 1, 238, "Carmen", "ROSE", "SYD", "F",    "", "", "", "o", "xo", "o", "xxx", "", "", "", 1.76, ""],
+    ["1", 1, 63, "Dahlia", "CORP", "ATL", "F",     "", "xo", "o", "o", "xxx", "", "", "", "", "", 1.65, ""],
+    ["1", 1, 270, "Ella", "THOMAS", "LON", "F",    "o", "o", "o", "xxo", "xxx", "", "", "", "", "", 1.65, ""],
+    ["1", 1, 227, "Anna", "REIN", "RIO", "F",      "", "o", "o", "xxx", "", "", "", "", "", "", 1.60, ""],
+    ["1", 1, 224, "Matilda", "QUICK", "ATH", "F",  "", "o", "o", "xxx", "", "", "", "", "", "", 1.60, ""],
+    ["1", 1, 48, "Daisy", "BURTON", "PAR", "F",    "", "o", "xxx", "", "", "", "", "", "", "", 1.55, ""],
+    ];
+  
+
 function createEmptyCompetition(matrix){
   //Creates from an array similar to above; named athletes with bibs
   var c = Athlib.HighJumpCompetition();
@@ -547,16 +560,11 @@ describe('Given an instance of Athlib.HighJumpCompetition', function(){
     var wenwen_chen = rank_aths.find(ath => ath.bib === "151")
 
 
-    it("test ordering correct",()=>{ expect(rank_aths.map(r => r.bib)).deep.to.be.equal(["148", "152", "153", "150", "151", "149"]) });
-
+    it("test ordering correct",()=>{ expect(rank_aths.map(r => r.bib)).deep.to.be.equal(["148", "152", "153", "149", "150", "151"]) });
     it("test correct calc rankingKey", ()=>{ expect(emanuoil_karalis.rankingKey).deep.to.be.equal([ 3, -0, 0, 0 ]) })
-
     it("test athlete is eliminated", ()=>{ expect(wenwen_chen.eliminated).to.be.equal(true) })
-
     // athletes with no jump will be set as eliminted once the state is set to 'finished'
     it("test athlete with no jumps is eliminated", ()=>{ expect(emanuoil_karalis.eliminated).to.be.equal(true) })
-
-    
   });
 
   describe('test non scorer ignored when ranking jumpers', function() {
@@ -578,14 +586,21 @@ describe('Given an instance of Athlib.HighJumpCompetition', function(){
     var Robert_RENNER = rank_aths.find(ath => ath.bib === "152")
     var Ivan_PARAVAC = rank_aths.find(ath => ath.bib === "153")
 
-
-    console.log(rank_aths)
-
     it("Armand DUPLANTIS should be non scorer",()=>{ expect(Armand_DUPLANTIS.non_scorer).to.be.equal(true) });
     it("Armand DUPLANTIS should be placed 1st",()=>{ expect(Armand_DUPLANTIS.place).to.be.equal(1) });
     it("Robert Renner should be placed 1st",()=>{ expect(Robert_RENNER.place).to.be.equal(1) });
     it("Ivan Paravac should be placed 2nd",()=>{ expect(Ivan_PARAVAC.place).to.be.equal(2) });
+  });
 
+  describe('test ranking jumpers while event in-progress', function() {
+    const c = Athlib.HighJumpCompetition.fromMatrix(INPROGRESS_SCHOOLGAMES_HJ);
+    c._rank()
+    var rank_aths = c.rankedJumpers
+    var current_places = rank_aths.map((a) => a.bib)
+
+    // check they are in correct order
+    it("test athletes are ordered correctly",()=>{ expect(current_places).deep.to.be.equal(['238', '63', '270', '227', '224', '214', '277', '48']) });
 
   });
+  
 });
