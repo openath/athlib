@@ -168,6 +168,29 @@ class UtilsTests(TestCase):
         self.assertEqual(format_seconds_as_time(27.3, prec=2), "27.30")
         self.assertEqual(format_seconds_as_time(27.3, prec=3), "27.300")
 
+        self.assertEqual(format_seconds_as_time(12.27), "13")
+        self.assertEqual(format_seconds_as_time(12.27, prec=1), "12.3")
+        self.assertEqual(format_seconds_as_time(12.27, prec=2), "12.27")
+        self.assertEqual(format_seconds_as_time(12.27, prec=3), "12.270")
+
+        self.assertEqual(format_seconds_as_time(20.12), "21")
+        self.assertEqual(format_seconds_as_time(20.12, prec=1), "20.2")
+        self.assertEqual(format_seconds_as_time(20.12, prec=2), "20.12")
+        self.assertEqual(format_seconds_as_time(20.12, prec=3), "20.120")
+        self.assertEqual(format_seconds_as_time(20.123), "21")
+        self.assertEqual(format_seconds_as_time(20.123, prec=1), "20.2")
+        self.assertEqual(format_seconds_as_time(20.123, prec=2), "20.13")
+        self.assertEqual(format_seconds_as_time(20.123, prec=3), "20.123")
+
+        self.assertEqual(format_seconds_as_time(65.345), "1:06")
+        self.assertEqual(format_seconds_as_time(65.345, prec=1), "1:05.4")
+        self.assertEqual(format_seconds_as_time(65.345, prec=2), "1:05.35")
+        self.assertEqual(format_seconds_as_time(65.345, prec=3), "1:05.345")
+        self.assertEqual(format_seconds_as_time(185.345), "3:06")
+        self.assertEqual(format_seconds_as_time(185.345, prec=1), "3:05.4")
+        self.assertEqual(format_seconds_as_time(185.345, prec=2), "3:05.35")
+        self.assertEqual(format_seconds_as_time(185.345, prec=3), "3:05.345")
+
         # precision must be 0 to 3
         self.assertRaises(ValueError, format_seconds_as_time, 27.3, 4)
         self.assertRaises(ValueError, format_seconds_as_time, 27.3, None)
