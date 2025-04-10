@@ -94,15 +94,22 @@ function Jumper(kwds) {
     get rankingKey() {
       // Return a sort key to determine who is winning"""
       const x = this.highestClearedIndex;
-      var failuresAtHeight;
-      var failuresBeforeAndAtHeight;
+      var failuresAtHeight = 0;
+      var failuresBeforeAndAtHeight = 0;
       var i;
 
-      if (x < 0) {
-        failuresAtHeight = failuresBeforeAndAtHeight = 0;
-      } else {
+      if (x >= 0 && this.attemptsByHeight.length > 0) {
         failuresAtHeight = failuresBeforeAndAtHeight = this.attemptsByHeight[x].split('x').length - 1;
         for (i = 0; i < x; i++) failuresBeforeAndAtHeight += this.attemptsByHeight[i].split('x').length - 1;
+      } else if (x === -1 && this.attemptsByHeight.length > 0) {
+        let xx = 0;
+
+        failuresAtHeight -= this.attemptsByHeight[xx].split('x').length - 1;
+        for (i = 0; i < this.attemptsByHeight.length; i++) {
+          failuresBeforeAndAtHeight -= this.attemptsByHeight[i].split('x').length - 1;
+        }
+      } else {
+        failuresAtHeight = failuresBeforeAndAtHeight = 0;
       }
       if (this.highestCleared === 0 && this.attemptsByHeight.length === 0) {
         return [3, -0, 0, 0];

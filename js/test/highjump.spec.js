@@ -320,6 +320,8 @@ describe('Given an instance of Athlib.HighJumpCompetition', function(){
   const A = c.jumpersByBib['A'];
   const B = c.jumpersByBib['B'];
 
+  console.log(B.rankingKey)
+
   it("A.place == 1",()=>{expect(A.place).to.be.equal(1)});
   it("B._place == 2",()=>{expect(B._place).to.be.equal(2)});
   it("B.place == ''",()=>{expect(B.place).to.be.equal('')});
@@ -328,7 +330,7 @@ describe('Given an instance of Athlib.HighJumpCompetition', function(){
   it("A.highestCleared == 2.08",()=>{expect(A.highestCleared).to.be.equal(2.08)});
   it("B.highestCleared == 0",()=>{expect(B.highestCleared).to.be.equal(0)});
   it("A.rankingKey == [0, -2.08, 0, 0]",()=>{expect(c._compareKeys(A.rankingKey,[0, -2.08, 0, 0])).to.be.equal(0)});
-  it("B.rankingKey == [2, -0, 0, 0]",()=>{expect(c._compareKeys(B.rankingKey,[3, -0, 0, 0])).to.be.equal(0)});
+  it("B.rankingKey == [3, -0, -3, -3]",()=>{expect(c._compareKeys(B.rankingKey,[3, -0, -3, -3])).to.be.equal(0)});
   });
   describe('Test countback to total failures',function(){
     // Run through to where the jumpoff began - ninth bar position
@@ -559,8 +561,7 @@ describe('Given an instance of Athlib.HighJumpCompetition', function(){
     var emanuoil_karalis = rank_aths.find(ath => ath.bib === "149")
     var wenwen_chen = rank_aths.find(ath => ath.bib === "151")
 
-
-    it("test ordering correct",()=>{ expect(rank_aths.map(r => r.bib)).deep.to.be.equal(["148", "152", "153", "149", "150", "151"]) });
+    it("test ordering correct",()=>{ expect(rank_aths.map(r => r.bib)).deep.to.be.equal(["148", "152", "153", "151", "150", "149"]) });
     it("test correct calc rankingKey", ()=>{ expect(emanuoil_karalis.rankingKey).deep.to.be.equal([ 3, -0, 0, 0 ]) })
     it("test athlete is eliminated", ()=>{ expect(wenwen_chen.eliminated).to.be.equal(true) })
     // athletes with no jump will be set as eliminted once the state is set to 'finished'
