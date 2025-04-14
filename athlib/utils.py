@@ -239,21 +239,21 @@ FIELD_EVENT_RECORDS_BY_GENDER : Dict [str, Dict[str, float]]= dict(
                                 HJ = 2.45,
                                 LJ = 8.95,
                                 TJ = 18.29,
-                                PV = 6.16,
+                                PV = 6.26,
                                 HT = 86.74,
-                                DT = 74.08,
-                                WT = 24.57,
-                                SP = 23.12,
+                                DT = 74.35,
+                                WT = 25.41,
+                                SP = 23.56,
                                 JT = 104.80,
                                 ),
                         f = dict(
-                                HJ = 2.09,
+                                HJ = 2.10,
                                 LJ = 7.52,
-                                TJ = 15.50,
+                                TJ = 15.74,
                                 PV = 5.06,
                                 HT = 82.98,
                                 DT = 76.80,
-                                WT = 22.50,
+                                WT = 26.02,
                                 SP = 22.63,
                                 JT = 72.28,
                                 ),
@@ -297,54 +297,42 @@ def check_performance_for_discipline(
             distance = float(textvalue)
             return str(distance)
         except ValueError:
-            raise errorKlass("%s not valid.  Input a distance in metres"  % textvalue)
+            raise errorKlass(f"{textvalue} not valid.  Input a distance in metres")
 
     if discipline.upper() in CUSTOM_EVENTS:
         try:
             distance = float(textvalue)
             return str(distance)
         except ValueError:
-            raise errorKlass("%s not valid.  Input a valid number e.g. '2.34'. This will be assumed to be seconds or metres"  % textvalue)
-
-
-    # this rejects long numbers. (e.g. metres in 24 hours) so must follow the above clause
-    if not PAT_PERF.match(textvalue):
-        raise errorKlass(
-            "Illegal numeric pattern.  Use digits, ':' and '.' only")
-
-
-
-    
-
+            raise errorKlass(f"{textvalue} not valid.  Input a valid number e.g. '2.34'. This will be assumed to be seconds or metres")
 
     if discipline in FIELD_EVENTS:
         try:
             distance = float(textvalue)
         except ValueError:
-            raise errorKlass(
-                "'%s' is not valid for length/height. Use "
-                "metres/centimetres e.g. '2.34'" % textvalue
-            )
+            raise errorKlass(f"{textvalue} is not valid for length/height. Use metres/centimetres e.g. 2.34")
         else:
             record = field_event_record(discipline,gender)
             if record and distance>record*ulpc:
-                raise errorKlass('%s(%s) performance %s seems too large as record is %.2f' % (
-                    discipline, gender, textvalue, record))
+                raise errorKlass('{discipline} ({gender}) performance {textvalue} seems too large, as record is {record:.2f}')
             return "%0.2f" % distance
 
     elif discipline.upper() in MULTI_EVENTS:
         try:
             points = int(textvalue)
         except ValueError:
-            raise errorKlass(
-                "'%s' is not a valid points value for multi-events"
-                % textvalue)
+            raise errorKlass(f"{textvalue} is not a valid points value for multi-events")
         if points > 9999:
-            raise errorKlass("Multi-events scores should be below 10000")
+            raise errorKlass("Multi-events scores should be below 10000") # What about icosathlon?
         return str(points)
 
     else:
-        # It's a running distance.  format check.  Try to extract metres
+        # It's a running distance. format check. Try to extract metres
+        
+        # This rejects anything not in time format
+        if not PAT_PERF.match(textvalue):
+            raise errorKlass("Illegal numeric pattern. Use digits, ':' and '.' only")
+
 
         distance = get_distance(discipline)
 
@@ -413,19 +401,13 @@ def check_performance_for_discipline(
             #        velocity = %0.2f m/s' % (distance, duration, velocity))
             if distance <= 400:
                 if velocity > 11.0:
-                    raise errorKlass(
-                        "%s too fast for %s, check the format" %
-                        (textvalue, discipline))
+                    raise errorKlass(f"{textvalue} is too fast for {discipline}, check the format")
             elif distance > 400:
                 if velocity > 10.0:
-                    raise errorKlass(
-                        "%s too fast for %s, check the format" %
-                        (textvalue, discipline))
+                    raise errorKlass(f"{textvalue} is too fast for {discipline}, check the format")
 
             if velocity < 0.5:
-                raise errorKlass(
-                    "%s too slow for %s, check the format" %
-                    (textvalue, discipline))
+                raise errorKlass(f"{textvalue} is too slow for {discipline}, check the format")
 
         else:
             if discipline.upper() == 'XC':
