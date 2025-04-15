@@ -90,7 +90,7 @@ PAT_THROWS = re.compile(
                         r"[sS]?[dD][tT](?P<dtnum>%s|)|"
                         r"[sS]?[jJ][tT](?P<jtnum>[45678]00\s*g?|)|"
                         r"[hHcC][tT](?P<htnum>%s|)|"
-                        r"[sS][pP](?P<spnum>%s|)|"
+                        r"[sS]?[sS][pP](?P<spnum>%s|)|"
                         r"[wW][tT](?P<wtnum>\d?%s|)|"
                         r"[sS][sW][tT](?P<swtnum>%s|)|"
                         r"[sS]?[bB][tT](?P<btnum>%s|)|"
