@@ -65,7 +65,7 @@ FIELD_SORT_ORDER = [
         "LJ", "SLJ",
         "TJ", "STJ",
         "SP", "DT", "HT", "JT", "CT",
-        "ST", "GDT", "BT", "WT", "SWT", "OT", "TART", "OHT", "CHT", "SSP", "SDT", "SJT", "SBT", "SCT"
+        "ST", "GDT", "BT", "WT", "SWT", "OT", "TART", "OHT", "CHT", "SSP", "SDT", "SJT", "SBT", "SCT",
         "H1", "H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9",   #Custom Events
         "L1", "L2", "L3", "L4", "L5", "L6", "L7", "L8", "L9",   #Custom Events
         ]
