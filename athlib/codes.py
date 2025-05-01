@@ -119,7 +119,7 @@ _ = r"[lLsS]?[hH]\s*(?P<hsfx>(?P<hhi>3[36])|(?P<hhh>\d{2,3}\.?\d*cm)\s*(?:(?P<hs
 PAT_TRACK = re.compile(r"^(?:(?:(?P<meters>\d+|\d?MILE)\s*(?P<msfx>%s|[yY]|[wW])?)|[sS][cC]|[2345][mM][tT]|[lL][hH]|[sS][hH])$" % _)
 PAT_HURDLES = re.compile(r"^(?:(\d{2,4})(?:%s))$" % re.sub(r'\(\?P<[^>]*>','(',_)) # 80H, 110H, 400H
 
-PAT_ROAD = re.compile(r"^(?:(?:[mM][iI][lL][eE]|[mM][aA][rR]|[hH][mM])[wW]?|[xX][cC]|(?:\d{1,3}(\.\d\d?)?(?:[MKk]|[MKk][wW]|[wW])))$")
+PAT_ROAD = re.compile(r"^(?:\d{1,3}(?:\.\d{1,2})?[MKmk](?:[wW]|[xX][cC])?|(?:[mM][iI][lL][eE]|[mM][aA][rR]|[hH][mM])[wW]?|[xX][cC])$")
 
 PAT_RACES_FOR_DISTANCE = re.compile(r"^(?:(?P<dhours>\d\d?)([hH](?:[rR]|[wW]))|[tT](?P<dmins>\d+))$")
 
