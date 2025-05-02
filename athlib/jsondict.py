@@ -1,6 +1,6 @@
+from __future__ import annotations
 from os import name
 from typing import Union, Dict, List, Any
-from __future__ import annotations
 
 """Utilities for working with JSON and json-like structures - deeply nested
 Python dicts and lists.
