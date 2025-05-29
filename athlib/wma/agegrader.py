@@ -306,6 +306,12 @@ class AgeGrader(object):
                 event = 'LH'
             else:
                 raise ValueError(f'Event {event} looks like hurdles, but is not a standard distance so not supported')
+        elif event in ['2000SC', '3000SC']:
+            # Generalise to steeplechase for championship steeple distances
+            event = 'SC
+        elif len(event) > 2 and event[:2] in ['DT', 'HT', 'JT', 'SP', 'WT']:
+            # Chop off weights from throw event codes
+            event = event[:2]
         world_best = self.world_best(gender, event)
         age_factor = self.calculate_factor(gender, age, event)
         age_group_best = world_best * 1.0 / age_factor
