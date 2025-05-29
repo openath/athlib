@@ -297,6 +297,15 @@ class AgeGrader(object):
 
         # This works for jumps/throws too, as they are floats
         float_performance = parse_hms(performance)
+
+        event = event.upper()
+        if event[-1] == 'H' and event not in ('LH', 'SH', '60H'):
+            if int(event[:-1]) <= 110:
+                event = 'SH'
+            elif int(event[:-1]) >= 200:
+                event = 'LH'
+            else:
+                raise ValueError(f'Event {event} looks like hurdles, but is not a standard distance so not supported')
         world_best = self.world_best(gender, event)
         age_factor = self.calculate_factor(gender, age, event)
         age_group_best = world_best * 1.0 / age_factor
