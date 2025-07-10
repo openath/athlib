@@ -26,6 +26,8 @@ function Jumper(kwds) {
       this.roundLim = 3;
       this.consecutiveFailures = 0;
       const defaults = [
+        'competitor_id',
+        null,
         'first_name',
         'unknown',
         'last_name',
