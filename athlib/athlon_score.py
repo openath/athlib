@@ -4,11 +4,15 @@ scores.   Taken from IAUM site,
 """
 import math
 
+from decimal import Decimal, getcontext
+
 from .codes import PAT_JUMPS, PAT_THROWS
 from .wma.agegrader import AthlonsAgeGrader
 from .implements import get_specific_event_code
 
-from typing import Union, Optional
+from typing import Optional, Tuple, Dict, List
+
+getcontext().prec = 28
 
 # Array of parameters used to determine IAAF scores.
 #
@@ -24,11 +28,8 @@ _scoring_table = (
     {"gender": "M", "event_code": "400", "A": 1.53775, "Z": 82.0, "X": 1.81},
     {"gender": "M", "event_code": "600", "A": 0.42088, "Z": 94.5, "X": 1.85},  # Welsh Athletics
 
-
-
     {"gender": "M", "event_code": "800", "A": 0.13279, "Z": 235.0, "X": 1.85},
 #     English Schools uses this different factor: a:0.232, Z:200, x:1.85
-#    {"gender": "M", "event_code": "800", "A": 0.13279, "Z": 235.0, "X": 1.85},
 #   We override this at runtime in the calculator function, if you pass in the esaa option
 
 
@@ -82,10 +83,21 @@ _scoring_table = (
     {"gender": "F", "event_code": "WT", "A": 44.2593, "Z": 1.5, "X": 1.05}
 )
 
+def _convert_to_decimal_table(table_data: Tuple[Dict]) -> List[Dict]:
+    """Converts the float coefficients in scoring table to Decimal objects."""
+    new_table = []
+    for entry in table_data:
+        new_entry = entry.copy()
+        for key in ["A", "Z", "X"]:
+            new_entry[key] = Decimal(str(entry[key]))
+        new_table.append(new_entry)
+    return new_table
+
+_scoring_table = _convert_to_decimal_table(_scoring_table)
 
 def scoring_key(gender: str, event_code: str) -> str:
     """Utility function to get the <gender>-<event> scoring key."""
-    return ("%s-%s" % (gender, event_code)).upper()
+    return (f"{gender}-{event_code}").upper()
 
 
 # Lazily evaluated dictionary to map from scoring key to parameters
@@ -105,7 +117,7 @@ def _scoring_objects_create() -> None:
             _scoring_objects[scoring_key(o["gender"], o["event_code"])] = o
 
 
-def score(gender: str, event_code: str, value: Union[float, int], age: str = None, esaa: bool = False) -> Optional[int]:
+def score(gender: str, event_code: str, value: Decimal, age: str = None, esaa: bool = False) -> Optional[int]:
     """Function to determine IAAF score, based on gender, event and performance.
     
     You should only pass the age if you wish to age-adjust in years for WMA events
@@ -114,7 +126,7 @@ def score(gender: str, event_code: str, value: Union[float, int], age: str = Non
     English Schools AA and the ultra-multi folks invented different factors.
 
     In the interface, we assume performance is <seconds> for track events,
-    and <metres> for throws and jumps. Ihe the Wikipedia-sourced factors,
+    and <metres> for throws and jumps. In the the Wikipedia-sourced factors,
     jumps are <centimetres>.  Therefore there is a factor of 100 applied at the
     end.
     """
@@ -122,18 +134,15 @@ def score(gender: str, event_code: str, value: Union[float, int], age: str = Non
     global _scoring_objects
     _scoring_objects_create()
 
-
     ag = AthlonsAgeGrader()
     if not age:
-        age_factor = 1.00
+        age_factor = Decimal('1.00')
     else:
-        age_group = 'V%d' % age
-        # specific_event_code = get_specific_event_code(event_code, gender, age_group)
-        age_factor = ag.calculate_factor(gender, age, event_code)
+        age_factor = Decimal(str(ag.calculate_factor(gender, age, event_code)))
 
 
-        # special case: old people run shorter hurdles races, score as if 100/110H
-    if gender == "F" and event_code =="80H":
+    # special case: old people run shorter hurdles races, score as if 100/110H
+    if gender == "F" and event_code == "80H":
         event_code = "100H"
         # print("Scoring veterans 80H as 100H")
     elif gender == "M" and event_code in ["80H", "100H"]:
@@ -145,51 +154,37 @@ def score(gender: str, event_code: str, value: Union[float, int], age: str = Non
     if key not in _scoring_objects:
         return None
 
-
     coeffs = _scoring_objects[key]
 
     if (key == "M-800") and esaa:
-        coeffs = {
-            "gender": "M", 
-            "event_code": "800", 
-            "A": 0.232, "Z": 200.0, 
-            "X": 1.85
-        }
+        coeffs = {"gender": "M", "event_code": "800", "A": Decimal('0.232'), "Z": Decimal('200.0'), "X": Decimal('1.85')}
 
+    is_field_event = PAT_JUMPS.match(event_code) or PAT_THROWS.match(event_code)
 
-
-
+    # Multiply by 100 and age_factor
+    scaled_value = Decimal("100") * value * age_factor
+    # Round up or down depending on event type
+    scaled_value = scaled_value.to_integral_value(rounding="ROUND_FLOOR" if is_field_event else "ROUND_CEILING")
+    value = Decimal("0.01") * scaled_value
 
     # Handle based on whether jumps, throws or track event
-    if PAT_JUMPS.match(event_code):
-        # The table is expressed in centimetres in the original source
-        value = 0.01 * (math.floor(100* value * age_factor))
-
-        value = value * 100
+    if is_field_event:
+        if PAT_JUMPS.match(event_code):
+            # The table is expressed in centimetres in the original source
+            value = value * Decimal('100')
         if value > coeffs["Z"]:
-            points = max(0, int(coeffs["A"] * ((value - coeffs["Z"]) **
-                       coeffs["X"])))
+            base = value - coeffs["Z"]
         else:
-            points =  0
-    elif PAT_THROWS.match(event_code):
-        value = 0.01 * (math.floor(100* value * age_factor))
-        if value > coeffs["Z"]:
-            points =  max(0, int(coeffs["A"] * ((value - coeffs["Z"]) **
-                       coeffs["X"])))
-        else:
-            points = 0
+            return 0
     else:
-        value = 0.01 * (math.ceil(100* value * age_factor))
         if coeffs["Z"] > value:
-            points = max(0, int(coeffs["A"] * ((coeffs["Z"] - value) **
-                       coeffs["X"])))
+            base = coeffs["Z"] - value
         else:
-            points = 0
+            return 0
 
-    
-    return points
-
-
+    points_decimal = coeffs["A"] * ((base) ** coeffs["X"])
+    final_score = int(points_decimal.to_integral_value(rounding="ROUND_FLOOR"))
+    return max(0, final_score)
 
 def unit_name(event_code: str) -> str:
     """Utility function to get the unit name based on event type."""
@@ -202,12 +197,12 @@ def unit_name(event_code: str) -> str:
         return "seconds"
 
 
-def performance(gender: str, event_code: str, score: int) -> Optional[Union[float, int]]:
+def performance(gender: str, event_code: str, score: int) -> Optional[Decimal]:
     """Function to determine performance required to achieve IAAF score, given
     gender and event.
 
     In the interface, we assume performance is <seconds> for track events,
-    and <metres> for throws and jumps. Ihe the Wikipedia-sourced factors,
+    and <metres> for throws and jumps. In the the Wikipedia-sourced factors,
     jumps are <centimetres>.  Therefore there is a factor of 100 applied at the
     end.
     """
@@ -218,6 +213,8 @@ def performance(gender: str, event_code: str, score: int) -> Optional[Union[floa
     if score < 0:
         score = 0
 
+    decimal_score = Decimal(score)
+
     key = scoring_key(gender, event_code)
 
     # Drop out if no coefficients defined (e.g. bad event/gender)
@@ -226,19 +223,18 @@ def performance(gender: str, event_code: str, score: int) -> Optional[Union[floa
 
     coeffs = _scoring_objects[key]
 
-    if PAT_JUMPS.match(event_code):
-        perf = int(math.ceil(((score / coeffs["A"]) **
-                             (1.0 / coeffs["X"])) + coeffs["Z"]))
-    elif PAT_THROWS.match(event_code):
-        perf = (math.ceil(100.0 * (((score / coeffs["A"]) **
-                                   (1.0 / coeffs["X"])) + coeffs["Z"])) /
-                100.0)
-    else:
-        perf = (math.floor(100.0 * (coeffs["Z"] - ((score / coeffs["A"]) **
-                                                   (1.0 / coeffs["X"])))) /
-                100.0)
+    exponent = Decimal('1.0') / coeffs["X"]
+    power_term = (decimal_score / coeffs["A"]) ** (exponent)
 
     if PAT_JUMPS.match(event_code):
-        perf = 0.01 * perf
+        perf_cm_decimal = power_term + coeffs["Z"]
+        perf_cm_rounded = perf_cm_decimal.to_integral_value(rounding="ROUND_CEILING")
+        perf = Decimal("0.01") * perf_cm_rounded
+    elif PAT_THROWS.match(event_code):
+        perf_metres_decimal = power_term + coeffs["Z"]
+        perf = perf_metres_decimal.quantize(Decimal('0.01'), rounding="ROUND_CEILING")
+    else:
+        perf_seconds_decimal = coeffs["Z"] - power_term
+        perf = perf_seconds_decimal.quantize(Decimal('0.01'), rounding="ROUND_FLOOR")
 
     return perf
