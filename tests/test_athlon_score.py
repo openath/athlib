@@ -33,6 +33,9 @@ class IaafScoreTests(TestCase):
         self.assertEqual(performance("M", "PV", -100), 1.0)
         self.assertEqual(performance("M", "NA", 500), None)
 
+        # High jump floating point issue raised by Thor, Norway
+        self.assertEqual(performance("M", "HJ", 831), Decimal('2.03'))
+
 
     def test_scoring_key(self):
         """
@@ -67,6 +70,9 @@ class IaafScoreTests(TestCase):
         self.assertEqual(score("?", "NA", 42), None)
 
         self.assertEqual(score("M", "1000", 150), 988)
+
+        # High jump floating point issue raised by Thor, Norway
+        self.assertEqual(score("M", "HJ", Decimal('2.03')), 831)
 
 
 
@@ -115,6 +121,10 @@ class IaafScoreTests(TestCase):
         # Brian Slaughter's throw from BMAF Throws Pentathlon...
         self.assertEqual(score("M", "HT", Decimal('29.43'), 65), 504)
         self.assertEqual(score("F", "WT", Decimal('13.62'), 65), 824)
+
+        # 2025, EMACS floating point issue, was 486
+        # https://data.opentrack.run/en-gb/x/2025/PRT/emacs/event/T18H2/1/1/
+        self.assertEqual(score("F", "SP", Decimal('5.61'), 70), 485)
 
 
 
