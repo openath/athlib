@@ -80,9 +80,9 @@ class ImportTest(AthlibTestCase):
     def test_fake_signatures(self):
         failures = []
         def bad_test(a,b):
-            asig = getattr(inspect,'getfullargspec',inspect.getargspec)(a)
+            asig = inspect.getfullargspec(a)
             del asig.args[0]
-            bsig = getattr(inspect,'getfullargspec',inspect.getargspec)(b)
+            bsig = inspect.getfullargspec(b)
             if asig!=bsig:
                 return asig,bsig
 

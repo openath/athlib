@@ -11,7 +11,7 @@ class HunTest(TestCase):
         tbl = get_lookup_table()
         inputs = ('M', 'OUT', '200')
         values = tbl[inputs]
-        self.assertEquals(values, (5.08, -35.5, 0))
+        self.assertEqual(values, (5.08, -35.5, 0))
 
 
     def test_scores(self):
@@ -25,7 +25,7 @@ class HunTest(TestCase):
 
         for test in tests:
             (gender, inout, event_code, performance, points) = test
-            self.assertEquals(
+            self.assertEqual(
                 score(gender, inout, event_code, performance), 
                 points
                 )

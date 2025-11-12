@@ -1,4 +1,5 @@
 """Unit tests for iaaf_score.py."""
+from decimal import Decimal
 
 from unittest import TestCase, main
 from athlib.athlon_score import performance, scoring_key, score, unit_name
@@ -18,13 +19,14 @@ class IaafScoreTests(TestCase):
         Test the function to calculate the required performance for a given
         score.
         """
-        self.assertEqual(performance("F", "10000", 915), 2400.73)
-        self.assertEqual(performance("M", "110H", 973), 14.01)
+        self.assertEqual(performance("F", "10000", 915), Decimal('2400.73'))
+        self.assertEqual(performance("M", "110H", 973), Decimal('14.01'))
         self.assertEqual(performance("M", "110H", 974), 14)
-        self.assertEqual(performance("F", "HJ", 1000), 1.82)
-        self.assertEqual(performance("M", "WT", 1), 1.53)
-        self.assertEqual(performance("F", "JT", 700), 41.68)
-        self.assertEqual(performance("M", "PV", 1284), 6.16)
+        self.assertEqual(performance("M", "110H", 974), Decimal('14'))
+        self.assertEqual(performance("F", "HJ", 1000), Decimal('1.82'))
+        self.assertEqual(performance("M", "WT", 1), Decimal('1.53'))
+        self.assertEqual(performance("F", "JT", 700), Decimal('41.68'))
+        self.assertEqual(performance("M", "PV", 1284), Decimal('6.16'))
 
         # You need 1m to score 0, so that's what you get back
         self.assertEqual(performance("M", "PV", 0), 1.0)
@@ -47,16 +49,19 @@ class IaafScoreTests(TestCase):
 
     def test_score(self):
         """Test the function to calculate the score for a given performance."""
+        self.assertEqual(score("F", "10000", Decimal('2400')), 915)
         self.assertEqual(score("F", "10000", 2400), 915)
-        self.assertEqual(score("M", "110H", 14.01), 973)
+        self.assertEqual(score("M", "110H", Decimal('14.01')), 973)
+        self.assertEqual(score("M", "110H", Decimal('14')), 975)
         self.assertEqual(score("M", "110H", 14), 975)
-        self.assertEqual(score("F", "HJ", 1.93), 1145)
-        self.assertEqual(score("M", "WT", 1.53), 1)
+        self.assertEqual(score("F", "HJ", Decimal('1.93')), 1145)
+        self.assertEqual(score("M", "WT", Decimal('1.53')), 1)
+        self.assertEqual(score("M", "WT", Decimal('1')), 0)
         self.assertEqual(score("M", "WT", 1), 0)
-        self.assertEqual(score("F", "JT", 41.68), 700)
-        self.assertEqual(score("M", "PV", 6.16), 1284)
+        self.assertEqual(score("F", "JT", Decimal('41.68')), 700)
+        self.assertEqual(score("M", "PV", Decimal('6.16')), 1284)
 
-        self.assertEqual(score("M", "LJ", 0.5), 0)
+        self.assertEqual(score("M", "LJ", Decimal('0.5')), 0)
         self.assertEqual(score("M", "100", 45), 0)
 
         self.assertEqual(score("?", "NA", 42), None)
@@ -77,12 +82,12 @@ class IaafScoreTests(TestCase):
 
     def test_wma_adjusted_score(self):
         "Extra bonus for being old, used by WMA"
-        self.assertEqual(score("M", "60H", 10.58), 437)
+        self.assertEqual(score("M", "60H", Decimal('10.58')), 437)
 
 
-        self.assertEqual(score("M", "60H", 11.25, 50), 489)
-        self.assertEqual(score("M", "LJ", 4.77, 50), 556)
-        self.assertEqual(score("M", "1000", 272.91, 62), 299)
+        self.assertEqual(score("M", "60H", Decimal('11.25'), 50), 489)
+        self.assertEqual(score("M", "LJ", Decimal('4.77'), 50), 556)
+        self.assertEqual(score("M", "1000", Decimal('272.91'), 62), 299)
 
         # Javelin for different ages - reintroduce with some proper jav test data
         # self.assertEqual(score("M", "JT", 30.0), 299) # senior
@@ -91,25 +96,25 @@ class IaafScoreTests(TestCase):
         # self.assertEqual(score("M", "JT", 30.0, 85), 937)
 
         
-        self.assertEqual(score("M", "SP", 7.33, 63), 425)
+        self.assertEqual(score("M", "SP", Decimal('7.33'), 63), 425)
 
-        self.assertEqual(score("F", "60H", 10.90, 53), 777)
-        self.assertEqual(score("F", "HJ", 1.29, 53), 644)
+        self.assertEqual(score("F", "60H", Decimal('10.90'), 53), 777)
+        self.assertEqual(score("F", "HJ", Decimal('1.29'), 53), 644)
 
         # tests from BMAF indoor pentathlon 2023
-        self.assertEqual(score("M", "LJ", 3.57, 77), 593)
-        self.assertEqual(score("M", "LJ", 5.43, 35), 508)
+        self.assertEqual(score("M", "LJ", Decimal('3.57'), 77), 593)
+        self.assertEqual(score("M", "LJ", Decimal('5.43'), 35), 508)
 
         # real one - Amanda Broadhurst at BMAF indoor pentathlon
         # https://data.opentrack.run/en-gb/x/2023/GBR/bmaf-ipen/event/
-        self.assertEqual(score("F", "60H", 12.18, 40), 485)
+        self.assertEqual(score("F", "60H", Decimal('12.18'), 40), 485)
 
 
         # 2023, someone changed the WMA Hammer factors for some reason.
         # Hammer only done by Masters,  Cheshire Tables has changed too
         # Brian Slaughter's throw from BMAF Throws Pentathlon...
-        self.assertEqual(score("M", "HT", 29.43, 65), 504)
-        self.assertEqual(score("F", "WT", 13.62, 65), 824)
+        self.assertEqual(score("M", "HT", Decimal('29.43'), 65), 504)
+        self.assertEqual(score("F", "WT", Decimal('13.62'), 65), 824)
 
 
 
