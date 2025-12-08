@@ -155,6 +155,18 @@ def get_distance(discipline: str) -> Optional[int]:
         return int(1609 * qty)
     elif remains in ('Y', 'y', 'YD', 'yd'):
         return int(0.9144 * qty)
+    
+
+def get_event_code_from_distance(distance: int) -> str:
+    """
+    Return event code based on the distance. Does not handle distance in miles
+    :param distance:
+    :return:
+    """
+    distance /= 1000
+    dist_as_str = str(distance).split('.')[0]
+    return f'{dist_as_str}K'
+
 
 def get_duration_event_time(dev: str) -> Optional[int]:
     '''map duration event code to seconds'''
