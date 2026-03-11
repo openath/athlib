@@ -88,7 +88,7 @@ PAT_THROWS = re.compile(
                         (
                         r"^(?:"
                         r"[sS]?[dD][tT](?P<dtnum>%s|)|"
-                        r"[sS]?[jJ][tT](?P<jtnum>[45678]00\s*g?|)|"
+                        r"[sS]?[jJ][tT](?P<jtnum>[345678]00\s*g?|)|"
                         r"[hHcC][tT](?P<htnum>%s|)|"
                         r"[sS]?[sS][pP](?P<spnum>%s|)|"
                         r"[wW][tT](?P<wtnum>\d?%s|)|"
