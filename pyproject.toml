@@ -1,6 +1,6 @@
 [project]
 name = "athlib"
-version = "0.9.6"
+version = "0.9.7"
 authors = [
   { name="Andy Robinson and others", email="andy@opentrack.run" },
 ]
