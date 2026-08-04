@@ -140,6 +140,14 @@ class IaafScoreTests(TestCase):
         self.assertEqual(score("F", "600", Decimal('177.86')), 1)
         self.assertEqual(score("F", "600", Decimal('180.0')), 0)
 
+    def test_esaa_girls_150m(self):
+        # ESAA 2026 tables, girls 150m - previously unscoreable (no F-150 entry).
+        self.assertEqual(score("F", "150", Decimal('17.40')), 1048)
+        self.assertEqual(score("F", "150", Decimal('20.00')), 735)
+        self.assertEqual(score("F", "150", Decimal('25.00')), 277)
+        self.assertEqual(score("F", "150", Decimal('30.00')), 28)
+        self.assertEqual(score("F", "150", Decimal('31.55')), 1)
+
 
 
 

@@ -59,6 +59,10 @@ _scoring_table = (
 
 
     {"gender": "F", "event_code": "100", "A": 17.857, "Z": 21.0, "X": 1.81},
+
+    # 150m from the ESAA Combined Events Score Tables (1st April 2026); not in IAAF/WA tables.
+    {"gender": "F", "event_code": "150", "A": 8.1894, "Z": 32.0, "X": 1.81},
+
     {"gender": "F", "event_code": "200", "A": 4.99087, "Z": 42.5, "X": 1.81},
     {"gender": "F", "event_code": "400", "A": 1.34285, "Z": 91.7, "X": 1.81},
 
