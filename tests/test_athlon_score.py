@@ -132,6 +132,14 @@ class IaafScoreTests(TestCase):
         # Tha famous boys 800 issue.
         self.assertEqual(score("M", "800", 120, esaa=True), 769)
 
+    def test_esaa_girls_600m(self):
+        # ESAA Combined Events Score Tables (1st April 2026), girls 600m -
+        # previously unscoreable (no F-600 table entry existed).
+        self.assertEqual(score("F", "600", Decimal('90.01')), 1013)
+        self.assertEqual(score("F", "600", Decimal('110.62')), 626)
+        self.assertEqual(score("F", "600", Decimal('177.86')), 1)
+        self.assertEqual(score("F", "600", Decimal('180.0')), 0)
+
 
 
 
