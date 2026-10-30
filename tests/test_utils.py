@@ -390,6 +390,8 @@ class UtilsTests(TestCase):
                 ('1HR',PAT_RACES_FOR_DISTANCE),
                 ('T26',PAT_RACES_FOR_DISTANCE),
                 ('T1440',PAT_RACES_FOR_DISTANCE),
+                ('OHJ',PAT_JUMPS),
+                ('OVJ',PAT_JUMPS),
                 ]
         errs = []
         show = lambda p: repr(sorted(list(p)))

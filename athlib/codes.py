@@ -19,8 +19,9 @@ __all__ = (
         )
 import re
 JUMPS = ("HJ", "PV", "LJ", "TJ",
-        # Standing High Jump, Standing Long Jump, Standing Triple Jump
-        "SHJ", "SLJ", "STJ"
+        # Standing High Jump, Standing Long Jump, Standing Triple Jump, Other Vertical Jump, Other Horizontal Jump
+        "SHJ", "SLJ", "STJ",  "OVJ", "OHJ"
+
         )
 THROWS = (
     "DT", "JT", "HT", "SP", "WT", 
@@ -105,8 +106,8 @@ PAT_THROWS = re.compile(
                         ")$"
                         ) % (_, _, _, _, _, _, _, _),
                         )
-PAT_VERTICAL_JUMPS = re.compile(r"^(?:[sS]?[hH][jJ]|[pP][vV])$")
-PAT_HORIZONTAL_JUMPS = re.compile(r"^(?:[sS]?[lL][jJ]|[sS]?[tT][jJ])$")
+PAT_VERTICAL_JUMPS = re.compile(r"^(?:[sS]?[hH][jJ]|[pP][vV]|[oO][vV][jJ])$")
+PAT_HORIZONTAL_JUMPS = re.compile(r"^(?:[sS]?[lL][jJ]|[sS]?[tT][jJ]|[oO][hH][jJ])$")
 PAT_JUMPS = re.compile(_orjoin(PAT_VERTICAL_JUMPS,PAT_HORIZONTAL_JUMPS))
 
 #msfx = metres suffix optional
