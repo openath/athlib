@@ -593,6 +593,26 @@ describe('Given an instance of Athlib.HighJumpCompetition', function(){
     it("Ivan Paravac should be placed 2nd",()=>{ expect(Ivan_PARAVAC.place).to.be.equal(2) });
   });
 
+  describe('test scorer after a non scorer tied with a scorer', function() {
+    /*
+      A non scorer tied with a scorer shares their place; the next scorer still takes the next place,
+      not the tied one (seen in a pole vault where 2.70 and 2.50 were both placed 4th)
+    */
+    const c = Athlib.HighJumpCompetition.fromMatrix([
+      ["place", "order", "bib", "first_name", "last_name", "team", "category", "2.50", "2.70", "2.90", "best", "note"],
+      ["1", 1, 1, "Ann", "SCORER", "AAA", "F", "o", "o", "xxx", 2.70, ""],
+      ["1", 2, 2, "Bea", "GUEST", "BBB", "F", "o", "o", "xxx", 2.70, ""],
+      ["1", 3, 3, "Cat", "SCORER", "CCC", "F", "o", "xxx", "", 2.50, ""],
+    ]);
+    c.jumpers.find(j => j.bib === "2").non_scorer = true;
+    c._rank();
+    const place = bib => c.rankedJumpers.find(j => j.bib === bib).place;
+
+    it("scorer with 2.70 should be placed 1st", () => { expect(place("1")).to.be.equal(1) });
+    it("non scorer tied with them should share 1st", () => { expect(place("2")).to.be.equal(1) });
+    it("next scorer should be placed 2nd", () => { expect(place("3")).to.be.equal(2) });
+  });
+
   describe('test ranking jumpers while event in-progress', function() {
     const c = Athlib.HighJumpCompetition.fromMatrix(INPROGRESS_SCHOOLGAMES_HJ);
     c._rank()

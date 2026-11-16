@@ -392,7 +392,9 @@ function HighJumpCompetition() {
       let pk = null;
       let pj = null;
 
-      let p = 0;
+      // non scorers don't take places: a jumper is placed after the scorers ranked strictly ahead of them,
+      // and ties share the place (a non scorer gets the place a scorer would have had there)
+      let scorersAhead = 0;
 
       for (i = 0; i < rankjlen; i++) {
         const j = rankj[i];
@@ -401,21 +403,14 @@ function HighJumpCompetition() {
         // console.log(j);
 
         delete j._oldPos;
-        if (p === 0) {
-          j._place = 1;
+        if (i > 0 && cmpKeys(pk, k) === 0) {
+          j._place = pj._place;
         } else {
-          if (cmpKeys(pk, k) === 0) {
-            j._place = pj._place;
-          } else if (pj.non_scorer) {
-            j._place = pj._place;
-            p--;
-          } else {
-            j._place = p + 1;
-          }
+          j._place = scorersAhead + 1;
         }
+        if (!j.non_scorer) scorersAhead++;
         pk = k;
         pj = j;
-        p++;
       }
       // console.log('rankj after', rankj);
       return rankj;
