@@ -17,41 +17,6 @@ def my_test_suite():
     r = unittest.TextTestRunner().run(test_suite)
     sys.exit(len(r.errors)+len(r.failures))
 
-def get_version():
-    if os.path.isdir('docs'):
-        NS = {}
-        version_re = re.compile(r'^version\s*=.*$',re.M)
-        with open(os.path.join('docs','source','conf.py'),'r') as f:
-            txt = f.read()
-        m = version_re.search(txt)
-        if not m:
-            raise ValueError('Cannot find version in docs/source/conf.py')
-        sv = m.group()
-        exec(m.group(),NS)
-        docs_version = NS['version']
-    else:
-        docs_version = 'unknown'
-    if os.path.isdir('athlib'):
-        NS = {}
-        version_re = re.compile(r'^__version__\s*=.*$',re.M)
-        with open(os.path.join('athlib','__init__.py'),'r') as f:
-            txt = f.read()
-        m = version_re.search(txt)
-        if not m:
-            raise ValueError('Cannot find version in athlib/__init__.py')
-        sv = m.group()
-        exec(m.group(), NS)
-        athlib_version = NS['__version__']
-        if docs_version!='unknown' and athlib_version!=docs_version:
-            i0 = m.start()
-            i1 = m.end()
-            txt = txt[:i0]+('__version__ = %r' % docs_version)+txt[i1:]
-            with open(os.path.join('athlib','__init__.py'),'wb') as f:
-                f.write(txt)
-        else:
-            docs_version = athlib_version
-    return docs_version
-
 def find_json(top,drop=1,force=False):
     for p,D,F in os.walk(top):
         for f in F:
@@ -83,9 +48,8 @@ try:
         shutil.copyfile('README.md','README.rst')
     setup(
         name="athlib",
-        version=get_version(),
         packages=find_packages(),
-        package_data={'athlib':(list(find_json(os.path.join('athlib','json-schemas')))
+        package_data={'athlib':(['VERSION']+list(find_json(os.path.join('athlib','json-schemas')))
                                 +list(find_json(os.path.join('athlib','wma'),force=True)))},
         #test_suite="setup.my_test_suite",
 

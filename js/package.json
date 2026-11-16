@@ -4,9 +4,13 @@
   "description": "Athletics Library",
   "main": "./index.js",
   "scripts": {
+    "prebuild": "node sync-version.js",
     "build": "webpack --env.prod=1 && npm run test",
+    "prebuild-debug": "node sync-version.js",
     "build-debug": "webpack --env.prod=0 && npm run test",
+    "prebuild-debug-only": "node sync-version.js",
     "build-debug-only": "webpack --env.prod=0",
+    "predev": "node sync-version.js",
     "dev": "webpack --progress --colors --watch --env.prod=1",
     "eslint": "eslint src/*.js",
     "eslint-fix": "eslint --fix src/*.js",

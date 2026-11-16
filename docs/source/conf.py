@@ -63,8 +63,9 @@ author = u'Andy Robinson, Robin Becker, Llewellyn Brunsdon-Haland, James Davis, 
 # |version| and |release|, also used in various other places throughout the
 # built documents.
 #
-# The short X.Y version.
-version = u'0.9.9'
+# The short X.Y version, set in athlib/VERSION.
+with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'athlib', 'VERSION')) as f:
+    version = f.read().strip()
 # The full version, including alpha/beta/rc tags.
 release = version
 

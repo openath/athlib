@@ -1,6 +1,6 @@
 [project]
 name = "athlib"
-version = "0.9.9"
+dynamic = ["version"]
 authors = [
   { name="Andy Robinson and others", email="andy@opentrack.run" },
 ]
@@ -18,6 +18,9 @@ license = {file = "LICENSE"}
 [project.urls]
 Homepage = "https://github.com/openath/athlib"
 Issues = "https://github.com/openath/athlib/issues"
+
+[tool.setuptools.dynamic]
+version = {file = "athlib/VERSION"}
 
 [build-system]
 requires = ["setuptools>=82.0"]
