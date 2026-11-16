@@ -1,8 +1,8 @@
 
 Here are Robin Becker's notes on how to publish new versions of athlib:
 
-	#modify version
-	vim athlib/__init__.py docs/source/conf.py js/package.json pyproject.toml
+	#modify version: athlib/VERSION is the only place it's set (npm run build copies it into js/package.json)
+	vim athlib/VERSION
 
 	#test python & js
 	python setup.py test

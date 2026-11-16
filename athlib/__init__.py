@@ -7,7 +7,12 @@ from .hungarian_score import score as hungarian_score
 from .bulgarian_score import score as bulgarian_score
 from .athlon_score import performance as athlon_performance_needed
 
-__version__ = u'0.9.9'
+def __read_version__():
+    import os
+    with open(os.path.join(os.path.dirname(__file__), 'VERSION')) as f:
+        return f.read().strip()
+__version__ = __read_version__()
+del __read_version__
 
 from .exceptions import RuleViolation
 
